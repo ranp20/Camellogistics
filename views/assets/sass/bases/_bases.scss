@@ -1,0 +1,27 @@
+/* IMPORTAR LAS VARABLES Y MIXINS A UTILIZAR EN EL TEMA */
+@import 'variables';
+
+:root{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+html,
+body{
+	font-family: $total-font-family;
+	position: relative;
+}
+a{
+	text-decoration: none !important;
+}
+ul{
+	list-style: none;
+}
+
+/* CLASS UTILITIES */
+.control-spanrequired{
+	color: red;
+}
+.mtop-headertop{
+	margin-top: $min-headertop;
+}

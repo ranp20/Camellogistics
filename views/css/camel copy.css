@@ -1,0 +1,571 @@
+#list_cont_completo{
+    display: none;
+    width: 395px;
+    height: 300px;
+    border: 0px #FF0000 dashed;
+    position: relative;
+    margin: 86px 0px 0px 0px;
+}
+ 
+
+.standard_containt{
+    width: 380px;
+    height: 70px;
+    border: 0px #FF0000 dashed;
+    /*display: inline-block;*/
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    position: relative;
+    margin: 0px 0px 0px -81px;
+}
+.num_standard{
+    width: 320px;
+    height: 65px;
+    border: 0px #FF0000 dashed;
+    position: relative;
+    display: inline-block;
+    margin: 17px -74px 11px 27px;
+    padding: 0px 0px;
+}
+.num_standard1{
+    width: 154px;
+    height: 59px;
+    border: 0px #FF0000 dashed;
+    position: relative;
+    display: inline-block;
+    margin: 0px 0px 1px 151px;
+    padding: 5px 0px;
+}
+#list_cont_compartido{
+    display: none;
+    width: 424px;
+    height: 200px;
+    border: 0px #FF0000 dashed;
+    position: relative;
+    margin: 86px 0px 0px 0px;
+}
+#num_peso_containt{
+    width: 154px;
+    height: 59px;
+    border: 0px #FF0000 dashed;
+    position: relative;
+    display: inline-block;
+    margin: 0px 0px 1px 22px;
+    padding: 5px 0px;
+}
+.num_standard_comp{
+    width: 197px;
+    height: 59px;
+    border: 0px #FF0000 dashed;
+    position: relative;
+    display: inline-block;
+    margin: 0px 0px 1px 97px;
+    padding: 5px 0px;
+}
+#num_peso_containt1{
+    width: 100px;
+    height: 59px;
+    border: 0px #FF0000 dashed;
+    position: relative;
+    display: inline-block;
+    margin: 0px 0px 1px 22px;
+    padding: 5px 0px;
+}
+.est_select{
+    width: 130px;
+}
+.embed-container{
+    width: 100%;
+    height: 1100px;
+    border: 0px #FF0000 dashed;
+    display: block;
+    margin: 0px 0px 0px 0px;
+}
+#detail_cont_selc1{
+    width: 125px;
+    height: 25px;
+    border: 0px #FF0000 dashed;
+    display: inline-block;
+    position: relative;
+    margin: 0px 0px 0px 0px;
+}
+#detail_cont_selc2{
+    width: 125px;
+    height: 25px;
+    border: 0px #FF0000 dashed;
+    display: inline-block;
+    position: relative;
+    margin: 0px 0px 0px 0px;
+}
+#detail_cont_selc3{
+    width: 75px;
+    height: 25px;
+    border: 0px #FF0000 dashed;
+    display: inline-block;
+    position: relative;
+    margin: 0px 0px 0px 0px;
+}
+#detail_cont_selc4{
+    width: 144px;
+    height: 25px;
+    border: 0px #FF0000 dashed;
+    display: inline-block;
+    position: relative;
+    margin: 0px 0px 0px 0px;
+}
+.standard_containt1{
+    width: 473px;
+    height: 23px;
+    border: 0px #FF0000 dashed;
+    /* display: inline-block; */
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    position: relative;
+    margin: 2px 0px 4px 0px;
+}
+#detail_cont_selc1t{
+    width: 254px;
+    height: 65px;
+    border: 0px #FF0000 dashed;
+    display: block;
+    position: relative;
+    margin: 46px -76px 0px 0px;
+}
+#flete_maritimo{
+    width: 180px;
+    height: 180px;
+    border: 0px #FF0000 dashed;
+    background:url(../img/camel-imagen-1.png);
+    background-size: 100%;
+    background-repeat: no-repeat;
+    display: inline-block;
+    position: relative;
+    margin: 0px -55px 0px 77px;
+    cursor: pointer;
+}
+#flete_aereo{
+    width: 180px;
+    height: 180px;
+    border: 0px #FF0000 dashed;
+    background:url(../img/camel-imagen-2.png);
+    background-size: 100%;
+    background-repeat: no-repeat;
+    display: inline-block;
+    position: relative;
+    margin: 0px 0px 0px 86px;
+    cursor: pointer;
+}
+
+#cbo_ruta{
+    display: block;/*Se cambio a block antes none*/
+}
+#t_envio{
+    display: block;/*Se cambio a block antes none*/
+}
+#estimar{
+    display: none;
+    margin: 82px 0px 0px 0px;
+}
+#next_maritimo{
+    display: none;
+    position: relative;
+    margin: 10px 0px 28px 0px;
+    padding: 8px 0px;
+}
+#fase1{
+    display: block;
+}
+#fase2{
+    display: none;
+}
+#fase3{
+    display: none;
+}
+#marc_det_flete{
+    width: 545px;
+    height: 159px;
+    text-align: center;
+    border: 0px #FF0000 dashed;
+    display: block;
+    position: relative;
+    margin: 0px 0px 0px 8px;
+}
+#dt_flete{
+    width: 546px;
+    height: 40px;
+    text-align: center;
+    border: 0px #FF0000 dashed;
+    display: block;
+    position: relative;
+    margin: 0px 0px 0px 0px;
+}
+#dt_rutas{
+    width: 545px;
+    height: 40px;
+    text-align: center;
+    border: 0px #FF0000 dashed;
+    display: block;
+    position: relative;
+    margin: 0px 0px 0px 0px;
+}
+#dt_origen{
+    width: 210px;
+    height: 40px;
+    text-align: center;
+    border: 0px #FF0000 dashed;
+    display: inline-block;
+    position: relative;
+    margin: 0px 0px 0px 0px;
+}
+#dt_destino{
+    width: 210px;
+    height: 40px;
+    text-align: center;
+    border: 0px #FF0000 dashed;
+    display: inline-block;
+    position: relative;
+    margin: 0px 0px 0px 0px;
+}
+#dt_container{
+    width: 545px;
+    height: 40px;
+    text-align: center;
+    border: 0px #FF0000 dashed;
+    display: block;
+    position: relative;
+    margin: 0px 0px 0px 0px;
+}
+#marc_serv_flete{
+    width: 543px;
+    height: auto;
+    text-align: center;
+    border: 0px #FF0000 dashed;
+    display: block;
+    position: relative;
+    margin: 0px 0px 0px 30px;
+}
+#marc_datos_user{
+    width: 543px;
+    height: auto;
+    text-align: center;
+    border: 0px #FF0000 dashed;
+    display: block;
+    position: relative;
+    margin: 0px 0px 0px 8px;
+    padding: 0px 57px;
+}
+.mc_tit{
+    width: 416px;
+    height: 30px;
+    text-align: center;
+    border: 0px #FF0000 dashed;
+    display: block;
+    position: relative;
+    margin: 0px 0px 0px 0px;
+}
+.mc_input{
+    width: 416px;
+    height: auto;
+    text-align: center;
+    border: 0px #FF0000 dashed;
+    display: block;
+    position: relative;
+    margin: 0px 0px 0px 0px;
+}
+#dowload_cotizacion{
+    margin: 10px 0px 28px 0px;
+    padding: 8px 0px;
+    display: none;
+}
+.mc_check{
+    display: inline-block;
+    width: 24px;
+    height: auto;
+    /*margin-right: .5rem;*/
+    background-size: cover;
+    border: 0px red dashed;
+    position: relative;
+    margin: 0px 0px -9px -5px;
+}
+.mc_des_check{
+    width: 504px;
+    height: auto;
+    text-align: center;
+    border: 0px #FF0000 dashed;
+    display: inline-block;
+    text-align: left;
+    position: relative;
+    margin: 0px 0px -2px 12px;
+}
+#marc_permisos_aduana{
+    width: 350px;
+    height: auto;
+    text-align: center;
+    border: 0px #FF0000 dashed;
+    display: none;
+    text-align: left;
+    position: relative;
+    margin: 0px 0px 0px -4px;
+}
+.item_per{
+    width: 350px;
+    height: auto;
+    text-align: center;
+    border: 0px #FF0000 dashed;
+    display: inline-block;
+    text-align: left;
+    position: relative;
+    margin: 0px 0px 0px 0px;
+}
+.item_per_tit{
+    width: 350px;
+    height: auto;
+    text-align: center;
+    border: 0px #FF0000 dashed;
+    display: inline-block;
+    text-align: left;
+    position: relative;
+    color: #B00C0C;
+    margin: 0px 0px 0px 0px;
+}
+#marc_trans_domicilio{
+    width: 350px;
+    height: auto;
+    text-align: center;
+    border: 0px #FF0000 dashed;
+    display: none;
+    text-align: left;
+    position: relative;
+    margin: 0px 0px 0px -4px;
+}
+.error{
+	font-family:Futura_Light;
+	font-weight:normal;
+	font-size:15pt;
+	background-color:#6CF;
+    padding:6px 12px;
+	border:dotted 0px #FF0000;
+    border-radius: 4px;
+    color:#000;
+    margin-left:16px;
+    margin-top:6px;
+    position:absolute;
+}
+.error:before{
+    content: '';
+    border-top:8px solid transparent;
+    border-bottom:8px solid transparent;
+    border-right:8px solid #0FC;
+    border-left:8px solid transparent;
+    left: -16px;
+    position:absolute;
+    top:5px;
+}
+#marc_det_resumen_presupuesto{
+    width: 890px;
+    height: auto;
+    border: 0px #FF0000 dashed;
+    display: block;
+    position: relative;
+    margin: 0px 0px 0px 8px;
+}
+#tit_det_rPresupuesto1{
+    width: 890px;
+    height: auto;
+    text-align:right;
+    border: 0px #FF0000 dashed;
+    display: block;
+    position: relative;
+    margin: 0px 0px 0px 0px;
+}
+#tit_det_rPresupuesto2{
+    width: 890px;
+    height: auto;
+    text-align:left;
+    border: 0px #FF0000 dashed;
+    display: block;
+    position: relative;
+    margin: 0px 0px 0px 0px;
+}
+#tit_det_rPresupuesto3{
+    width: 890px;
+    height: auto;
+    border: 0px #FF0000 dashed;
+    display: block;
+    position: relative;
+    margin: 0px 0px 0px 0px;
+}
+#marc_rPresupuesto3_izq{
+    width: 430px;
+    height: auto;
+    border: 0px #FF0000 dashed;
+    display: inline-block;
+    position: relative;
+    margin: 0px 0px 0px 0px;
+}
+#marc_rPresupuesto3_der{
+    width: 452px;
+    height: auto;
+    border: 0px #FF0000 dashed;
+    display: inline-block;
+    position: relative;
+    margin: 0px 0px 0px 0px;
+}
+.item_detalles{
+    width: 209px;
+    height: auto;
+    border: 0px #FF0000 dashed;
+    display: inline-block;
+    position: relative;
+    margin: 0px 0px 0px 0px;
+}
+.item1_detalles{
+    width: 210px;
+    height: auto;
+    text-align: right;
+    border: 0px #FF0000 dashed;
+    display: inline-block;
+    position: relative;
+    margin: 0px 0px 0px 0px;
+}
+#tit_det_rPresupuesto4{
+    width: 890px;
+    height: auto;
+    text-align:center;
+    border: 0px #FF0000 dashed;
+    background: #FF9800;
+    display: block;
+    position: relative;
+    margin: 0px 0px 0px 0px;
+}
+.item_detalles_sub{
+    width: 400px;
+    height: auto;
+    border: 0px #FF0000 dashed;
+    display: block;
+    position: relative;
+    margin: 0px 0px 0px 0px;
+}
+.costo_tot{
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+    font-size: 32pt;
+    width: 400px;
+    height: auto;
+    border: 0px #FF0000 dashed;
+    color: #B33641;
+    display: inline-block;
+    position: absolute;
+    margin: 82px 0px 0px 24px;
+}
+#marco_fletes{
+    width: 100%;
+    height: auto;
+    border: 0px #FF0000 dashed;
+    /*background: url(../img/slide_portfolio_img02.jpg);
+    background-size: 150%;
+    background-repeat: no-repeat;
+    background: #13D3A2;*/
+    background: rgb(255,192,52);
+    background: linear-gradient( 
+180deg
+ , rgba(255,192,52,1) 17%, rgba(255,255,255,1) 39%, rgba(255,192,52,1) 56%);
+    display: block;
+    position: relative;
+    margin: 0px 0px 0px 0px;
+
+}
+#contenedor_marco{
+    width: 50%;
+    height: 670px;
+    border: 0px #FF0000 dashed;
+    
+
+    display: block;
+    position: relative;
+    margin: 0px 0px 0px 320px;
+    padding: 10px 20px;
+}
+#marc_opc_serv{
+    width: 545px;
+    height: auto;
+    text-align: center;
+    font-size: 9pt;
+    border: 0px #FF0000 dashed;
+    display: block;
+    position: relative;
+    margin: 0px 0px 0px 8px;
+}
+#opc_si_servicio{
+    width: 245px;
+    height: 60px;
+    text-align: center;
+    color: antiquewhite;
+    background-color: #FF9800;
+    border-radius: 10px;
+    display: inline-block;
+    position: relative;
+    margin: 0px 0px 0px 8px;
+    cursor: pointer;
+}
+#opc_no_servicio{
+    width: 245px;
+    height: 60px;
+    text-align: center;
+    color:#000;
+    border: 1px #000000 solid;
+    border-radius: 10px;
+    background-color:white;
+    display: inline-block;
+    position: relative;
+    margin: 0px 0px 0px 8px;
+    cursor: pointer;
+}
+#si_servicios{
+    display: none;
+}
+input[type=checkbox], input[type=radio] {
+    box-sizing: border-box;
+    padding: 0;
+    height: 20px;
+}
+ #opc_si_servicio:active{
+    border:1px #00aae4 solid;
+
+}
+#opc_no_servicio:active{
+    border:1px #00aae4 solid;
+
+}
+@media screen and (max-width: 620px){
+.cajacalc {
+    margin: 25px -333px;
+    border: none;
+}
+}
+.standard_containt2{
+    width: 473px;
+    height: 23px;
+    border: 0px #FF0000 dashed;
+    /* display: inline-block; */
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    position: relative;
+    margin: 2px 0px 4px 0px;
+}
+.mc_des_check1{
+    width: 504px;
+    height: auto;
+    text-align: center;
+    border: 0px #FF0000 dashed;
+    display: inline-block;
+    text-align: left;
+    position: relative;
+    margin: 0px 0px -2px 12px;
+}
+#marc_datos_contacto{
+    display: none;
+}

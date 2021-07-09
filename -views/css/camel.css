@@ -1,0 +1,1543 @@
+.cajacalc {
+    width: 200px;
+    height: auto;
+    border: 1px #FF0000 dashed;
+    display: block;
+}
+#puertos_orig {
+    width: 220px;
+    height: auto;
+    display: block;
+}
+#puertos_dest{
+    width: 220px;
+    height: auto;
+    display: block;
+}
+#tip_contenedor{
+    width: 220px;
+    height: auto;
+    display: block;
+}
+#list_cont_completo{
+    display: none;
+    width: 220px;
+    height: auto;
+    border: 0px #FF0000 dashed;
+    position: relative;
+    margin: 0px 0px 0px 0px;
+}
+
+select {
+    outline: none;
+    /* display: inline-block; */
+    border: 1px solid #d9d9d9;
+    padding: 14px 0;
+    box-sizing: border-box;
+    -webkit-transition: 0.3s ease;
+    transition: 0.3s ease;
+    /* float: right; */
+    font-family: 'Open Sans', sans-serif;
+    /* clear: right; */
+    /* margin-bottom: 20px; */
+}
+
+select:focus {
+    border: 1px solid #33b5e5;
+    color: #333333;
+}
+select {
+    border-radius: 5px !important;
+}
+#detail_contenedor{
+    display: none;
+    width: 250px;
+    height: auto;
+    border: 0px #FF0000 dashed;
+    position: relative;
+    margin: -65px 0px 0px 0px;
+}
+#cont_1{
+    display: inline-block;
+    font-size: 9pt;
+    width: 70px;
+    height: auto;
+    border: 0px #FF0000 dashed;
+    position: relative;
+    margin: 0px 0px 0px 0px;
+}
+#cont_2{
+    display: inline-block;
+    font-size: 9pt;
+    width: 70px;
+    height: auto;
+    border: 0px #FF0000 dashed;
+    position: relative;
+    margin: 0px 0px 0px 0px;
+}
+#cont_3{
+    display: inline-block;
+    font-size: 9pt;
+    width: 70px;
+    height: auto;
+    border: 0px #FF0000 dashed;
+    position: relative;
+    margin: 0px 0px 0px 0px;
+}
+#cont_4{
+    display: inline-block;
+    font-size: 9pt;
+    width: 70px;
+    height: auto;
+    border: 0px #FF0000 dashed;
+    position: relative;
+    margin: 0px 0px 0px 0px;
+}
+.button {
+    cursor: pointer;
+    background: #ffc107;
+    margin-bottom: 0px;
+    margin-top: 30px;
+    border: 0;
+    padding: 16px 15px;
+    color: #000000;
+    font-weight: 600;
+    -webkit-transition: 0.3s ease;
+    transition: 0.3s ease;
+    border-radius: 10px;
+    
+    display: inline-block;
+}
+.button {
+    margin-bottom: 0px;
+    padding: 15px 15px;
+    width: 52%;
+    display: block;
+    clear: both;
+}
+#fase2{
+    display: none;
+}
+#next_maritimo{
+    display: none;
+}
+#marco_linea_tiempo{
+    display: block;
+    font-size: 9pt;
+    width: 527px;
+    height: auto;
+    border: 0px #FF0000 dashed;
+    position: relative;
+    margin: 0px 0px 0px -28px;
+}
+#img_icon_serv{
+    display: inline-block;
+    width: 70px;
+    height: 70px;
+    border: 0px #FF0000 dashed;
+    background: url(../assets/img/linea_tiempo/ico-2.png);
+    background-size: 100%;
+    background-repeat: no-repeat;
+    position: relative;
+    margin: 0px 0px 0px 0px;
+}
+.line_azul{
+    display: inline-block;
+    width: 70px;
+    height: 70px;
+    border: 0px #FF0000 dashed;
+    position: relative;
+    margin: 0px 0px 0px 0px;
+    padding: 17px 0px;
+}
+#img_icon_ruta{
+    display: inline-block;
+    width: 70px;
+    height: 70px;
+    border: 0px #FF0000 dashed;
+    background: url(../assets/img/linea_tiempo/ico-4.png);
+    background-size: 100%;
+    background-repeat: no-repeat;
+    position: relative;
+    margin: 0px 0px 0px 0px;
+}
+#img_icon_serv_extra{
+    display: inline-block;
+    width: 70px;
+    height: 70px;
+    border: 0px #FF0000 dashed;
+    background: url(../assets/img/linea_tiempo/ico-9.png);
+    background-size: 100%;
+    background-repeat: no-repeat;
+    position: relative;
+    margin: 0px 0px 0px 0px;
+}
+#img_icon_presup{
+    display: inline-block;
+    width: 70px;
+    height: 70px;
+    border: 0px #FF0000 dashed;
+    background: url(../assets/img/linea_tiempo/ico-7.png);
+    background-size: 100%;
+    background-repeat: no-repeat;
+    position: relative;
+    margin: 0px 0px 0px 0px;
+}
+#marc_img_icon_serv{
+    display: inline-block;
+    width: 70px;
+    height: 90px;
+    border: 0px #FF0000 dashed;
+
+    position: relative;
+    margin: 0px 0px 0px 0px;
+    font-family:Sans-serif;
+    font-weight: bold;
+    font-size: 7pt;
+}
+@media screen and (max-width: 620px){
+    .line_azul {
+        width: 15px;        
+    }
+    #marco_linea_tiempo {
+        display: block;
+        font-size: 9pt;
+        width: 344px;
+        height: auto;
+        border: 0px #FF0000 dashed;
+        position: relative;
+        margin: 0px 0px 0px 14px;
+    }
+    #opc_si_servicio{
+        margin:0px 0px 0px 42px!important;
+    }
+    #opc_si_servicio_lcl{
+        margin:0px 0px 0px 42px!important;
+    }
+    #opc_no_servicio{
+        margin:-51px 0px 0px 40px!important;
+    }
+    #res_rutas {
+        width: 545px;
+        height: auto;
+        text-align: center;
+        border: 0px #FF0000 dashed;
+        display: block;
+        position: relative;
+        margin: 0px 0px 0px -78px!important;
+    }
+    #marc_serv_flete {
+        width: 363px!important;
+        height: auto!important;
+        text-align: center!important;
+        border: 0px #FF0000 dashed!important;
+        display: block!important;
+        position: relative!important;
+        margin: -37px 0px 0px 0px!important;
+    }
+    #marc_det_flete {
+        width: 370px!important;
+        height: 159px!important;
+        text-align: center!important;
+        border: 0px #FF0000 dashed!important;
+        display: block!important;
+        position: relative!important;
+        margin:-105px 0px 0px 0px!important;
+    }
+    #dt_flete {
+        width: 368px!important;
+        height: 40px!important;
+        text-align: center!important;
+        border: 0px #FF0000 dashed!important;
+        display: block!important;
+        position: relative!important;
+        margin: 0px 0px 0px 0px!important;
+    }
+    #dt_rutas {
+        width: auto!important;
+        height: auto!important;
+        text-align: center!important;
+        border: 0px #FF0000 dashed!important;
+        display: block!important;
+        position: relative!important;
+        margin: 0px 0px 0px 0px!important;
+    }
+    #dt_origen {
+        width: 366px!important;
+        height: 40px!important;
+        text-align: center!important;
+        border: 0px #FF0000 dashed!important;
+        display: inline-block!important;
+        position: relative!important;
+        margin: 0px 0px 0px 0px!important;
+    }
+    #dt_destino {
+        width: 366px!important;
+        height: 40px!important;
+        text-align: center!important;
+        border: 0px #FF0000 dashed!important;
+        display: inline-block!important;
+        position: relative!important;
+        margin: 0px 0px 0px 0px!important;
+    }
+    #dt_container {
+        width: auto!important;
+        height: 40px!important;
+        text-align: center!important;
+        border: 0px #FF0000 dashed!important;
+        display: block!important;
+        position: relative!important;
+        margin: 0px 0px 0px 0px!important;
+    }
+    #marc_cadena_logis{
+        width: 312px!important;
+        height: 159px!important;
+        text-align: center!important;
+        border: 0px #FF0000 dashed!important;
+        display: block!important;
+        position: relative!important;
+        margin: 0px 0px 0px 32px!important;
+    }
+    #leye_cadena_logis {
+        width: 400px!important;
+        margin: 10px 0px 0px 0px!important;
+    }    
+    #marc_ley {
+        width: 300px!important;
+        height: 30px!important;
+        border: 0px #FF0000 dashed!important;
+        display: block!important;
+        position: relative!important;
+        margin: 0px 0px 0px 8px!important;
+    }
+    #text_ico_1 {
+       
+        display: none!important;
+        
+    }
+    #text_ico_2 {
+       
+        display: none!important;
+        
+    }
+    #text_ico_3 {
+       
+        display: none!important;
+        
+    }
+    #text_ico_4 {
+       
+        display: none!important;
+        
+    }
+    #text_ico_5 {
+       
+        display: none!important;
+        
+    }
+    #text_ico_6 {
+       
+        display: none!important;
+        
+    }
+    #text_ico_7 {
+       
+        display: none!important;
+        
+    }
+    #text_ico_8 {
+       
+        display: none!important;
+        
+    }
+    #text_ico_9 {
+       
+        display: none!important;
+        
+    }
+    #text_ico_10 {
+       
+        display: none!important;
+        
+    }
+    #linea_1{
+        width: 10px!important;
+        height: 10px!important;
+        background: url(../assets/img/linea_tiempo/OlineMb.png)!important;
+        background-size: 100%!important;
+        background-repeat: no-repeat!important;
+        border: 0px #FF0000 solid!important;
+        margin: 4px 0px 0px 7px!important;
+    }
+    #img_ico_1 {
+        width: 25px!important;
+        height: 25px!important;
+        border: 0px #FF0000 dashed!important;
+        background: url(../assets/img/linea_tiempo/FABRICA-DE-ORIGEN-001.png)!important;
+        background-size: 100%!important;
+        background-repeat: no-repeat!important;
+        text-align: center!important;
+        display: block!important;
+        position: relative!important;
+        margin: 0px 0px 0px 0px!important;
+    }
+    #img_ico_2 {
+        width: 25px!important;
+        height: 25px!important;
+        border: 0px #FF0000 dashed!important;
+        background: url(../assets/img/linea_tiempo/TRANSPORTE-001.png)!important;
+        background-size: 100%!important;
+        background-repeat: no-repeat!important;
+        display: block!important;
+        position: relative!important;
+        margin: 0px 0px 0px 0px!important;
+    }
+    #linea_2 {
+        width: 10px!important;
+        height: 10px!important;
+        border: 0px #FF0000 dashed!important;
+        background: url(../assets/img/linea_tiempo/OlineMb.png)!important;
+        background-size: 100%!important;
+        background-repeat: no-repeat!important;
+        display: block!important;
+        position: relative!important;
+        margin: 4px 0px 0px 7px!important;
+    }
+    #img_ico_3 {
+        width: 25px!important;
+        height: 25px!important;
+        border: 0px #FF0000 dashed!important;
+        background: url(../assets/img/linea_tiempo/ADUANA-001.png)!important;
+        background-size: 100%!important;
+        background-repeat: no-repeat!important;
+        display: block!important;
+        position: relative!important;
+        margin: 0px 0px 0px 0px!important;
+    }
+    #linea_3 {
+        width: 10px!important;
+        height: 10px!important;
+        border: 0px #FF0000 dashed!important;
+        background: url(../assets/img/linea_tiempo/OlineMb.png)!important;
+        background-size: 100%!important;
+        background-repeat: no-repeat!important;
+        display: block!important;
+        position: relative!important;
+        margin: 4px 0px 0px 7px!important;
+    }
+    #img_ico_4 {
+        width: 25px!important;
+        height: 25px!important;
+        border: 0px #FF0000 dashed!important;
+        background: url(../assets/img/linea_tiempo/PUERTO-Y-ALMACEN-001.png)!important;
+        background-size: 100%!important;
+        background-repeat: no-repeat!important;
+        display: block!important;
+        position: relative!important;
+        margin: 0px 0px 0px 0px!important;
+    }
+    #linea_4 {
+        width: 10px!important;
+        height: 10px!important;
+        border: 0px #FF0000 dashed!important;
+        background: url(../assets/img/linea_tiempo/OlineMb.png)!important;
+        background-size: 100%!important;
+        background-repeat: no-repeat!important;
+        display: block!important;
+        position: relative!important;
+        margin: 4px 0px 0px 7px!important;
+    }
+    #img_ico_5 {
+        width: 25px!important;
+        height: 25px!important;
+        border: 0px #FF0000 dashed!important;
+        background: url(../assets/img/linea_tiempo/fleteMaritimo.png)!important;
+        background-size: 100%!important;
+        background-repeat: no-repeat!important;
+        display: block!important;
+        position: relative!important;
+        margin: 0px 0px 0px 0px!important;
+    }
+    #linea_5 {
+        width: 10px!important;
+        height: 10px!important;
+        border: 0px #FF0000 dashed!important;
+        background: url(../assets/img/linea_tiempo/OlineMb2.png)!important;
+        background-size: 100%!important;
+        background-repeat: no-repeat!important;
+        display: block!important;
+        position: relative!important;
+        margin: 4px 0px 0px 7px!important;
+    }
+    #img_ico_6 {
+        width: 25px!important;
+        height: 25px!important;
+        border: 0px #FF0000 dashed!important;
+        /*background: url(../assets/img/linea_tiempo/PUERTO-Y-ALMACEN-003.png)!important;
+        background-size: 100%!important;
+        background-repeat: no-repeat!important;*/
+        display: block!important;
+        position: relative!important;
+        margin: 0px 0px 0px 0px!important;
+    }
+    #linea_6 {
+        width: 10px!important;
+        height: 10px!important;
+        border: 0px #FF0000 dashed!important;
+        background: url(../assets/img/linea_tiempo/OlineMb3.png)!important;
+        background-size: 100%!important;
+        background-repeat: no-repeat!important;
+        display: block!important;
+        position: relative!important;
+        margin: 0px 0px 0px 7px!important;
+    }
+    #img_ico_7 {
+        width: 25px!important;
+        height: 25px!important;
+        border: 0px #FF0000 dashed!important;
+        /*
+        background: url(../assets/img/linea_tiempo/ADUANA-002.png)!important;
+        background-size: 100%!important;
+        background-repeat: no-repeat!important;
+        */
+        display: block!important;
+        position: relative!important;
+        margin: 0px 0px 0px 0px!important;
+    }
+    #linea_7 {
+        width: 10px!important;
+        height: 10px!important;
+        border: 0px #FF0000 dashed!important;
+        background: url(../assets/img/linea_tiempo/OlineMb3.png)!important;
+        background-size: 100%!important;
+        background-repeat: no-repeat!important;
+        display: block!important;
+        position: relative!important;
+        margin: 0px 0px 0px 7px!important;
+    }
+    #img_ico_8 {
+        width: 25px!important;
+        height: 25px!important;
+        border: 0px #FF0000 dashed!important;
+        /*
+        background: url(../assets/img/linea_tiempo/TRANSPORTE-002.png)!important;
+        background-size: 100%!important;
+        background-repeat: no-repeat!important;
+        */
+        display: block!important;
+        position: relative!important;
+        margin: 0px 0px 0px 0px!important;
+    }
+    #linea_8 {
+        width: 10px!important;
+        height: 10px!important;
+        border: 0px #FF0000 dashed!important;
+        background: url(../assets/img/linea_tiempo/OlineMb3.png)!important;
+        background-size: 100%!important;
+        background-repeat: no-repeat!important;
+        display: block!important;
+        position: relative!important;
+        margin: 0px 0px 0px 7px!important;
+    }
+    #img_ico_9 {
+        width: 25px!important;
+        height: 25px!important;
+        border: 0px #FF0000 dashed!important;
+        /*
+        background: url(../assets/img/linea_tiempo/ALMACEN-002.png)!important;
+        background-size: 100%!important;
+        background-repeat: no-repeat!important;
+        */
+        display: block!important;
+        position: relative!important;
+        margin: 0px 0px 0px 0px!important;
+    }
+    #linea_9 {
+        width: 10px!important;
+        height: 10px!important;
+        border: 0px #FF0000 dashed!important;
+        background: url(../assets/img/linea_tiempo/OlineMb3.png)!important;
+        background-size: 100%!important;
+        background-repeat: no-repeat!important;
+        display: block!important;
+        position: relative!important;
+        margin: 0px 0px 0px 7px!important;
+    }
+    .cad_ico_cad_log {
+        width: 25px!important;
+        height: 42px!important;
+        border: 0px #FF0000 dashed!important;
+        display: inline-block!important;
+        position: relative!important;
+        margin: 2px 0px -17px 0px!important
+    }
+    #img_ico_10 {
+        width: 25px!important;
+        height: 25px!important;
+        border: 0px #FF0000 dashed!important;
+        display: block!important;
+        position: relative!important;
+        margin: 0px 0px 0px 0px!important;
+        box-sizing: content-box!important;
+    }
+    #linea_10 {
+        width: 10px!important;
+        height: 10px!important;
+        border: 0px #FF0000 dashed!important;
+        background: url(../assets/img/linea_tiempo/OlineMb3.png)!important;
+        background-size: 100%!important;
+        background-repeat: no-repeat!important;
+        display: block!important;
+        position: relative!important;
+        margin: 0px 0px 0px 7px!important;
+    }
+    .fa-w-14{
+        font-size: 25px!important;
+    }
+    .mc_des_check {
+        width: 323px!important;
+        height: auto!important;
+        text-align: center!important;
+        border: 0px #FF0000 dashed!important;
+        display: block!important;
+        text-align: left!important;
+        position: relative!important;
+        margin:-24px 0px 9px 21px!important;
+        font-family: Sans-serif;
+        font-size: 8pt;
+    }
+    .fill_serv {
+        width: auto!important;
+        height: auto!important;
+        border: 0px #FF0000 dashed!important;
+        display: block!important;
+        position: relative!important;
+        margin: 0px 0px 0px 0px!important;
+        text-align: left!important;
+        font-size: 10pt!important;
+    }
+}
+#opc_si_servicio{
+    width: 245px;
+    height: 60px;
+    text-align: center;
+    color: antiquewhite;
+    background-color: #FF9800;
+    border: 0px #000000 solid;
+    border-radius: 10px;
+    display: block;
+    position: relative;
+    margin: -59px 0px 0px 0px;
+    cursor: pointer;
+}
+#opc_si_servicio_lcl{
+    width: 245px;
+    height: 60px;
+    text-align: center;
+    color: antiquewhite;
+    background-color: #FF9800;
+    border: 0px #000000 solid;
+    border-radius: 10px;
+    display: block;
+    position: relative;
+    margin: -59px 0px 0px 0px;
+    cursor: pointer;
+}
+#opc_no_servicio{
+    width: 245px;
+    height: 60px;
+    text-align: center;
+    color:#000;
+    border: 1px #000000 solid;
+    border-radius: 10px;
+    background-color:white;
+    display: block;
+    position: relative;
+    margin: -131px 0px 71px 250px;
+    cursor: pointer;
+}
+#tit_el_op{
+    display: none;
+}
+
+#marc_serv_flete {
+    width: 543px;
+    height: auto;
+    text-align: center;
+    border: 0px #FF0000 dashed;
+    display: block;
+    position: relative;
+    margin: 0px 0px 0px 0px;
+}
+.mc_check{
+    display: inline-block;
+    width: 24px;
+    height: auto;
+    /*margin-right: .5rem;*/
+    background-size: cover;
+    border: 0px red dashed;
+    position: relative;
+    margin: 0px 0px -9px -5px;
+}
+.mc_des_check{
+    width: 504px;
+    height: auto;
+    text-align: center;
+    border: 0px #FF0000 dashed;
+    display: inline-block;
+    text-align: left;
+    position: relative;
+    margin: 0px 0px -2px 12px;
+    font-family: Sans-serif;
+    font-size: 10pt;
+}
+input[type=checkbox], input[type=radio] {
+    box-sizing: border-box;
+    padding: 0;
+    height: 20px;
+    width: 100%;
+}
+.item_per_tit{
+    width: 350px;
+    height: auto;
+    text-align: center;
+    border: 0px #FF0000 dashed;
+    display: inline-block;
+    text-align: left;
+    position: relative;
+    color: #B00C0C;
+    font-size: 9pt;
+    text-align: center;
+    font-family:Sans-serif;
+    margin: 0px 0px 0px 0px;
+}
+#marc_det_flete{
+    width: 545px;
+    height: 159px;
+    text-align: center;
+    border: 0px #FF0000 dashed;
+    display: block;
+    position: relative;
+    margin: 0px 0px 0px 0px;
+    font-family:Sans-serif;
+    font-size: 10pt;
+}
+#res_rutas {
+    width: 545px;
+    height: auto;
+    text-align: center;
+    border: 0px #FF0000 dashed;
+    display: block;
+    position: relative;
+    margin: 0px 0px 0px -295px;
+}
+#dt_flete{
+    width: 546px;
+    height: 40px;
+    text-align: center;
+    border: 0px #FF0000 dashed;
+    display: block;
+    position: relative;
+    margin: 0px 0px 0px 0px;
+}
+#dt_rutas{
+    width: 545px;
+    height: 40px;
+    text-align: center;
+    border: 0px #FF0000 dashed;
+    display: block;
+    position: relative;
+    margin: 0px 0px 0px 0px;
+}
+#dt_origen{
+    width: 265px;
+    height: 40px;
+    text-align: center;
+    border: 0px #FF0000 dashed;
+    display: inline-block;
+    position: relative;
+    margin: 0px 0px 0px 0px;
+}
+#dt_destino{
+    width: 265px;
+    height: 40px;
+    text-align: center;
+    border: 0px #FF0000 dashed;
+    display: inline-block;
+    position: relative;
+    margin: 0px 0px 0px 0px;
+}
+#dt_container{
+    width: 545px;
+    height: 40px;
+    text-align: center;
+    border: 0px #FF0000 dashed;
+    display: block;
+    position: relative;
+    margin: 0px 0px 0px 0px;
+}
+#marc_cad_logis{
+    width: 545px;
+    height: 40px;
+    text-align: center;
+    border: 0px #FF0000 dashed;
+    display: block;
+    position: relative;
+    margin: 0px 0px 0px 0px;
+}
+#leyenda_cad_log{
+    width: 295px;
+    height: 43px;
+    text-align: center;
+    border: 0px #FF0000 dashed;
+    display: block;
+    position: relative;
+    margin: 0px 0px 0px 0px;
+}
+#boton_serv{
+   
+    display: block;
+
+}
+.fill_serv{
+    width: auto!important;
+    height: auto!important;
+    border: 0px #FF0000 dashed;
+    display: block;
+    position: relative;
+    margin: 0px 0px 0px 0px;
+    text-align: left;
+}
+#trans_origen{
+    display: inline-block;
+}
+#trans_destino{
+    display: inline-block;
+}
+#marc_cadena_logis{
+    width: 590px;
+    height: auto!important;
+    border: 0px #FF0000 dashed;
+    display: block;
+    position: relative;
+    margin: 0px 0px 0px 0px;
+}
+.cad_ico_cad_log{
+    width: 55px;
+    height: 100px;
+    border: 0px #FF0000 dashed;
+    display: inline-block;
+    position: relative;
+    margin: 0px 0px 0px 0px;
+}
+#img_ico_1{
+    width: 35px;
+    height: 35px;
+    border: 0px #FF0000 dashed;
+    background: url(../assets/img/linea_tiempo/FABRICA-DE-ORIGEN-001.png);
+    background-size: 100%;
+    background-repeat: no-repeat;
+    text-align: center;
+    display: block;
+    position: relative;
+    margin: 0px 0px 0px 9px;
+}
+#linea_1{
+    width: 61px;
+    height: 15px;
+    border: 0px #FF0000 dashed;
+    background: url(../assets/img/linea_tiempo/Oline.png);
+    background-size: 100%;
+    background-repeat: no-repeat;
+    display: block;
+    position: relative;
+    margin: 0px 0px 0px 0px;
+}
+#text_ico_1{
+    width: 55px;
+    height: 45px;
+    font-size: 6pt;
+    text-align: center;
+    font-family:Sans-serif;
+    border: 0px #FF0000 dashed;
+    display: block;
+    position: relative;
+    margin: 0px 0px 0px 0px;
+}
+#img_ico_2{
+    width: 35px;
+    height: 35px;
+    border: 0px #FF0000 dashed;
+    background: url(../assets/img/linea_tiempo/TRANSPORTE-001.png);
+    background-size: 100%;
+    background-repeat: no-repeat;
+    display: block;
+    position: relative;
+    margin: 0px 0px 0px 9px;
+}
+#linea_2{
+    width: 61px;
+    height: 15px;
+    border: 0px #FF0000 dashed;
+    background: url(../assets/img/linea_tiempo/Oline.png);
+    background-size: 100%;
+    background-repeat: no-repeat;
+    display: block;
+    position: relative;
+    margin: 0px 0px 0px 0px;
+}
+#text_ico_2{
+    width: 55px;
+    height: 45px;
+    font-size: 6pt;
+    text-align: center;
+    font-family:Sans-serif;
+    border: 0px #FF0000 dashed;
+    display: block;
+    position: relative;
+    margin: 0px 0px 0px 0px;
+}
+#img_ico_3{
+    width: 35px;
+    height: 35px;
+    border: 0px #FF0000 dashed;
+    background: url(../assets/img/linea_tiempo/ADUANA-001.png);
+    background-size: 100%;
+    background-repeat: no-repeat;
+    display: block;
+    position: relative;
+    margin: 0px 0px 0px 9px;
+}
+#linea_3{
+    width: 61px;
+    height: 15px;
+    border: 0px #FF0000 dashed;
+    background: url(../assets/img/linea_tiempo/Oline.png);
+    background-size: 100%;
+    background-repeat: no-repeat;
+    display: block;
+    position: relative;
+    margin: 0px 0px 0px 0px;
+}
+#text_ico_3{
+    width: 55px;
+    height: 45px;
+    font-size: 6pt;
+    text-align: center;
+    font-family:Sans-serif;
+    border: 0px #FF0000 dashed;
+    display: block;
+    position: relative;
+    margin: 0px 0px 0px 0px;
+}
+#img_ico_4{
+    width: 35px;
+    height: 35px;
+    border: 0px #FF0000 dashed;
+    background: url(../assets/img/linea_tiempo/PUERTO-Y-ALMACEN-001.png);
+    background-size: 100%;
+    background-repeat: no-repeat;
+    display: block;
+    position: relative;
+    margin: 0px 0px 0px 9px;
+}
+#linea_4{
+    width: 61px;
+    height: 15px;
+    border: 0px #FF0000 dashed;
+    background: url(../assets/img/linea_tiempo/Oline.png);
+    background-size: 100%;
+    background-repeat: no-repeat;
+    display: block;
+    position: relative;
+    margin: 0px 0px 0px 0px;
+}
+#text_ico_4{
+    width: 55px;
+    height: 45px;
+    font-size: 6pt;
+    text-align: center;
+    font-family:Sans-serif;
+    border: 0px #FF0000 dashed;
+    display: block;
+    position: relative;
+    margin: 0px 0px 0px 0px;
+}
+#img_ico_5{
+    width: 35px;
+    height: 35px;
+    border: 0px #FF0000 dashed;
+    background: url(../assets/img/linea_tiempo/fleteMaritimo.png);
+    background-size: 100%;
+    background-repeat: no-repeat;
+    display: block;
+    position: relative;
+    margin: 0px 0px 0px 9px;
+}
+#linea_5{
+    width: 61px;
+    height: 15px;
+    border: 0px #FF0000 dashed;
+    background: url(../assets/img/linea_tiempo/Gline.png);
+    background-size: 100%;
+    background-repeat: no-repeat;
+    display: block;
+    position: relative;
+    margin: 0px 0px 0px 0px;
+}
+#text_ico_5{
+    width: 55px;
+    height: 45px;
+    border: 0px #FF0000 dashed;
+    font-size: 6pt;
+    text-align: center;
+    font-family:Sans-serif;
+    display: block;
+    position: relative;
+    margin: 0px 0px 0px 0px;
+}
+#img_ico_6{
+    width: 35px;
+    height: 35px;
+    border: 0px #FF0000 dashed;
+    background: url(../assets/img/linea_tiempo/PUERTO-Y-ALMACEN-003.png);
+    background-size: 100%;
+    background-repeat: no-repeat;
+    display: block;
+    position: relative;
+    margin: 0px 0px 0px 9px;
+}
+#linea_6{
+    width: 61px;
+    height: 15px;
+    border: 0px #FF0000 dashed;
+    background: url(../assets/img/linea_tiempo/Greyline.png);
+    background-size: 100%;
+    background-repeat: no-repeat;
+    display: block;
+    position: relative;
+    margin: 0px 0px 0px 0px;
+}
+#text_ico_6{
+    width: 55px;
+    height: 45px;
+    border: 0px #FF0000 dashed;
+    font-size: 6pt;
+    text-align: center;
+    font-family:Sans-serif;
+    display: block;
+    position: relative;
+    margin: 0px 0px 0px 0px;
+}
+#img_ico_7{
+    width: 35px;
+    height: 35px;
+    border: 0px #FF0000 dashed;
+    background: url(../assets/img/linea_tiempo/ADUANA-002.png);
+    background-size: 100%;
+    background-repeat: no-repeat;
+    display: block;
+    position: relative;
+    margin: 0px 0px 0px 9px;
+}
+#linea_7{
+    width: 61px;
+    height: 15px;
+    border: 0px #FF0000 dashed;
+    background: url(../assets/img/linea_tiempo/Greyline.png);
+    background-size: 100%;
+    background-repeat: no-repeat;
+    display: block;
+    position: relative;
+    margin: 0px 0px 0px 0px;
+}
+#text_ico_7{
+    width: 55px;
+    height: 45px;
+    border: 0px #FF0000 dashed;
+    font-size: 6pt;
+    text-align: center;
+    font-family:Sans-serif;
+    display: block;
+    position: relative;
+    margin: 0px 0px 0px 0px;
+}
+#img_ico_8{
+    width: 35px;
+    height: 35px;
+    border: 0px #FF0000 dashed;
+    background: url(../assets/img/linea_tiempo/TRANSPORTE-002.png);
+    background-size: 100%;
+    background-repeat: no-repeat;
+    display: block;
+    position: relative;
+    margin: 0px 0px 0px 9px;
+}
+#linea_8{
+    width: 61px;
+    height: 15px;
+    border: 0px #FF0000 dashed;
+    background: url(../assets/img/linea_tiempo/Greyline.png);
+    background-size: 100%;
+    background-repeat: no-repeat;
+    display: block;
+    position: relative;
+    margin: 0px 0px 0px 0px;
+}
+#text_ico_8{
+    width: 55px;
+    height: 45px;
+    border: 0px #FF0000 dashed;
+    font-size: 6pt;
+    text-align: center;
+    font-family:Sans-serif;
+    display: block;
+    position: relative;
+    margin: 0px 0px 0px 0px;
+}
+#img_ico_9{
+    width: 35px;
+    height: 35px;
+    border: 0px #FF0000 dashed;
+    background: url(../assets/img/linea_tiempo/ALMACEN-002.png);
+    background-size: 100%;
+    background-repeat: no-repeat;
+    display: block;
+    position: relative;
+    margin: 0px 0px 0px 9px;
+}
+#linea_9{
+    width: 61px;
+    height: 15px;
+    border: 0px #FF0000 dashed;
+    background: url(../assets/img/linea_tiempo/Greyline.png);
+    background-size: 100%;
+    background-repeat: no-repeat;
+    display: block;
+    position: relative;
+    margin: 0px 0px 0px 0px;
+}
+#text_ico_9{
+    width: 55px;
+    height: 45px;
+    border: 0px #FF0000 dashed;
+    font-size: 6pt;
+    text-align: center;
+    font-family:Sans-serif;
+    display: block;
+    position: relative;
+    margin: 0px 0px 0px 0px;
+}
+#img_ico_10{
+    width: 35px;
+    height: 35px;
+    border: 0px #FF0000 dashed;
+    display: block;
+    position: relative;
+    margin: 0px 0px 0px 9px;
+}
+#linea_10{
+    width: 61px;
+    height: 15px;
+    border: 0px #FF0000 dashed;
+    background: url(../assets/img/linea_tiempo/Greyline.png);
+    background-size: 100%;
+    background-repeat: no-repeat;
+    display: block;
+    position: relative;
+    margin: 0px 0px 0px 0px;
+}
+#text_ico_10{
+    width: 55px;
+    height: 45px;
+    border: 0px #FF0000 dashed;
+    font-size: 6pt;
+    text-align: center;
+    font-family:Sans-serif;
+    display: block;
+    position: relative;
+    margin: 0px 0px 0px 0px;
+}
+#leye_cadena_logis{
+    width: 590px;
+    height: auto!important;
+    border: 0px #FF0000 dashed;
+    display: block;
+    position: relative;
+    margin: 0px 0px 0px 0px;
+}
+#marc_ley{
+    width: 300px;
+    height: 30px;
+    border: 0px #FF0000 dashed;
+    display: block;
+    position: relative;
+    margin: 0px 0px 0px 150px;
+}
+#circ_ley_1{
+    width: 10px;
+    height: 10px;
+    display: inline-block;
+    background:#ED4D2B;
+    border-radius: 50%;
+    position: relative;
+    margin: 0px 0px 0px 0px;
+}
+.text_ley{
+    width: auto;
+    height: 10px;
+    display:inline-block;
+    font-size: 8pt;
+    text-align: center;
+    font-family:Sans-serif;
+    border: 0px #FF0000 solid;
+    position: relative;
+    margin: 0px 0px 0px 0px;
+}
+#circ_ley_2{
+    width: 10px;
+    height: 10px;
+    display: inline-block;
+    background:#275FC7;
+    border-radius: 50%;
+    position: relative;
+    margin: 0px 0px 0px 0px;
+}
+#circ_ley_3{
+    width: 10px;
+    height: 10px;
+    display: inline-block;
+    background:#808080;
+    border-radius: 50%;
+    position: relative;
+    margin: 0px 0px 0px 0px;
+}
+#fase_time_line{
+    display: none;
+}
+#marc_permisos_aduana{
+    display: none;
+}
+#marc_trans_domicilio{ 
+    display: none;
+}
+#content_flotante{
+	background-color:transparent;
+}
+.flotar{
+	background-color:rgba(0,0,0,0.5)!important;
+	position:absolute;
+	top:0px;
+	left:0px;
+	width:100%!important;
+	height:195%!important;
+	display:none;
+	opacity:0;
+}
+#ventana_float{
+	width:400px;
+	margin:200px auto 0px auto;
+	border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+	padding:20px;
+	display:block;
+	background-color:#FFF;
+	position:relative;
+	height:auto;
+}
+.cerrar_float{
+	display:inline-block;
+	width:20px;
+	height:20px;
+	border-radius:14px;
+	border:#666 solid 1px;
+	background-color:#FFF;
+	position:absolute;
+	top:-1px;
+	right:-1px;
+	cursor:pointer;
+	text-align:center;
+	font-size:10pt;
+    z-index: 999;
+}
+.cerrar_float:hover{
+	border:0px;
+	background-color:#FF1B1B;
+	color:#FFF;
+}
+#tit_float{
+    width: 400px;
+    height: 40px;
+    display: block;
+    background: #E76F30;
+    position: relative;
+    margin: -21px 0px 0px -20px;
+    text-align: center;
+    font-family: Sans-serif;
+    font-weight: bold;
+    font-size: 15pt;
+    color: #FFF;
+    padding: 5px 0px;
+}
+#sub_tit_float{
+    width: 400px;
+    height: 40px;
+    display: block;
+    position: relative;
+    margin: 0px 0px 0px -21px;
+    text-align: center;
+    font-family: Sans-serif;
+    font-weight: bold;
+    font-size: 8pt;
+    color: #0D5084;
+    padding: 5px 0px;
+}
+#cuerpo_servicios{
+    width: 320px;
+    height: auto;
+    display: block;
+    position: relative;
+    border: 0px #ff0000 solid;
+    margin: 0px 0px 0px 20px;
+    padding: 5px 0px;
+}
+.item_servicios1{
+    width: 320px;
+    height: auto;
+    display: block;
+    position: relative;
+    border: 0px #ff0000 dashed;
+    margin: 0px 0px 0px 0px;
+    font-family: Sans-serif;
+    font-weight: bold;
+    font-size: 8pt;
+    color: #000000;
+    padding: 5px 0px;
+}
+#calc_cotiz_con_serv{
+    z-index: 99999;
+}
+.item_servicios2{
+    width: 320px;
+    height: auto;
+    display: block;
+    position: relative;
+    border: 0px #ff0000 dashed;
+    margin: 0px 0px 0px 0px;
+    font-family: Sans-serif;
+    font-weight: bold;
+    font-size: 8pt;
+    color: #000000;
+    padding: 5px 0px;
+}
+.item_servicios3{
+    width: 320px;
+    height: auto;
+    display: block;
+    position: relative;
+    border: 0px #ff0000 dashed;
+    margin: 0px 0px 0px 0px;
+    font-family: Sans-serif;
+    font-weight: bold;
+    font-size: 8pt;
+    color: #000000;
+    padding: 5px 0px;
+}
+.item_servicios4{
+    width: 320px;
+    height: auto;
+    display: block;
+    position: relative;
+    border: 0px #ff0000 dashed;
+    margin: 0px 0px 0px 0px;
+    font-family: Sans-serif;
+    font-weight: bold;
+    font-size: 8pt;
+    color: #000000;
+    padding: 5px 0px;
+}
+#marc_det_resumen_presupuesto{
+    font-family: Sans-serif;
+    font-size: 10pt;
+    width: 890px;
+    height: auto;
+    border: 0px #FF0000 dashed;
+    display: block;
+    position: relative;
+    margin: 0px 0px 0px 8px;
+}
+#tit_det_rPresupuesto1{
+    width: 890px;
+    height: auto;
+    text-align:right;
+    border: 0px #FF0000 dashed;
+    display: block;
+    position: relative;
+    margin: 0px 0px 0px 0px;
+}
+#tit_det_rPresupuesto2{
+    width: 890px;
+    height: auto;
+    text-align:left;
+    border: 0px #FF0000 dashed;
+    display: block;
+    position: relative;
+    margin: 0px 0px 0px 0px;
+}
+#tit_det_rPresupuesto3{
+    width: 890px;
+    height: auto;
+    border: 0px #FF0000 dashed;
+    display: block;
+    position: relative;
+    margin: 0px 0px 0px 0px;
+}
+#marc_rPresupuesto3_izq{
+    width: 430px;
+    height: auto;
+    border: 0px #FF0000 dashed;
+    display: inline-block;
+    position: relative;
+    margin: 0px 0px 0px 0px;
+}
+.item_detalles{
+    width: 209px;
+    height: auto;
+    border: 0px #FF0000 dashed;
+    display: inline-block;
+    position: relative;
+    margin: 0px 0px 0px 0px;
+}
+.item1_detalles{
+    width: 210px;
+    height: auto;
+    text-align: right;
+    border: 0px #FF0000 dashed;
+    display: inline-block;
+    position: relative;
+    margin: 0px 0px 0px 0px;
+}
+#marc_rPresupuesto3_der{
+    width: 452px;
+    height: auto;
+    border: 0px #FF0000 dashed;
+    display: inline-block;
+    position: relative;
+    margin: 0px 0px 0px 0px;
+}
+#tit_det_rPresupuesto4{
+    width: 890px;
+    height: auto;
+    text-align:center;
+    border: 0px #FF0000 dashed;
+    background: #FF9800;
+    display: block;
+    position: relative;
+    margin: 0px 0px 0px 0px;
+}
+.item_detalles_sub{
+    width: 400px;
+    height: auto;
+    border: 0px #FF0000 dashed;
+    display: block;
+    position: relative;
+    margin: 0px 0px 0px 0px;
+}
+.costo_tot{
+    font-family: Arial Black!important;
+    font-weight: bold;
+    font-size: 32pt;
+    width: 400px;
+    height: auto;
+    border: 0px #FF0000 dashed;
+    color: #B33641;
+    display: inline-block;
+    position: absolute;
+    margin: 82px 0px 0px 24px;
+}
+#valor_prod_hidden{
+    display: none;
+}
+.item_per_tit_val_prod{
+    width: 350px;
+    height: auto;
+    text-align: center;
+    border: 0px #FF0000 dashed;
+    display: inline-block;
+    text-align: left;
+    position: relative;
+    color: #B00C0C;
+    font-size: 9pt;
+    text-align: center;
+    font-family:Sans-serif;
+    margin: 0px 0px 0px 0px;
+}
+
+
+.costo_tot1 {
+    font-family: Arial Black!important;
+    font-weight: bold;
+    font-size: 32pt;
+    width: 400px;
+    height: auto;
+    border: 0px #FF0000 dashed;
+    color: #B33641;
+    display: inline-block;
+    position: absolute;
+    margin: 60px 0px 0px 497px;
+}
+#list_cont_compartido{
+    font-size: 12pt;
+    display: block;
+    width: 424px;
+    height: 140px;
+    border: 1px #0D4671 solid;
+    border-radius: 10px;
+    position: relative;
+    margin: -55px 0px 0px -100px;
+}
+.num_standard_comp{
+    width: 197px;
+    height: 59px;
+    border: 0px #FF0000 dashed;
+    position: relative;
+    display: inline-block;
+    margin: -2px 0px -13px 99px;
+    padding: 5px 0px;
+}
+#num_peso_containt{
+    width: 154px;
+    border: 0px #FF0000 dashed;
+    position: relative;
+    display: inline-block;
+    margin: 0px 0px 1px 22px;
+    padding: 5px 0px;
+}
+#num_peso_containt1{
+    width: 100px;
+    border: 0px #FF0000 dashed;
+    position: relative;
+    display: inline-block;
+    margin: 0px 0px 1px 22px;
+    padding: 5px 0px;
+}
+.est_select{
+    width: 130px;
+    padding: 5px;
+}
+.standard_containtlcl{
+    width: 380px;
+    height: 43px;
+    border: 0px #FF0000 dashed;
+    /*display: inline-block;*/
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    position: relative;
+    margin: 0px 0px 0px 0px;
+}
+#boton_serv_lcl{
+    margin: 10px 0px 0px 0px;
+}

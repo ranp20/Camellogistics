@@ -1,0 +1,165 @@
+.cnt-modalFormLoginyRegister{
+	position: fixed;
+	width: 100%;
+	min-height: 100vh;
+	height: 100%;
+	overflow-y: auto;
+	background-color: rgba(0,0,0,.4);
+	z-index: 99999999;
+	padding: 0;
+	margin: 0;
+	top: 0;
+	left: 0;
+	display: none;
+	align-items: flex-start;
+	justify-content: center;
+	pointer-events: none;
+}
+.cnt-modalFormLoginyRegister.show{
+	display: flex;
+	pointer-events: auto;
+}
+.cnt-modalFormLoginyRegister--c{
+	background-color: #fff;
+	border-radius: .6rem;
+	max-width: 450px;
+	width: 95%;
+	margin-top: 1rem;
+	overflow: hidden;
+	text-align: center;
+	animation-name: showForm;
+	animation-duration: .3s;
+	animation-timing-function: ease-in-out;
+	transform: translateY(-200%);
+	pointer-events: none;
+}
+.cnt-modalFormLoginyRegister--c.show{
+	transform: translateY(0);
+	pointer-events: auto;
+}
+@keyframes showForm{
+	0%{
+		transform: translateY(-200%);
+	}
+	100%{
+		transform: translateY(0);
+	}
+}
+.cnt-modalFormLoginyRegister--c--close{
+	width: 15px;
+	height: 15px;
+	background:
+		linear-gradient(45deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 43%, #fff 45%, #fff 55%, rgba(0, 0, 0, 0) 57%, rgba(0, 0, 0, 0) 100%), 
+		linear-gradient(135deg, #000 0%, #000 43%, #fff 45%, #fff 55%, #000 57%, #000 100%);
+	border-radius: 50%;
+	box-shadow: 0 0 0 1px #000, 0 0 0 4px #000, 0 0 0 7px #fff;
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	cursor: pointer;
+}
+.cnt-modalFormLoginyRegister--c--cTitle{
+	background-color: $primary-color;
+	color: #fff;
+	padding: 1rem .5rem;
+}
+.cnt-modalFormLoginyRegister--c--cTitle span{
+	background-color: #fff;
+	color: $primary-color;
+	padding: 0.3rem 1rem;
+	display: inline-block;
+	border-radius: 1.5rem;
+	margin-bottom: 0.25rem;
+	font-weight: bold;
+}
+.cnt-modalFormLoginyRegister--c--cTitle h2{
+	font-size: 1.4rem;
+}
+.cnt-modalFormLoginyRegister--c--cForm{
+	padding: 1.25rem;
+	text-align-last: left;
+}
+.cnt-modalFormLoginyRegister--c--cForm--cControl{
+	display: flex;
+	flex-direction: column;
+	margin-bottom: 1rem;
+}
+/************************** QUITAR LOS BOTONES DE BOOSTRAP POR DEFECTO EN INPUT DE TIPO NÚMERO (INICIO) **************************/
+.cnt-modalFormLoginyRegister--c--cForm--cControl .input-group{
+	display: none !important;
+}
+.cnt-modalFormLoginyRegister--c--cForm--cControl .input-group .input-group-prepend,
+.cnt-modalFormLoginyRegister--c--cForm--cControl .input-group .input-group-append{
+	display: none !important;
+}
+/************************** QUITAR LOS BOTONES DE BOOSTRAP POR DEFECTO EN INPUT DE TIPO NÚMERO (FIN) **************************/
+.cnt-modalFormLoginyRegister--c--cForm--cControl--label{
+	color: #222;
+	font-weight: 600;
+}
+.cnt-modalFormLoginyRegister--c--cForm--cControl--input{
+	/*outline: none;*/
+	display: block !important;
+	width: 100%;
+	font-size: 1rem;
+	line-height: 1.5;
+	padding: 0.5rem .8rem;
+	border: thin solid #ccc;
+	border-radius: .4rem !important;
+	text-align: left !important;
+}
+.cnt-modalFormLoginyRegister--c--cForm--cControl--input[type=number]::-webkit-inner-spin-button, 
+.cnt-modalFormLoginyRegister--c--cForm--cControl--input[type=number]::-webkit-outer-spin-button { 
+	-webkit-appearance: none;
+	margin: 0;
+}
+.cnt-modalFormLoginyRegister--c--cForm--cControl--input[type=number]{ 
+	-moz-appearance:textfield;
+}
+/************************** BOTONES VÁLIDOS PARA DESCARGAR **************************/
+.cnt-modalFormLoginyRegister--c--cForm--cBtnsDownloadPdf{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	text-align: center !important;
+}
+.cnt-modalFormLoginyRegister--c--cForm--cBtnsDownloadPdf > span{
+	color: #222;
+	width: 100%;
+	text-align: left;
+	margin-bottom: 0.5rem;
+}
+.cnt-modalFormLoginyRegister--c--cForm--cBtnsDownloadPdf p a{
+	color: blue;
+	font-weight: bold;
+	text-decoration: underline !important;
+}
+/************************** TOGGLE CONTROL **************************/
+#cont-btnsDownloadOptions.hidden{
+	display: none;
+}
+#control-inputaddEmail{
+	display: none;
+	align-items: flex-start;
+	justify-content: center;
+}
+#control-inputaddEmail.show{
+	display: flex;
+}
+#control-inputaddEmail button{
+	border: none;
+	background-color: $primary-color;
+	width: auto;
+	padding: 0.5rem 1rem;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 0.5rem;
+	display: inline-block;
+	color: #fff;
+	border-radius: .4rem;
+	font-weight: 600;
+}
+#control-inputaddEmail button:hover{
+	opacity: .5;
+}

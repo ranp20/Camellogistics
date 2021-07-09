@@ -1,0 +1,3 @@
+[25-Mar-2021 21:59:03 UTC] PHP Fatal error:  Cannot redeclare Cotizacion::detail_ot() in /home/plataforma2021/public_html/gestion/application/controllers/admin/Cotizacion.php on line 1134
+[25-Mar-2021 21:59:12 UTC] PHP Fatal error:  Cannot redeclare Cotizacion::detail_ot() in /home/plataforma2021/public_html/gestion/application/controllers/admin/Cotizacion.php on line 1134
+[25-Mar-2021 22:52:49 UTC] PHP Fatal error:  Cannot redeclare Cotizacion::detail_ot() in /home/plataforma2021/public_html/gestion/application/controllers/admin/Cotizacion.php on line 1134

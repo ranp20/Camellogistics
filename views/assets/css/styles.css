@@ -1,0 +1,358 @@
+@charset "UTF-8";
+/* IMPORTAR LOS ESTILOS BASE */
+/* IMPORTAR LAS VARABLES Y MIXINS A UTILIZAR EN EL TEMA */
+/* VARIABLES GLOBALES PARA EL TEMA */
+/* FUENTES PRINCIPALES */
+/* PRINCIPAL COLORS */
+/* ANCHOS Y ALTOS DE PANTALLA */
+:root {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  font-family: sans-serif !important;
+  position: relative;
+}
+
+a {
+  text-decoration: none !important;
+}
+
+ul {
+  list-style: none;
+}
+
+/* CLASS UTILITIES */
+.control-spanrequired {
+  color: red;
+}
+
+.mtop-headertop {
+  margin-top: 4.8rem;
+}
+
+/* IMPORTAR LAS HOJAS DE ESTILOS */
+#c-HTop-camel {
+  position: fixed;
+  z-index: 9999999;
+  width: 100%;
+  top: 0;
+  left: 0;
+  background-color: #B58440;
+  min-height: 4.8rem;
+}
+#c-HTop-camel .c-Htopbar--c {
+  max-width: 1200px;
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.8rem 0;
+}
+#c-HTop-camel .c-Htopbar--c--cLogo {
+  width: 7rem;
+  height: auto;
+}
+#c-HTop-camel .c-Htopbar--c--cLogo a {
+  display: table;
+}
+#c-HTop-camel .c-Htopbar--c--cLogo a img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+}
+#c-HTop-camel .c-Htopbar--c--btnMobileNavbar {
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  padding: 0.5rem;
+  border: none;
+  border-radius: 0.4rem;
+  background-color: orange;
+}
+@media (min-width: 991px) {
+  #c-HTop-camel .c-Htopbar--c--btnMobileNavbar {
+    display: none;
+  }
+}
+#c-HTop-camel .c-Htopbar--c--btnMobileNavbar span {
+  width: 22px;
+  height: 2px;
+  background-color: #fff;
+  border-radius: 1.5rem;
+}
+#c-HTop-camel .c-Htopbar--c--btnMobileNavbar span:first-child {
+  border-top: 2px solid #fff;
+  margin-bottom: 0.5rem;
+}
+#c-HTop-camel .c-Htopbar--c--btnMobileNavbar span:last-child {
+  border-bottom: 2px solid #fff;
+  margin-top: 0.5rem;
+}
+#c-HTop-camel .c-Htopbar--c--cMenu {
+  position: fixed;
+  position: absolute;
+  width: 100%;
+  top: 0;
+  left: 0;
+  min-height: 100vh;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 99999;
+}
+@media (min-width: 991px) {
+  #c-HTop-camel .c-Htopbar--c--cMenu {
+    position: relative;
+    width: auto;
+    min-height: unset;
+    height: auto;
+    z-index: 1;
+    background-color: transparent;
+  }
+}
+#c-HTop-camel .c-Htopbar--c--cMenu--m {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0;
+  margin: 0;
+  background-color: #B58440;
+  height: 100%;
+  width: 90%;
+  max-width: 300px;
+  right: 0;
+  margin-left: auto;
+  flex-direction: column;
+  padding-top: 1rem;
+}
+@media (min-width: 991px) {
+  #c-HTop-camel .c-Htopbar--c--cMenu--m {
+    flex-direction: row;
+    width: auto;
+    max-width: unset;
+    padding: 0;
+  }
+}
+#c-HTop-camel .c-Htopbar--c--cMenu--m--item {
+  width: 100%;
+}
+@media (min-width: 991px) {
+  #c-HTop-camel .c-Htopbar--c--cMenu--m--item {
+    padding: 0 1.5rem;
+  }
+}
+#c-HTop-camel .c-Htopbar--c--cMenu--m--item:last-child {
+  padding: 0;
+}
+#c-HTop-camel .c-Htopbar--c--cMenu--m--link {
+  color: #fff;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+  font-weight: 600;
+  padding: 1.5rem 1rem 1.5rem 2rem;
+  display: block;
+}
+#c-HTop-camel .c-Htopbar--c--cMenu--m--link:hover {
+  color: yellow;
+}
+@media (min-width: 991px) {
+  #c-HTop-camel .c-Htopbar--c--cMenu--m--link {
+    font-size: 1.2rem;
+    padding: 0;
+  }
+}
+
+.cnt-modalFormLoginyRegister {
+  position: fixed;
+  width: 100%;
+  min-height: 100vh;
+  height: 100%;
+  overflow-y: auto;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 99999999;
+  padding: 0;
+  margin: 0;
+  top: 0;
+  left: 0;
+  display: none;
+  align-items: flex-start;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.cnt-modalFormLoginyRegister.show {
+  display: flex;
+  pointer-events: auto;
+}
+
+.cnt-modalFormLoginyRegister--c {
+  background-color: #fff;
+  border-radius: 0.6rem;
+  max-width: 450px;
+  width: 95%;
+  margin-top: 1rem;
+  overflow: hidden;
+  text-align: center;
+  animation-name: showForm;
+  animation-duration: 0.3s;
+  animation-timing-function: ease-in-out;
+  transform: translateY(-200%);
+  pointer-events: none;
+}
+
+.cnt-modalFormLoginyRegister--c.show {
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+@keyframes showForm {
+  0% {
+    transform: translateY(-200%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+.cnt-modalFormLoginyRegister--c--close {
+  width: 15px;
+  height: 15px;
+  background: linear-gradient(45deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 43%, #fff 45%, #fff 55%, rgba(0, 0, 0, 0) 57%, rgba(0, 0, 0, 0) 100%), linear-gradient(135deg, #000 0%, #000 43%, #fff 45%, #fff 55%, #000 57%, #000 100%);
+  border-radius: 50%;
+  box-shadow: 0 0 0 1px #000, 0 0 0 4px #000, 0 0 0 7px #fff;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+}
+
+.cnt-modalFormLoginyRegister--c--cTitle {
+  background-color: #B58440;
+  color: #fff;
+  padding: 1rem 0.5rem;
+}
+
+.cnt-modalFormLoginyRegister--c--cTitle span {
+  background-color: #fff;
+  color: #B58440;
+  padding: 0.3rem 1rem;
+  display: inline-block;
+  border-radius: 1.5rem;
+  margin-bottom: 0.25rem;
+  font-weight: bold;
+}
+
+.cnt-modalFormLoginyRegister--c--cTitle h2 {
+  font-size: 1.4rem;
+}
+
+.cnt-modalFormLoginyRegister--c--cForm {
+  padding: 1.25rem;
+  text-align-last: left;
+}
+
+.cnt-modalFormLoginyRegister--c--cForm--cControl {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+}
+
+/************************** QUITAR LOS BOTONES DE BOOSTRAP POR DEFECTO EN INPUT DE TIPO NÚMERO (INICIO) **************************/
+.cnt-modalFormLoginyRegister--c--cForm--cControl .input-group {
+  display: none !important;
+}
+
+.cnt-modalFormLoginyRegister--c--cForm--cControl .input-group .input-group-prepend,
+.cnt-modalFormLoginyRegister--c--cForm--cControl .input-group .input-group-append {
+  display: none !important;
+}
+
+/************************** QUITAR LOS BOTONES DE BOOSTRAP POR DEFECTO EN INPUT DE TIPO NÚMERO (FIN) **************************/
+.cnt-modalFormLoginyRegister--c--cForm--cControl--label {
+  color: #222;
+  font-weight: 600;
+}
+
+.cnt-modalFormLoginyRegister--c--cForm--cControl--input {
+  /*outline: none;*/
+  display: block !important;
+  width: 100%;
+  font-size: 1rem;
+  line-height: 1.5;
+  padding: 0.5rem 0.8rem;
+  border: thin solid #ccc;
+  border-radius: 0.4rem !important;
+  text-align: left !important;
+}
+
+.cnt-modalFormLoginyRegister--c--cForm--cControl--input[type=number]::-webkit-inner-spin-button,
+.cnt-modalFormLoginyRegister--c--cForm--cControl--input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.cnt-modalFormLoginyRegister--c--cForm--cControl--input[type=number] {
+  -moz-appearance: textfield;
+}
+
+/************************** BOTONES VÁLIDOS PARA DESCARGAR **************************/
+.cnt-modalFormLoginyRegister--c--cForm--cBtnsDownloadPdf {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center !important;
+}
+
+.cnt-modalFormLoginyRegister--c--cForm--cBtnsDownloadPdf > span {
+  color: #222;
+  width: 100%;
+  text-align: left;
+  margin-bottom: 0.5rem;
+}
+
+.cnt-modalFormLoginyRegister--c--cForm--cBtnsDownloadPdf p a {
+  color: blue;
+  font-weight: bold;
+  text-decoration: underline !important;
+}
+
+/************************** TOGGLE CONTROL **************************/
+#cont-btnsDownloadOptions.hidden {
+  display: none;
+}
+
+#control-inputaddEmail {
+  display: none;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+#control-inputaddEmail.show {
+  display: flex;
+}
+
+#control-inputaddEmail button {
+  border: none;
+  background-color: #B58440;
+  width: auto;
+  padding: 0.5rem 1rem;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 0.5rem;
+  display: inline-block;
+  color: #fff;
+  border-radius: 0.4rem;
+  font-weight: 600;
+}
+
+#control-inputaddEmail button:hover {
+  opacity: 0.5;
+}
+
+/*# sourceMappingURL=styles.css.map */
