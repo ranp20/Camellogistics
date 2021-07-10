@@ -2,39 +2,93 @@
 	$actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]";
   $url =  $actual_link . "/Camellogistics/views/";
 ?>
-<section class="mtop-headertop bg-light" id="portfolio">
+<section class="mtop-headertop" id="portfolio">
 	<?php require_once 'api_whatsapp.php'; ?>
-	<form id="frm_cotizacion" method="POST" action="views/modules/act_maritimo.php">
-		<div class="container">
-			<div id="fase1">
-				<div class="text-center">
-					<br><br>
-					<h4 class="section-heading text-uppercase">¡COTIZA TÚ FLETE!</h4>
-					<h3 class="section-subheading text-muted">PASO 1. Selecciona el Servicio</h3>
+	<form id="frm_cotizacion" method="POST" action="views/modules/act_maritimo.php" class="c-CalculatorStep--form">
+		<!------------------------------------------ PRIMERA FASE - PASO 1 (INICIO) -------------------------------->
+		<div id="fase1" class="c-CalculatorStep--form--contStep">
+			<div class="box-container">
+				<div class="c-CalculatorStep--form--contStep--cTitle">
+					<h2 class="c-CalculatorStep--form--contStep--cTitle--title b-bottom">¡COTIZA TÚ FLETE!</h2>
+					<h3 class="c-CalculatorStep--form--contStep--cTitle--desc">PASO 1. Selecciona el Servicio</h3>
 				</div>
-				<div class="row">
-					<div class="col-lg-7 col-sm-6 mb-6">
-						<div class="portfolio-item">
-							<a  href="#" id="transporte_maritimo">
-								<img class="img-fluid" src="views/assets/img/camel-imagen-1.png" alt="..." />
+				<div class="c-CalculatorStep--form--contStep--cStep">
+					<ul class="c-CalculatorStep--form--contStep--cStep--m">
+						<li class="c-CalculatorStep--form--contStep--cStep--m--item">
+							<a href="#" id="transporte_maritimo" class="c-CalculatorStep--form--contStep--cStep--m--link">
+								<img class="img-fluid" src="views/assets/img/camel-imagen-1.png" alt=""/>
 							</a>
+						</li>
+						<li class="c-CalculatorStep--form--contStep--cStep--m--item">
+							<a href="#" id="transporte_aereo" class="c-CalculatorStep--form--contStep--cStep--m--link">
+								<img class="img-fluid" src="views/assets/img/camel-imagen-2.png" alt=""/>
+							</a>
+						</li>
+					</ul>
+				</div>
+			<input type="hidden" id="text_tipo_flete" name="text_tipo_flete" value="">
+			</div>
+		</div>
+		<!------------------------------------------ PRIMERA FASE - PASO 1 (FIN) ----------------------------------->
+		<!------------------------------------------ SEGUNDA FASE - PASO 2 (INICIO) ----------------------------------->				
+		<!-----------------------------------------------------------------  CUSTOMIZATION (INICIO) -->
+		<div id="fase2" class="c-CalculatorStep--form--contStep">
+			<div class="box-container">
+				<div class="c-CalculatorStep--form--contStep--cTitledesconly">
+					<h3 class="c-CalculatorStep--form--contStep--cTitledesconly--desc">PASO 2. Indica Ruta y Tipo de Contenedor</h3>
+				</div>
+				<div class="c-CalculatorStep--form--contStep--cStepSelects">
+					<div class="c-CalculatorStep--form--contStep--cStepSelects--item">
+						<p class="c-CalculatorStep--form--contStep--cStepSelects--item--title">Tipo envío</p>
+						<button type="button" id="val-typecontainerflete" class="c-CalculatorStep--form--contStep--cStepSelects--item--fakeselbtn">Elija una opción</button>
+						<span id="msgNounTypeSend-step">Debe escoger tipo de envío</span>
+						<div class="c-CalculatorStep--form--contStep--cStepSelects--item--selContaineropts" id="cont-containOptsContainers">
+							<div class="c-CalculatorStep--form--contStep--cStepSelects--item--selContaineropts--item">
+								<div class="c-CalculatorStep--form--contStep--cStepSelects--item--selContaineropts--item--cImg">
+									<img src="<?= $url ?>assets/img/utilities/FCL.png" alt="">
+								</div>
+								<div class="c-CalculatorStep--form--contStep--cStepSelects--item--selContaineropts--item--cDesc">
+									<p><span>CONTENEDOR COMPLETO</span> (FCL)</p>
+									<span>Un contenedor - Un cliente</span>
+								</div>
+							</div>
+							<div class="c-CalculatorStep--form--contStep--cStepSelects--item--selContaineropts--item" id="cont-CompartidoLCL_item">
+								<div class="c-CalculatorStep--form--contStep--cStepSelects--item--selContaineropts--item--cImg">
+									<img src="<?= $url ?>assets/img/utilities/LCL.png" alt="">
+								</div>
+								<div class="c-CalculatorStep--form--contStep--cStepSelects--item--selContaineropts--item--cDesc">
+									<p><span>CONTENEDOR COMPARTIDO</span> (LCL) ó CARGA CONSOLIDADA</p>
+									<span>Un contenedor - Varios clientes</span>
+								</div>
+							</div>
+							<div class="c-CalculatorStep--form--contStep--cStepSelects--item--selContaineropts--filldatacontainer" id="cont-fillDatabyContain"></div>
 						</div>
 					</div>
-					<div class="col-lg-4 col-sm-6 mb-4 mb-sm-0">
-						<div class="portfolio-item">
-							<a  href="#" id="transporte_aereo">
-								<img class="img-fluid" src="views/assets/img/camel-imagen-2.png" alt="..." />
-							</a>
+					<div class="c-CalculatorStep--form--contStep--cStepSelects--item">
+						<p class="c-CalculatorStep--form--contStep--cStepSelects--item--title">Origen</p>
+						<input type="text" placeholder="ESCRIBA País, Ciudad o Puerto" id="input-vallistorigin">
+						<span id="msgNounOriginSend-step">ESCRIBA país o puerto de origen</span>
+						<div class="c-CalculatorStep--form--contStep--cStepSelects--item--listItems">
+							<ul class="c-CalculatorStep--form--contStep--cStepSelects--item--listItems--list" id="list-originCountriesandPort">
+								<li class="c-CalculatorStep--form--contStep--cStepSelects--item--listItems--list--anyresults">Selecciona un contenedor</li>
+							</ul>
 						</div>
 					</div>
-					<input type="hidden" id="text_tipo_flete" name="text_tipo_flete" value="">
+					<div class="c-CalculatorStep--form--contStep--cStepSelects--item">
+						<p class="c-CalculatorStep--form--contStep--cStepSelects--item--title">Destino</p>
+						<input type="text" placeholder="País, Ciudad o Puerto" id="input-vallistdestiny">
+						<span id="msgNounDestinySend-step">Seleccione un puerto de destino válido</span>
+						<div class="c-CalculatorStep--form--contStep--cStepSelects--item--listItems">
+							<ul class="c-CalculatorStep--form--contStep--cStepSelects--item--listItems--list" id="list-destinyCountriesandPort">
+								<li class="c-CalculatorStep--form--contStep--cStepSelects--item--listItems--list--anyresults">Selecciona un contenedor</li>
+							</ul>
+						</div>
+					</div>
+					<div class="c-CalculatorStep--form--contStep--cStepSelects--item">
+						<button type="button" id="link-showNextStep" class="c-CalculatorStep--form--contStep--cStepSelects--item--nextbtn">SIGUIENTE</button>
+					</div>
 				</div>
-			</div>	
-			<div id="fase2">
-				<br><br>
-				<div class="text-center">
-					<h3 class="section-subheading text-muted">PASO 2. Indica Ruta y Tipo de Contenedor</h3>
-				</div>
+				<!-----------------------------------------------------------------  CUSTOMIZATION (FIN) -->
 				<div class="row">
 					<div class="col-lg-3 col-sm-6 mb-4">
 						<div class="portfolio-item">
@@ -128,7 +182,10 @@
 						
 					</div>
 				</div>	
+				
 			</div>
+		</div>
+		<!------------------------------------------ SEGUNDA FASE - PASO 2 (FIN) ----------------------------------->
 			<div id="fase_21">				
 				<center>
 					<div class="text-center">
@@ -214,6 +271,7 @@
 <script src="<?= $url ?>js/validar_check_vacios.js"></script>
 <script src="<?= $url ?>js/validar_check_vacios_lcl.js"></script>
 <script src="<?= $url ?>js/register-before-download.js"></script>
+<script src="<?= $url ?>js/customs.js"></script>
 	
 	<!-- 080026026
 	969 382 537 

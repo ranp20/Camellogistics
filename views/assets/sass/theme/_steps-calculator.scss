@@ -1,0 +1,356 @@
+.c-CalculatorStep--form{
+	padding-top: 2rem;
+	&--contStep{
+		text-align: center;
+		&--cTitle{
+			max-width: 400px;
+			width: 95%;
+			margin-left: auto;
+			margin-right: auto;
+			&--title{
+				color: $step-title-color;
+				font-size: 1.6rem;
+				border-bottom: thin solid #ccc;
+				padding-bottom: 1rem;
+				margin-bottom: 0.5rem;
+			}
+			&--desc{
+				color: $primary-color;
+				font-size: 1.2rem;
+			}
+		}
+
+		&--cTitledesconly{
+			width: 95%;
+			margin-left: auto;
+			margin-right: auto;
+			&--desc{
+				color: $primary-color;
+				font-size: 1.2rem;	
+				border-bottom: thin solid #ccc;
+				padding-bottom: 1rem;
+				margin-bottom: 0.5rem;
+			}
+		}
+
+		/************************** COTENIDO TIPO DE SERVICIO - PASO 1 **************************/
+		&--cStep{
+			&--m{
+				display: flex;
+				flex-wrap: wrap;
+				align-items: center;
+				justify-content: center;
+				margin-top: 1rem;
+
+				@media (min-width: 991px){
+					margin-top: 2rem;
+				}
+
+				&--item{
+					margin: 1rem 2rem;
+				}
+
+				&--link{
+					display: table;
+					border: 5px solid #ccc;
+					transition: .2s ease-in-out;
+					border-radius: 50%;
+					width: 12rem;
+
+					&:hover{
+						border: 5px solid $primary-color;
+					}
+
+					@media (min-width: 991px){
+						width: 17rem;
+					}
+
+					img{
+
+					}
+				}
+			}
+		}
+
+		/************************** COTENIDO CON CONTROLES DE SELECTS - PASO 2 **************************/
+		&--cStepSelects{
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: flex-start;
+			width: 95%;
+			margin-left: auto;
+			margin-right: auto;
+			margin-top: 1rem;
+			flex: 0 0 100%;
+			position: relative;
+
+			@media (min-width: 991px){
+				flex-direction: row;
+			}
+
+			&--item{
+				text-align: center;
+				flex: 25%;
+				width: 100%;
+				margin-bottom: 0.5rem;
+
+				@media (min-width: 991px){
+					width: auto;
+					margin: 0;
+				}
+
+				&:nth-child(2),
+				&:nth-child(3),
+				&:nth-child(4){
+					padding-left: 0.25rem;
+				}
+
+				/* MENSAJES DE ERROR */
+				#msgNounTypeSend-step,
+				#msgNounOriginSend-step,
+				#msgNounDestinySend-step{
+					display: none;
+					color: red;
+					font-size: 0.85rem;
+					font-weight: bold;
+				}
+
+				&--title{
+					margin-bottom: 0.2rem;
+					font-weight: bold;
+				}
+
+				input{
+					width: 100%;
+					text-align: center;
+					border: thin solid #ccc;
+					border-radius: .3rem;
+					padding: 0.4rem .6rem;
+
+					&:focus{
+						text-align: left;
+					}
+				}
+
+				&--fakeselbtn{
+					width: 100%;
+					text-align: center;
+					background-color: #fff;
+					border: thin solid #ccc;
+					padding: 0.4rem .6rem;
+					border-radius: .3rem;
+					color: #666;
+
+					&:hover{
+						background-color: #dddd;
+					}
+
+					&:after{
+				    content: "";
+						display: inline-block;
+				    width: 0;
+				    height: 0;
+				    position: relative;
+				    top: 2px;
+				    margin-left: .255em;
+				    vertical-align: .255em;
+				    border-top: .3em solid #999;
+				    border-right: .3em solid transparent;
+				    border-bottom: 0;
+				    border-left: .3em solid transparent;
+					}
+				}
+
+				&--nextbtn{
+					cursor: pointer;
+					background-color: $primary-color;
+					color: #fff;
+					border: none;
+					padding: 0.4rem 1.5rem;
+					border-radius: .3rem;
+					font-weight: bold;
+
+					&:hover{
+						opacity: .6;
+					}
+				}
+
+				/* LISTA DE RESULTADOS EN INPUTS */
+				&--listItems{
+					position: relative;
+					&--list{
+						position: absolute;
+						left: 0;
+						width: 100%;
+						z-index: 999;
+						border-radius: 0 0 .4rem .4rem;
+						overflow: hidden;
+						display: none;
+						pointer-events: none;
+
+						&.show{
+							display: block;
+							pointer-events: auto;
+						}
+						&--anyresults{
+							display: block;
+							padding: 0.4rem 0;
+							background-color: #dddd;
+						}
+					}
+				}
+
+				/* MODAL DE CONTENEDORES */
+				&--selContaineropts{
+					display: none;
+					pointer-events: none;
+					flex-direction: column;
+					position: absolute;
+					left: 0;
+					margin-top: .5rem;
+					max-width: 420px;
+					width: 95%;
+					z-index: 99;
+					border-radius: .4rem;
+					overflow: hidden;
+					background-color: #fff;
+					border: thin solid transparent;
+
+					&.show{
+						display: flex;
+						pointer-events: auto;
+					}
+
+					&.activeItem{
+						border: thin solid #222;						
+					}
+
+					&--item{
+						cursor: pointer;
+						display: grid;
+				    grid-template-columns: 1fr 70%;
+				    align-items: center;
+				    justify-content: space-between;
+				    padding: 0.65rem 1rem;
+
+				    &:first-child{
+				    	background-color: orange;
+				    }
+				    &:nth-child(2){
+				    	background-color: steelblue;
+				    }
+
+						&--cImg{
+							width: 4.5rem;
+							height: auto;
+							margin-right: 0.5rem;
+							img{
+								width: 100%;
+								height: 100%;
+								object-fit: contain;
+								object-position: center;
+							}
+						}
+
+						&:nth-child(2){
+							.c-CalculatorStep--form--contStep--cStepSelects--item--selContaineropts--item--cImg{
+								width: 4.6rem;
+								height: auto;
+							}							
+						}
+
+						&--cDesc{
+							text-align: center;
+							color: #fff;
+							font-size: 0.9rem;
+							p{
+								margin: 0;
+								line-height: 1.3;
+							}
+						}
+					}
+
+					/* MODAL PARA RELLENAR LOS DATOS DE LA CARGA */
+					&--filldatacontainer{
+						display: none;
+						pointer-events: none;
+						&.show{
+							display: block;
+							pointer-events: auto;
+						}
+						/* CONTROLES */
+						&--cControl{
+							padding: 0.5rem;
+							display: grid;
+							grid-template-columns: 30% 1fr;
+							align-items: center;
+							
+							& > label{
+								margin-right: 1rem;
+							}
+
+							&--twocontrols{
+								display: flex;
+								align-items: stretch;
+								justify-content: space-between;
+								flex: 0 0 100%;
+
+								input{
+									flex: 50%;
+									border-radius: unset;
+								}
+								select{
+									flex: 50%;
+									padding: 0.5rem 0;
+									border-radius: unset !important;
+								}
+							}
+						}
+						/* ENLACE PARA ABRIR EL MODAL */
+						&--linkModalDatas{
+							background-color: steelblue;
+							color: #fff;
+							display: block;
+							padding: 0.5rem;
+
+							&:hover{
+								color: #fff;
+							}
+						}
+						/* BOTONES DE ACCIONES EN EL MODAL */
+						&--cbtnsActs{
+							padding: 0.5rem;
+							display: flex;
+							align-items: center;
+							justify-content: center;
+							gap: .5rem;
+							a,
+							button{
+								cursor: pointer;
+								padding: 0.6rem 1rem;
+								border-radius: .3rem;
+								color: #fff;
+								border: none;
+								margin: 0;
+								font-size: 0.85rem;
+								font-weight: bold;
+								line-height: 1.3;
+
+								&:hover{
+									opacity: .6;
+								}
+							}
+							a{
+								background-color: orange;
+							}
+							button{
+								background-color: steelblue;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}

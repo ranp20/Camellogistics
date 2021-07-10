@@ -11,24 +11,7 @@
 		$mvc = new MvcController();
 		$mvc -> enlacesPaginasController();
 	?>
-  <footer class="footer py-4">
-    <div class="container">
-      <div class="row align-items-center">
-        <div class="col-lg-4 text-lg-left">
-          Copyright &copy; Camel
-          <script> document.write(new Date().getFullYear()); </script>
-        </div>
-        <div class="col-lg-4 my-3 my-lg-0">
-          <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-twitter"></i></a>
-          <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-facebook-f"></i></a>
-          <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-linkedin-in"></i></a>
-        </div>
-        <div class="col-lg-4 text-lg-right">
-          <a class="mr-3" href="#!">Politicas de Privacidad</a>
-        </div>
-      </div>
-    </div>
-  </footer>
+  <?php //require_once 'modules/includes/footer.php'; ?>
   <?php $precios = new PreciosController; ?>
   <script type="text/javascript">
     var emision_bl_ewb = <?php echo $precios->show_precio('emision_bl_ewb')->value; ?>;

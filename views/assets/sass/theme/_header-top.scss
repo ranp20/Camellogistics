@@ -69,8 +69,10 @@
 			height: 100%;
 			background-color: rgba(0,0,0,.4);
 			z-index: 99999;
+			display: none;
 
 			@media (min-width: 991px){
+				display: block;
 				position: relative;
 				width: auto;
 				min-height: unset;
