@@ -1,0 +1,292 @@
+.cnt-modalFormCalculator{
+	position: fixed;
+	width: 100%;
+	min-height: 100vh;
+	height: 100%;
+	overflow-y: auto;
+	background-color: rgba(0,0,0,.4);
+	z-index: 99999999;
+	padding: 0;
+	margin: 0;
+	top: 0;
+	left: 0;
+	display: none;
+	align-items: flex-start;
+	justify-content: center;
+	pointer-events: none;
+
+	&.show{
+		display: flex;
+		pointer-events: auto;
+	}
+
+	&--c{
+		background-color: #fff;
+		border-radius: .6rem;
+		max-width: 680px;
+		width: 95%;
+		margin-top: 1rem;
+		overflow: hidden;
+		text-align: center;
+		animation-name: showForm;
+		animation-duration: .3s;
+		animation-timing-function: ease-in-out;
+		transform: translateY(-200%);
+		pointer-events: none;
+
+		&.show{
+			transform: translateY(0);
+			pointer-events: auto;
+		}
+		
+		@keyframes showForm{
+			0%{
+				transform: translateY(-200%);
+			}
+			100%{
+				transform: translateY(0);
+			}
+		}
+
+		&--close{
+			width: 15px;
+			height: 15px;
+			background:
+				linear-gradient(45deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 43%, #fff 45%, #fff 55%, rgba(0, 0, 0, 0) 57%, rgba(0, 0, 0, 0) 100%), 
+				linear-gradient(135deg, #000 0%, #000 43%, #fff 45%, #fff 55%, #000 57%, #000 100%);
+			border-radius: 50%;
+			box-shadow: 0 0 0 1px #000, 0 0 0 4px #000, 0 0 0 7px #fff;
+			position: absolute;
+			top: 10px;
+			right: 10px;
+			cursor: pointer;
+		}
+
+		&--cTitle{
+			background-color: $primary-color;
+			color: #fff;
+			padding: 1rem .5rem;
+
+			h2{
+				font-size: 1.4rem;
+				margin: 0;
+				padding: 0;
+			}
+		}
+
+		&--cForm{
+			padding: 1rem;
+			/* CONTENIDO DE LA PARTE SUPERIOR */
+			&--cTop{
+				display: flex;
+				align-items: flex-start;
+				justify-content: space-between;
+				flex: 0 0 100%;
+				&--control{
+					flex: 33.3%;
+					padding-left: 0.25rem;
+
+					&:first-child{
+						padding: 0;
+					}
+
+					/* QUITAR LOS BOTONES DE BOOSTRAP POR DEFECTO EN INPUT DE TIPO NÚMERO (INICIO) */
+					.input-group{
+						display: none !important;
+					}
+					.input-group .input-group-prepend,
+					.input-group .input-group-append{
+						display: none !important;
+					}
+					/* QUITAR LOS BOTONES DE BOOSTRAP POR DEFECTO EN INPUT DE TIPO NÚMERO (FIN) */
+					
+					/* MENSAJE DE ERROR */
+					#msgNounLengthvalue,
+					#msgNounUnitWeightvalue,
+					#msgNounNroPackagesvalue{
+						color: red;
+						font-weight: 600;
+						font-size: 0.75rem;
+					}
+
+					&--label{
+						color: #222;
+						font-size: 0.85rem;
+					}
+
+					&--select,
+					&--input{
+						display: block !important;
+						width: 100%;
+						font-size: .9rem;
+						line-height: 1.5;
+						padding: 0.5rem .8rem;
+						border: thin solid #ccc;
+						border-radius: .4rem !important;
+						text-align: left;
+
+						&[type=number]::-webkit-inner-spin-button, 
+						&[type=number]::-webkit-outer-spin-button { 
+							-webkit-appearance: none;
+							margin: 0;
+						}
+						&[type=number]{ 
+							-moz-appearance:textfield;
+						}
+					}
+					&--input{
+						text-align: center;
+
+						&:focus{
+							text-align: left;
+						}
+					}
+				}
+			}
+			/* CONTENIDO DE LA PARTE INFERIOR */
+			&--cBottom{
+				margin: 0.5rem 0;
+				&--cTitle{
+					padding: 0.5rem;
+					background-color: $primary-color;
+					margin-bottom: 0.5rem;
+					h3{
+						color: #fff;
+						font-size: 1.05rem;
+						margin: 0;
+						padding: 0;
+					}
+				}
+
+				&--cControls{
+					display: flex;
+					align-items: flex-start;
+					justify-content: space-between;
+					flex: 0 0 100%;
+					&--control{
+						flex: 25%;
+						display: flex;
+						align-items: center;
+						justify-content: center;
+						flex-direction: column;
+						padding-left: 0.3rem;
+
+						/* MENSAJE DE ERROR - LARGO */
+						#msgNounLongvalue,
+						#msgNounWidthvalue,
+						#msgNounHeightvalue,
+						#msgNounWeightvalue{
+							color: red;
+							font-weight: 600;
+							font-size: 0.75rem;
+						}
+
+
+						&:first-child{
+							padding: 0;
+						}
+						&--label{
+							color: #222;
+							font-size: 0.85rem;
+						}
+
+						&--c{
+							display: flex;
+							align-items: center;
+							justify-content: space-between;
+							position: relative;
+							border: thin solid #ccc;
+							border-radius: .4rem !important;
+							overflow: hidden;
+							&--input{
+								display: block !important;
+								width: 100%;
+								font-size: .85rem;
+								line-height: 1.5;
+								padding: 0.5rem .8rem;
+								text-align: center;
+								border: none;
+								border-radius: .4rem;
+
+								&[type=number]::-webkit-inner-spin-button, 
+								&[type=number]::-webkit-outer-spin-button { 
+									-webkit-appearance: none;
+									margin: 0;
+								}
+								&[type=number]{ 
+									-moz-appearance:textfield;
+								}
+
+								&:focus{
+									text-align: left;
+								}
+							}
+
+							&--cPrefixLong,
+							&--cPrefixWeight{
+						    padding: 0.6rem;
+						    height: 100%;
+						    border-left: thin solid #ccc;
+						    font-size: .75rem;
+							}
+						}
+					}
+				}
+
+				&--btnAddModal{
+					display: inline-block;
+			    border: none;
+			    border-radius: 0.4rem;
+			    background-color: #B58440;
+			    padding: 0.5rem 1.5rem;
+			    margin-top: 1rem;
+			    color: #fff;
+			    font-weight: bold;
+
+			    &:hover{
+			    	opacity: 0.6;
+			    }
+				}
+			}
+		}
+
+		&--cListCalculate{
+			padding: 0 1rem 1rem 1rem;
+			&--table{
+				width: 100%;
+				border-collapse: collapse;
+				font-size: 0.85rem;
+				thead{
+					background-color: $primary-color;
+					color: #fff;
+					tr{
+						th{
+							padding: 4px;
+						}
+					}
+				}
+				tbody{
+					tr{
+						&:nth-child(even){
+							background-color: #dddd;
+						}
+						td{
+							padding: 4px;
+
+							a{
+								display: block;
+						    width: 16px;
+						    height: 16px;
+						    margin-left: auto;
+						    margin-right: auto;
+								svg{
+									fill: red;
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}

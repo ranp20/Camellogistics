@@ -43,6 +43,10 @@ ul {
   margin-right: auto;
 }
 
+.one-hidden > option:first-child {
+  display: none !important;
+}
+
 /* IMPORTAR LAS HOJAS DE ESTILOS */
 #c-HTop-camel {
   position: fixed;
@@ -532,22 +536,39 @@ ul {
   position: relative;
 }
 .c-CalculatorStep--form--contStep--cStepSelects--item--listItems--list {
+  cursor: pointer;
   position: absolute;
   left: 0;
   width: 100%;
   z-index: 999;
   border-radius: 0 0 0.4rem 0.4rem;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: auto;
   display: none;
   pointer-events: none;
+  max-height: 200px;
+  height: auto;
+  background-color: #fff;
+  text-align: left;
+  border: thin solid #ccc;
 }
 .c-CalculatorStep--form--contStep--cStepSelects--item--listItems--list.show {
   display: block;
   pointer-events: auto;
 }
-.c-CalculatorStep--form--contStep--cStepSelects--item--listItems--list--anyresults {
+.c-CalculatorStep--form--contStep--cStepSelects--item--listItems--list--item {
+  cursor: pointer;
   display: block;
-  padding: 0.4rem 0;
+  padding: 0.4rem;
+}
+.c-CalculatorStep--form--contStep--cStepSelects--item--listItems--list--item:hover {
+  background-color: #dddd;
+}
+.c-CalculatorStep--form--contStep--cStepSelects--item--listItems--list--anyresults {
+  cursor: pointer;
+  display: block;
+  padding: 0.4rem;
+  text-align: center;
   background-color: #dddd;
 }
 .c-CalculatorStep--form--contStep--cStepSelects--item--selContaineropts {
@@ -683,6 +704,260 @@ ul {
 }
 .c-CalculatorStep--form--contStep--cStepSelects--item--selContaineropts--filldatacontainer--cbtnsActs button {
   background-color: steelblue;
+}
+
+.cnt-modalFormCalculator {
+  position: fixed;
+  width: 100%;
+  min-height: 100vh;
+  height: 100%;
+  overflow-y: auto;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 99999999;
+  padding: 0;
+  margin: 0;
+  top: 0;
+  left: 0;
+  display: none;
+  align-items: flex-start;
+  justify-content: center;
+  pointer-events: none;
+}
+.cnt-modalFormCalculator.show {
+  display: flex;
+  pointer-events: auto;
+}
+.cnt-modalFormCalculator--c {
+  background-color: #fff;
+  border-radius: 0.6rem;
+  max-width: 680px;
+  width: 95%;
+  margin-top: 1rem;
+  overflow: hidden;
+  text-align: center;
+  animation-name: showForm;
+  animation-duration: 0.3s;
+  animation-timing-function: ease-in-out;
+  transform: translateY(-200%);
+  pointer-events: none;
+}
+.cnt-modalFormCalculator--c.show {
+  transform: translateY(0);
+  pointer-events: auto;
+}
+@keyframes showForm {
+  0% {
+    transform: translateY(-200%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+.cnt-modalFormCalculator--c--close {
+  width: 15px;
+  height: 15px;
+  background: linear-gradient(45deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 43%, #fff 45%, #fff 55%, rgba(0, 0, 0, 0) 57%, rgba(0, 0, 0, 0) 100%), linear-gradient(135deg, #000 0%, #000 43%, #fff 45%, #fff 55%, #000 57%, #000 100%);
+  border-radius: 50%;
+  box-shadow: 0 0 0 1px #000, 0 0 0 4px #000, 0 0 0 7px #fff;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+}
+.cnt-modalFormCalculator--c--cTitle {
+  background-color: #B58440;
+  color: #fff;
+  padding: 1rem 0.5rem;
+}
+.cnt-modalFormCalculator--c--cTitle h2 {
+  font-size: 1.4rem;
+  margin: 0;
+  padding: 0;
+}
+.cnt-modalFormCalculator--c--cForm {
+  padding: 1rem;
+  /* CONTENIDO DE LA PARTE SUPERIOR */
+  /* CONTENIDO DE LA PARTE INFERIOR */
+}
+.cnt-modalFormCalculator--c--cForm--cTop {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex: 0 0 100%;
+}
+.cnt-modalFormCalculator--c--cForm--cTop--control {
+  flex: 33.3%;
+  padding-left: 0.25rem;
+  /* QUITAR LOS BOTONES DE BOOSTRAP POR DEFECTO EN INPUT DE TIPO NÚMERO (INICIO) */
+  /* QUITAR LOS BOTONES DE BOOSTRAP POR DEFECTO EN INPUT DE TIPO NÚMERO (FIN) */
+  /* MENSAJE DE ERROR */
+}
+.cnt-modalFormCalculator--c--cForm--cTop--control:first-child {
+  padding: 0;
+}
+.cnt-modalFormCalculator--c--cForm--cTop--control .input-group {
+  display: none !important;
+}
+.cnt-modalFormCalculator--c--cForm--cTop--control .input-group .input-group-prepend,
+.cnt-modalFormCalculator--c--cForm--cTop--control .input-group .input-group-append {
+  display: none !important;
+}
+.cnt-modalFormCalculator--c--cForm--cTop--control #msgNounLengthvalue,
+.cnt-modalFormCalculator--c--cForm--cTop--control #msgNounUnitWeightvalue,
+.cnt-modalFormCalculator--c--cForm--cTop--control #msgNounNroPackagesvalue {
+  color: red;
+  font-weight: 600;
+  font-size: 0.75rem;
+}
+.cnt-modalFormCalculator--c--cForm--cTop--control--label {
+  color: #222;
+  font-size: 0.85rem;
+}
+.cnt-modalFormCalculator--c--cForm--cTop--control--select, .cnt-modalFormCalculator--c--cForm--cTop--control--input {
+  display: block !important;
+  width: 100%;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  padding: 0.5rem 0.8rem;
+  border: thin solid #ccc;
+  border-radius: 0.4rem !important;
+  text-align: left;
+}
+.cnt-modalFormCalculator--c--cForm--cTop--control--select[type=number]::-webkit-inner-spin-button, .cnt-modalFormCalculator--c--cForm--cTop--control--select[type=number]::-webkit-outer-spin-button, .cnt-modalFormCalculator--c--cForm--cTop--control--input[type=number]::-webkit-inner-spin-button, .cnt-modalFormCalculator--c--cForm--cTop--control--input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.cnt-modalFormCalculator--c--cForm--cTop--control--select[type=number], .cnt-modalFormCalculator--c--cForm--cTop--control--input[type=number] {
+  -moz-appearance: textfield;
+}
+.cnt-modalFormCalculator--c--cForm--cTop--control--input {
+  text-align: center;
+}
+.cnt-modalFormCalculator--c--cForm--cTop--control--input:focus {
+  text-align: left;
+}
+.cnt-modalFormCalculator--c--cForm--cBottom {
+  margin: 0.5rem 0;
+}
+.cnt-modalFormCalculator--c--cForm--cBottom--cTitle {
+  padding: 0.5rem;
+  background-color: #B58440;
+  margin-bottom: 0.5rem;
+}
+.cnt-modalFormCalculator--c--cForm--cBottom--cTitle h3 {
+  color: #fff;
+  font-size: 1.05rem;
+  margin: 0;
+  padding: 0;
+}
+.cnt-modalFormCalculator--c--cForm--cBottom--cControls {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex: 0 0 100%;
+}
+.cnt-modalFormCalculator--c--cForm--cBottom--cControls--control {
+  flex: 25%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding-left: 0.3rem;
+  /* MENSAJE DE ERROR - LARGO */
+}
+.cnt-modalFormCalculator--c--cForm--cBottom--cControls--control #msgNounLongvalue,
+.cnt-modalFormCalculator--c--cForm--cBottom--cControls--control #msgNounWidthvalue,
+.cnt-modalFormCalculator--c--cForm--cBottom--cControls--control #msgNounHeightvalue,
+.cnt-modalFormCalculator--c--cForm--cBottom--cControls--control #msgNounWeightvalue {
+  color: red;
+  font-weight: 600;
+  font-size: 0.75rem;
+}
+.cnt-modalFormCalculator--c--cForm--cBottom--cControls--control:first-child {
+  padding: 0;
+}
+.cnt-modalFormCalculator--c--cForm--cBottom--cControls--control--label {
+  color: #222;
+  font-size: 0.85rem;
+}
+.cnt-modalFormCalculator--c--cForm--cBottom--cControls--control--c {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  border: thin solid #ccc;
+  border-radius: 0.4rem !important;
+  overflow: hidden;
+}
+.cnt-modalFormCalculator--c--cForm--cBottom--cControls--control--c--input {
+  display: block !important;
+  width: 100%;
+  font-size: 0.85rem;
+  line-height: 1.5;
+  padding: 0.5rem 0.8rem;
+  text-align: center;
+  border: none;
+  border-radius: 0.4rem;
+}
+.cnt-modalFormCalculator--c--cForm--cBottom--cControls--control--c--input[type=number]::-webkit-inner-spin-button, .cnt-modalFormCalculator--c--cForm--cBottom--cControls--control--c--input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.cnt-modalFormCalculator--c--cForm--cBottom--cControls--control--c--input[type=number] {
+  -moz-appearance: textfield;
+}
+.cnt-modalFormCalculator--c--cForm--cBottom--cControls--control--c--input:focus {
+  text-align: left;
+}
+.cnt-modalFormCalculator--c--cForm--cBottom--cControls--control--c--cPrefixLong, .cnt-modalFormCalculator--c--cForm--cBottom--cControls--control--c--cPrefixWeight {
+  padding: 0.6rem;
+  height: 100%;
+  border-left: thin solid #ccc;
+  font-size: 0.75rem;
+}
+.cnt-modalFormCalculator--c--cForm--cBottom--btnAddModal {
+  display: inline-block;
+  border: none;
+  border-radius: 0.4rem;
+  background-color: #B58440;
+  padding: 0.5rem 1.5rem;
+  margin-top: 1rem;
+  color: #fff;
+  font-weight: bold;
+}
+.cnt-modalFormCalculator--c--cForm--cBottom--btnAddModal:hover {
+  opacity: 0.6;
+}
+.cnt-modalFormCalculator--c--cListCalculate {
+  padding: 0 1rem 1rem 1rem;
+}
+.cnt-modalFormCalculator--c--cListCalculate--table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+}
+.cnt-modalFormCalculator--c--cListCalculate--table thead {
+  background-color: #B58440;
+  color: #fff;
+}
+.cnt-modalFormCalculator--c--cListCalculate--table thead tr th {
+  padding: 4px;
+}
+.cnt-modalFormCalculator--c--cListCalculate--table tbody tr:nth-child(even) {
+  background-color: #dddd;
+}
+.cnt-modalFormCalculator--c--cListCalculate--table tbody tr td {
+  padding: 4px;
+}
+.cnt-modalFormCalculator--c--cListCalculate--table tbody tr td a {
+  display: block;
+  width: 16px;
+  height: 16px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.cnt-modalFormCalculator--c--cListCalculate--table tbody tr td a svg {
+  fill: red;
 }
 
 /*# sourceMappingURL=styles.css.map */

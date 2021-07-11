@@ -33,3 +33,6 @@ ul{
 	margin-left: auto;
 	margin-right: auto;
 }
+.one-hidden > option:first-child{
+	display: none !important;
+}

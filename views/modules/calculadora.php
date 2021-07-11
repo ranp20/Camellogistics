@@ -61,7 +61,38 @@
 									<span>Un contenedor - Varios clientes</span>
 								</div>
 							</div>
-							<div class="c-CalculatorStep--form--contStep--cStepSelects--item--selContaineropts--filldatacontainer" id="cont-fillDatabyContain"></div>
+							<div class="c-CalculatorStep--form--contStep--cStepSelects--item--selContaineropts--filldatacontainer" id="cont-fillDatabyContain">
+								<div class="c-CalculatorStep--form--contStep--cStepSelects--item--selContaineropts--filldatacontainer--cControl">
+									<label for="">BULTOS</label>
+									<input type="number" value="1" placeholder="Ingrese nro. de bultos">
+								</div>
+								<div class="c-CalculatorStep--form--contStep--cStepSelects--item--selContaineropts--filldatacontainer--cControl">
+									<label for="">PESO</label>
+									<div class="c-CalculatorStep--form--contStep--cStepSelects--item--selContaineropts--filldatacontainer--cControl--twocontrols">
+										<input type="number" value="1" placeholder="Ingrese peso">
+										<select name="" id="valinput-peso">
+											<option value="1">Kilogramos</option>
+											<option value="2">Libras</option>
+											<option value="3">Toneladas</option>
+										</select>
+									</div>
+								</div>
+								<div class="c-CalculatorStep--form--contStep--cStepSelects--item--selContaineropts--filldatacontainer--cControl">
+									<label for="">VOLUMEN</label>
+									<div class="c-CalculatorStep--form--contStep--cStepSelects--item--selContaineropts--filldatacontainer--cControl--twocontrols">
+										<input type="number" value="" placeholder="Ingrese volumen">
+										<select name="" id="valinput-volumen">
+											<option value="1">Metros cúbicos</option>
+											<option value="2">Pies cúbicos</option>
+										</select>
+									</div>
+								</div>
+								<a href="#" id="Add-fromcalculatorModal" class="c-CalculatorStep--form--contStep--cStepSelects--item--selContaineropts--filldatacontainer--linkModalDatas">AYUDA - CALCULA VOLUMEN (m3) AQUÍ</a>
+								<div class="c-CalculatorStep--form--contStep--cStepSelects--item--selContaineropts--filldatacontainer--cbtnsActs">
+									<a href="#">VOLVER</a>
+									<button type="button">GUARDAR</button>
+								</div>
+							</div>
 						</div>
 					</div>
 					<div class="c-CalculatorStep--form--contStep--cStepSelects--item">
@@ -69,9 +100,7 @@
 						<input type="text" placeholder="ESCRIBA País, Ciudad o Puerto" id="input-vallistorigin">
 						<span id="msgNounOriginSend-step">ESCRIBA país o puerto de origen</span>
 						<div class="c-CalculatorStep--form--contStep--cStepSelects--item--listItems">
-							<ul class="c-CalculatorStep--form--contStep--cStepSelects--item--listItems--list" id="list-originCountriesandPort">
-								<li class="c-CalculatorStep--form--contStep--cStepSelects--item--listItems--list--anyresults">Selecciona un contenedor</li>
-							</ul>
+							<ul class="c-CalculatorStep--form--contStep--cStepSelects--item--listItems--list" id="list-originCountriesandPort"></ul>
 						</div>
 					</div>
 					<div class="c-CalculatorStep--form--contStep--cStepSelects--item">
@@ -264,6 +293,7 @@
 	</form>	
 </section>
 <!--****************** AREGADOS RECIENTEMENTE *****************-->
+<?php require_once 'includes/form-calculator-flete.php'; ?>
 <?php require_once 'includes/form-before-download-pdf.php'; ?>
 
 <script src="<?= $url ?>js/jquery-3.5.1.min.js"></script>
@@ -272,6 +302,9 @@
 <script src="<?= $url ?>js/validar_check_vacios_lcl.js"></script>
 <script src="<?= $url ?>js/register-before-download.js"></script>
 <script src="<?= $url ?>js/customs.js"></script>
+<script src="<?= $url ?>js/list_puertoOriginLCL.js"></script>
+<script src="<?= $url ?>js/list_puertoDestinyLCL.js"></script>
+<script src="<?= $url ?>js/modal-calculator.js"></script>
 	
 	<!-- 080026026
 	969 382 537 
