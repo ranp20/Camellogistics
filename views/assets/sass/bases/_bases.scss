@@ -1,5 +1,6 @@
 /* IMPORTAR LAS VARABLES Y MIXINS A UTILIZAR EN EL TEMA */
 @import 'variables';
+@import 'mixins';
 
 :root{
 	margin: 0;
@@ -35,4 +36,27 @@ ul{
 }
 .one-hidden > option:first-child{
 	display: none !important;
+}
+.step-hidden{
+	display: none;
+	pointer-events: none;
+	visibility: hidden;
+	opacity: 0;
+}
+.hide{
+	display: none;
+	pointer-events: none;
+	visibility: hidden;
+	opacity: 0;	
+}
+/************************** SHOW/HIDDEN THE STEP FOR THE CLIENT **************************/
+#step-One{display: block;pointer-events: auto;visibility: visible;opacity: 1;	&.hide{display: none; pointer-events: none; visibility: hidden; opacity: 0;}}
+#step-Two{display: none;pointer-events: none;visibility: hidden;opacity: 0;	&.show{display: block; pointer-events: auto; visibility: visible; opacity: 1;}}
+#step-Two-five{display: none;pointer-events: none;visibility: hidden;opacity: 0; &.show{display: block; pointer-events: auto; visibility: visible; opacity: 1;}}
+#three-Two{display: none;pointer-events: none;visibility: hidden;opacity: 0; &.show{display: block;	pointer-events: auto; visibility: visible; opacity: 1;}}
+#four-Two{display: none;pointer-events: none;visibility: hidden;opacity: 0;	&.show{	display: block;	pointer-events: auto;	visibility: visible; opacity: 1;}}
+
+/************************** LOADER DE LA WEB **************************/
+#cont-loader{
+	@include loaderPoints($primary-color, #fff);
 }

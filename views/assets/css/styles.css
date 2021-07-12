@@ -5,6 +5,7 @@
 /* FUENTES PRINCIPALES */
 /* PRINCIPAL COLORS */
 /* ANCHOS Y ALTOS DE PANTALLA */
+/* LOADER EN LA WEB */
 :root {
   margin: 0;
   padding: 0;
@@ -45,6 +46,160 @@ ul {
 
 .one-hidden > option:first-child {
   display: none !important;
+}
+
+.step-hidden {
+  display: none;
+  pointer-events: none;
+  visibility: hidden;
+  opacity: 0;
+}
+
+.hide {
+  display: none;
+  pointer-events: none;
+  visibility: hidden;
+  opacity: 0;
+}
+
+/************************** SHOW/HIDDEN THE STEP FOR THE CLIENT **************************/
+#step-One {
+  display: block;
+  pointer-events: auto;
+  visibility: visible;
+  opacity: 1;
+}
+#step-One.hide {
+  display: none;
+  pointer-events: none;
+  visibility: hidden;
+  opacity: 0;
+}
+
+#step-Two {
+  display: none;
+  pointer-events: none;
+  visibility: hidden;
+  opacity: 0;
+}
+#step-Two.show {
+  display: block;
+  pointer-events: auto;
+  visibility: visible;
+  opacity: 1;
+}
+
+#step-Two-five {
+  display: none;
+  pointer-events: none;
+  visibility: hidden;
+  opacity: 0;
+}
+#step-Two-five.show {
+  display: block;
+  pointer-events: auto;
+  visibility: visible;
+  opacity: 1;
+}
+
+#three-Two {
+  display: none;
+  pointer-events: none;
+  visibility: hidden;
+  opacity: 0;
+}
+#three-Two.show {
+  display: block;
+  pointer-events: auto;
+  visibility: visible;
+  opacity: 1;
+}
+
+#four-Two {
+  display: none;
+  pointer-events: none;
+  visibility: hidden;
+  opacity: 0;
+}
+#four-Two.show {
+  display: block;
+  pointer-events: auto;
+  visibility: visible;
+  opacity: 1;
+}
+
+/************************** LOADER DE LA WEB **************************/
+#cont-loader {
+  position: fixed;
+  width: 100%;
+  min-height: 100vh;
+  height: 100%;
+  background-color: #B58440;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 4px 4px 20px rgba(0, 0, 0, 0.3);
+  z-index: 99999999;
+  top: 0;
+  left: 0;
+}
+#cont-loader.hidden {
+  display: none;
+  pointer-events: none;
+  visibility: hidden;
+  opacity: 0;
+}
+#cont-loader .cont-loader--loader {
+  height: 15px;
+  width: 105px;
+  display: flex;
+  position: relative;
+}
+#cont-loader .cont-loader--loader--circle {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background-color: #fff;
+  animation: move 500ms linear 0ms infinite;
+  margin-right: 30px;
+}
+#cont-loader .cont-loader--loader--circle:first-child {
+  position: absolute;
+  top: 0;
+  left: 0;
+  animation: grow 500ms linear 0ms infinite;
+}
+#cont-loader .cont-loader--loader--circle:last-child {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin-right: 0;
+  animation: grow 500ms linear 0s infinite reverse;
+}
+@keyframes grow {
+  from {
+    transform: scale(0, 0);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1, 1);
+    opacity: 1;
+  }
+}
+@keyframes move {
+  from {
+    transform: translateX(0px);
+  }
+  to {
+    transform: translateX(45px);
+  }
+}
+#cont-loader p {
+  margin-top: 1rem;
+  margin-bottom: 0;
+  color: #fff;
+  font-weight: bold;
 }
 
 /* IMPORTAR LAS HOJAS DE ESTILOS */
@@ -440,7 +595,7 @@ ul {
 .c-CalculatorStep--form--contStep--cStepSelects {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   justify-content: flex-start;
   width: 95%;
   margin-left: auto;
@@ -594,7 +749,7 @@ ul {
 .c-CalculatorStep--form--contStep--cStepSelects--item--selContaineropts.activeItem {
   border: thin solid #222;
 }
-.c-CalculatorStep--form--contStep--cStepSelects--item--selContaineropts--item {
+.c-CalculatorStep--form--contStep--cStepSelects--item--selContaineropts--c--item {
   cursor: pointer;
   display: grid;
   grid-template-columns: 1fr 70%;
@@ -602,33 +757,33 @@ ul {
   justify-content: space-between;
   padding: 0.65rem 1rem;
 }
-.c-CalculatorStep--form--contStep--cStepSelects--item--selContaineropts--item:first-child {
+.c-CalculatorStep--form--contStep--cStepSelects--item--selContaineropts--c--item:first-child {
   background-color: orange;
 }
-.c-CalculatorStep--form--contStep--cStepSelects--item--selContaineropts--item:nth-child(2) {
+.c-CalculatorStep--form--contStep--cStepSelects--item--selContaineropts--c--item:nth-child(2) {
   background-color: steelblue;
 }
-.c-CalculatorStep--form--contStep--cStepSelects--item--selContaineropts--item--cImg {
+.c-CalculatorStep--form--contStep--cStepSelects--item--selContaineropts--c--item--cImg {
   width: 4.5rem;
   height: auto;
   margin-right: 0.5rem;
 }
-.c-CalculatorStep--form--contStep--cStepSelects--item--selContaineropts--item--cImg img {
+.c-CalculatorStep--form--contStep--cStepSelects--item--selContaineropts--c--item--cImg img {
   width: 100%;
   height: 100%;
   object-fit: contain;
   object-position: center;
 }
-.c-CalculatorStep--form--contStep--cStepSelects--item--selContaineropts--item:nth-child(2) .c-CalculatorStep--form--contStep--cStepSelects--item--selContaineropts--item--cImg {
+.c-CalculatorStep--form--contStep--cStepSelects--item--selContaineropts--c--item:nth-child(2) .c-CalculatorStep--form--contStep--cStepSelects--item--selContaineropts--item--cImg {
   width: 4.6rem;
   height: auto;
 }
-.c-CalculatorStep--form--contStep--cStepSelects--item--selContaineropts--item--cDesc {
+.c-CalculatorStep--form--contStep--cStepSelects--item--selContaineropts--c--item--cDesc {
   text-align: center;
   color: #fff;
   font-size: 0.9rem;
 }
-.c-CalculatorStep--form--contStep--cStepSelects--item--selContaineropts--item--cDesc p {
+.c-CalculatorStep--form--contStep--cStepSelects--item--selContaineropts--c--item--cDesc p {
   margin: 0;
   line-height: 1.3;
 }
@@ -945,6 +1100,16 @@ ul {
 }
 .cnt-modalFormCalculator--c--cListCalculate--table tbody tr:nth-child(even) {
   background-color: #dddd;
+}
+.cnt-modalFormCalculator--c--cListCalculate--table tbody tr .td-anyresults_table {
+  padding: 0;
+}
+.cnt-modalFormCalculator--c--cListCalculate--table tbody tr .td-anyresults_table--c {
+  background-color: #dddd;
+  padding: 0.5rem;
+}
+.cnt-modalFormCalculator--c--cListCalculate--table tbody tr .td-anyresults_table--c span {
+  color: #888;
 }
 .cnt-modalFormCalculator--c--cListCalculate--table tbody tr td {
   padding: 4px;

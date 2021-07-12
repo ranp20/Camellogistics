@@ -2,29 +2,27 @@
 	$actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]";
   $url =  $actual_link . "/Camellogistics/views/";
 ?>
+<section id="cont-loader">
+	<div class="cont-loader--loader">
+		<span class="cont-loader--loader--circle"></span>
+		<span class="cont-loader--loader--circle"></span>
+		<span class="cont-loader--loader--circle"></span>
+		<span class="cont-loader--loader--circle"></span>
+	</div>
+	<p>Cargando...</p>
+</section>
 <section class="mtop-headertop" id="portfolio">
 	<?php require_once 'api_whatsapp.php'; ?>
 	<form id="frm_cotizacion" method="POST" action="views/modules/act_maritimo.php" class="c-CalculatorStep--form">
 		<!------------------------------------------ PRIMERA FASE - PASO 1 (INICIO) -------------------------------->
-		<div id="fase1" class="c-CalculatorStep--form--contStep">
+		<div id="step-One" class="c-CalculatorStep--form--contStep">
 			<div class="box-container">
 				<div class="c-CalculatorStep--form--contStep--cTitle">
 					<h2 class="c-CalculatorStep--form--contStep--cTitle--title b-bottom">¡COTIZA TÚ FLETE!</h2>
 					<h3 class="c-CalculatorStep--form--contStep--cTitle--desc">PASO 1. Selecciona el Servicio</h3>
 				</div>
 				<div class="c-CalculatorStep--form--contStep--cStep">
-					<ul class="c-CalculatorStep--form--contStep--cStep--m">
-						<li class="c-CalculatorStep--form--contStep--cStep--m--item">
-							<a href="#" id="transporte_maritimo" class="c-CalculatorStep--form--contStep--cStep--m--link">
-								<img class="img-fluid" src="views/assets/img/camel-imagen-1.png" alt=""/>
-							</a>
-						</li>
-						<li class="c-CalculatorStep--form--contStep--cStep--m--item">
-							<a href="#" id="transporte_aereo" class="c-CalculatorStep--form--contStep--cStep--m--link">
-								<img class="img-fluid" src="views/assets/img/camel-imagen-2.png" alt=""/>
-							</a>
-						</li>
-					</ul>
+					<ul class="c-CalculatorStep--form--contStep--cStep--m" id="cont-typeServicesOneStep"></ul>
 				</div>
 			<input type="hidden" id="text_tipo_flete" name="text_tipo_flete" value="">
 			</div>
@@ -32,7 +30,7 @@
 		<!------------------------------------------ PRIMERA FASE - PASO 1 (FIN) ----------------------------------->
 		<!------------------------------------------ SEGUNDA FASE - PASO 2 (INICIO) ----------------------------------->				
 		<!-----------------------------------------------------------------  CUSTOMIZATION (INICIO) -->
-		<div id="fase2" class="c-CalculatorStep--form--contStep">
+		<div id="step-Two" class="c-CalculatorStep--form--contStep hide step-hidden">
 			<div class="box-container">
 				<div class="c-CalculatorStep--form--contStep--cTitledesconly">
 					<h3 class="c-CalculatorStep--form--contStep--cTitledesconly--desc">PASO 2. Indica Ruta y Tipo de Contenedor</h3>
@@ -42,25 +40,8 @@
 						<p class="c-CalculatorStep--form--contStep--cStepSelects--item--title">Tipo envío</p>
 						<button type="button" id="val-typecontainerflete" class="c-CalculatorStep--form--contStep--cStepSelects--item--fakeselbtn">Elija una opción</button>
 						<span id="msgNounTypeSend-step">Debe escoger tipo de envío</span>
-						<div class="c-CalculatorStep--form--contStep--cStepSelects--item--selContaineropts" id="cont-containOptsContainers">
-							<div class="c-CalculatorStep--form--contStep--cStepSelects--item--selContaineropts--item">
-								<div class="c-CalculatorStep--form--contStep--cStepSelects--item--selContaineropts--item--cImg">
-									<img src="<?= $url ?>assets/img/utilities/FCL.png" alt="">
-								</div>
-								<div class="c-CalculatorStep--form--contStep--cStepSelects--item--selContaineropts--item--cDesc">
-									<p><span>CONTENEDOR COMPLETO</span> (FCL)</p>
-									<span>Un contenedor - Un cliente</span>
-								</div>
-							</div>
-							<div class="c-CalculatorStep--form--contStep--cStepSelects--item--selContaineropts--item" id="cont-CompartidoLCL_item">
-								<div class="c-CalculatorStep--form--contStep--cStepSelects--item--selContaineropts--item--cImg">
-									<img src="<?= $url ?>assets/img/utilities/LCL.png" alt="">
-								</div>
-								<div class="c-CalculatorStep--form--contStep--cStepSelects--item--selContaineropts--item--cDesc">
-									<p><span>CONTENEDOR COMPARTIDO</span> (LCL) ó CARGA CONSOLIDADA</p>
-									<span>Un contenedor - Varios clientes</span>
-								</div>
-							</div>
+						<div class="c-CalculatorStep--form--contStep--cStepSelects--item--selContaineropts" id="container-containOptsContainers">
+							<div class="c-CalculatorStep--form--contStep--cStepSelects--item--selContaineropts--c" id="cont-containOptsContainers"></div>
 							<div class="c-CalculatorStep--form--contStep--cStepSelects--item--selContaineropts--filldatacontainer" id="cont-fillDatabyContain">
 								<div class="c-CalculatorStep--form--contStep--cStepSelects--item--selContaineropts--filldatacontainer--cControl">
 									<label for="">BULTOS</label>

@@ -20,25 +20,20 @@ function list_puertoOriginLCL(searchVal){
         	<span>No encontrado</span>
         </li>
       `;
-
       $("#list-originCountriesandPort").html(template);
-      
       setTimeout(function(){
         $("#list-originCountriesandPort").removeClass("show");
       }, 1000);
     }else{
       response.forEach(e => {
-
       template += `
-        <li class="c-CalculatorStep--form--contStep--cStepSelects--item--listItems--list--item" id="${e.puerto_id}">
+        <li class="c-CalculatorStep--form--contStep--cStepSelects--item--listItems--list--item" id="${e.idpuerto}">
         	<span>${e.puerto} - ${e.pais}</span>
         </li>
         `;
       });
-      
       $("#list-originCountriesandPort").html(template);
     }
-
   });
 }
 /************************** BUSQUEDA EN TIEMPO REAL DE PUERTO DE ORIGIN - LCL **************************/

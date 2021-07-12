@@ -270,8 +270,21 @@
 						&:nth-child(even){
 							background-color: #dddd;
 						}
+						
+						.td-anyresults_table{
+							padding: 0;
+							&--c{
+								background-color: #dddd;
+								padding: 0.5rem;
+								span{
+									color: #888;
+								}
+							}
+						}
+
 						td{
 							padding: 4px;
+
 
 							a{
 								display: block;

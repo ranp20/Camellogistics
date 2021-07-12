@@ -1,0 +1,67 @@
+/* LOADER EN LA WEB */
+@mixin loaderPoints($background, $color){
+	&{
+		position: fixed;
+		width: 100%;
+	  min-height: 100vh;
+	  height: 100%;
+	  background-color: $background;
+	  display: flex;
+	  flex-direction: column;
+	  justify-content: center;
+	  align-items: center;
+	  box-shadow: 4px 4px 20px rgba(0,0,0,0.3);
+	  z-index: 99999999;
+	  top: 0;
+	  left: 0;
+
+	  &.hidden{
+	  	display: none;
+	  	pointer-events: none;
+	  	visibility: hidden;
+	  	opacity: 0;
+	  }
+		.cont-loader--loader{
+			height: 15px;
+		  width: 105px;
+		  display: flex;
+		  position: relative;
+			&--circle{
+				width: 15px;
+		    height: 15px;
+		    border-radius: 50%;
+		    background-color: $color;
+		    animation: move 500ms linear 0ms infinite;
+		    margin-right: 30px;
+		    &:first-child{
+		      position: absolute;
+		      top:0;
+		      left:0;
+		      animation: grow 500ms linear 0ms infinite;
+		    }
+		    &:last-child{
+		      position: absolute;
+		      top: 0;
+		      right: 0;
+		      margin-right: 0;
+		      animation: grow 500ms linear 0s infinite reverse;
+		    }
+				@keyframes grow {
+				  from {transform: scale(0,0); opacity: 0;}
+				  to {transform: scale(1,1); opacity: 1;}
+				}
+
+				@keyframes move {
+				  from {transform: translateX(0px)}
+				  to {transform: translateX(45px)}
+				}
+			}
+		}
+		p{
+			margin-top: 1rem;
+			margin-bottom: 0;
+			color: $color;
+			font-weight: bold;
+		}
+	}	
+}
