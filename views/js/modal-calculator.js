@@ -116,6 +116,7 @@ $(document).on("keyup", "#val-Weightinputitem", function(){	($(this).val() != ""
 
 /************************** CREAR OBJETO PARA ALMACENAR LOS CÁLCULOS EN LA TABLA DEL MODAL **************************/
 var calculateDataUser = [];
+var calculateTotal = [];
 /************************** FUNCIÓN PARA AGREGAR DATOS AL OBJETO DE CÁLCULO **************************/
 function addCalculationData(cpackages, cweight, ctotal, cprefix){
 	var listobjCalcData = {
@@ -187,10 +188,41 @@ $(document).on("click", "#btn-addCalculateFleteModal", function(e){
 
 		addCalculationData(ObjDataAddTable.nroPackagesResult, ObjDataAddTable.valWeightResult, ObjDataAddTable.valTotalResult, ObjDataAddTable.valIdPrefixResult);
 		list_Calculation_data();
+
+		var listBultosSum = calculateDataUser;
+		var totalPackages = 0;
+		var totalWeight = 0;
+		var totalVolume = 0;
+
+		for (var i = 0; i < listBultosSum.length; i++) {
+			totalPackages += parseFloat(listBultosSum[i].packages);
+			totalWeight += parseFloat(listBultosSum[i].weight);
+			totalVolume += parseFloat(listBultosSum[i].total);
+			Add_Calculation_Total(totalPackages, totalWeight, totalVolume);
+			list_Calculation_Total();
+		}
 	}else{
 		console.log('Información incompleta');
 	}
 });
+/************************** REUNIR TODOS LOS TOTALES **************************/
+function Add_Calculation_Total(totalPacks, totalWeight, totalVolume){
+	listObjCalcTotal = {
+		packagesTotal: totalPacks,
+		weightTotal: totalWeight,
+		volumeTotal: totalVolume
+	};
+	calculateTotal.push(listObjCalcTotal);
+}
+/************************** SUMAR TODOS LOS TOTALES Y MOSTRARLOS **************************/
+function list_Calculation_Total(){
+	listCalcTotal	= calculateTotal;
+	for (var i = 0; i < listCalcTotal.length; i++) {
+		$("#b-valTotalPackages").val(listCalcTotal[i].packagesTotal++);
+		$("#b-valTotalWeight").val(listCalcTotal[i].weightTotal++);
+		$("#b-valTotalVolume").val(listCalcTotal[i].volumeTotal++);
+	}
+}
 /************************** LISTAR TODOS LOS CALCULOS PREVIOS **************************/
 function list_Calculation_data(){
 	
@@ -229,8 +261,8 @@ function list_Calculation_data(){
 					</td>
 					<td>${contador}</td>
 					<td>${listCalc[i].packages}</td>
-					<td>${listCalc[i].weight} ${listCalc[i].prefix}</td>
-					<td>${valvolumenfinal} M³</td>
+					<td><span>${listCalc[i].weight}</span> <span>${listCalc[i].prefix}</span></td>
+					<td><span>${valvolumenfinal}</span> <span>M³</span></td>
 				</tr>
 			`);
 		}
@@ -241,10 +273,41 @@ $(document).on("click", ".del-calculation-item", function(e){
 	e.preventDefault();
 
  	var delListCalc = calculateDataUser;
+ 	var delListCalcTotal = calculateTotal;
 	var thisid = $(this).parent().parent();
-	for (var i = 0; i < thisid.length; i++) {
-		thisid[i].remove();
-		delListCalc.splice(thisid[i], 1);
-	}
-	list_Calculation_data();
+
+	$.each(thisid, function(i, v){
+		/************************** ELIMINAR VALORES DEL TOTAL *************************/
+		var restPackages = $(this).find("td").eq(2).text();
+		var restWeight = $(this).find("td").eq(3).find("span:first-child").text();
+		var restVolume = $(this).find("td").eq(4).find("span:first-child").text();
+
+		/************************** OBTENER EL VALOR DE LOS CONTROLES *************************/
+		var valTotalResultPackages = $("#b-valTotalPackages").val();
+		var valTotalResultWeight = $("#b-valTotalWeight").val();
+		var valTotalResultVolume = $("#b-valTotalVolume").val();
+
+		/************************** RESTAR A LOS TOTALES *************************/
+		valTotalResultPackages = valTotalResultPackages - parseFloat(restPackages);
+		valTotalResultWeight = valTotalResultWeight - parseFloat(restWeight);
+		valTotalResultVolume = valTotalResultVolume - parseFloat(restVolume);
+
+		/************************** VALIDACIÓN DE DECIMALES ANTES DE FIJAR EL VALOR **************************/
+  	var valdecimalTwoFinal  = valTotalResultVolume - Math.trunc(valTotalResultVolume);
+  	var valdecimalvalidationFinal = valdecimalTwoFinal.toFixed(2);
+  	var valTotalvolumenfinal = 0;
+  	if(valdecimalvalidationFinal == 0.00){
+  		valTotalvolumenfinal = parseFloat(valTotalResultVolume).toFixed(0);
+  	}else{
+			valTotalvolumenfinal = parseFloat(valTotalResultVolume).toFixed(2);
+  	}
+
+		$("#b-valTotalPackages").val(valTotalResultPackages);
+		$("#b-valTotalWeight").val(valTotalResultWeight);
+		$("#b-valTotalVolume").val(valTotalvolumenfinal);
+		
+		/************************** ELIMINAR FILA **************************/
+		$(this).remove();
+		delListCalc.splice($(this), 1);
+	});
 });

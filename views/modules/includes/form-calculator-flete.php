@@ -87,5 +87,39 @@
 				</tbody>
 			</table>
 		</div>
+		<div class="cnt-modalFormCalculator--c--cNoteDesc">
+			<p><b>Nota:</b> Los valores de Peso y Volumen serán convertidos automáticamente a Kilogramos y Metros respectivamente.</p>
+		</div>
+		<div class="cnt-modalFormCalculator--c--cSumTotalCalculate">
+			<h3>TOTAL</h3>
+			<div class="cnt-modalFormCalculator--c--cSumTotalCalculate--c">
+				<div class="cnt-modalFormCalculator--c--cSumTotalCalculate--c--cControl">
+					<label for="" class="cnt-modalFormCalculator--c--cSumTotalCalculate--c--cControl--label">BULTOS</label>
+					<input type="number" id="b-valTotalPackages" disabled class="cnt-modalFormCalculator--c--cSumTotalCalculate--c--cControl--input" placeholder="bultos">
+				</div>
+				<div class="cnt-modalFormCalculator--c--cSumTotalCalculate--c--cControl">
+					<label for="" class="cnt-modalFormCalculator--c--cSumTotalCalculate--c--cControl--label">PESO</label>
+					<div class="cnt-modalFormCalculator--c--cSumTotalCalculate--c--cControl--inputandIcon">
+						<input type="number" id="b-valTotalWeight" disabled class="cnt-modalFormCalculator--c--cSumTotalCalculate--c--cControl--inputandIcon--input" placeholder="peso">
+						<div class="cnt-modalFormCalculator--c--cSumTotalCalculate--c--cControl--inputandIcon--cmassUnitPrefix">
+							<span>Kg</span>
+						</div>
+					</div>
+				</div>
+				<div class="cnt-modalFormCalculator--c--cSumTotalCalculate--c--cControl">
+					<label for="" class="cnt-modalFormCalculator--c--cSumTotalCalculate--c--cControl--label">VOLUMEN</label>
+					<div class="cnt-modalFormCalculator--c--cSumTotalCalculate--c--cControl--inputandIcon">
+						<input type="number" id="b-valTotalVolume" disabled class="cnt-modalFormCalculator--c--cSumTotalCalculate--c--cControl--inputandIcon--input" placeholder="volumen">
+						<div class="cnt-modalFormCalculator--c--cSumTotalCalculate--c--cControl--inputandIcon--ccmcPrefix">
+							<span>M³</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="cnt-modalFormCalculator--c--cBtnsActionsModalCalc">
+			<button type="button" class="cnt-modalFormCalculator--c--cBtnsActionsModalCalc--btnCancel">VOLVER</button>
+			<button type="button" class="cnt-modalFormCalculator--c--cBtnsActionsModalCalc--btnAccept">AGREGAR CÁLCULO</button>
+		</div>
 	</div>
 </section>
