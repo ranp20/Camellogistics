@@ -118,8 +118,8 @@
 			</div>
 		</div>
 		<div class="cnt-modalFormCalculator--c--cBtnsActionsModalCalc">
-			<button type="button" class="cnt-modalFormCalculator--c--cBtnsActionsModalCalc--btnCancel">VOLVER</button>
-			<button type="button" class="cnt-modalFormCalculator--c--cBtnsActionsModalCalc--btnAccept">AGREGAR CÁLCULO</button>
+			<button type="button" class="cnt-modalFormCalculator--c--cBtnsActionsModalCalc--btnCancel" id="btn-CancelCalcValueToCalculator">VOLVER</button>
+			<button type="button" class="cnt-modalFormCalculator--c--cBtnsActionsModalCalc--btnAccept" id="btn-addCalcValueToCalculator">AGREGAR CÁLCULO</button>
 		</div>
 	</div>
 </section>

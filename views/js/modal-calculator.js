@@ -310,4 +310,57 @@ $(document).on("click", ".del-calculation-item", function(e){
 		$(this).remove();
 		delListCalc.splice($(this), 1);
 	});
+
+	if(delListCalc.length == 0){
+		list_Calculation_data();
+	}else{
+		list_Calculation_data();
+	}
+});
+/************************** CERRAR EL MODAL SIN GUARDAR LOS CAMBIOS **************************/
+$(document).on("click", "#btn-CancelCalcValueToCalculator", function(e){
+	e.preventDefault();
+	$("#cnt-modalFormCalculator").removeClass("show");
+	$(".cnt-modalFormCalculator--c").removeClass("show");
+});
+/************************** AGREGAR LOS VALORES AL PRIMER MODAL **************************/
+$(document).on("click", "#btn-addCalcValueToCalculator", function(e){
+	e.preventDefault();
+
+	($("#val-Lengthselitem").val() != 0) ? $("#msgNounLengthvalue").text("") : $("#msgNounLengthvalue").text("Campo requerido");
+	($("#val-UnitWeightselitem").val() != 0) ? $("#msgNounUnitWeightvalue").text("") : $("#msgNounUnitWeightvalue").text("Campo requerido");
+	($("#val-NroPackagestselitem").val() != "") ? $("#msgNounNroPackagesvalue").text("") : $("#msgNounNroPackagesvalue").text("Campo requerido");
+	($("#val-Longinputitem").val() != "") ? $("#msgNounLongvalue").text("") : $("#msgNounLongvalue").text("Campo requerido");
+	($("#val-Widthinputitem").val() != "") ? $("#msgNounWidthvalue").text("") : $("#msgNounWidthvalue").text("Campo requerido");
+	($("#val-Heightinputitem").val() != "") ? $("#msgNounHeightvalue").text("") : $("#msgNounHeightvalue").text("Campo requerido");
+	($("#val-Weightinputitem").val() != "") ? $("#msgNounWeightvalue").text("") : $("#msgNounWeightvalue").text("Campo requerido");
+
+	if($("#val-Lengthselitem").val() != 0 && 
+		 $("#val-UnitWeightselitem").val() != 0 &&
+		 $("#val-NroPackagestselitem").val() != "" &&
+		 $("#val-Longinputitem").val() != "" &&
+		 $("#val-Widthinputitem").val() != "" &&
+		 $("#val-Heightinputitem").val() != "" &&
+		 $("#val-Weightinputitem").val() != ""){
+
+		console.log('Si hay registros');
+		$("#cnt-modalFormCalculator").removeClass("show");
+		$(".cnt-modalFormCalculator--c").removeClass("show");
+		$("#detail-CalcToModalAssoc").addClass("show");
+
+		var valCalculadoPackages = $("#b-valTotalPackages").val();
+		var valCalculadoWeight = $("#b-valTotalWeight").val();
+		var valCalculadoVolume = $("#b-valTotalVolume").val();
+
+		/************************** DEVOLVER LOS VALORES AL PRIMER MODAL **************************/
+		$("#val-CalcPacksRequestModal").val(valCalculadoPackages);
+		$("#val-CalcWeightRequestModal").val(valCalculadoWeight);
+		$("#val-CalcVolumeRequestModal").val(valCalculadoVolume);
+
+		$("#small-valPCalcReqModal").text(valCalculadoPackages);
+		$("#small-valWCalcReqModal").text(valCalculadoWeight);
+		$("#small-valVCalcReqModal").text(valCalculadoVolume);
+	}else{
+		console.log('No hay registros a fijar');
+	}
 });

@@ -40,17 +40,22 @@
 						<p class="c-CalculatorStep--form--contStep--cStepSelects--item--title">Tipo envío</p>
 						<button type="button" id="val-typecontainerflete" class="c-CalculatorStep--form--contStep--cStepSelects--item--fakeselbtn">Elija una opción</button>
 						<span id="msgNounTypeSend-step">Debe escoger tipo de envío</span>
+						<small id="detail-CalcToModalAssoc">
+							<span>Bultos = <span id="small-valPCalcReqModal"></span>,</span>
+							<span> Peso = <span id="small-valWCalcReqModal"></span> kg,</span>
+							<span> Volumen = <span id="small-valVCalcReqModal"></span> M³</span>
+						</small>
 						<div class="c-CalculatorStep--form--contStep--cStepSelects--item--selContaineropts" id="container-containOptsContainers">
 							<div class="c-CalculatorStep--form--contStep--cStepSelects--item--selContaineropts--c" id="cont-containOptsContainers"></div>
 							<div class="c-CalculatorStep--form--contStep--cStepSelects--item--selContaineropts--filldatacontainer" id="cont-fillDatabyContain">
 								<div class="c-CalculatorStep--form--contStep--cStepSelects--item--selContaineropts--filldatacontainer--cControl">
 									<label for="">BULTOS</label>
-									<input type="number" value="1" placeholder="Ingrese nro. de bultos">
+									<input type="number" value="1" placeholder="Ingrese nro. de bultos" id="val-CalcPacksRequestModal">
 								</div>
 								<div class="c-CalculatorStep--form--contStep--cStepSelects--item--selContaineropts--filldatacontainer--cControl">
 									<label for="">PESO</label>
 									<div class="c-CalculatorStep--form--contStep--cStepSelects--item--selContaineropts--filldatacontainer--cControl--twocontrols">
-										<input type="number" value="1" placeholder="Ingrese peso">
+										<input type="number" value="" placeholder="Ingrese peso" id="val-CalcWeightRequestModal">
 										<select name="" id="valinput-peso">
 											<option value="1">Kilogramos</option>
 											<option value="2">Libras</option>
@@ -61,7 +66,7 @@
 								<div class="c-CalculatorStep--form--contStep--cStepSelects--item--selContaineropts--filldatacontainer--cControl">
 									<label for="">VOLUMEN</label>
 									<div class="c-CalculatorStep--form--contStep--cStepSelects--item--selContaineropts--filldatacontainer--cControl--twocontrols">
-										<input type="number" value="" placeholder="Ingrese volumen">
+										<input type="number" value="" placeholder="Ingrese volumen" id="val-CalcVolumeRequestModal">
 										<select name="" id="valinput-volumen">
 											<option value="1">Metros cúbicos</option>
 											<option value="2">Pies cúbicos</option>

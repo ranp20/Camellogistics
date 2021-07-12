@@ -95,6 +95,21 @@
 				width: 100%;
 				margin-bottom: 0.5rem;
 
+				/************************** VALORES FIJADOS DE RECORDATORIO AL USUARIO **************************/
+				#detail-CalcToModalAssoc{
+					display: none;
+					opacity: 0;
+			    align-items: center;
+			    justify-content: center;
+			    flex-wrap: wrap;
+			    color: $primary-color;
+			    font-weight: 600;
+					&.show{
+						display: flex;
+						opacity: 1;
+					}
+				}
+
 				@media (min-width: 991px){
 					width: auto;
 					margin: 0;
@@ -327,6 +342,7 @@
 									flex: 50%;
 									padding: 0.5rem 0;
 									border-radius: unset !important;
+									font-size: 0.85rem;
 								}
 							}
 						}

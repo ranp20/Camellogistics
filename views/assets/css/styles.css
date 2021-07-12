@@ -614,9 +614,23 @@ ul {
   flex: 25%;
   width: 100%;
   margin-bottom: 0.5rem;
+  /************************** VALORES FIJADOS DE RECORDATORIO AL USUARIO **************************/
   /* MENSAJES DE ERROR */
   /* LISTA DE RESULTADOS EN INPUTS */
   /* MODAL DE CONTENEDORES */
+}
+.c-CalculatorStep--form--contStep--cStepSelects--item #detail-CalcToModalAssoc {
+  display: none;
+  opacity: 0;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  color: #B58440;
+  font-weight: 600;
+}
+.c-CalculatorStep--form--contStep--cStepSelects--item #detail-CalcToModalAssoc.show {
+  display: flex;
+  opacity: 1;
 }
 @media (min-width: 991px) {
   .c-CalculatorStep--form--contStep--cStepSelects--item {
@@ -821,6 +835,7 @@ ul {
   flex: 50%;
   padding: 0.5rem 0;
   border-radius: unset !important;
+  font-size: 0.85rem;
 }
 .c-CalculatorStep--form--contStep--cStepSelects--item--selContaineropts--filldatacontainer--linkModalDatas {
   background-color: steelblue;
