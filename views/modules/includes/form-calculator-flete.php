@@ -4,7 +4,7 @@
 		<div class="cnt-modalFormCalculator--c--cTitle">
 			<h2>CALCULADORA VOLUMÉTRICA</h2>
 		</div>
-		<form method="POST" class="cnt-modalFormCalculator--c--cForm">
+		<form method="POST" class="cnt-modalFormCalculator--c--cForm" id="f-formCalcModalSendInfo">
 			<div class="cnt-modalFormCalculator--c--cForm--cTop">
 				<div class="cnt-modalFormCalculator--c--cForm--cTop--control">
 					<label for="val-Lengthselitem" class="cnt-modalFormCalculator--c--cForm--cTop--control--label">UNIDAD DE LONGITUD</label>

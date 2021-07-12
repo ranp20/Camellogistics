@@ -179,6 +179,7 @@ $(document).on("click", "#btn-addCalculateFleteModal", function(e){
 		// 	placeDestiny: $("#input-vallistdestiny").val()
 		// };
 
+		/************************** AGREGAR Y SUMAR A LOS TOTALES **************************/
 		var ObjDataAddTable = {
 			nroPackagesResult: $("#val-NroPackagestselitem").val(),
 			valWeightResult: $("#val-Weightinputitem").val(),
@@ -201,6 +202,10 @@ $(document).on("click", "#btn-addCalculateFleteModal", function(e){
 			Add_Calculation_Total(totalPackages, totalWeight, totalVolume);
 			list_Calculation_Total();
 		}
+
+		/************************** LIMPIAR LOS CONTROLES **************************/
+		$("#f-formCalcModalSendInfo")[0].reset();
+
 	}else{
 		console.log('Información incompleta');
 	}
@@ -335,28 +340,31 @@ $(document).on("click", "#btn-addCalcValueToCalculator", function(e){
 	($("#val-Heightinputitem").val() != "") ? $("#msgNounHeightvalue").text("") : $("#msgNounHeightvalue").text("Campo requerido");
 	($("#val-Weightinputitem").val() != "") ? $("#msgNounWeightvalue").text("") : $("#msgNounWeightvalue").text("Campo requerido");
 
-	if($("#val-Lengthselitem").val() != 0 && 
-		 $("#val-UnitWeightselitem").val() != 0 &&
-		 $("#val-NroPackagestselitem").val() != "" &&
-		 $("#val-Longinputitem").val() != "" &&
-		 $("#val-Widthinputitem").val() != "" &&
-		 $("#val-Heightinputitem").val() != "" &&
-		 $("#val-Weightinputitem").val() != ""){
+	if($("#b-valTotalPackages").val() != "" &&
+		 $("#b-valTotalWeight").val() != "" &&
+		 $("#b-valTotalVolume").val() != ""){
 
-		console.log('Si hay registros');
+		/************************** OCULTAR Y LIMPIAR EL MODAL **************************/
 		$("#cnt-modalFormCalculator").removeClass("show");
 		$(".cnt-modalFormCalculator--c").removeClass("show");
 		$("#detail-CalcToModalAssoc").addClass("show");
+		$("#msgNounLengthvalue").text("");
+		$("#msgNounUnitWeightvalue").text("");
+		$("#msgNounNroPackagesvalue").text("");
+		$("#msgNounLongvalue").text("");
+		$("#msgNounWidthvalue").text("");
+		$("#msgNounHeightvalue").text("");
+		$("#msgNounWeightvalue").text("");
 
+		/************************** OBTENER LOS VALORES DE LOS TOTALES **************************/
 		var valCalculadoPackages = $("#b-valTotalPackages").val();
 		var valCalculadoWeight = $("#b-valTotalWeight").val();
 		var valCalculadoVolume = $("#b-valTotalVolume").val();
-
 		/************************** DEVOLVER LOS VALORES AL PRIMER MODAL **************************/
 		$("#val-CalcPacksRequestModal").val(valCalculadoPackages);
 		$("#val-CalcWeightRequestModal").val(valCalculadoWeight);
 		$("#val-CalcVolumeRequestModal").val(valCalculadoVolume);
-
+		/************************** FIJAR LOS VALORES EN EL SMALL **************************/
 		$("#small-valPCalcReqModal").text(valCalculadoPackages);
 		$("#small-valWCalcReqModal").text(valCalculadoWeight);
 		$("#small-valVCalcReqModal").text(valCalculadoVolume);
