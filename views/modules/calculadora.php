@@ -41,9 +41,9 @@
 						<button type="button" id="val-typecontainerflete" class="c-CalculatorStep--form--contStep--cStepSelects--item--fakeselbtn">Elija una opción</button>
 						<span id="msgNounTypeSend-step">Debe escoger tipo de envío</span>
 						<small id="detail-CalcToModalAssoc">
-							<span>Bultos = <span id="small-valPCalcReqModal"></span>,</span>
-							<span> Peso = <span id="small-valWCalcReqModal"></span> kg,</span>
-							<span> Volumen = <span id="small-valVCalcReqModal"></span> M³</span>
+							<span>Bultos = <span id="small-valPCalcReqModal"></span>,&nbsp;</span>
+							<span>Peso = <span id="small-valWCalcReqModal"></span>&nbsp;<span id="small-valWPrefixCalcReqModal"></span>,&nbsp;</span>
+							<span>Volumen = <span id="small-valVCalcReqModal"></span>&nbsp;<span id="small-valVPrefixCalcReqModal"></span></span>
 						</small>
 						<div class="c-CalculatorStep--form--contStep--cStepSelects--item--selContaineropts" id="container-containOptsContainers">
 							<div class="c-CalculatorStep--form--contStep--cStepSelects--item--selContaineropts--c" id="cont-containOptsContainers"></div>
@@ -55,28 +55,21 @@
 								<div class="c-CalculatorStep--form--contStep--cStepSelects--item--selContaineropts--filldatacontainer--cControl">
 									<label for="">PESO</label>
 									<div class="c-CalculatorStep--form--contStep--cStepSelects--item--selContaineropts--filldatacontainer--cControl--twocontrols">
-										<input type="number" value="" placeholder="Ingrese peso" id="val-CalcWeightRequestModal">
-										<select name="" id="valinput-peso">
-											<option value="1">Kilogramos</option>
-											<option value="2">Libras</option>
-											<option value="3">Toneladas</option>
-										</select>
+										<input type="number" placeholder="Ingrese peso" id="val-CalcWeightRequestModal">
+										<select name="" id="valinput-peso"></select>
 									</div>
 								</div>
 								<div class="c-CalculatorStep--form--contStep--cStepSelects--item--selContaineropts--filldatacontainer--cControl">
 									<label for="">VOLUMEN</label>
 									<div class="c-CalculatorStep--form--contStep--cStepSelects--item--selContaineropts--filldatacontainer--cControl--twocontrols">
-										<input type="number" value="" placeholder="Ingrese volumen" id="val-CalcVolumeRequestModal">
-										<select name="" id="valinput-volumen">
-											<option value="1">Metros cúbicos</option>
-											<option value="2">Pies cúbicos</option>
-										</select>
+										<input type="number" placeholder="Ingrese volumen" id="val-CalcVolumeRequestModal">
+										<select name="" id="valinput-volumen"></select>
 									</div>
 								</div>
 								<a href="#" id="Add-fromcalculatorModal" class="c-CalculatorStep--form--contStep--cStepSelects--item--selContaineropts--filldatacontainer--linkModalDatas">AYUDA - CALCULA VOLUMEN (m3) AQUÍ</a>
 								<div class="c-CalculatorStep--form--contStep--cStepSelects--item--selContaineropts--filldatacontainer--cbtnsActs">
-									<a href="#">VOLVER</a>
-									<button type="button">GUARDAR</button>
+									<a href="#" id="btn-backToModalContainers">VOLVER</a>
+									<button type="button" id="btn-saveToModalContainers">GUARDAR</button>
 								</div>
 							</div>
 						</div>
@@ -280,6 +273,7 @@
 </section>
 <!--****************** AREGADOS RECIENTEMENTE *****************-->
 <?php require_once 'includes/form-calculator-flete.php'; ?>
+<?php require_once 'includes/form-validate-container-modal.php'; ?>
 <?php require_once 'includes/form-before-download-pdf.php'; ?>
 
 <script src="<?= $url ?>js/jquery-3.5.1.min.js"></script>

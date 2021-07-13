@@ -360,6 +360,8 @@ $(document).on("click", "#btn-addCalcValueToCalculator", function(e){
 		var valCalculadoPackages = $("#b-valTotalPackages").val();
 		var valCalculadoWeight = $("#b-valTotalWeight").val();
 		var valCalculadoVolume = $("#b-valTotalVolume").val();
+		var valCalculadoWeightPrefix = $("#b-valTotalWeight").parent().find("div").find("span").text();
+		var valCalculadoVolumePrefix = $("#b-valTotalVolume").parent().find("div").find("span").text();
 		/************************** DEVOLVER LOS VALORES AL PRIMER MODAL **************************/
 		$("#val-CalcPacksRequestModal").val(valCalculadoPackages);
 		$("#val-CalcWeightRequestModal").val(valCalculadoWeight);
@@ -368,6 +370,8 @@ $(document).on("click", "#btn-addCalcValueToCalculator", function(e){
 		$("#small-valPCalcReqModal").text(valCalculadoPackages);
 		$("#small-valWCalcReqModal").text(valCalculadoWeight);
 		$("#small-valVCalcReqModal").text(valCalculadoVolume);
+		$("#small-valWPrefixCalcReqModal").text(valCalculadoWeightPrefix);
+		$("#small-valVPrefixCalcReqModal").text(valCalculadoVolumePrefix);
 	}else{
 		console.log('No hay registros a fijar');
 	}
