@@ -1,3 +1,5 @@
+var idpais = $("#input-vallistorigin").attr("id-paispuertoorigin");
+
 $(function(){
 	list_puertoDestinyLCL();
 });
@@ -23,7 +25,7 @@ function list_puertoDestinyLCL(searchVal){
       $("#list-destinyCountriesandPort").html(template);
       setTimeout(function(){
         $("#list-destinyCountriesandPort").removeClass("show");
-      }, 1000);
+      }, 1500);
     }else{
       response.forEach(e => {
       template += `
@@ -38,12 +40,37 @@ function list_puertoDestinyLCL(searchVal){
 }
 /************************** BUSQUEDA EN TIEMPO REAL DE PUERTO DE DESTINO - LCL **************************/
 $(document).on("keyup", "#input-vallistdestiny", function(){	
-	$("#list-destinyCountriesandPort").addClass("show");
+  
+  if($("#input-vallistorigin").val() == ""){
+    alert("Debes seleccionar una opcíon de origen válida");
+    $("#input-vallistdestiny").attr("aria-expanded", false);
+    $("#input-vallistdestiny").css({"background-color":"#dddd","cursor":"not-allowed"});
+    $("#input-vallistdestiny").attr("disabled","disabled");
+  }else{
+    $("#input-vallistdestiny").attr("aria-expanded", true);
+    $("#input-vallistdestiny").css({"background-color":"#fff","cursor":"pointer"});
+    $("#input-vallistdestiny").removeAttr("disabled");
+  }
+
+  $("#list-destinyCountriesandPort").addClass("show");
 	var searchVal = $(this).val();
-  if(searchVal != ""){
+  if($("#input-vallistorigin").val() == "" || searchVal != ""){
     list_puertoDestinyLCL(searchVal);
   }else{
     list_puertoDestinyLCL();
+  }
+});
+/************************** FOCUS EN EL INPUT DE DESTINO **************************/
+$("#input-vallistdestiny").focus(function(){
+  if($("#input-vallistorigin").val() == ""){
+    alert("Debes seleccionar una opcíon de origen válida");
+    $("#input-vallistdestiny").attr("aria-expanded", false);
+    $("#input-vallistdestiny").css({"background-color":"#dddd","cursor":"not-allowed"});
+    $("#input-vallistdestiny").attr("disabled","disabled");
+  }else{
+    $("#input-vallistdestiny").attr("aria-expanded", true);
+    $("#input-vallistdestiny").css({"background-color":"#fff","cursor":"pointer"});
+    $("#input-vallistdestiny").removeAttr("disabled");
   }
 });
 /************************** FIJAR EL VALOR DEL PUERTO EN EL INPUT **************************/

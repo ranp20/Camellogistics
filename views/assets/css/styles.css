@@ -782,6 +782,15 @@ ul {
   border-radius: 0.3rem;
   padding: 0.4rem 0.6rem;
 }
+.c-CalculatorStep--form--contStep--cStepSelects--item input[aria-expanded=false] {
+  background-image: url("../img/utilities/fail-alert-noun-selected.svg");
+  background-color: #fff !important;
+  border: thin solid darkred !important;
+  box-shadow: 0 0 2px 1px pink;
+  background-repeat: no-repeat;
+  background-position: 98%;
+  background-size: 0.95rem;
+}
 .c-CalculatorStep--form--contStep--cStepSelects--item input:focus {
   text-align: left;
 }

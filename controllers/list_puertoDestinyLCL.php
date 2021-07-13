@@ -6,7 +6,7 @@ class list_puertoDestinyLCL extends Connection{
 
 		try{
 			$sql = "SELECT tap.puerto_id as 'idpuerto', tap.puerto as 'puerto', tapa.pais_id as 'idpais', tapa.pais as 'pais' 
-							FROM tbl_aq_puertos tap	INNER JOIN tbl_aq_paises tapa ON tap.pais_id = tapa.pais_id ORDER BY tap.puerto_id DESC";
+								FROM tbl_aq_puertos tap	INNER JOIN tbl_aq_paises tapa ON tap.pais_id = tapa.pais_id";
 
 			if(isset($_POST['searchList'])){
 				//$search = $this->con->real_escape_string($_POST['searchList']);
