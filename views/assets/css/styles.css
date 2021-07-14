@@ -202,6 +202,40 @@ ul {
   font-weight: bold;
 }
 
+/************************** LOADER CLÁSICO **************************/
+#loader-clasic {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  min-height: 100vh;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 99999;
+}
+#loader-clasic .loader-clasic--c {
+  border: 4px solid rgba(0, 0, 0, 0.1);
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  border-left-color: #B58440;
+  animation-name: girar;
+  animation-duration: 0.35s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+@keyframes girar {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
 /************************** VALIDATION IN CONTAINER MODAL **************************/
 .cnt-modalFValidateMCont {
   position: fixed;
@@ -763,10 +797,13 @@ ul {
 .c-CalculatorStep--form--contStep--cStepSelects--item:nth-child(2), .c-CalculatorStep--form--contStep--cStepSelects--item:nth-child(3), .c-CalculatorStep--form--contStep--cStepSelects--item:nth-child(4) {
   padding-left: 0.25rem;
 }
+.c-CalculatorStep--form--contStep--cStepSelects--item:nth-child(4) {
+  margin: auto 0;
+  padding-top: 1.65rem;
+}
 .c-CalculatorStep--form--contStep--cStepSelects--item #msgNounTypeSend-step,
 .c-CalculatorStep--form--contStep--cStepSelects--item #msgNounOriginSend-step,
 .c-CalculatorStep--form--contStep--cStepSelects--item #msgNounDestinySend-step {
-  display: none;
   color: red;
   font-size: 0.85rem;
   font-weight: bold;
@@ -1380,6 +1417,95 @@ ul {
 }
 .cnt-modalFormCalculator--c--cBtnsActionsModalCalc--btnAccept {
   background-color: steelblue;
+}
+
+.c-SelServicesOrNotStep--contStep {
+  margin-top: 3rem;
+  text-align: center;
+}
+.c-SelServicesOrNotStep--contStep--cTitle {
+  border-top: thin solid #ccc;
+  padding-top: 1rem;
+  width: 95%;
+  margin-left: auto;
+  margin-right: auto;
+}
+.c-SelServicesOrNotStep--contStep--cTitle--title {
+  color: #B58440;
+  font-size: 1.2rem;
+  padding-bottom: 1rem;
+  margin-bottom: 0.5rem;
+}
+.c-SelServicesOrNotStep--contStep--cOptionsServices {
+  margin-top: 1.5rem;
+}
+.c-SelServicesOrNotStep--contStep--cOptionsServices--m {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+.c-SelServicesOrNotStep--contStep--cOptionsServices--m--item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  max-width: 24.5rem;
+  width: calc(100% * 1/2 - 10px);
+  overflow: hidden;
+  border-radius: 0.4rem;
+  transition: 0.3s ease-in-out;
+  border: thin solid transparent;
+}
+.c-SelServicesOrNotStep--contStep--cOptionsServices--m--item:nth-child(odd) {
+  background-color: #B58440;
+}
+.c-SelServicesOrNotStep--contStep--cOptionsServices--m--item:nth-child(odd) .c-SelServicesOrNotStep--contStep--cOptionsServices--m--link {
+  color: #fff;
+}
+.c-SelServicesOrNotStep--contStep--cOptionsServices--m--item:nth-child(even) {
+  background-color: transparent;
+  box-shadow: 0 0 10px 1px #B58440;
+}
+.c-SelServicesOrNotStep--contStep--cOptionsServices--m--item:nth-child(even) .c-SelServicesOrNotStep--contStep--cOptionsServices--m--link {
+  color: #B58440;
+}
+.c-SelServicesOrNotStep--contStep--cOptionsServices--m--item:nth-child(odd):hover {
+  box-shadow: 0 0 10px 1px #B58440;
+}
+.c-SelServicesOrNotStep--contStep--cOptionsServices--m--item:nth-child(even):hover {
+  box-shadow: unset;
+  border: thin solid #B58440;
+}
+.c-SelServicesOrNotStep--contStep--cOptionsServices--m--link {
+  cursor: pointer;
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 0.4rem;
+  padding: 1rem 0.5rem;
+  font-weight: bold;
+  font-size: 0.9rem;
+}
+.c-SelServicesOrNotStep--contStep--cOptionsServices--m--link p {
+  margin-bottom: 0.3rem;
+}
+.c-SelServicesOrNotStep--contStep--cOptionsServices--m--link--cControl {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.c-SelServicesOrNotStep--contStep--cOptionsServices--m--link--cControl input[type=radio] {
+  cursor: pointer;
+  width: auto;
+  height: auto;
+  margin-right: 0.5rem;
+}
+.c-SelServicesOrNotStep--contStep--cOptionsServices--m--link--cControl label {
+  cursor: pointer;
+  margin: 0;
+  padding: 0;
 }
 
 /*# sourceMappingURL=styles.css.map */

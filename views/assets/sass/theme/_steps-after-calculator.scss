@@ -1,0 +1,96 @@
+.c-SelServicesOrNotStep--contStep{
+	margin-top: 3rem;
+	text-align: center;
+	&--cTitle{
+		border-top: thin solid #ccc;
+		padding-top: 1rem;
+		width: 95%;
+		margin-left: auto;
+		margin-right: auto;
+		&--title{
+			color: $primary-color;
+	    font-size: 1.2rem;
+	    padding-bottom: 1rem;
+	    margin-bottom: 0.5rem;
+		}
+	}
+
+	&--cOptionsServices{
+		margin-top: 1.5rem;
+		&--m{
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			flex-wrap: wrap;
+			gap: 1rem;
+			&--item{
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				justify-content: center;
+				max-width: 24.5rem;
+				width: calc(100% * 1/2 - 10px);
+				overflow: hidden;
+				border-radius: .4rem;
+				transition: .3s ease-in-out;
+				border: thin solid transparent;
+
+				&:nth-child(odd){
+					background-color: $primary-color;
+					.c-SelServicesOrNotStep--contStep--cOptionsServices--m--link{
+						color: #fff;
+					}
+				}
+
+				&:nth-child(even){
+					background-color: transparent;
+					box-shadow: 0 0 10px 1px $primary-color;
+					.c-SelServicesOrNotStep--contStep--cOptionsServices--m--link{
+						color: $primary-color;
+					}
+				}
+
+				&:nth-child(odd):hover{
+					box-shadow: 0 0 10px 1px $primary-color;
+				}
+
+				&:nth-child(even):hover{
+					box-shadow: unset;
+					border: thin solid $primary-color;
+				}
+			}
+
+			&--link{
+				cursor: pointer;
+				display: block;
+				width: 100%;
+				height: auto;
+				border-radius: .4rem;
+				padding: 1rem 0.5rem;
+				font-weight: bold;
+				font-size: 0.9rem;
+				p{
+					margin-bottom: 0.3rem;
+				}
+
+				&--cControl{
+					display: flex;
+					align-items: center;
+					justify-content: center;
+					input[type="radio"]{
+						cursor: pointer;
+						width: auto;
+						height: auto;
+						margin-right: 0.5rem;
+					}
+
+					label{
+						cursor: pointer;
+						margin: 0;
+						padding: 0;
+					}
+				}
+			}
+		}
+	}
+}

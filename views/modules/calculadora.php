@@ -39,7 +39,7 @@
 					<div class="c-CalculatorStep--form--contStep--cStepSelects--item">
 						<p class="c-CalculatorStep--form--contStep--cStepSelects--item--title">Tipo envío</p>
 						<button type="button" id="val-typecontainerflete" class="c-CalculatorStep--form--contStep--cStepSelects--item--fakeselbtn">Elija una opción</button>
-						<span id="msgNounTypeSend-step">Debe escoger tipo de envío</span>
+						<span id="msgNounTypeSend-step"></span>
 						<small id="detail-CalcToModalAssoc">
 							<span>Bultos = <span id="small-valPCalcReqModal"></span>,&nbsp;</span>
 							<span>Peso = <span id="small-valWCalcReqModal"></span>&nbsp;<span id="small-valWPrefixCalcReqModal"></span>,&nbsp;</span>
@@ -77,7 +77,7 @@
 					<div class="c-CalculatorStep--form--contStep--cStepSelects--item">
 						<p class="c-CalculatorStep--form--contStep--cStepSelects--item--title">Origen</p>
 						<input type="text" placeholder="ESCRIBA País, Ciudad o Puerto" id="input-vallistorigin">
-						<span id="msgNounOriginSend-step">ESCRIBA país o puerto de origen</span>
+						<span id="msgNounOriginSend-step"></span>
 						<div class="c-CalculatorStep--form--contStep--cStepSelects--item--listItems">
 							<ul class="c-CalculatorStep--form--contStep--cStepSelects--item--listItems--list" id="list-originCountriesandPort"></ul>
 						</div>
@@ -85,7 +85,7 @@
 					<div class="c-CalculatorStep--form--contStep--cStepSelects--item">
 						<p class="c-CalculatorStep--form--contStep--cStepSelects--item--title">Destino</p>
 						<input type="text" placeholder="País, Ciudad o Puerto" id="input-vallistdestiny">
-						<span id="msgNounDestinySend-step">Seleccione un puerto de destino válido</span>
+						<span id="msgNounDestinySend-step"></span>
 						<div class="c-CalculatorStep--form--contStep--cStepSelects--item--listItems">
 							<ul class="c-CalculatorStep--form--contStep--cStepSelects--item--listItems--list" id="list-destinyCountriesandPort">
 								<li class="c-CalculatorStep--form--contStep--cStepSelects--item--listItems--list--anyresults">Selecciona un contenedor</li>
@@ -93,11 +93,11 @@
 						</div>
 					</div>
 					<div class="c-CalculatorStep--form--contStep--cStepSelects--item">
-						<button type="button" id="link-showNextStep" class="c-CalculatorStep--form--contStep--cStepSelects--item--nextbtn">SIGUIENTE</button>
+						<button type="button" id="btn-ValidToshowNextStep" class="c-CalculatorStep--form--contStep--cStepSelects--item--nextbtn">SIGUIENTE</button>
 					</div>
 				</div>
 				<!-----------------------------------------------------------------  CUSTOMIZATION (FIN) -->
-				<div class="row">
+				<!--<div class="row">
 					<div class="col-lg-3 col-sm-6 mb-4">
 						<div class="portfolio-item">
 							<div class="portfolio-caption">
@@ -118,12 +118,7 @@
 							<div class="portfolio-caption-heading">Origen</div>
 								<div class="portfolio-caption-subheading text-muted">
 									<select id="puertos_orig" name="puertos_orig" class="select2">
-										<option value="">Pais, Ciudad o Puerto</option>
-										<?php
-											//$vistapuertoOrig = new MvcController();
-											//$vistapuertoOrig -> vistaPuertosOrigController();
-										?>
-									</select>
+										<option value="">Pais, Ciudad o Puerto</option></select>
 								</div>
 							</div>
 						</div>
@@ -189,32 +184,35 @@
 					<div class="col-lg-4 col-sm-6 mb-4">
 						
 					</div>
-				</div>	
+				</div>	-->
 				
 			</div>
 		</div>
 		<!------------------------------------------ SEGUNDA FASE - PASO 2 (FIN) ----------------------------------->
-			<div id="fase_21">				
-				<center>
-					<div class="text-center">
-						<h3 id="tit_el_op" class="section-subheading text-muted">2.1 Elige una opcion</h3>
-					</div>
-				</center>
-				<div class="row">
-					<div class="col-lg-3 col-sm-6 mb-4">
-					</div>
-					<div id="boton_serv">
-					</div>
-					<div id="boton_serv_lcl">
-					</div>
-					<div class="col-lg-3 col-sm-6 mb-4">
-						<div class="portfolio-item">
-							<div class="portfolio-caption">					
-							</div>
+		<!------------------------------------------ TERCERA FASE - PASO 2.1 (INICO) --------------------------------->
+		<div id="step-Three" class="c-SelServicesOrNotStep--contStep hide step-hidden"></div>		
+		<!--<div id="fase_21" style="display: block !important;">				
+			<center>
+				<div class="text-center">
+					<h3 id="tit_el_op" class="section-subheading text-muted">2.1 Elige una opcion</h3>
+				</div>
+			</center>
+			<div class="row">
+				<div class="col-lg-3 col-sm-6 mb-4">
+				</div>
+				<div id="boton_serv">
+				</div>
+				<div id="boton_serv_lcl">
+				</div>
+				<div class="col-lg-3 col-sm-6 mb-4">
+					<div class="portfolio-item">
+						<div class="portfolio-caption">					
 						</div>
 					</div>
 				</div>
 			</div>
+		</div>-->
+		<!------------------------------------------ TERCERA FASE - PASO 2.1 (FIN) ----------------------------------->
 			<div id="fase3">
 				
 			</div>
@@ -287,6 +285,7 @@
 <script src="<?= $url ?>js/list_puertoOriginLCL.js"></script>
 <script src="<?= $url ?>js/list_puertoDestinyLCL.js"></script>
 <script src="<?= $url ?>js/modal-calculator.js"></script>
+<script src="<?= $url ?>js/steps_after_calculation.js"></script>
 	
 	<!-- 080026026
 	969 382 537 

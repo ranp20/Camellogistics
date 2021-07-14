@@ -66,9 +66,18 @@ $(document).on("keyup", "#input-vallistdestiny", function(){
     $("#input-vallistdestiny").removeAttr("title");
   }
 
+  /************************** VALIDACIÓN AL PUERTO DE DESTINO **************************/
+  if($("#input-vallistdestiny").val() == ""){
+    $("#input-vallistdestiny").removeAttr("id-puertodestiny");
+    $("#input-vallistdestiny").removeAttr("idpaisDestino");
+  }else{
+    $("#input-vallistdestiny").attr("aria-expanded", true);
+    $("#input-vallistdestiny").removeAttr("disabled");
+  }
+
   $("#list-destinyCountriesandPort").addClass("show");
 	var searchVal = $(this).val();
-  if($("#input-vallistorigin").val() == "" || searchVal != ""){
+  if(searchVal != ""){
     list_puertoDestinyLCL(searchVal);
   }else{
     list_puertoDestinyLCL();

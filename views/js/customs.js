@@ -3,15 +3,17 @@ window.addEventListener('load', function(){
   const loadcli = document.querySelector('#cont-loader');
   loadcli.className += ' hidden';
 })
-/*========================================================================================
+/*================================================================================================
 =            PASO 1. AVANZAR AL SIGUIENTE PASO AL HACER CLICK EN UNO DE LOS SERVICIOS            =
-=========================================================================================*/
+================================================================================================*/
 $(document).on("click", ".c-CalculatorStep--form--contStep--cStep--m--item a", function(){
 	var typeService = $(this).attr("id");
 	if(typeService == "MARÍTIMO"){
 		$("#step-One").addClass('hide step-hidden');
 		$("#step-Two").addClass('show').removeClass('step-hidden').removeClass('hide');
 
+		/************************** MOSTRAR EL MENSAJE DE CONTENEDOR VACÍO **************************/
+		$("#msgNounTypeSend-step").text("Debe escoger tipo de envío");
 		/************************** INFORMARCIÓN DE LA ACCIONES DEL USUARIO - LOCALSTORAGE... **************************/
 		//#1 . SELECCIONAR EL TIPO DE SERVICIO + PAGES...
 		var selService = localStorage.setItem("type_service", typeService);

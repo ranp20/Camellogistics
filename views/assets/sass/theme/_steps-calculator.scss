@@ -121,11 +121,15 @@
 					padding-left: 0.25rem;
 				}
 
+				&:nth-child(4){
+					margin: auto 0;
+					padding-top: 1.65rem;
+				}
+
 				/* MENSAJES DE ERROR */
 				#msgNounTypeSend-step,
 				#msgNounOriginSend-step,
 				#msgNounDestinySend-step{
-					display: none;
 					color: red;
 					font-size: 0.85rem;
 					font-weight: bold;

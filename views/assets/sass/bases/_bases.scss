@@ -60,6 +60,23 @@ ul{
 #cont-loader{
 	@include loaderPoints($primary-color, #fff);
 }
+/************************** LOADER CLÁSICO **************************/
+#loader-clasic{
+	position: absolute;
+	top: 0;
+	left: 0;
+  width: 100%;
+  min-height: 100vh;
+  height: 100%;
+  background-color: rgba(255,255,255,.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 99999;
+	.loader-clasic--c{
+		@include loader-clasic(55px, $primary-color);
+	}
+}
 /************************** VALIDATION IN CONTAINER MODAL **************************/
 .cnt-modalFValidateMCont{
 	position: fixed;

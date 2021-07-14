@@ -1,10 +1,5 @@
-var idTContainer = 0;
-
 /************************** OBTENER EL VALOR DEL ID DE ORIGEN **************************/
 $(document).on("click", `.c-CalculatorStep--form--contStep--cStepSelects--item--selContaineropts--c--item`, function(){
-  idTContainer = $(this).attr("idcontainer");
-  //return idTContainer;
-  console.log(idTContainer);
   $("#input-vallistorigin").attr("aria-expanded", true);
   $("#input-vallistorigin").css({"background-color":"#fff","cursor":"pointer"});
   $("#input-vallistorigin").removeAttr("disabled");

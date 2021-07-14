@@ -188,6 +188,9 @@ $(document).on("click", "#btn-saveToModalContainers", function(){
 		$("#small-valWPrefixCalcReqModal").text(valPrefixNewWMCont);
 		$("#small-valVPrefixCalcReqModal").text(valPrefixNewVMCont);
 
+		/************************** OCULTAR EL MENSAJE DE CONTENEDOR VACÍO **************************/
+		$("#msgNounTypeSend-step").text("");
+
 		/************************** SOBREESCRIBIR VALORES DEL LOCALSTORAGE **************************/
 		localStorage.setItem("tot_packages", valCalcNewPMCont);
 		localStorage.setItem("tot_weight", valCalcNewWMCont);
@@ -229,6 +232,9 @@ $(document).on("click", "#btn-addValidateMConts", function(){
 	$("#small-valVCalcReqModal").text(1);
 	$("#small-valWPrefixCalcReqModal").text(valPrefixToNewWMValiCont);
 	$("#small-valVPrefixCalcReqModal").text(valPrefixToNewVMValiCont);
+
+	/************************** OCULTAR EL MENSAJE DE CONTENEDOR VACÍO **************************/
+	$("#msgNounTypeSend-step").text("");
 
 	/************************** SOBREESCRIBIR VALORES DEL LOCALSTORAGE **************************/
 	localStorage.setItem("tot_packages", 1);

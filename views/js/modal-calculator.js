@@ -360,6 +360,9 @@ $(document).on("click", "#btn-addCalcValueToCalculator", function(e){
 		$("#small-valVCalcReqModal").text(valCalculadoVolume);
 		$("#small-valWPrefixCalcReqModal").text(valCalculadoWeightPrefix);
 		$("#small-valVPrefixCalcReqModal").text(valCalculadoVolumePrefix);
+
+		/************************** OCULTAR EL MENSAJE DE CONTENEDOR VACÍO **************************/
+		$("#msgNounTypeSend-step").text("");
 		
 		/************************** SOBREESCRIBIR VALORES DEL LOCALSTORAGE **************************/
 		localStorage.setItem("tot_packages", valCalculadoPackages);
