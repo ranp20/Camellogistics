@@ -185,6 +185,11 @@ $(document).on("click", "#btn-saveToModalContainers", function(){
 		$("#small-valWPrefixCalcReqModal").text(valPrefixNewWMCont);
 		$("#small-valVPrefixCalcReqModal").text(valPrefixNewVMCont);
 
+		/************************** SOBREESCRIBIR VALORES DEL LOCALSTORAGE **************************/
+		localStorage.setItem("tot_packages", valCalcNewPMCont);
+		localStorage.setItem("tot_weight", valCalcNewWMCont);
+		localStorage.setItem("tot_volume", valCalcNewVMCont);
+
 		$("#detail-CalcToModalAssoc").addClass("show");
 		$("#container-containOptsContainers").removeClass("show");
 
@@ -209,6 +214,21 @@ $(document).on("click", "#btn-addValidateMConts", function(){
 	($("#val-CalcPacksRequestModal").val() == "") ? $("#val-CalcPacksRequestModal").val(1) : $("#val-CalcPacksRequestModal").val();
 	($("#val-CalcWeightRequestModal").val() == "") ? $("#val-CalcWeightRequestModal").val(1) : $("#val-CalcWeightRequestModal").val();
 	($("#val-CalcVolumeRequestModal").val() == "") ? $("#val-CalcVolumeRequestModal").val(1) : $("#val-CalcVolumeRequestModal").val();
+
+	var valPrefixToNewWMValiCont = $("#val-CalcWeightRequestModal").parent().find("select option:selected").attr("prefixmassunit");
+	var valPrefixToNewVMValiCont = $("#val-CalcVolumeRequestModal").parent().find("select option:selected").attr("prefixvolumeunit");
+	/************************** FIJAR LOS VALORES EN EL SMALL **************************/
+	$("#small-valPCalcReqModal").text(1);
+	$("#small-valWCalcReqModal").text(1);
+	$("#small-valVCalcReqModal").text(1);
+	$("#small-valWPrefixCalcReqModal").text(valPrefixToNewWMValiCont);
+	$("#small-valVPrefixCalcReqModal").text(valPrefixToNewVMValiCont);
+
+	/************************** SOBREESCRIBIR VALORES DEL LOCALSTORAGE **************************/
+	localStorage.setItem("tot_packages", 1);
+	localStorage.setItem("tot_weight", 1);
+	localStorage.setItem("tot_volume", 1);
 	
+	$("#detail-CalcToModalAssoc").addClass("show");
 	$(".cnt-modalFValidateMCont").removeClass("show");
 });

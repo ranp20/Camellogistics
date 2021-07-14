@@ -344,18 +344,6 @@ $(document).on("click", "#btn-addCalcValueToCalculator", function(e){
 		 $("#b-valTotalWeight").val() != "" &&
 		 $("#b-valTotalVolume").val() != ""){
 
-		/************************** OCULTAR Y LIMPIAR EL MODAL **************************/
-		$("#cnt-modalFormCalculator").removeClass("show");
-		$(".cnt-modalFormCalculator--c").removeClass("show");
-		$("#detail-CalcToModalAssoc").addClass("show");
-		$("#msgNounLengthvalue").text("");
-		$("#msgNounUnitWeightvalue").text("");
-		$("#msgNounNroPackagesvalue").text("");
-		$("#msgNounLongvalue").text("");
-		$("#msgNounWidthvalue").text("");
-		$("#msgNounHeightvalue").text("");
-		$("#msgNounWeightvalue").text("");
-
 		/************************** OBTENER LOS VALORES DE LOS TOTALES **************************/
 		var valCalculadoPackages = $("#b-valTotalPackages").val();
 		var valCalculadoWeight = $("#b-valTotalWeight").val();
@@ -372,6 +360,23 @@ $(document).on("click", "#btn-addCalcValueToCalculator", function(e){
 		$("#small-valVCalcReqModal").text(valCalculadoVolume);
 		$("#small-valWPrefixCalcReqModal").text(valCalculadoWeightPrefix);
 		$("#small-valVPrefixCalcReqModal").text(valCalculadoVolumePrefix);
+		
+		/************************** SOBREESCRIBIR VALORES DEL LOCALSTORAGE **************************/
+		localStorage.setItem("tot_packages", valCalculadoPackages);
+		localStorage.setItem("tot_weight", valCalculadoWeight);
+		localStorage.setItem("tot_volume", valCalculadoVolume);
+
+		/************************** OCULTAR Y LIMPIAR EL MODAL **************************/
+		$("#cnt-modalFormCalculator").removeClass("show");
+		$(".cnt-modalFormCalculator--c").removeClass("show");
+		$("#detail-CalcToModalAssoc").addClass("show");
+		$("#msgNounLengthvalue").text("");
+		$("#msgNounUnitWeightvalue").text("");
+		$("#msgNounNroPackagesvalue").text("");
+		$("#msgNounLongvalue").text("");
+		$("#msgNounWidthvalue").text("");
+		$("#msgNounHeightvalue").text("");
+		$("#msgNounWeightvalue").text("");
 	}else{
 		console.log('No hay registros a fijar');
 	}

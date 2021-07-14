@@ -851,11 +851,13 @@ ul {
   height: auto;
   background-color: #fff;
   text-align: left;
-  border: thin solid #ccc;
 }
 .c-CalculatorStep--form--contStep--cStepSelects--item--listItems--list.show {
   display: block;
   pointer-events: auto;
+  border-left: thin solid #ccc;
+  border-right: thin solid #ccc;
+  border-bottom: thin solid #ccc;
 }
 .c-CalculatorStep--form--contStep--cStepSelects--item--listItems--list--item {
   cursor: pointer;

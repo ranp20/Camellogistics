@@ -23,7 +23,7 @@ function list_puertoOriginLCL(searchVal){
       $("#list-originCountriesandPort").html(template);
       setTimeout(function(){
         $("#list-originCountriesandPort").removeClass("show");
-      }, 1500);
+      }, 4500);
     }else{
       response.forEach(e => {
       template += `

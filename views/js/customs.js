@@ -11,14 +11,19 @@ $(document).on("click", ".c-CalculatorStep--form--contStep--cStep--m--item a", f
 	if(typeService == "MARÍTIMO"){
 		$("#step-One").addClass('hide step-hidden');
 		$("#step-Two").addClass('show').removeClass('step-hidden').removeClass('hide');
-		var selService = localStorage.setItem("type_service", typeService);
 
-		//INFORMACIÓN DE LAS ACCIONES DEL USUARIOS...
+		/************************** INFORMARCIÓN DE LA ACCIONES DEL USUARIO - LOCALSTORAGE... **************************/
+		//#1 . SELECCIONAR EL TIPO DE SERVICIO + PAGES...
+		var selService = localStorage.setItem("type_service", typeService);
 		var stepOne_LocalStorage = localStorage.setItem("stepOne", true);
 		var stepTwo_LocalStorage = localStorage.setItem("stepTwo", false);
 		var stepThree_LocalStorage = localStorage.setItem("stepThree", false);
 		var stepFour_LocalStorage = localStorage.setItem("stepFour", false);
-		
+		//#2 . CREAR LOS VALORES DE CÁLCULO...
+		var TotalPackages = localStorage.setItem("tot_packages", 0);
+		var TotalWeight = localStorage.setItem("tot_weight", 0);
+		var TotalVolume = localStorage.setItem("tot_volume", 0);
+
 	}else{
 		console.log('Esta ópcion aún no está disponible');
 	}

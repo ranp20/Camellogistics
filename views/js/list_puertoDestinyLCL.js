@@ -1,4 +1,10 @@
-var idpais = $("#input-vallistorigin").attr("id-paispuertoorigin");
+var idCountryOrigin = 0;
+
+/************************** OBTENER EL VALOR DEL ID DE ORIGEN **************************/
+$(document).on("click", "#list-originCountriesandPort .c-CalculatorStep--form--contStep--cStepSelects--item--listItems--list--item", function(){
+  idCountryOrigin = $(this).attr("idpaisattr");
+  return idCountryOrigin;
+});
 
 $(function(){
 	list_puertoDestinyLCL();
@@ -10,7 +16,7 @@ function list_puertoDestinyLCL(searchVal){
     method: "POST",
     datatype: "JSON",
     contentType: 'application/x-www-form-urlencoded;charset=UTF-8',
-    data: {searchList : searchVal},
+    data: {searchList : searchVal, idpais : idCountryOrigin },
   }).done( function (res) {
 
     var response = JSON.parse(res);
@@ -25,15 +31,19 @@ function list_puertoDestinyLCL(searchVal){
       $("#list-destinyCountriesandPort").html(template);
       setTimeout(function(){
         $("#list-destinyCountriesandPort").removeClass("show");
-      }, 1500);
+      }, 4500);
     }else{
       response.forEach(e => {
-      template += `
-        <li class="c-CalculatorStep--form--contStep--cStepSelects--item--listItems--list--item" id="${e.idpuerto}">
-        	<span>${e.puerto} - ${e.pais}</span>
-        </li>
-        `;
+      
+      if(e.idpais != idCountryOrigin){
+        template += `
+          <li class="c-CalculatorStep--form--contStep--cStepSelects--item--listItems--list--item" id="${e.idpuerto}" idpaisDestino="${e.idpais}">
+          	<span>${e.puerto} - ${e.pais}</span>
+          </li>
+          `;
+      }
       });
+
       $("#list-destinyCountriesandPort").html(template);
     }
   });
@@ -45,10 +55,12 @@ $(document).on("keyup", "#input-vallistdestiny", function(){
     alert("Debes seleccionar una opcíon de origen válida");
     $("#input-vallistdestiny").attr("aria-expanded", false);
     $("#input-vallistdestiny").css({"background-color":"#dddd","cursor":"not-allowed"});
+    $("#input-vallistdestiny").attr("title", "Seleccione un puerto de origen");
     $("#input-vallistdestiny").attr("disabled","disabled");
   }else{
     $("#input-vallistdestiny").attr("aria-expanded", true);
     $("#input-vallistdestiny").css({"background-color":"#fff","cursor":"pointer"});
+    $("#input-vallistdestiny").removeAttr("title");
     $("#input-vallistdestiny").removeAttr("disabled");
   }
 

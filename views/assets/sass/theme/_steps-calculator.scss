@@ -220,11 +220,13 @@
 				    height: auto;
 				    background-color: #fff;
 				    text-align: left;
-				    border: thin solid #ccc;
 
 						&.show{
 							display: block;
 							pointer-events: auto;
+					    border-left: thin solid #ccc;
+					    border-right: thin solid #ccc;
+					    border-bottom: thin solid #ccc;
 						}
 
 						&--item{
