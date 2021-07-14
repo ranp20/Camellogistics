@@ -776,6 +776,7 @@ ul {
   font-weight: bold;
 }
 .c-CalculatorStep--form--contStep--cStepSelects--item input {
+  outline: none;
   width: 100%;
   text-align: center;
   border: thin solid #ccc;

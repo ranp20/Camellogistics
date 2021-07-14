@@ -40,12 +40,18 @@ function list_puertoOriginLCL(searchVal){
 $(document).on("keyup", "#input-vallistorigin", function(){	
 
   if($("#input-vallistorigin").val() == ""){
+    /************************** VALIDACIÓN AL PUERTO DE ORIGEN **************************/
     $("#input-vallistorigin").removeAttr("id-puertoorigin");
     $("#input-vallistorigin").removeAttr("id-paispuertoorigin");
+    $("#input-vallistorigin").attr("aria-expanded", false);
+    /************************** VALIDACIÓN AL PUERTO DE DESTINO **************************/
     $("#input-vallistdestiny").attr("aria-expanded", false);
     $("#input-vallistdestiny").css({"background-color":"#dddd","cursor":"not-allowed"});
     $("#input-vallistdestiny").attr("disabled","disabled");
   }else{
+    /************************** VALIDACIÓN AL PUERTO DE ORIGEN **************************/
+    $("#input-vallistorigin").attr("aria-expanded", true);
+    /************************** VALIDACIÓN AL PUERTO DE DESTINO **************************/
     $("#input-vallistdestiny").attr("aria-expanded", true);
     $("#input-vallistdestiny").css({"background-color":"#fff","cursor":"pointer"});
     $("#input-vallistdestiny").removeAttr("disabled");
