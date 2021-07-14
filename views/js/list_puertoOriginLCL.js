@@ -1,3 +1,16 @@
+var idTContainer = 0;
+
+/************************** OBTENER EL VALOR DEL ID DE ORIGEN **************************/
+$(document).on("click", `.c-CalculatorStep--form--contStep--cStepSelects--item--selContaineropts--c--item`, function(){
+  idTContainer = $(this).attr("idcontainer");
+  //return idTContainer;
+  console.log(idTContainer);
+  $("#input-vallistorigin").attr("aria-expanded", true);
+  $("#input-vallistorigin").css({"background-color":"#fff","cursor":"pointer"});
+  $("#input-vallistorigin").removeAttr("disabled");
+});
+
+
 $(function(){
 	list_puertoOriginLCL();
 });
@@ -39,6 +52,25 @@ function list_puertoOriginLCL(searchVal){
 /************************** BUSQUEDA EN TIEMPO REAL DE PUERTO DE ORIGIN - LCL **************************/
 $(document).on("keyup", "#input-vallistorigin", function(){	
 
+  if($("#val-typecontainerflete").attr("idtypecontainer") && 
+    $("#val-CalcPacksRequestModal").val() != "" &&
+    $("#val-CalcWeightRequestModal").val() != "" &&
+    $("#val-CalcVolumeRequestModal").val() != ""){
+    $("#input-vallistorigin").attr("aria-expanded", true);
+    $("#input-vallistorigin").css({"background-color":"#fff","cursor":"pointer"});
+  }else{
+    /************************** VALIDACIÓN AL PUERTO DE ORIGEN **************************/
+    alert("Debes seleccionar un tipo  de contenedor");
+    $("#input-vallistorigin").val("");
+    $("#input-vallistorigin").attr("aria-expanded", false);
+    $("#input-vallistorigin").css({"background-color":"#dddd","cursor":"not-allowed"});
+    $("#list-originCountriesandPort").html(`
+      <li class="c-CalculatorStep--form--contStep--cStepSelects--item--listItems--list--anyresults">
+        <span>Seleccione contenedor</span>
+      </li>
+    `);
+  }
+
   if($("#input-vallistorigin").val() == ""){
     /************************** VALIDACIÓN AL PUERTO DE ORIGEN **************************/
     $("#input-vallistorigin").removeAttr("id-puertoorigin");
@@ -63,6 +95,23 @@ $(document).on("keyup", "#input-vallistorigin", function(){
     list_puertoOriginLCL(searchVal);
   }else{
     list_puertoOriginLCL();
+  }
+});
+/************************** FOCUS EN EL INPUT DE ORIGEN **************************/
+$("#input-vallistorigin").focus(function(){
+  if($("#val-typecontainerflete").attr("idtypecontainer") && 
+    $("#val-CalcPacksRequestModal").val() != "" &&
+    $("#val-CalcWeightRequestModal").val() != "" &&
+    $("#val-CalcVolumeRequestModal").val() != ""){
+    $("#input-vallistorigin").attr("aria-expanded", true);
+    $("#input-vallistorigin").css({"background-color":"#fff","cursor":"pointer"});
+    $("#input-vallistorigin").removeAttr("disabled");
+  }else{
+    /************************** VALIDACIÓN AL PUERTO DE ORIGEN **************************/
+    alert("Debes seleccionar un tipo  de contenedor");
+    $("#input-vallistorigin").attr("aria-expanded", false);
+    $("#input-vallistorigin").css({"background-color":"#dddd","cursor":"not-allowed"});
+    $("#input-vallistorigin").attr("disabled","disabled");
   }
 });
 /************************** FIJAR EL VALOR DEL PUERTO EN EL INPUT **************************/

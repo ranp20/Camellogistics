@@ -31,7 +31,7 @@ function list_typ_containers(){
 	      	if(e.type == "CONTENEDOR COMPARTIDO"){
 	      		quantity_clients = "Varios clientes";
 			      template += `
-			      	<div class="c-CalculatorStep--form--contStep--cStepSelects--item--selContaineropts--c--item" id="container-${e.id}" item-container="${i}">
+			      	<div class="c-CalculatorStep--form--contStep--cStepSelects--item--selContaineropts--c--item" idcontainer="${e.id}" item-container="${i}">
 								<div class="c-CalculatorStep--form--contStep--cStepSelects--item--selContaineropts--c--item--cImg">
 									<img src="${pathimgcont}" alt="">
 								</div>
@@ -44,7 +44,7 @@ function list_typ_containers(){
 	      	}else{
 	      		quantity_clients = "Un cliente";
 	      		template += `
-			      	<div class="c-CalculatorStep--form--contStep--cStepSelects--item--selContaineropts--c--item" id="container-${e.id}" item-container="${i}">
+			      	<div class="c-CalculatorStep--form--contStep--cStepSelects--item--selContaineropts--c--item" idcontainer="${e.id}" item-container="${i}">
 								<div class="c-CalculatorStep--form--contStep--cStepSelects--item--selContaineropts--c--item--cImg">
 									<img src="${pathimgcont}" alt="">
 								</div>
@@ -60,7 +60,7 @@ function list_typ_containers(){
       		if(e.type == "CONTENEDOR COMPARTIDO"){
 	      		quantity_clients = "Varios clientes";
 			      template += `
-			      	<div class="c-CalculatorStep--form--contStep--cStepSelects--item--selContaineropts--c--item" id="container-${e.id}" item-container="${i}">
+			      	<div class="c-CalculatorStep--form--contStep--cStepSelects--item--selContaineropts--c--item" idcontainer="${e.id}" item-container="${i}">
 								<div class="c-CalculatorStep--form--contStep--cStepSelects--item--selContaineropts--c--item--cImg">
 									<img src="${pathimgcont}" alt="">
 								</div>
@@ -73,7 +73,7 @@ function list_typ_containers(){
 	      	}else{
 	      		quantity_clients = "Un cliente";
 	      		template += `
-			      	<div class="c-CalculatorStep--form--contStep--cStepSelects--item--selContaineropts--c--item" id="container-${e.id}" item-container="${i}">
+			      	<div class="c-CalculatorStep--form--contStep--cStepSelects--item--selContaineropts--c--item" idcontainer="${e.id}" item-container="${i}">
 								<div class="c-CalculatorStep--form--contStep--cStepSelects--item--selContaineropts--c--item--cImg">
 									<img src="${pathimgcont}" alt="">
 								</div>
@@ -97,14 +97,17 @@ $(document).on("click", "#val-typecontainerflete", function(){
 /************************** MOSTRAR EL MODAL DE - CONTENEDOR (LCL) **************************/
 $(document).on("click", `.c-CalculatorStep--form--contStep--cStepSelects--item--selContaineropts--c--item`, function(){
 	var itemcontainer = $(this).attr('item-container');
+	var idtypecontainer = $(this).attr("idcontainer");
 	if(itemcontainer == 0){
 		var tipocontainer = $(this).find("div").find("p").find("span:first-child").text();
 		$("#val-typecontainerflete").text(tipocontainer.toLowerCase());
 		$("#val-typecontainerflete").attr("typecontainer", tipocontainer.toLowerCase());
+		$("#val-typecontainerflete").attr("idtypecontainer", idtypecontainer);
 	}else{
 		var tipocontainer = $(this).find("div").find("p").find("span:first-child").text();
 		$("#val-typecontainerflete").text(tipocontainer.toLowerCase());
 		$("#val-typecontainerflete").attr("typecontainer", tipocontainer.toLowerCase());
+		$("#val-typecontainerflete").attr("idtypecontainer", idtypecontainer);
 
 		$("#container-containOptsContainers").addClass("activeItem");
 		$("#cont-fillDatabyContain").addClass("show");
@@ -189,6 +192,9 @@ $(document).on("click", "#btn-saveToModalContainers", function(){
 		localStorage.setItem("tot_packages", valCalcNewPMCont);
 		localStorage.setItem("tot_weight", valCalcNewWMCont);
 		localStorage.setItem("tot_volume", valCalcNewVMCont);
+
+		/************************** HABILITAR EL SIGUIENTE CONTROL **************************/
+		$("#input-vallistorigin").removeAttr("disabled");
 
 		$("#detail-CalcToModalAssoc").addClass("show");
 		$("#container-containOptsContainers").removeClass("show");

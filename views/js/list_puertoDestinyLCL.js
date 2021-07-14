@@ -52,16 +52,18 @@ function list_puertoDestinyLCL(searchVal){
 $(document).on("keyup", "#input-vallistdestiny", function(){	
   
   if($("#input-vallistorigin").val() == ""){
-    alert("Debes seleccionar una opcíon de origen válida");
     $("#input-vallistdestiny").attr("aria-expanded", false);
     $("#input-vallistdestiny").css({"background-color":"#dddd","cursor":"not-allowed"});
     $("#input-vallistdestiny").attr("title", "Seleccione un puerto de origen");
-    $("#input-vallistdestiny").attr("disabled","disabled");
+    $("#list-destinyCountriesandPort").html(`
+      <li class="c-CalculatorStep--form--contStep--cStepSelects--item--listItems--list--anyresults">
+        <span>No encontrado</span>
+      </li>
+    `);
   }else{
     $("#input-vallistdestiny").attr("aria-expanded", true);
     $("#input-vallistdestiny").css({"background-color":"#fff","cursor":"pointer"});
     $("#input-vallistdestiny").removeAttr("title");
-    $("#input-vallistdestiny").removeAttr("disabled");
   }
 
   $("#list-destinyCountriesandPort").addClass("show");
