@@ -1,7 +1,7 @@
 $(function(){
   /************************** LISTAR LOS TIPOS DE SERVICIOS **************************/
 	list_typ_services();
-  /************************** LISTAR: TIPOS DE CONTENEDORES, TIPOS DE UNIDADES DE MEDIDA Y TIPOS DE UNIDADES DE VOLUMEN **************************/
+  /************************** LISTAR: TIPOS DE CONTENEDORES, TIPOS DE UNIDADES DE PESO Y TIPOS DE UNIDADES DE VOLUMEN **************************/
   list_typ_containers();
   list_typ_measurement_units();
   list_typ_volume_units();
@@ -787,8 +787,19 @@ $(document).on("click", "#btn-backStep-cancel", function(){
   
   /************************** OCULTAR EL CONTENIDO DE ELEGIR SERVICIOS **************************/
   $("#step-Three").addClass("hide step-hidden");
-  /************************** LISTAR LOS TIPOS DE CONTENEDORES **************************/
+  /************************** LOADER PARA HABILITAR LA SIGUIENTE FASE **************************/
+  $("#portfolio").append(`
+    <div id="loader-clasic-op100">
+      <div class="loader-clasic-op100--c"></div>
+    </div>
+  `);
+  setTimeout(function(){
+    $("#loader-clasic-op100").remove();
+  }, 1100);
+  /************************** LISTAR LOS TIPOS DE CONTENEDORES, UNIDADES DE PESO Y UNIDADES DE VOLUMEN **************************/
   list_typ_containers();
+  list_typ_measurement_units();
+  list_typ_volume_units();
   /************************** GENERAR NUEVAMENTE LA ESTRUCTURA DE LOS PASOS 2 Y 2.1 **************************/
   $("#frm_cotizacion").html(`
     <!------------------------------------------ SEGUNDA FASE - PASO 2 (INICIO) ----------------------------------->
@@ -860,14 +871,22 @@ $(document).on("click", "#btn-backStep-cancel", function(){
         </div>        
       </div>
     </div>
-    <!------------------------------------------ SEGUNDA FASE - PASO 2 (FIN) ------------------------------------->
     <!------------------------------------------ TERCERA FASE - PASO 2.1 (INICO) --------------------------------->
     <div id="step-TwoPointOne" class="c-SelServicesOrNotStep--contStep show"></div>
-    <!------------------------------------------ TERCERA FASE - PASO 2.1 (FIN) ----------------------------------->
   `);
   /************************** MOSTRAR EL MENSAJE DE CONTENEDOR VACÍO **************************/
   $("#msgNounTypeSend-step").text("Debe escoger tipo de envío");
-  /************************** LIMPIAR CUALQUIER TIPO DE VALOR ANTES INGRESADO **************************/
+  /************************** OBTENER Y FIJAR EL VALOR DEL PREFIJO EN EL SMALL DE VOLUMEN **************************/
+  $("#valinput-peso").on("change", function(){
+    var thisWPSelectedOpt = $("#valinput-peso option:selected").attr("prefixmassUnit");
+    $("#small-valWPrefixCalcReqModal").text(thisWPSelectedOpt);
+  });
+  /************************** OBTENER Y FIJAR EL VALOR DEL PREFIJO EN EL SMALL DE VOLUMEN **************************/
+  $("#valinput-volumen").on("change", function(){
+    var thisVPSelectedOpt = $("#valinput-volumen option:selected").attr("prefixvolumeUnit");
+    $("#small-valVPrefixCalcReqModal").text(thisVPSelectedOpt);
+  });
+  /************************** LIMPIAR CUALQUIER TIPO DE VALOR ANTES INGRESADO QUE COMPROMETA DATO IMPORTANTES **************************/
 
 });
 /*==========================================================================================

@@ -27,7 +27,6 @@
 			<input type="hidden" id="text_tipo_flete" name="text_tipo_flete" value="">
 			</div>
 		</div>
-		<!------------------------------------------ PRIMERA FASE - PASO 1 (FIN) -------------------------------------->
 		<!------------------------------------------ SEGUNDA FASE - PASO 2 (INICIO) ----------------------------------->
 		<div id="step-Two" class="c-CalculatorStep--form--contStep hide step-hidden">
 			<div class="box-container">
@@ -97,13 +96,13 @@
 				</div>				
 			</div>
 		</div>
-		<!------------------------------------------ SEGUNDA FASE - PASO 2 (FIN) ------------------------------------->
 		<!------------------------------------------ TERCERA FASE - PASO 2.1 (INICO) --------------------------------->
 		<div id="step-TwoPointOne" class="c-SelServicesOrNotStep--contStep hide step-hidden"></div>
-		<!------------------------------------------ TERCERA FASE - PASO 2.1 (FIN) ----------------------------------->
+		<!-- OTHERS DEVELOPERS (INICIO) -->
 		<div id="fase_reporte_maritimo_con_servicios">			
 			
 		</div>
+		<!-- OTHERS DEVELOPERS (FIN) -->
 	  </div>
 	</form>	
 </section>
