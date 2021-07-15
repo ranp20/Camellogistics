@@ -3,7 +3,7 @@ $(function(){
 	list_typ_measurement_units();
 	list_typ_volume_units();
 });
-/************************** MOSTRAR LOS TIPOS DE CONTENEDORES EN EL MODAL DE TIOS DE CONTENEDORES **************************/
+/************************** MOSTRAR LOS TIPOS DE CONTENEDORES EN EL MODAL DE TIPOS DE CONTENEDORES **************************/
 function list_typ_containers(){
 	$.ajax({
     url: "controllers/list_type_containers.php",
