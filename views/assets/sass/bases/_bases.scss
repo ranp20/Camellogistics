@@ -20,7 +20,11 @@ ul{
 	padding: 0;
 	margin: 0;
 }
-
+img{
+	max-width: 100%;
+	width: auto;
+	height: auto;
+}
 /* CLASS UTILITIES */
 .control-spanrequired{
 	color: red;
@@ -52,7 +56,7 @@ ul{
 /************************** SHOW/HIDDEN THE STEP FOR THE CLIENT **************************/
 #step-One{display: block;pointer-events: auto;visibility: visible;opacity: 1;	&.hide{display: none; pointer-events: none; visibility: hidden; opacity: 0;}}
 #step-Two{display: none;pointer-events: none;visibility: hidden;opacity: 0;	&.show{display: block; pointer-events: auto; visibility: visible; opacity: 1;}}
-#step-Two-five{display: none;pointer-events: none;visibility: hidden;opacity: 0; &.show{display: block; pointer-events: auto; visibility: visible; opacity: 1;}}
+#step-TwoPointOne{display: none;pointer-events: none;visibility: hidden;opacity: 0; &.show{display: block; pointer-events: auto; visibility: visible; opacity: 1;}}
 #three-Two{display: none;pointer-events: none;visibility: hidden;opacity: 0; &.show{display: block;	pointer-events: auto; visibility: visible; opacity: 1;}}
 #four-Two{display: none;pointer-events: none;visibility: hidden;opacity: 0;	&.show{	display: block;	pointer-events: auto;	visibility: visible; opacity: 1;}}
 
@@ -60,8 +64,8 @@ ul{
 #cont-loader{
 	@include loaderPoints($primary-color, #fff);
 }
-/************************** LOADER CLÁSICO **************************/
-#loader-clasic{
+/************************** LOADER CLÁSICO - OPACIDAD 85% **************************/
+#loader-clasic-op85{
 	position: absolute;
 	top: 0;
 	left: 0;
@@ -73,7 +77,24 @@ ul{
   align-items: center;
   justify-content: center;
   z-index: 99999;
-	.loader-clasic--c{
+	.loader-clasic-op85--c{
+		@include loader-clasic(55px, $primary-color);
+	}
+}
+/************************** LOADER CLÁSICO - OPACIDAD 100% **************************/
+#loader-clasic-op100{
+	position: absolute;
+	top: 0;
+	left: 0;
+  width: 100%;
+  min-height: 100vh;
+  height: 100%;
+  background-color: rgba(255,255,255,255);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 99999;
+	.loader-clasic-op100--c{
 		@include loader-clasic(55px, $primary-color);
 	}
 }

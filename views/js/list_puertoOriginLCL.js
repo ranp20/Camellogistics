@@ -36,7 +36,7 @@ function list_puertoOriginLCL(searchVal){
       response.forEach(e => {
       template += `
         <li class="c-CalculatorStep--form--contStep--cStepSelects--item--listItems--list--item" id="${e.idpuerto}" idpaisattr="${e.idpais}">
-        	<span>${e.puerto} - ${e.pais}</span>
+        	<span>${e.pais} - ${e.puerto}</span>
         </li>
         `;
       });
@@ -115,4 +115,8 @@ $(document).on("click", "#list-originCountriesandPort .c-CalculatorStep--form--c
   $("#input-vallistorigin").attr("id-puertoorigin", $(this).attr("id"));
   $("#input-vallistorigin").attr("id-paispuertoorigin", $(this).attr("idpaisattr"));
 	$("#input-vallistorigin").val($(this).find("span").text());
+
+  /************************** GUARDAR INFO. EN LOCALSTORAGE **************************/
+  localStorage.setItem("port_OId", $(this).attr("id"));
+  localStorage.setItem("port_OName", $(this).find("span").text());
 });

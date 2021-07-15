@@ -1,3 +1,4 @@
+/************************** SELECTED ALL SERVICES OR NOT - STEP 2.1 **************************/
 .c-SelServicesOrNotStep--contStep{
 	margin-top: 3rem;
 	text-align: center;
@@ -77,17 +78,330 @@
 					display: flex;
 					align-items: center;
 					justify-content: center;
+					position: relative;
 					input[type="radio"]{
 						cursor: pointer;
 						width: auto;
 						height: auto;
 						margin-right: 0.5rem;
+						opacity: 0;
 					}
 
 					label{
 						cursor: pointer;
 						margin: 0;
 						padding: 0;
+
+						&:before{
+							content: "";
+					    width: 15px;
+					    height: 15px;
+					    border-radius: 50%;
+					    background-color: #fff;
+					    position: absolute;
+					    border: thin solid #ccc;
+					    left: 0;
+						}
+					}
+				}
+			}
+		}
+	}
+}
+/************************** SELECTED ALL SERVICES OR NOT - STEP 3 **************************/
+.c-SelServicesQuantity--contStep{
+	text-align: center;
+
+	/* RESUMEN DEL PROGRESO - INFORMACIÓN DE LOS CÁLCULOS */
+	&--cTop{
+		&--btnBackStep{
+			background-color: orange;
+			border: none;
+			border-radius: .4rem;
+			color: #fff;
+			padding: .4rem 1rem;
+			font-weight: 600;
+			margin-bottom: .5rem;
+
+			&:hover{
+				opacity: .6;
+			}
+		}		
+
+		/* SELECCIONAR TODOS LOS CHECKBOXS */
+		&--calcSummary{
+			margin-bottom: .5rem;
+			&--title{
+				color: $primary-color;
+				font-size: 1.2rem;
+				font-weight: 600;
+				margin-bottom: 0.3rem;
+			}
+			&--text{
+				margin: 0;
+				color: steelblue;
+				font-size: 0.9rem;
+				line-height: 1.3;
+
+				&:first-child{
+					font-size: 1.1rem;
+				}
+
+				&:nth-child(even){
+					font-size: 1rem;
+				}
+			}
+		}
+	}
+
+	/* CONTENIDO DE SERVICIOS */
+	&--cBottom{
+		max-width: 680px;
+		margin-left: auto;
+		margin-right: auto;
+		width: 100%;
+
+		/* TÍTULO DEL PASO 3 */
+		&--cTitle{
+			margin-bottom: 1rem;
+			&--title{
+				color: $primary-color;
+				font-size: 1.2rem;
+				font-weight: 600;
+			}
+		}
+
+		/* BOTÓN PARA SELECCIONAR TODOS LOS RADIOBUTTON */
+		&--cSelAllRadOrNot{
+			padding: 0.5rem;
+			border-radius: .3rem;
+			background-color: lightblue;
+			margin-bottom: .5rem;
+
+			&--desc{
+				font-size: 1.1rem;
+				margin: 0;
+				color: steelblue;
+				a{
+					color: steelblue;
+					font-weight: 600;
+					text-decoration: underline !important;
+
+					&:hover{
+						color: steelblue;
+					}
+				}
+			}
+		}
+
+		/* SERVICIOS A INCLUIR */
+		&--cListServices{
+			&--m{
+				&--item{
+				}
+
+				&--link{
+					display: block;
+					align-items: center;
+					justify-content: flex-start;
+					position: relative;
+					padding: 0.75rem 0 0.75rem .5rem;
+					border-bottom: thin solid #ccc;
+
+					&--cControl{
+						display: flex;
+						align-items: center;
+						justify-content: flex-start;
+						position: relative;
+
+						input[type="checkbox"]{
+							outline: none;
+							width: 18px;
+							height: 18px;
+							border: thin solid lightgreen;
+						}
+
+						&--cIcon{
+							margin: 0 0.5rem;
+							width: 27px;
+							height: 27px;
+							display: table;
+							img{
+								width: 100%;
+								height: 100%;
+							}
+						}
+
+						label{
+							color: #444;
+							margin: 0;
+
+							b{
+								color: steelblue;
+							}
+						}
+					}
+				}
+			}
+
+			&--btnAddCotizationS{
+				background-color: steelblue;
+				border: none;
+				border-radius: .4rem;
+				color: #fff;
+				padding: .4rem 1.5rem;
+				font-weight: 600;
+				margin: 1rem auto;
+
+				&:hover{
+					opacity: .6;
+				}
+			}
+		}
+	}
+
+	/* PROGRESO DE LA COTIZACIÓN */
+	&--cLogisticChain{
+		&--title{
+			color: #999;
+			font-weight: 600;
+			text-transform: uppercase;
+			margin: 0;
+		}
+
+		&--cInfoLogisticChain{
+			&--m{
+				display: flex;
+				align-items: flex-start;
+				justify-content: center;
+				&--item{
+					text-align: center;
+					display: flex;
+					flex-direction: column;
+					align-items: center;
+					justify-content: center;
+					max-width: 85px;
+					width: 100%;
+					&--cIcon{
+						width: 27px;
+						height: 27px;
+						display: table;
+
+						img{
+							width: 100%;
+							height: 100%;
+						}
+					}
+
+					&--cLine{
+						background-color: $complete-steplogisticO;
+						width: 100%;
+						height: 5px;
+						position: relative;
+						margin: 0.5rem 0;
+						border-radius: 1.5rem;
+						&--circleL{
+							width: 12px;
+					    height: 12px;
+					    border-radius: 50%;
+					    background-color: $complete-steplogisticO;
+					    position: absolute;
+					    left: 0;
+					    top: 50%;
+					    transform: translateY(-50%);
+						}
+					}
+
+					small{;
+						font-size: 0.55rem;
+				    display: flex;
+				    align-items: center;
+				    justify-content: center;
+				    flex-wrap: wrap;
+				    word-break: break-word;
+				    width: 90%;
+				    margin-left: auto;
+				    margin-right: auto;
+				    color: $complete-steplogisticO;
+					}
+				}
+
+				&--itemCurrStep{
+					text-align: center;
+					display: flex;
+					flex-direction: column;
+					align-items: center;
+					justify-content: center;
+					max-width: 85px;
+					width: 100%;
+
+					&--cIcon{
+						width: 27px;
+						height: 27px;
+						display: table;
+
+						&.selIconComplete{
+							img{
+								filter: grayscale(0);
+							}
+						}
+
+						img{
+							width: 100%;
+							height: 100%;
+							filter: grayscale(1);
+						}
+					}
+
+					&--cLine{
+						background-color: $complete-steplogisticG;
+						width: 100%;
+						height: 5px;
+						position: relative;
+						margin: 0.5rem 0;
+						border-radius: 1.5rem;
+						&--circleL{
+							width: 12px;
+					    height: 12px;
+					    border-radius: 50%;
+					    background-color: $complete-steplogisticG;
+					    position: absolute;
+					    left: 0;
+					    top: 50%;
+					    transform: translateY(-50%);
+
+					    &.selCircleLComplete{
+						    background-color: $complete-steplogisticB;
+					    }
+						}
+
+						&.selLineComplete{
+							background-color: $complete-steplogisticB;
+						}
+					}
+
+					small{;
+						font-size: 0.55rem;
+				    display: flex;
+				    align-items: center;
+				    justify-content: center;
+				    flex-wrap: wrap;
+				    word-break: break-word;
+				    width: 90%;
+				    margin-left: auto;
+				    margin-right: auto;
+				    color: $complete-steplogisticG;
+					}
+
+					&.selStepComplete{
+						&--cIcon{
+							img{
+								filter: grayscale(0);
+							}
+						}
+						small{
+							color: $complete-steplogisticB;
+						}
 					}
 				}
 			}

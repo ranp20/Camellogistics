@@ -25,6 +25,11 @@ $(document).on("click", ".c-CalculatorStep--form--contStep--cStep--m--item a", f
 		var TotalPackages = localStorage.setItem("tot_packages", 0);
 		var TotalWeight = localStorage.setItem("tot_weight", 0);
 		var TotalVolume = localStorage.setItem("tot_volume", 0);
+		//#3 . CREAR LA INFORMACIÓN DE PUERTOS DE ORIGEN Y DESTINO...
+		var portOriginId = localStorage.setItem("port_OId", 0);
+		var portDestinyId = localStorage.setItem("port_DId", 0);
+		var portOriginName = localStorage.setItem("port_OName", "");
+		var portDestinyName = localStorage.setItem("port_DName", "");
 
 	}else{
 		console.log('Esta ópcion aún no está disponible');

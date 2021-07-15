@@ -38,7 +38,7 @@ function list_puertoDestinyLCL(searchVal){
       if(e.idpais != idCountryOrigin){
         template += `
           <li class="c-CalculatorStep--form--contStep--cStepSelects--item--listItems--list--item" id="${e.idpuerto}" idpaisDestino="${e.idpais}">
-          	<span>${e.puerto} - ${e.pais}</span>
+          	<span>${e.pais} - ${e.puerto}</span>
           </li>
           `;
       }
@@ -101,4 +101,8 @@ $(document).on("click", "#list-destinyCountriesandPort .c-CalculatorStep--form--
 	$("#list-destinyCountriesandPort").removeClass("show");
 	$("#input-vallistdestiny").attr("id-puertodestiny", $(this).attr("id"));
 	$("#input-vallistdestiny").val($(this).find("span").text());
+  
+  /************************** GUARDAR INFO. EN LOCALSTORAGE **************************/
+  localStorage.setItem("port_DId", $(this).attr("id"));
+  localStorage.setItem("port_DName", $(this).find("span").text());
 });
