@@ -626,50 +626,52 @@ $(document).on("click", "#c-listItemsSelRs li", function(e){
                   </p>
                 </div>
                 <div class="c-SelServicesQuantity--contStep--cBottom--cListServices">
-                  <ul class="c-SelServicesQuantity--contStep--cBottom--cListServices--m">
+                  <ul class="c-SelServicesQuantity--contStep--cBottom--cListServices--m" id="m-listseleted-services">
                     <li class="c-SelServicesQuantity--contStep--cBottom--cListServices--m--item">
-                      <a href="#" class="c-SelServicesQuantity--contStep--cBottom--cListServices--m--link">
-                        <div class="c-SelServicesQuantity--contStep--cBottom--cListServices--m--link--cControl">
-                          <input type="checkbox" id="service-item-1">
-                          <div class="c-SelServicesQuantity--contStep--cBottom--cListServices--m--link--cControl--cIcon">
-                            <img src="views/assets/img/linea_tiempo/PUERTO-Y-ALMACEN-003.png" alt="">
-                          </div>
-                          <label for="">Gastos Portuarios de Almacenamiento Aduanero</label>
+                      <label for="service-item-1" class="c-SelServicesQuantity--contStep--cBottom--cListServices--m--linklabel">
+                        <input type="checkbox" id="service-item-1" class="c-SelServicesQuantity--contStep--cBottom--cListServices--m--linklabel--input">
+                        <span class="c-SelServicesQuantity--contStep--cBottom--cListServices--m--linklabel--checkbox"></span>
+                        <div class="c-SelServicesQuantity--contStep--cBottom--cListServices--m--linklabel--cIcon">
+                          <img src="views/assets/img/linea_tiempo/PUERTO-Y-ALMACEN-003.png" alt="">
                         </div>
-                      </a>
+                        <span class="c-SelServicesQuantity--contStep--cBottom--cListServices--m--linklabel--text">Gastos Portuarios de Almacenamiento Aduanero</span>
+                        <span class="c-SelServicesQuantity--contStep--cBottom--cListServices--m--linklabel--cIconChck"></span>
+                      </label>
                     </li>
                     <li class="c-SelServicesQuantity--contStep--cBottom--cListServices--m--item">
-                      <a href="#" class="c-SelServicesQuantity--contStep--cBottom--cListServices--m--link">
-                        <div class="c-SelServicesQuantity--contStep--cBottom--cListServices--m--link--cControl">
-                          <input type="checkbox" id="service-item-2">
-                          <div class="c-SelServicesQuantity--contStep--cBottom--cListServices--m--link--cControl--cIcon">
-                            <img src="views/assets/img/linea_tiempo/ADUANA-002.png" alt="">
-                          </div>
-                          <label for=""><b>Cálculo de impuestos y permisos de aduana</b></label>
+                      <label for="service-item-2" class="c-SelServicesQuantity--contStep--cBottom--cListServices--m--linklabel">
+                        <input type="checkbox" id="service-item-2" class="c-SelServicesQuantity--contStep--cBottom--cListServices--m--linklabel--input">
+                        <span class="c-SelServicesQuantity--contStep--cBottom--cListServices--m--linklabel--checkbox"></span>
+                        <div class="c-SelServicesQuantity--contStep--cBottom--cListServices--m--linklabel--cIcon">
+                          <img src="views/assets/img/linea_tiempo/ADUANA-002.png" alt="">
                         </div>
-                      </a>
+                        <span class="c-SelServicesQuantity--contStep--cBottom--cListServices--m--linklabel--text"><b>Cálculo de impuesto y permisos de aduana</b></span>
+                        <span class="c-SelServicesQuantity--contStep--cBottom--cListServices--m--linklabel--cIconChck"></span>
+                      </label>
+                      <div class="c-SelServicesQuantity--contStep--cBottom--cListServices--m--item--cont" id="cont-selTwoOptsServicesFill"></div>
                     </li>
                     <li class="c-SelServicesQuantity--contStep--cBottom--cListServices--m--item">
-                      <a href="#" class="c-SelServicesQuantity--contStep--cBottom--cListServices--m--link">
-                        <div class="c-SelServicesQuantity--contStep--cBottom--cListServices--m--link--cControl">
-                          <input type="checkbox" id="service-item-3">
-                          <div class="c-SelServicesQuantity--contStep--cBottom--cListServices--m--link--cControl--cIcon">
-                            <img src="views/assets/img/linea_tiempo/TRANSPORTE-002.png" alt="">
-                          </div>
-                          <label for="">Transporte a domicilio</label>
+                      <label for="service-item-3" class="c-SelServicesQuantity--contStep--cBottom--cListServices--m--linklabel">
+                        <input type="checkbox" id="service-item-3" class="c-SelServicesQuantity--contStep--cBottom--cListServices--m--linklabel--input">
+                        <span class="c-SelServicesQuantity--contStep--cBottom--cListServices--m--linklabel--checkbox"></span>
+                        <div class="c-SelServicesQuantity--contStep--cBottom--cListServices--m--linklabel--cIcon">
+                          <img src="views/assets/img/linea_tiempo/TRANSPORTE-002.png" alt="">
                         </div>
-                      </a>
+                        <span class="c-SelServicesQuantity--contStep--cBottom--cListServices--m--linklabel--text">Transporte a domicilio</span>
+                        <span class="c-SelServicesQuantity--contStep--cBottom--cListServices--m--linklabel--cIconChck"></span>
+                      </label>
+                      <div class="c-SelServicesQuantity--contStep--cBottom--cListServices--m--item--cont" id="cont-selThreeOptsServicesFill"></div>
                     </li>
                     <li class="c-SelServicesQuantity--contStep--cBottom--cListServices--m--item">
-                      <a href="#" class="c-SelServicesQuantity--contStep--cBottom--cListServices--m--link">
-                        <div class="c-SelServicesQuantity--contStep--cBottom--cListServices--m--link--cControl">
-                          <input type="checkbox" id="service-item-4">
-                          <div class="c-SelServicesQuantity--contStep--cBottom--cListServices--m--link--cControl--cIcon">
-                            <img src="views/assets/img/linea_tiempo/TRANSPORTE-002.png" alt="">
-                          </div>
-                          <label for="">Seguro de mercancía</label>
+                      <label for="service-item-4" class="c-SelServicesQuantity--contStep--cBottom--cListServices--m--linklabel">
+                        <input type="checkbox" id="service-item-4" class="c-SelServicesQuantity--contStep--cBottom--cListServices--m--linklabel--input">
+                        <span class="c-SelServicesQuantity--contStep--cBottom--cListServices--m--linklabel--checkbox"></span>
+                        <div class="c-SelServicesQuantity--contStep--cBottom--cListServices--m--linklabel--cIcon">
+                          <img src="views/assets/img/linea_tiempo/TRANSPORTE-002.png" alt="">
                         </div>
-                      </a>
+                        <span class="c-SelServicesQuantity--contStep--cBottom--cListServices--m--linklabel--text">Seguro de mercancía</span>
+                        <span class="c-SelServicesQuantity--contStep--cBottom--cListServices--m--linklabel--cIconChck"></span>
+                      </label>
                     </li>
                   </ul>
                   <button type="button" class="c-SelServicesQuantity--contStep--cBottom--cListServices--btnAddCotizationS">CALCULAR COTIZACIÓN</button>
@@ -781,6 +783,154 @@ $(document).on("click", "#c-listItemsSelRs li", function(e){
     }
   });
 });
+/************************** SELECCIONAR CADA ITEM DEL LISTADO DE CHECKBOXS **************************/
+$(document).on("click", "#m-listseleted-services li", function(){
+  var itemServicesSel = $(this);
+  var itemServicesSelinput = $(this).find("label").find("input");
+
+  var indexServicesSel = itemServicesSel.index();
+  if(itemServicesSelinput.is(":checked")){
+    $(this).find("label").find("span.c-SelServicesQuantity--contStep--cBottom--cListServices--m--linklabel--cIconChck").html(`
+        <svg xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" version="1.1" x="0px" y="0px" viewBox="0 0 100 125"><g transform="translate(0,-952.36218)"><path style="text-indent:0;text-transform:none;direction:ltr;block-progression:tb;baseline-shift:baseline;color:#000000;enable-background:accumulate;" d="m 44.97403,963.37302 c -2.840184,0.072 -5.693944,0.4522 -8.5,1.1562 -20.857032,5.2334 -33.5458917,26.48676 -28.3125,47.34378 5.23332,20.857 26.455468,33.5458 47.3125,28.3125 20.85703,-5.2333 33.5459,-26.4555 28.3125,-47.31252 a 3.0002999,3.0002999 0 1 0 -5.78125,1.4688 c 4.44412,17.71182 -6.28807,35.58702 -24,40.03122 -17.711856,4.4442 -35.6183,-6.2569 -40.0625,-23.9688 -4.444128,-17.71182 6.288072,-35.61832 24,-40.06238 9.500832,-2.384 19.55487,-0.4287 27.46875,5.34366 a 3.0002999,3.0002999 0 1 0 3.53125,-4.81246 c -7.01186,-5.1146 -15.44827,-7.7172 -23.96875,-7.5 z m 44.875,1.9375 a 3.0003,3.0003 0 0 0 -2.03125,0.9687 c -10.63829,11.13046 -27.84252,30.07256 -39.03125,41.87498 l -14.8125,-13.06242 a 3.0103986,3.0103986 0 1 0 -4,4.5 l 17,15.00002 a 3.0003,3.0003 0 0 0 4.15625,-0.1563 c 11.17675,-11.6935 29.95443,-32.44352 41,-43.99998 a 3.0003,3.0003 0 0 0 -2.28125,-5.125 z"  fill-opacity="1" stroke="none" marker="none" visibility="visible" display="inline" overflow="visible"/></g></svg>
+    `);
+  }else{
+    $(this).find("label").find("span.c-SelServicesQuantity--contStep--cBottom--cListServices--m--linklabel--cIconChck").html("");
+  }
+
+  /************************** CONTENIDO DEL ELEMENTO 2 - SERVICIO 2 **************************/
+  if(indexServicesSel == 1 && $("#service-item-2").is(":checked")){
+    $("#cont-selTwoOptsServicesFill").html(`
+      <div class="c-SelServicesQuantity--contStep--cBottom--cListServices--m--item--cont--c">
+        <div class="c-SelServicesQuantity--contStep--cBottom--cListServices--m--item--cont--c--control">
+          <input type="text" class="c-SelServicesQuantity--contStep--cBottom--cListServices--m--item--cont--c--control--input" placeholder="Producto" id="ipt-ListProductRequestAll">
+          <div class="c-SelServicesQuantity--contStep--cBottom--cListServices--m--item--cont--c--control--cList" id="cont-showSListAllTProducts">
+            <ul class="c-SelServicesQuantity--contStep--cBottom--cListServices--m--item--cont--c--control--cList--m">
+              <li class="c-SelServicesQuantity--contStep--cBottom--cListServices--m--item--cont--c--control--cList--m--item">
+                <p>ADITIVOS ALIMENTICIOS</p>
+                <small><span>Regulador</span><span>MINAGRI / SENASA</span></small>
+              </li>
+              <li class="c-SelServicesQuantity--contStep--cBottom--cListServices--m--item--cont--c--control--cList--m--item">
+                <p>AGRICULTURA(FRUTAS Y VEGETALES)</p>
+                <small><span>Regulador</span><span>SENASA</span></small>
+              </li>
+              <li class="c-SelServicesQuantity--contStep--cBottom--cListServices--m--item--cont--c--control--cList--m--item">
+                <p>AIRE ACONDICIONADO</p>
+                <small><span>Regulador</span><span>OTO / OFICINA TÉCNICA DEOZO</span></small>
+              </li>
+              <li class="c-SelServicesQuantity--contStep--cBottom--cListServices--m--item--cont--c--control--cList--m--item">
+                <p>ADITIVOS ALIMENTICIOS</p>
+                <small><span>Regulador</span><span>MINAGRI / SENASA</span></small>
+              </li>
+              <li class="c-SelServicesQuantity--contStep--cBottom--cListServices--m--item--cont--c--control--cList--m--item">
+                <p>AGRICULTURA(FRUTAS Y VEGETALES)</p>
+                <small><span>Regulador</span><span>SENASA</span></small>
+              </li>
+              <li class="c-SelServicesQuantity--contStep--cBottom--cListServices--m--item--cont--c--control--cList--m--item">
+                <p>AIRE ACONDICIONADO</p>
+                <small><span>Regulador</span><span>OTO / OFICINA TÉCNICA DEOZO</span></small>
+              </li>
+            </ul>
+          </div>
+          <span class="c-SelServicesQuantity--contStep--cBottom--cListServices--m--item--cont--c--control--spanAlertMsg">Si tu producto NO APARECE, elegir CARGA GENERAL</span>
+        </div>
+        <div class="c-SelServicesQuantity--contStep--cBottom--cListServices--m--item--cont--c--control">
+          <input type="text" id="ipt-valueProductRequest" class="c-SelServicesQuantity--contStep--cBottom--cListServices--m--item--cont--c--control--input" placeholder="Valor de mercancía $" maxlength="13">
+          <span class="c-SelServicesQuantity--contStep--cBottom--cListServices--m--item--cont--c--control--spanAlertMsg">Ingrese valor exacto, SIN DECIMALES</span>
+        </div>
+      </div>
+      <div class="c-SelServicesQuantity--contStep--cBottom--cListServices--m--item--cont--cOneItem">
+        <select name="" id="" class="c-SelServicesQuantity--contStep--cBottom--cListServices--m--item--cont--cOneItem--select">
+          <option value="1">NO</option>
+          <option value="2">SÍ</option>
+        </select>
+        <span>¿Ha realizado importaciones previamente?</span>
+      </div>
+    `);
+  }else{
+    $("#cont-selTwoOptsServicesFill").html("");
+  }
+
+  /************************** CONTENIDO DEL ELEMENTO 3 - SERVICIO 3 **************************/
+  if(indexServicesSel == 2 && $("#service-item-3").is(":checked")){
+    $("#cont-selThreeOptsServicesFill").html(`
+      <div class="c-SelServicesQuantity--contStep--cBottom--cListServices--m--item--cont--c50">
+      <div class="c-SelServicesQuantity--contStep--cBottom--cListServices--m--item--cont--c50--control">
+        <input type="text" class="c-SelServicesQuantity--contStep--cBottom--cListServices--m--item--cont--c50--control--input" placeholder="Provincia" id="ipt-ListProvinciasByCountryRequestAll">
+        <div class="c-SelServicesQuantity--contStep--cBottom--cListServices--m--item--cont--c50--control--cList" id="cont-showSListAllProvinciasByCountry">
+          <ul class="c-SelServicesQuantity--contStep--cBottom--cListServices--m--item--cont--c50--control--cList--m">
+            <li class="c-SelServicesQuantity--contStep--cBottom--cListServices--m--item--cont--c50--control--cList--m--item">
+              <p>LIMA</p>
+              <small><span>País:</span><span>Perú</span></small>
+            </li>
+            <li class="c-SelServicesQuantity--contStep--cBottom--cListServices--m--item--cont--c50--control--cList--m--item">
+              <p>HUANCAVELICA</p>
+              <small><span>País:</span><span>Perú</span></small>
+            </li>
+            <li class="c-SelServicesQuantity--contStep--cBottom--cListServices--m--item--cont--c50--control--cList--m--item">
+              <p>PUNO</p>
+              <small><span>País:</span><span>Perú</span></small>
+            </li>
+          </ul> 
+        </div>
+        <span class="c-SelServicesQuantity--contStep--cBottom--cListServices--m--item--cont--c50--control--spanAlertMsg">Debe seleccionar la provincia</span>
+      </div>
+      <div class="c-SelServicesQuantity--contStep--cBottom--cListServices--m--item--cont--c50--control">
+        <input type="text" class="c-SelServicesQuantity--contStep--cBottom--cListServices--m--item--cont--c50--control--input" placeholder="Distrito" id="ipt-ListDistritosByProvinciasRequestAll">
+        <div class="c-SelServicesQuantity--contStep--cBottom--cListServices--m--item--cont--c50--control--cList" id="cont-showSListAllDistritosByProvincias">
+          <ul class="c-SelServicesQuantity--contStep--cBottom--cListServices--m--item--cont--c50--control--cList--m">
+            <li class="c-SelServicesQuantity--contStep--cBottom--cListServices--m--item--cont--c50--control--cList--m--item">
+              <p>LIMA</p>
+              <small><span>País:</span><span>Perú</span></small>
+            </li>
+            <li class="c-SelServicesQuantity--contStep--cBottom--cListServices--m--item--cont--c50--control--cList--m--item">
+              <p>HUANCAVELICA</p>
+              <small><span>País:</span><span>Perú</span></small>
+            </li>
+            <li class="c-SelServicesQuantity--contStep--cBottom--cListServices--m--item--cont--c50--control--cList--m--item">
+              <p>PUNO</p>
+              <small><span>País:</span><span>Perú</span></small>
+            </li>
+          </ul> 
+        </div>
+        <span class="c-SelServicesQuantity--contStep--cBottom--cListServices--m--item--cont--c50--control--spanAlertMsg">Debe seleccionar el distrito</span>
+      </div>
+    </div>
+    `);
+  }else{
+    $("#cont-selThreeOptsServicesFill").html("");
+  }
+});
+/************************** MOSTRAR EL LISTADO DE TIPOS DE PRODUCTOS **************************/
+//$(document).on("focus", "#ipt-ListProductRequestAll", function(){$("#cont-showSListAllTProducts").addClass("show");});
+//$(document).on("blur", "#ipt-ListProductRequestAll", function(){$("#cont-showSListAllTProducts").removeClass("show");});
+$(document).on("keyup", "#ipt-ListProductRequestAll", function(){$("#cont-showSListAllTProducts").addClass("show");});
+
+/************************** VALIDAR INPUT - VALOR DE PRODUCTO IMPORTADO **************************/
+$(document).on("input", "#ipt-valueProductRequest", function(e){
+  if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+     return false;
+  }else{
+      //limit length but allow backspace so that you can still delete the numbers.
+      if( $(this).val().length >= parseInt($(this).attr('maxlength')) && (e.which != 8 && e.which != 0)){
+          return false;
+      }
+  }
+
+  let value = e.target.value;
+  e.target.value = value.replace(/[^A-Z\d-]/g, "");
+  $(this).val(function(i, v) {
+    return v.replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d)\.?)/g, ".") + " USD";
+  });
+});
+$(document).on("keyup", "#ipt-valueProductRequest", function(){
+  if($(this).val() == "" || $(this).val() == 0 || $(this).val() == " USD" || $(this).val() == ".00" || $(this).val() == 0.00){
+    $(this).val("");
+  }
+});
+
+/*==========================================================================================================
+=                               CANCELAR EL PROCESO DESDE EL PUNTO O PASO 3                                =
+==========================================================================================================*/
 /************************** CANCELAR LA OPERACIÓN Y VOLVER A LOS PASOS ANTERIORES **************************/
 $(document).on("click", "#btn-backStep-cancel", function(){
   alert("¿Seguro que deseas volver?");

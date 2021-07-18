@@ -198,47 +198,312 @@
 		&--cListServices{
 			&--m{
 				&--item{
+					border-bottom: thin solid #ccc;
+
+					/* CONTENIDO DEL SERVICIO SELECCIONADO */
+					&--cont{
+						padding-top: 0.5rem;
+						padding-bottom: 0.5rem;
+
+						/* CONTENEDOR DE VARIOS CONTROLES */
+						/************************** PARA CONTROLES MÁS ANCHOS **************************/
+						&--c{
+							display: flex;
+							align-items: flex-start;
+							justify-content: center;
+							flex-wrap: wrap;
+							flex: 0 0 100%;
+							padding: 0 1.5rem;
+							gap: 1.2rem;
+							&--control{
+								flex: 48%;
+								position: relative;
+
+								/************************** MOSTRAR EL LISTADO DE TIPOS DE PRODUCTOS **************************/
+								#cont-showSListAllTProducts{
+									display: none;
+
+									&.show{
+										display: block;
+									}
+								}
+
+								&:nth-child(2){
+									padding-left: 0.25rem;
+									flex: 35%;
+								}
+
+								&--input{
+									outline: none;
+									width: 100%;
+									text-align: center;
+									border: thin solid #ccc;
+									border-radius: .3rem;
+									padding: 0.4rem .6rem;
+
+									&[aria-expanded="false"]{
+										background-image: url("../img/utilities/fail-alert-noun-selected.svg");
+										background-color: #fff !important;
+								    border: thin solid darkred !important;
+								    box-shadow: 0 0 2px 1px pink;
+								    background-repeat: no-repeat;
+								    background-position: 98%;
+								    background-size: .95rem;
+									}
+
+									&:focus{
+										text-align: left;
+									}	
+								}
+
+								&--spanAlertMsg{
+									font-size: 0.75rem;
+									font-weight: 600;
+									color: red;
+								}
+
+								/* LISTA DE ITEMS EN EL CONTROL */
+								&--cList{
+									text-align: left;
+									position: absolute;
+									z-index: 99;
+									left: 0;
+									width: 100%;
+
+									&--m{
+										text-align: left;
+										border: thin solid #ccc;
+										border-radius: 0 0 .4rem .4rem;
+										background-color: #fff;
+										max-height: 208px;
+										height: auto;
+										overflow-x: hidden;
+										overflow-y: auto;
+										width: 100%;
+										&--item{
+											cursor: pointer;
+											padding: 0.6rem;
+											line-height: 1;
+											&:hover{
+												background-color: #dddd;
+											}
+											p{
+												font-size: 0.85rem;
+												margin: 0;
+												line-height: 1.3;
+											}
+											small{
+												font-size: 0.7rem;
+											}
+										}
+									}
+								}
+							}
+
+						}
+						
+						/************************** PARA CONTROLES MENOS ANCHOS **************************/
+						&--c50{
+							display: flex;
+							align-items: flex-start;
+							justify-content: center;
+							flex-wrap: wrap;
+							flex: 0 0 100%;
+							gap: 1.2rem;
+							width: 75%;
+							margin-left: auto;
+							margin-right: auto;
+
+							&--control{
+								flex: 45%;
+								position: relative;
+
+								/************************** MOSTRAR EL LISTADO DE PROVINCIAS Y DISTRITOS **************************/
+								#cont-showSListAllProvinciasByCountry,
+								#cont-showSListAllDistritosByProvincias{
+									display: none;
+
+									&.show{
+										display: block;
+									}
+								}
+
+								&--input{
+									outline: none;
+									width: 100%;
+									text-align: center;
+									border: thin solid #ccc;
+									border-radius: .3rem;
+									padding: 0.4rem .6rem;
+
+									&[aria-expanded="false"]{
+										background-image: url("../img/utilities/fail-alert-noun-selected.svg");
+										background-color: #fff !important;
+								    border: thin solid darkred !important;
+								    box-shadow: 0 0 2px 1px pink;
+								    background-repeat: no-repeat;
+								    background-position: 98%;
+								    background-size: .95rem;
+									}
+
+									&:focus{
+										text-align: left;
+									}	
+								}
+
+								&--spanAlertMsg{
+									font-size: 0.75rem;
+									font-weight: 600;
+									color: red;
+								}
+
+								/* LISTA DE ITEMS EN EL CONTROL */
+								&--cList{
+									display: none;
+									text-align: left;
+									position: absolute;
+									z-index: 99;
+									left: 0;
+									width: 100%;
+
+									&.show{
+										display: block;
+									}
+
+									&--m{
+										text-align: left;
+										border: thin solid #ccc;
+										border-radius: 0 0 .4rem .4rem;
+										background-color: #fff;
+										max-height: 208px;
+										height: auto;
+										overflow-x: hidden;
+										overflow-y: auto;
+										width: 100%;
+										&--item{
+											cursor: pointer;
+											padding: 0.6rem;
+											line-height: 1;
+											&:hover{
+												background-color: #dddd;
+											}
+											p{
+												font-size: 0.85rem;
+												margin: 0;
+												line-height: 1.3;
+											}
+											small{
+												font-size: 0.7rem;
+											}
+										}
+									}
+								}
+							}
+						}
+
+						/* COTENEDOR DE UN SOLO CONTROL */
+						&--cOneItem{
+							display: flex;
+							align-items: center;
+							justify-content: center;
+							margin: 0.5rem 0;
+
+							&--select{
+								color: #444;
+								border: thin solid #ccc;
+								border-radius: .3rem;
+								padding: 0.4rem .6rem;
+							}
+
+							span{
+								margin-left: 1rem;
+							}
+						}
+					}
 				}
 
-				&--link{
-					display: block;
+				/* OPCIÓN EN SERVICIOS */
+				&--linklabel{
+					cursor: pointer;
+					display: flex;
 					align-items: center;
 					justify-content: flex-start;
 					position: relative;
 					padding: 0.75rem 0 0.75rem .5rem;
-					border-bottom: thin solid #ccc;
+					margin: 0;
 
-					&--cControl{
-						display: flex;
-						align-items: center;
-						justify-content: flex-start;
-						position: relative;
-
-						input[type="checkbox"]{
-							outline: none;
-							width: 18px;
-							height: 18px;
-							border: thin solid lightgreen;
-						}
-
-						&--cIcon{
-							margin: 0 0.5rem;
-							width: 27px;
-							height: 27px;
-							display: table;
-							img{
-								width: 100%;
-								height: 100%;
-							}
-						}
-
-						label{
-							color: #444;
-							margin: 0;
-
+					&.selected{
+						span{
+							color: $checked-opt-services;
 							b{
-								color: steelblue;
+								color: $checked-opt-services;
 							}
+						}
+					}
+
+					&--input{
+						&[type=checkbox]{
+							display: none;
+							opacity: 0;
+						}
+					}
+
+					&--checkbox{
+						width: 20px;
+						height: 20px;
+						border: thin solid #ccc;
+						border-radius: .2rem;
+						background-color: transparent;
+				    background-position: center;
+				    background-repeat: no-repeat;
+				    background-size: 80% 60%;
+				    margin-right: 0.5rem;
+					}
+
+					&--input:checked + &--checkbox{
+						background-image: url("../img/utilities/check-icon.png");
+				    background-color: $checked-opt-services-bgc;
+					}
+
+					&--input:checked ~ &--text{
+						color: $checked-opt-services;
+
+						b{
+							color: $checked-opt-services;							
+						}
+					}
+
+					&--cIcon{
+						margin: 0 0.5rem;
+				    width: 27px;
+				    height: 27px;
+				    display: table;
+
+						img{
+							width: 100%;
+							height: 100%;
+						}
+					}
+
+					&--text{
+						b{
+							color: steelblue;
+						}
+					}
+
+					&--cIconChck{
+						width: 20px;
+				    height: 20px;
+				    display: table;
+				    vertical-align: middle;
+				    margin-left: .5rem;
+				    
+						svg{
+							fill: $checked-opt-services;
+					    position: relative;
+					    top: 3px;
+					    width: 22px;
+					    height: auto;
 						}
 					}
 				}

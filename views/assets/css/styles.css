@@ -40,7 +40,7 @@ img {
 }
 
 .mtop-headertop {
-  margin-top: 4.8rem;
+  margin-top: 4.5rem;
 }
 
 .box-container {
@@ -406,7 +406,7 @@ img {
   top: 0;
   left: 0;
   background-color: #B58440;
-  min-height: 4.8rem;
+  min-height: 4.5rem;
 }
 #c-HTop-camel .c-Htopbar--c {
   max-width: 1220px;
@@ -416,7 +416,7 @@ img {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0.8rem 0;
+  padding: 0.65rem 0;
 }
 #c-HTop-camel .c-Htopbar--c--cLogo {
   width: 7rem;
@@ -1640,42 +1640,274 @@ img {
 .c-SelServicesQuantity--contStep--cBottom--cSelAllRadOrNot--desc a:hover {
   color: steelblue;
 }
-.c-SelServicesQuantity--contStep--cBottom--cListServices--m--link {
-  display: block;
-  align-items: center;
-  justify-content: flex-start;
-  position: relative;
-  padding: 0.75rem 0 0.75rem 0.5rem;
-  border-bottom: thin solid #ccc;
+.c-SelServicesQuantity--contStep--cBottom--cListServices--m {
+  /* OPCIÓN EN SERVICIOS */
 }
-.c-SelServicesQuantity--contStep--cBottom--cListServices--m--link--cControl {
+.c-SelServicesQuantity--contStep--cBottom--cListServices--m--item {
+  border-bottom: thin solid #ccc;
+  /* CONTENIDO DEL SERVICIO SELECCIONADO */
+}
+.c-SelServicesQuantity--contStep--cBottom--cListServices--m--item--cont {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  /* CONTENEDOR DE VARIOS CONTROLES */
+  /************************** PARA CONTROLES MÁS ANCHOS **************************/
+  /************************** PARA CONTROLES MENOS ANCHOS **************************/
+  /* COTENEDOR DE UN SOLO CONTROL */
+}
+.c-SelServicesQuantity--contStep--cBottom--cListServices--m--item--cont--c {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  flex-wrap: wrap;
+  flex: 0 0 100%;
+  padding: 0 1.5rem;
+  gap: 1.2rem;
+}
+.c-SelServicesQuantity--contStep--cBottom--cListServices--m--item--cont--c--control {
+  flex: 48%;
+  position: relative;
+  /************************** MOSTRAR EL LISTADO DE TIPOS DE PRODUCTOS **************************/
+  /* LISTA DE ITEMS EN EL CONTROL */
+}
+.c-SelServicesQuantity--contStep--cBottom--cListServices--m--item--cont--c--control #cont-showSListAllTProducts {
+  display: none;
+}
+.c-SelServicesQuantity--contStep--cBottom--cListServices--m--item--cont--c--control #cont-showSListAllTProducts.show {
+  display: block;
+}
+.c-SelServicesQuantity--contStep--cBottom--cListServices--m--item--cont--c--control:nth-child(2) {
+  padding-left: 0.25rem;
+  flex: 35%;
+}
+.c-SelServicesQuantity--contStep--cBottom--cListServices--m--item--cont--c--control--input {
+  outline: none;
+  width: 100%;
+  text-align: center;
+  border: thin solid #ccc;
+  border-radius: 0.3rem;
+  padding: 0.4rem 0.6rem;
+}
+.c-SelServicesQuantity--contStep--cBottom--cListServices--m--item--cont--c--control--input[aria-expanded=false] {
+  background-image: url("../img/utilities/fail-alert-noun-selected.svg");
+  background-color: #fff !important;
+  border: thin solid darkred !important;
+  box-shadow: 0 0 2px 1px pink;
+  background-repeat: no-repeat;
+  background-position: 98%;
+  background-size: 0.95rem;
+}
+.c-SelServicesQuantity--contStep--cBottom--cListServices--m--item--cont--c--control--input:focus {
+  text-align: left;
+}
+.c-SelServicesQuantity--contStep--cBottom--cListServices--m--item--cont--c--control--spanAlertMsg {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: red;
+}
+.c-SelServicesQuantity--contStep--cBottom--cListServices--m--item--cont--c--control--cList {
+  text-align: left;
+  position: absolute;
+  z-index: 99;
+  left: 0;
+  width: 100%;
+}
+.c-SelServicesQuantity--contStep--cBottom--cListServices--m--item--cont--c--control--cList--m {
+  text-align: left;
+  border: thin solid #ccc;
+  border-radius: 0 0 0.4rem 0.4rem;
+  background-color: #fff;
+  max-height: 208px;
+  height: auto;
+  overflow-x: hidden;
+  overflow-y: auto;
+  width: 100%;
+}
+.c-SelServicesQuantity--contStep--cBottom--cListServices--m--item--cont--c--control--cList--m--item {
+  cursor: pointer;
+  padding: 0.6rem;
+  line-height: 1;
+}
+.c-SelServicesQuantity--contStep--cBottom--cListServices--m--item--cont--c--control--cList--m--item:hover {
+  background-color: #dddd;
+}
+.c-SelServicesQuantity--contStep--cBottom--cListServices--m--item--cont--c--control--cList--m--item p {
+  font-size: 0.85rem;
+  margin: 0;
+  line-height: 1.3;
+}
+.c-SelServicesQuantity--contStep--cBottom--cListServices--m--item--cont--c--control--cList--m--item small {
+  font-size: 0.7rem;
+}
+.c-SelServicesQuantity--contStep--cBottom--cListServices--m--item--cont--c50 {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  flex-wrap: wrap;
+  flex: 0 0 100%;
+  gap: 1.2rem;
+  width: 75%;
+  margin-left: auto;
+  margin-right: auto;
+}
+.c-SelServicesQuantity--contStep--cBottom--cListServices--m--item--cont--c50--control {
+  flex: 45%;
+  position: relative;
+  /************************** MOSTRAR EL LISTADO DE PROVINCIAS Y DISTRITOS **************************/
+  /* LISTA DE ITEMS EN EL CONTROL */
+}
+.c-SelServicesQuantity--contStep--cBottom--cListServices--m--item--cont--c50--control #cont-showSListAllProvinciasByCountry,
+.c-SelServicesQuantity--contStep--cBottom--cListServices--m--item--cont--c50--control #cont-showSListAllDistritosByProvincias {
+  display: none;
+}
+.c-SelServicesQuantity--contStep--cBottom--cListServices--m--item--cont--c50--control #cont-showSListAllProvinciasByCountry.show,
+.c-SelServicesQuantity--contStep--cBottom--cListServices--m--item--cont--c50--control #cont-showSListAllDistritosByProvincias.show {
+  display: block;
+}
+.c-SelServicesQuantity--contStep--cBottom--cListServices--m--item--cont--c50--control--input {
+  outline: none;
+  width: 100%;
+  text-align: center;
+  border: thin solid #ccc;
+  border-radius: 0.3rem;
+  padding: 0.4rem 0.6rem;
+}
+.c-SelServicesQuantity--contStep--cBottom--cListServices--m--item--cont--c50--control--input[aria-expanded=false] {
+  background-image: url("../img/utilities/fail-alert-noun-selected.svg");
+  background-color: #fff !important;
+  border: thin solid darkred !important;
+  box-shadow: 0 0 2px 1px pink;
+  background-repeat: no-repeat;
+  background-position: 98%;
+  background-size: 0.95rem;
+}
+.c-SelServicesQuantity--contStep--cBottom--cListServices--m--item--cont--c50--control--input:focus {
+  text-align: left;
+}
+.c-SelServicesQuantity--contStep--cBottom--cListServices--m--item--cont--c50--control--spanAlertMsg {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: red;
+}
+.c-SelServicesQuantity--contStep--cBottom--cListServices--m--item--cont--c50--control--cList {
+  display: none;
+  text-align: left;
+  position: absolute;
+  z-index: 99;
+  left: 0;
+  width: 100%;
+}
+.c-SelServicesQuantity--contStep--cBottom--cListServices--m--item--cont--c50--control--cList.show {
+  display: block;
+}
+.c-SelServicesQuantity--contStep--cBottom--cListServices--m--item--cont--c50--control--cList--m {
+  text-align: left;
+  border: thin solid #ccc;
+  border-radius: 0 0 0.4rem 0.4rem;
+  background-color: #fff;
+  max-height: 208px;
+  height: auto;
+  overflow-x: hidden;
+  overflow-y: auto;
+  width: 100%;
+}
+.c-SelServicesQuantity--contStep--cBottom--cListServices--m--item--cont--c50--control--cList--m--item {
+  cursor: pointer;
+  padding: 0.6rem;
+  line-height: 1;
+}
+.c-SelServicesQuantity--contStep--cBottom--cListServices--m--item--cont--c50--control--cList--m--item:hover {
+  background-color: #dddd;
+}
+.c-SelServicesQuantity--contStep--cBottom--cListServices--m--item--cont--c50--control--cList--m--item p {
+  font-size: 0.85rem;
+  margin: 0;
+  line-height: 1.3;
+}
+.c-SelServicesQuantity--contStep--cBottom--cListServices--m--item--cont--c50--control--cList--m--item small {
+  font-size: 0.7rem;
+}
+.c-SelServicesQuantity--contStep--cBottom--cListServices--m--item--cont--cOneItem {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0.5rem 0;
+}
+.c-SelServicesQuantity--contStep--cBottom--cListServices--m--item--cont--cOneItem--select {
+  color: #444;
+  border: thin solid #ccc;
+  border-radius: 0.3rem;
+  padding: 0.4rem 0.6rem;
+}
+.c-SelServicesQuantity--contStep--cBottom--cListServices--m--item--cont--cOneItem span {
+  margin-left: 1rem;
+}
+.c-SelServicesQuantity--contStep--cBottom--cListServices--m--linklabel {
+  cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: flex-start;
   position: relative;
+  padding: 0.75rem 0 0.75rem 0.5rem;
+  margin: 0;
 }
-.c-SelServicesQuantity--contStep--cBottom--cListServices--m--link--cControl input[type=checkbox] {
-  outline: none;
-  width: 18px;
-  height: 18px;
-  border: thin solid lightgreen;
+.c-SelServicesQuantity--contStep--cBottom--cListServices--m--linklabel.selected span {
+  color: #11A017;
 }
-.c-SelServicesQuantity--contStep--cBottom--cListServices--m--link--cControl--cIcon {
+.c-SelServicesQuantity--contStep--cBottom--cListServices--m--linklabel.selected span b {
+  color: #11A017;
+}
+.c-SelServicesQuantity--contStep--cBottom--cListServices--m--linklabel--input[type=checkbox] {
+  display: none;
+  opacity: 0;
+}
+.c-SelServicesQuantity--contStep--cBottom--cListServices--m--linklabel--checkbox {
+  width: 20px;
+  height: 20px;
+  border: thin solid #ccc;
+  border-radius: 0.2rem;
+  background-color: transparent;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 80% 60%;
+  margin-right: 0.5rem;
+}
+.c-SelServicesQuantity--contStep--cBottom--cListServices--m--linklabel--input:checked + .c-SelServicesQuantity--contStep--cBottom--cListServices--m--linklabel--checkbox {
+  background-image: url("../img/utilities/check-icon.png");
+  background-color: #43A047;
+}
+.c-SelServicesQuantity--contStep--cBottom--cListServices--m--linklabel--input:checked ~ .c-SelServicesQuantity--contStep--cBottom--cListServices--m--linklabel--text {
+  color: #11A017;
+}
+.c-SelServicesQuantity--contStep--cBottom--cListServices--m--linklabel--input:checked ~ .c-SelServicesQuantity--contStep--cBottom--cListServices--m--linklabel--text b {
+  color: #11A017;
+}
+.c-SelServicesQuantity--contStep--cBottom--cListServices--m--linklabel--cIcon {
   margin: 0 0.5rem;
   width: 27px;
   height: 27px;
   display: table;
 }
-.c-SelServicesQuantity--contStep--cBottom--cListServices--m--link--cControl--cIcon img {
+.c-SelServicesQuantity--contStep--cBottom--cListServices--m--linklabel--cIcon img {
   width: 100%;
   height: 100%;
 }
-.c-SelServicesQuantity--contStep--cBottom--cListServices--m--link--cControl label {
-  color: #444;
-  margin: 0;
-}
-.c-SelServicesQuantity--contStep--cBottom--cListServices--m--link--cControl label b {
+.c-SelServicesQuantity--contStep--cBottom--cListServices--m--linklabel--text b {
   color: steelblue;
+}
+.c-SelServicesQuantity--contStep--cBottom--cListServices--m--linklabel--cIconChck {
+  width: 20px;
+  height: 20px;
+  display: table;
+  vertical-align: middle;
+  margin-left: 0.5rem;
+}
+.c-SelServicesQuantity--contStep--cBottom--cListServices--m--linklabel--cIconChck svg {
+  fill: #11A017;
+  position: relative;
+  top: 3px;
+  width: 22px;
+  height: auto;
 }
 .c-SelServicesQuantity--contStep--cBottom--cListServices--btnAddCotizationS {
   background-color: steelblue;

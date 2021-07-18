@@ -11,11 +11,12 @@
 	</div>
 	<p>Cargando...</p>
 </section>
+<!-- style="display:none!important;pointer-events:none!important;" -->
 <section class="mtop-headertop" id="portfolio">
 	<?php require_once 'api_whatsapp.php'; ?>
 	<form id="frm_cotizacion" method="POST" action="views/modules/act_maritimo.php" class="c-CalculatorStep--form">
 		<!------------------------------------------ PRIMERA FASE - PASO 1 (INICIO) ----------------------------------->
-		<div id="step-One" class="c-CalculatorStep--form--contStep">
+		<div id="step-One" class="c-CalculatorStep--form--contStep"style="display:none!important;pointer-events:none!important;">
 			<div class="box-container">
 				<div class="c-CalculatorStep--form--contStep--cTitle">
 					<h2 class="c-CalculatorStep--form--contStep--cTitle--title b-bottom">¡COTIZA TÚ FLETE!</h2>
@@ -28,7 +29,7 @@
 			</div>
 		</div>
 		<!------------------------------------------ SEGUNDA FASE - PASO 2 (INICIO) ----------------------------------->
-		<div id="step-Two" class="c-CalculatorStep--form--contStep hide step-hidden">
+		<div id="step-Two" class="c-CalculatorStep--form--contStep hide step-hidden"style="display:none!important;pointer-events:none!important;">
 			<div class="box-container">
 				<div class="c-CalculatorStep--form--contStep--cTitledesconly">
 					<h3 class="c-CalculatorStep--form--contStep--cTitledesconly--desc">PASO 2. Indica Ruta y Tipo de Contenedor</h3>
@@ -96,8 +97,188 @@
 				</div>				
 			</div>
 		</div>
-		<!------------------------------------------ TERCERA FASE - PASO 2.1 (INICO) --------------------------------->
-		<div id="step-TwoPointOne" class="c-SelServicesOrNotStep--contStep hide step-hidden"></div>
+		<!------------------------------------------ TERCERA FASE - PASO 2.1 (INICO) ---------------------------------->
+		<div id="step-TwoPointOne" class="c-SelServicesOrNotStep--contStep hide step-hidden"style="display:none!important;pointer-events:none!important;"></div>
+		<!------------------------------------------- CUARTA FASE - PASO 3 (INICIO - FIN) ----------------------------->
+		<div id="step-Three" class="c-SelServicesQuantity--contStep">
+      <div class="box-container">
+        <div class="c-SelServicesQuantity--contStep--cTop">
+          <button type="button" class="c-SelServicesQuantity--contStep--cTop--btnBackStep" id="btn-backStep-cancel">VOLVER</button>
+          <div class="c-SelServicesQuantity--contStep--cTop--calcSummary">
+            <h3 class="c-SelServicesQuantity--contStep--cTop--calcSummary--title">Resumen de Ruta</h3>
+            <p class="c-SelServicesQuantity--contStep--cTop--calcSummary--text"><b>Flete Marítimo</b></p>
+            <p class="c-SelServicesQuantity--contStep--cTop--calcSummary--text">
+              <span>CHINA - QINGDAO</span>
+              <span>&#8594;</span>
+              <span>PERÚ - CALLAO</span>
+            </p>
+            <p class="c-SelServicesQuantity--contStep--cTop--calcSummary--text"><b>1 Bulto de 3000 Kg y 1.08 M³</b></p>
+          </div>
+          <div class="c-SelServicesQuantity--contStep--cBottom">
+            <div class="c-SelServicesQuantity--contStep--cBottom--cTitle">
+              <h3 class="c-SelServicesQuantity--contStep--cBottom--cTitle--title">PASO 3. Agrega Servicios Adicionales</h3>
+            </div>
+            <div class="c-SelServicesQuantity--contStep--cBottom--cSelAllRadOrNot">
+              <p class="c-SelServicesQuantity--contStep--cBottom--cSelAllRadOrNot--desc">
+                <span>Selecciona 1 o </span>
+                <a href="#">MÁS</a>
+                <span>Servicios adicionales</span>
+              </p>
+            </div>
+            <div class="c-SelServicesQuantity--contStep--cBottom--cListServices">
+              <ul class="c-SelServicesQuantity--contStep--cBottom--cListServices--m" id="m-listseleted-services">
+                <li class="c-SelServicesQuantity--contStep--cBottom--cListServices--m--item">
+                  <label for="service-item-1" class="c-SelServicesQuantity--contStep--cBottom--cListServices--m--linklabel">
+                    <input type="checkbox" id="service-item-1" class="c-SelServicesQuantity--contStep--cBottom--cListServices--m--linklabel--input">
+                    <span class="c-SelServicesQuantity--contStep--cBottom--cListServices--m--linklabel--checkbox"></span>
+                    <div class="c-SelServicesQuantity--contStep--cBottom--cListServices--m--linklabel--cIcon">
+                      <img src="views/assets/img/linea_tiempo/PUERTO-Y-ALMACEN-003.png" alt="">
+                    </div>
+                    <span class="c-SelServicesQuantity--contStep--cBottom--cListServices--m--linklabel--text">Gastos Portuarios de Almacenamiento Aduanero</span>
+                    <span class="c-SelServicesQuantity--contStep--cBottom--cListServices--m--linklabel--cIconChck"></span>
+                  </label>
+                </li>
+                <li class="c-SelServicesQuantity--contStep--cBottom--cListServices--m--item">
+                  <label for="service-item-2" class="c-SelServicesQuantity--contStep--cBottom--cListServices--m--linklabel">
+                    <input type="checkbox" id="service-item-2" class="c-SelServicesQuantity--contStep--cBottom--cListServices--m--linklabel--input">
+                    <span class="c-SelServicesQuantity--contStep--cBottom--cListServices--m--linklabel--checkbox"></span>
+                    <div class="c-SelServicesQuantity--contStep--cBottom--cListServices--m--linklabel--cIcon">
+                      <img src="views/assets/img/linea_tiempo/ADUANA-002.png" alt="">
+                    </div>
+                    <span class="c-SelServicesQuantity--contStep--cBottom--cListServices--m--linklabel--text"><b>Cálculo de impuesto y permisos de aduana</b></span>
+                    <span class="c-SelServicesQuantity--contStep--cBottom--cListServices--m--linklabel--cIconChck"></span>
+                  </label>
+                  <div class="c-SelServicesQuantity--contStep--cBottom--cListServices--m--item--cont" id="cont-selTwoOptsServicesFill">
+                  	
+                  </div>
+                </li>
+                <li class="c-SelServicesQuantity--contStep--cBottom--cListServices--m--item">
+                  <label for="service-item-3" class="c-SelServicesQuantity--contStep--cBottom--cListServices--m--linklabel">
+                    <input type="checkbox" id="service-item-3" class="c-SelServicesQuantity--contStep--cBottom--cListServices--m--linklabel--input">
+                    <span class="c-SelServicesQuantity--contStep--cBottom--cListServices--m--linklabel--checkbox"></span>
+                    <div class="c-SelServicesQuantity--contStep--cBottom--cListServices--m--linklabel--cIcon">
+                      <img src="views/assets/img/linea_tiempo/TRANSPORTE-002.png" alt="">
+                    </div>
+                    <span class="c-SelServicesQuantity--contStep--cBottom--cListServices--m--linklabel--text">Transporte a domicilio</span>
+                    <span class="c-SelServicesQuantity--contStep--cBottom--cListServices--m--linklabel--cIconChck"></span>
+                  </label>
+                  <div class="c-SelServicesQuantity--contStep--cBottom--cListServices--m--item--cont" id="cont-selThreeOptsServicesFill"></div>
+                </li>
+                <li class="c-SelServicesQuantity--contStep--cBottom--cListServices--m--item">
+                  <label for="service-item-4" class="c-SelServicesQuantity--contStep--cBottom--cListServices--m--linklabel">
+                    <input type="checkbox" id="service-item-4" class="c-SelServicesQuantity--contStep--cBottom--cListServices--m--linklabel--input">
+                    <span class="c-SelServicesQuantity--contStep--cBottom--cListServices--m--linklabel--checkbox"></span>
+                    <div class="c-SelServicesQuantity--contStep--cBottom--cListServices--m--linklabel--cIcon">
+                      <img src="views/assets/img/linea_tiempo/TRANSPORTE-002.png" alt="">
+                    </div>
+                    <span class="c-SelServicesQuantity--contStep--cBottom--cListServices--m--linklabel--text">Seguro de mercancía</span>
+                    <span class="c-SelServicesQuantity--contStep--cBottom--cListServices--m--linklabel--cIconChck"></span>
+                  </label>
+                </li>
+              </ul>
+              <button type="button" class="c-SelServicesQuantity--contStep--cBottom--cListServices--btnAddCotizationS">CALCULAR COTIZACIÓN</button>
+            </div>
+          </div>
+          <div class="c-SelServicesQuantity--contStep--cLogisticChain" id="line-InfoLogisticChain">
+            <p class="c-SelServicesQuantity--contStep--cLogisticChain--title">CADENA LOGÍSTICA</p>
+            <div class="c-SelServicesQuantity--contStep--cLogisticChain--cInfoLogisticChain">
+              <ul class="c-SelServicesQuantity--contStep--cLogisticChain--cInfoLogisticChain--m">
+                <li class="c-SelServicesQuantity--contStep--cLogisticChain--cInfoLogisticChain--m--item">
+                  <div class="c-SelServicesQuantity--contStep--cLogisticChain--cInfoLogisticChain--m--item--cIcon">
+                    <img src="views/assets/img/linea_tiempo/FABRICA-DE-ORIGEN-001.png" alt="">
+                  </div>
+                  <div class="c-SelServicesQuantity--contStep--cLogisticChain--cInfoLogisticChain--m--item--cLine">
+                    <span class="c-SelServicesQuantity--contStep--cLogisticChain--cInfoLogisticChain--m--item--cLine--circleL"></span>
+                  </div>
+                  <small class="c-SelServicesQuantity--contStep--cLogisticChain--cInfoLogisticChain--m--item--txt">FÁBRICA PROVEEDOR</small>
+                </li>
+                <li class="c-SelServicesQuantity--contStep--cLogisticChain--cInfoLogisticChain--m--item">
+                  <div class="c-SelServicesQuantity--contStep--cLogisticChain--cInfoLogisticChain--m--item--cIcon">
+                    <img src="views/assets/img/linea_tiempo/TRANSPORTE-001.png" alt="">
+                  </div>
+                  <div class="c-SelServicesQuantity--contStep--cLogisticChain--cInfoLogisticChain--m--item--cLine">
+                    <span class="c-SelServicesQuantity--contStep--cLogisticChain--cInfoLogisticChain--m--item--cLine--circleL"></span>
+                  </div>
+                  <small class="c-SelServicesQuantity--contStep--cLogisticChain--cInfoLogisticChain--m--item--txt">TRANSPORTE EN ORIGEN</small>
+                </li>
+                <li class="c-SelServicesQuantity--contStep--cLogisticChain--cInfoLogisticChain--m--item">
+                  <div class="c-SelServicesQuantity--contStep--cLogisticChain--cInfoLogisticChain--m--item--cIcon">
+                    <img src="views/assets/img/linea_tiempo/ADUANA-001.png" alt="">
+                  </div>
+                  <div class="c-SelServicesQuantity--contStep--cLogisticChain--cInfoLogisticChain--m--item--cLine">
+                    <span class="c-SelServicesQuantity--contStep--cLogisticChain--cInfoLogisticChain--m--item--cLine--circleL"></span>
+                  </div>
+                  <small class="c-SelServicesQuantity--contStep--cLogisticChain--cInfoLogisticChain--m--item--txt">ADUANA EN ORIGEN</small>
+                </li>
+                <li class="c-SelServicesQuantity--contStep--cLogisticChain--cInfoLogisticChain--m--item">
+                  <div class="c-SelServicesQuantity--contStep--cLogisticChain--cInfoLogisticChain--m--item--cIcon">
+                    <img src="views/assets/img/linea_tiempo/PUERTO-Y-ALMACEN-001.png" alt="">
+                  </div>
+                  <div class="c-SelServicesQuantity--contStep--cLogisticChain--cInfoLogisticChain--m--item--cLine">
+                    <span class="c-SelServicesQuantity--contStep--cLogisticChain--cInfoLogisticChain--m--item--cLine--circleL"></span>
+                  </div>
+                  <small class="c-SelServicesQuantity--contStep--cLogisticChain--cInfoLogisticChain--m--item--txt">PUERTO EN ORIGEN</small>
+                </li>
+                <li class="c-SelServicesQuantity--contStep--cLogisticChain--cInfoLogisticChain--m--itemCurrStep selStepComplete">
+                  <div class="c-SelServicesQuantity--contStep--cLogisticChain--cInfoLogisticChain--m--itemCurrStep--cIcon selIconComplete">
+                    <img src="views/assets/img/linea_tiempo/fleteMaritimo.png" alt="">
+                  </div>
+                  <div class="c-SelServicesQuantity--contStep--cLogisticChain--cInfoLogisticChain--m--itemCurrStep--cLine selLineComplete">
+                    <span class="c-SelServicesQuantity--contStep--cLogisticChain--cInfoLogisticChain--m--itemCurrStep--cLine--circleL selCircleLComplete"></span>
+                  </div>
+                  <small class="c-SelServicesQuantity--contStep--cLogisticChain--cInfoLogisticChain--m--itemCurrStep--txt">FLETE MARÍTIMO</small>
+                </li>
+                <li class="c-SelServicesQuantity--contStep--cLogisticChain--cInfoLogisticChain--m--itemCurrStep">
+                  <div class="c-SelServicesQuantity--contStep--cLogisticChain--cInfoLogisticChain--m--itemCurrStep--cIcon">
+                    <img src="views/assets/img/linea_tiempo/PUERTO-Y-ALMACEN-002.png" alt="">
+                  </div>
+                  <div class="c-SelServicesQuantity--contStep--cLogisticChain--cInfoLogisticChain--m--itemCurrStep--cLine">
+                    <span class="c-SelServicesQuantity--contStep--cLogisticChain--cInfoLogisticChain--m--itemCurrStep--cLine--circleL"></span>
+                  </div>
+                  <small class="c-SelServicesQuantity--contStep--cLogisticChain--cInfoLogisticChain--m--itemCurrStep--txt">PUERTO Y ALMACEN DE DESTINO</small>
+                </li>
+                <li class="c-SelServicesQuantity--contStep--cLogisticChain--cInfoLogisticChain--m--itemCurrStep">
+                  <div class="c-SelServicesQuantity--contStep--cLogisticChain--cInfoLogisticChain--m--itemCurrStep--cIcon">
+                    <img src="views/assets/img/linea_tiempo/ADUANA-003.png" alt="">
+                  </div>
+                  <div class="c-SelServicesQuantity--contStep--cLogisticChain--cInfoLogisticChain--m--itemCurrStep--cLine">
+                    <span class="c-SelServicesQuantity--contStep--cLogisticChain--cInfoLogisticChain--m--itemCurrStep--cLine--circleL"></span>
+                  </div>
+                  <small class="c-SelServicesQuantity--contStep--cLogisticChain--cInfoLogisticChain--m--itemCurrStep--txt">ADUANA DESTINO</small>
+                </li>
+                <li class="c-SelServicesQuantity--contStep--cLogisticChain--cInfoLogisticChain--m--itemCurrStep">
+                  <div class="c-SelServicesQuantity--contStep--cLogisticChain--cInfoLogisticChain--m--itemCurrStep--cIcon">
+                    <img src="views/assets/img/linea_tiempo/TRANSPORTE-003.png" alt="">
+                  </div>
+                  <div class="c-SelServicesQuantity--contStep--cLogisticChain--cInfoLogisticChain--m--itemCurrStep--cLine">
+                    <span class="c-SelServicesQuantity--contStep--cLogisticChain--cInfoLogisticChain--m--itemCurrStep--cLine--circleL"></span>
+                  </div>
+                  <small class="c-SelServicesQuantity--contStep--cLogisticChain--cInfoLogisticChain--m--itemCurrStep--txt">TRANSPORTE DESTINO</small>
+                </li>
+                <li class="c-SelServicesQuantity--contStep--cLogisticChain--cInfoLogisticChain--m--itemCurrStep">
+                  <div class="c-SelServicesQuantity--contStep--cLogisticChain--cInfoLogisticChain--m--itemCurrStep--cIcon">
+                    <img src="views/assets/img/linea_tiempo/ALMACEN-003.png" alt="">
+                  </div>
+                  <div class="c-SelServicesQuantity--contStep--cLogisticChain--cInfoLogisticChain--m--itemCurrStep--cLine">
+                    <span class="c-SelServicesQuantity--contStep--cLogisticChain--cInfoLogisticChain--m--itemCurrStep--cLine--circleL"></span>
+                  </div>
+                  <small class="c-SelServicesQuantity--contStep--cLogisticChain--cInfoLogisticChain--m--itemCurrStep--txt">ALMACEN IMPORTADOR</small>
+                </li>
+                <li class="c-SelServicesQuantity--contStep--cLogisticChain--cInfoLogisticChain--m--itemCurrStep">
+                  <div class="c-SelServicesQuantity--contStep--cLogisticChain--cInfoLogisticChain--m--itemCurrStep--cIcon">
+                    <img src="views/assets/img/linea_tiempo/fleteMaritimo.png" alt="">
+                  </div>
+                  <div class="c-SelServicesQuantity--contStep--cLogisticChain--cInfoLogisticChain--m--itemCurrStep--cLine">
+                    <span class="c-SelServicesQuantity--contStep--cLogisticChain--cInfoLogisticChain--m--itemCurrStep--cLine--circleL"></span>
+                  </div>
+                  <small class="c-SelServicesQuantity--contStep--cLogisticChain--cInfoLogisticChain--m--itemCurrStep--txt">SEGURO DE MERCANCÍA</small>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 		<!-- OTHERS DEVELOPERS (INICIO) -->
 		<div id="fase_reporte_maritimo_con_servicios">			
 			
