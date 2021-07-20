@@ -534,6 +534,18 @@ img {
   }
 }
 
+#h-heroImage-init {
+  min-height: 743px;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 0 !important;
+  padding-bottom: 3rem !important;
+  background-attachment: fixed;
+  background-position: 0 0;
+}
+
 .cnt-modalFormLoginyRegister {
   position: fixed;
   width: 100%;

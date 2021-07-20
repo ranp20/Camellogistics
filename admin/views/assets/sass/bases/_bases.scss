@@ -1,0 +1,63 @@
+/* IMPORTAR LAS VARABLES Y MIXINS A UTILIZAR EN EL TEMA */
+@import 'variables';
+@import 'mixins';
+
+*,
+*::before,
+*::before{
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+	font-family: sans-serif;
+}
+
+html,
+body{
+	font-family: $total-font-family;
+	position: relative;
+}
+a{
+	text-decoration: none !important;
+}
+ul{
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+img{
+	max-width: 100%;
+	width: auto;
+	height: auto;
+}
+/* CLASS UTILITIES */
+.control-spanrequired{
+	color: red;
+}
+.mtop-headertop{
+	margin-top: $min-headertop;
+}
+.box{
+	max-width: $max-width;
+	width: 90%;
+	margin-left: auto;
+	margin-right: auto;
+}
+.box-m{
+	max-width: $max-width-m;
+	width: 90%;
+	margin-left: auto;
+	margin-right: auto;
+}
+.one-hidden > option:first-child{
+	display: none !important;
+}
+/************************** LOADER DEL ADMINISTRADOR **************************/
+/* MENSAJE DE ÉXITO O LOADER DE ACCESO */
+#msgAlertLoginSuccess{
+	opacity: .8;
+	@include loaderPoints($primary-color, #fff);	
+}
+/* MENSAJE DE ERROR O ALERTA */
+#msgAlertLoginErr{
+	@include error-message(#fff, red);
+}

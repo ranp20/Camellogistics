@@ -1,0 +1,164 @@
+.c-LoginAdm{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	min-height: 100vh;
+	height: 100%;
+
+	@media (min-width: 960px){
+		display: grid;
+		flex-direction: row;
+		align-items: unset;
+		justify-content: unset;
+		grid-template-columns: 430px auto;
+		grid-template-areas: "loginfrm loginbackground";
+	}
+
+	&--cLoginF{
+		grid-area: loginfrm;
+		text-align: center;
+		padding: 1rem;
+		height: 100%;
+		display: flex;
+		flex-direction: column;
+
+		@media (min-width: 960px){
+			width: 80%;
+			justify-content: center;
+			padding-top: 32%;
+		}
+
+		/* LOGOTIPO */
+		&--cLogo{
+			max-width: 220px;
+			width: auto;
+			margin-left: auto;
+			margin-right: auto;
+			margin-bottom: 1rem;
+
+			@media (min-width: 960px){
+				margin-bottom: 2rem;
+			}
+
+			img{
+				width: 90%;
+			}
+		}
+
+		/* FORMULARIO */
+		&--cForm{
+			height: 100%;
+			&--cTitle{
+				margin-bottom: 1rem;
+				&--title{
+					font-size: 1.65rem;
+					font-weight: 600;
+					color: $dashboard-color;
+				}
+			}
+
+			&--form{
+				&--cControl{
+					width: 100%;
+					display: flex;
+					align-items: center;
+					justify-content: space-between;
+					position: relative;
+					margin-bottom: 1rem;
+					&--input{
+						width: 100%;
+						border-radius: .4rem;
+						border: thin solid #ccc;
+						outline: none;
+						padding: 0.7rem 42px 0.7rem 0.7rem;
+						line-height: 1.5;
+					}
+
+					&--cIcon{
+						position: absolute;
+				    right: 0;
+				    top: 50%;
+				    transform: translateY(-50%);
+				    height: 100%;
+				    width: 42px;
+				    padding: 0 .4rem;
+				    display: flex;
+				    align-items: center;
+				    justify-content: center;
+						img{
+							position: relative;
+							top: 2px;
+						}
+					}
+				}
+
+				&--btnLoginAdm{
+					cursor: pointer;
+					width: 100%;
+					border-radius: .3rem;
+					border: none;
+					background-color: $btn-success;
+					padding: 0.65rem;
+					line-height: 1.5;
+					color: #fff;
+					display: flex;
+					align-items: center;
+					justify-content: center;
+
+					&:hover{
+						opacity: 0.6;
+					}
+
+					img{
+						width: 27px;
+						height: 27px;
+						margin-left: 0.65rem;
+						position: relative;
+						top: 2px;
+					}
+				}
+			}
+		}
+
+		/* 	FOOTER DEL LOGIN */
+		&--cBottInfo{
+			display: none;
+			@media (min-width: 960px){
+				display: block;
+				//margin-top: 90%;
+			}
+
+			small{
+				font-size: 0.75rem;
+			}
+		}
+	}
+
+	/* FONDO DE LA PÁGINA */
+	&--cBcImage{
+		grid-area: loginbackground;
+		background-image: url("../img/utilities/bg-login.jpg");
+		background-repeat: no-repeat;
+		background-position: center;
+		background-size: cover;
+		display: none;
+		align-items: center;
+		justify-content: center;
+		position: relative;
+
+		&:after{
+			content: "";
+			position: absolute;
+			width: 100%;
+			height: 100%;
+			top: 0;
+			left: 0;
+			background-color: rgba(0, 0, 0, .2);
+		}
+
+		@media (min-width: 960px){
+			display: flex;
+		}
+	}
+}

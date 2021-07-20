@@ -1,0 +1,165 @@
+/************************** MENSAJE DE ALERTA/MODALES **************************/
+/* LOADER DE ÉXITO O DE CARGA */
+@mixin loaderPoints($background, $color){
+	&{
+		position: fixed;
+		width: 100%;
+	  min-height: 100vh;
+	  height: 100%;
+	  background-color: $background;
+	  display: flex;
+	  flex-direction: column;
+	  justify-content: center;
+	  align-items: center;
+	  box-shadow: 4px 4px 20px rgba(0,0,0,0.3);
+	  z-index: 9999;
+	  top: 0;
+	  left: 0;
+
+	  &.hidden{
+	  	display: none;
+	  	pointer-events: none;
+	  	visibility: hidden;
+	  	opacity: 0;
+	  }
+		.cont-loader--loader{
+			height: 15px;
+		  width: 105px;
+		  display: flex;
+		  position: relative;
+		  z-index: 99999;
+			&--circle{
+				width: 15px;
+		    height: 15px;
+		    border-radius: 50%;
+		    background-color: $color;
+		    animation: move 500ms linear 0ms infinite;
+		    margin-right: 30px;
+		    &:first-child{
+		      position: absolute;
+		      top:0;
+		      left:0;
+		      animation: grow 500ms linear 0ms infinite;
+		    }
+		    &:last-child{
+		      position: absolute;
+		      top: 0;
+		      right: 0;
+		      margin-right: 0;
+		      animation: grow 500ms linear 0s infinite reverse;
+		    }
+				@keyframes grow {
+				  from {transform: scale(0,0); opacity: 0;}
+				  to {transform: scale(1,1); opacity: 1;}
+				}
+
+				@keyframes move {
+				  from {transform: translateX(0px)}
+				  to {transform: translateX(45px)}
+				}
+			}
+		}
+		p{
+			margin-top: 1rem;
+			margin-bottom: 0;
+			color: $color;
+			font-weight: bold;
+		}
+	}	
+}
+/* LOADER DE ÉXITO O CARGA */
+@mixin loader-clasic($size, $color){
+	&{
+    border: 4px solid rgba(0,0,0,.1);
+    width: $size;
+    height: $size;
+    border-radius: 50%;
+    border-left-color: $color;
+    animation-name: girar;
+    animation-duration: .2s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+
+    @keyframes girar {
+      0%{
+        transform: rotate(0deg);
+      }
+      100%{
+        transform: rotate(360deg);  
+      }
+    }
+  }
+}
+/* MENSAJE DE ERROR */
+@mixin error-message($background, $color){
+	&{
+		display: flex;
+	  align-items: flex-start;
+	  justify-content: center;
+	  position: fixed;
+	  width: 100%;
+	  height: 100%;
+	  background-color: rgba(0,0,0,.3);
+	  z-index: 999;
+	  top: 0;
+	  left: 0;
+
+	  &.disabled{
+			transition: ease .3s;			
+			opacity: 0;			
+			display: none;		
+		}
+
+		.msgAlertLoginErr--c{
+			max-width: 400px;
+	    width: 90%;
+	    background-color: $background;
+	    border-radius: 10px;
+	    position: relative;
+			margin-top: 1rem;
+	    padding: 1rem;
+	    animation-name: alert;			
+			animation-duration: .3s;			
+			animation-timing-function: ease;			
+			animation-iteration-count: inherit;
+
+			&--close{
+				width: 18px;
+				height: 18px;
+				background:
+	    		linear-gradient(45deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 43%, #fff 45%, #fff 55%, rgba(0, 0, 0, 0) 57%, rgba(0, 0, 0, 0) 100%), 
+	    		linear-gradient(135deg, #000 0%, #000 43%, #fff 45%, #fff 55%, #000 57%, #000 100%);
+	    	border-radius: 50%;
+	  		box-shadow: 0 0 0 1px #000, 0 0 0 4px #000, 0 0 0 7px #fff;
+	  		position: absolute;
+	  		top: 0;
+	  		right: -5px;
+	  		cursor: pointer;
+			}
+			&--title{
+				font-size: 1.15rem;
+				font-weight: 600;
+				color: $color;
+				padding: 0;
+				margin: 0;
+			}
+			&--desc{
+				color: $color;	
+				padding: 0;
+				margin: 0;
+				font-size: 0.9rem;
+			}
+
+			@keyframes alert{
+				0%{
+					transform: translateY(-100%);
+					margin-top: 0;
+				}
+				100%{
+					transform: translateY(0);
+					margin-top: 1rem;
+				}
+			}
+		}
+	}
+}
