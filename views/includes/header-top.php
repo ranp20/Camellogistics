@@ -5,7 +5,7 @@
 <nav class="c-Htopbar" id="c-HTop-camel">
   <div class="c-Htopbar--c">
     <div class="c-Htopbar--c--cLogo">
-      <a href="index.php">
+      <a href="./">
         <img src="<?= $url ?>assets/img/logotipo-camel.png" alt="logo_camel">
       </a>
     </div>
@@ -17,10 +17,10 @@
     <div class="c-Htopbar--c--cMenu">
       <ul class="c-Htopbar--c--cMenu--m">
         <li class="c-Htopbar--c--cMenu--m--item">
-          <a href="index.php" class="c-Htopbar--c--cMenu--m--link">Inicio</a>
+          <a href="./" class="c-Htopbar--c--cMenu--m--link">Inicio</a>
         </li>
         <li class="c-Htopbar--c--cMenu--m--item">
-          <a href="index.php?action=calculadora" class="c-Htopbar--c--cMenu--m--link">Fletes</a>
+          <a href="calculadora" class="c-Htopbar--c--cMenu--m--link">Fletes</a>
         </li>
       </ul>
     </div>
