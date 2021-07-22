@@ -90,6 +90,9 @@
 							position: relative;
 							top: 2px;
 						}
+						svg{
+							fill: #666;
+						}
 					}
 				}
 
@@ -106,7 +109,8 @@
 					align-items: center;
 					justify-content: center;
 
-					&:hover{
+					&:hover,
+					&:active{
 						opacity: 0.6;
 					}
 

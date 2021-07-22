@@ -150,10 +150,6 @@
 			width: 90%;
 			margin-right: auto;
 
-			@media (min-width: 960px){
-				max-width: 140px;
-			}
-
 			&--img{
 				object-fit: contain;
 				object-position: center;
@@ -261,6 +257,7 @@
 				margin-left: unset;
 			}
 			&--linkcont{
+				cursor: pointer;
 				display: flex;
 				align-items: center;
 				img{
@@ -293,14 +290,15 @@
 				&.show{
 					display: block;
 				}
-				&--item{
-
-				}
 
 				&--link{
 					display: block;
 					color: #fff;
 					padding: 0.5rem 1rem;
+
+					&:hover{
+						opacity: 0.6;
+					}
 				}
 			}
 		}

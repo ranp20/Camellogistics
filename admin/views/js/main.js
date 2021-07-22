@@ -30,3 +30,8 @@ $(document).on("click", "#icon-togglemenuDesktop", function(){
 		$(".nav-dashCamel--c").removeClass("hidden");
 	}
 });
+/************************** SHOW/HIDDEN BUTTON USER **************************/
+$(document).on("click", "#btn-sessuserAdm", function(e){
+	e.preventDefault();
+	$("#list-opts-sessuser").toggleClass("show");
+});

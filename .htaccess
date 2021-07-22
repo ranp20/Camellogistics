@@ -3,5 +3,10 @@ RewriteCond %{HTTPS} off
 RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 RewriteBase /Camellogistics/
 
+############PAGES FOR THE CLIENT
 RewriteRule ^/?$ index.php
 RewriteRule calculadora?$ views/calculadora.php
+
+############PAGES FOR THE ADMIN
+RewriteRule admin?$ admin/index.php
+RewriteRule dashboard?$ admin/views/dashboard.php
