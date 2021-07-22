@@ -15,4 +15,8 @@
 <meta property="og:site_name" content="Camel" />
 <link rel="icon" type="image/x-icon" href="<?= $url ?>assets/img/utilities/favicon-camel.png" />
 <link rel="stylesheet" href="<?= $url ?>assets/css/styles.css">
+<!-- JQUERY -->
 <script src="<?= $url ?>js/jquery-3.6.0.min.js"></script>
+<!-- BOOTSTRAP UNCOMPRESSED -->
+<link rel="stylesheet" href="<?php echo $url ?>js/bootstrap/css/bootstrap.min.css">
+<script src="<?php echo $url ?>js/bootstrap/js/bootstrap.min.js"></script>

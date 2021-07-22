@@ -31,6 +31,14 @@ a {
   text-decoration: none !important;
 }
 
+h3 {
+  font-size: 1.17em !important;
+}
+
+h2 {
+  font-size: 1.5em !important;
+}
+
 ul {
   list-style: none;
   padding: 0;
@@ -321,6 +329,7 @@ img {
   border: none;
   background-color: #27C24C;
   padding: 0.65rem;
+  font-size: 0.85rem;
   line-height: 1.5;
   color: #fff;
   display: flex;
@@ -437,6 +446,7 @@ img {
   background: linear-gradient(45deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 43%, #fff 45%, #fff 55%, rgba(0, 0, 0, 0) 57%, rgba(0, 0, 0, 0) 100%), linear-gradient(135deg, transparent 0%, transparent 43%, #fff 45%, #fff 55%, transparent 57%, transparent 100%);
   border: none;
   padding: 0.5rem;
+  z-index: 99999999;
 }
 @keyframes moveIconBurger {
   0% {
@@ -499,6 +509,7 @@ img {
   min-height: 100vh;
   height: 100%;
   width: 100%;
+  z-index: 9999999;
 }
 .nav-dashCamel.show {
   display: block;
@@ -515,6 +526,7 @@ img {
     pointer-events: auto;
     opacity: 1;
     transition: 0.2s ease-in-out;
+    z-index: 9;
   }
   .nav-dashCamel.hidden {
     opacity: 0;
@@ -607,9 +619,17 @@ img {
 .nav-dashCamel--c--cList--m--link {
   color: #fff;
   display: block;
-  padding: 0.8rem 0.5rem 0.8rem 1.5rem;
+  padding: 0.65rem 0.5rem 0.65rem 1.5rem;
+  font-size: 0.8rem;
+}
+@media (min-width: 768px) {
+  .nav-dashCamel--c--cList--m--link {
+    padding: 0.8rem 0.5rem 0.8rem 1.5rem;
+    font-size: 1rem;
+  }
 }
 .nav-dashCamel--c--cList--m--link:hover {
+  color: #fff;
   background-color: #262A36;
   box-shadow: 4px 0 0 0 #20AFDB inset;
 }
@@ -656,6 +676,7 @@ img {
 }
 .h-dashCamel--c--cTitle h2 {
   font-weight: 300;
+  margin-bottom: 0;
 }
 .h-dashCamel--c--cClock {
   display: none;
@@ -712,6 +733,7 @@ img {
   right: 1rem;
   border-radius: 0.3rem;
   overflow: hidden;
+  z-index: 9999;
 }
 .h-dashCamel--c--cUser--m.show {
   display: block;
@@ -725,9 +747,791 @@ img {
   opacity: 0.6;
 }
 
-/* DASHBOARD - CONTENIDO */
+/* DASHBOARD - CONTENIDO AND DIFERENTS PAGES*/
 .cont-dashCamel {
   padding: 0.8rem 0.8rem;
+  /************************** CONTENIDO DE LA PARTE INFERIOR **************************/
+  /************************** STYLES INTO INPUT SEARCH **************************/
+  /************************** CONTENIDO DE LA PARTE SUPERIOR **************************/
+}
+.cont-dashCamel__list-results {
+  width: 100%;
+  border-collapse: collapse !important;
+  border: 1px solid #dee2e6;
+}
+.cont-dashCamel__list-results thead tr {
+  border: 1px solid #dee2e6;
+}
+.cont-dashCamel__list-results thead tr th {
+  border: 1px solid #dee2e6;
+  border-top: 1px solid #dee2e6;
+  border-top-width: 0;
+  border-left-width: 0;
+  border-bottom-width: 0;
+  padding: 8px;
+}
+.cont-dashCamel__list-results tbody tr {
+  border: 1px solid #dee2e6;
+}
+.cont-dashCamel__list-results tbody tr:first-child {
+  border-top: 2px solid #dee2e6;
+}
+.cont-dashCamel__list-results tbody tr:nth-child(2n+1) {
+  background-color: #F2F2F2;
+}
+.cont-dashCamel__list-results tbody tr:hover {
+  background-color: rgba(0, 0, 0, 0.12);
+}
+.cont-dashCamel__list-results tbody tr td {
+  font-size: 0.9rem;
+  border: 1px solid #dee2e6;
+  border-top: 1px solid #dee2e6;
+  border-bottom-width: 0;
+  padding: 8px;
+}
+.cont-dashCamel__list-results tbody tr td.cont-img-table {
+  display: table-cell;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100px;
+  height: 80px;
+}
+.cont-dashCamel__list-results tbody tr td.cont-img-table a {
+  display: flex;
+  margin-left: auto;
+  margin-right: auto;
+  width: auto;
+  height: auto;
+}
+.cont-dashCamel__list-results tbody tr td.cont-img-table a img {
+  display: flex;
+  margin-left: auto;
+  margin-right: auto;
+  width: 5.5rem;
+  height: auto;
+}
+.cont-dashCamel__list-results tbody tr td.cont-btn-update, .cont-dashCamel__list-results tbody tr td.cont-btn-delete {
+  padding: 8px;
+  margin: auto;
+  text-align: center;
+}
+.cont-dashCamel__list-results tbody tr td.cont-btn-update a, .cont-dashCamel__list-results tbody tr td.cont-btn-delete a {
+  color: #fff;
+  padding: 0.5rem 2rem;
+  border-radius: 1.5rem;
+}
+.cont-dashCamel__list-results tbody tr td.cont-btn-update a:hover, .cont-dashCamel__list-results tbody tr td.cont-btn-delete a:hover {
+  opacity: 0.6;
+}
+.cont-dashCamel__list-results tbody tr td.cont-btn-update a {
+  background-color: #0D6EFD;
+}
+.cont-dashCamel__list-results tbody tr td.cont-btn-delete a {
+  background-color: #DC3545;
+}
+.cont-dashCamel__inputsearch-table {
+  margin-bottom: 0.5rem;
+}
+.cont-dashCamel__inputsearch-table--input {
+  outline: none;
+  padding: 0.4rem 0.5rem;
+  border: thin solid #767676;
+  border-radius: 0.4rem;
+  line-height: 0.3;
+}
+@media (min-width: 991px) {
+  .cont-dashCamel__inputsearch-table--input {
+    font-size: 1rem;
+    padding: 0.4rem 0.8rem 0.4rem 0.8rem;
+    line-height: 1.5;
+  }
+}
+.cont-dashCamel__addtitle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  padding-left: 0;
+  padding-right: 0;
+  flex-wrap: wrap;
+}
+.cont-dashCamel__addtitle--title {
+  font-weight: bold;
+  font-size: 1.6rem;
+  word-break: break-word;
+}
+.cont-dashCamel__addtitle--btn-add {
+  border: none;
+  background-color: #198754;
+  color: #fff;
+  font-size: 1.2rem;
+  padding: 0.8rem 1.32rem;
+  display: flex;
+  position: fixed;
+  right: 0.8rem;
+  border-radius: 50%;
+  font-weight: bold;
+  z-index: 9999;
+  bottom: 0.8rem;
+  box-shadow: 0 1px 15px 1px rgba(0, 0, 0, 0.4);
+  /* TAMAÑO - TABLET(768px)*/
+}
+.cont-dashCamel__addtitle--btn-add__hidden {
+  display: none;
+}
+@media (min-width: 768px) {
+  .cont-dashCamel__addtitle--btn-add {
+    position: relative;
+    background-color: green;
+    font-size: 0.9rem;
+    padding: 0.5rem 2rem;
+    border-radius: 0.4rem;
+    box-shadow: unset;
+    z-index: 9;
+    bottom: 0;
+    right: 0;
+  }
+  .cont-dashCamel__addtitle--btn-add:hover {
+    opacity: 0.6;
+  }
+  .cont-dashCamel__addtitle--btn-add__hidden {
+    display: block;
+  }
+}
+
+/* DATATABLES - MINIMUM DEVICE WIDTH */
+/* MODAL BOOTSTRAP - CONFIGURATIONS ADD ITEMS*/
+.bootstrapmodal-custom .modal-dialog .modal-content .modal-header .modal-title {
+  font-weight: bold;
+  line-height: 1.2 !important;
+}
+.bootstrapmodal-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrap__form--control {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 0.5rem;
+  position: relative;
+  /* MENSAJE DE ALERTA  - NOMBRE DE BANCO*/
+  /* MENSAJE DE ALERTA  - NÚMERO DE RU*/
+  /* MENSAJE DE ALERTA  - NÚMERO DE CUENTA*/
+}
+.bootstrapmodal-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrap__form--control #msgErrNounNombBank {
+  color: red;
+  padding-left: 0.65rem;
+}
+.bootstrapmodal-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrap__form--control #msgErrNounNumbRUC {
+  color: red;
+  padding-left: 0.65rem;
+}
+.bootstrapmodal-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrap__form--control #msgErrNounNumbAccount {
+  color: red;
+  padding-left: 0.65rem;
+}
+.bootstrapmodal-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrap__form--control__contIconLeft {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: thin solid #767676;
+  border-radius: 0.6rem 0.5rem 0.5rem 0.6rem;
+}
+.bootstrapmodal-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrap__form--control__contIconLeft--icon {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  vertical-align: middle;
+  min-height: 100%;
+  left: 0;
+  width: 48px;
+  background: #eee;
+  box-shadow: 0 0 0 1px #ccc;
+  border-radius: 0.5rem 0 0 0.5rem;
+}
+.bootstrapmodal-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrap__form--control__contIconLeft input {
+  border: none;
+  padding-left: 3.8rem;
+}
+.bootstrapmodal-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrap__form--control__continputs {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+.bootstrapmodal-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrap__form--control__continputs--controls {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  width: 48%;
+  position: relative;
+}
+.bootstrapmodal-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrap__form--control__continputs--controls__label {
+  margin: 0;
+  font-size: 0.75rem;
+  position: absolute;
+  left: 3px;
+  top: -8px;
+  background-color: #fff;
+  padding: 0 0.3rem;
+  color: #777;
+}
+.bootstrapmodal-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrap__form--control__continputs--controls__input {
+  width: 100%;
+  border: thin solid #767676;
+  outline: none;
+  padding: 0.4rem 0.3rem;
+  background-color: transparent;
+  font-size: 0.9rem;
+  border-radius: 0.3rem;
+}
+.bootstrapmodal-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrap__form--control__continputs--controls__input[type=number]::-webkit-inner-spin-button, .bootstrapmodal-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrap__form--control__continputs--controls__input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.bootstrapmodal-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrap__form--control__continputs--controls__input[type=number] {
+  -moz-appearance: textfield;
+}
+.bootstrapmodal-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrap__form--control__label {
+  display: flex;
+  font-size: 0.9rem;
+  position: relative;
+  left: 0;
+  top: 0;
+  color: #000;
+  margin: 0 0 0.25rem 0;
+}
+@media (min-width: 991px) {
+  .bootstrapmodal-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrap__form--control__label {
+    font-size: 1.05rem;
+  }
+}
+.bootstrapmodal-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrap__form--control__labeltextarea {
+  display: flex;
+  font-size: 0.9rem;
+  position: relative;
+  left: 0;
+  top: 0;
+  color: #000;
+  margin: 0 0 0.25rem 0;
+}
+.bootstrapmodal-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrap__form--control__input {
+  border: thin solid #767676;
+  width: 100%;
+  outline: none;
+  transition: 0.3s ease;
+  background-color: transparent;
+  font-size: 0.9rem;
+  padding: 0.4rem 0.5rem;
+  border-radius: 0.5rem;
+}
+.bootstrapmodal-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrap__form--control__input[type=number]::-webkit-inner-spin-button, .bootstrapmodal-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrap__form--control__input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.bootstrapmodal-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrap__form--control__input[type=number] {
+  -moz-appearance: textfield;
+}
+.bootstrapmodal-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrap__form--control__input.focus {
+  border: 1px solid red;
+}
+.bootstrapmodal-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrap__form--control__input.complete {
+  border: 1px solid green;
+}
+.bootstrapmodal-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrap__form--control__input.disabled {
+  cursor: not-allowed;
+  background-color: #ccc;
+}
+@media (min-width: 991px) {
+  .bootstrapmodal-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrap__form--control__input {
+    font-size: 1rem;
+    padding: 0.5rem 0.8rem 0.4rem 0.8rem;
+    line-height: 1.5;
+  }
+}
+.bootstrapmodal-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrap__form--control__input-photo {
+  border-bottom: thin solid #767676;
+}
+.bootstrapmodal-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrap__form--control__select {
+  border: thin solid #767676;
+  width: 100%;
+  outline: none;
+  transition: 0.3s ease;
+  background-color: transparent;
+  font-size: 0.9rem;
+  padding: 0.4rem 0.5rem;
+  border-radius: 0.3rem;
+}
+.bootstrapmodal-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrap__form--control__textarea {
+  border: thin solid #767676;
+  width: 100%;
+  outline: none;
+  transition: 0.3s ease;
+  background-color: transparent;
+  font-size: 0.9rem;
+  padding: 0.4rem 0.5rem;
+  border-radius: 0.3rem;
+  min-height: 100px;
+  max-height: 130px;
+}
+.bootstrapmodal-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrap__form--controlSelect {
+  position: relative;
+  /* MENSAJE DE ALERTA - TIPO DE MONEDA */
+  /* MENSAJE DE ALERTAR - TIPO DE CUENTA*/
+}
+.bootstrapmodal-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrap__form--controlSelect #msgErrNounTypeCurr {
+  color: red;
+  padding-left: 0.65rem;
+}
+.bootstrapmodal-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrap__form--controlSelect #msgErrNounTypeAccount {
+  color: red;
+  padding-left: 0.65rem;
+}
+.bootstrapmodal-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrap__form--controlSelect--cFakeSelect {
+  cursor: pointer;
+  outline: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #fff;
+  border: thin solid #767676;
+  border-radius: 0.5rem;
+  padding: 0.65rem;
+}
+.bootstrapmodal-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrap__form--controlSelect--cFakeSelect span {
+  color: #666;
+}
+.bootstrapmodal-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrap__form--controlSelect--cFakeSelect input {
+  outline: none;
+  width: 0;
+  border: none;
+  background-color: transparent;
+}
+.bootstrapmodal-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrap__form--controlSelect--m {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  background-color: #fff;
+  min-height: 70px;
+  border: thin solid #767676;
+  z-index: 9;
+  display: none;
+}
+.bootstrapmodal-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrap__form--controlSelect--m.show {
+  display: block;
+}
+.bootstrapmodal-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrap__form--controlSelect--m--item {
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+}
+.bootstrapmodal-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrap__form--controlSelect--m--item:hover {
+  background-color: #ccc;
+}
+.bootstrapmodal-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrap__form--controlSelect--m--itemAccount {
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+}
+.bootstrapmodal-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrap__form--controlSelect--m--itemAccount:hover {
+  background-color: #ccc;
+}
+.bootstrapmodal-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrap__footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+}
+.bootstrapmodal-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrap__footer--btncancel {
+  border: thin solid #676767;
+  background-color: #fff;
+  padding: 0.4rem 1rem;
+  margin-left: 0.5rem;
+  color: #676767;
+  border-radius: 0.5rem;
+  margin-bottom: 0.5rem;
+  width: 100%;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: 0.2s ease-in-out;
+}
+.bootstrapmodal-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrap__footer--btncancel:hover {
+  background-color: #eee;
+}
+@media (min-width: 480px) {
+  .bootstrapmodal-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrap__footer--btncancel {
+    width: 38%;
+    padding: 0.5rem 1rem;
+    line-height: 1.8;
+  }
+}
+.bootstrapmodal-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrap__footer--btnadd {
+  border: thin solid transparent;
+  padding: 0.4rem 1rem;
+  margin-left: 0.5rem;
+  color: #676767;
+  border-radius: 0.5rem;
+  margin-bottom: 0.5rem;
+  width: 100%;
+  font-size: 0.9rem;
+  font-weight: 500;
+  background-color: #3A3F51;
+  color: #fff;
+  transition: 0.2s ease-in-out;
+}
+.bootstrapmodal-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrap__footer--btnadd:hover {
+  opacity: 0.5;
+}
+@media (min-width: 480px) {
+  .bootstrapmodal-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrap__footer--btnadd {
+    width: 38%;
+    padding: 0.5rem 1rem;
+    line-height: 1.8;
+  }
+}
+
+/* MODAL BOOTSTRAP - CONFIGURATIONS UPDATE ITEMS*/
+.bootstrapmodalupdate-custom .modal-dialog .modal-content .modal-header .modal-title {
+  font-weight: bold;
+  line-height: 1.2 !important;
+}
+.bootstrapmodalupdate-custom .modal-dialog .modal-content .modal-body .text-message-modalAlt {
+  font-size: 1.4rem;
+  margin-bottom: 1rem;
+}
+.bootstrapmodalupdate-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrapupdate__form--control {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1.2rem;
+  position: relative;
+  /* MENSAJE DE ALERTA  - NOMBRE DE BANCO*/
+  /* MENSAJE DE ALERTA  - NÚMERO DE RU*/
+  /* MENSAJE DE ALERTA  - NÚMERO DE CUENTA*/
+}
+.bootstrapmodalupdate-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrapupdate__form--control #msgErrNounNombBank-update {
+  color: red;
+  padding-left: 0.65rem;
+}
+.bootstrapmodalupdate-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrapupdate__form--control #msgErrNounNumbRUC-update {
+  color: red;
+  padding-left: 0.65rem;
+}
+.bootstrapmodalupdate-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrapupdate__form--control #msgErrNounNumbAccount-update {
+  color: red;
+  padding-left: 0.65rem;
+}
+.bootstrapmodalupdate-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrapupdate__form--control__contIconLeft {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: thin solid #767676;
+  border-radius: 0.6rem 0.5rem 0.5rem 0.6rem;
+}
+.bootstrapmodalupdate-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrapupdate__form--control__contIconLeft--icon {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  vertical-align: middle;
+  min-height: 100%;
+  left: 0;
+  width: 48px;
+  background: #eee;
+  box-shadow: 0 0 0 1px #ccc;
+  border-radius: 0.5rem 0 0 0.5rem;
+}
+.bootstrapmodalupdate-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrapupdate__form--control__contIconLeft input {
+  border: none;
+  padding-left: 3.8rem;
+}
+.bootstrapmodalupdate-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrapupdate__form--control__continputs {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+.bootstrapmodalupdate-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrapupdate__form--control__continputs--controls {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  width: 48%;
+  position: relative;
+}
+.bootstrapmodalupdate-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrapupdate__form--control__continputs--controls__label {
+  margin: 0;
+  padding: 0;
+  font-size: 0.75rem;
+  position: absolute;
+  top: -10px;
+  background-color: #fff;
+  left: 6px;
+  padding: 0 0.3rem;
+  color: #777;
+}
+.bootstrapmodalupdate-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrapupdate__form--control__continputs--controls__input {
+  width: 100%;
+  border: thin solid #767676;
+  outline: none;
+  padding-bottom: 0.4rem;
+  padding-top: 0.4rem;
+  background-color: transparent;
+  font-size: 0.9rem;
+  border-radius: 0.3rem;
+  padding-left: 0.3rem;
+  padding-right: 0.3rem;
+}
+.bootstrapmodalupdate-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrapupdate__form--control__continputs--controls__input[type=number]::-webkit-inner-spin-button, .bootstrapmodalupdate-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrapupdate__form--control__continputs--controls__input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.bootstrapmodalupdate-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrapupdate__form--control__continputs--controls__input[type=number] {
+  -moz-appearance: textfield;
+}
+.bootstrapmodalupdate-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrapupdate__form--control__maps {
+  width: 100%;
+  height: 250px;
+  border: 1px solid #ccc;
+}
+.bootstrapmodalupdate-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrapupdate__form--control__linkphoto {
+  font-size: 0.9rem;
+}
+.bootstrapmodalupdate-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrapupdate__form--control__label {
+  display: flex;
+  font-size: 0.9rem;
+  position: relative;
+  left: 0;
+  top: 0;
+  color: #000;
+  margin: 0 0 0.25rem 0;
+}
+@media (min-width: 991px) {
+  .bootstrapmodalupdate-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrapupdate__form--control__label {
+    font-size: 1.05rem;
+  }
+}
+.bootstrapmodalupdate-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrapupdate__form--control__input {
+  border: thin solid #767676;
+  width: 100%;
+  outline: none;
+  transition: 0.3s ease;
+  background-color: transparent;
+  font-size: 0.9rem;
+  padding: 0.4rem 0.5rem;
+  border-radius: 0.5rem;
+}
+.bootstrapmodalupdate-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrapupdate__form--control__input[type=number]::-webkit-inner-spin-button, .bootstrapmodalupdate-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrapupdate__form--control__input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.bootstrapmodalupdate-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrapupdate__form--control__input[type=number] {
+  -moz-appearance: textfield;
+}
+.bootstrapmodalupdate-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrapupdate__form--control__input.focus {
+  border: 1px solid red;
+}
+.bootstrapmodalupdate-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrapupdate__form--control__input.complete {
+  border: 1px solid green;
+}
+.bootstrapmodalupdate-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrapupdate__form--control__input.disabled {
+  cursor: not-allowed;
+  background-color: #ccc;
+}
+@media (min-width: 991px) {
+  .bootstrapmodalupdate-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrapupdate__form--control__input {
+    font-size: 1rem;
+    padding: 0.5rem 0.8rem 0.4rem 0.8rem;
+    line-height: 1.9;
+  }
+}
+.bootstrapmodalupdate-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrapupdate__form--control__input-photo {
+  border-bottom: thin solid #767676;
+}
+.bootstrapmodalupdate-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrapupdate__form--controlSelect {
+  position: relative;
+  /* MENSAJE DE ALERTAR */
+}
+.bootstrapmodalupdate-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrapupdate__form--controlSelect #msgErrNounTypeCurr-update {
+  color: red;
+  padding-left: 0.65rem;
+}
+.bootstrapmodalupdate-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrapupdate__form--controlSelect--cFakeSelect {
+  cursor: pointer;
+  outline: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #fff;
+  border: thin solid #767676;
+  border-radius: 0.5rem;
+  padding: 0.65rem;
+}
+.bootstrapmodalupdate-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrapupdate__form--controlSelect--cFakeSelect span {
+  color: #666;
+}
+.bootstrapmodalupdate-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrapupdate__form--controlSelect--cFakeSelect input {
+  outline: none;
+  width: 0;
+  border: none;
+  background-color: transparent;
+}
+.bootstrapmodalupdate-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrapupdate__form--controlSelect--m {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  background-color: #fff;
+  min-height: 70px;
+  border: thin solid #767676;
+  z-index: 9;
+  display: none;
+}
+.bootstrapmodalupdate-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrapupdate__form--controlSelect--m.show {
+  display: block;
+}
+.bootstrapmodalupdate-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrapupdate__form--controlSelect--m--item {
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+}
+.bootstrapmodalupdate-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrapupdate__form--controlSelect--m--item:hover {
+  background-color: #ccc;
+}
+.bootstrapmodalupdate-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrapupdate__form--controlSelect--m--itemAccount {
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+}
+.bootstrapmodalupdate-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrapupdate__form--controlSelect--m--itemAccount:hover {
+  background-color: #ccc;
+}
+.bootstrapmodalupdate-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrapupdate__footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+}
+.bootstrapmodalupdate-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrapupdate__footer--btncancel {
+  border: thin solid #676767;
+  background-color: #fff;
+  padding: 0.4rem 1rem;
+  margin-left: 0.5rem;
+  color: #676767;
+  border-radius: 0.5rem;
+  margin-bottom: 0.5rem;
+  width: 100%;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: 0.2s ease-in-out;
+}
+.bootstrapmodalupdate-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrapupdate__footer--btncancel:hover {
+  background-color: #eee;
+}
+@media (min-width: 480px) {
+  .bootstrapmodalupdate-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrapupdate__footer--btncancel {
+    width: 38%;
+    padding: 0.5rem 1rem;
+    line-height: 1.8;
+  }
+}
+.bootstrapmodalupdate-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrapupdate__footer--btnupdate {
+  border: thin solid transparent;
+  padding: 0.4rem 1rem;
+  margin-left: 0.5rem;
+  color: #676767;
+  border-radius: 0.5rem;
+  margin-bottom: 0.5rem;
+  width: 100%;
+  font-size: 0.9rem;
+  font-weight: 500;
+  background-color: #3A3F51;
+  color: #fff;
+  transition: 0.2s ease-in-out;
+}
+.bootstrapmodalupdate-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrapupdate__footer--btnupdate:hover {
+  opacity: 0.5;
+}
+@media (min-width: 480px) {
+  .bootstrapmodalupdate-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrapupdate__footer--btnupdate {
+    width: 38%;
+    padding: 0.5rem 1rem;
+    line-height: 1.8;
+  }
+}
+
+/* MODAL BOOTSTRAP - CONFIGURATIONS DELETE ITEMS*/
+.bootstrapmodaldelete-custom .modal-dialog .modal-content .modal-header .modal-title {
+  font-weight: bold;
+  line-height: 1.2 !important;
+}
+.bootstrapmodaldelete-custom .modal-dialog .modal-content .modal-body .text-message-modalAlt {
+  font-size: 1.4rem;
+  margin-bottom: 2rem;
+  color: #676767;
+}
+.bootstrapmodaldelete-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrapupdate__footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+}
+.bootstrapmodaldelete-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrapupdate__footer--btncancel {
+  border: thin solid #676767;
+  background-color: #fff;
+  padding: 0.4rem 1rem;
+  margin-left: 0.5rem;
+  color: #676767;
+  border-radius: 0.5rem;
+  margin-bottom: 0.5rem;
+  width: 100%;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: 0.2s ease-in-out;
+}
+.bootstrapmodaldelete-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrapupdate__footer--btncancel:hover {
+  background-color: #eee;
+}
+@media (min-width: 480px) {
+  .bootstrapmodaldelete-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrapupdate__footer--btncancel {
+    width: 38%;
+    padding: 0.5rem 1rem;
+    line-height: 1.8;
+  }
+}
+.bootstrapmodaldelete-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrapupdate__footer--btndelete {
+  border: thin solid transparent;
+  padding: 0.4rem 1rem;
+  margin-left: 0.5rem;
+  color: #fff;
+  border-radius: 0.5rem;
+  margin-bottom: 0.5rem;
+  width: 100%;
+  font-size: 0.9rem;
+  font-weight: 500;
+  background-color: #DC3545;
+  transition: 0.2s ease-in-out;
+}
+.bootstrapmodaldelete-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrapupdate__footer--btndelete:hover {
+  opacity: 0.5;
+}
+@media (min-width: 480px) {
+  .bootstrapmodaldelete-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrapupdate__footer--btndelete {
+    width: 38%;
+    padding: 0.5rem 1rem;
+    line-height: 1.8;
+  }
+}
+
+/* STYLES INTO TABLE NON RESULT */
+.msg-non-results-res {
+  text-align: center;
+  padding: 1.2rem;
+}
+.msg-non-results-res__icon {
+  width: 50px;
+  height: 50px;
+  margin-bottom: 0.6rem;
+}
+.msg-non-results-res__title {
+  font-size: 1.1rem;
+  color: #3F3F3F;
 }
 
 /*# sourceMappingURL=styles.css.map */
