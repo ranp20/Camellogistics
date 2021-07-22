@@ -17,7 +17,14 @@
 		<main id="main-dashCamel">
 			<?php require_once 'includes/adm-header-top.php'; ?>
 			<div class="cont-dashCamel">
-				<h2>DASHBOARD PARA CAMELLOGISTICS</h2>
+				<div class="cont-dashCamel--cTop">
+					<div class="cont-dashCamel--cTop--cTitle">
+						<h2 class="cont-dashCamel--cTop--cTitle--title">REGULADORES</h2>
+					</div>
+					<div class="cont-dashCamel--cTop--cSearchInput">
+						<input type="text">
+					</div>
+				</div>
 			</div>
 		</main>
 	</div>

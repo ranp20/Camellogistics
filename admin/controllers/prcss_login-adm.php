@@ -20,7 +20,7 @@ if(isset($_POST)){
 
 		if($getbyid > 0){
 			session_start();
-			$_SESSION['admin'] = $getbyid[0];
+			$_SESSION['admin_camel'] = $getbyid[0];
 			
 			$res = array(
 				'response' => 'true'

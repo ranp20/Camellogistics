@@ -19,7 +19,7 @@
 /* BOTÓN DE HAMBURGUESA - MOBILE */
 #icon-togglemenuMobile{
 	position: relative;
-	@include nav-burger-design(24px, 23px, $dashboard-color, flex-end);
+	@include nav-burger-design(24px, 23px, #fff, flex-end);
 	&.position{
 		position: fixed;
 		margin-left: 73%;
@@ -57,7 +57,7 @@
 	display: none;
 	position: relative;
 	@media (min-width: 960px){
-		@include nav-burger-design(24px, 23px, $dashboard-color, flex-end);
+		@include nav-burger-design(24px, 23px, #fff, flex-end);
 		margin-right: 1rem;
 	}
 }
@@ -174,7 +174,7 @@
 					height: 100px;
 					border-radius: 50%;
 					box-shadow: 0 0 0 1px #fff;
-					object-fit: cover;
+					object-fit: contain;
 					object-position: center;
 				}
 			}
@@ -200,10 +200,29 @@
 				&--link{
 					color: #fff;
 					display: block;
-					padding: 1rem 0.5rem 1rem 1.5rem;
+					padding: .8rem 0.5rem .8rem 1.5rem;
 
 					&:hover{
 						background-color: #262A36;
+						box-shadow: 4px 0 0 0 $header-top-color inset;
+					}
+
+					&.active{
+						background-color: #262A36;
+						box-shadow: 4px 0 0 0 $header-top-color inset;
+						color: $header-top-color;
+					}
+
+					svg{
+						vertical-align: middle;
+						color: #fff;
+						width: 23px;
+						height: 23px;
+						margin-right: 0.5rem;
+					}
+
+					span{
+						vertical-align: middle;
 					}
 				}
 			}
@@ -223,8 +242,10 @@
 		align-items: center;
 		justify-content: flex-start;
 		padding: .5rem 1rem;
+		background-color: $header-top-color;
 		&--cTitle{
 			display: none;
+			color: #fff;
 
 			@media (min-width: 960px){
 				display: block;
@@ -232,7 +253,7 @@
 			}
 
 			h2{
-
+				font-weight: 300;
 			}
 		}
 
@@ -240,14 +261,15 @@
 			display: none;
 			margin-right: 0.8rem;
 			position: relative;
-			top: 2px;
+			top: 1px;
 
 			@media (min-width: 960px){
 				display: block;
 			}
 
 			&--timeclock{
-
+				color: #fff;
+				font-weight: 600;
 			}
 		}
 
@@ -260,6 +282,7 @@
 				cursor: pointer;
 				display: flex;
 				align-items: center;
+				color: #fff;
 				img{
 					width: 36px;
 					height: 35px;
@@ -307,5 +330,5 @@
 
 /* DASHBOARD - CONTENIDO */
 .cont-dashCamel{
-	padding: 0.5rem 1rem;
+	padding: 0.8rem 0.8rem;
 }

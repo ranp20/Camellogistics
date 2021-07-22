@@ -35,3 +35,13 @@ $(document).on("click", "#btn-sessuserAdm", function(e){
 	e.preventDefault();
 	$("#list-opts-sessuser").toggleClass("show");
 });
+/************************** ITEM SELECCIONADO DEL MENÚ EN CADA PÁGINA - SIDEBARLEFT **************************/
+var url = window.location.pathname;
+var filename = url.substring(url.lastIndexOf('/')+1);
+if(filename == "reguladores"){
+	$(".nav-dashCamel--c--cList--m--item a").removeClass("active");
+	$(".nav-dashCamel--c--cList--m--item a").eq(6).addClass("active");
+}else{
+	$(".nav-dashCamel--c--cList--m--item a").removeClass("active");
+	$('.nav-dashCamel--c--cList--m--item a[href="' + filename + '"]').addClass("active");
+}

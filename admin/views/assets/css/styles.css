@@ -409,14 +409,14 @@ img {
 }
 #icon-togglemenuMobile span {
   width: 100%;
-  border-top: 4px solid #3A3F51;
+  border-top: 4px solid #fff;
   border-radius: 2rem;
   position: relative;
   top: 0;
 }
 #icon-togglemenuMobile span:nth-child(2) {
   width: 100%;
-  border-top: 4px solid #3A3F51;
+  border-top: 4px solid #fff;
   border-radius: 1.5rem;
   position: relative;
   top: 0;
@@ -473,14 +473,14 @@ img {
   }
   #icon-togglemenuDesktop span {
     width: 100%;
-    border-top: 4px solid #3A3F51;
+    border-top: 4px solid #fff;
     border-radius: 2rem;
     position: relative;
     top: 0;
   }
   #icon-togglemenuDesktop span:nth-child(2) {
     width: 100%;
-    border-top: 4px solid #3A3F51;
+    border-top: 4px solid #fff;
     border-radius: 1.5rem;
     position: relative;
     top: 0;
@@ -595,7 +595,7 @@ img {
   height: 100px;
   border-radius: 50%;
   box-shadow: 0 0 0 1px #fff;
-  object-fit: cover;
+  object-fit: contain;
   object-position: center;
 }
 .nav-dashCamel--c--cUserInfo--cInfo {
@@ -607,10 +607,26 @@ img {
 .nav-dashCamel--c--cList--m--link {
   color: #fff;
   display: block;
-  padding: 1rem 0.5rem 1rem 1.5rem;
+  padding: 0.8rem 0.5rem 0.8rem 1.5rem;
 }
 .nav-dashCamel--c--cList--m--link:hover {
   background-color: #262A36;
+  box-shadow: 4px 0 0 0 #20AFDB inset;
+}
+.nav-dashCamel--c--cList--m--link.active {
+  background-color: #262A36;
+  box-shadow: 4px 0 0 0 #20AFDB inset;
+  color: #20AFDB;
+}
+.nav-dashCamel--c--cList--m--link svg {
+  vertical-align: middle;
+  color: #fff;
+  width: 23px;
+  height: 23px;
+  margin-right: 0.5rem;
+}
+.nav-dashCamel--c--cList--m--link span {
+  vertical-align: middle;
 }
 
 /* CONTENEDOR DEL HEADER Y EL CONTENIDO */
@@ -626,9 +642,11 @@ img {
   align-items: center;
   justify-content: flex-start;
   padding: 0.5rem 1rem;
+  background-color: #20AFDB;
 }
 .h-dashCamel--c--cTitle {
   display: none;
+  color: #fff;
 }
 @media (min-width: 960px) {
   .h-dashCamel--c--cTitle {
@@ -636,16 +654,23 @@ img {
     margin-right: auto;
   }
 }
+.h-dashCamel--c--cTitle h2 {
+  font-weight: 300;
+}
 .h-dashCamel--c--cClock {
   display: none;
   margin-right: 0.8rem;
   position: relative;
-  top: 2px;
+  top: 1px;
 }
 @media (min-width: 960px) {
   .h-dashCamel--c--cClock {
     display: block;
   }
+}
+.h-dashCamel--c--cClock--timeclock {
+  color: #fff;
+  font-weight: 600;
 }
 .h-dashCamel--c--cUser {
   margin-left: auto;
@@ -659,6 +684,7 @@ img {
   cursor: pointer;
   display: flex;
   align-items: center;
+  color: #fff;
 }
 .h-dashCamel--c--cUser--linkcont img {
   width: 36px;
@@ -701,7 +727,7 @@ img {
 
 /* DASHBOARD - CONTENIDO */
 .cont-dashCamel {
-  padding: 0.5rem 1rem;
+  padding: 0.8rem 0.8rem;
 }
 
 /*# sourceMappingURL=styles.css.map */
