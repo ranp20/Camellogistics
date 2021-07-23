@@ -159,7 +159,7 @@
 
 		&--cUserInfo{
 			text-align: center;
-			margin-bottom: 2rem;
+			margin-bottom: 1rem;
 			&--cAvatar{
 				max-width: 125px;
 				margin-left: auto;
@@ -187,7 +187,8 @@
 				}
 
 				&--desc{
-
+					font-size: 0.8rem;
+					margin: 0;
 				}
 			}
 		}
@@ -205,8 +206,8 @@
     			font-size: .8rem;
 
 					@media (min-width: 768px){
-						padding: .8rem 0.5rem .8rem 1.5rem;
-						font-size: 1rem;
+						padding: .7rem 0.5rem .7rem 1.5rem;
+						font-size: .9rem;
 					}
 
 					&:hover{
@@ -552,20 +553,8 @@
 							margin-bottom: .5rem;
 							position: relative;
 
-							/* MENSAJE DE ALERTA  - NOMBRE DE BANCO*/
-							#msgErrNounNombBank{
-								color: red;
-								padding-left: 0.65rem;
-							}
-
-							/* MENSAJE DE ALERTA  - NÚMERO DE RU*/
-							#msgErrNounNumbRUC{
-								color: red;
-								padding-left: 0.65rem;
-							}
-
-							/* MENSAJE DE ALERTA  - NÚMERO DE CUENTA*/
-							#msgErrNounNumbAccount{
+							/* MENSAJE DE ALERTA  - REGULADOR TWO*/
+							#msgErrNounNameProduct{
 								color: red;
 								padding-left: 0.65rem;
 							}
@@ -737,15 +726,16 @@
 
 						&--controlSelect{
 						  position: relative;
+						  margin-bottom: 0.5rem;
 							
-							/* MENSAJE DE ALERTA - TIPO DE MONEDA */
-							#msgErrNounTypeCurr{
+							/* MENSAJE DE ALERTA  - REGULADOR ONE*/
+							#msgErrNounReguladorOne{
 								color: red;
 								padding-left: 0.65rem;
 							}
 
-							/* MENSAJE DE ALERTAR - TIPO DE CUENTA*/
-							#msgErrNounTypeAccount{
+							/* MENSAJE DE ALERTA  - REGULADOR TWO*/
+							#msgErrNounReguladorTwo{
 								color: red;
 								padding-left: 0.65rem;
 							}
@@ -759,7 +749,12 @@
 						    background-color: #fff;
 						    border: thin solid $border-bottom-input;
 						    border-radius: .5rem;
-						    padding: .65rem;
+						    padding: 0.5rem 0.8rem 0.4rem 0.8rem;
+						    line-height: 1.5;
+
+						    &.showList{
+						    	border-radius: .5rem .5rem 0 0;
+						    }
 
 								span{
 									color: #666;
@@ -782,10 +777,17 @@
 						    left: 0;
 						    width: 100%;
 						    background-color: #fff;
-						    min-height: 70px;
-						    border: thin solid $border-bottom-input;
+						    max-height: 105.5px;
 						    z-index: 9;
 						    display: none;
+						    overflow-y: auto;
+						    overflow-x: hidden;
+						    top: 70px;
+						    z-index: 9999999;
+						    border-bottom: thin solid #767676;
+						    border-left: thin solid #767676;
+						    border-right: thin solid #767676;
+						    border-top: none;
 
 						    &.show{
 						    	display: block;	
@@ -794,6 +796,7 @@
 								&--item{
 									cursor: pointer;
     							padding: .5rem 1rem;
+    							font-size: 0.8rem;
 									&:hover{
 										background-color: #ccc;
 									}
@@ -901,18 +904,6 @@
 
 							/* MENSAJE DE ALERTA  - NOMBRE DE BANCO*/
 							#msgErrNounNombBank-update{
-								color: red;
-								padding-left: 0.65rem;
-							}
-
-							/* MENSAJE DE ALERTA  - NÚMERO DE RU*/
-							#msgErrNounNumbRUC-update{
-								color: red;
-								padding-left: 0.65rem;
-							}
-
-							/* MENSAJE DE ALERTA  - NÚMERO DE CUENTA*/
-							#msgErrNounNumbAccount-update{
 								color: red;
 								padding-left: 0.65rem;
 							}

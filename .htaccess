@@ -11,3 +11,4 @@ RewriteRule calculadora?$ views/calculadora.php
 RewriteRule admin?$ admin/index.php
 RewriteRule dashboard?$ admin/views/dashboard.php
 RewriteRule reguladores?$ admin/views/regulators.php
+RewriteRule productos?$ admin/views/products.php

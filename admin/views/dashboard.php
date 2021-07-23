@@ -3,7 +3,6 @@
 	if(!isset($_SESSION['admin_camel'])){
 		header("Location: ../");
 	}
-	$admname = $_SESSION['admin_camel']['email'];
 ?>
 <!DOCTYPE html>
 <html lang="es">

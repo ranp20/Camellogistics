@@ -41,7 +41,7 @@ $(document).on('submit', '#form-add-regulator', function(e){
 /************************** LISTAR REGULADORES **************************/
 function listRegulators(searchVal){ 
   $.ajax({
-    url: "../admin/controllers/list_regulators.php",
+    url: "../admin/controllers/c_list_regulators.php",
     method: "POST",
     datatype: "JSON",
     contentType: 'application/x-www-form-urlencoded;charset=UTF-8',

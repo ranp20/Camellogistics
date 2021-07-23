@@ -591,7 +591,7 @@ img {
 }
 .nav-dashCamel--c--cUserInfo {
   text-align: center;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
 }
 .nav-dashCamel--c--cUserInfo--cAvatar {
   max-width: 125px;
@@ -618,6 +618,10 @@ img {
 .nav-dashCamel--c--cUserInfo--cInfo--title {
   margin-bottom: 0.25rem;
 }
+.nav-dashCamel--c--cUserInfo--cInfo--desc {
+  font-size: 0.8rem;
+  margin: 0;
+}
 .nav-dashCamel--c--cList--m--link {
   color: #fff;
   display: block;
@@ -626,8 +630,8 @@ img {
 }
 @media (min-width: 768px) {
   .nav-dashCamel--c--cList--m--link {
-    padding: 0.8rem 0.5rem 0.8rem 1.5rem;
-    font-size: 1rem;
+    padding: 0.7rem 0.5rem 0.7rem 1.5rem;
+    font-size: 0.9rem;
   }
 }
 .nav-dashCamel--c--cList--m--link:hover {
@@ -925,19 +929,9 @@ img {
   flex-direction: column;
   margin-bottom: 0.5rem;
   position: relative;
-  /* MENSAJE DE ALERTA  - NOMBRE DE BANCO*/
-  /* MENSAJE DE ALERTA  - NÚMERO DE RU*/
-  /* MENSAJE DE ALERTA  - NÚMERO DE CUENTA*/
+  /* MENSAJE DE ALERTA  - REGULADOR TWO*/
 }
-.bootstrapmodal-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrap__form--control #msgErrNounNombBank {
-  color: red;
-  padding-left: 0.65rem;
-}
-.bootstrapmodal-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrap__form--control #msgErrNounNumbRUC {
-  color: red;
-  padding-left: 0.65rem;
-}
-.bootstrapmodal-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrap__form--control #msgErrNounNumbAccount {
+.bootstrapmodal-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrap__form--control #msgErrNounNameProduct {
   color: red;
   padding-left: 0.65rem;
 }
@@ -1089,14 +1083,15 @@ img {
 }
 .bootstrapmodal-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrap__form--controlSelect {
   position: relative;
-  /* MENSAJE DE ALERTA - TIPO DE MONEDA */
-  /* MENSAJE DE ALERTAR - TIPO DE CUENTA*/
+  margin-bottom: 0.5rem;
+  /* MENSAJE DE ALERTA  - REGULADOR ONE*/
+  /* MENSAJE DE ALERTA  - REGULADOR TWO*/
 }
-.bootstrapmodal-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrap__form--controlSelect #msgErrNounTypeCurr {
+.bootstrapmodal-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrap__form--controlSelect #msgErrNounReguladorOne {
   color: red;
   padding-left: 0.65rem;
 }
-.bootstrapmodal-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrap__form--controlSelect #msgErrNounTypeAccount {
+.bootstrapmodal-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrap__form--controlSelect #msgErrNounReguladorTwo {
   color: red;
   padding-left: 0.65rem;
 }
@@ -1109,7 +1104,11 @@ img {
   background-color: #fff;
   border: thin solid #767676;
   border-radius: 0.5rem;
-  padding: 0.65rem;
+  padding: 0.5rem 0.8rem 0.4rem 0.8rem;
+  line-height: 1.5;
+}
+.bootstrapmodal-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrap__form--controlSelect--cFakeSelect.showList {
+  border-radius: 0.5rem 0.5rem 0 0;
 }
 .bootstrapmodal-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrap__form--controlSelect--cFakeSelect span {
   color: #666;
@@ -1125,10 +1124,17 @@ img {
   left: 0;
   width: 100%;
   background-color: #fff;
-  min-height: 70px;
-  border: thin solid #767676;
+  max-height: 105.5px;
   z-index: 9;
   display: none;
+  overflow-y: auto;
+  overflow-x: hidden;
+  top: 70px;
+  z-index: 9999999;
+  border-bottom: thin solid #767676;
+  border-left: thin solid #767676;
+  border-right: thin solid #767676;
+  border-top: none;
 }
 .bootstrapmodal-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrap__form--controlSelect--m.show {
   display: block;
@@ -1136,6 +1142,7 @@ img {
 .bootstrapmodal-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrap__form--controlSelect--m--item {
   cursor: pointer;
   padding: 0.5rem 1rem;
+  font-size: 0.8rem;
 }
 .bootstrapmodal-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrap__form--controlSelect--m--item:hover {
   background-color: #ccc;
@@ -1216,18 +1223,8 @@ img {
   margin-bottom: 1.2rem;
   position: relative;
   /* MENSAJE DE ALERTA  - NOMBRE DE BANCO*/
-  /* MENSAJE DE ALERTA  - NÚMERO DE RU*/
-  /* MENSAJE DE ALERTA  - NÚMERO DE CUENTA*/
 }
 .bootstrapmodalupdate-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrapupdate__form--control #msgErrNounNombBank-update {
-  color: red;
-  padding-left: 0.65rem;
-}
-.bootstrapmodalupdate-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrapupdate__form--control #msgErrNounNumbRUC-update {
-  color: red;
-  padding-left: 0.65rem;
-}
-.bootstrapmodalupdate-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrapupdate__form--control #msgErrNounNumbAccount-update {
   color: red;
   padding-left: 0.65rem;
 }
