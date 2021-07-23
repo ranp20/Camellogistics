@@ -67,8 +67,8 @@ img {
   margin-right: auto;
 }
 
-.box-m {
-  max-width: 650px;
+.box-small {
+  max-width: 440px;
   width: 90%;
   margin-left: auto;
   margin-right: auto;
@@ -76,6 +76,10 @@ img {
 
 .one-hidden > option:first-child {
   display: none !important;
+}
+
+.contain-table-responsive {
+  overflow-x: auto !important;
 }
 
 /************************** LOADER DEL ADMINISTRADOR **************************/
@@ -385,11 +389,9 @@ img {
 
 /* CONTENEDOR PRINCIPAL DEL DASHBOARD */
 #dash-contT {
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: auto 1fr;
-  min-height: 100vh;
+  display: flex;
   width: 100%;
+  min-height: 100vh;
   height: 100%;
 }
 @media (min-width: 960px) {
@@ -521,7 +523,7 @@ img {
     max-width: 300px;
     background-color: #3A3F51;
     width: 100%;
-    position: relative;
+    position: sticky;
     display: block;
     pointer-events: auto;
     opacity: 1;
@@ -650,6 +652,15 @@ img {
 }
 
 /* CONTENEDOR DEL HEADER Y EL CONTENIDO */
+#main-dashCamel {
+  padding-top: 0;
+  padding-bottom: 0;
+  height: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  overflow: hidden;
+}
 @media (min-width: 960px) {
   #main-dashCamel {
     width: 100%;
@@ -684,7 +695,7 @@ img {
   position: relative;
   top: 1px;
 }
-@media (min-width: 960px) {
+@media (min-width: 1200px) {
   .h-dashCamel--c--cClock {
     display: block;
   }

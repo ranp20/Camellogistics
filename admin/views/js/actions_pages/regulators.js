@@ -1,30 +1,43 @@
 $(function(){
   listRegulators();
+  //load(1);
 });
+/************************** PAGINACIÓN DE CONTENIDO **************************/
+// function load(page){
+//   var parametros = {"action": "filter","page": page};
+//   $("#loader").fadeIn('slow');
+//   $.ajax({
+//     url:'../admin/controllers/pag_regulators.php',
+//     method: 'POST',
+//     data: parametros,
+//     beforeSend: function(){
+//       $("#loader").html("<img src='../admin/views/assets/img/Utilities/loader.gif'>");
+//     },
+//     success:function(data){
+//       console.log(data);
+//       $(".outer_div").html(data).fadeIn('slow');
+//       $("#loader").html("");
+//     }
+//   });
+// }
 /************************** AGREGAR REGULADOR **************************/
-$(document).on('click', '#btnadd-regulator', function(e){
+$(document).on('submit', '#form-add-regulator', function(e){
   e.preventDefault();
-  
-  var frmAdd = new FormData();
-
-  frmAdd.append("name", $("#name").val());
-
+  var formdata = $(this).serializeArray();
   $.ajax({
     url: "../admin/controllers/c_add-regulators.php",
     method: "POST",
-    data: frmAdd,
-    contentType: false,
-    cache: false,
-    processData: false,
+    data: formdata,
   }).done((res) => {
-
-    $('#form-add-regulator')[0].reset();
-    listRegulators();
-    $('#addregulatorModal').modal("hide");
-
+    if(res == "true"){
+      $('#form-add-regulator')[0].reset();
+      listRegulators();
+      $('#addregulatorModal').modal("hide");
+    }else{
+      console.log('Lo sentimos, ocurrió un error al agregar el registro');
+    }
   });
 });
-
 /************************** LISTAR REGULADORES **************************/
 function listRegulators(searchVal){ 
   $.ajax({

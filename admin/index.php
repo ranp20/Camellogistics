@@ -13,7 +13,7 @@
 <body>
 	<div id="cMessage-user"></div>
 	<main class="c-LoginAdm">
-		<div class="c-LoginAdm--cLoginF box-m">
+		<div class="c-LoginAdm--cLoginF box-small">
 			<div class="c-LoginAdm--cLoginF--cLogo">
 				<img src="views/assets/img/utilities/logotipo-camellogistics.png" alt="">
 			</div>

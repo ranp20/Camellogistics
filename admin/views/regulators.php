@@ -39,6 +39,15 @@
 						</tbody>
 					</table>
 				</div>
+				<!-- <div class="container-fluid">
+			    <div class="row">
+			      <div class="col-xs-12">
+			        <h2 class="text-center mb-4"> Listado de Usuarios </h2>
+			        <div id="loader" class="text-center"> <img src="<?= $url ?>assets/img/utilities/loader.gif"></div>
+			        <div class="outer_div"></div>
+			      </div>
+			    </div>
+			  </div> -->
 				<!-- MODAL - AGREGAR NUEVO ITEM -->
 				<div class="modal fade bootstrapmodal-custom" id="addregulatorModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 				  <div class="modal-dialog" role="document">
@@ -51,14 +60,14 @@
 				      </div>
 				      <div class="modal-body">
 				      	<div class="cont-modalbootstrap">
-					        <form action="" id="form-add-regulator" method="POST" class="cont-modalbootstrap__form" autocomplete="false" enctype="multipart/form-data">
+					        <form id="form-add-regulator" method="POST" class="cont-modalbootstrap__form" autocomplete="false">
 					        	<div class="cont-modalbootstrap__form--control">
 					        		<label for="name" class="cont-modalbootstrap__form--control__label">Nombre del Regulador</label>
 					        		<input id="name" class="cont-modalbootstrap__form--control__input" name="name" type="text" maxlength="80" required placeholder="Ingrese el nombre del regulador">
 					        	</div>
 							      <div class="cont-modalbootstrap__footer">
 							        <button type="button" class="cont-modalbootstrap__footer--btncancel" data-dismiss="modal">CANCELAR</button>
-							        <button type="button" class="cont-modalbootstrap__footer--btnadd" id="btnadd-regulator" type="submit">GUARDAR</button>
+							        <button type="submit" class="cont-modalbootstrap__footer--btnadd" id="btnadd-regulator">GUARDAR</button>
 							      </div>
 					        </form>
 				      	</div>
@@ -78,7 +87,7 @@
 				      </div>
 				      <div class="modal-body cont-total-update-items">
 				      	<div class="cont-modalbootstrapupdate">
-					        <form action="" id="form-update-regulator" method="POST" class="cont-modalbootstrapupdate__form" autocomplete="false" enctype="multipart/form-data">
+					        <form id="form-update-regulator" method="POST" class="cont-modalbootstrapupdate__form" autocomplete="false">
 					        	<input type="hidden" id="idupdate-regulator">
 					        	<div class="cont-modalbootstrapupdate__form--control">
 					        		<label for="name-update" class="cont-modalbootstrapupdate__form--control__label complete">Nombre del Regulador</label>
@@ -107,7 +116,7 @@
 				      <div class="modal-body cont-total-update-items">
 					      <h2 class="text-message-modalAlt">¿Seguro que desea eliminar este registro?</h2>
 				      	<div class="cont-modalbootstrapupdate">
-					        <form action="" id="form-delete-regulator" method="POST" class="cont-modalbootstrapupdate__form" autocomplete="false" enctype="multipart/form-data">
+					        <form id="form-delete-regulator" method="POST" class="cont-modalbootstrapupdate__form" autocomplete="false">
 					        	<input type="hidden" id="iddelete-regulator">
 							      <div class="cont-modalbootstrapupdate__footer">
 							        <button type="button" class="cont-modalbootstrapupdate__footer--btncancel" data-dismiss="modal">CANCELAR</button>

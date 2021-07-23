@@ -4,7 +4,7 @@ class Add_Regulator extends Connection{
 	function add(){
 		$name = $_POST['name'];
 		try{
-			$sql = "CALL sp_add_regulator (:name)";
+			$sql = "CALL sp_add_regulator(:name)";
 			$stm = $this->con->prepare($sql);
 			$stm->bindValue(":name", $name);
 			$stm->execute();
@@ -15,5 +15,5 @@ class Add_Regulator extends Connection{
 		}
 	}
 }
-$add = new Add_Regulator();
-echo $add->add();
+$regulator = new Add_Regulator();
+echo $regulator->add();
