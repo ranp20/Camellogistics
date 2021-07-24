@@ -65,7 +65,7 @@
 					        <form id="form-add-product" method="POST" class="cont-modalbootstrap__form" autocomplete="false">
 					        	<div class="cont-modalbootstrap__form--control">
 					        		<label for="nameProduct" class="cont-modalbootstrap__form--control__label">Nombre del Producto</label>
-					        		<input id="nameProduct" class="cont-modalbootstrap__form--control__input" name="nameProduct" type="text" maxlength="80" placeholder="Ingrese el nombre del producto">
+					        		<input id="nameProduct" class="cont-modalbootstrap__form--control__input" name="nameProduct" type="text" maxlength="300" placeholder="Ingrese el nombre del producto">
 					        		<span id="msgErrNounNameProduct"></span>
 					        	</div>
 					        	<div class="cont-modalbootstrap__form--controlRadios">
@@ -109,7 +109,7 @@
 					        	<input type="hidden" id="idupdate-product">
 					        	<div class="cont-modalbootstrapupdate__form--control">
 					        		<label for="name-update" class="cont-modalbootstrapupdate__form--control__label complete">Nombre del producto</label>
-					        		<input id="name-update" class="cont-modalbootstrapupdate__form--control__input" name="name-update" type="text" maxlength="80" placeholder="Ingrese el nombre del producto">
+					        		<input id="name-update" class="cont-modalbootstrapupdate__form--control__input" name="name-update" type="text" maxlength="300" placeholder="Ingrese el nombre del producto">
 					        	</div>
 					        	<div class="cont-modalbootstrapupdate__form--controlRadios">
 					        		<p class="cont-modalbootstrapupdate__form--controlRadios--title">Reguladores</p>

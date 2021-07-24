@@ -21,7 +21,7 @@
 					<button type="button" href="#" id="add-regulator" class="cont-dashCamel__addtitle--btn-add" data-toggle="modal" data-target="#addregulatorModal"><span class="cont-dashCamel__addtitle--btn-add__hidden">Agregar&nbsp;</span>+</button>
 				</div>
 				<div class="cont-dashCamel__inputsearch-table">
-					<input type="text" class="cont-dashCamel__inputsearch-table--input" name="searchregulators" id="searchregulators" maxlength="100" placeholder="Buscar reguladores...">
+					<input type="text" class="cont-dashCamel__inputsearch-table--input" name="searchregulators" id="searchregulators" maxlength="200" placeholder="Buscar reguladores...">
 				</div>
 				<div class="contain-table-responsive">
 					<table class="cont-dashCamel__list-results">
@@ -62,7 +62,7 @@
 					        <form id="form-add-regulator" method="POST" class="cont-modalbootstrap__form" autocomplete="false">
 					        	<div class="cont-modalbootstrap__form--control">
 					        		<label for="name" class="cont-modalbootstrap__form--control__label">Nombre del Regulador</label>
-					        		<input id="name" class="cont-modalbootstrap__form--control__input" name="name" type="text" maxlength="80" required placeholder="Ingrese el nombre del regulador">
+					        		<input id="name" class="cont-modalbootstrap__form--control__input" name="name" type="text" maxlength="200" required placeholder="Ingrese el nombre del regulador">
 					        	</div>
 							      <div class="cont-modalbootstrap__footer">
 							        <button type="button" class="cont-modalbootstrap__footer--btncancel" data-dismiss="modal">CANCELAR</button>
@@ -90,7 +90,7 @@
 					        	<input type="hidden" id="idupdate-regulator">
 					        	<div class="cont-modalbootstrapupdate__form--control">
 					        		<label for="name-update" class="cont-modalbootstrapupdate__form--control__label complete">Nombre del Regulador</label>
-					        		<input id="name-update" class="cont-modalbootstrapupdate__form--control__input" name="name-update" type="text" maxlength="36" placeholder="Ingrese el nombre del país">
+					        		<input id="name-update" class="cont-modalbootstrapupdate__form--control__input" name="name-update" type="text" maxlength="150" placeholder="Ingrese el nombre del país">
 					        	</div>
 							      <div class="cont-modalbootstrapupdate__footer">
 							        <button type="button" class="cont-modalbootstrapupdate__footer--btncancel" data-dismiss="modal">CANCELAR</button>

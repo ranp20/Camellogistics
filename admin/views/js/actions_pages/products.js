@@ -245,9 +245,9 @@ function listProducts(searchVal){
     }else{
       response.forEach(e => {
       var nounRegOne = "";
-      (e.reguladorOne == null || e.reguladorOne == "") ? nounRegOne = "No especificado" : nounRegOne = e.reguladorOne;
+      (e.reguladorOne == null || e.reguladorOne == "") ? nounRegOne = "NO REQUIERE" : nounRegOne = e.reguladorOne;
       var nounRegTwo = "";
-      (e.reguladorTwo == null || e.reguladorTwo == "") ? nounRegTwo = "No especificado" : nounRegTwo = e.reguladorTwo;
+      (e.reguladorTwo == null || e.reguladorTwo == "") ? nounRegTwo = "NO REQUIERE" : nounRegTwo = e.reguladorTwo;
       
 
       template += `
