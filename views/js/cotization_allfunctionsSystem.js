@@ -842,14 +842,6 @@ $(document).on("click", ".c-SelServicesQuantity--contStep--cBottom--cListService
               <p>LIMA</p>
               <small><span>País:</span><span>Perú</span></small>
             </li>
-            <li class="c-SelServicesQuantity--contStep--cBottom--cListServices--m--item--cont--c50--control--cList--m--item">
-              <p>HUANCAVELICA</p>
-              <small><span>País:</span><span>Perú</span></small>
-            </li>
-            <li class="c-SelServicesQuantity--contStep--cBottom--cListServices--m--item--cont--c50--control--cList--m--item">
-              <p>PUNO</p>
-              <small><span>País:</span><span>Perú</span></small>
-            </li>
           </ul> 
         </div>
         <span class="c-SelServicesQuantity--contStep--cBottom--cListServices--m--item--cont--c50--control--spanAlertMsg">Debe seleccionar la provincia</span>
@@ -962,117 +954,125 @@ $(document).on("keyup", "#ipt-valueProductRequest", function(){
     $(this).val("");
   }
 });
-
+/************************** SERVICIO 3 - LISTADO DE PROVINCIAS Y DISTRITOS DE ACUERDO AL PAÍS O LUGAR DE ENTREG **************************/
+/************************** MOSTRAR EL LISTADO DE PROVINCIAS **************************/
+$(document).on("focus", "#ipt-ListProvinciasByCountryRequestAll", function(){$("#cont-showSListAllProvinciasByCountry").addClass("show");});
+$(document).on("keyup", "#ipt-ListProvinciasByCountryRequestAll", function(){$("#cont-showSListAllProvinciasByCountry").addClass("show");});
+$(document).on("click", "#ipt-ListProvinciasByCountryRequestAll", function(){
+  console.log(localStorage.getItem("port_DId") + " " + localStorage.getItem("port_DName"));
+});
 /*==========================================================================================================
 =                               CANCELAR EL PROCESO DESDE EL PUNTO O PASO 3                                =
 ==========================================================================================================*/
 /************************** CANCELAR LA OPERACIÓN Y VOLVER A LOS PASOS ANTERIORES **************************/
 $(document).on("click", "#btn-backStep-cancel", function(){
-  alert("¿Seguro que deseas volver?");
-  
-  /************************** OCULTAR EL CONTENIDO DE ELEGIR SERVICIOS **************************/
-  $("#step-Three").addClass("hide step-hidden");
-  /************************** LOADER PARA HABILITAR LA SIGUIENTE FASE **************************/
-  $("#portfolio").append(`
-    <div id="loader-clasic-op100">
-      <div class="loader-clasic-op100--c"></div>
-    </div>
-  `);
-  setTimeout(function(){
-    $("#loader-clasic-op100").remove();
-  }, 1100);
-  /************************** LISTAR LOS TIPOS DE CONTENEDORES, UNIDADES DE PESO Y UNIDADES DE VOLUMEN **************************/
-  list_typ_containers();
-  list_typ_measurement_units();
-  list_typ_volume_units();
-  /************************** GENERAR NUEVAMENTE LA ESTRUCTURA DE LOS PASOS 2 Y 2.1 **************************/
-  $("#frm_cotizacion").html(`
-    <!------------------------------------------ SEGUNDA FASE - PASO 2 (INICIO) ----------------------------------->
-    <div id="step-Two" class="c-CalculatorStep--form--contStep show">
-      <div class="box-container">
-        <div class="c-CalculatorStep--form--contStep--cTitledesconly">
-          <h3 class="c-CalculatorStep--form--contStep--cTitledesconly--desc">PASO 2. Indica Ruta y Tipo de Contenedor</h3>
-        </div>
-        <div class="c-CalculatorStep--form--contStep--cStepSelects">
-          <div class="c-CalculatorStep--form--contStep--cStepSelects--item">
-            <p class="c-CalculatorStep--form--contStep--cStepSelects--item--title">Tipo envío</p>
-            <button type="button" id="val-typecontainerflete" class="c-CalculatorStep--form--contStep--cStepSelects--item--fakeselbtn">Elija una opción</button>
-            <span id="msgNounTypeSend-step"></span>
-            <small id="detail-CalcToModalAssoc">
-              <span>Bultos = <span id="small-valPCalcReqModal"></span>,&nbsp;</span>
-              <span>Peso = <span id="small-valWCalcReqModal"></span>&nbsp;<span id="small-valWPrefixCalcReqModal"></span>,&nbsp;</span>
-              <span>Volumen = <span id="small-valVCalcReqModal"></span>&nbsp;<span id="small-valVPrefixCalcReqModal"></span></span>
-            </small>
-            <div class="c-CalculatorStep--form--contStep--cStepSelects--item--selContaineropts" id="container-containOptsContainers">
-              <div class="c-CalculatorStep--form--contStep--cStepSelects--item--selContaineropts--c" id="cont-containOptsContainers"></div>
-              <div class="c-CalculatorStep--form--contStep--cStepSelects--item--selContaineropts--filldatacontainer" id="cont-fillDatabyContain">
-                <div class="c-CalculatorStep--form--contStep--cStepSelects--item--selContaineropts--filldatacontainer--cControl">
-                  <label for="">BULTOS</label>
-                  <input type="number" value="1" placeholder="Ingrese nro. de bultos" id="val-CalcPacksRequestModal">
-                </div>
-                <div class="c-CalculatorStep--form--contStep--cStepSelects--item--selContaineropts--filldatacontainer--cControl">
-                  <label for="">PESO</label>
-                  <div class="c-CalculatorStep--form--contStep--cStepSelects--item--selContaineropts--filldatacontainer--cControl--twocontrols">
-                    <input type="number" placeholder="Ingrese peso" id="val-CalcWeightRequestModal">
-                    <select name="" id="valinput-peso"></select>
+  res = confirm("¿Seguro que desea volver, se perderán lo cambios realizados y/o cálculos hasta este punto?");
+  if (res == true) {  
+    /************************** OCULTAR EL CONTENIDO DE ELEGIR SERVICIOS **************************/
+    $("#step-Three").addClass("hide step-hidden");
+    /************************** LOADER PARA HABILITAR LA SIGUIENTE FASE **************************/
+    $("#portfolio").append(`
+      <div id="loader-clasic-op100">
+        <div class="loader-clasic-op100--c"></div>
+      </div>
+    `);
+    setTimeout(function(){
+      $("#loader-clasic-op100").remove();
+    }, 1100);
+    /************************** LISTAR LOS TIPOS DE CONTENEDORES, UNIDADES DE PESO Y UNIDADES DE VOLUMEN **************************/
+    list_typ_containers();
+    list_typ_measurement_units();
+    list_typ_volume_units();
+    /************************** GENERAR NUEVAMENTE LA ESTRUCTURA DE LOS PASOS 2 Y 2.1 **************************/
+    $("#frm_cotizacion").html(`
+      <!------------------------------------------ SEGUNDA FASE - PASO 2 (INICIO) ----------------------------------->
+      <div id="step-Two" class="c-CalculatorStep--form--contStep show ptop-2">
+        <div class="box-container">
+          <div class="c-CalculatorStep--form--contStep--cTitledesconly">
+            <h3 class="c-CalculatorStep--form--contStep--cTitledesconly--desc">PASO 2. Indica Ruta y Tipo de Contenedor</h3>
+          </div>
+          <div class="c-CalculatorStep--form--contStep--cStepSelects">
+            <div class="c-CalculatorStep--form--contStep--cStepSelects--item">
+              <p class="c-CalculatorStep--form--contStep--cStepSelects--item--title">Tipo envío</p>
+              <button type="button" id="val-typecontainerflete" class="c-CalculatorStep--form--contStep--cStepSelects--item--fakeselbtn">Elija una opción</button>
+              <span id="msgNounTypeSend-step"></span>
+              <small id="detail-CalcToModalAssoc">
+                <span>Bultos = <span id="small-valPCalcReqModal"></span>,&nbsp;</span>
+                <span>Peso = <span id="small-valWCalcReqModal"></span>&nbsp;<span id="small-valWPrefixCalcReqModal"></span>,&nbsp;</span>
+                <span>Volumen = <span id="small-valVCalcReqModal"></span>&nbsp;<span id="small-valVPrefixCalcReqModal"></span></span>
+              </small>
+              <div class="c-CalculatorStep--form--contStep--cStepSelects--item--selContaineropts" id="container-containOptsContainers">
+                <div class="c-CalculatorStep--form--contStep--cStepSelects--item--selContaineropts--c" id="cont-containOptsContainers"></div>
+                <div class="c-CalculatorStep--form--contStep--cStepSelects--item--selContaineropts--filldatacontainer" id="cont-fillDatabyContain">
+                  <div class="c-CalculatorStep--form--contStep--cStepSelects--item--selContaineropts--filldatacontainer--cControl">
+                    <label for="">BULTOS</label>
+                    <input type="number" value="1" placeholder="Ingrese nro. de bultos" id="val-CalcPacksRequestModal">
                   </div>
-                </div>
-                <div class="c-CalculatorStep--form--contStep--cStepSelects--item--selContaineropts--filldatacontainer--cControl">
-                  <label for="">VOLUMEN</label>
-                  <div class="c-CalculatorStep--form--contStep--cStepSelects--item--selContaineropts--filldatacontainer--cControl--twocontrols">
-                    <input type="number" placeholder="Ingrese volumen" id="val-CalcVolumeRequestModal">
-                    <select name="" id="valinput-volumen"></select>
+                  <div class="c-CalculatorStep--form--contStep--cStepSelects--item--selContaineropts--filldatacontainer--cControl">
+                    <label for="">PESO</label>
+                    <div class="c-CalculatorStep--form--contStep--cStepSelects--item--selContaineropts--filldatacontainer--cControl--twocontrols">
+                      <input type="number" placeholder="Ingrese peso" id="val-CalcWeightRequestModal">
+                      <select name="" id="valinput-peso"></select>
+                    </div>
                   </div>
-                </div>
-                <a href="#" id="Add-fromcalculatorModal" class="c-CalculatorStep--form--contStep--cStepSelects--item--selContaineropts--filldatacontainer--linkModalDatas">AYUDA - CALCULA VOLUMEN (m3) AQUÍ</a>
-                <div class="c-CalculatorStep--form--contStep--cStepSelects--item--selContaineropts--filldatacontainer--cbtnsActs">
-                  <a href="#" id="btn-backToModalContainers">VOLVER</a>
-                  <button type="button" id="btn-saveToModalContainers">GUARDAR</button>
+                  <div class="c-CalculatorStep--form--contStep--cStepSelects--item--selContaineropts--filldatacontainer--cControl">
+                    <label for="">VOLUMEN</label>
+                    <div class="c-CalculatorStep--form--contStep--cStepSelects--item--selContaineropts--filldatacontainer--cControl--twocontrols">
+                      <input type="number" placeholder="Ingrese volumen" id="val-CalcVolumeRequestModal">
+                      <select name="" id="valinput-volumen"></select>
+                    </div>
+                  </div>
+                  <a href="#" id="Add-fromcalculatorModal" class="c-CalculatorStep--form--contStep--cStepSelects--item--selContaineropts--filldatacontainer--linkModalDatas">AYUDA - CALCULA VOLUMEN (m3) AQUÍ</a>
+                  <div class="c-CalculatorStep--form--contStep--cStepSelects--item--selContaineropts--filldatacontainer--cbtnsActs">
+                    <a href="#" id="btn-backToModalContainers">VOLVER</a>
+                    <button type="button" id="btn-saveToModalContainers">GUARDAR</button>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-          <div class="c-CalculatorStep--form--contStep--cStepSelects--item">
-            <p class="c-CalculatorStep--form--contStep--cStepSelects--item--title">Origen</p>
-            <input type="text" placeholder="ESCRIBA País, Ciudad o Puerto" id="input-vallistorigin">
-            <span id="msgNounOriginSend-step"></span>
-            <div class="c-CalculatorStep--form--contStep--cStepSelects--item--listItems">
-              <ul class="c-CalculatorStep--form--contStep--cStepSelects--item--listItems--list" id="list-originCountriesandPort"></ul>
+            <div class="c-CalculatorStep--form--contStep--cStepSelects--item">
+              <p class="c-CalculatorStep--form--contStep--cStepSelects--item--title">Origen</p>
+              <input type="text" placeholder="ESCRIBA País, Ciudad o Puerto" id="input-vallistorigin">
+              <span id="msgNounOriginSend-step"></span>
+              <div class="c-CalculatorStep--form--contStep--cStepSelects--item--listItems">
+                <ul class="c-CalculatorStep--form--contStep--cStepSelects--item--listItems--list" id="list-originCountriesandPort"></ul>
+              </div>
             </div>
-          </div>
-          <div class="c-CalculatorStep--form--contStep--cStepSelects--item">
-            <p class="c-CalculatorStep--form--contStep--cStepSelects--item--title">Destino</p>
-            <input type="text" placeholder="País, Ciudad o Puerto" id="input-vallistdestiny">
-            <span id="msgNounDestinySend-step"></span>
-            <div class="c-CalculatorStep--form--contStep--cStepSelects--item--listItems">
-              <ul class="c-CalculatorStep--form--contStep--cStepSelects--item--listItems--list" id="list-destinyCountriesandPort">
-                <li class="c-CalculatorStep--form--contStep--cStepSelects--item--listItems--list--anyresults">Selecciona un contenedor</li>
-              </ul>
+            <div class="c-CalculatorStep--form--contStep--cStepSelects--item">
+              <p class="c-CalculatorStep--form--contStep--cStepSelects--item--title">Destino</p>
+              <input type="text" placeholder="País, Ciudad o Puerto" id="input-vallistdestiny">
+              <span id="msgNounDestinySend-step"></span>
+              <div class="c-CalculatorStep--form--contStep--cStepSelects--item--listItems">
+                <ul class="c-CalculatorStep--form--contStep--cStepSelects--item--listItems--list" id="list-destinyCountriesandPort">
+                  <li class="c-CalculatorStep--form--contStep--cStepSelects--item--listItems--list--anyresults">Selecciona un contenedor</li>
+                </ul>
+              </div>
             </div>
-          </div>
-          <div class="c-CalculatorStep--form--contStep--cStepSelects--item">
-            <button type="button" id="btn-ValidToshowNextStep" class="c-CalculatorStep--form--contStep--cStepSelects--item--nextbtn">SIGUIENTE</button>
-          </div>
-        </div>        
+            <div class="c-CalculatorStep--form--contStep--cStepSelects--item">
+              <button type="button" id="btn-ValidToshowNextStep" class="c-CalculatorStep--form--contStep--cStepSelects--item--nextbtn">SIGUIENTE</button>
+            </div>
+          </div>        
+        </div>
       </div>
-    </div>
-    <!------------------------------------------ TERCERA FASE - PASO 2.1 (INICO) --------------------------------->
-    <div id="step-TwoPointOne" class="c-SelServicesOrNotStep--contStep show"></div>
-  `);
-  /************************** MOSTRAR EL MENSAJE DE CONTENEDOR VACÍO **************************/
-  $("#msgNounTypeSend-step").text("Debe escoger tipo de envío");
-  /************************** OBTENER Y FIJAR EL VALOR DEL PREFIJO EN EL SMALL DE VOLUMEN **************************/
-  $("#valinput-peso").on("change", function(){
-    var thisWPSelectedOpt = $("#valinput-peso option:selected").attr("prefixmassUnit");
-    $("#small-valWPrefixCalcReqModal").text(thisWPSelectedOpt);
-  });
-  /************************** OBTENER Y FIJAR EL VALOR DEL PREFIJO EN EL SMALL DE VOLUMEN **************************/
-  $("#valinput-volumen").on("change", function(){
-    var thisVPSelectedOpt = $("#valinput-volumen option:selected").attr("prefixvolumeUnit");
-    $("#small-valVPrefixCalcReqModal").text(thisVPSelectedOpt);
-  });
-  /************************** LIMPIAR CUALQUIER TIPO DE VALOR ANTES INGRESADO QUE COMPROMETA DATO IMPORTANTES **************************/
-
+      <!------------------------------------------ TERCERA FASE - PASO 2.1 (INICO) --------------------------------->
+      <div id="step-TwoPointOne" class="c-SelServicesOrNotStep--contStep show"></div>
+    `);
+    /************************** MOSTRAR EL MENSAJE DE CONTENEDOR VACÍO **************************/
+    $("#msgNounTypeSend-step").text("Debe escoger tipo de envío");
+    /************************** OBTENER Y FIJAR EL VALOR DEL PREFIJO EN EL SMALL DE VOLUMEN **************************/
+    $("#valinput-peso").on("change", function(){
+      var thisWPSelectedOpt = $("#valinput-peso option:selected").attr("prefixmassUnit");
+      $("#small-valWPrefixCalcReqModal").text(thisWPSelectedOpt);
+    });
+    /************************** OBTENER Y FIJAR EL VALOR DEL PREFIJO EN EL SMALL DE VOLUMEN **************************/
+    $("#valinput-volumen").on("change", function(){
+      var thisVPSelectedOpt = $("#valinput-volumen option:selected").attr("prefixvolumeUnit");
+      $("#small-valVPrefixCalcReqModal").text(thisVPSelectedOpt);
+    });
+    /************************** LIMPIAR CUALQUIER TIPO DE VALOR ANTES INGRESADO QUE COMPROMETA DATO IMPORTANTES **************************/
+  } else {
+    console.log('No se canceló a operación');
+  }
 });
 /*==========================================================================================
 =            CONTENIDO Y VALIDACIÓN DE TODOS LOS CONTROLES EN LOS PASOS 2 Y 2.1            =
