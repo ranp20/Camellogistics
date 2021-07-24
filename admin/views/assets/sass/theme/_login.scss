@@ -11,7 +11,7 @@
 		flex-direction: row;
 		align-items: unset;
 		justify-content: unset;
-		grid-template-columns: 430px auto;
+		grid-template-columns: 425px auto;
 		grid-template-areas: "loginfrm loginbackground";
 	}
 
@@ -24,14 +24,14 @@
 		flex-direction: column;
 
 		@media (min-width: 960px){
-			width: 80%;
+			width: 78%;
 			justify-content: center;
 			padding-top: 32%;
 		}
 
 		/* LOGOTIPO */
 		&--cLogo{
-			max-width: 220px;
+			max-width: 215px;
 			width: auto;
 			margin-left: auto;
 			margin-right: auto;
@@ -71,8 +71,9 @@
 						border-radius: .4rem;
 						border: thin solid #ccc;
 						outline: none;
-						padding: 0.7rem 42px 0.7rem 0.7rem;
+						padding: 0.6rem 42px 0.6rem 0.7rem;
 						line-height: 1.5;
+						font-size: 0.9rem;
 					}
 
 					&--cIcon{
@@ -82,7 +83,7 @@
 				    transform: translateY(-50%);
 				    height: 100%;
 				    width: 42px;
-				    padding: 0 .4rem;
+				    padding: 0 .6rem;
 				    display: flex;
 				    align-items: center;
 				    justify-content: center;
@@ -103,7 +104,7 @@
 					border: none;
 					background-color: $btn-success;
 					padding: 0.65rem;
-					font-size: 0.85rem;
+					font-size: 0.8rem;
 					line-height: 1.5;
 					color: #fff;
 					display: flex;

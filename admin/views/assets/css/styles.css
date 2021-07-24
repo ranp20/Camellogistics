@@ -82,6 +82,10 @@ img {
   overflow-x: auto !important;
 }
 
+.center {
+  text-align: center !important;
+}
+
 /************************** LOADER DEL ADMINISTRADOR **************************/
 /* MENSAJE DE ÉXITO O LOADER DE ACCESO */
 #msgAlertLoginSuccess {
@@ -243,7 +247,7 @@ img {
     flex-direction: row;
     align-items: unset;
     justify-content: unset;
-    grid-template-columns: 430px auto;
+    grid-template-columns: 425px auto;
     grid-template-areas: "loginfrm loginbackground";
   }
 }
@@ -260,13 +264,13 @@ img {
 }
 @media (min-width: 960px) {
   .c-LoginAdm--cLoginF {
-    width: 80%;
+    width: 78%;
     justify-content: center;
     padding-top: 32%;
   }
 }
 .c-LoginAdm--cLoginF--cLogo {
-  max-width: 220px;
+  max-width: 215px;
   width: auto;
   margin-left: auto;
   margin-right: auto;
@@ -304,8 +308,9 @@ img {
   border-radius: 0.4rem;
   border: thin solid #ccc;
   outline: none;
-  padding: 0.7rem 42px 0.7rem 0.7rem;
+  padding: 0.6rem 42px 0.6rem 0.7rem;
   line-height: 1.5;
+  font-size: 0.9rem;
 }
 .c-LoginAdm--cLoginF--cForm--form--cControl--cIcon {
   position: absolute;
@@ -314,7 +319,7 @@ img {
   transform: translateY(-50%);
   height: 100%;
   width: 42px;
-  padding: 0 0.4rem;
+  padding: 0 0.6rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -333,7 +338,7 @@ img {
   border: none;
   background-color: #27C24C;
   padding: 0.65rem;
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   line-height: 1.5;
   color: #fff;
   display: flex;

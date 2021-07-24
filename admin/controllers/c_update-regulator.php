@@ -2,14 +2,13 @@
 require_once '../../models/db/connection.php';
 class Update_Regulator extends Connection{
 	function update(){
-
 		$arr_regulator = [
 			"name" => $_POST['name'],
 			"id" => $_POST['id']
 		];
 
 		try{
-			$sql = "UPDATE tbl_regulators SET name = :name WHERE id = :id";
+			$sql = "CALL sp_update_regulator(:name, :id)";
 			$stm = $this->con->prepare($sql);
 			foreach ($arr_regulator as $key => $value) {
 				$stm->bindValue($key, $value);

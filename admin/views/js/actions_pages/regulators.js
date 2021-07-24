@@ -70,7 +70,7 @@ function listRegulators(searchVal){
       template += `
         <tr id="item-${e.id}">
           <td class='center'>${e.id}</td>
-          <td class='center'>${e.name}</td>
+          <td>${e.name}</td>
           <td class="cont-btn-update">
             <a class="btn-update-regulator" data-toggle="modal" data-target="#updateModal"  href="#" 
               data-id="${e.id}"

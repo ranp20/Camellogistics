@@ -253,10 +253,10 @@ function listProducts(searchVal){
       template += `
         <tr id="item-${e.id_prod}">
           <td class='center'>${e.id_prod}</td>
-          <td class='center'>${e.name_prod}</td>
+          <td>${e.name_prod}</td>
           <td class='center'>${e.regulated}</td>
-          <td class='center'>${nounRegOne}</td>
-          <td class='center'>${nounRegTwo}</td>
+          <td>${nounRegOne}</td>
+          <td>${nounRegTwo}</td>
           <td class="cont-btn-update">
             <a class="btn-update-product" data-toggle="modal" data-target="#updateModal"  href="#" 
               data-id="${e.id_prod}"
@@ -416,45 +416,58 @@ $(document).on("click", "#c-listitems-regulatorTwoUpdate .cont-modalbootstrapupd
   $("#SelectedItem-inputfakeselRegTwoUpdate").attr("regulartwo", $(this).attr("regulartwo"));
   $("#SelectedItem-inputfakeselRegTwoUpdate").attr("idtregulartwo", $(this).attr("id"));
 });
-/************************** ACTUALIZAR RESTAURANTE POR ID **************************/
-// $(document).on('click', '#btnupdate-regulator', function(e){
-//   e.preventDefault();
+/************************** ACTUALIZAR PRODUCTO POR ID **************************/
+$(document).on('click', '#btnupdate-product', function(e){
+  e.preventDefault();
+
+  var stateRegulated = "";
+  if($("#required-reg").is(":checked")){
+    stateRegulated = $("#required-reg").parent().find("span").text();
+  }else{
+    $("#SelectedItem-inputfakeselRegOneUpdate").attr("idtregularone", 0);
+    $("#SelectedItem-inputfakeselRegOneUpdate").removeAttr("regularone");
+    $("#SelectedItem-inputfakeselRegTwoUpdate").attr("idtregulartwo", 0);
+    $("#SelectedItem-inputfakeselRegTwoUpdate").removeAttr("regulartwo");
+    stateRegulated = $("#noun-required-reg").parent().find("span").text();
+  }
   
-//   var formdata = new FormData();
+  var formdata = new FormData();
 
-//   formdata.append("name", $('#name-update').val());
-//   formdata.append("id", $('#idupdate-regulator').val());
+  formdata.append("name", $('#name-update').val());
+  formdata.append("regulated", stateRegulated);
+  formdata.append("id_regulator", $("#SelectedItem-inputfakeselRegOneUpdate").attr("idtregularone"));
+  formdata.append("id_regulatortwo", $("#SelectedItem-inputfakeselRegTwoUpdate").attr("idtregulartwo"));
+  formdata.append("id", $('#idupdate-product').val());
 
-//   $.ajax({
-//     url: "../admin/controllers/c_update-regulator.php",
-//     method: "POST",
-//     data: formdata,
-//     contentType: false,
-//     cache: false,
-//     processData: false
-//   }).done((res) => {
-//     listProducts();
-//     $('#updateModal').modal("hide");
-//   });
-// });
-
-// /************************** LISTAR ID EN EL MODAL - ELIMINAR **************************/
-// $(document).on('click', '.btn-delete-regulator', function(e){
-//   e.preventDefault();
-//   var id = $(this).attr('data-id');
-//   $('#iddelete-regulator').val(id);
-// });
-
-// /************************** ELIMINAR PAÍS **************************/
-// $(document).on('click', '#btndelete-regulator', function(e){
-//   e.preventDefault();
-// 	var id = $('#iddelete-regulator').val();
-//   $.ajax({
-//     url: "../admin/controllers/c_delete-regulator.php",
-//     method: "POST",
-//     data: {id : id},
-//   }).done((e) => {
-//     $("#item-" + id).remove();
-//     $('#deleteModal').modal("hide");
-//   });
-// });
+  $.ajax({
+    url: "../admin/controllers/c_update-product.php",
+    method: "POST",
+    data: formdata,
+    contentType: false,
+    cache: false,
+    processData: false
+  }).done((res) => {
+    console.log(res);
+    listProducts();
+    $('#updateModal').modal("hide");
+  });
+});
+/************************** LISTAR ID EN EL MODAL - ELIMINAR **************************/
+$(document).on('click', '.btn-delete-product', function(e){
+  e.preventDefault();
+  var id = $(this).attr('data-id');
+  $('#iddelete-product').val(id);
+});
+/************************** ELIMINAR PAÍS **************************/
+$(document).on('click', '#btndelete-product', function(e){
+  e.preventDefault();
+	var id = $('#iddelete-product').val();
+  $.ajax({
+    url: "../admin/controllers/c_delete-product.php",
+    method: "POST",
+    data: {id : id},
+  }).done((e) => {
+    $("#item-" + id).remove();
+    $('#deleteModal').modal("hide");
+  });
+});

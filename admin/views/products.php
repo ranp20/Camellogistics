@@ -106,7 +106,7 @@
 				      <div class="modal-body cont-total-update-items">
 				      	<div class="cont-modalbootstrapupdate">
 					        <form id="form-update-product" method="POST" class="cont-modalbootstrapupdate__form" autocomplete="false">
-					        	<input type="text" id="idupdate-product">
+					        	<input type="hidden" id="idupdate-product">
 					        	<div class="cont-modalbootstrapupdate__form--control">
 					        		<label for="name-update" class="cont-modalbootstrapupdate__form--control__label complete">Nombre del producto</label>
 					        		<input id="name-update" class="cont-modalbootstrapupdate__form--control__input" name="name-update" type="text" maxlength="80" placeholder="Ingrese el nombre del producto">
@@ -164,11 +164,11 @@
 				  </div>
 				</div>
 				<!-- MODAL - ELIMINAR ITEM -->
-				<!-- <div class="modal fade bootstrapmodaldelete-custom" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+				<div class="modal fade bootstrapmodaldelete-custom" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 				  <div class="modal-dialog" role="document">
 				    <div class="modal-content">
 				      <div class="modal-header">
-				        <h5 class="modal-title" id="delete-modal-label">ELIMINAR REGULADOR</h5>
+				        <h5 class="modal-title" id="delete-modal-label">ELIMINAR PRODUCTO</h5>
 				        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 				          <span aria-hidden="true">&times;</span>
 				        </button>
@@ -176,18 +176,18 @@
 				      <div class="modal-body cont-total-update-items">
 					      <h2 class="text-message-modalAlt">¿Seguro que desea eliminar este registro?</h2>
 				      	<div class="cont-modalbootstrapupdate">
-					        <form id="form-delete-regulator" method="POST" class="cont-modalbootstrapupdate__form" autocomplete="false">
-					        	<input type="hidden" id="iddelete-regulator">
+					        <form id="form-delete-product" method="POST" class="cont-modalbootstrapupdate__form" autocomplete="false">
+					        	<input type="hidden" id="iddelete-product">
 							      <div class="cont-modalbootstrapupdate__footer">
 							        <button type="button" class="cont-modalbootstrapupdate__footer--btncancel" data-dismiss="modal">CANCELAR</button>
-							        <button type="submit" class="cont-modalbootstrapupdate__footer--btndelete" id="btndelete-regulator">ELIMINAR</button>
+							        <button type="submit" class="cont-modalbootstrapupdate__footer--btndelete" id="btndelete-product">ELIMINAR</button>
 							      </div>
 					        </form>
 				      	</div>
 				      </div>
 				    </div>
 				  </div>
-				</div> -->
+				</div>
 				<!-- FIN MODALS-->
 			</div>
 		</main>
