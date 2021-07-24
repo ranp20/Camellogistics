@@ -924,6 +924,11 @@ img {
   font-weight: bold;
   line-height: 1.2 !important;
 }
+.bootstrapmodal-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrap__form {
+  /* CONTROLES - INPUT */
+  /* CONTROLES - SELECT */
+  /* CONTROLES - RADIO */
+}
 .bootstrapmodal-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrap__form--control {
   display: flex;
   flex-direction: column;
@@ -1154,6 +1159,41 @@ img {
 .bootstrapmodal-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrap__form--controlSelect--m--itemAccount:hover {
   background-color: #ccc;
 }
+.bootstrapmodal-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrap__form--controlRadios {
+  margin-bottom: 1rem;
+}
+.bootstrapmodal-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrap__form--controlRadios #msgErrNounWithOrNotRegulator {
+  display: block;
+  color: red;
+  text-align: center;
+  padding-right: 0.5rem;
+}
+.bootstrapmodal-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrap__form--controlRadios--title {
+  margin-bottom: 0.5rem;
+}
+.bootstrapmodal-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrap__form--controlRadios--c {
+  text-align: center;
+  display: flex;
+  align-items: flex-start;
+  flex: 0 0 100%;
+}
+.bootstrapmodal-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrap__form--controlRadios--c--control {
+  cursor: pointer;
+  flex: 48%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-right: 1rem;
+}
+.bootstrapmodal-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrap__form--controlRadios--c--control:nth-child(2) {
+  margin-left: 0.25rem;
+}
+.bootstrapmodal-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrap__form--controlRadios--c--control--input {
+  margin-right: 0.5rem;
+}
+.bootstrapmodal-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrap__form--controlRadios--c--control--input:checked ~ .bootstrapmodal-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrap__form--controlRadios--c--control--fakelabel {
+  color: green;
+}
 .bootstrapmodal-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrap__footer {
   display: flex;
   align-items: center;
@@ -1216,6 +1256,12 @@ img {
 .bootstrapmodalupdate-custom .modal-dialog .modal-content .modal-body .text-message-modalAlt {
   font-size: 1.4rem;
   margin-bottom: 1rem;
+}
+.bootstrapmodalupdate-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrapupdate__form {
+  /* CONTROLES - INPUT */
+  /* CONTROLES - SELECT */
+  /* SHOW/HIDDEN CONTAINER REGULATORS */
+  /* CONTROLES - RADIO */
 }
 .bootstrapmodalupdate-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrapupdate__form--control {
   display: flex;
@@ -1357,9 +1403,14 @@ img {
 }
 .bootstrapmodalupdate-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrapupdate__form--controlSelect {
   position: relative;
-  /* MENSAJE DE ALERTAR */
+  /* MENSAJE DE ALERTA  - REGULADOR ONE*/
+  /* MENSAJE DE ALERTA  - REGULADOR TWO*/
 }
-.bootstrapmodalupdate-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrapupdate__form--controlSelect #msgErrNounTypeCurr-update {
+.bootstrapmodalupdate-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrapupdate__form--controlSelect #msgErrNounReguladorOneUpdate {
+  color: red;
+  padding-left: 0.65rem;
+}
+.bootstrapmodalupdate-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrapupdate__form--controlSelect #msgErrNounReguladorTwoUpdate {
   color: red;
   padding-left: 0.65rem;
 }
@@ -1388,10 +1439,12 @@ img {
   left: 0;
   width: 100%;
   background-color: #fff;
-  min-height: 70px;
+  max-height: 105.5px;
   border: thin solid #767676;
   z-index: 9;
   display: none;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 .bootstrapmodalupdate-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrapupdate__form--controlSelect--m.show {
   display: block;
@@ -1409,6 +1462,46 @@ img {
 }
 .bootstrapmodalupdate-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrapupdate__form--controlSelect--m--itemAccount:hover {
   background-color: #ccc;
+}
+.bootstrapmodalupdate-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrapupdate__form #sel-optsRegulatorsMoreUpdate.hidden {
+  display: none;
+  pointer-events: none;
+  opacity: 0;
+}
+.bootstrapmodalupdate-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrapupdate__form--controlRadios {
+  margin-bottom: 1rem;
+}
+.bootstrapmodalupdate-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrapupdate__form--controlRadios #msgErrNounWithOrNotRegulator {
+  display: block;
+  color: red;
+  text-align: center;
+  padding-right: 0.5rem;
+}
+.bootstrapmodalupdate-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrapupdate__form--controlRadios--title {
+  margin-bottom: 0.5rem;
+}
+.bootstrapmodalupdate-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrapupdate__form--controlRadios--c {
+  text-align: center;
+  display: flex;
+  align-items: flex-start;
+  flex: 0 0 100%;
+}
+.bootstrapmodalupdate-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrapupdate__form--controlRadios--c--control {
+  cursor: pointer;
+  flex: 48%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-right: 1rem;
+}
+.bootstrapmodalupdate-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrapupdate__form--controlRadios--c--control:nth-child(2) {
+  margin-left: 0.25rem;
+}
+.bootstrapmodalupdate-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrapupdate__form--controlRadios--c--control--input {
+  margin-right: 0.5rem;
+}
+.bootstrapmodalupdate-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrapupdate__form--controlRadios--c--control--input:checked ~ .bootstrapmodalupdate-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrapupdate__form--controlRadios--c--control--fakelabel {
+  color: green;
 }
 .bootstrapmodalupdate-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrapupdate__footer {
   display: flex;

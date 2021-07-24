@@ -29,6 +29,7 @@
 							<tr>
 								<th>ID</th>
 								<th>Nombre</th>
+								<th>Regula</th>
 								<th>Regulador 1</th>
 								<th>Regulador 2</th>
 								<th></th>
@@ -67,30 +68,21 @@
 					        		<input id="nameProduct" class="cont-modalbootstrap__form--control__input" name="nameProduct" type="text" maxlength="80" placeholder="Ingrese el nombre del producto">
 					        		<span id="msgErrNounNameProduct"></span>
 					        	</div>
-					        	<div class="cont-modalbootstrap__form--controlSelect">
-					        		<label for="" class="cont-modalbootstrap__form--controlSelect--label">Regulador 1</label>
-					        		<div class="cont-modalbootstrap__form--controlSelect--cFakeSelect" id="btn-FakeListRegulatorOne">
-					        			<span class="cont-modalbootstrap__form--controlSelect--cFakeSelect--txtitemsel" id="selectedItem-fakeSelRegOne">Selecciona un regulador</span>
-					        			<input type="text" readonly id="SelectedItem-inputfakeselRegOne">
-					        			<svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
-												<path d="M1 1.08298L5 5L9 1" stroke="#999" stroke-width="1.25727" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-												</svg>
+					        	<div class="cont-modalbootstrap__form--controlRadios">
+					        		<p class="cont-modalbootstrap__form--controlRadios--title">Reguladores</p>
+					        		<div class="cont-modalbootstrap__form--controlRadios--c">
+						        		<label for="required-reg" class="cont-modalbootstrap__form--controlRadios--c--control">
+						        			<input type="radio" id="required-reg" name="sel-reornotreg" class="cont-modalbootstrap__form--controlRadios--c--control--input">
+						        			<span class="cont-modalbootstrap__form--controlRadios--c--control--fakelabel">SI</span>
+						        		</label>
+						        		<label for="noun-required-reg" class="cont-modalbootstrap__form--controlRadios--c--control">
+						        			<input type="radio" id="noun-required-reg" name="sel-reornotreg" class="cont-modalbootstrap__form--controlRadios--c--control--input">
+						        			<span class="cont-modalbootstrap__form--controlRadios--c--control--fakelabel">NO</span>
+						        		</label>
 					        		</div>
-					        		<ul class="cont-modalbootstrap__form--controlSelect--m" id="c-listitems-regulatorOne"></ul>
-					        		<span id="msgErrNounReguladorOne"></span>
+					        		<span id="msgErrNounWithOrNotRegulator"></span>
 					        	</div>
-					        	<div class="cont-modalbootstrap__form--controlSelect">
-					        		<label for="" class="cont-modalbootstrap__form--controlSelect--label">Regulador 2</label>
-					        		<div class="cont-modalbootstrap__form--controlSelect--cFakeSelect" id="btn-FakeListRegulatorTwo">
-					        			<span class="cont-modalbootstrap__form--controlSelect--cFakeSelect--txtitemsel" id="selectedItem-fakeSel">Selecciona un regulador</span>
-					        			<input type="text" readonly id="SelectedItem-inputfakeselRegTwo">
-					        			<svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
-												<path d="M1 1.08298L5 5L9 1" stroke="#999" stroke-width="1.25727" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-												</svg>
-					        		</div>
-					        		<ul class="cont-modalbootstrap__form--controlSelect--m" id="c-listitems-typecurrency"></ul>
-					        		<span id="msgErrNounReguladorTwo">Debes seleccionar una opción</span>
-					        	</div>
+					        	<div id="sel-optsRegulatorsMore"></div>
 							      <div class="cont-modalbootstrap__footer">
 							        <button type="button" class="cont-modalbootstrap__footer--btncancel" data-dismiss="modal">CANCELAR</button>
 							        <button type="submit" class="cont-modalbootstrap__footer--btnadd" id="btnadd-product">GUARDAR</button>
@@ -102,7 +94,7 @@
 				  </div>
 				</div>
 				<!-- MODAL - EDITAR ITEM -->
-				<!-- <div class="modal fade bootstrapmodalupdate-custom" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+				<div class="modal fade bootstrapmodalupdate-custom" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 				  <div class="modal-dialog" role="document">
 				    <div class="modal-content">
 				      <div class="modal-header">
@@ -113,22 +105,64 @@
 				      </div>
 				      <div class="modal-body cont-total-update-items">
 				      	<div class="cont-modalbootstrapupdate">
-					        <form id="form-update-regulator" method="POST" class="cont-modalbootstrapupdate__form" autocomplete="false">
-					        	<input type="hidden" id="idupdate-regulator">
+					        <form id="form-update-product" method="POST" class="cont-modalbootstrapupdate__form" autocomplete="false">
+					        	<input type="text" id="idupdate-product">
 					        	<div class="cont-modalbootstrapupdate__form--control">
-					        		<label for="name-update" class="cont-modalbootstrapupdate__form--control__label complete">Nombre del Regulador</label>
-					        		<input id="name-update" class="cont-modalbootstrapupdate__form--control__input" name="name-update" type="text" maxlength="36" placeholder="Ingrese el nombre del país">
+					        		<label for="name-update" class="cont-modalbootstrapupdate__form--control__label complete">Nombre del producto</label>
+					        		<input id="name-update" class="cont-modalbootstrapupdate__form--control__input" name="name-update" type="text" maxlength="80" placeholder="Ingrese el nombre del producto">
+					        	</div>
+					        	<div class="cont-modalbootstrapupdate__form--controlRadios">
+					        		<p class="cont-modalbootstrapupdate__form--controlRadios--title">Reguladores</p>
+					        		<div class="cont-modalbootstrapupdate__form--controlRadios--c">
+						        		<label for="required-regupdate" class="cont-modalbootstrapupdate__form--controlRadios--c--control">
+						        			<input type="radio" id="required-regupdate" name="sel-reornotregupdate" class="cont-modalbootstrapupdate__form--controlRadios--c--control--input">
+						        			<span class="cont-modalbootstrapupdate__form--controlRadios--c--control--fakespan"></span>
+						        			<span class="cont-modalbootstrapupdate__form--controlRadios--c--control--fakelabel">SI</span>
+						        		</label>
+						        		<label for="noun-required-regupdate" class="cont-modalbootstrapupdate__form--controlRadios--c--control">
+						        			<input type="radio" id="noun-required-regupdate" name="sel-reornotregupdate" class="cont-modalbootstrapupdate__form--controlRadios--c--control--input">
+						        			<span class="cont-modalbootstrapupdate__form--controlRadios--c--control--fakespan"></span>
+						        			<span class="cont-modalbootstrapupdate__form--controlRadios--c--control--fakelabel">NO</span>
+						        		</label>
+					        		</div>
+					        		<span id="msgErrNounWithOrNotRegulator"></span>
+					        	</div>
+					        	<div id="sel-optsRegulatorsMoreUpdate">
+					       	    <div class="cont-modalbootstrapupdate__form--controlSelect">
+								        <label for="" class="cont-modalbootstrapupdate__form--controlSelect--label">Regulador 1</label>
+								        <div class="cont-modalbootstrapupdate__form--controlSelect--cFakeSelect" id="btn-FakeListRegulatorOneUpdate">
+								          <span class="cont-modalbootstrapupdate__form--controlSelect--cFakeSelect--txtitemsel" id="selectedItem-fakeSelRegOneUpdate">Selecciona un regulador</span>
+								          <input type="text" readonly id="SelectedItem-inputfakeselRegOneUpdate">
+								          <svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+								          <path d="M1 1.08298L5 5L9 1" stroke="#999" stroke-width="1.25727" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+								          </svg>
+								        </div>
+								        <ul class="cont-modalbootstrapupdate__form--controlSelect--m" id="c-listitems-regulatorOneUpdate"></ul>
+								        <span id="msgErrNounReguladorOneUpdate"></span>
+								      </div>
+								      <div class="cont-modalbootstrapupdate__form--controlSelect">
+								        <label for="" class="cont-modalbootstrapupdate__form--controlSelect--label">Regulador 2</label>
+								        <div class="cont-modalbootstrapupdate__form--controlSelect--cFakeSelect" id="btn-FakeListRegulatorTwoUpdate">
+								          <span class="cont-modalbootstrapupdate__form--controlSelect--cFakeSelect--txtitemsel" id="selectedItem-fakeSelRegTwoUpdate">Selecciona un regulador</span>
+								          <input type="text" readonly id="SelectedItem-inputfakeselRegTwoUpdate">
+								          <svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+								          <path d="M1 1.08298L5 5L9 1" stroke="#999" stroke-width="1.25727" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+								          </svg>
+								        </div>
+								        <ul class="cont-modalbootstrapupdate__form--controlSelect--m" id="c-listitems-regulatorTwoUpdate"></ul>
+								        <span id="msgErrNounReguladorTwoUpdate"></span>
+								      </div>
 					        	</div>
 							      <div class="cont-modalbootstrapupdate__footer">
 							        <button type="button" class="cont-modalbootstrapupdate__footer--btncancel" data-dismiss="modal">CANCELAR</button>
-							        <button type="submit" class="cont-modalbootstrapupdate__footer--btnupdate" id="btnupdate-regulator">GUARDAR</button>
+							        <button type="submit" class="cont-modalbootstrapupdate__footer--btnupdate" id="btnupdate-product">GUARDAR</button>
 							      </div>
 					        </form>
 				      	</div>
 				      </div>
 				    </div>
 				  </div>
-				</div> -->
+				</div>
 				<!-- MODAL - ELIMINAR ITEM -->
 				<!-- <div class="modal fade bootstrapmodaldelete-custom" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 				  <div class="modal-dialog" role="document">

@@ -547,6 +547,7 @@
 			.modal-body{
 				.cont-modalbootstrap{
 					&__form{
+						/* CONTROLES - INPUT */
 						&--control{
 							display: flex;
 							flex-direction: column;
@@ -724,6 +725,7 @@
 							}
 						}
 
+						/* CONTROLES - SELECT */
 						&--controlSelect{
 						  position: relative;
 						  margin-bottom: 0.5rem;
@@ -807,6 +809,58 @@
     							padding: .5rem 1rem;
 									&:hover{
 										background-color: #ccc;
+									}
+								}
+							}
+						}
+
+						/* CONTROLES - RADIO */
+						&--controlRadios{
+							margin-bottom: 1rem;
+							#msgErrNounWithOrNotRegulator{
+								display: block;
+								color: red;
+								text-align: center;
+								padding-right: .5rem;
+							}
+
+							&--title{
+								margin-bottom: 0.5rem;
+							}
+
+							&--c{
+								text-align: center;
+								display: flex;
+								align-items: flex-start;
+								flex: 0 0 100%;
+								&--control{
+									cursor: pointer;
+									flex: 48%;
+									display: flex;
+									align-items: center;
+									justify-content: center;
+									padding-right: 1rem;
+
+									&:nth-child(2){
+										margin-left: 0.25rem;
+									}
+
+									&--input{
+										margin-right: 0.5rem;
+									}
+
+									// &--fakespan{
+								 //    width: 13px;
+								 //    height: 13px;
+								 //    border-radius: 50%;
+								 //    background-color: #fff;
+								 //    border: thin solid #ccc;
+								 //    position: relative;
+								 //    left: -10px;
+									// }
+
+									&--input:checked ~ &--fakelabel{
+										color: green;
 									}
 								}
 							}
@@ -896,6 +950,7 @@
 
 				.cont-modalbootstrapupdate{
 					&__form{
+						/* CONTROLES - INPUT */
 						&--control{
 							display: flex;
 							flex-direction: column;
@@ -1051,11 +1106,18 @@
 							}
 						}
 
+						/* CONTROLES - SELECT */
 						&--controlSelect{
 						  position: relative;
 							
-							/* MENSAJE DE ALERTAR */
-							#msgErrNounTypeCurr-update{
+							/* MENSAJE DE ALERTA  - REGULADOR ONE*/
+							#msgErrNounReguladorOneUpdate{
+								color: red;
+								padding-left: 0.65rem;
+							}
+
+							/* MENSAJE DE ALERTA  - REGULADOR TWO*/
+							#msgErrNounReguladorTwoUpdate{
 								color: red;
 								padding-left: 0.65rem;
 							}
@@ -1092,10 +1154,12 @@
 						    left: 0;
 						    width: 100%;
 						    background-color: #fff;
-						    min-height: 70px;
+						    max-height: 105.5px;
 						    border: thin solid $border-bottom-input;
 						    z-index: 9;
 						    display: none;
+						    overflow-y: auto;
+						    overflow-x: hidden;
 
 						    &.show{
 						    	display: block;	
@@ -1113,6 +1177,67 @@
     							padding: .5rem 1rem;
 									&:hover{
 										background-color: #ccc;
+									}
+								}
+							}
+						}
+
+						/* SHOW/HIDDEN CONTAINER REGULATORS */
+						#sel-optsRegulatorsMoreUpdate{
+							&.hidden{
+								display: none;
+								pointer-events: none;
+								opacity: 0;
+							}
+						}
+
+						/* CONTROLES - RADIO */
+						&--controlRadios{
+							margin-bottom: 1rem;
+							#msgErrNounWithOrNotRegulator{
+								display: block;
+								color: red;
+								text-align: center;
+								padding-right: .5rem;
+							}
+
+							&--title{
+								margin-bottom: 0.5rem;
+							}
+
+							&--c{
+								text-align: center;
+								display: flex;
+								align-items: flex-start;
+								flex: 0 0 100%;
+								&--control{
+									cursor: pointer;
+									flex: 48%;
+									display: flex;
+									align-items: center;
+									justify-content: center;
+									padding-right: 1rem;
+
+									&:nth-child(2){
+										margin-left: 0.25rem;
+									}
+
+									&--input{
+										margin-right: 0.5rem;
+									}
+
+									// &--fakespan{
+								 //    width: 13px;
+								 //    height: 13px;
+								 //    border-radius: 50%;
+								 //    background-color: #fff;
+								 //    border: thin solid #ccc;
+								 //    position: relative;
+								 //    left: -10px;
+									// }
+
+									&--input:checked ~ &--fakelabel{
+										color: green;
 									}
 								}
 							}
