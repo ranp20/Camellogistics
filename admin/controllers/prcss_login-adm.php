@@ -1,8 +1,8 @@
 <?php 
 if(isset($_POST)){
 	$arr_logiadm = [
-		"email" => $_POST['loginadm'][0]['value'],
-		"password" => $_POST['loginadm'][1]['value']
+		"email" => $_POST['adm-log-email'],
+		"password" => $_POST['adm-log-pass']
 	];
 
 	require_once 'c_login-adm.php';

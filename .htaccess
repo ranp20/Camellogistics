@@ -12,3 +12,4 @@ RewriteRule admin?$ admin/index.php
 RewriteRule dashboard?$ admin/views/dashboard.php
 RewriteRule reguladores?$ admin/views/regulators.php
 RewriteRule productos?$ admin/views/products.php
+RewriteRule precios?$ admin/views/pricing-settings.php

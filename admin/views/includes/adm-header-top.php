@@ -18,7 +18,7 @@
 		</div>
 		<div class="h-dashCamel--c--cUser">
 			<div class="h-dashCamel--c--cUser--linkcont" id="btn-sessuserAdm">
-				<img src="<?= $url ?>assets/img/utilities/user_default.png" alt="">
+				<img src="<?= $url ?>assets/img/utilities/user-pro-default.png" alt="">
 				<span><?= $admname; ?></span>
 			</div>
 			<ul class="h-dashCamel--c--cUser--m" id="list-opts-sessuser">

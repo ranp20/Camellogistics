@@ -8,7 +8,7 @@
 <html lang="es">
 <head>
 	<?php require_once 'includes/adm-header-index.php'; ?>
-	<title>Admin - Dashboard</title>
+	<title>Admin - Productos</title>
 </head>
 <body>
 	<div id="dash-contT">

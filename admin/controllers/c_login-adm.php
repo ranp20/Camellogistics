@@ -2,10 +2,9 @@
 require_once '../../models/db/connection.php';
 class Login_Adm extends Connection{
 	function Login(){
-
 		$arr_logiadm = [
-			"email" => $_POST['loginadm'][0]['value'],
-			"password" => $_POST['loginadm'][1]['value']
+			"email" => $_POST['adm-log-email'],
+			"password" => $_POST['adm-log-pass']
 		];
 
 		try{

@@ -25,7 +25,7 @@ $(document).on("submit", "#c-formvalidLoginAdm", function(e){
 	$.ajax({
 		url: 'controllers/prcss_login-adm.php',
 		type: 'POST',
-		data: { loginadm : frm}
+		data: frm
 	}).done( (e) => {
 		var res = JSON.parse(e);
 
