@@ -67,8 +67,8 @@ $(document).on("click", "#noun-required-reg", function(){
 });
 /************************** ABRIR/CERRAR EL LISTADO DE REGULADORES - AGREGAR 1 **************************/
 $(document).on("click", "#btn-FakeListRegulatorOne", function(){
-  $("#c-listitems-regulatorOne").addClass("show");
-  $(this).addClass("showList");
+  $("#c-listitems-regulatorOne").toggleClass("show");
+  $(this).toggleClass("showList");
 
    $.ajax({
     url: "../admin/controllers/c_list_regulators.php",
@@ -108,8 +108,8 @@ $(document).on("click", "#c-listitems-regulatorOne .cont-modalbootstrap__form--c
 });
 /************************** ABRIR/CERRAR EL LISTADO DE REGULADORES - AGREGAR 2 **************************/
 $(document).on("click", "#btn-FakeListRegulatorTwo", function(){
-  $("#c-listitems-regulatorTwo").addClass("show");
-  $(this).addClass("showList");
+  $("#c-listitems-regulatorTwo").toggleClass("show");
+  $(this).toggleClass("showList");
 
    $.ajax({
     url: "../admin/controllers/c_list_regulators.php",
@@ -342,8 +342,8 @@ $(document).on("click", ".cont-modalbootstrapupdate__form--controlRadios--c--con
 });
 /************************** ABRIR/CERRAR EL LISTADO DE REGULADORES - ACTUALIZAR 1 **************************/
 $(document).on("click", "#btn-FakeListRegulatorOneUpdate", function(){
-  $("#c-listitems-regulatorOneUpdate").addClass("show");
-  $(this).addClass("showList");
+  $("#c-listitems-regulatorOneUpdate").toggleClass("show");
+  $(this).toggleClass("showList");
    $.ajax({
     url: "../admin/controllers/c_list_regulators.php",
     method: "POST",
@@ -380,8 +380,8 @@ $(document).on("click", "#c-listitems-regulatorOneUpdate .cont-modalbootstrapupd
 });
 /************************** ABRIR/CERRAR EL LISTADO DE REGULADORES - ACTUALIZAR 2 **************************/
 $(document).on("click", "#btn-FakeListRegulatorTwoUpdate", function(){
-  $("#c-listitems-regulatorTwoUpdate").addClass("show");
-  $(this).addClass("showList");
+  $("#c-listitems-regulatorTwoUpdate").toggleClass("show");
+  $(this).toggleClass("showList");
    $.ajax({
     url: "../admin/controllers/c_list_regulators.php",
     method: "POST",

@@ -779,7 +779,7 @@
 						    left: 0;
 						    width: 100%;
 						    background-color: #fff;
-						    max-height: 105.5px;
+						    max-height: 141px;
 						    z-index: 9;
 						    display: none;
 						    overflow-y: auto;
@@ -790,6 +790,10 @@
 						    border-left: thin solid #767676;
 						    border-right: thin solid #767676;
 						    border-top: none;
+
+						    @media (min-width: 1200px){
+						    	max-height: 175px;
+						    }
 
 						    &.show{
 						    	display: block;	
@@ -1097,7 +1101,7 @@
 								@media (min-width: 991px){
 							    font-size: 1rem;
 							    padding: 0.5rem 0.8rem 0.4rem 0.8rem;
-							    line-height: 1.9;
+							    line-height: 1.5;
 								}
 							}
 
@@ -1123,15 +1127,16 @@
 							}
 
 							&--cFakeSelect{
-								cursor: pointer;
-								outline: none;
+						    cursor: pointer;
+						    outline: none;
 						    display: flex;
 						    align-items: center;
 						    justify-content: space-between;
 						    background-color: #fff;
 						    border: thin solid $border-bottom-input;
-						    border-radius: .5rem;
-						    padding: .65rem;
+						    border-radius: 0.5rem;
+						    padding: 0.5rem 0.8rem 0.4rem 0.8rem;
+						    line-height: 1.5;
 
 								span{
 									color: #666;
@@ -1154,12 +1159,22 @@
 						    left: 0;
 						    width: 100%;
 						    background-color: #fff;
-						    max-height: 105.5px;
+						    max-height: 141px;
 						    border: thin solid $border-bottom-input;
 						    z-index: 9;
 						    display: none;
 						    overflow-y: auto;
 						    overflow-x: hidden;
+						    top: 70px;
+						    z-index: 9999999;
+						    border-bottom: thin solid #767676;
+						    border-left: thin solid #767676;
+						    border-right: thin solid #767676;
+						    border-top: none;
+
+						    @media (min-width: 1200px){
+						    	max-height: 175px;
+						    }
 
 						    &.show{
 						    	display: block;	

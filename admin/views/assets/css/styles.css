@@ -1134,7 +1134,7 @@ img {
   left: 0;
   width: 100%;
   background-color: #fff;
-  max-height: 105.5px;
+  max-height: 141px;
   z-index: 9;
   display: none;
   overflow-y: auto;
@@ -1145,6 +1145,11 @@ img {
   border-left: thin solid #767676;
   border-right: thin solid #767676;
   border-top: none;
+}
+@media (min-width: 1200px) {
+  .bootstrapmodal-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrap__form--controlSelect--m {
+    max-height: 175px;
+  }
 }
 .bootstrapmodal-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrap__form--controlSelect--m.show {
   display: block;
@@ -1400,7 +1405,7 @@ img {
   .bootstrapmodalupdate-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrapupdate__form--control__input {
     font-size: 1rem;
     padding: 0.5rem 0.8rem 0.4rem 0.8rem;
-    line-height: 1.9;
+    line-height: 1.5;
   }
 }
 .bootstrapmodalupdate-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrapupdate__form--control__input-photo {
@@ -1428,7 +1433,8 @@ img {
   background-color: #fff;
   border: thin solid #767676;
   border-radius: 0.5rem;
-  padding: 0.65rem;
+  padding: 0.5rem 0.8rem 0.4rem 0.8rem;
+  line-height: 1.5;
 }
 .bootstrapmodalupdate-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrapupdate__form--controlSelect--cFakeSelect span {
   color: #666;
@@ -1444,12 +1450,23 @@ img {
   left: 0;
   width: 100%;
   background-color: #fff;
-  max-height: 105.5px;
+  max-height: 141px;
   border: thin solid #767676;
   z-index: 9;
   display: none;
   overflow-y: auto;
   overflow-x: hidden;
+  top: 70px;
+  z-index: 9999999;
+  border-bottom: thin solid #767676;
+  border-left: thin solid #767676;
+  border-right: thin solid #767676;
+  border-top: none;
+}
+@media (min-width: 1200px) {
+  .bootstrapmodalupdate-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrapupdate__form--controlSelect--m {
+    max-height: 175px;
+  }
 }
 .bootstrapmodalupdate-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrapupdate__form--controlSelect--m.show {
   display: block;
