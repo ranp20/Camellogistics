@@ -68,6 +68,9 @@ img{
 #three-Two{display: none;pointer-events: none;visibility: hidden;opacity: 0; &.show{display: block;	pointer-events: auto; visibility: visible; opacity: 1;}}
 #four-Two{display: none;pointer-events: none;visibility: hidden;opacity: 0;	&.show{	display: block;	pointer-events: auto;	visibility: visible; opacity: 1;}}
 
+.ptop-2{
+	padding-top: 2rem !important;
+}
 /************************** LOADER DE LA WEB **************************/
 #cont-loader{
 	@include loaderPoints($primary-color, #fff);

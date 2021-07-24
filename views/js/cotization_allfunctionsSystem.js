@@ -9,6 +9,8 @@ $(function(){
   list_puertoOriginLCL();
   /************************** LISTAR EL PUERTO DE DESTINO **************************/
   list_puertoDestinyLCL();
+  /************************** LISTAR LOS TIPOS DE PRODUCTOS **************************/
+  listProductsUser();
 });
 /************************** MOSTRAR LOS TIPOS DE SERVICIOS PARA LA COTZACIÓN **************************/
 function list_typ_services(){
@@ -629,7 +631,7 @@ $(document).on("click", "#c-listItemsSelRs li", function(e){
                 <ul class="c-SelServicesQuantity--contStep--cBottom--cListServices--m" id="m-listseleted-services">
                   <li class="c-SelServicesQuantity--contStep--cBottom--cListServices--m--item">
                     <label for="service-item-1" class="c-SelServicesQuantity--contStep--cBottom--cListServices--m--linklabel">
-                      <input type="checkbox" id="service-item-1" class="c-SelServicesQuantity--contStep--cBottom--cListServices--m--linklabel--input">
+                      <input type="checkbox" name="chk-serviceseladd" id="service-item-1" class="c-SelServicesQuantity--contStep--cBottom--cListServices--m--linklabel--input">
                       <span class="c-SelServicesQuantity--contStep--cBottom--cListServices--m--linklabel--checkbox"></span>
                       <div class="c-SelServicesQuantity--contStep--cBottom--cListServices--m--linklabel--cIcon">
                         <img src="views/assets/img/linea_tiempo/PUERTO-Y-ALMACEN-003.png" alt="">
@@ -640,7 +642,7 @@ $(document).on("click", "#c-listItemsSelRs li", function(e){
                   </li>
                   <li class="c-SelServicesQuantity--contStep--cBottom--cListServices--m--item">
                     <label for="service-item-2" class="c-SelServicesQuantity--contStep--cBottom--cListServices--m--linklabel">
-                      <input type="checkbox" id="service-item-2" class="c-SelServicesQuantity--contStep--cBottom--cListServices--m--linklabel--input">
+                      <input type="checkbox" name="chk-serviceseladd" id="service-item-2" class="c-SelServicesQuantity--contStep--cBottom--cListServices--m--linklabel--input">
                       <span class="c-SelServicesQuantity--contStep--cBottom--cListServices--m--linklabel--checkbox"></span>
                       <div class="c-SelServicesQuantity--contStep--cBottom--cListServices--m--linklabel--cIcon">
                         <img src="views/assets/img/linea_tiempo/ADUANA-002.png" alt="">
@@ -654,7 +656,7 @@ $(document).on("click", "#c-listItemsSelRs li", function(e){
                   </li>
                   <li class="c-SelServicesQuantity--contStep--cBottom--cListServices--m--item">
                     <label for="service-item-3" class="c-SelServicesQuantity--contStep--cBottom--cListServices--m--linklabel">
-                      <input type="checkbox" id="service-item-3" class="c-SelServicesQuantity--contStep--cBottom--cListServices--m--linklabel--input">
+                      <input type="checkbox" name="chk-serviceseladd" id="service-item-3" class="c-SelServicesQuantity--contStep--cBottom--cListServices--m--linklabel--input">
                       <span class="c-SelServicesQuantity--contStep--cBottom--cListServices--m--linklabel--checkbox"></span>
                       <div class="c-SelServicesQuantity--contStep--cBottom--cListServices--m--linklabel--cIcon">
                         <img src="views/assets/img/linea_tiempo/TRANSPORTE-002.png" alt="">
@@ -666,7 +668,7 @@ $(document).on("click", "#c-listItemsSelRs li", function(e){
                   </li>
                   <li class="c-SelServicesQuantity--contStep--cBottom--cListServices--m--item">
                     <label for="service-item-4" class="c-SelServicesQuantity--contStep--cBottom--cListServices--m--linklabel">
-                      <input type="checkbox" id="service-item-4" class="c-SelServicesQuantity--contStep--cBottom--cListServices--m--linklabel--input">
+                      <input type="checkbox" name="chk-serviceseladd" id="service-item-4" class="c-SelServicesQuantity--contStep--cBottom--cListServices--m--linklabel--input">
                       <span class="c-SelServicesQuantity--contStep--cBottom--cListServices--m--linklabel--checkbox"></span>
                       <div class="c-SelServicesQuantity--contStep--cBottom--cListServices--m--linklabel--cIcon">
                         <img src="views/assets/img/linea_tiempo/TRANSPORTE-002.png" alt="">
@@ -798,40 +800,17 @@ $(document).on("click", "#m-listseleted-services li", function(){
   }else{
     $(this).find("label").find("span.c-SelServicesQuantity--contStep--cBottom--cListServices--m--linklabel--cIconChck").html("");
   }
-
-  /************************** CONTENIDO DEL ELEMENTO 2 - SERVICIO 2 **************************/
-  if(indexServicesSel == 1 && $("#service-item-2").is(":checked")){
-    $("#cont-selTwoOptsServicesFill").html(`
+});
+/************************** MOSTRAR EL CONTENIDO DEL SERVICIO DE ACUERDO AL CHECKBOX SELECCIONADO **************************/
+$(document).on("click", ".c-SelServicesQuantity--contStep--cBottom--cListServices--m--linklabel--input[name=chk-serviceseladd]", function(){
+  if($(this).attr("id") == "service-item-2"){
+    if($("#service-item-2").is(":checked")){
+      $("#cont-selTwoOptsServicesFill").html(`
       <div class="c-SelServicesQuantity--contStep--cBottom--cListServices--m--item--cont--c">
         <div class="c-SelServicesQuantity--contStep--cBottom--cListServices--m--item--cont--c--control">
           <input type="text" class="c-SelServicesQuantity--contStep--cBottom--cListServices--m--item--cont--c--control--input" placeholder="Producto" id="ipt-ListProductRequestAll">
           <div class="c-SelServicesQuantity--contStep--cBottom--cListServices--m--item--cont--c--control--cList" id="cont-showSListAllTProducts">
-            <ul class="c-SelServicesQuantity--contStep--cBottom--cListServices--m--item--cont--c--control--cList--m">
-              <li class="c-SelServicesQuantity--contStep--cBottom--cListServices--m--item--cont--c--control--cList--m--item">
-                <p>ADITIVOS ALIMENTICIOS</p>
-                <small><span>Regulador</span><span>MINAGRI / SENASA</span></small>
-              </li>
-              <li class="c-SelServicesQuantity--contStep--cBottom--cListServices--m--item--cont--c--control--cList--m--item">
-                <p>AGRICULTURA(FRUTAS Y VEGETALES)</p>
-                <small><span>Regulador</span><span>SENASA</span></small>
-              </li>
-              <li class="c-SelServicesQuantity--contStep--cBottom--cListServices--m--item--cont--c--control--cList--m--item">
-                <p>AIRE ACONDICIONADO</p>
-                <small><span>Regulador</span><span>OTO / OFICINA TÉCNICA DEOZO</span></small>
-              </li>
-              <li class="c-SelServicesQuantity--contStep--cBottom--cListServices--m--item--cont--c--control--cList--m--item">
-                <p>ADITIVOS ALIMENTICIOS</p>
-                <small><span>Regulador</span><span>MINAGRI / SENASA</span></small>
-              </li>
-              <li class="c-SelServicesQuantity--contStep--cBottom--cListServices--m--item--cont--c--control--cList--m--item">
-                <p>AGRICULTURA(FRUTAS Y VEGETALES)</p>
-                <small><span>Regulador</span><span>SENASA</span></small>
-              </li>
-              <li class="c-SelServicesQuantity--contStep--cBottom--cListServices--m--item--cont--c--control--cList--m--item">
-                <p>AIRE ACONDICIONADO</p>
-                <small><span>Regulador</span><span>OTO / OFICINA TÉCNICA DEOZO</span></small>
-              </li>
-            </ul>
+            <ul class="c-SelServicesQuantity--contStep--cBottom--cListServices--m--item--cont--c--control--cList--m" id="m-listAllProductsUser"></ul>
           </div>
           <span class="c-SelServicesQuantity--contStep--cBottom--cListServices--m--item--cont--c--control--spanAlertMsg">Si tu producto NO APARECE, elegir CARGA GENERAL</span>
         </div>
@@ -848,13 +827,12 @@ $(document).on("click", "#m-listseleted-services li", function(){
         <span>¿Ha realizado importaciones previamente?</span>
       </div>
     `);
-  }else{
-    $("#cont-selTwoOptsServicesFill").html("");
-  }
-
-  /************************** CONTENIDO DEL ELEMENTO 3 - SERVICIO 3 **************************/
-  if(indexServicesSel == 2 && $("#service-item-3").is(":checked")){
-    $("#cont-selThreeOptsServicesFill").html(`
+    }else{
+      $("#cont-selTwoOptsServicesFill").html("");
+    }
+  }else if($(this).attr("id") == "service-item-3"){
+    if($("#service-item-3").is(":checked")){
+      $("#cont-selThreeOptsServicesFill").html(`
       <div class="c-SelServicesQuantity--contStep--cBottom--cListServices--m--item--cont--c50">
       <div class="c-SelServicesQuantity--contStep--cBottom--cListServices--m--item--cont--c50--control">
         <input type="text" class="c-SelServicesQuantity--contStep--cBottom--cListServices--m--item--cont--c50--control--input" placeholder="Provincia" id="ipt-ListProvinciasByCountryRequestAll">
@@ -898,24 +876,78 @@ $(document).on("click", "#m-listseleted-services li", function(){
       </div>
     </div>
     `);
-  }else{
-    $("#cont-selThreeOptsServicesFill").html("");
+    }else{
+      $("#cont-selThreeOptsServicesFill").html("");
+    }
   }
 });
-/************************** MOSTRAR EL LISTADO DE TIPOS DE PRODUCTOS **************************/
-//$(document).on("focus", "#ipt-ListProductRequestAll", function(){$("#cont-showSListAllTProducts").addClass("show");});
-//$(document).on("blur", "#ipt-ListProductRequestAll", function(){$("#cont-showSListAllTProducts").removeClass("show");});
-$(document).on("keyup", "#ipt-ListProductRequestAll", function(){$("#cont-showSListAllTProducts").addClass("show");});
+/************************** LISTAR LOS TIPOS DE PRODUCTOS **************************/
+function listProductsUser(searchVal){
+  $.ajax({
+    url: "controllers/list_products.php",
+    method: "POST",
+    datatype: "JSON",
+    contentType: 'application/x-www-form-urlencoded;charset=UTF-8',
+    data: {searchList : searchVal},
+  }).done( function (res) {
+    var response = JSON.parse(res);
+    var template = "";
+    if(response.length == 0){
+      template = `
+        <li class="c-SelServicesQuantity--contStep--cBottom--cListServices--m--item--cont--c--control--cList--m--item">
+          <p>No encontado</p>
+          <small><span>Regulador: </span><span>NO REQUIERE</span></small>
+        </li>
+      `;
+      $("#m-listAllProductsUser").html(template);
+      setTimeout(function(){
+        $("#m-listAllProductsUser").removeClass("show");
+      }, 4500);
+    }else{
+      response.forEach(e => {
+      var nounRegOne = "";
+      var nounRegTwo = "";
 
+      (e.reguladorOne == null || e.reguladorOne == "") ? nounRegOne = "NO REQUIERE" : nounRegOne = e.reguladorOne;
+      (e.reguladorTwo == null || e.reguladorTwo == "") ? nounRegTwo = "NO REQUIERE" : nounRegTwo = e.reguladorTwo;
+      template += `
+        <li class="c-SelServicesQuantity--contStep--cBottom--cListServices--m--item--cont--c--control--cList--m--item" id="${e.id_prod}">
+          <p>${e.name_prod}</p>
+          <small><span>Regulador: </span><span>${nounRegOne} / ${nounRegTwo}</span></small>
+        </li>
+      `;
+      });
+      $("#m-listAllProductsUser").html(template);
+    }
+  });
+}
+/************************** MOSTRAR EL LISTADO DE TIPOS DE PRODUCTOS **************************/
+$(document).on("focus", "#ipt-ListProductRequestAll", function(){$("#cont-showSListAllTProducts").addClass("show");listProductsUser();});
+//$(document).on("blur", "#ipt-ListProductRequestAll", function(){$("#cont-showSListAllTProducts").removeClass("show");});
+$(document).on("keyup", "#ipt-ListProductRequestAll", function(){
+  $("#cont-showSListAllTProducts").addClass("show");
+  var searchVal = $(this).val();
+  if(searchVal != ""){
+    listProductsUser(searchVal);
+  }else{
+    listProductsUser();
+  }
+});
+/************************** FIJAR EL VALOR DE ITEM EN EL INPUT - TIPOS DE PRODUCTOS **************************/
+$(document).on("click", ".c-SelServicesQuantity--contStep--cBottom--cListServices--m--item--cont--c--control--cList--m--item", function(){
+  $("#cont-showSListAllTProducts").removeClass("show");
+  $("#ipt-ListProductRequestAll").attr("idproduct", $(this).attr("id"));
+  $("#ipt-ListProductRequestAll").val($(this).find("p").text());
+});
 /************************** VALIDAR INPUT - VALOR DE PRODUCTO IMPORTADO **************************/
 $(document).on("input", "#ipt-valueProductRequest", function(e){
   if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
-     return false;
+    return false;
   }else{
-      //limit length but allow backspace so that you can still delete the numbers.
-      if( $(this).val().length >= parseInt($(this).attr('maxlength')) && (e.which != 8 && e.which != 0)){
-          return false;
-      }
+    /************************** LIMITAR EL MÁXMIMO DE CARACTERES **************************/
+    if( $(this).val().length >= parseInt($(this).attr('maxlength')) && (e.which != 8 && e.which != 0)){
+      return false;
+    }
   }
 
   let value = e.target.value;
@@ -924,6 +956,7 @@ $(document).on("input", "#ipt-valueProductRequest", function(e){
     return v.replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d)\.?)/g, ".") + " USD";
   });
 });
+/************************** VALIDAR SI CONTIENE ALGÚN VALOR NULO O 0 **************************/
 $(document).on("keyup", "#ipt-valueProductRequest", function(){
   if($(this).val() == "" || $(this).val() == 0 || $(this).val() == " USD" || $(this).val() == ".00" || $(this).val() == 0.00){
     $(this).val("");

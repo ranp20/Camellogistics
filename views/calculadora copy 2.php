@@ -1,4 +1,4 @@
-<script>
+<!-- <script>
 
 function mostrar(id) {
 	if (id == "con_completo") {
@@ -14,23 +14,18 @@ function mostrar(id) {
 	}
 
 	
-}
-
-    
+}    
 </script>
 <div class="cajacalc">
     <form id="frm_cotizacion" method="POST" action="views/modules/act_maritimo.php">
 	<div id="fase1">
 	<h2>1. Seleccione</h2>
-
 	<div id="flete_maritimo">
 		<input type="hidden" id="text_tipo_flete" name="text_tipo_flete">
 	</div>
-
 	<div id="flete_aereo">
 		<input type="hidden" id="text_flete_aereo" name="text_flete_aereo">
 	</div>
-
 	<div id="cbo_ruta">
 		<h2>2. Origen  -  Destino</h2>
 		<select id="puertos_orig" name="puertos_orig">
@@ -49,13 +44,9 @@ function mostrar(id) {
 		<select id="tip_contenedor" name="tip_contenedor"  onChange="mostrar(this.value);">
 			<option value="">Elija una Opcion</option>
 			<option value="con_completo">Contenedor Completo (FCL)</option>
-			<!--<option value="con_compartido">Contenedor Compartido (LCL)</option>-->
 		</select>
-		
 		<div id="list_cont_completo">
-			<div class="rell_spi">
-			</div>
-			
+			<div class="rell_spi"></div>
 			<div class="standard_containt1">
 				<div id="detail_cont_selc1"></div>
 				<div id="detail_cont_selc2"></div>
@@ -68,24 +59,14 @@ function mostrar(id) {
 			</div>
 		</div>
 	</div>
-
-
-	
     <div align="center">
 		<div id="estimar" class="button">Estimar</div>
 		<center><input type="submit" id="next_maritimo" rel_user_it='' name="next_maritimo" class="button" value="Siguiente"></center>
 	</div>
-
 	</div>
-
 	<div id="fase2">
-		
 		<h2>Detalles</h2>
-
-		<div id="marc_det_flete">
-			
-		</div>
-
+		<div id="marc_det_flete"></div>
 		<h2>Elije una opcion</h2>
 		<div id="marc_opc_serv">
 			<div id="opc_si_servicio">
@@ -97,7 +78,6 @@ function mostrar(id) {
 				NO AGREGAR SERVICIOS
 			</div>
 		</div>	
-
 		<div id="marc_serv_flete">
 			<div class="mc_check">
 				<input type="checkbox" id="gast_portuario_aduana">
@@ -111,7 +91,6 @@ function mostrar(id) {
 			<div class="mc_des_check">
 				Cálculo de impuestos y permisos de aduana 
 			</div>
-			
 			<div class="mc_check"></div>
 			<div class="mc_des_check">
 				<div id="marc_permisos_aduana">
@@ -141,17 +120,12 @@ function mostrar(id) {
 					</div>
 				</div>
 			</div>
-
-			
-			
 			<div class="mc_check">
 				<input type="checkbox" id="gast_trans_dom">
 			</div>
 			<div class="mc_des_check">
 				Transporte a domicilio 
 			</div>
-
-
 			<div class="mc_check"></div>
 			<div class="mc_des_check">
 				<div id="marc_trans_domicilio">
@@ -170,8 +144,6 @@ function mostrar(id) {
 					</div>
 				</div>
 			</div>
-
-
 			<div class="mc_check">
 				<input type="checkbox" id="gast_seg_merc">
 			</div>
@@ -179,10 +151,7 @@ function mostrar(id) {
 				Seguro de mercancia 
 			</div>
 		</div>
-
-
 		<h2>Ingrese sus datos</h2>
-
 		<div id="marc_datos_user">
 			<div class="mc_tit">
 				Ingreser su RUC 
@@ -206,16 +175,8 @@ function mostrar(id) {
 		<div align="center">
 			<div id="dowload_cotizacion" class="button">Descargar Cotizacion</div>
 		</div>
-
-
 	</div>
-	<div id="fase3">
-	
-
-	
-	</div>
-
-
+	<div id="fase3"></div>
 </form>
 <script>
     $(document).ready(function () {
@@ -247,5 +208,4 @@ function mostrar(id) {
 	
 
     });
-</script>
-
+</script> -->

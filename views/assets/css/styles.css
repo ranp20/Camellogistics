@@ -22,6 +22,12 @@ a {
   text-decoration: none !important;
 }
 
+div[aria-expanded=true], div[aria-visibility=show] {
+  display: none;
+  pointer-events: none;
+  opacity: 0;
+}
+
 ul {
   list-style: none;
   padding: 0;
@@ -132,6 +138,10 @@ img {
   pointer-events: auto;
   visibility: visible;
   opacity: 1;
+}
+
+.ptop-2 {
+  padding-top: 2rem !important;
 }
 
 /************************** LOADER DE LA WEB **************************/
@@ -734,7 +744,7 @@ img {
 }
 
 .c-CalculatorStep--form {
-  padding-top: 2rem;
+  padding-top: 0.5rem;
 }
 .c-CalculatorStep--form--contStep {
   text-align: center;

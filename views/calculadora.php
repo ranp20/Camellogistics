@@ -25,7 +25,7 @@
 		<?php require_once 'api_whatsapp.php'; ?>
 		<form id="frm_cotizacion" method="POST" class="c-CalculatorStep--form">
 			<!------------------------------------------ PRIMERA FASE - PASO 1 (INICIO) ----------------------------------->
-			<div id="step-One" class="c-CalculatorStep--form--contStep">
+			<div id="step-One" class="c-CalculatorStep--form--contStep ptop-2">
 				<div class="box-container">
 					<div class="c-CalculatorStep--form--contStep--cTitle">
 						<h2 class="c-CalculatorStep--form--contStep--cTitle--title b-bottom">¡COTIZA TÚ FLETE!</h2>
@@ -38,7 +38,7 @@
 				</div>
 			</div>
 			<!------------------------------------------ SEGUNDA FASE - PASO 2 (INICIO) ----------------------------------->
-			<div id="step-Two" class="c-CalculatorStep--form--contStep hide step-hidden">
+			<div id="step-Two" class="c-CalculatorStep--form--contStep hide step-hidden ptop-2">
 				<div class="box-container">
 					<div class="c-CalculatorStep--form--contStep--cTitledesconly">
 						<h3 class="c-CalculatorStep--form--contStep--cTitledesconly--desc">PASO 2. Indica Ruta y Tipo de Contenedor</h3>

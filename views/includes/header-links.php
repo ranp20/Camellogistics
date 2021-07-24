@@ -14,9 +14,6 @@
 <meta property="og:description" content="¡Calcula el costo de tu importación en 4 simples pasos!" />
 <meta property="og:site_name" content="Camel" />
 <link rel="icon" type="image/x-icon" href="views/img/favicon-camel.png" />
-<script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" crossorigin="anonymous"></script>
-<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
-<link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
 <link href="views/css/styles.css" rel="stylesheet" />
 <link href="views/css/camel.css" rel="stylesheet" />
 <!-- ************************* AGREGADO RECIENTEMENTE *************************-->

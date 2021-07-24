@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
@@ -7,21 +7,12 @@
 </head>
 <div class="cabecera"></div>
 <body>
-
-<?php include "modules/navegacion.php"; ?>
-
-
+	<?php include "modules/navegacion.php"; ?>
 <section>
-
-<?php 
-
-$mvc = new MvcController();
-$mvc -> enlacesPaginasController();
-
- ?>
-
+	<?php 
+		$mvc = new MvcController();
+		$mvc -> enlacesPaginasController();
+	?>
 </section>
-	
 </body>
-
-</html>
+</html> -->
