@@ -684,7 +684,7 @@ $(document).on("click", "#c-listItemsSelRs li", function(e){
                     </label>
                   </li>
                 </ul>
-                <button type="button" class="c-SelServicesQuantity--contStep--cBottom--cListServices--btnAddCotizationS">CALCULAR COTIZACIÓN</button>
+                <button type="button" class="c-SelServicesQuantity--contStep--cBottom--cListServices--btnAddCotizationS" id="btn-calQuotationFinalT">CALCULAR COTIZACIÓN</button>
               </div>
             </div>
             <div class="c-SelServicesQuantity--contStep--cLogisticChain" id="line-InfoLogisticChain">
@@ -1132,6 +1132,13 @@ $(document).on("keyup", "#ipt-ListProvinciasByCountryRequestAll", function(){$("
 $(document).on("click", "#ipt-ListProvinciasByCountryRequestAll", function(){
   console.log(localStorage.getItem("port_DId") + " " + localStorage.getItem("port_DName"));
 });
+/*========================================================================================
+=            CALCULAR LA COTIZACIÓN DE ACUERDO A LOS VALORES DEL LOCALSTORAGE            =
+========================================================================================*/
+$(document).on("click", "#btn-calQuotationFinalT", function(){
+  alert("Debes completar los campos primero");
+});
+
 /*==========================================================================================================
 =                               CANCELAR EL PROCESO DESDE EL PUNTO O PASO 3                                =
 ==========================================================================================================*/

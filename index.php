@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <title>Calculadora de Envíos | Camel</title>
+  <title>Camel Logistics | Agente de Aduana y carga internacional, fletes marítimos y aéreos</title>
   <?php require_once 'views/includes/header-links.php'; ?>
 </head>
 <body>

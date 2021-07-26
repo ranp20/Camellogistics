@@ -75,7 +75,7 @@
 											<select name="" id="valinput-volumen"></select>
 										</div>
 									</div>
-									<a href="#" id="Add-fromcalculatorModal" class="c-CalculatorStep--form--contStep--cStepSelects--item--selContaineropts--filldatacontainer--linkModalDatas">AYUDA - CALCULA VOLUMEN (m3) AQUÍ</a>
+									<a href="javascript:void(0);" id="Add-fromcalculatorModal" class="c-CalculatorStep--form--contStep--cStepSelects--item--selContaineropts--filldatacontainer--linkModalDatas">AYUDA - CALCULA VOLUMEN (m3) AQUÍ</a>
 									<div class="c-CalculatorStep--form--contStep--cStepSelects--item--selContaineropts--filldatacontainer--cbtnsActs">
 										<a href="#" id="btn-backToModalContainers">VOLVER</a>
 										<button type="button" id="btn-saveToModalContainers">GUARDAR</button>

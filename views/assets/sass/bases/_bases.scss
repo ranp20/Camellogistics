@@ -46,6 +46,13 @@ img{
 	margin-left: auto;
 	margin-right: auto;
 }
+.box-containerredux{
+	max-width: $max-width-redux;
+	width: 90%;
+	margin-left: auto;
+	margin-right: auto;
+	padding: 0 1rem;
+}
 .one-hidden > option:first-child{
 	display: none !important;
 }

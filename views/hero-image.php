@@ -1,5 +1,5 @@
 <header class="masthead mtop-headertop" id="h-heroImage-init">
-  <div class="container">
+  <div class="box-containerredux">
     <div class="masthead-subheading">Welcome To Our Studio!</div>
     <div class="masthead-heading text-uppercase">It's Nice To Meet You</div>
     <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="#services">Tell Me More</a>
