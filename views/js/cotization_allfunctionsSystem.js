@@ -14,16 +14,21 @@ $(function(){
 });
 /************************** MOSTRAR LOS TIPOS DE SERVICIOS PARA LA COTZACIÓN **************************/
 function list_typ_services(){
-	$.ajax({
+	$("#loaderdataUser").fadeIn('slow');
+  $.ajax({
     url: "controllers/list_type_services.php",
     method: "POST",
     datatype: "JSON",
     contentType: 'application/x-www-form-urlencoded;charset=UTF-8',
+    beforeSend: function(){
+      $("#loaderdataUser").html("<img src='admin/views/assets/img/Utilities/loader.gif'>");
+    },
   }).done( function (res) {
     var response = JSON.parse(res);
     var template = "";
 
     if(response.length == 0){
+      $("#loaderdataUser").html("");
       template = `
         <li class="c-CalculatorStep--form--contStep--cStep--m--item">
         	<span>No se econtraron resultados</span>
@@ -31,6 +36,7 @@ function list_typ_services(){
       `;
       $("#cont-typeServicesOneStep").html(template);
     }else{
+      $("#loaderdataUser").html("");
       $.each(response, function(i, e) {
       	var pathimgservice = "views/assets/img/"+e.photo;
       	

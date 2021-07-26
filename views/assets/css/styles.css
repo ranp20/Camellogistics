@@ -780,6 +780,9 @@ img {
   padding-bottom: 1rem;
   margin-bottom: 0.5rem;
 }
+.c-CalculatorStep--form--contStep--cStep--loadertserv {
+  padding-top: 6rem;
+}
 .c-CalculatorStep--form--contStep--cStep--m {
   display: flex;
   flex-wrap: wrap;
@@ -790,6 +793,12 @@ img {
 @media (min-width: 991px) {
   .c-CalculatorStep--form--contStep--cStep--m {
     margin-top: 2rem;
+    gap: 3rem;
+  }
+}
+@media (min-width: 1200px) {
+  .c-CalculatorStep--form--contStep--cStep--m {
+    gap: 4rem;
   }
 }
 .c-CalculatorStep--form--contStep--cStep--m--item {
@@ -807,7 +816,7 @@ img {
 }
 @media (min-width: 991px) {
   .c-CalculatorStep--form--contStep--cStep--m--link {
-    width: 17rem;
+    width: 16rem;
   }
 }
 .c-CalculatorStep--form--contStep--cStepSelects {
@@ -2065,6 +2074,171 @@ img {
 }
 .c-SelServicesQuantity--contStep--cLogisticChain--cInfoLogisticChain--m--itemCurrStep.selStepComplete small {
   color: #275FC7;
+}
+
+.c-FinalQuotation--contStep {
+  text-align: center;
+  /* TÍTULO DEL PASO 4 */
+  /* RESUMEN DEL PRESUPUESTO */
+}
+.c-FinalQuotation--contStep--cTitle {
+  width: 95%;
+  margin-left: auto;
+  margin-right: auto;
+}
+.c-FinalQuotation--contStep--cTitle--title {
+  color: #B58440;
+  font-size: 1.2rem;
+  padding-bottom: 1rem;
+  margin-bottom: 0.5rem;
+}
+.c-FinalQuotation--contStep--cQuotation {
+  /* CONTENIDO - DETALLE DE LA PARTE SUPERIOR */
+  /* CONTENIDO - DETALLE DE LA PARTE INFERIOR */
+}
+.c-FinalQuotation--contStep--cQuotation--cTop--title {
+  margin: 0;
+}
+.c-FinalQuotation--contStep--cQuotation--cTop--c {
+  /* RESUMEN Y TIPO DE TRANSPORTE */
+  /* RESUMEN Y LISTA DE SERVICIOS AGREGADOS */
+  /* PREGUNTA - ¿ DUDAS ? */
+  /* VALIDEZ DE LA COTIZACIÓN */
+}
+.c-FinalQuotation--contStep--cQuotation--cTop--c--nOriginDestinyInfo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.c-FinalQuotation--contStep--cQuotation--cTop--c--nOriginDestinyInfo--cImgInfo {
+  display: flex;
+  align-items: center;
+}
+.c-FinalQuotation--contStep--cQuotation--cTop--c--nOriginDestinyInfo--cImgInfo img {
+  max-width: 70px;
+  width: 100%;
+  height: 100%;
+}
+.c-FinalQuotation--contStep--cQuotation--cTop--c--nOriginDestinyInfo--cImgInfo--info {
+  margin: 0;
+  font-size: 0.8rem;
+  margin-left: 0.5rem;
+}
+.c-FinalQuotation--contStep--cQuotation--cTop--c--nOriginDestinyInfo--cCodeQuotation p {
+  margin: 0;
+  font-size: 0.8rem;
+}
+.c-FinalQuotation--contStep--cQuotation--cTop--c--cDetailsQuotation {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex: 0 0 100%;
+  padding: 0 3rem;
+}
+.c-FinalQuotation--contStep--cQuotation--cTop--c--cDetailsQuotation--m {
+  flex: 48%;
+  padding-inline-start: 40px;
+  list-style: disc !important;
+}
+.c-FinalQuotation--contStep--cQuotation--cTop--c--cDetailsQuotation--m--item {
+  text-align: left;
+}
+.c-FinalQuotation--contStep--cQuotation--cTop--c--cDetailsQuotation--m--item--info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.9rem;
+}
+.c-FinalQuotation--contStep--cQuotation--cTop--c--cDudeInfo {
+  background-color: orange;
+}
+.c-FinalQuotation--contStep--cQuotation--cTop--c--cDudeInfo p {
+  margin: 0;
+  color: #fff;
+}
+.c-FinalQuotation--contStep--cQuotation--cTop--c--cDudeInfo p a {
+  color: #fff;
+  text-decoration: underline !important;
+}
+.c-FinalQuotation--contStep--cQuotation--cTop--c--cValidTimeQuotation {
+  border-bottom: thin solid #cccc;
+}
+.c-FinalQuotation--contStep--cQuotation--cTop--c--cValidTimeQuotation p {
+  margin: 0;
+  color: #888;
+  font-weight: 600;
+}
+.c-FinalQuotation--contStep--cQuotation--cBottom {
+  padding-top: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: thin solid #cccc;
+  /* LOGO DE LA EMPRESA */
+  /* LISTA DE DETALLES Y/O SERVICIOS INCLUIDOS Y NO INCLUIDOS */
+}
+.c-FinalQuotation--contStep--cQuotation--cBottom--cImgInfoEnterprise {
+  display: flex;
+  align-items: center;
+}
+.c-FinalQuotation--contStep--cQuotation--cBottom--cImgInfoEnterprise img {
+  max-width: 90px;
+  width: 100%;
+  height: 100%;
+  margin-right: 1rem;
+}
+.c-FinalQuotation--contStep--cQuotation--cBottom--cImgInfoEnterprise--info {
+  text-align: left;
+}
+.c-FinalQuotation--contStep--cQuotation--cBottom--cImgInfoEnterprise--info h3 {
+  color: #B58440;
+  font-size: 1.2rem;
+  margin: 0;
+}
+.c-FinalQuotation--contStep--cQuotation--cBottom--cImgInfoEnterprise--info span {
+  color: #888;
+  font-weight: 600;
+}
+.c-FinalQuotation--contStep--cQuotation--cBottom--c {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex: 0 0 100%;
+  padding: 0 4rem;
+}
+.c-FinalQuotation--contStep--cQuotation--cBottom--c--moreDetails {
+  flex: 48%;
+}
+.c-FinalQuotation--contStep--cQuotation--cBottom--c--moreDetails--include {
+  text-align: left;
+}
+.c-FinalQuotation--contStep--cQuotation--cBottom--c--moreDetails--include--title {
+  color: steelblue;
+  font-weight: 600;
+  font-size: 0.9rem;
+  padding-inline-start: 40px;
+  margin: 0;
+}
+.c-FinalQuotation--contStep--cQuotation--cBottom--c--moreDetails--include--m {
+  padding-inline-start: 40px;
+  list-style: disc !important;
+  font-size: 0.9rem;
+}
+.c-FinalQuotation--contStep--cQuotation--cBottom--c--moreDetails--notinclude {
+  text-align: left;
+}
+.c-FinalQuotation--contStep--cQuotation--cBottom--c--moreDetails--notinclude--title {
+  color: steelblue;
+  font-weight: 600;
+  font-size: 0.9rem;
+  padding-inline-start: 40px;
+  margin: 0;
+}
+.c-FinalQuotation--contStep--cQuotation--cBottom--c--moreDetails--notinclude--m {
+  padding-inline-start: 40px;
+  list-style: disc !important;
+  font-size: 0.9rem;
+}
+.c-FinalQuotation--contStep--cQuotation--cBottom--c--QuantityQuotation {
+  flex: 48%;
 }
 
 /*# sourceMappingURL=styles.css.map */

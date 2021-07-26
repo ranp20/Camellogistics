@@ -760,12 +760,18 @@ img {
 .h-dashCamel--c--cUser--m.show {
   display: block;
 }
+@media (min-width: 1024px) {
+  .h-dashCamel--c--cUser--m:hover {
+    display: block;
+  }
+}
 .h-dashCamel--c--cUser--m--link {
   display: block;
   color: #fff;
   padding: 0.5rem 1rem;
 }
 .h-dashCamel--c--cUser--m--link:hover {
+  color: #fff;
   opacity: 0.6;
 }
 

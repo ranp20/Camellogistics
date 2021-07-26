@@ -35,6 +35,10 @@
 
 		/************************** COTENIDO TIPO DE SERVICIO - PASO 1 **************************/
 		&--cStep{
+			&--loadertserv{
+				padding-top: 6rem;
+			}
+
 			&--m{
 				display: flex;
 				flex-wrap: wrap;
@@ -44,6 +48,11 @@
 
 				@media (min-width: 991px){
 					margin-top: 2rem;
+					gap: 3rem;
+				}
+
+				@media (min-width: 1200px){
+					gap: 4rem;
 				}
 
 				&--item{
@@ -62,7 +71,7 @@
 					}
 
 					@media (min-width: 991px){
-						width: 17rem;
+						width: 16rem;
 					}
 
 					img{

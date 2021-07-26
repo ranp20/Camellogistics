@@ -335,12 +335,19 @@
 					display: block;
 				}
 
+				@media (min-width: 1024px){
+					&:hover{
+						display: block;
+					}
+				}
+
 				&--link{
 					display: block;
 					color: #fff;
 					padding: 0.5rem 1rem;
 
 					&:hover{
+						color: #fff;
 						opacity: 0.6;
 					}
 				}
