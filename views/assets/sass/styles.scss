@@ -2,12 +2,13 @@
 	@import 'bases/bases';
 
 /* IMPORTAR LAS HOJAS DE ESTILOS */
-	@import 'theme/header-top';
 	@import 'theme/home';
-	@import 'theme/register-users';
+	@import 'theme/header-top';
+/* HOJAS DE ESTILOS PARA LA CALCULADORA */
 	@import 'theme/steps-calculator';
 	@import 'theme/modal-calculator';
 	@import 'theme/steps-after-calculator';
 	@import 'theme/step-final-quotation';
-/* HOJAS DE ESTILOS PARA LA CALCULADORA */
+	@import 'theme/before-download-register';
 	@import 'theme/calculator_header-top';
+	@import 'theme/user-LoginorRegister';

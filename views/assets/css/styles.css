@@ -417,6 +417,31 @@ img {
 }
 
 /* IMPORTAR LAS HOJAS DE ESTILOS */
+#h-heroImage-init {
+  min-height: 743px;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 0 !important;
+  padding-bottom: 3rem !important;
+  background-attachment: scroll;
+  background-position: center 0;
+  position: relative;
+}
+#h-heroImage-init:after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.15);
+}
+#h-heroImage-init div {
+  z-index: 9;
+}
+
 #c-HTop-camel {
   position: fixed;
   z-index: 9999999;
@@ -553,218 +578,7 @@ img {
   }
 }
 
-#h-heroImage-init {
-  min-height: 743px;
-  height: auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding-top: 0 !important;
-  padding-bottom: 3rem !important;
-  background-attachment: scroll;
-  background-position: center 0;
-  position: relative;
-}
-#h-heroImage-init:after {
-  content: "";
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  background-color: rgba(0, 0, 0, 0.15);
-}
-#h-heroImage-init div {
-  z-index: 9;
-}
-
-.cnt-modalFormLoginyRegister {
-  position: fixed;
-  width: 100%;
-  min-height: 100vh;
-  height: 100%;
-  overflow-y: auto;
-  background-color: rgba(0, 0, 0, 0.4);
-  z-index: 99999999;
-  padding: 0;
-  margin: 0;
-  top: 0;
-  left: 0;
-  display: none;
-  align-items: flex-start;
-  justify-content: center;
-  pointer-events: none;
-}
-
-.cnt-modalFormLoginyRegister.show {
-  display: flex;
-  pointer-events: auto;
-}
-
-.cnt-modalFormLoginyRegister--c {
-  background-color: #fff;
-  border-radius: 0.6rem;
-  max-width: 450px;
-  width: 95%;
-  margin-top: 1rem;
-  overflow: hidden;
-  text-align: center;
-  animation-name: showForm;
-  animation-duration: 0.3s;
-  animation-timing-function: ease-in-out;
-  transform: translateY(-200%);
-  pointer-events: none;
-}
-
-.cnt-modalFormLoginyRegister--c.show {
-  transform: translateY(0);
-  pointer-events: auto;
-}
-
-@keyframes showForm {
-  0% {
-    transform: translateY(-200%);
-  }
-  100% {
-    transform: translateY(0);
-  }
-}
-.cnt-modalFormLoginyRegister--c--close {
-  width: 15px;
-  height: 15px;
-  background: linear-gradient(45deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 43%, #fff 45%, #fff 55%, rgba(0, 0, 0, 0) 57%, rgba(0, 0, 0, 0) 100%), linear-gradient(135deg, #000 0%, #000 43%, #fff 45%, #fff 55%, #000 57%, #000 100%);
-  border-radius: 50%;
-  box-shadow: 0 0 0 1px #000, 0 0 0 4px #000, 0 0 0 7px #fff;
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  cursor: pointer;
-}
-
-.cnt-modalFormLoginyRegister--c--cTitle {
-  background-color: #B58440;
-  color: #fff;
-  padding: 1rem 0.5rem;
-}
-
-.cnt-modalFormLoginyRegister--c--cTitle span {
-  background-color: #fff;
-  color: #B58440;
-  padding: 0.3rem 1rem;
-  display: inline-block;
-  border-radius: 1.5rem;
-  margin-bottom: 0.25rem;
-  font-weight: bold;
-}
-
-.cnt-modalFormLoginyRegister--c--cTitle h2 {
-  font-size: 1.4rem;
-}
-
-.cnt-modalFormLoginyRegister--c--cForm {
-  padding: 1.25rem;
-  text-align-last: left;
-}
-
-.cnt-modalFormLoginyRegister--c--cForm--cControl {
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 1rem;
-}
-
-/************************** QUITAR LOS BOTONES DE BOOSTRAP POR DEFECTO EN INPUT DE TIPO NÚMERO (INICIO) **************************/
-.cnt-modalFormLoginyRegister--c--cForm--cControl .input-group {
-  display: none !important;
-}
-
-.cnt-modalFormLoginyRegister--c--cForm--cControl .input-group .input-group-prepend,
-.cnt-modalFormLoginyRegister--c--cForm--cControl .input-group .input-group-append {
-  display: none !important;
-}
-
-/************************** QUITAR LOS BOTONES DE BOOSTRAP POR DEFECTO EN INPUT DE TIPO NÚMERO (FIN) **************************/
-.cnt-modalFormLoginyRegister--c--cForm--cControl--label {
-  color: #222;
-  font-weight: 600;
-}
-
-.cnt-modalFormLoginyRegister--c--cForm--cControl--input {
-  /*outline: none;*/
-  display: block !important;
-  width: 100%;
-  font-size: 1rem;
-  line-height: 1.5;
-  padding: 0.5rem 0.8rem;
-  border: thin solid #ccc;
-  border-radius: 0.4rem !important;
-  text-align: left !important;
-}
-
-.cnt-modalFormLoginyRegister--c--cForm--cControl--input[type=number]::-webkit-inner-spin-button,
-.cnt-modalFormLoginyRegister--c--cForm--cControl--input[type=number]::-webkit-outer-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
-
-.cnt-modalFormLoginyRegister--c--cForm--cControl--input[type=number] {
-  -moz-appearance: textfield;
-}
-
-/************************** BOTONES VÁLIDOS PARA DESCARGAR **************************/
-.cnt-modalFormLoginyRegister--c--cForm--cBtnsDownloadPdf {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  text-align: center !important;
-}
-
-.cnt-modalFormLoginyRegister--c--cForm--cBtnsDownloadPdf > span {
-  color: #222;
-  width: 100%;
-  text-align: left;
-  margin-bottom: 0.5rem;
-}
-
-.cnt-modalFormLoginyRegister--c--cForm--cBtnsDownloadPdf p a {
-  color: blue;
-  font-weight: bold;
-  text-decoration: underline !important;
-}
-
-/************************** TOGGLE CONTROL **************************/
-#cont-btnsDownloadOptions.hidden {
-  display: none;
-}
-
-#control-inputaddEmail {
-  display: none;
-  align-items: flex-start;
-  justify-content: center;
-}
-
-#control-inputaddEmail.show {
-  display: flex;
-}
-
-#control-inputaddEmail button {
-  border: none;
-  background-color: #B58440;
-  width: auto;
-  padding: 0.5rem 1rem;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 0.5rem;
-  display: inline-block;
-  color: #fff;
-  border-radius: 0.4rem;
-  font-weight: 600;
-}
-
-#control-inputaddEmail button:hover {
-  opacity: 0.5;
-}
-
+/* HOJAS DE ESTILOS PARA LA CALCULADORA */
 .c-CalculatorStep--form {
   padding-top: 0.5rem;
 }
@@ -2272,8 +2086,169 @@ img {
   font-size: 0.9rem;
 }
 
-/* HOJAS DE ESTILOS PARA LA CALCULADORA */
-#c-HTop-camel {
+.cnt-modalFormLoginyRegister {
+  position: fixed;
+  width: 100%;
+  min-height: 100vh;
+  height: 100%;
+  overflow-y: auto;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 99999999;
+  padding: 0;
+  margin: 0;
+  top: 0;
+  left: 0;
+  display: none;
+  align-items: flex-start;
+  justify-content: center;
+  pointer-events: none;
+}
+.cnt-modalFormLoginyRegister.show {
+  display: flex;
+  pointer-events: auto;
+}
+.cnt-modalFormLoginyRegister--c {
+  background-color: #fff;
+  border-radius: 0.6rem;
+  max-width: 450px;
+  width: 95%;
+  margin-top: 1rem;
+  overflow: hidden;
+  text-align: center;
+  animation-name: showForm;
+  animation-duration: 0.3s;
+  animation-timing-function: ease-in-out;
+  transform: translateY(-200%);
+  pointer-events: none;
+}
+.cnt-modalFormLoginyRegister--c.show {
+  transform: translateY(0);
+  pointer-events: auto;
+}
+@keyframes showForm {
+  0% {
+    transform: translateY(-200%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+.cnt-modalFormLoginyRegister--c--close {
+  width: 15px;
+  height: 15px;
+  background: linear-gradient(45deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 43%, #fff 45%, #fff 55%, rgba(0, 0, 0, 0) 57%, rgba(0, 0, 0, 0) 100%), linear-gradient(135deg, #000 0%, #000 43%, #fff 45%, #fff 55%, #000 57%, #000 100%);
+  border-radius: 50%;
+  box-shadow: 0 0 0 1px #000, 0 0 0 4px #000, 0 0 0 7px #fff;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+}
+.cnt-modalFormLoginyRegister--c--cTitle {
+  background-color: #B58440;
+  color: #fff;
+  padding: 1rem 0.5rem;
+}
+.cnt-modalFormLoginyRegister--c--cTitle span {
+  background-color: #fff;
+  color: #B58440;
+  padding: 0.3rem 1rem;
+  display: inline-block;
+  border-radius: 1.5rem;
+  margin-bottom: 0.25rem;
+  font-weight: bold;
+}
+.cnt-modalFormLoginyRegister--c--cTitle h2 {
+  font-size: 1.4rem;
+}
+.cnt-modalFormLoginyRegister--c--cForm {
+  padding: 1.25rem;
+  text-align-last: left;
+  /************************** BOTONES VÁLIDOS PARA DESCARGAR **************************/
+  /************************** TOGGLE CONTROL **************************/
+}
+.cnt-modalFormLoginyRegister--c--cForm--cControl {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+  /************************** QUITAR LOS BOTONES DE BOOSTRAP POR DEFECTO EN INPUT DE TIPO NÚMERO (INICIO) **************************/
+  /************************** QUITAR LOS BOTONES DE BOOSTRAP POR DEFECTO EN INPUT DE TIPO NÚMERO (FIN) **************************/
+}
+.cnt-modalFormLoginyRegister--c--cForm--cControl.input-group {
+  display: none !important;
+}
+.cnt-modalFormLoginyRegister--c--cForm--cControl.input-group .input-group-prepend, .cnt-modalFormLoginyRegister--c--cForm--cControl.input-group .input-group-append {
+  display: none !important;
+}
+.cnt-modalFormLoginyRegister--c--cForm--cControl--label {
+  color: #222;
+  font-weight: 600;
+}
+.cnt-modalFormLoginyRegister--c--cForm--cControl--input {
+  /*outline: none;*/
+  display: block !important;
+  width: 100%;
+  font-size: 1rem;
+  line-height: 1.5;
+  padding: 0.5rem 0.8rem;
+  border: thin solid #ccc;
+  border-radius: 0.4rem !important;
+  text-align: left !important;
+}
+.cnt-modalFormLoginyRegister--c--cForm--cControl--input[type=number]::-webkit-inner-spin-button, .cnt-modalFormLoginyRegister--c--cForm--cControl--input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.cnt-modalFormLoginyRegister--c--cForm--cControl--input[type=number] {
+  -moz-appearance: textfield;
+}
+.cnt-modalFormLoginyRegister--c--cForm--cBtnsDownloadPdf {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center !important;
+}
+.cnt-modalFormLoginyRegister--c--cForm--cBtnsDownloadPdf > span {
+  color: #222;
+  width: 100%;
+  text-align: left;
+  margin-bottom: 0.5rem;
+}
+.cnt-modalFormLoginyRegister--c--cForm--cBtnsDownloadPdf p a {
+  color: blue;
+  font-weight: bold;
+  text-decoration: underline !important;
+}
+.cnt-modalFormLoginyRegister--c--cForm #cont-btnsDownloadOptions.hidden {
+  display: none;
+}
+.cnt-modalFormLoginyRegister--c--cForm #control-inputaddEmail {
+  display: none;
+  align-items: flex-start;
+  justify-content: center;
+}
+.cnt-modalFormLoginyRegister--c--cForm #control-inputaddEmail.show {
+  display: flex;
+}
+.cnt-modalFormLoginyRegister--c--cForm #control-inputaddEmail button {
+  border: none;
+  background-color: #B58440;
+  width: auto;
+  padding: 0.5rem 1rem;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 0.5rem;
+  display: inline-block;
+  color: #fff;
+  border-radius: 0.4rem;
+  font-weight: 600;
+}
+.cnt-modalFormLoginyRegister--c--cForm #control-inputaddEmail button:hover {
+  opacity: 0.5;
+}
+
+#c-CalculatorHTop-camel {
   position: fixed;
   z-index: 9999999;
   width: 100%;
@@ -2282,7 +2257,7 @@ img {
   background-color: #B58440;
   min-height: 4.5rem;
 }
-#c-HTop-camel .c-HtopbarCalculator--c {
+#c-CalculatorHTop-camel .c-HtopbarCalculator--c {
   max-width: 1220px;
   width: 90%;
   margin-left: auto;
@@ -2292,20 +2267,20 @@ img {
   justify-content: space-between;
   padding: 0.65rem 0;
 }
-#c-HTop-camel .c-HtopbarCalculator--c--cLogo {
+#c-CalculatorHTop-camel .c-HtopbarCalculator--c--cLogo {
   width: 7rem;
   height: auto;
 }
-#c-HTop-camel .c-HtopbarCalculator--c--cLogo a {
+#c-CalculatorHTop-camel .c-HtopbarCalculator--c--cLogo a {
   display: table;
 }
-#c-HTop-camel .c-HtopbarCalculator--c--cLogo a img {
+#c-CalculatorHTop-camel .c-HtopbarCalculator--c--cLogo a img {
   width: 100%;
   height: 100%;
   object-fit: contain;
   object-position: center;
 }
-#c-HTop-camel .c-HtopbarCalculator--c--btnMobileNavbar {
+#c-CalculatorHTop-camel .c-HtopbarCalculator--c--btnMobileNavbar {
   cursor: pointer;
   display: flex;
   flex-direction: column;
@@ -2315,25 +2290,25 @@ img {
   background-color: orange;
 }
 @media (min-width: 991px) {
-  #c-HTop-camel .c-HtopbarCalculator--c--btnMobileNavbar {
+  #c-CalculatorHTop-camel .c-HtopbarCalculator--c--btnMobileNavbar {
     display: none;
   }
 }
-#c-HTop-camel .c-HtopbarCalculator--c--btnMobileNavbar span {
+#c-CalculatorHTop-camel .c-HtopbarCalculator--c--btnMobileNavbar span {
   width: 22px;
   height: 2px;
   background-color: #fff;
   border-radius: 1.5rem;
 }
-#c-HTop-camel .c-HtopbarCalculator--c--btnMobileNavbar span:first-child {
+#c-CalculatorHTop-camel .c-HtopbarCalculator--c--btnMobileNavbar span:first-child {
   border-top: 2px solid #fff;
   margin-bottom: 0.5rem;
 }
-#c-HTop-camel .c-HtopbarCalculator--c--btnMobileNavbar span:last-child {
+#c-CalculatorHTop-camel .c-HtopbarCalculator--c--btnMobileNavbar span:last-child {
   border-bottom: 2px solid #fff;
   margin-top: 0.5rem;
 }
-#c-HTop-camel .c-HtopbarCalculator--c--cMenu {
+#c-CalculatorHTop-camel .c-HtopbarCalculator--c--cMenu {
   position: fixed;
   position: absolute;
   width: 100%;
@@ -2344,9 +2319,11 @@ img {
   background-color: rgba(0, 0, 0, 0.4);
   z-index: 99999;
   display: none;
+  /* CONTENIDO SUPERIOR - OPCIONES/ INFORMACIÓN */
+  /* CONTENIDO INFERIOR - LISTA DE OPCIONES DENTRO DE CALCULADORA */
 }
 @media (min-width: 991px) {
-  #c-HTop-camel .c-HtopbarCalculator--c--cMenu {
+  #c-CalculatorHTop-camel .c-HtopbarCalculator--c--cMenu {
     display: block;
     position: relative;
     width: auto;
@@ -2356,7 +2333,11 @@ img {
     background-color: transparent;
   }
 }
-#c-HTop-camel .c-HtopbarCalculator--c--cMenu--m {
+#c-CalculatorHTop-camel .c-HtopbarCalculator--c--cMenu--cBottominfo {
+  display: flex;
+  align-items: flex-start;
+}
+#c-CalculatorHTop-camel .c-HtopbarCalculator--c--cMenu--cBottominfo--m {
   display: flex;
   align-items: center;
   justify-content: flex-start;
@@ -2372,41 +2353,210 @@ img {
   padding-top: 1rem;
 }
 @media (min-width: 991px) {
-  #c-HTop-camel .c-HtopbarCalculator--c--cMenu--m {
+  #c-CalculatorHTop-camel .c-HtopbarCalculator--c--cMenu--cBottominfo--m {
     flex-direction: row;
     width: auto;
     max-width: unset;
     padding: 0;
   }
 }
-#c-HTop-camel .c-HtopbarCalculator--c--cMenu--m--item {
+#c-CalculatorHTop-camel .c-HtopbarCalculator--c--cMenu--cBottominfo--m--item {
   width: 100%;
 }
 @media (min-width: 991px) {
-  #c-HTop-camel .c-HtopbarCalculator--c--cMenu--m--item {
+  #c-CalculatorHTop-camel .c-HtopbarCalculator--c--cMenu--cBottominfo--m--item {
     width: auto;
-    padding: 0 1.5rem;
+    padding: 0 0.5rem;
+    border-right: thin solid #fff;
   }
 }
-#c-HTop-camel .c-HtopbarCalculator--c--cMenu--m--item:last-child {
-  padding: 0;
+#c-CalculatorHTop-camel .c-HtopbarCalculator--c--cMenu--cBottominfo--m--item:last-child {
+  padding: 0 0 0 0.5rem;
+  border-right: none;
 }
-#c-HTop-camel .c-HtopbarCalculator--c--cMenu--m--link {
+#c-CalculatorHTop-camel .c-HtopbarCalculator--c--cMenu--cBottominfo--m--link {
   color: #fff;
-  text-transform: uppercase;
   font-size: 0.9rem;
-  font-weight: 600;
+  font-weight: 500;
   padding: 1.5rem 1rem 1.5rem 2rem;
   display: block;
 }
-#c-HTop-camel .c-HtopbarCalculator--c--cMenu--m--link:hover {
+#c-CalculatorHTop-camel .c-HtopbarCalculator--c--cMenu--cBottominfo--m--link:hover {
   color: yellow;
 }
 @media (min-width: 991px) {
-  #c-HTop-camel .c-HtopbarCalculator--c--cMenu--m--link {
-    font-size: 1rem;
+  #c-CalculatorHTop-camel .c-HtopbarCalculator--c--cMenu--cBottominfo--m--link {
+    font-size: 0.8rem;
     padding: 0;
   }
+}
+#c-CalculatorHTop-camel .c-HtopbarCalculator--c--cMenu--cBottominfo--m--link svg {
+  width: 16px;
+  height: 16px;
+}
+#c-CalculatorHTop-camel .c-HtopbarCalculator--c--cMenu--cBottominfo--m--link span {
+  vertical-align: middle;
+}
+#c-CalculatorHTop-camel .c-HtopbarCalculator--c--cMenu--cBottominfo--cBtnSessU span {
+  color: #fff;
+}
+#c-CalculatorHTop-camel .c-HtopbarCalculator--c--cMenu--cBottominfo--cBtnSessU--btn {
+  border: none;
+  background-color: transparent;
+  color: #fff;
+  font-weight: 800;
+  padding: 0;
+}
+
+.cnt-modalFormSessLoginorRegister {
+  position: fixed;
+  width: 100%;
+  min-height: 100vh;
+  height: 100%;
+  overflow-y: auto;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 99999999;
+  padding: 0;
+  margin: 0;
+  top: 0;
+  left: 0;
+  display: none;
+  align-items: flex-start;
+  justify-content: center;
+  pointer-events: none;
+}
+.cnt-modalFormSessLoginorRegister.show {
+  display: flex;
+  pointer-events: auto;
+}
+.cnt-modalFormSessLoginorRegister--c {
+  background-color: #fff;
+  border-radius: 0.6rem;
+  padding-bottom: 1.25rem;
+  max-width: 450px;
+  width: 95%;
+  margin-top: 1rem;
+  overflow: hidden;
+  text-align: center;
+  animation-name: showForm;
+  animation-duration: 0.3s;
+  animation-timing-function: ease-in-out;
+  transform: translateY(-200%);
+  pointer-events: none;
+}
+.cnt-modalFormSessLoginorRegister--c.show {
+  transform: translateY(0);
+  pointer-events: auto;
+}
+@keyframes showForm {
+  0% {
+    transform: translateY(-200%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+.cnt-modalFormSessLoginorRegister--c--close {
+  width: 15px;
+  height: 15px;
+  background: linear-gradient(45deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 43%, #fff 45%, #fff 55%, rgba(0, 0, 0, 0) 57%, rgba(0, 0, 0, 0) 100%), linear-gradient(135deg, #000 0%, #000 43%, #fff 45%, #fff 55%, #000 57%, #000 100%);
+  border-radius: 50%;
+  box-shadow: 0 0 0 1px #000, 0 0 0 4px #000, 0 0 0 7px #fff;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+}
+.cnt-modalFormSessLoginorRegister--c--cTitle {
+  background-color: #B58440;
+  color: #fff;
+  padding: 1rem 0.5rem;
+}
+.cnt-modalFormSessLoginorRegister--c--cTitle h2 {
+  font-size: 1.5rem;
+  margin: 0;
+}
+.cnt-modalFormSessLoginorRegister--c--cForm {
+  padding: 1.25rem;
+  text-align: center;
+  /************************** BOTONES VÁLIDOS PARA DESCARGAR **************************/
+}
+.cnt-modalFormSessLoginorRegister--c--cForm--cControl {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+  /************************** QUITAR LOS BOTONES DE BOOSTRAP POR DEFECTO EN INPUT DE TIPO NÚMERO (INICIO) **************************/
+  /************************** QUITAR LOS BOTONES DE BOOSTRAP POR DEFECTO EN INPUT DE TIPO NÚMERO (FIN) **************************/
+}
+.cnt-modalFormSessLoginorRegister--c--cForm--cControl.input-group {
+  display: none !important;
+}
+.cnt-modalFormSessLoginorRegister--c--cForm--cControl.input-group .input-group-prepend, .cnt-modalFormSessLoginorRegister--c--cForm--cControl.input-group .input-group-append {
+  display: none !important;
+}
+.cnt-modalFormSessLoginorRegister--c--cForm--cControl--label {
+  color: #222;
+  font-weight: 600;
+}
+.cnt-modalFormSessLoginorRegister--c--cForm--cControl--input {
+  /*outline: none;*/
+  display: block !important;
+  width: 100%;
+  font-size: 1rem;
+  line-height: 1.5;
+  padding: 0.5rem 0.8rem;
+  border: thin solid #ccc;
+  border-radius: 0.4rem !important;
+  text-align: center;
+}
+.cnt-modalFormSessLoginorRegister--c--cForm--cControl--input:focus {
+  text-align: left;
+}
+.cnt-modalFormSessLoginorRegister--c--cForm--cControl--input[type=number]::-webkit-inner-spin-button, .cnt-modalFormSessLoginorRegister--c--cForm--cControl--input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.cnt-modalFormSessLoginorRegister--c--cForm--cControl--input[type=number] {
+  -moz-appearance: textfield;
+}
+.cnt-modalFormSessLoginorRegister--c--cForm--cBtnsLoginorRegisterOptions {
+  padding-bottom: 2rem;
+  border-bottom: thin solid #cccc;
+}
+.cnt-modalFormSessLoginorRegister--c--cForm--cBtnsLoginorRegisterOptions button {
+  border: none;
+  width: auto;
+  padding: 0.5rem 1rem;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 0.5rem;
+  display: inline-block;
+  color: #fff;
+  border-radius: 0.4rem;
+  font-weight: 600;
+}
+.cnt-modalFormSessLoginorRegister--c--cForm--cBtnsLoginorRegisterOptions button:hover {
+  opacity: 0.5;
+}
+.cnt-modalFormSessLoginorRegister--c--cForm--cBtnsLoginorRegisterOptions--login {
+  background-color: orange;
+}
+.cnt-modalFormSessLoginorRegister--c--cForm--cBtnsLoginorRegisterOptions--register {
+  background-color: steelblue;
+}
+.cnt-modalFormSessLoginorRegister--c--btnReturnorBack {
+  display: inline-block;
+  background-color: orange;
+  border: none;
+  border-radius: 0.4rem;
+  color: #fff;
+  padding: 0.4rem 1rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+.cnt-modalFormSessLoginorRegister--c--btnReturnorBack:hover {
+  color: #fff;
+  opacity: 0.5;
 }
 
 /*# sourceMappingURL=styles.css.map */

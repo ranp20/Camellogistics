@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <title>Calculadora de Fletes | Camel</title>
+  <title>Calculadora de Fletes | Camel Logistics</title>
   <?php require_once 'includes/header-links.php'; ?>
 </head>
 <body>
@@ -121,12 +121,14 @@
 	<?php require_once 'includes/form-calculator-flete.php'; ?>
 	<?php require_once 'includes/form-validate-container-modal.php'; ?>
 	<?php require_once 'includes/form-before-download-pdf.php'; ?>
+	<?php require_once 'includes/form-login-user.php'; ?>
 
 	<script src="<?= $url ?>js/jquery-3.6.0.min.js"></script>
 	<script src="<?= $url ?>js/validar_check_vacios.js"></script>
 	<script src="<?= $url ?>js/validar_check_vacios_lcl.js"></script>
 	<script src="<?= $url ?>js/customs.js"></script>
 	<script src="<?= $url ?>js/modal-calculator.js"></script>
+	<script src="<?= $url ?>js/user-login.js"></script>
 	<script src="<?= $url ?>js/cotization_allfunctionsSystem.js"></script>
 	<script src="<?= $url ?>js/register-before-download.js"></script>
 	</body>
