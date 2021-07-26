@@ -142,6 +142,15 @@ function list_typ_containers(){
 /************************** MOSTRAR EL MODAL DE TIPOS DE CONTENEDORES **************************/
 $(document).on("click", "#val-typecontainerflete", function(){
   $("#container-containOptsContainers").toggleClass("show");
+
+  /************************** VALIDAR SI SE EDITÓ EL CONTROL ESTÁNDO EN EL PASO 2.1 **************************/
+  var stepTwoEdit = document.querySelector("#step-TwoPointOne");
+  if(stepTwoEdit.classList.contains("show")){
+    document.querySelector("#step-TwoPointOne").innerHTML = "";
+    document.querySelector("#cont-btnnextStepTwopointOne").innerHTML = `
+      <button type="button" id="btn-ValidToshowNextStep" class="c-CalculatorStep--form--contStep--cStepSelects--item--nextbtn">SIGUIENTE</button>
+    `;
+  }
 });
 /************************** MOSTRAR EL MODAL DE - CONTENEDOR (LCL) **************************/
 $(document).on("click", `.c-CalculatorStep--form--contStep--cStepSelects--item--selContaineropts--c--item`, function(){
@@ -384,6 +393,15 @@ $(document).on("keyup", "#input-vallistorigin", function(){
   }else{
     list_puertoOriginLCL();
   }
+
+  /************************** VALIDAR SI SE EDITÓ EL CONTROL ESTÁNDO EN EL PASO 2.1 **************************/
+  var stepTwoEdit = document.querySelector("#step-TwoPointOne");
+  if(stepTwoEdit.classList.contains("show")){
+    document.querySelector("#step-TwoPointOne").innerHTML = "";
+    document.querySelector("#cont-btnnextStepTwopointOne").innerHTML = `
+      <button type="button" id="btn-ValidToshowNextStep" class="c-CalculatorStep--form--contStep--cStepSelects--item--nextbtn">SIGUIENTE</button>
+    `;
+  }
 });
 /************************** FOCUS EN EL INPUT DE ORIGEN **************************/
 $("#input-vallistorigin").focus(function(){
@@ -496,6 +514,16 @@ $(document).on("keyup", "#input-vallistdestiny", function(){
   }else{
     list_puertoDestinyLCL();
   }
+
+  /************************** VALIDAR SI SE EDITÓ EL CONTROL ESTÁNDO EN EL PASO 2.1 **************************/
+  var stepTwoEdit = document.querySelector("#step-TwoPointOne");
+  if(stepTwoEdit.classList.contains("show")){
+    document.querySelector("#step-TwoPointOne").innerHTML = "";
+    document.querySelector("#cont-btnnextStepTwopointOne").innerHTML = `
+      <button type="button" id="btn-ValidToshowNextStep" class="c-CalculatorStep--form--contStep--cStepSelects--item--nextbtn">SIGUIENTE</button>
+    `;
+  }
+
 });
 /************************** FOCUS EN EL INPUT DE DESTINO **************************/
 $("#input-vallistdestiny").focus(function(){
@@ -520,7 +548,6 @@ $(document).on("click", "#list-destinyCountriesandPort .c-CalculatorStep--form--
   localStorage.setItem("port_DId", $(this).attr("id"));
   localStorage.setItem("port_DName", $(this).find("span").text());
 });
-
 /*==========================================================================================================
 =            PASO 2.1. AVANZAR AL PASO 2.1 AL HACER CLICK EN EL BOTÓN DE "SIGUIENTE" DEL PASO 2            =
 ===========================================================================================================*/
@@ -584,7 +611,6 @@ $(document).on("click", "#btn-ValidToshowNextStep", function(){
     alert("Completa los campos primero");
   }
 });
-
 /************************** VALIDAR EL CLICK DE ACUERDO AL CHECK QUE SE SELECCIONA **************************/
 $(document).on("click", "#c-listItemsSelRs li", function(e){
   e.preventDefault();

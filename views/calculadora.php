@@ -5,12 +5,12 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <title>Calculadora de Envíos | Camel</title>
+  <title>Calculadora de Fletes | Camel</title>
   <?php require_once 'includes/header-links.php'; ?>
 </head>
 <body>
   <?php require_once 'api_whatsapp.php'; ?>
-  <?php require_once 'includes/header-top.php'; ?>
+  <?php require_once 'includes/calculator_header-top.php'; ?>
 	<section id="cont-loader">
 		<div class="cont-loader--loader">
 			<span class="cont-loader--loader--circle"></span>
@@ -101,7 +101,7 @@
 								</ul>
 							</div>
 						</div>
-						<div class="c-CalculatorStep--form--contStep--cStepSelects--item">
+						<div class="c-CalculatorStep--form--contStep--cStepSelects--item" id="cont-btnnextStepTwopointOne">
 							<button type="button" id="btn-ValidToshowNextStep" class="c-CalculatorStep--form--contStep--cStepSelects--item--nextbtn">SIGUIENTE</button>
 						</div>
 					</div>				
