@@ -42,7 +42,7 @@ function list_typ_services(){
       	
       	$("#cont-typeServicesOneStep").append(`
     			<li class="c-CalculatorStep--form--contStep--cStep--m--item" id="typeservice-${e.id}" item-service="${i}">
-						<a href="#" id="${e.type}" class="c-CalculatorStep--form--contStep--cStep--m--link">
+						<a href="javascript:void(0);" id="${e.type}" class="c-CalculatorStep--form--contStep--cStep--m--link">
 							<img class="img-fluid" src="${pathimgservice}" alt=""/>
 						</a>
 					</li>
@@ -789,7 +789,172 @@ $(document).on("click", "#c-listItemsSelRs li", function(e){
       </div>
       `);
     }else{
-      alert("Mostrar directamente el detalle de cotización y que el usuario descargue el PDF.");
+      /************************** OCULTAR LOS DEMÁS PASOS **************************/
+      $("#step-Two").add($("#step-TwoPointOne").removeClass("show")).removeClass("show");
+      $("#step-Two").add($("#step-TwoPointOne").addClass("hide step-hidden")).addClass("hide step-hidden");
+      /************************** LOADER PARA HABILITAR LA SIGUIENTE FASE **************************/
+      $("#portfolio").append(`
+        <div id="loader-clasic-op100">
+          <div class="loader-clasic-op100--c"></div>
+        </div>
+      `);
+      setTimeout(function(){
+        $("#loader-clasic-op100").remove();
+      }, 1100);
+
+      // window.onbeforeunload = (e) => {
+      //   e.returnValue = "¿Deseas salir?";
+      //   console.log(e.cancelable);
+      // };
+      /************************** GENERAR EL PASO SIGUIENTE - SELECCIONAR SERVICIOS EXTRA **************************/
+      $("#frm_cotizacion").html(`
+        <div id="step-Four" class="c-FinalQuotation--contStep">
+          <div class="box-container">
+            <div class="c-FinalQuotation--contStep--cTitle">
+              <h3 class="c-FinalQuotation--contStep--cTitle--title">PASO 4. PRESUPUESTO</h3>
+            </div>
+            <div class="c-FinalQuotation--contStep--cQuotation">
+              <div class="c-FinalQuotation--contStep--cQuotation--cTop">
+                <p class="c-FinalQuotation--contStep--cQuotation--cTop--title">Resumen de carga</p>
+                <div class="c-FinalQuotation--contStep--cQuotation--cTop--c">
+                  <div class="c-FinalQuotation--contStep--cQuotation--cTop--c--nOriginDestinyInfo">
+                    <div class="c-FinalQuotation--contStep--cQuotation--cTop--c--nOriginDestinyInfo--cImgInfo">
+                      <img src="views/assets/img/logotipo-camel.png" alt="">
+                      <p class="c-FinalQuotation--contStep--cQuotation--cTop--c--nOriginDestinyInfo--cImgInfo--info">
+                        <span>CHINA - QINGDAO</span>
+                        <span>&#8594;</span>
+                        <span>PERÚ - CALLAO</span>
+                      </p>
+                    </div>
+                    <div class="c-FinalQuotation--contStep--cQuotation--cTop--c--nOriginDestinyInfo--cCodeQuotation">
+                      <p>
+                        <span>ID:&nbsp;</span>
+                        <span>30201 - LCL</span>
+                      </p>
+                    </div>
+                  </div>
+                  <div class="c-FinalQuotation--contStep--cQuotation--cTop--c--cDetailsQuotation">
+                    <ul class="c-FinalQuotation--contStep--cQuotation--cTop--c--cDetailsQuotation--m">
+                      <li class="c-FinalQuotation--contStep--cQuotation--cTop--c--cDetailsQuotation--m--item">
+                        <div class="c-FinalQuotation--contStep--cQuotation--cTop--c--cDetailsQuotation--m--item--info">
+                          <span>Transporte</span>
+                          <span>MARÍTIMO</span>
+                        </div>
+                      </li>
+                      <li class="c-FinalQuotation--contStep--cQuotation--cTop--c--cDetailsQuotation--m--item">
+                        <div class="c-FinalQuotation--contStep--cQuotation--cTop--c--cDetailsQuotation--m--item--info">
+                          <span>Tipo</span>
+                          <span>CONTENEDOR COMPARTIDO</span>
+                        </div>
+                      </li>
+                      <li class="c-FinalQuotation--contStep--cQuotation--cTop--c--cDetailsQuotation--m--item">
+                        <div class="c-FinalQuotation--contStep--cQuotation--cTop--c--cDetailsQuotation--m--item--info">
+                          <span>Cantidad</span>
+                          <span>1 Bulto de 300kg y 1.08 M³</span>
+                        </div>
+                      </li>
+                      <li class="c-FinalQuotation--contStep--cQuotation--cTop--c--cDetailsQuotation--m--item">
+                        <div class="c-FinalQuotation--contStep--cQuotation--cTop--c--cDetailsQuotation--m--item--info">
+                          <span>Gasto Portuario y Almacenamiento aduanero</span>
+                          <span>NO</span>
+                        </div>
+                      </li>
+                    </ul>
+                    <ul class="c-FinalQuotation--contStep--cQuotation--cTop--c--cDetailsQuotation--m">
+                      <li class="c-FinalQuotation--contStep--cQuotation--cTop--c--cDetailsQuotation--m--item">
+                        <div class="c-FinalQuotation--contStep--cQuotation--cTop--c--cDetailsQuotation--m--item--info">
+                          <span>Impuesto de Aduana</span>
+                          <span>NO</span>
+                        </div>
+                      </li>
+                      <li class="c-FinalQuotation--contStep--cQuotation--cTop--c--cDetailsQuotation--m--item">
+                        <div class="c-FinalQuotation--contStep--cQuotation--cTop--c--cDetailsQuotation--m--item--info">
+                          <span>Transporte a Domicilio</span>
+                          <span>NO</span>
+                        </div>
+                      </li>
+                      <li class="c-FinalQuotation--contStep--cQuotation--cTop--c--cDetailsQuotation--m--item">
+                        <div class="c-FinalQuotation--contStep--cQuotation--cTop--c--cDetailsQuotation--m--item--info">
+                          <span>Seguro de Mercancía</span>
+                          <span>NO</span>
+                        </div>
+                      </li>
+                      <li class="c-FinalQuotation--contStep--cQuotation--cTop--c--cDetailsQuotation--m--item">
+                        <div class="c-FinalQuotation--contStep--cQuotation--cTop--c--cDetailsQuotation--m--item--info">
+                          <span>Permiso Gubernamental Adicional</span>
+                          <span>No Requiere</span>
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="c-FinalQuotation--contStep--cQuotation--cTop--c--cDudeInfo">
+                    <p>¿Dudas? - <a href="#">Click Aquí</a></p>
+                  </div>
+                  <div class="c-FinalQuotation--contStep--cQuotation--cTop--c--cValidTimeQuotation">
+                    <p>Validez de tarifa: 12 Jul - 31 Jul</p>
+                  </div>
+                </div>
+              </div>
+              <div class="c-FinalQuotation--contStep--cQuotation--cBottom">
+                <div class="c-FinalQuotation--contStep--cQuotation--cBottom--cImgInfoEnterprise">
+                  <img src="views/assets/img/logotipo-camel.png" alt="">
+                  <div class="c-FinalQuotation--contStep--cQuotation--cBottom--cImgInfoEnterprise--info">
+                    <h3>SERVICIO LOGÍSTICO</h3>
+                    <span>Valor FIJO</span>
+                  </div>
+                </div>
+                <div class="c-FinalQuotation--contStep--cQuotation--cBottom--c">
+                  <div class="c-FinalQuotation--contStep--cQuotation--cBottom--c--moreDetails">
+                    <div class="c-FinalQuotation--contStep--cQuotation--cBottom--c--moreDetails--include">
+                      <p class="c-FinalQuotation--contStep--cQuotation--cBottom--c--moreDetails--include--title">Incluye</p>
+                      <ul class="c-FinalQuotation--contStep--cQuotation--cBottom--c--moreDetails--include--m">
+                        <li class="c-FinalQuotation--contStep--cQuotation--cBottom--c--moreDetails--include--m--item">
+                          <span>FLETE MARÍTIMO</span>
+                        </li>
+                        <li class="c-FinalQuotation--contStep--cQuotation--cBottom--c--moreDetails--include--m--item">
+                          <span>HANDLING Y MANEJO DESTINO</span>
+                        </li>
+                        <li class="c-FinalQuotation--contStep--cQuotation--cBottom--c--moreDetails--include--m--item">
+                          <span>VISTOS BUENOS</span>
+                        </li>
+                        <li class="c-FinalQuotation--contStep--cQuotation--cBottom--c--moreDetails--include--m--item">
+                          <span>DESCARGA</span>
+                        </li>
+                      </ul>
+                    </div>
+                    <div class="c-FinalQuotation--contStep--cQuotation--cBottom--c--moreDetails--notinclude">
+                      <p class="c-FinalQuotation--contStep--cQuotation--cBottom--c--moreDetails--notinclude--title">No incluye</p>
+                      <ul class="c-FinalQuotation--contStep--cQuotation--cBottom--c--moreDetails--notinclude--m">
+                        <li class="c-FinalQuotation--contStep--cQuotation--cBottom--c--moreDetails--notinclude--m--item">
+                          <span>ALMACEN ADUANERO</span>
+                        </li>
+                        <li class="c-FinalQuotation--contStep--cQuotation--cBottom--c--moreDetails--notinclude--m--item">
+                          <span>HONORARIOS DE AGENCIA DE ADUANA</span>
+                        </li>
+                        <li class="c-FinalQuotation--contStep--cQuotation--cBottom--c--moreDetails--notinclude--m--item">
+                          <span>TRANSPORTE A FÁBRICA IMPORTADOR</span>
+                        </li>
+                        <li class="c-FinalQuotation--contStep--cQuotation--cBottom--c--moreDetails--notinclude--m--item">
+                          <span>SEGURO DE MERCANCÍA</span>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div class="c-FinalQuotation--contStep--cQuotation--cBottom--c--QuantityQuotation">
+                    <h1>
+                      <span>930, 00 USD</span>
+                    </h1>
+                    <p>+ IGV 18% 59 USD</p>
+                  </div>
+                </div>
+                <div class="c-FinalQuotation--contStep--cQuotation--cBottom--cMsgNote">
+                  <p>NOTA: Los conceptos están sujetos a IGV, excepto al flete internacional.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        `);
     }
   });
 });

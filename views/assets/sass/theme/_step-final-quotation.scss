@@ -109,8 +109,6 @@
 		/* CONTENIDO - DETALLE DE LA PARTE INFERIOR */
 		&--cBottom{
 			padding-top: 1rem;
-			padding-bottom: 0.5rem;
-			border-bottom: thin solid #cccc;
 			/* LOGO DE LA EMPRESA */
 			&--cImgInfoEnterprise{
 				display: flex;
@@ -143,6 +141,8 @@
 				justify-content: space-between;
 				flex: 0 0 100%;
 				padding: 0 4rem;
+				padding-bottom: 0.5rem;
+				border-bottom: thin solid #cccc;
 				&--moreDetails{
 					flex: 48%;
 					&--include{
@@ -184,7 +184,8 @@
 
 				&--QuantityQuotation{
 					flex: 48%;
-					h3{
+					h1{
+						margin: 0;
 						span{
 
 						}
@@ -192,6 +193,15 @@
 					p{
 
 					}
+				}
+			}
+
+			/* NOTA DE LA PARTE INFERIOR DEL IGV */
+			&--cMsgNote{
+				p{
+					color: $step-title-color;
+					font-weight: 600;
+					font-size: 0.9rem;
 				}
 			}
 		}

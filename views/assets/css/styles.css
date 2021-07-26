@@ -955,7 +955,7 @@ img {
   overflow-y: auto;
   display: none;
   pointer-events: none;
-  max-height: 200px;
+  max-height: 290px;
   height: auto;
   background-color: #fff;
   text-align: left;
@@ -2170,10 +2170,9 @@ img {
 }
 .c-FinalQuotation--contStep--cQuotation--cBottom {
   padding-top: 1rem;
-  padding-bottom: 0.5rem;
-  border-bottom: thin solid #cccc;
   /* LOGO DE LA EMPRESA */
   /* LISTA DE DETALLES Y/O SERVICIOS INCLUIDOS Y NO INCLUIDOS */
+  /* NOTA DE LA PARTE INFERIOR DEL IGV */
 }
 .c-FinalQuotation--contStep--cQuotation--cBottom--cImgInfoEnterprise {
   display: flex;
@@ -2203,6 +2202,8 @@ img {
   justify-content: space-between;
   flex: 0 0 100%;
   padding: 0 4rem;
+  padding-bottom: 0.5rem;
+  border-bottom: thin solid #cccc;
 }
 .c-FinalQuotation--contStep--cQuotation--cBottom--c--moreDetails {
   flex: 48%;
@@ -2239,6 +2240,14 @@ img {
 }
 .c-FinalQuotation--contStep--cQuotation--cBottom--c--QuantityQuotation {
   flex: 48%;
+}
+.c-FinalQuotation--contStep--cQuotation--cBottom--c--QuantityQuotation h1 {
+  margin: 0;
+}
+.c-FinalQuotation--contStep--cQuotation--cBottom--cMsgNote p {
+  color: steelblue;
+  font-weight: 600;
+  font-size: 0.9rem;
 }
 
 /*# sourceMappingURL=styles.css.map */

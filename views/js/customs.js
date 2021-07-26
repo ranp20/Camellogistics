@@ -11,6 +11,15 @@ $(document).on("click", ".c-CalculatorStep--form--contStep--cStep--m--item a", f
 	if(typeService == "MARÍTIMO"){
 		$("#step-One").addClass('hide step-hidden');
 		$("#step-Two").addClass('show').removeClass('step-hidden').removeClass('hide');
+		/************************** LOADER PARA HABILITAR LA SIGUIENTE FASE **************************/
+    $("#portfolio").append(`
+      <div id="loader-clasic-op85">
+        <div class="loader-clasic-op85--c"></div>
+      </div>
+    `);
+    setTimeout(function(){
+      $("#loader-clasic-op85").remove();
+    }, 500);
 
 		/************************** MOSTRAR EL MENSAJE DE CONTENEDOR VACÍO **************************/
 		$("#msgNounTypeSend-step").text("Debe escoger tipo de envío");
