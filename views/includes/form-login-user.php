@@ -4,7 +4,7 @@
 		<div class="cnt-modalFormSessLoginorRegister--c--cTitle">
 			<h2>Iniciar Sesión</h2>
 		</div>
-		<form method="POST" class="cnt-modalFormSessLoginorRegister--c--cForm">
+		<form method="POST" class="cnt-modalFormSessLoginorRegister--c--cForm" id="c-formLoginorRegisterU">
 			<div class="cnt-modalFormSessLoginorRegister--c--cForm--cControl">
 				<label for="u-user" class="cnt-modalFormSessLoginorRegister--c--cForm--cControl--label">USUARIO</label>
 				<input type="text" id="u-user" name="u-user" class="cnt-modalFormSessLoginorRegister--c--cForm--cControl--input" placeholder="Usuario" maxlength="21">
@@ -14,11 +14,11 @@
 				<input type="password" id="u-password" name="u-password" class="cnt-modalFormSessLoginorRegister--c--cForm--cControl--input" placeholder="Contraseña">
 			</div>
 			<div class="cnt-modalFormSessLoginorRegister--c--cForm--cBtnsLoginorRegisterOptions" id="cont-btnsLoginorRegisterOptions">
-				<button type="submit" class="cnt-modalFormSessLoginorRegister--c--cForm--cBtnsLoginorRegisterOptions--login">Iniciar Sesión</button>
+				<button type="submit" class="cnt-modalFormSessLoginorRegister--c--cForm--cBtnsLoginorRegisterOptions--action">Iniciar Sesión</button>
 				<span>&nbsp;&nbsp;o&nbsp;&nbsp;</span>
-				<button type="button" class="cnt-modalFormSessLoginorRegister--c--cForm--cBtnsLoginorRegisterOptions--register">Regístrate</button>
+				<a href="javascript:void(0);" class="cnt-modalFormSessLoginorRegister--c--cForm--cBtnsLoginorRegisterOptions--link" id="btn-ChangeR">Regístrate</a>
 			</div>
 		</form>
-		<a href="javascript:void(0};" class="cnt-modalFormSessLoginorRegister--c--btnReturnorBack" id="btn-closeTwoFormLoginorRegister">Volver</a>
+		<a href="javascript:void(0);" class="cnt-modalFormSessLoginorRegister--c--btnReturnorBack" id="btn-closeTwoFormLoginorRegister">Volver</a>
 	</div>
 </section>

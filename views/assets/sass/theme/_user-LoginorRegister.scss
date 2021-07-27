@@ -137,16 +137,18 @@
 					border-radius: .4rem;
 					font-weight: 600;
 				}
+
+				a{
+					color: $step-title-color;
+					text-decoration: underline !important;
+				}
+
 				button:hover{
 					opacity: .5;
 				}
 
-				&--login{
+				&--action{
 					background-color: orange;
-				}
-
-				&--register{
-					background-color: $step-title-color;
 				}
 			}
 		}

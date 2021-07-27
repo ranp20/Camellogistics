@@ -2535,14 +2535,15 @@ img {
   border-radius: 0.4rem;
   font-weight: 600;
 }
+.cnt-modalFormSessLoginorRegister--c--cForm--cBtnsLoginorRegisterOptions a {
+  color: steelblue;
+  text-decoration: underline !important;
+}
 .cnt-modalFormSessLoginorRegister--c--cForm--cBtnsLoginorRegisterOptions button:hover {
   opacity: 0.5;
 }
-.cnt-modalFormSessLoginorRegister--c--cForm--cBtnsLoginorRegisterOptions--login {
+.cnt-modalFormSessLoginorRegister--c--cForm--cBtnsLoginorRegisterOptions--action {
   background-color: orange;
-}
-.cnt-modalFormSessLoginorRegister--c--cForm--cBtnsLoginorRegisterOptions--register {
-  background-color: steelblue;
 }
 .cnt-modalFormSessLoginorRegister--c--btnReturnorBack {
   display: inline-block;
