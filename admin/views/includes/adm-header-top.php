@@ -16,14 +16,25 @@
 		<div class="h-dashCamel--c--cClock">
 			<div class="h-dashCamel--c--cClock--timeclock" id="dash-timeclock-detail"></div>
 		</div>
-		<div class="h-dashCamel--c--cUser">
-			<div class="h-dashCamel--c--cUser--linkcont" id="btn-sessuserAdm">
+		<div class="h-dashCamel--c--cUserMobile">
+			<div class="h-dashCamel--c--cUserMobile--linkcont" id="btn-sessuserAdm">
 				<img src="<?= $url ?>assets/img/utilities/user-pro-default.png" alt="">
 				<span><?= $admname; ?></span>
 			</div>
-			<ul class="h-dashCamel--c--cUser--m" id="list-opts-sessuser">
-				<li class="h-dashCamel--c--cUser--m--item">
-					<a href="controllers/prcss_logout-adm.php" class="h-dashCamel--c--cUser--m--link">CERRAR SESIÓN</a>
+			<ul class="h-dashCamel--c--cUserMobile--m" id="list-opts-sessuser">
+				<li class="h-dashCamel--c--cUserMobile--m--item">
+					<a href="controllers/prcss_logout-adm.php" class="h-dashCamel--c--cUserMobile--m--link">CERRAR SESIÓN</a>
+				</li>
+			</ul>
+		</div>
+		<div class="h-dashCamel--c--cUserDesktop">
+			<div class="h-dashCamel--c--cUserDesktop--linkcont" id="btn-sessuserAdm">
+				<img src="<?= $url ?>assets/img/utilities/user-pro-default.png" alt="">
+				<span><?= $admname; ?></span>
+			</div>
+			<ul class="h-dashCamel--c--cUserDesktop--m" id="list-opts-sessuser">
+				<li class="h-dashCamel--c--cUserDesktop--m--item">
+					<a href="controllers/prcss_logout-adm.php" class="h-dashCamel--c--cUserDesktop--m--link">CERRAR SESIÓN</a>
 				</li>
 			</ul>
 		</div>
