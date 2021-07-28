@@ -68,6 +68,70 @@ img{
 	visibility: hidden;
 	opacity: 0;	
 }
+/************************** API WHATSAPP **************************/
+#chat_wstp-icon{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	text-decoration: none;
+
+	&:hover{
+		color: #fff
+	}
+}
+.float{
+	position:fixed;
+	bottom:40px;
+	right: 25px;
+	background-color: #25d366;
+	color: #fff;
+	border-radius:50px;
+	text-align:center;
+  font-size:30px;
+	box-shadow: 2px 2px 12px 3px rgba(0,0,0,.12);
+  z-index:100;
+
+  &--contText{
+		position: relative;
+	  width: max-content;
+	  height: 50px;
+	  padding: 0.8rem 5rem .8rem 2rem;
+	  font-size: 1rem;
+	  font-family: sans-serif;
+	  display: flex;
+	  align-items: center;
+	  justify-content: center;
+  }
+	
+	&--contIconWps{
+		width: 60px;
+	  height: 60px;
+	  display: flex;
+	  align-items: center;
+	  justify-content: center;
+	  position: absolute;
+	  background-color: #25d366;
+	  border-radius: 50%;
+	  right: 0;
+	  box-shadow: 0 0 10px 1px rgb(0 0 0 / 30%);
+
+	  img{
+			width: 40px;
+		  height: 40px;
+		  vertical-align: middle;
+		  position: relative;
+		  top: 4px;
+	  }
+	}
+}
+.my-float{
+	margin-top:16px;
+}
+@media (min-width: 991px){
+	.float{
+		right: 60px;
+	}
+}
 /************************** SHOW/HIDDEN THE STEP FOR THE CLIENT **************************/
 #step-One{display: block;pointer-events: auto;visibility: visible;opacity: 1;	&.hide{display: none; pointer-events: none; visibility: hidden; opacity: 0;}}
 #step-Two{display: none;pointer-events: none;visibility: hidden;opacity: 0;	&.show{display: block; pointer-events: auto; visibility: visible; opacity: 1;}}

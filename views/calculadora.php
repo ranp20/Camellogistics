@@ -119,14 +119,11 @@
 		  </div>
 		</form>	
 	</section>
-	<!--****************** AREGADOS RECIENTEMENTE *****************-->
 	<?php require_once 'includes/form-calculator-flete.php'; ?>
 	<?php require_once 'includes/form-before-download-pdf.php'; ?>
 	<?php require_once 'includes/form-login-user.php'; ?>
 
 	<script src="<?= $url ?>js/jquery-3.6.0.min.js"></script>
-	<script src="<?= $url ?>js/validar_check_vacios.js"></script>
-	<script src="<?= $url ?>js/validar_check_vacios_lcl.js"></script>
 	<script src="<?= $url ?>js/customs.js"></script>
 	<script src="<?= $url ?>js/modal-calculator.js"></script>
 	<script src="<?= $url ?>js/user-login.js"></script>
@@ -134,18 +131,3 @@
 	<script src="<?= $url ?>js/register-before-download.js"></script>
 	</body>
 </html>
-
-<!--<script src="<?= $url ?>js/calculadora.js"></script>-->
-<!--<script src="<?= $url ?>js/list_typeServices.js"></script>
-<script src="<?= $url ?>js/list_typeContainers.js"></script>
-<script src="<?= $url ?>js/list_puertoOriginLCL.js"></script>
-<script src="<?= $url ?>js/list_puertoDestinyLCL.js"></script>
-<script src="<?= $url ?>js/steps_after_calculation.js"></script>
-<script src="<?= $url ?>js/steps_sel_services.js"></script>-->
-	
-	<!-- 080026026
-	969 382 537 
-	976 388 451 
-	
-	aniego por roctura de desagüe  
-	-->
