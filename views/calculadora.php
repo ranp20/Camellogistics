@@ -58,20 +58,22 @@
 								<div class="c-CalculatorStep--form--contStep--cStepSelects--item--selContaineropts--c" id="cont-containOptsContainers"></div>
 								<div class="c-CalculatorStep--form--contStep--cStepSelects--item--selContaineropts--filldatacontainer" id="cont-fillDatabyContain">
 									<div class="c-CalculatorStep--form--contStep--cStepSelects--item--selContaineropts--filldatacontainer--cControl">
-										<label for="">BULTOS</label>
-										<input type="number" value="1" placeholder="Ingrese nro. de bultos" id="val-CalcPacksRequestModal">
+										<label for="" class="c-CalculatorStep--form--contStep--cStepSelects--item--selContaineropts--filldatacontainer--cControl--label">BULTOS</label>
+										<div class="c-CalculatorStep--form--contStep--cStepSelects--item--selContaineropts--filldatacontainer--cControl--twocontrols">
+											<input type="number" value="1" placeholder="Ingrese nro. de bultos" id="val-CalcPacksRequestModal" class="c-CalculatorStep--form--contStep--cStepSelects--item--selContaineropts--filldatacontainer--cControl--input">
+										</div>
 									</div>
 									<div class="c-CalculatorStep--form--contStep--cStepSelects--item--selContaineropts--filldatacontainer--cControl">
-										<label for="">PESO</label>
+										<label for="" class="c-CalculatorStep--form--contStep--cStepSelects--item--selContaineropts--filldatacontainer--cControl--label">PESO</label>
 										<div class="c-CalculatorStep--form--contStep--cStepSelects--item--selContaineropts--filldatacontainer--cControl--twocontrols">
-											<input type="number" placeholder="Ingrese peso" id="val-CalcWeightRequestModal">
+											<input type="number" placeholder="Ingrese peso" id="val-CalcWeightRequestModal" class="c-CalculatorStep--form--contStep--cStepSelects--item--selContaineropts--filldatacontainer--cControl--input">
 											<select name="" id="valinput-peso"></select>
 										</div>
 									</div>
 									<div class="c-CalculatorStep--form--contStep--cStepSelects--item--selContaineropts--filldatacontainer--cControl">
-										<label for="">VOLUMEN</label>
+										<label for="" class="c-CalculatorStep--form--contStep--cStepSelects--item--selContaineropts--filldatacontainer--cControl--label">VOLUMEN</label>
 										<div class="c-CalculatorStep--form--contStep--cStepSelects--item--selContaineropts--filldatacontainer--cControl--twocontrols">
-											<input type="number" placeholder="Ingrese volumen" id="val-CalcVolumeRequestModal">
+											<input type="number" placeholder="Ingrese volumen" id="val-CalcVolumeRequestModal" class="c-CalculatorStep--form--contStep--cStepSelects--item--selContaineropts--filldatacontainer--cControl--input">
 											<select name="" id="valinput-volumen"></select>
 										</div>
 									</div>
@@ -119,7 +121,6 @@
 	</section>
 	<!--****************** AREGADOS RECIENTEMENTE *****************-->
 	<?php require_once 'includes/form-calculator-flete.php'; ?>
-	<?php require_once 'includes/form-validate-container-modal.php'; ?>
 	<?php require_once 'includes/form-before-download-pdf.php'; ?>
 	<?php require_once 'includes/form-login-user.php'; ?>
 

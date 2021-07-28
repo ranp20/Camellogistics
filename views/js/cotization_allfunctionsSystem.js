@@ -231,8 +231,26 @@ $("#valinput-volumen").on("change", function(){
 $(document).on("click", "#btn-backToModalContainers", function(){
   $("#container-containOptsContainers").removeClass("show");
 });
+/************************** COMPROBAR SI LOS VALORES EN LOS INPUTS ESTÁN VACÍO O NO **************************/
 $(document).on("click", "#btn-saveToModalContainers", function(){
-  if($("#val-CalcPacksRequestModal").val() != "" && $("#val-CalcWeightRequestModal").val() != "" && $("#val-CalcVolumeRequestModal").val() != ""){
+
+  var valCompleteInputsContToM = [];
+  var valNotCompleteInputsContToM = [];
+
+  var arrTotalInputsContainers = $(".c-CalculatorStep--form--contStep--cStepSelects--item--selContaineropts--filldatacontainer--cControl input");
+  $.each(arrTotalInputsContainers, function(i, e){
+    var arrInputsContToM = $(this).map(function(){
+      if($(this).val() != "" || $(this).val() != 0){
+        valCompleteInputsContToM.push($(this).parent().parent().find("label").text());
+        return valCompleteInputsContToM;
+      }else{
+        valNotCompleteInputsContToM.push($(this).parent().parent().find("label").text());
+        return valNotCompleteInputsContToM;
+      }
+    }).get();
+  });
+
+  if(valCompleteInputsContToM.length == 3){
     /************************** DEVOLVER LOS VALORES AL PRIMER MODAL **************************/
     var valCalcNewPMCont = $("#val-CalcPacksRequestModal").val();
     var valCalcNewWMCont = $("#val-CalcWeightRequestModal").val();
@@ -259,23 +277,43 @@ $(document).on("click", "#btn-saveToModalContainers", function(){
 
     $("#detail-CalcToModalAssoc").addClass("show");
     $("#container-containOptsContainers").removeClass("show");
-
   }else{
-    $(".cnt-modalFValidateMCont").add($(".cnt-modalFValidateMCont--c").addClass("show")).addClass("show");
 
-    var titleAttrMContainersP = $("#val-CalcPacksRequestModal").parent().find("label").text();
-    var titleAttrMContainersW = $("#val-CalcWeightRequestModal").parent().parent().find("label").text();
-    var titleAttrMContainersV = $("#val-CalcVolumeRequestModal").parent().parent().find("label").text();  
+    var listInputsWithValue = [];
+    $.each(valNotCompleteInputsContToM, function(i, e){
+      listInputsWithValue.push(`<li class='cnt-modalFValidateMCont--c--cDesc--m--item'>${valNotCompleteInputsContToM[i]}</li>`);
+    });
+    var listwithoutcomaContainers = listInputsWithValue.join("");
+
+    $('body').append(`
+      <section id="cnt-modalFValidateMCont" class="cnt-modalFValidateMCont">
+        <div class="cnt-modalFValidateMCont--c">
+          <span class="cnt-modalFValidateMCont--c--close" id="btn-closeiconFValidateMCont"></span>
+          <div class="cnt-modalFValidateMCont--c--cTitle">
+            <h2>ATENCIÓN</h2>
+          </div>
+          <div class="cnt-modalFValidateMCont--c--cDesc">
+            <p class="cnt-modalFValidateMCont--c--cDesc--text">Los siguientes campos fueron dejados en blanco:</p>
+            <ul class="cnt-modalFValidateMCont--c--cDesc--m" id="list-NounValidateItemsCalcMCont">`+listwithoutcomaContainers+`</ul>
+          </div>
+           <div class="cnt-modalFValidateMCont--c--cAlert">
+            <p>Los campos vacíos se COMPLETARÁN AUTOMÁTICAMENTE con un valor de 1.</p>
+           </div>
+          <div class="cnt-modalFValidateMCont--c--cBtnsActionsModalCalc">
+            <button type="button" class="cnt-modalFValidateMCont--c--cBtnsActionsModalCalc--btnCancel" id="btn-CancelValidateMConts">VOLVER</button>
+            <button type="button" class="cnt-modalFValidateMCont--c--cBtnsActionsModalCalc--btnAccept" id="btn-addValidateMConts">CONTINUAR</button>
+          </div>
+        </div>
+      </section>
+    `);
+    /************************** MOSTRAR EL MODAL DE VALIDACIÓN DE CONTENEDORES **************************/
+    //$(".cnt-modalFValidateMCont").add($(".cnt-modalFValidateMCont--c").addClass("show")).addClass("show");
   }
 });
 /************************** CERRAR EL MODAL DE VALIDACIÓN DE CONTENDORES - ICON CLOSE **************************/
-$(document).on("click", "#btn-closeiconFValidateMCont", function(){
-  $(".cnt-modalFValidateMCont").removeClass("show");
-});
+$(document).on("click", "#btn-closeiconFValidateMCont", function(){$("#cnt-modalFValidateMCont").remove();});
 /************************** CERRAR EL MODAL DE VALIDACIÓN DE CONTENDORES - BUTTON BACK **************************/
-$(document).on("click", "#btn-CancelValidateMConts", function(){
-  $(".cnt-modalFValidateMCont").removeClass("show");
-});
+$(document).on("click", "#btn-CancelValidateMConts", function(){$("#cnt-modalFValidateMCont").remove();});
 /************************** GUARDAR EL VALOR POR DEFECTO DE LA VALIDACIÓN PARA CONTENEDORES **************************/
 $(document).on("click", "#btn-addValidateMConts", function(){
   ($("#val-CalcPacksRequestModal").val() == "") ? $("#val-CalcPacksRequestModal").val(1) : $("#val-CalcPacksRequestModal").val();
@@ -300,7 +338,7 @@ $(document).on("click", "#btn-addValidateMConts", function(){
   localStorage.setItem("tot_volume", 1);
   
   $("#detail-CalcToModalAssoc").addClass("show");
-  $(".cnt-modalFValidateMCont").removeClass("show");
+  $("#cnt-modalFValidateMCont").remove();
 });
 
 /************************** OBTENER EL VALOR DEL ID DE ORIGEN **************************/
@@ -1188,27 +1226,46 @@ $(document).on("click", "#btn-calQuotationFinalT", function(){
 
   var arrAfterServ = $(".c-SelServicesQuantity--contStep--cBottom--cListServices--m--linklabel--input[name=chk-serviceseladd]").map(function(){
     if($(this).is(":checked")){
-      itemsCheckedS.push("Servicios checkeados: "+$(this).parent().find("span.c-SelServicesQuantity--contStep--cBottom--cListServices--m--linklabel--text").text()+"</br>");
+      itemsCheckedS.push($(this).parent().find("span.c-SelServicesQuantity--contStep--cBottom--cListServices--m--linklabel--text").text());
       return itemsCheckedS;
     }else{
-      itemsNotCheckedS.push($(this).parent().find("span.c-SelServicesQuantity--contStep--cBottom--cListServices--m--linklabel--text").text()+" - ");
+      itemsNotCheckedS.push($(this).parent().find("span.c-SelServicesQuantity--contStep--cBottom--cListServices--m--linklabel--text").text());
       return itemsNotCheckedS;
     }
   }).get();
-  console.log(itemsCheckedS.length);
-  console.log(itemsNotCheckedS.length);
-  var listAfterServ = arrAfterServ.join(',');
-  console.log(listAfterServ);
 
   if(itemsCheckedS.length == 4){
     alert("Todos los servicios comletados");
   }else{
-    /////RECORRER CON UN FOR EL ARREGLO DE NO CHECKEADOS Y PINTARLOS EN UN LISTADO DENTRO DE UN MODAL AL HACER CLICK EN ESTE BOTÓN "CALCULAR COTIZACIÓN"
-    alert("Faltan lo servicios: "+itemsNotCheckedS);
+    var listCheckedSevices = [];
+    $.each(itemsNotCheckedS, function(i, e){
+      listCheckedSevices.push(`<li class='cnt-modalFValidateServicesCont--c--cDesc--m--item'>${itemsNotCheckedS[i]}</li>`);
+    });
+    var listwithoutcoma = listCheckedSevices.join("");
+
+    $('body').append(`
+      <section id="cnt-modalFValidateServicesCont" class="cnt-modalFValidateServicesCont">
+        <div class="cnt-modalFValidateServicesCont--c">
+          <span class="cnt-modalFValidateServicesCont--c--close" id="btn-closeiconFValidateMCont"></span>
+          <div class="cnt-modalFValidateServicesCont--c--cTitle">
+            <h2>ATENCIÓN</h2>
+          </div>
+          <div class="cnt-modalFValidateServicesCont--c--cDesc">
+            <p class="cnt-modalFValidateServicesCont--c--cDesc--text">Para un <b>PRESUPUESTO MÁS EXACTO</b>, sugerimos volver a completar:</p>
+            <ul class="cnt-modalFValidateServicesCont--c--cDesc--m" id="list-NounValidateItemsCalcMCont">`+listwithoutcoma+`</ul>
+          </div>
+          <div class="cnt-modalFValidateServicesCont--c--cBtnsActionsModalCalc">
+            <button type="button" class="cnt-modalFValidateServicesCont--c--cBtnsActionsModalCalc--btnCancel" id="btn-CancelValServices">VOLVER</button>
+            <button type="button" class="cnt-modalFValidateServicesCont--c--cBtnsActionsModalCalc--btnAccept" id="btn-addValServices">IR A PRESUPUESTO</button>
+          </div>
+        </div>
+      </section>
+    `);
   }
-
 });
-
+/************************** CERRAR EL MODAL DE SERVICIOS NO AGREGADOS **************************/
+$(document).on("click", "#btn-closeiconFValidateMCont", function(){$("#cnt-modalFValidateServicesCont").remove()});
+$(document).on("click", "#btn-CancelValServices", function(){$("#cnt-modalFValidateServicesCont").remove()});
 /*==========================================================================================================
 =                               CANCELAR EL PROCESO DESDE EL PUNTO O PASO 3                                =
 ==========================================================================================================*/
