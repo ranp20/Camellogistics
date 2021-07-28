@@ -1052,7 +1052,7 @@ $(document).on("click", ".c-SelServicesQuantity--contStep--cBottom--cListService
         </div>
         <div class="c-SelServicesQuantity--contStep--cBottom--cListServices--m--item--cont--c--control">
           <input type="text" id="ipt-valueProductRequest" class="c-SelServicesQuantity--contStep--cBottom--cListServices--m--item--cont--c--control--input" placeholder="Valor de mercancía $" maxlength="13">
-          <span class="c-SelServicesQuantity--contStep--cBottom--cListServices--m--item--cont--c--control--spanAlertMsg">Ingrese valor exacto, SIN DECIMALES</span>
+          <span class="c-SelServicesQuantity--contStep--cBottom--cListServices--m--item--cont--c--control--spanAlertMsg" id="MsgItemValueProdRequired">Ingrese valor exacto, SIN DECIMALES</span>
         </div>
       </div>
       <div class="c-SelServicesQuantity--contStep--cBottom--cListServices--m--item--cont--cOneItem">
@@ -1203,7 +1203,10 @@ $(document).on("input", "#ipt-valueProductRequest", function(e){
 /************************** VALIDAR SI CONTIENE ALGÚN VALOR NULO O 0 **************************/
 $(document).on("keyup", "#ipt-valueProductRequest", function(){
   if($(this).val() == "" || $(this).val() == 0 || $(this).val() == " USD" || $(this).val() == ".00" || $(this).val() == 0.00){
+    $("#MsgItemValueProdRequired").text("Ingrese valor exacto, SIN DECIMALES");
     $(this).val("");
+  }else{
+    $("#MsgItemValueProdRequired").text("");
   }
 });
 /************************** SERVICIO 3 - LISTADO DE PROVINCIAS Y DISTRITOS DE ACUERDO AL PAÍS O LUGAR DE ENTREG **************************/
@@ -1213,30 +1216,11 @@ $(document).on("keyup", "#ipt-ListProvinciasByCountryRequestAll", function(){$("
 $(document).on("click", "#ipt-ListProvinciasByCountryRequestAll", function(){
   console.log(localStorage.getItem("port_DId") + " " + localStorage.getItem("port_DName"));
 });
-/************************** VALIDAR QUE TODOS LOS CHECKBOX ESTÁN MARCADOS O NO EN SERVICIOS **************************/
-// $(document).on("click", ".c-SelServicesQuantity--contStep--cBottom--cListServices--m--linklabel--input[name=chk-serviceseladd]", function(){
-//   var itemsCheckedS = [];
-//   var itemsNotCheckedS = [];
-
-//   var arrCheckedsServ = $(".c-SelServicesQuantity--contStep--cBottom--cListServices--m--linklabel--input[name=chk-serviceseladd]:checked").map(function(){
-//     return $(this).parent().find("span.c-SelServicesQuantity--contStep--cBottom--cListServices--m--linklabel--text").text();
-//     console.log($(this));
-//   }).get();
-//   var listServices = arrCheckedsServ.join(',');
-//   console.log(listServices);
-//   console.log(arrCheckedsServ.length);
-//   if(arrCheckedsServ.length == 4){
-//     alert("Todos los servicios");
-//   }else{
-//     console.log('Faltan agregar los servicios de:');
-//   }
-//   $(".c-SelServicesQuantity--contStep--cLogisticChain--title").text(listServices);
-// });
 /*========================================================================================
 =            CALCULAR LA COTIZACIÓN DE ACUERDO A LOS VALORES DEL LOCALSTORAGE            =
 ========================================================================================*/
 $(document).on("click", "#btn-calQuotationFinalT", function(){
-  //alert("Debes completar los campos primero");
+  /************************** VALIDAR QUE TODOS LOS CHECKBOX ESTÁN MARCADOS O NO EN SERVICIOS **************************/
   var itemsCheckedS = [];
   var itemsNotCheckedS = [];
 
