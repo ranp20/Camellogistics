@@ -1048,7 +1048,7 @@ $(document).on("click", ".c-SelServicesQuantity--contStep--cBottom--cListService
           <div class="c-SelServicesQuantity--contStep--cBottom--cListServices--m--item--cont--c--control--cList" id="cont-showSListAllTProducts">
             <ul class="c-SelServicesQuantity--contStep--cBottom--cListServices--m--item--cont--c--control--cList--m" id="m-listAllProductsUser"></ul>
           </div>
-          <span class="c-SelServicesQuantity--contStep--cBottom--cListServices--m--item--cont--c--control--spanAlertMsg">Si tu producto NO APARECE, elegir CARGA GENERAL</span>
+          <span class="c-SelServicesQuantity--contStep--cBottom--cListServices--m--item--cont--c--control--spanAlertMsg" id="MsgItemSelRequiredFixed">Si tu producto NO APARECE, elegir CARGA GENERAL</span>
         </div>
         <div class="c-SelServicesQuantity--contStep--cBottom--cListServices--m--item--cont--c--control">
           <input type="text" id="ipt-valueProductRequest" class="c-SelServicesQuantity--contStep--cBottom--cListServices--m--item--cont--c--control--input" placeholder="Valor de mercancía $" maxlength="13">
@@ -1135,13 +1135,26 @@ function listProductsUser(searchVal){
       response.forEach(e => {
       var nounRegOne = "";
       var nounRegTwo = "";
+      var nounOneAndTwoRegs = "";
 
       (e.reguladorOne == null || e.reguladorOne == "") ? nounRegOne = "NO REQUIERE" : nounRegOne = e.reguladorOne;
       (e.reguladorTwo == null || e.reguladorTwo == "") ? nounRegTwo = "NO REQUIERE" : nounRegTwo = e.reguladorTwo;
+      if(e.reguladorOne == null || e.reguladorOne == "" && e.reguladorTwo == null || e.reguladorTwo == ""){
+        nounOneAndTwoRegs = "NO REQUIERE";
+      }else if(e.reguladorOne == null || e.reguladorOne == ""){
+        nounOneAndTwoRegs = ""+ e.reguladorTwo;
+      }else if(e.reguladorTwo == null || e.reguladorTwo == ""){
+        nounOneAndTwoRegs = ""+ e.reguladorOne;
+      }else{
+        nounOneAndTwoRegs = e.reguladorOne + " / " + e.reguladorTwo;
+      }
       template += `
         <li class="c-SelServicesQuantity--contStep--cBottom--cListServices--m--item--cont--c--control--cList--m--item" id="${e.id_prod}">
           <p>${e.name_prod}</p>
-          <small><span>Regulador: </span><span>${nounRegOne} / ${nounRegTwo}</span></small>
+          <small>
+            <span>Regulador: </span>
+            <span>${nounOneAndTwoRegs}</span>
+          </small>
         </li>
       `;
       });
@@ -1163,6 +1176,9 @@ $(document).on("keyup", "#ipt-ListProductRequestAll", function(){
 });
 /************************** FIJAR EL VALOR DE ITEM EN EL INPUT - TIPOS DE PRODUCTOS **************************/
 $(document).on("click", ".c-SelServicesQuantity--contStep--cBottom--cListServices--m--item--cont--c--control--cList--m--item", function(){
+  $("#MsgItemSelRequiredFixed").html(`
+    <span class='c-SelServicesQuantity--contStep--cBottom--cListServices--m--item--cont--c--control--spanAlertMsg--fixed'>Permiso Gubernamental adicional: `+$(this).find("small").find("span:nth-child(2)").text()+`</span>
+  `);
   $("#cont-showSListAllTProducts").removeClass("show");
   $("#ipt-ListProductRequestAll").attr("idproduct", $(this).attr("id"));
   $("#ipt-ListProductRequestAll").val($(this).find("p").text());

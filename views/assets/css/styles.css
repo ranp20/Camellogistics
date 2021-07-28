@@ -16,6 +16,8 @@ html,
 body {
   font-family: sans-serif !important;
   position: relative;
+  margin: 0;
+  padding: 0;
 }
 
 a {
@@ -598,9 +600,14 @@ img {
   justify-content: center;
   padding-top: 0 !important;
   padding-bottom: 3rem !important;
+  background-image: url("../img/camel_logistic_slider_103.jpg");
   background-attachment: scroll;
+  background-repeat: no-repeat;
   background-position: center 0;
+  background-size: cover;
   position: relative;
+  text-align: center;
+  color: #fff;
 }
 #h-heroImage-init:after {
   content: "";
@@ -609,12 +616,33 @@ img {
   height: 100%;
   top: 0;
   left: 0;
-  background-color: rgba(0, 0, 0, 0.15);
-}
-#h-heroImage-init div {
-  z-index: 9;
+  background-color: rgba(0, 0, 0, 0.25);
 }
 
+.h-heroImage-init--c {
+  z-index: 9;
+}
+.h-heroImage-init--c--cTitle {
+  font-size: 2.25rem;
+  font-style: italic;
+  line-height: 2.25rem;
+  margin-bottom: 2rem;
+}
+.h-heroImage-init--c--cDesc {
+  font-size: 4.5rem;
+  font-weight: 700;
+  line-height: 4.5rem;
+  margin-bottom: 4rem;
+}
+.h-heroImage-init--c--btngoToServices {
+  background-color: #B58440;
+  padding: 1rem 2rem;
+  border-radius: 0.4rem;
+  color: #fff;
+  text-transform: uppercase;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
 #c-HTop-camel {
   position: fixed;
   z-index: 9999999;
@@ -1744,6 +1772,9 @@ img {
   font-size: 0.75rem;
   font-weight: 600;
   color: red;
+}
+.c-SelServicesQuantity--contStep--cBottom--cListServices--m--item--cont--c--control--spanAlertMsg--fixed {
+  color: steelblue;
 }
 .c-SelServicesQuantity--contStep--cBottom--cListServices--m--item--cont--c--control--cList {
   text-align: left;

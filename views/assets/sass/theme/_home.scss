@@ -6,9 +6,14 @@
   justify-content: center;
   padding-top: 0 !important;
   padding-bottom: 3rem !important;
+  background-image: url("../img/camel_logistic_slider_103.jpg");
   background-attachment: scroll;
+  background-repeat: no-repeat;
   background-position: center 0;
+  background-size: cover;
   position: relative;
+  text-align: center;
+  color: #fff;
 
   &:after{
     content: "";
@@ -17,10 +22,39 @@
     height: 100%;
     top: 0;
     left: 0;
-    background-color: rgba(0,0,0,0.15);
+    background-color: rgba(0,0,0,0.25);
   }
+}
 
-  div{
+.h-heroImage-init{
+  &--c{
     z-index: 9;
+    &--cTitle{
+      font-size: 2.25rem;
+      font-style: italic;
+      line-height: 2.25rem;
+      margin-bottom: 2rem;
+    }
+
+    &--cDesc{
+      font-size: 4.5rem;
+      font-weight: 700;
+      line-height: 4.5rem;
+      margin-bottom: 4rem;
+    }
+
+    &--btngoToServices{
+      background-color: $primary-color;
+      padding: 1rem 2rem;
+      border-radius: .4rem;
+      color: #fff;
+      text-transform: uppercase;
+      font-size: 1.25rem;
+      font-weight: 600;
+
+      &:hover{
+        //color: #fff;
+      }
+    }
   }
 }
