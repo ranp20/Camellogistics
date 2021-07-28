@@ -1235,7 +1235,7 @@ $(document).on("click", "#btn-calQuotationFinalT", function(){
   }).get();
 
   if(itemsCheckedS.length == 4){
-    alert("Todos los servicios comletados");
+    alert("Todos los servicios completados, mostrar el resumen y la descarga de la cotización");
   }else{
     var listCheckedSevices = [];
     $.each(itemsNotCheckedS, function(i, e){

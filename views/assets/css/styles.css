@@ -297,7 +297,7 @@ img {
   top: 0;
   left: 0;
   width: 100%;
-  min-height: 100vh;
+  min-height: 90vh;
   height: 100%;
   background-color: rgba(255, 255, 255, 0.85);
   display: flex;
@@ -331,7 +331,7 @@ img {
   top: 0;
   left: 0;
   width: 100%;
-  min-height: 100vh;
+  min-height: 90vh;
   height: 100%;
   background-color: white;
   display: flex;
@@ -492,7 +492,7 @@ img {
 .cnt-modalFValidateServicesCont--c {
   background-color: #fff;
   border-radius: 0.6rem;
-  max-width: 420px;
+  max-width: 435px;
   width: 95%;
   margin-top: 1rem;
   overflow: hidden;
@@ -551,9 +551,11 @@ img {
 .cnt-modalFValidateServicesCont--c--cDesc--m {
   list-style: disc;
   padding-left: 1.25rem;
+  margin-bottom: 1rem;
 }
 .cnt-modalFValidateServicesCont--c--cDesc--m--item {
-  font-weight: 500;
+  color: #B58440;
+  font-weight: 600;
   margin-bottom: 0.5rem;
 }
 .cnt-modalFValidateServicesCont--c--cAlert {
