@@ -832,6 +832,7 @@ $(document).on("click", "#c-listItemsSelRs li", function(e){
       //   e.returnValue = "¿Deseas salir?";
       //   console.log(e.cancelable);
       // };
+
       /************************** GENERAR EL PASO SIGUIENTE - SELECCIONAR SERVICIOS EXTRA **************************/
       $("#frm_cotizacion").html(`
         <div id="step-Four" class="c-FinalQuotation--contStep">
@@ -1158,11 +1159,54 @@ $(document).on("keyup", "#ipt-ListProvinciasByCountryRequestAll", function(){$("
 $(document).on("click", "#ipt-ListProvinciasByCountryRequestAll", function(){
   console.log(localStorage.getItem("port_DId") + " " + localStorage.getItem("port_DName"));
 });
+/************************** VALIDAR QUE TODOS LOS CHECKBOX ESTÁN MARCADOS O NO EN SERVICIOS **************************/
+// $(document).on("click", ".c-SelServicesQuantity--contStep--cBottom--cListServices--m--linklabel--input[name=chk-serviceseladd]", function(){
+//   var itemsCheckedS = [];
+//   var itemsNotCheckedS = [];
+
+//   var arrCheckedsServ = $(".c-SelServicesQuantity--contStep--cBottom--cListServices--m--linklabel--input[name=chk-serviceseladd]:checked").map(function(){
+//     return $(this).parent().find("span.c-SelServicesQuantity--contStep--cBottom--cListServices--m--linklabel--text").text();
+//     console.log($(this));
+//   }).get();
+//   var listServices = arrCheckedsServ.join(',');
+//   console.log(listServices);
+//   console.log(arrCheckedsServ.length);
+//   if(arrCheckedsServ.length == 4){
+//     alert("Todos los servicios");
+//   }else{
+//     console.log('Faltan agregar los servicios de:');
+//   }
+//   $(".c-SelServicesQuantity--contStep--cLogisticChain--title").text(listServices);
+// });
 /*========================================================================================
 =            CALCULAR LA COTIZACIÓN DE ACUERDO A LOS VALORES DEL LOCALSTORAGE            =
 ========================================================================================*/
 $(document).on("click", "#btn-calQuotationFinalT", function(){
-  alert("Debes completar los campos primero");
+  //alert("Debes completar los campos primero");
+  var itemsCheckedS = [];
+  var itemsNotCheckedS = [];
+
+  var arrAfterServ = $(".c-SelServicesQuantity--contStep--cBottom--cListServices--m--linklabel--input[name=chk-serviceseladd]").map(function(){
+    if($(this).is(":checked")){
+      itemsCheckedS.push("Servicios checkeados: "+$(this).parent().find("span.c-SelServicesQuantity--contStep--cBottom--cListServices--m--linklabel--text").text()+"</br>");
+      return itemsCheckedS;
+    }else{
+      itemsNotCheckedS.push($(this).parent().find("span.c-SelServicesQuantity--contStep--cBottom--cListServices--m--linklabel--text").text()+" - ");
+      return itemsNotCheckedS;
+    }
+  }).get();
+  console.log(itemsCheckedS.length);
+  console.log(itemsNotCheckedS.length);
+  var listAfterServ = arrAfterServ.join(',');
+  console.log(listAfterServ);
+
+  if(itemsCheckedS.length == 4){
+    alert("Todos los servicios comletados");
+  }else{
+    /////RECORRER CON UN FOR EL ARREGLO DE NO CHECKEADOS Y PINTARLOS EN UN LISTADO DENTRO DE UN MODAL AL HACER CLICK EN ESTE BOTÓN "CALCULAR COTIZACIÓN"
+    alert("Faltan lo servicios: "+itemsNotCheckedS);
+  }
+
 });
 
 /*==========================================================================================================
