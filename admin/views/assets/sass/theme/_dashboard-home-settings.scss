@@ -1,0 +1,36 @@
+.cont-dashCamel--cHSettings{
+	text-align: center;
+	&--cTitle{
+		padding: 1rem 0.5rem;
+		margin-bottom: 0.5rem;
+		&--title{
+			font-size: 1.9rem !important;
+			font-weight: 500;
+			color: $color-text;
+			margin: 0;
+		}
+	}
+
+	&--cLinks{
+		&--m{
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			gap: 2rem;
+			padding: 0 0.5rem;
+
+			&--item{
+				width: calc(100% * 1/3);
+			}
+
+			&--link{
+				display: block;
+				text-align: center;
+				border: thin solid #cccc;
+				span{
+
+				}
+			}
+		}
+	}
+}

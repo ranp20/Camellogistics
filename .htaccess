@@ -5,6 +5,7 @@ RewriteBase /Camellogistics/
 
 ############PAGES FOR THE CLIENT
 RewriteRule ^/?$ index.php
+RewriteRule marketplace-logistico?$ views/marketplace-logistic.php
 RewriteRule calculadora?$ views/calculadora.php
 
 ############PAGES FOR THE ADMIN
@@ -13,3 +14,4 @@ RewriteRule dashboard?$ admin/views/dashboard.php
 RewriteRule reguladores?$ admin/views/regulators.php
 RewriteRule productos?$ admin/views/products.php
 RewriteRule precios?$ admin/views/pricing-settings.php
+RewriteRule ajustes-del-home?$ admin/views/home-settings.php

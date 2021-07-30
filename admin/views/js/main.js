@@ -38,9 +38,13 @@ $(document).on("click", "#btn-sessuserAdm", function(e){
 /************************** ITEM SELECCIONADO DEL MENÚ EN CADA PÁGINA - SIDEBARLEFT **************************/
 var url = window.location.pathname;
 var filename = url.substring(url.lastIndexOf('/')+1);
+console.log(filename);
 if(filename == "reguladores"){
 	$(".nav-dashCamel--c--cList--m--item a").removeClass("active");
 	$(".nav-dashCamel--c--cList--m--item a").eq(6).addClass("active");
+}else if(filename == "ajustes-del-home"){
+	$(".nav-dashCamel--c--cList--m--item a").removeClass("active");
+	$(".nav-dashCamel--c--cList--mOthers--item a").eq(0).addClass('active');
 }else{
 	$(".nav-dashCamel--c--cList--m--item a").removeClass("active");
 	$('.nav-dashCamel--c--cList--m--item a[href="' + filename + '"]').addClass("active");

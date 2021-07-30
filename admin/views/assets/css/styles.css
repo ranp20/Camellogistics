@@ -1790,4 +1790,33 @@ img {
   opacity: 0.6;
 }
 
+.cont-dashCamel--cHSettings {
+  text-align: center;
+}
+.cont-dashCamel--cHSettings--cTitle {
+  padding: 1rem 0.5rem;
+  margin-bottom: 0.5rem;
+}
+.cont-dashCamel--cHSettings--cTitle--title {
+  font-size: 1.9rem !important;
+  font-weight: 500;
+  color: #444;
+  margin: 0;
+}
+.cont-dashCamel--cHSettings--cLinks--m {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  padding: 0 0.5rem;
+}
+.cont-dashCamel--cHSettings--cLinks--m--item {
+  width: calc(100% * 1/3);
+}
+.cont-dashCamel--cHSettings--cLinks--m--link {
+  display: block;
+  text-align: center;
+  border: thin solid #cccc;
+}
+
 /*# sourceMappingURL=styles.css.map */
