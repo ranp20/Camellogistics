@@ -15,3 +15,4 @@ RewriteRule reguladores?$ admin/views/regulators.php
 RewriteRule productos?$ admin/views/products.php
 RewriteRule precios?$ admin/views/pricing-settings.php
 RewriteRule ajustes-del-home?$ admin/views/home-settings.php
+RewriteRule banner-principal?$ admin/views/banner-principal.php
