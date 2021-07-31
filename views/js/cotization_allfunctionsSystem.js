@@ -38,7 +38,7 @@ function list_typ_services(){
     }else{
       $("#loaderdataUser").html("");
       $.each(response, function(i, e) {
-      	var pathimgservice = "views/assets/img/"+e.photo;
+      	var pathimgservice = "views/assets/img/utilities/"+e.photo;
       	
       	$("#cont-typeServicesOneStep").append(`
     			<li class="c-CalculatorStep--form--contStep--cStep--m--item" id="typeservice-${e.id}" item-service="${i}">

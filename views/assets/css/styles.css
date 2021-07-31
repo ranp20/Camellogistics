@@ -650,8 +650,9 @@ img {
   width: 100%;
   top: 0;
   left: 0;
-  background-color: #B58440;
+  background-color: #fff;
   min-height: 4.5rem;
+  border-bottom: thin solid #cccc;
 }
 #c-HTop-camel .c-Htopbar--c {
   max-width: 1220px;
@@ -733,7 +734,7 @@ img {
   justify-content: flex-start;
   padding: 0;
   margin: 0;
-  background-color: #B58440;
+  background-color: #fff;
   height: 100%;
   width: 90%;
   max-width: 300px;
@@ -763,7 +764,7 @@ img {
   padding: 0;
 }
 #c-HTop-camel .c-Htopbar--c--cMenu--m--link {
-  color: #fff;
+  color: #888;
   text-transform: uppercase;
   font-size: 0.9rem;
   font-weight: 600;
@@ -771,7 +772,7 @@ img {
   display: block;
 }
 #c-HTop-camel .c-Htopbar--c--cMenu--m--link:hover {
-  color: yellow;
+  color: #000;
 }
 @media (min-width: 991px) {
   #c-HTop-camel .c-Htopbar--c--cMenu--m--link {
@@ -2763,6 +2764,164 @@ img {
 .cnt-modalFormSessLoginorRegister--c--btnReturnorBack:hover {
   color: #fff;
   opacity: 0.5;
+}
+
+#cont-MainCamelLog--cMarketplaceLogistics {
+  padding-top: 1rem;
+}
+
+.cont-MainCamelLog--c {
+  /* CONTENIDO - TOP */
+  /* CONTENIDO - SISTEMA DE TABS OPCIONES DE MARKETPLACE LOGISTICS */
+}
+.cont-MainCamelLog--c--cTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10rem;
+  margin-bottom: 1rem;
+}
+.cont-MainCamelLog--c--cTop--cTitle--title {
+  font-size: 1.85rem;
+  line-height: 1.5;
+}
+.cont-MainCamelLog--c--cTop--cTitle--desc {
+  font-size: 1.4rem;
+  line-height: 1.4;
+  font-weight: 500;
+}
+.cont-MainCamelLog--c--cTop--cImg--m--item img {
+  min-width: 142px;
+  max-width: 142px;
+  width: 95%;
+  height: auto;
+}
+.cont-MainCamelLog--c--cOptionsMarket--cont {
+  /* MENÚ DE ITEMS */
+  /* CONTENIDO DE LOS ITEMS */
+}
+.cont-MainCamelLog--c--cOptionsMarket--cont--m {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+@media (min-width: 1024px) {
+  .cont-MainCamelLog--c--cOptionsMarket--cont--m {
+    min-height: 170px;
+  }
+}
+.cont-MainCamelLog--c--cOptionsMarket--cont--m--item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.cont-MainCamelLog--c--cOptionsMarket--cont--m--link {
+  transition: 0.3s ease-in-out;
+  text-align: center;
+  width: calc(100% * 1/3);
+  border: thin solid #cccc;
+  color: #999;
+  padding: 2rem 1rem;
+  font-weight: 500;
+}
+.cont-MainCamelLog--c--cOptionsMarket--cont--m--link:hover {
+  color: #000;
+}
+.cont-MainCamelLog--c--cOptionsMarket--cont--m--link.active {
+  background-color: #000;
+  color: #fff;
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}
+.cont-MainCamelLog--c--cOptionsMarket--cont--m--link svg {
+  width: 40px;
+  height: 40px;
+  margin-bottom: 0.5rem;
+}
+.cont-MainCamelLog--c--cOptionsMarket--cont--cTabsItem {
+  padding: 1rem;
+  border-left: thin solid #cccc;
+  border-right: thin solid #cccc;
+  border-bottom: thin solid #cccc;
+  border-radius: 0 0 0.4rem 0.4rem;
+  box-shadow: 0 5px 10px 0px rgba(0, 0, 0, 0.1);
+}
+.cont-MainCamelLog--c--cOptionsMarket--cont--cTabsItem--item {
+  display: none;
+  opacity: 0;
+  pointer-events: none;
+}
+.cont-MainCamelLog--c--cOptionsMarket--cont--cTabsItem--item.active {
+  display: block;
+  opacity: 1;
+  pointer-events: auto;
+}
+.cont-MainCamelLog--c--cOptionsMarket--cont--cTabsItem--item--cControl {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+}
+.cont-MainCamelLog--c--cOptionsMarket--cont--cTabsItem--item--cControl--control {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+.cont-MainCamelLog--c--cOptionsMarket--cont--cTabsItem--item--cControl--control--cGroupIptsIcon {
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  width: 100%;
+}
+.cont-MainCamelLog--c--cOptionsMarket--cont--cTabsItem--item--cControl--control--cGroupIptsIcon--cIcon {
+  width: auto;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 0.65rem;
+  background-color: #EEEEEE;
+  border-top: thin solid #ccc;
+  border-bottom: thin solid #ccc;
+  border-left: thin solid #ccc;
+  border-right: thin solid transparent;
+}
+.cont-MainCamelLog--c--cOptionsMarket--cont--cTabsItem--item--cControl--control--cGroupIptsIcon--cIcon svg {
+  width: 22px;
+  height: 22px;
+}
+.cont-MainCamelLog--c--cOptionsMarket--cont--cTabsItem--item--cControl--control--cGroupIptsIcon--input {
+  width: 100%;
+  padding: 0.5rem;
+  border: thin solid #ccc;
+}
+.cont-MainCamelLog--c--cOptionsMarket--cont--cTabsItem--item--cControl--control--cGroupIptsIcon:first-child div {
+  border-radius: 0.4rem 0 0 0.4rem;
+}
+.cont-MainCamelLog--c--cOptionsMarket--cont--cTabsItem--item--cControl--control--cGroupIptsIcon:first-child div svg {
+  color: red;
+}
+.cont-MainCamelLog--c--cOptionsMarket--cont--cTabsItem--item--cControl--control--cGroupIptsIcon:nth-child(2) {
+  border-left: unset;
+}
+.cont-MainCamelLog--c--cOptionsMarket--cont--cTabsItem--item--cControl--control--cGroupIptsIcon:nth-child(2) div svg {
+  color: lightblue;
+}
+.cont-MainCamelLog--c--cOptionsMarket--cont--cTabsItem--item--cControl--link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  text-align: center;
+  background-color: orange;
+  color: #fff;
+  padding: 0.5rem 2rem;
+  border-radius: 0 0.4rem 0.4rem 0;
+}
+.cont-MainCamelLog--c--cOptionsMarket--cont--cTabsItem--item--cControl--link:hover {
+  color: #fff;
+  opacity: 0.7;
 }
 
 /*# sourceMappingURL=styles.css.map */

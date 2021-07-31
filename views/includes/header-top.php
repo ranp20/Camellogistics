@@ -6,7 +6,7 @@
   <div class="c-Htopbar--c">
     <div class="c-Htopbar--c--cLogo">
       <a href="./">
-        <img src="<?= $url ?>assets/img/logotipo-camel.png" alt="logo_camel">
+        <img src="<?= $url ?>assets/img/logos/logotipo-camel.png" alt="logo_camel">
       </a>
     </div>
     <button class="c-Htopbar--c--btnMobileNavbar" type="button">

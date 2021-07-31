@@ -4,8 +4,9 @@
 	width: 100%;
 	top: 0;
 	left: 0;
-	background-color: $primary-color;
+	background-color: #fff;
 	min-height: $min-headertop;
+	border-bottom: thin solid $border-bottom-headertop;
 
 	.c-Htopbar--c{
 		max-width: $max-width;
@@ -87,7 +88,7 @@
 				justify-content: flex-start;	
 				padding: 0;
 				margin: 0;
-				background-color: $primary-color;
+				background-color: #fff;
 				height: 100%;
 				width: 90%;
 				max-width: 300px;
@@ -116,7 +117,7 @@
 					}
 				}
 				&--link{
-					color: #fff;
+					color: $color-paragraph;
 					text-transform: uppercase;
 					font-size: 0.9rem;
 					font-weight: 600;
@@ -124,7 +125,7 @@
 					display: block;
 
 					&:hover{
-						color: yellow;
+						color: #000;
 					}
 
 					@media (min-width: 991px){
