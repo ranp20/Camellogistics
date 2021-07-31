@@ -2891,10 +2891,78 @@ img {
   width: 22px;
   height: 22px;
 }
-.cont-MainCamelLog--c--cOptionsMarket--cont--cTabsItem--item--cControl--control--cGroupIptsIcon--input {
+.cont-MainCamelLog--c--cOptionsMarket--cont--cTabsItem--item--cControl--control--cGroupIptsIcon--cInput {
+  width: 100%;
+  position: relative;
+}
+.cont-MainCamelLog--c--cOptionsMarket--cont--cTabsItem--item--cControl--control--cGroupIptsIcon--cInput--input {
+  outline: none;
   width: 100%;
   padding: 0.5rem;
   border: thin solid #ccc;
+}
+.cont-MainCamelLog--c--cOptionsMarket--cont--cTabsItem--item--cControl--control--cGroupIptsIcon--cInput--input[aria-expanded=false] {
+  background-image: url("../img/utilities/fail-alert-noun-selected.svg");
+  background-color: #fff !important;
+  border: thin solid darkred !important;
+  box-shadow: 0 0 2px 1px pink;
+  background-repeat: no-repeat;
+  background-position: 98%;
+  background-size: 0.95rem;
+}
+.cont-MainCamelLog--c--cOptionsMarket--cont--cTabsItem--item--cControl--control--cGroupIptsIcon--cInput--m {
+  display: none;
+  pointer-events: none;
+  position: absolute;
+  left: 0;
+  width: 100%;
+  background-color: #fff;
+  border-left: thin solid #ccc;
+  border-right: thin solid #ccc;
+  border-bottom: thin solid #ccc;
+  max-height: 206px;
+  height: auto;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+.cont-MainCamelLog--c--cOptionsMarket--cont--cTabsItem--item--cControl--control--cGroupIptsIcon--cInput--m--anyresults {
+  background-color: #cccc;
+  text-align: center;
+  padding: 0.3rem 0.55rem;
+}
+.cont-MainCamelLog--c--cOptionsMarket--cont--cTabsItem--item--cControl--control--cGroupIptsIcon--cInput--m.show {
+  display: block;
+  pointer-events: auto;
+}
+.cont-MainCamelLog--c--cOptionsMarket--cont--cTabsItem--item--cControl--control--cGroupIptsIcon--cInput--m--item {
+  cursor: pointer;
+  padding: 0.3rem 0.55rem;
+  color: #000;
+  display: flex;
+  align-items: center;
+}
+.cont-MainCamelLog--c--cOptionsMarket--cont--cTabsItem--item--cControl--control--cGroupIptsIcon--cInput--m--item:hover {
+  background-color: #000;
+}
+.cont-MainCamelLog--c--cOptionsMarket--cont--cTabsItem--item--cControl--control--cGroupIptsIcon--cInput--m--item:hover span {
+  color: #fff;
+}
+.cont-MainCamelLog--c--cOptionsMarket--cont--cTabsItem--item--cControl--control--cGroupIptsIcon--cInput--m--item:hover span svg {
+  color: #fff !important;
+}
+.cont-MainCamelLog--c--cOptionsMarket--cont--cTabsItem--item--cControl--control--cGroupIptsIcon--cInput--m--item span {
+  vertical-align: middle;
+  color: #000;
+}
+.cont-MainCamelLog--c--cOptionsMarket--cont--cTabsItem--item--cControl--control--cGroupIptsIcon--cInput--m--item span:first-child {
+  margin-right: 0.25rem;
+}
+.cont-MainCamelLog--c--cOptionsMarket--cont--cTabsItem--item--cControl--control--cGroupIptsIcon--cInput--m--item span svg {
+  width: 20px;
+  height: 20px;
+  color: #000 !important;
+  vertical-align: middle;
+  margin-right: 0.25rem;
 }
 .cont-MainCamelLog--c--cOptionsMarket--cont--cTabsItem--item--cControl--control--cGroupIptsIcon:first-child div {
   border-radius: 0.4rem 0 0 0.4rem;
