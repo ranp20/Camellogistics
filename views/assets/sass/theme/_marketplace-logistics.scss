@@ -39,229 +39,225 @@
 
 	/* CONTENIDO - SISTEMA DE TABS OPCIONES DE MARKETPLACE LOGISTICS */
 	&--cOptionsMarket{
-		&--cont{
-
-			/* MENÚ DE ITEMS */
-			&--m{
-				display: flex;
-				align-items: flex-end;
-				justify-content: center;
-
-				@media (min-width: 1024px){
-					min-height: 170px;
-				}
-
-				&--item{
+		&--f{
+			&--cont{
+				/* MENÚ DE ITEMS */
+				&--m{
 					display: flex;
-					align-items: center;
+					align-items: flex-end;
 					justify-content: center;
-					flex-direction: column;
+
+					@media (min-width: 1024px){
+						min-height: 170px;
+					}
+
+					&--item{
+						display: flex;
+						align-items: center;
+						justify-content: center;
+						flex-direction: column;
+					}
+					
+					&--link{
+						transition: .3s ease-in-out;
+						text-align: center;
+						width: calc(100% * 1/3);
+						border: thin solid $border-bottom-headertop;
+						color: #999;
+						padding: 2rem 1rem;
+						font-weight: 500;
+
+						&:hover{
+							color: #000;
+						}
+
+						&.active{
+							background-color: #000;
+							color: #fff;
+							padding-top: 3rem;
+							padding-bottom: 3rem;
+						}
+
+						svg{
+							width: 40px;
+							height: 40px;
+							margin-bottom: 0.5rem;
+						}
+
+						span{
+
+						}
+					}
 				}
-				
-				&--link{
-					transition: .3s ease-in-out;
-					text-align: center;
-					width: calc(100% * 1/3);
-					border: thin solid $border-bottom-headertop;
-					color: #999;
-					padding: 2rem 1rem;
-					font-weight: 500;
 
-					&:hover{
-						color: #000;
-					}
-
-					&.active{
-						background-color: #000;
-						color: #fff;
-						padding-top: 3rem;
-						padding-bottom: 3rem;
-					}
-
-					svg{
-						width: 40px;
-						height: 40px;
-						margin-bottom: 0.5rem;
-					}
-
-					span{
-
-					}
-				}
-			}
-
-			/* CONTENIDO DE LOS ITEMS */
-			&--cTabsItem{
-				padding: 1rem;
-				border-left: thin solid $border-bottom-headertop;
-				border-right: thin solid $border-bottom-headertop;
-				border-bottom: thin solid $border-bottom-headertop;
-				border-radius: 0 0 .4rem .4rem;
-				box-shadow: 0 5px 10px 0px rgb(0 0 0 / 10%);
-				&--item{
-					display: none;
-					opacity: 0;
-					pointer-events: none;
-
-					&.active{
+				/* CONTENIDO DE LOS ITEMS */
+				&--cTabsItem{
+					padding: 1rem;
+					border-left: thin solid $border-bottom-headertop;
+					border-right: thin solid $border-bottom-headertop;
+					border-bottom: thin solid $border-bottom-headertop;
+					border-radius: 0 0 .4rem .4rem;
+					box-shadow: 0 5px 10px 0px rgb(0 0 0 / 10%);
+					&--item{
 						display: block;
 						opacity: 1;
 						pointer-events: auto;
-					}
 
-					&--cControl{
-						display: grid;
-				    grid-template-columns: 1fr auto;
-				    align-items: center;
+						&--cControl{
+							display: grid;
+					    grid-template-columns: 1fr auto;
+					    align-items: center;
 
-				    &--control{
-				    	display: flex;
-				    	align-items: center;
-				    	justify-content: space-between;
-				    	width: 100%;
+					    &--control{
+					    	display: flex;
+					    	align-items: center;
+					    	justify-content: space-between;
+					    	width: 100%;
 
-				    	&--cGroupIptsIcon{
-				    		display: flex;
-				    		align-items: stretch;
-				    		justify-content: center;
-				    		width: 100%;
+					    	&--cGroupIptsIcon{
+					    		display: flex;
+					    		align-items: stretch;
+					    		justify-content: center;
+					    		width: 100%;
 
-				    		&--cIcon{
-				    			width: auto;
-							    height: auto;
-							    display: flex;
-							    align-items: center;
-							    justify-content: center;
-							    padding: 0 .65rem;
-							    background-color: #EEEEEE;
-							    border-top: thin solid #ccc;
-							    border-bottom: thin solid #ccc;
-							    border-left: thin solid #ccc;
-							    border-right: thin solid transparent;
+					    		&--cIcon{
+					    			width: auto;
+								    height: auto;
+								    display: flex;
+								    align-items: center;
+								    justify-content: center;
+								    padding: 0 .65rem;
+								    background-color: #EEEEEE;
+								    border-top: thin solid #ccc;
+								    border-bottom: thin solid #ccc;
+								    border-left: thin solid #ccc;
+								    border-right: thin solid transparent;
 
-				    			svg{
-				    				width: 22px;
-				    				height: 22px;
-				    			}
-				    		}
+					    			svg{
+					    				width: 22px;
+					    				height: 22px;
+					    			}
+					    		}
 
-				    		&--cInput{
-									width: 100%;
-									position: relative;
-									&--input{
-										outline: none;
+					    		&--cInput{
 										width: 100%;
-										padding: 0.5rem;
-										border: thin solid #ccc;
+										position: relative;
+										&--input{
+											outline: none;
+											width: 100%;
+											padding: 0.5rem;
+											border: thin solid #ccc;
 
-										&[aria-expanded="false"]{
-											background-image: url("../img/utilities/fail-alert-noun-selected.svg");
-											background-color: #fff !important;
-									    border: thin solid darkred !important;
-									    box-shadow: 0 0 2px 1px pink;
-									    background-repeat: no-repeat;
-									    background-position: 98%;
-									    background-size: .95rem;
-										}
-									}
-
-									&--m{
-										display: none;
-										pointer-events: none;
-										position: absolute;
-										left: 0;
-										width: 100%;
-										background-color: #fff;
-										border-left: thin solid #ccc;
-										border-right: thin solid #ccc;
-										border-bottom: thin solid #ccc;
-										max-height: 206px;
-										height: auto;
-										overflow-x: hidden;
-										overflow-y: auto;
-
-										&--anyresults{
-											background-color: #cccc;
-											text-align: center;
-											padding: 0.3rem .55rem;
+											&[aria-expanded="false"]{
+												background-image: url("../img/utilities/fail-alert-noun-selected.svg");
+												background-color: #fff !important;
+										    border: thin solid darkred !important;
+										    box-shadow: 0 0 2px 1px pink;
+										    background-repeat: no-repeat;
+										    background-position: 98%;
+										    background-size: .95rem;
+											}
 										}
 
-										&.show{
-											display: block;
-											pointer-events: auto;
-										}
+										&--m{
+											display: none;
+											pointer-events: none;
+											position: absolute;
+											left: 0;
+											width: 100%;
+											background-color: #fff;
+											border-left: thin solid #ccc;
+											border-right: thin solid #ccc;
+											border-bottom: thin solid #ccc;
+											max-height: 206px;
+											height: auto;
+											overflow-x: hidden;
+											overflow-y: auto;
 
-										&--item{
-											cursor: pointer;
-											padding: 0.3rem .55rem;
-											color: #000;
-											display: flex;
-											align-items: center;
-											
-											&:hover{
-												background-color: #000;
+											&--anyresults{
+												background-color: #cccc;
+												text-align: center;
+												padding: 0.3rem .55rem;
+											}
+
+											&.show{
+												display: block;
+												pointer-events: auto;
+											}
+
+											&--item{
+												cursor: pointer;
+												padding: 0.3rem .55rem;
+												color: #000;
+												display: flex;
+												align-items: center;
+												
+												&:hover{
+													background-color: #000;
+													span{
+														color: #fff;
+														svg{
+															color: #fff !important;
+														}
+													}
+												}
 												span{
-													color: #fff;
+													vertical-align: middle;
+													color: #000;
+
+													&:first-child{
+														margin-right: 0.25rem;
+													}
+
 													svg{
-														color: #fff !important;
+														width: 20px;
+														height: 20px;
+														color: #000 !important;
+														vertical-align: middle;
+														margin-right: 0.25rem;
 													}
 												}
 											}
-											span{
-												vertical-align: middle;
-												color: #000;
+										}
+					    		}
 
-												&:first-child{
-													margin-right: 0.25rem;
-												}
 
-												svg{
-													width: 20px;
-													height: 20px;
-													color: #000 !important;
-													vertical-align: middle;
-													margin-right: 0.25rem;
-												}
-											}
+									&:first-child{
+										div{
+								    	border-radius: .4rem 0 0 .4rem;
+								    	svg{
+								    		color: red;
+								    	}
 										}
 									}
-				    		}
 
-
-								&:first-child{
-									div{
-							    	border-radius: .4rem 0 0 .4rem;
-							    	svg{
-							    		color: red;
-							    	}
+									&:nth-child(2){
+										border-left: unset;
+										div{
+								    	svg{
+								    		color: lightblue;
+								    	}
+										}
 									}
-								}
+					    	}
+					    }
 
-								&:nth-child(2){
-									border-left: unset;
-									div{
-							    	svg{
-							    		color: lightblue;
-							    	}
-									}
-								}
-				    	}
-				    }
-
-						&--link{
-							display: flex;
-							align-items: center;
-							justify-content: center;
-							height: 100%;
-							text-align: center;
-							background-color: orange;
-							color: #fff;
-							padding: 0.5rem 2rem;
-							border-radius: 0 .4rem .4rem 0;
-
-							&:hover{
+							&--link{
+								border: none;
+								display: flex;
+								align-items: center;
+								justify-content: center;
+								height: 100%;
+								text-align: center;
+								background-color: orange;
 								color: #fff;
-								opacity: 0.7;
+								padding: 0.5rem 2rem;
+								border-radius: 0 .4rem .4rem 0;
+
+								&:hover{
+									color: #fff;
+									opacity: 0.7;
+								}
 							}
 						}
 					}

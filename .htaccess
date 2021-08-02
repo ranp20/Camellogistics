@@ -5,7 +5,12 @@ RewriteBase /Camellogistics/
 
 ############PAGES FOR THE CLIENT
 RewriteRule ^/?$ index.php
+
+############NUEVO PROCEDIMIENTO
 RewriteRule marketplace-logistico?$ views/marketplace-logistic.php
+RewriteRule startQuoteRequest?$ views/startQuoteRequest-steps.php
+
+############ANTIGUO PROCEDIMIENTO
 RewriteRule calculadora?$ views/calculadora.php
 
 ############PAGES FOR THE ADMIN

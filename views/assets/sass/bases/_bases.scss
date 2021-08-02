@@ -42,6 +42,9 @@ img{
 .mtop-headertop{
 	margin-top: $min-headertop;
 }
+.ptop-headertop{
+	padding-top: $min-headertop;
+}
 .box-container{
 	max-width: $max-width;
 	width: 90%;
@@ -69,6 +72,12 @@ img{
 	pointer-events: none;
 	visibility: hidden;
 	opacity: 0;	
+}
+.box-container-p05{
+	width: 100%;
+	padding: 0.5rem;
+	margin-left: auto;
+	margin-right: auto;
 }
 /************************** API WHATSAPP **************************/
 #chat_wstp-icon{
