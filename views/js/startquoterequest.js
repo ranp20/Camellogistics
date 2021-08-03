@@ -367,9 +367,9 @@ $(document).on("click", ".del-calculation-item", function(e){
  	var delListCalc = calculateDataUser;
  	var delListCalcTotal = calculateTotal;
 	var thisid = $(this).parent().parent();
-
+	
 	$.each(thisid, function(i, v){
-		/************************** ELIMINAR VALORES DEL TOTAL *************************/
+		/************************** OBTENER VALORES DE LAS COLUMNAS *************************/
 		var restPackages = $(this).find("td").eq(2).text();
 		var restWeight = $(this).find("td").eq(3).find("span:first-child").text();
 		var restVolume = $(this).find("td").eq(4).find("span:first-child").text();
@@ -394,6 +394,7 @@ $(document).on("click", ".del-calculation-item", function(e){
 			valTotalvolumenfinal = parseFloat(valTotalResultVolume).toFixed(2);
   	}
 
+  	/************************** DEVOLVER LA RESTA A LOS INPUTS DE TOTALES **************************/
 		$("#b-valTotalPackages").val(valTotalResultPackages);
 		$("#b-valTotalWeight").val(valTotalResultWeight);
 		$("#b-valTotalVolume").val(valTotalvolumenfinal);
@@ -405,6 +406,10 @@ $(document).on("click", ".del-calculation-item", function(e){
 
 	if(delListCalc.length == 0){
 		list_Calculation_data();
+		/************************** RELLENAR LOS INPUT DE TOTALES CON 0 **************************/
+		$("#b-valTotalPackages").val(0);
+		$("#b-valTotalWeight").val(0);
+		$("#b-valTotalVolume").val(0);
 	}else{
 		list_Calculation_data();
 	}
@@ -427,9 +432,9 @@ $(document).on("click", "#btn-addCalcValueToCalculator", function(e){
 	($("#val-Heightinputitem").val() != "") ? $("#msgNounHeightvalue").text("") : $("#msgNounHeightvalue").text("Campo requerido");
 	($("#val-Weightinputitem").val() != "") ? $("#msgNounWeightvalue").text("") : $("#msgNounWeightvalue").text("Campo requerido");
 
-	if($("#b-valTotalPackages").val() != "" &&
-		 $("#b-valTotalWeight").val() != "" &&
-		 $("#b-valTotalVolume").val() != ""){
+	if($("#b-valTotalPackages").val() != "" && $("#b-valTotalPackages").val() != 0 &&
+		 $("#b-valTotalWeight").val() != "" && $("#b-valTotalWeight").val() != 0 &&
+		 $("#b-valTotalVolume").val() != "" && $("#b-valTotalVolume").val() != 0){
 
 		/************************** OBTENER LOS VALORES DE LOS TOTALES **************************/
 		var valCalculadoPackages = $("#b-valTotalPackages").val();
