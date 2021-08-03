@@ -38,7 +38,7 @@
         <div class="cont-MainCamelLog--c--contResumeCalc--item" data-advlevel="d-quantitycontainer"></div>
       </section>
       <section class="cont-MainCamelLog--c--contSteps" id="fullpage">
-        <!-- 1. PASO -->
+        <!------------------------------------------------- PASO #1 ------------------------------------------------>
         <div class="cont-MainCamelLog--c--contSteps--item section">
           <div class="cont-MainCamelLog--c--contSteps--item--cTitle">
             <h3 class="cont-MainCamelLog--c--contSteps--item--cTitle--title">¿Qué tipo de operación vas a realizar?</h3>
@@ -64,7 +64,7 @@
             </ul>
           </div>
         </div>
-        <!-- 2. PASO -->
+        <!------------------------------------------------- PASO #2 ------------------------------------------------>
         <div class="cont-MainCamelLog--c--contSteps--item section" data-anchor="step-chargeload" data-transportquote>
           <div class="cont-MainCamelLog--c--contSteps--item--cTitle">
             <h3 class="cont-MainCamelLog--c--contSteps--item--cTitle--title">Tipo de carga</h3>
@@ -90,7 +90,7 @@
             </ul>
           </div>
         </div>
-        <!-- 3. PASO -->
+        <!------------------------------------------------- PASO #3 ------------------------------------------------>
         <div class="cont-MainCamelLog--c--contSteps--item section" data-anchor="step-qcontainers" data-transportquote>
           <div class="cont-MainCamelLog--c--contSteps--item--cTitle">
             <h3 class="cont-MainCamelLog--c--contSteps--item--cTitle--title">Contenedores</h3>
@@ -145,6 +145,7 @@
             </div>
           </div>
         </div>
+        <!------------------------------------------------- PASO #4 ------------------------------------------------>
         <div class="cont-MainCamelLog--c--contSteps--item section" data-anchor="step-chargedata" data-transportquote>
           <div class="cont-MainCamelLog--c--contSteps--item--cTitle">
             <h3 class="cont-MainCamelLog--c--contSteps--item--cTitle--title">Dimensiones de carga</h3>
@@ -169,7 +170,33 @@
             </div>
           </div>
         </div>
-        <div class="cont-MainCamelLog--c--contSteps--item section" data-anchor="step-chargeload-03" data-transportquote></div>
+        <!------------------------------------------------- PASO #5 ------------------------------------------------>
+        <div class="cont-MainCamelLog--c--contSteps--item section" data-anchor="step-merchandisedata" data-transportquote>
+          <div class="cont-MainCamelLog--c--contSteps--item--cTitle">
+            <h3 class="cont-MainCamelLog--c--contSteps--item--cTitle--title">Mercancía</h3>
+          </div>
+          <div class="cont-MainCamelLog--c--contSteps--item--cStep">
+            <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise">
+              <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC">
+                <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl">
+                  <label for="" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl--label">CATEGORÍA</label>
+                  <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl--cListChange">
+                    <input type="text" id="ipt-valNameTypeProdNInterface" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl--cListChange--input" autocomplete="off">
+                    <ul class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl--cListChange--m" id="m-listAllNamTypeProds"></ul>
+                  </div>
+                </div>
+              </div>
+              <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC">
+                <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl">
+                  <label for="" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl--label">VALOR</label>
+                  <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl--cListChange">
+                    <input type="text" id="ipt-valPriceProdNInterface" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl--cListChange--input" maxlength="13" autocomplete="off">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
         <div class="cont-MainCamelLog--c--contSteps--item section" data-anchor="step-chargeload-04" data-transportquote></div>
         <div class="cont-MainCamelLog--c--contSteps--item section" data-anchor="step-chargeload-05" data-transportquote></div>
         <div class="cont-MainCamelLog--c--contSteps--item section" data-anchor="step-chargeload-06" data-transportquote></div>

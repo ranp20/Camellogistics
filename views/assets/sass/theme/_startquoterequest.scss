@@ -338,6 +338,101 @@
 						}
 					}
 				}
+
+				/* FORMULARIO DE DATOS - DATOS DE MERCANCÍA */
+				&--mFrmIptsControlsMerchandise{
+					display: flex;
+					flex-direction: column;
+					align-items: flex-start;
+					justify-content: center;
+					max-width: 500px;
+					width: 95%;
+					margin: 0 auto;
+					&--cC{
+						width: 100%;
+						/* CONTENEDOR DE CONTROLES */
+						&--cControl{
+							width: 100%;
+							display: flex;
+							flex-direction: column;
+							align-items: flex-start;
+							justify-content: center;
+							margin-bottom: 1rem;
+							&--label{
+								color: $primary-color;
+								font-weight: 300;
+								padding-left: 1rem;
+								font-size: 0.85rem;
+								letter-spacing: .2rem;
+							}
+
+							&--cListChange{
+								width: 100%;
+								position: relative;
+								&--input{
+									width: 100%;
+									border: thin solid $primary-color;
+									font-size: 1rem;
+									padding: 0.5rem;
+									line-height: 1.5;
+
+									&[type=number]::-webkit-inner-spin-button, 
+									&[type=number]::-webkit-outer-spin-button { 
+										-webkit-appearance: none;
+										margin: 0;
+									}
+									&[type=number]{ 
+										-moz-appearance:textfield;
+									}
+								}
+
+								&--m{
+									position: absolute;
+							    left: 0;
+							    width: 100%;
+							    text-align: left;
+							    background-color: #fff;
+							    z-index: 99;
+						    	max-height: 330px;
+						    	height: auto;
+    							overflow: hidden;
+    							display: none;
+    							opacity: 0;
+    							pointer-events: none;
+
+							    &.show{	    	
+							    	border-right: thin solid #ccc;
+							    	border-left: thin solid #ccc;
+							    	border-bottom: thin solid #ccc;
+							    	display: block;
+	    							opacity: 1;
+	    							pointer-events: auto;
+							    }
+
+									&--item{
+										cursor: pointer;
+										padding: 0.5rem 1rem;
+										font-size: 0.9rem;
+										line-height: 1;
+
+										&:hover{
+											background-color: #000;
+											color: #fff;
+										}
+
+										p{
+											margin: 0;
+										}
+
+										small{
+
+										}
+									}
+								}
+							}
+						}
+					}
+				}
 			}
 		}
 	}

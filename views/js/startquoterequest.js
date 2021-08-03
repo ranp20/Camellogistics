@@ -1,16 +1,19 @@
 $(() => {
   hiddenAllNextSteps();
+  /************************** LISTAR LOS PUERTOS DE ORIGEN Y DE DESTINO DE ACUERDO AL ID RECIBIDO POR POST **************************/
 	listPortOriginandDestiny();
 	/************************** LISTAR LAS UNIDADES DE MEDIDA EN EL MODAL **************************/
 	list_measurement_units();
 	list_mass_units();
+	/************************** LISTAR LOS TIPOS DE PRODUCTOS **************************/
+	listProductsUser();
 });
 /************************** PLUGIN - FULLPAGE.JS **************************/
 const sectionsSteps = new fullpage('#fullpage', {
   anchors:['step-chargeload', 
   				 'step-qcontainers', 
   				 'step-chargedata',
-  				 'step-chargeload-03',
+  				 'step-merchandisedata',
   				 'step-chargeload-04',
   				 'step-chargeload-05',
   				 'step-chargeload-06',
@@ -21,6 +24,7 @@ const sectionsSteps = new fullpage('#fullpage', {
   verticalCentered: false,
   scrollingSpeed: 500,
 });
+/************************** OCULTAR LOS DEMÁS PASOS **************************/
 function hiddenAllNextSteps(){
   $("#fullpage").css({"overflow":"hidden"});
 }
@@ -41,9 +45,9 @@ function listPortOriginandDestiny(){
 	// 	console.log(e);
 	// });
 }
-/*=====================================================
-=            2. ELEGIR EL TIPO DE OPRACIÓN            =
-=====================================================*/
+/*=======================================================================================
+=            									2. ELEGIR EL TIPO DE OPRACIÓN            									=
+=========================================================================================*/
 $(document).on("click", "#list-typeOperationItems li", function(){
 	var tTypeOperation = $(this).index();
 	if(tTypeOperation == 0){
@@ -66,6 +70,9 @@ $(document).on("click", "#list-typeOperationItems li", function(){
 		`);
 	}
 });
+/*========================================================================================
+=           							 4. AÑADIR LA CANTIDAD DE CONTENEDORES            						 =
+=========================================================================================*/
 /************************** SWITCH DE CONTENEDORES REFRIGERADOS **************************/
 $(document).on("click", "#chck-containerfreeze", function(){
 	if($(this).is(":checked")){
@@ -76,6 +83,9 @@ $(document).on("click", "#chck-containerfreeze", function(){
 		$(this).parent().attr("switch-CFreeze", "NO");
 	}
 });
+/*========================================================================================
+=           	 						5. AGREGAR LAS DIMENSIONES DE LA CARGA            						 =
+=========================================================================================*/
 /************************** RESPETAR EL MAX-LENGHT DEL INPUT **************************/
 $(document).on("keyup keypress blur change", "#val-iptWeightNInterface", function(e){
 	if ($(this).val().length >= parseInt($(this).attr('maxlength')) && e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
@@ -466,4 +476,107 @@ $(document).on("click", "#btn-addCalcValueToCalculator", function(e){
 	}else{
 		console.log('No hay registros a fijar');
 	}
+});
+/*=====================================================================================
+=            							6. AGREGAR LOS DATOS DE MERCANCÍA            								=
+======================================================================================*/
+/************************** LISTAR LOS TIPOS DE PRODUCTOS **************************/
+function listProductsUser(searchVal){
+  $.ajax({
+    url: "controllers/list_products.php",
+    method: "POST",
+    datatype: "JSON",
+    contentType: 'application/x-www-form-urlencoded;charset=UTF-8',
+    data: {searchList : searchVal},
+  }).done( function (res) {
+    var response = JSON.parse(res);
+    var template = "";
+    if(response.length == 0){
+      template = `
+        <li class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl--cListChange--m--item">
+          <p>No encontado</p>
+          <small><span>Regulador: </span><span>NO REQUIERE</span></small>
+        </li>
+      `;
+      $("#m-listAllNamTypeProds").html(template);
+      setTimeout(function(){
+        $("#m-listAllNamTypeProds").removeClass("show");
+      }, 4500);
+    }else{
+      response.forEach(e => {
+      var nounRegOne = "";
+      var nounRegTwo = "";
+      var nounOneAndTwoRegs = "";
+
+      (e.reguladorOne == null || e.reguladorOne == "") ? nounRegOne = "NO REQUIERE" : nounRegOne = e.reguladorOne;
+      (e.reguladorTwo == null || e.reguladorTwo == "") ? nounRegTwo = "NO REQUIERE" : nounRegTwo = e.reguladorTwo;
+      if(e.reguladorOne == null || e.reguladorOne == "" && e.reguladorTwo == null || e.reguladorTwo == ""){
+        nounOneAndTwoRegs = "NO REQUIERE";
+      }else if(e.reguladorOne == null || e.reguladorOne == ""){
+        nounOneAndTwoRegs = ""+ e.reguladorTwo;
+      }else if(e.reguladorTwo == null || e.reguladorTwo == ""){
+        nounOneAndTwoRegs = ""+ e.reguladorOne;
+      }else{
+        nounOneAndTwoRegs = e.reguladorOne + " / " + e.reguladorTwo;
+      }
+      template += `
+        <li class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl--cListChange--m--item" id="${e.id_prod}">
+          <p>${e.name_prod}</p>
+          <small>
+            <span>Regulador: </span>
+            <span>${nounOneAndTwoRegs}</span>
+          </small>
+        </li>
+      `;
+      });
+      $("#m-listAllNamTypeProds").html(template);
+    }
+  });
+}
+/************************** MOSTRAR EL LISTADO DE TIPOS DE PRODUCTOS **************************/
+$(document).on("focus", "#ipt-valNameTypeProdNInterface", function(){$("#m-listAllNamTypeProds").addClass("show");listProductsUser();});
+$(document).on("keyup", "#ipt-valNameTypeProdNInterface", function(){
+  $("#m-listAllNamTypeProds").addClass("show");
+  var searchVal = $(this).val();
+  if(searchVal != ""){
+   	$("#ipt-valNameTypeProdNInterface").attr("idproduct", ""); 
+    listProductsUser(searchVal);
+  }else{
+    listProductsUser();
+  }
+});
+/************************** FIJAR EL VALOR DE ITEM EN EL INPUT - TIPOS DE PRODUCTOS **************************/
+$(document).on("click", ".cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl--cListChange--m--item", function(){
+  $("#MsgItemSelRequiredFixed").html(`
+    <span class='c-SelServicesQuantity--contStep--cBottom--cListServices--m--item--cont--c--control--spanAlertMsg--fixed'>Permiso Gubernamental adicional: `+$(this).find("small").find("span:nth-child(2)").text()+`</span>
+  `);
+  $("#m-listAllNamTypeProds").removeClass("show");
+  $("#ipt-valNameTypeProdNInterface").attr("idproduct", $(this).attr("id"));
+  $("#ipt-valNameTypeProdNInterface").val($(this).find("p").text());
+});
+/************************** VALIDAR INPUT - VALOR DE PRODUCTO IMPORTADO **************************/
+$(document).on("input", "#ipt-valPriceProdNInterface", function(e){
+  if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+    return false;
+  }else{
+    /************************** LIMITAR EL MÁXMIMO DE CARACTERES **************************/
+    if( $(this).val().length >= parseInt($(this).attr('maxlength')) && (e.which != 8 && e.which != 0)){
+      return false;
+    }
+  }
+
+  let value = e.target.value;
+  e.target.value = value.replace(/[^A-Z\d-]/g, "");
+  $(this).val(function(i, v) {
+    return v.replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d)\.?)/g, ".") + " USD";
+  });
+});
+/************************** VALIDAR SI CONTIENE ALGÚN VALOR NULO O 0 **************************/
+$(document).on("keyup", "#ipt-valPriceProdNInterface", function(){
+  if($(this).val() == "" || $(this).val() == 0 || $(this).val() == " USD" || $(this).val() == ".00" || $(this).val() == 0.00){
+    $("#MsgItemValueProdRequired").text("Ingrese valor exacto, SIN DECIMALES");
+    $(this).val("");
+  }else{
+    $("#MsgItemValueProdRequired").text("");
+  }
 });
