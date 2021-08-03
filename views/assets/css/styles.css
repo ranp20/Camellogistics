@@ -3019,6 +3019,15 @@ img {
   max-width: 250px;
   width: 100%;
 }
+.cont-MainCamelLog--c--contResumeCalc--item {
+  /* TIPO DE OPERACIÓN */
+}
+.cont-MainCamelLog--c--contResumeCalc--item[data-advlevel=d-chargeload] .cont-MainCamelLog--c--contResumeCalc--item--cardStep {
+  text-align: center;
+}
+.cont-MainCamelLog--c--contResumeCalc--item[data-advlevel=d-chargeload] .cont-MainCamelLog--c--contResumeCalc--item--cardStep span {
+  font-weight: 600;
+}
 .cont-MainCamelLog--c--contResumeCalc--item--cardStep {
   border-radius: 0.4rem;
   background-color: #2F363F;
@@ -3347,7 +3356,8 @@ img {
   z-index: 99;
   max-height: 330px;
   height: auto;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: auto;
   display: none;
   opacity: 0;
   pointer-events: none;
@@ -3508,9 +3518,10 @@ img {
   text-align: left;
   background-color: #fff;
   z-index: 99;
-  max-height: 330px;
+  max-height: 309px;
   height: auto;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: auto;
   display: none;
   opacity: 0;
   pointer-events: none;
@@ -3523,9 +3534,17 @@ img {
   opacity: 1;
   pointer-events: auto;
 }
+.cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation--cC--cControl--cListChange--m--anyresult {
+  text-align: center;
+  background-color: #cccc;
+  padding: 0.3rem 1rem;
+}
+.cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation--cC--cControl--cListChange--m--anyresult p {
+  margin: 0;
+}
 .cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation--cC--cControl--cListChange--m--item {
   cursor: pointer;
-  padding: 0.5rem 1rem;
+  padding: 0.65rem 1rem;
   font-size: 0.9rem;
   line-height: 1;
 }

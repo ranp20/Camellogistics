@@ -7,10 +7,18 @@ $(() => {
 	list_mass_units();
 	/************************** LISTAR LOS TIPOS DE PRODUCTOS **************************/
 	listProductsUser();
+	/************************** LISTAR LOS DISTRITOS DE ACUERDO AL PAÍS DE DESTINO **************************/
+	listDistricsByCountry();
 });
+/************************** RECOGER LAS VARIABLES GLOBALES A USAR EN EL PROCESO **************************/
+var ipt_idPortOrigin = $("#ipt-vportidOrigin").val(),
+		ipt_idPortcountryOrigin = $("#ipt-vportidcountryOrigin").val(),
+		ipt_idPortDestiny = $("#ipt-vportidDestiny").val(),
+		ipt_idPortcountryDestiny = $("#ipt-vportidcountryDestiny").val();
 /************************** PLUGIN - FULLPAGE.JS **************************/
 const sectionsSteps = new fullpage('#fullpage', {
-  anchors:['step-chargeload', 
+  anchors:['step-typeoperation',
+  				 'step-chargeload', 
   				 'step-qcontainers', 
   				 'step-chargedata',
   				 'step-merchandisedata',
@@ -19,19 +27,16 @@ const sectionsSteps = new fullpage('#fullpage', {
   				 'step-requirespickup',
   				 'step-pickuplocation'],
   verticalCentered: false,
-  scrollingSpeed: 500,
+  scrollingSpeed: 400,
+  autoScrolling: false,
 });
 /************************** OCULTAR LOS DEMÁS PASOS **************************/
 function hiddenAllNextSteps(){
   $("#fullpage").css({"overflow":"hidden"});
+  sectionsSteps.setAllowScrolling(false);
 }
 /************************** LISTAR EL PUERTO DE ORIGEN Y EL PUERTO DE DESTINO **************************/
 function listPortOriginandDestiny(){
-	var ipt_idPortOrigin = $("#ipt-vportidOrigin").val();
-	var ipt_idPortcountryOrigin = $("#ipt-vportidcountryOrigin").val();
-	var ipt_idPortDestiny = $("#ipt-vportidDestiny").val();
-	var ipt_idPortcountryDestiny = $("#ipt-vportidcountryDestiny").val();
-
 	// $.ajax({
 	// 	url: "controllers/list_puertoOriginByIds.php",
  //    method: "POST",
@@ -46,8 +51,36 @@ function listPortOriginandDestiny(){
 =            									2. ELEGIR EL TIPO DE OPRACIÓN            									=
 =========================================================================================*/
 $(document).on("click", "#list-typeOperationItems li", function(){
+	sectionsSteps.setAutoScrolling(true);
+	sectionsSteps.setAllowScrolling(true);
 	var tTypeOperation = $(this).index();
 	if(tTypeOperation == 0){
+		sectionsSteps.moveTo('step-chargeload', 1);
+		$(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-chargeload]").html(`
+			<div class="cont-MainCamelLog--c--contSteps--item--cTitle">
+        <h3 class="cont-MainCamelLog--c--contSteps--item--cTitle--title">Tipo de carga</h3>
+      </div>
+      <div class="cont-MainCamelLog--c--contSteps--item--cStep">
+        <ul class="cont-MainCamelLog--c--contSteps--item--cStep--m" id="list-typeChargeLoadItems">
+          <li class="cont-MainCamelLog--c--contSteps--item--cStep--m--item">
+            <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem">
+              <div class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem--cImg">
+                <img src="views/assets/img/steps/fcl.png" alt="">
+              </div>
+              <p>FCL</p>
+            </a>
+          </li>
+          <li class="cont-MainCamelLog--c--contSteps--item--cStep--m--item">
+            <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem">
+              <div class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem--cImg">
+                <img src="views/assets/img/steps/lcl.png" alt="">
+              </div>
+              <p>LCL</p>
+            </a>
+          </li>
+        </ul>
+      </div>
+		`);
 		$(".cont-MainCamelLog--c--contResumeCalc--item[data-advlevel=d-chargeload]").html(`
 			<div class="cont-MainCamelLog--c--contResumeCalc--item--cardStep">
 				<div class="cont-MainCamelLog--c--contResumeCalc--item--cardStep--cIcon">
@@ -57,6 +90,32 @@ $(document).on("click", "#list-typeOperationItems li", function(){
 			</div>
 		`);
 	}else{
+		sectionsSteps.moveTo('step-chargeload', 1);
+		$(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-chargeload]").html(`
+			<div class="cont-MainCamelLog--c--contSteps--item--cTitle">
+        <h3 class="cont-MainCamelLog--c--contSteps--item--cTitle--title">Tipo de carga</h3>
+      </div>
+      <div class="cont-MainCamelLog--c--contSteps--item--cStep">
+        <ul class="cont-MainCamelLog--c--contSteps--item--cStep--m" id="list-typeChargeLoadItems">
+          <li class="cont-MainCamelLog--c--contSteps--item--cStep--m--item">
+            <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem">
+              <div class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem--cImg">
+                <img src="views/assets/img/steps/fcl.png" alt="">
+              </div>
+              <p>FCL</p>
+            </a>
+          </li>
+          <li class="cont-MainCamelLog--c--contSteps--item--cStep--m--item">
+            <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem">
+              <div class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem--cImg">
+                <img src="views/assets/img/steps/lcl.png" alt="">
+              </div>
+              <p>LCL</p>
+            </a>
+          </li>
+        </ul>
+      </div>
+		`);
 		$(".cont-MainCamelLog--c--contResumeCalc--item[data-advlevel=d-chargeload]").html(`
 			<div class="cont-MainCamelLog--c--contResumeCalc--item--cardStep">
 				<div class="cont-MainCamelLog--c--contResumeCalc--item--cardStep--cIcon">
@@ -64,6 +123,125 @@ $(document).on("click", "#list-typeOperationItems li", function(){
         </div>
 				<span>`+$(this).find("a").find("p").text()+`</span>
 			</div>
+		`);
+	}
+});
+/*=======================================================================================
+=            									2. ELEGIR EL TIPO DE CARGA            									  =
+=========================================================================================*/
+$(document).on("click", "#list-typeChargeLoadItems li", function(){
+	var tTypeChargeLoad = $(this).index();
+	if(tTypeChargeLoad == 0){
+		sectionsSteps.moveTo('step-qcontainers', 1);
+		$(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-qcontainers]").html(`
+			<div class="cont-MainCamelLog--c--contSteps--item--cTitle">
+        <h3 class="cont-MainCamelLog--c--contSteps--item--cTitle--title">Contenedores</h3>
+      </div>
+      <div class="cont-MainCamelLog--c--contSteps--item--cStep">
+        <div class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems">
+          <div class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item">
+            <div class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cImg">
+              <img src="views/assets/img/steps/20.png" alt="">
+            </div>
+            <div class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cC">
+              <label for="" class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cC--label">20'</label>
+              <div class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cC--control">
+                <button type="button" class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cC--control--btn">-</button>
+                <input type="number" class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cC--control--input" maxlength="16" value="0" min="0" max="50">
+                <button type="button" class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cC--control--btn">+</button>
+              </div>
+            </div>
+          </div>
+          <div class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item">
+            <div class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cImg">
+              <img src="views/assets/img/steps/40.png" alt="">
+            </div>
+            <div class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cC">
+              <label for="" class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cC--label">40'</label>
+              <div class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cC--control">
+                <button type="button" class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cC--control--btn">-</button>
+                <input type="number" class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cC--control--input" maxlength="16" value="0" min="0" max="50">
+                <button type="button" class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cC--control--btn">+</button>
+              </div>
+            </div>
+          </div>
+          <div class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item">
+            <div class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cImg">
+              <img src="views/assets/img/steps/40-hc.png" alt="">
+            </div>
+            <div class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cC">
+              <label for="" class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cC--label">40' HQ</label>
+              <div class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cC--control">
+                <button type="button" class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cC--control--btn">-</button>
+                <input type="number" class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cC--control--input" maxlength="16" value="0" min="0" max="50">
+                <button type="button" class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cC--control--btn">+</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="cont-MainCamelLog--c--contSteps--item--cStep--cBtnSwitch">
+          <label for="chck-containerfreeze" class="cont-MainCamelLog--c--contSteps--item--cStep--cBtnSwitch--cSwitch" switch-CFreeze="NO">
+            <input type="checkbox" id="chck-containerfreeze" class="cont-MainCamelLog--c--contSteps--item--cStep--cBtnSwitch--cSwitch--chck">
+          </label>
+          <span>¿Necesitas contenedores refrigerados?</span>
+        </div>
+      </div>
+		`);
+	}else{
+		sectionsSteps.moveTo('step-qcontainers', 1);
+		$(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-qcontainers]").html(`
+			<div class="cont-MainCamelLog--c--contSteps--item--cTitle">
+        <h3 class="cont-MainCamelLog--c--contSteps--item--cTitle--title">Contenedores</h3>
+      </div>
+      <div class="cont-MainCamelLog--c--contSteps--item--cStep">
+        <div class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems">
+          <div class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item">
+            <div class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cImg">
+              <img src="views/assets/img/steps/20.png" alt="">
+            </div>
+            <div class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cC">
+              <label for="" class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cC--label">20'</label>
+              <div class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cC--control">
+                <button type="button" class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cC--control--btn">-</button>
+                <input type="number" class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cC--control--input" maxlength="16" value="0" min="0" max="50">
+                <button type="button" class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cC--control--btn">+</button>
+              </div>
+            </div>
+          </div>
+          <div class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item">
+            <div class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cImg">
+              <img src="views/assets/img/steps/40.png" alt="">
+            </div>
+            <div class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cC">
+              <label for="" class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cC--label">40'</label>
+              <div class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cC--control">
+                <button type="button" class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cC--control--btn">-</button>
+                <input type="number" class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cC--control--input" maxlength="16" value="0" min="0" max="50">
+                <button type="button" class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cC--control--btn">+</button>
+              </div>
+            </div>
+          </div>
+          <div class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item">
+            <div class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cImg">
+              <img src="views/assets/img/steps/40-hc.png" alt="">
+            </div>
+            <div class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cC">
+              <label for="" class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cC--label">40' HQ</label>
+              <div class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cC--control">
+                <button type="button" class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cC--control--btn">-</button>
+                <input type="number" class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cC--control--input" maxlength="16" value="0" min="0" max="50">
+                <button type="button" class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cC--control--btn">+</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="cont-MainCamelLog--c--contSteps--item--cStep--cBtnSwitch">
+          <label for="chck-containerfreeze" class="cont-MainCamelLog--c--contSteps--item--cStep--cBtnSwitch--cSwitch" switch-CFreeze="NO">
+            <input type="checkbox" id="chck-containerfreeze" class="cont-MainCamelLog--c--contSteps--item--cStep--cBtnSwitch--cSwitch--chck">
+          </label>
+          <span>¿Necesitas contenedores refrigerados?</span>
+        </div>
+      </div>
 		`);
 	}
 });
@@ -531,7 +709,13 @@ function listProductsUser(searchVal){
   });
 }
 /************************** MOSTRAR EL LISTADO DE TIPOS DE PRODUCTOS **************************/
-$(document).on("focus", "#ipt-valNameTypeProdNInterface", function(){$("#m-listAllNamTypeProds").addClass("show");listProductsUser();});
+$(document).on("focus", "#ipt-valNameTypeProdNInterface", function(){
+	$("#m-listAllNamTypeProds").addClass("show");listProductsUser();
+	sectionsSteps.setAutoScrolling(false);
+});
+$(document).on("blur", "#ipt-valNameTypeProdNInterface", function(){
+	sectionsSteps.setAutoScrolling(true);
+});
 $(document).on("keyup", "#ipt-valNameTypeProdNInterface", function(){
   $("#m-listAllNamTypeProds").addClass("show");
   var searchVal = $(this).val();
@@ -544,9 +728,6 @@ $(document).on("keyup", "#ipt-valNameTypeProdNInterface", function(){
 });
 /************************** FIJAR EL VALOR DE ITEM EN EL INPUT - TIPOS DE PRODUCTOS **************************/
 $(document).on("click", ".cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl--cListChange--m--item", function(){
-  $("#MsgItemSelRequiredFixed").html(`
-    <span class='c-SelServicesQuantity--contStep--cBottom--cListServices--m--item--cont--c--control--spanAlertMsg--fixed'>Permiso Gubernamental adicional: `+$(this).find("small").find("span:nth-child(2)").text()+`</span>
-  `);
   $("#m-listAllNamTypeProds").removeClass("show");
   $("#ipt-valNameTypeProdNInterface").attr("idproduct", $(this).attr("id"));
   $("#ipt-valNameTypeProdNInterface").val($(this).find("p").text());
@@ -599,4 +780,61 @@ $(document).on("click", "#chck-insuremerchandise", function(){
 		$(this).parent().removeClass("active");
 		$(this).parent().attr("switch-CFreeze", "NO");
 	}
+});
+/************************** LISTAR LOS DISTRITOS POR ID DE PAÍS **************************/
+function listDistricsByCountry(searchVal){
+  $.ajax({
+    url: "controllers/list_districs.php",
+    method: "POST",
+    datatype: "JSON",
+    contentType: 'application/x-www-form-urlencoded;charset=UTF-8',
+    data: {searchList : searchVal, idpaisdestiny : ipt_idPortcountryDestiny},
+  }).done( function (res) {
+    var response = JSON.parse(res);
+    var template = "";
+    if(response.length == 0){
+      template = `
+        <li class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation--cC--cControl--cListChange--m--anyresult">
+          <p>No encontado</p>
+        </li>
+      `;
+      $("#m-listAllDistricsByCountry").html(template);
+      setTimeout(function(){
+        $("#m-listAllDistricsByCountry").removeClass("show");
+      }, 4500);
+    }else{
+      response.forEach(e => {
+      template += `
+        <li class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation--cC--cControl--cListChange--m--item" id="${e.id}" idprovince="${e.id_province}">
+           <span>${e.distric}</span>
+         </li>
+      `;
+      });
+      $("#m-listAllDistricsByCountry").html(template);
+    }
+  });
+}
+/************************** MOSTRAR EL LISTADO DE DISTRITO POR PAÍS DE DESTINO **************************/
+$(document).on("focus", "#ipt-valDistricByCountryNInterface", function(){
+	$("#m-listAllDistricsByCountry").addClass("show");listDistricsByCountry();
+	sectionsSteps.setAutoScrolling(false);
+});
+$(document).on("blur", "#ipt-valDistricByCountryNInterface", function(){
+	sectionsSteps.setAutoScrolling(true);
+});
+$(document).on("keyup", "#ipt-valDistricByCountryNInterface", function(){
+  $("#m-listAllDistricsByCountry").addClass("show");
+  var searchVal = $(this).val();
+  if(searchVal != ""){
+   	$("#ipt-valDistricByCountryNInterface").attr("iddistrict", ""); 
+    listDistricsByCountry(searchVal);
+  }else{
+    listDistricsByCountry();
+  }
+});
+/************************** FIJAR EL VALOR DE ITEM EN EL INPUT - DISTRITO POR PAÍS DE DESTINO **************************/
+$(document).on("click", ".cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation--cC--cControl--cListChange--m--item", function(){
+  $("#m-listAllDistricsByCountry").removeClass("show");
+  $("#ipt-valDistricByCountryNInterface").attr("iddistrict", $(this).attr("id"));
+  $("#ipt-valDistricByCountryNInterface").val($(this).find("span").text());
 });

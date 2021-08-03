@@ -15,6 +15,18 @@
 		max-width: 250px;
 		width: 100%;
 		&--item{
+
+			/* TIPO DE OPERACIÓN */
+			&[data-advlevel="d-chargeload"]{
+				.cont-MainCamelLog--c--contResumeCalc--item--cardStep{
+					text-align: center;
+					span{
+						font-weight: 600;
+					}
+				}
+			}
+
+
 			&--cardStep{
 				border-radius: .4rem;
 				background-color: #2F363F;
@@ -51,7 +63,7 @@
 					}
 				}
 			}
-		}		
+		}
 	}
 
 	/* PASOS DE LA COTIZACIÓN - NUEVA INTERFAZ */
@@ -397,7 +409,8 @@
 							    z-index: 99;
 						    	max-height: 330px;
 						    	height: auto;
-    							overflow: hidden;
+    							overflow-x: hidden;
+    							overflow-y: auto;
     							display: none;
     							opacity: 0;
     							pointer-events: none;
@@ -581,9 +594,10 @@
 							    text-align: left;
 							    background-color: #fff;
 							    z-index: 99;
-						    	max-height: 330px;
+						    	max-height: 309px;
 						    	height: auto;
-    							overflow: hidden;
+    							overflow-x: hidden;
+    							overflow-y: auto;
     							display: none;
     							opacity: 0;
     							pointer-events: none;
@@ -596,12 +610,23 @@
 	    							opacity: 1;
 	    							pointer-events: auto;
 							    }
+									
+									&--anyresult{
+										text-align: center;
+										background-color: #cccc;
+										padding: 0.3rem 1rem;
+
+										p{
+											margin: 0;
+										}
+									}
 
 									&--item{
 										cursor: pointer;
-										padding: 0.5rem 1rem;
+										padding: 0.65rem 1rem;
 										font-size: 0.9rem;
 										line-height: 1;
+
 
 										&:hover{
 											background-color: #000;

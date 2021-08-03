@@ -37,8 +37,8 @@
         <div class="cont-MainCamelLog--c--contResumeCalc--item" data-advlevel="d-quantitycontainer"></div>
       </section>
       <section class="cont-MainCamelLog--c--contSteps" id="fullpage">
-        <!------------------------------------------------- PASO #1 ------------------------------------------------>
-        <div class="cont-MainCamelLog--c--contSteps--item section">
+        <!-- PASO #1 -->
+        <div class="cont-MainCamelLog--c--contSteps--item section" data-anchor="step-typeoperation" data-transportquote>
           <div class="cont-MainCamelLog--c--contSteps--item--cTitle">
             <h3 class="cont-MainCamelLog--c--contSteps--item--cTitle--title">¿Qué tipo de operación vas a realizar?</h3>
           </div>
@@ -63,87 +63,10 @@
             </ul>
           </div>
         </div>
-        <!------------------------------------------------- PASO #2 ------------------------------------------------>
-        <div class="cont-MainCamelLog--c--contSteps--item section" data-anchor="step-chargeload" data-transportquote>
-          <div class="cont-MainCamelLog--c--contSteps--item--cTitle">
-            <h3 class="cont-MainCamelLog--c--contSteps--item--cTitle--title">Tipo de carga</h3>
-          </div>
-          <div class="cont-MainCamelLog--c--contSteps--item--cStep">
-            <ul class="cont-MainCamelLog--c--contSteps--item--cStep--m" id="list-typeChargeLoadItems">
-              <li class="cont-MainCamelLog--c--contSteps--item--cStep--m--item">
-                <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem">
-                  <div class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem--cImg">
-                    <img src="views/assets/img/steps/fcl.png" alt="">
-                  </div>
-                  <p>FCL</p>
-                </a>
-              </li>
-              <li class="cont-MainCamelLog--c--contSteps--item--cStep--m--item">
-                <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem">
-                  <div class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem--cImg">
-                    <img src="views/assets/img/steps/lcl.png" alt="">
-                  </div>
-                  <p>LCL</p>
-                </a>
-              </li>
-            </ul>
-          </div>
-        </div>
-        <!------------------------------------------------- PASO #3 ------------------------------------------------>
-        <div class="cont-MainCamelLog--c--contSteps--item section" data-anchor="step-qcontainers" data-transportquote>
-          <div class="cont-MainCamelLog--c--contSteps--item--cTitle">
-            <h3 class="cont-MainCamelLog--c--contSteps--item--cTitle--title">Contenedores</h3>
-          </div>
-          <div class="cont-MainCamelLog--c--contSteps--item--cStep">
-            <div class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems">
-              <div class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item">
-                <div class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cImg">
-                  <img src="views/assets/img/steps/20.png" alt="">
-                </div>
-                <div class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cC">
-                  <label for="" class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cC--label">20'</label>
-                  <div class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cC--control">
-                    <button type="button" class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cC--control--btn">-</button>
-                    <input type="number" class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cC--control--input" maxlength="16" value="0" min="0" max="50">
-                    <button type="button" class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cC--control--btn">+</button>
-                  </div>
-                </div>
-              </div>
-              <div class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item">
-                <div class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cImg">
-                  <img src="views/assets/img/steps/40.png" alt="">
-                </div>
-                <div class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cC">
-                  <label for="" class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cC--label">40'</label>
-                  <div class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cC--control">
-                    <button type="button" class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cC--control--btn">-</button>
-                    <input type="number" class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cC--control--input" maxlength="16" value="0" min="0" max="50">
-                    <button type="button" class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cC--control--btn">+</button>
-                  </div>
-                </div>
-              </div>
-              <div class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item">
-                <div class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cImg">
-                  <img src="views/assets/img/steps/40-hc.png" alt="">
-                </div>
-                <div class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cC">
-                  <label for="" class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cC--label">40' HQ</label>
-                  <div class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cC--control">
-                    <button type="button" class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cC--control--btn">-</button>
-                    <input type="number" class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cC--control--input" maxlength="16" value="0" min="0" max="50">
-                    <button type="button" class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cC--control--btn">+</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="cont-MainCamelLog--c--contSteps--item--cStep--cBtnSwitch">
-              <label for="chck-containerfreeze" class="cont-MainCamelLog--c--contSteps--item--cStep--cBtnSwitch--cSwitch" switch-CFreeze="NO">
-                <input type="checkbox" id="chck-containerfreeze" class="cont-MainCamelLog--c--contSteps--item--cStep--cBtnSwitch--cSwitch--chck">
-              </label>
-              <span>¿Necesitas contenedores refrigerados?</span>
-            </div>
-          </div>
-        </div>
+        <!-- PASO #2 -->
+        <div class="cont-MainCamelLog--c--contSteps--item section" data-anchor="step-chargeload" data-transportquote></div>
+        <!-- PASO #3 -->
+        <div class="cont-MainCamelLog--c--contSteps--item section" data-anchor="step-qcontainers" data-transportquote></div>
         <!------------------------------------------------- PASO #4 ------------------------------------------------>
         <div class="cont-MainCamelLog--c--contSteps--item section" data-anchor="step-chargedata" data-transportquote>
           <div class="cont-MainCamelLog--c--contSteps--item--cTitle">
@@ -289,18 +212,10 @@
             <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation">
               <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation--cC">
                 <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation--cC--cControl">
-                  <label for="" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation--cC--cControl--label">POBLACIÓN</label>
+                  <label for="" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation--cC--cControl--label">DISTRITO</label>
                   <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation--cC--cControl--cListChange">
-                    <input type="text" id="" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation--cC--cControl--cListChange--input" autocomplete="off">
-                    <ul class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation--cC--cControl--cListChange--m" id=""></ul>
-                  </div>
-                </div>
-              </div>
-              <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation--cC">
-                <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation--cC--cControl">
-                  <label for="" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation--cC--cControl--label">CÓDIGO POSTAL</label>
-                  <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation--cC--cControl--cListChange">
-                    <input type="text" id="" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation--cC--cControl--cListChange--input" maxlength="6" autocomplete="off">
+                    <input type="text" id="ipt-valDistricByCountryNInterface" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation--cC--cControl--cListChange--input" autocomplete="off">
+                    <ul class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation--cC--cControl--cListChange--m" id="m-listAllDistricsByCountry"></ul>
                   </div>
                 </div>
               </div>
@@ -318,6 +233,7 @@
   </main>
   <?php require_once 'includes/form-calculator-flete.php'; ?>
   <script src="<?= $url ?>js/jquery-3.6.0.min.js"></script>
+  <script type="text/javascript" src="<?= $url ?>js/fullpage/scrolloverflow.min.js"></script>
   <script type="text/javascript" src="<?= $url ?>js/fullpage/fullpage.min.js"></script>
   <script src="<?= $url ?>js/startquoterequest.js"></script>
 </body>
