@@ -14,13 +14,10 @@ const sectionsSteps = new fullpage('#fullpage', {
   				 'step-qcontainers', 
   				 'step-chargedata',
   				 'step-merchandisedata',
-  				 'step-chargeload-04',
-  				 'step-chargeload-05',
-  				 'step-chargeload-06',
-  				 'step-chargeload-07',
-  				 'step-chargeload-08',
-  				 'step-chargeload-09',
-  				 'step-chargeload-10'],
+  				 'step-insuremerchandise',
+  				 'step-customsclearance',
+  				 'step-requirespickup',
+  				 'step-pickuplocation'],
   verticalCentered: false,
   scrollingSpeed: 500,
 });
@@ -579,4 +576,27 @@ $(document).on("keyup", "#ipt-valPriceProdNInterface", function(){
   }else{
     $("#MsgItemValueProdRequired").text("");
   }
+});
+/************************** SWITCH DE IMPORTACIONES PREVIAS **************************/
+$(document).on("click", "#chck-importpreview", function(){
+	if($(this).is(":checked")){
+		$(this).parent().addClass("active");
+		$(this).parent().attr("switch-CFreeze", "SÍ");
+	}else{
+		$(this).parent().removeClass("active");
+		$(this).parent().attr("switch-CFreeze", "NO");
+	}
+});
+/*===================================================================================
+=	            				9. AGREGAR DATOS DE UBICACIÓN - RECOGIDA            					=
+====================================================================================*/
+/************************** SWITCH DE IMPORTACIONES PREVIAS **************************/
+$(document).on("click", "#chck-insuremerchandise", function(){
+	if($(this).is(":checked")){
+		$(this).parent().addClass("active");
+		$(this).parent().attr("switch-CFreeze", "SÍ");
+	}else{
+		$(this).parent().removeClass("active");
+		$(this).parent().attr("switch-CFreeze", "NO");
+	}
 });

@@ -348,6 +348,8 @@
 					max-width: 500px;
 					width: 95%;
 					margin: 0 auto;
+
+					/* CONTENEDOR DE CONTROLES Y LISTADOS */
 					&--cC{
 						width: 100%;
 						/* CONTENEDOR DE CONTROLES */
@@ -432,6 +434,281 @@
 							}
 						}
 					}
+
+					/* CONTENEDOR DEL SWITCH DE IMPORTACIONES PREVIAS */
+					&--cBottom{
+						display: flex;
+				    width: 100%;
+				    align-items: center;
+				    justify-content: flex-start;
+				    padding: 1rem 0 0 0;
+
+						&--cSwitch{
+							cursor: pointer;
+							background-color: #d74742;
+							padding: 0.15rem;
+							position: relative;
+							height: 37px;
+							display: flex;
+							flex: 0 0 134px;
+							border-radius: .2rem;
+							vertical-align: middle;
+							transition: .2s ease-in-out;
+							margin: 0 1rem 0 0;
+
+							&.active{
+								background-color: #70C767;
+
+								&:after{
+									content: "NO";
+									position: absolute;
+									background-color: transparent;
+									color: #fff;
+									left: 2px;
+									width: 65px;
+									height: 32px;
+									border-radius: .2rem;
+									display: flex;
+									align-items: center;
+									justify-content: center;
+								}
+
+								&:before{
+									content: "SÍ";
+									position: absolute;
+									background-color: #fff;
+									color: #70C767;
+									right: 2px;
+									width: 65px;
+									height: 32px;
+									border-radius: .2rem;
+									display: flex;
+									align-items: center;
+									justify-content: center;	
+								}
+							}
+
+							&--chck{
+								display: none;
+								opacity: 0;
+								visibility: hidden;
+							}
+							
+							&:after{
+								content: "NO";
+								position: absolute;
+								background-color: #fff;
+								color: #d74742;
+								left: 2px;
+								width: 65px;
+								height: 32px;
+								border-radius: .2rem;
+								display: flex;
+								align-items: center;
+								justify-content: center;
+							}
+
+							&:before{
+								content: "SÍ";
+								position: absolute;
+								background-color: transparent;
+								color: #fff;
+								right: 2px;
+								width: 65px;
+								height: 32px;
+								border-radius: .2rem;
+								display: flex;
+								align-items: center;
+								justify-content: center;
+							}
+						}
+					}
+				}
+
+				/* FORMULARIO DE DATOS - UBICACIÓN DE RECOGIDA */
+				&--mFrmIptsControlsPickupLocation{
+					display: flex;
+					flex-direction: column;
+					align-items: flex-start;
+					justify-content: center;
+					max-width: 500px;
+					width: 95%;
+					margin: 0 auto;
+
+					/* CONTENEDOR DE CONTROLES Y LISTADOS */
+					&--cC{
+						width: 100%;
+						/* CONTENEDOR DE CONTROLES */
+						&--cControl{
+							width: 100%;
+							display: flex;
+							flex-direction: column;
+							align-items: flex-start;
+							justify-content: center;
+							margin-bottom: 1rem;
+							&--label{
+								color: $primary-color;
+								font-weight: 300;
+								padding-left: 1rem;
+								font-size: 0.85rem;
+								letter-spacing: .2rem;
+							}
+
+							&--cListChange{
+								width: 100%;
+								position: relative;
+								&--input{
+									width: 100%;
+									border: thin solid $primary-color;
+									font-size: 1rem;
+									padding: 0.5rem;
+									line-height: 1.5;
+
+									&[type=number]::-webkit-inner-spin-button, 
+									&[type=number]::-webkit-outer-spin-button { 
+										-webkit-appearance: none;
+										margin: 0;
+									}
+									&[type=number]{ 
+										-moz-appearance:textfield;
+									}
+								}
+
+								&--m{
+									position: absolute;
+							    left: 0;
+							    width: 100%;
+							    text-align: left;
+							    background-color: #fff;
+							    z-index: 99;
+						    	max-height: 330px;
+						    	height: auto;
+    							overflow: hidden;
+    							display: none;
+    							opacity: 0;
+    							pointer-events: none;
+
+							    &.show{	    	
+							    	border-right: thin solid #ccc;
+							    	border-left: thin solid #ccc;
+							    	border-bottom: thin solid #ccc;
+							    	display: block;
+	    							opacity: 1;
+	    							pointer-events: auto;
+							    }
+
+									&--item{
+										cursor: pointer;
+										padding: 0.5rem 1rem;
+										font-size: 0.9rem;
+										line-height: 1;
+
+										&:hover{
+											background-color: #000;
+											color: #fff;
+										}
+
+										p{
+											margin: 0;
+										}
+
+										small{
+
+										}
+									}
+								}
+							}
+						}
+					}
+
+					/* CONTENEDOR DEL SWITCH DE IMPORTACIONES PREVIAS */
+					&--cBottom{
+						display: flex;
+				    width: 100%;
+				    align-items: center;
+				    justify-content: flex-start;
+				    padding: 1rem 0 0 0;
+
+						&--cSwitch{
+							cursor: pointer;
+							background-color: #d74742;
+							padding: 0.15rem;
+							position: relative;
+							height: 37px;
+							display: flex;
+							flex: 0 0 134px;
+							border-radius: .2rem;
+							vertical-align: middle;
+							transition: .2s ease-in-out;
+							margin: 0 1rem 0 0;
+
+							&.active{
+								background-color: #70C767;
+
+								&:after{
+									content: "NO";
+									position: absolute;
+									background-color: transparent;
+									color: #fff;
+									left: 2px;
+									width: 65px;
+									height: 32px;
+									border-radius: .2rem;
+									display: flex;
+									align-items: center;
+									justify-content: center;
+								}
+
+								&:before{
+									content: "SÍ";
+									position: absolute;
+									background-color: #fff;
+									color: #70C767;
+									right: 2px;
+									width: 65px;
+									height: 32px;
+									border-radius: .2rem;
+									display: flex;
+									align-items: center;
+									justify-content: center;	
+								}
+							}
+
+							&--chck{
+								display: none;
+								opacity: 0;
+								visibility: hidden;
+							}
+							
+							&:after{
+								content: "NO";
+								position: absolute;
+								background-color: #fff;
+								color: #d74742;
+								left: 2px;
+								width: 65px;
+								height: 32px;
+								border-radius: .2rem;
+								display: flex;
+								align-items: center;
+								justify-content: center;
+							}
+
+							&:before{
+								content: "SÍ";
+								position: absolute;
+								background-color: transparent;
+								color: #fff;
+								right: 2px;
+								width: 65px;
+								height: 32px;
+								border-radius: .2rem;
+								display: flex;
+								align-items: center;
+								justify-content: center;
+							}
+						}
+					}	
 				}
 			}
 		}

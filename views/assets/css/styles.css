@@ -3069,6 +3069,7 @@ img {
   /* SWITCH - CONTENEDORES REFRIGERADOS */
   /* FORMULARIO DE DATOS - CALCULADORA DE FLETE */
   /* FORMULARIO DE DATOS - DATOS DE MERCANCÍA */
+  /* FORMULARIO DE DATOS - UBICACIÓN DE RECOGIDA */
 }
 .cont-MainCamelLog--c--contSteps--item--cStep--m {
   display: flex;
@@ -3297,6 +3298,8 @@ img {
   max-width: 500px;
   width: 95%;
   margin: 0 auto;
+  /* CONTENEDOR DE CONTROLES Y LISTADOS */
+  /* CONTENEDOR DEL SWITCH DE IMPORTACIONES PREVIAS */
 }
 .cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC {
   width: 100%;
@@ -3369,6 +3372,249 @@ img {
 }
 .cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl--cListChange--m--item p {
   margin: 0;
+}
+.cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cBottom {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 1rem 0 0 0;
+}
+.cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cBottom--cSwitch {
+  cursor: pointer;
+  background-color: #d74742;
+  padding: 0.15rem;
+  position: relative;
+  height: 37px;
+  display: flex;
+  flex: 0 0 134px;
+  border-radius: 0.2rem;
+  vertical-align: middle;
+  transition: 0.2s ease-in-out;
+  margin: 0 1rem 0 0;
+}
+.cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cBottom--cSwitch.active {
+  background-color: #70C767;
+}
+.cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cBottom--cSwitch.active:after {
+  content: "NO";
+  position: absolute;
+  background-color: transparent;
+  color: #fff;
+  left: 2px;
+  width: 65px;
+  height: 32px;
+  border-radius: 0.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cBottom--cSwitch.active:before {
+  content: "SÍ";
+  position: absolute;
+  background-color: #fff;
+  color: #70C767;
+  right: 2px;
+  width: 65px;
+  height: 32px;
+  border-radius: 0.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cBottom--cSwitch--chck {
+  display: none;
+  opacity: 0;
+  visibility: hidden;
+}
+.cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cBottom--cSwitch:after {
+  content: "NO";
+  position: absolute;
+  background-color: #fff;
+  color: #d74742;
+  left: 2px;
+  width: 65px;
+  height: 32px;
+  border-radius: 0.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cBottom--cSwitch:before {
+  content: "SÍ";
+  position: absolute;
+  background-color: transparent;
+  color: #fff;
+  right: 2px;
+  width: 65px;
+  height: 32px;
+  border-radius: 0.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  max-width: 500px;
+  width: 95%;
+  margin: 0 auto;
+  /* CONTENEDOR DE CONTROLES Y LISTADOS */
+  /* CONTENEDOR DEL SWITCH DE IMPORTACIONES PREVIAS */
+}
+.cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation--cC {
+  width: 100%;
+  /* CONTENEDOR DE CONTROLES */
+}
+.cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation--cC--cControl {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+.cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation--cC--cControl--label {
+  color: #B58440;
+  font-weight: 300;
+  padding-left: 1rem;
+  font-size: 0.85rem;
+  letter-spacing: 0.2rem;
+}
+.cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation--cC--cControl--cListChange {
+  width: 100%;
+  position: relative;
+}
+.cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation--cC--cControl--cListChange--input {
+  width: 100%;
+  border: thin solid #B58440;
+  font-size: 1rem;
+  padding: 0.5rem;
+  line-height: 1.5;
+}
+.cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation--cC--cControl--cListChange--input[type=number]::-webkit-inner-spin-button, .cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation--cC--cControl--cListChange--input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation--cC--cControl--cListChange--input[type=number] {
+  -moz-appearance: textfield;
+}
+.cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation--cC--cControl--cListChange--m {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  text-align: left;
+  background-color: #fff;
+  z-index: 99;
+  max-height: 330px;
+  height: auto;
+  overflow: hidden;
+  display: none;
+  opacity: 0;
+  pointer-events: none;
+}
+.cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation--cC--cControl--cListChange--m.show {
+  border-right: thin solid #ccc;
+  border-left: thin solid #ccc;
+  border-bottom: thin solid #ccc;
+  display: block;
+  opacity: 1;
+  pointer-events: auto;
+}
+.cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation--cC--cControl--cListChange--m--item {
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
+  line-height: 1;
+}
+.cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation--cC--cControl--cListChange--m--item:hover {
+  background-color: #000;
+  color: #fff;
+}
+.cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation--cC--cControl--cListChange--m--item p {
+  margin: 0;
+}
+.cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation--cBottom {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 1rem 0 0 0;
+}
+.cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation--cBottom--cSwitch {
+  cursor: pointer;
+  background-color: #d74742;
+  padding: 0.15rem;
+  position: relative;
+  height: 37px;
+  display: flex;
+  flex: 0 0 134px;
+  border-radius: 0.2rem;
+  vertical-align: middle;
+  transition: 0.2s ease-in-out;
+  margin: 0 1rem 0 0;
+}
+.cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation--cBottom--cSwitch.active {
+  background-color: #70C767;
+}
+.cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation--cBottom--cSwitch.active:after {
+  content: "NO";
+  position: absolute;
+  background-color: transparent;
+  color: #fff;
+  left: 2px;
+  width: 65px;
+  height: 32px;
+  border-radius: 0.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation--cBottom--cSwitch.active:before {
+  content: "SÍ";
+  position: absolute;
+  background-color: #fff;
+  color: #70C767;
+  right: 2px;
+  width: 65px;
+  height: 32px;
+  border-radius: 0.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation--cBottom--cSwitch--chck {
+  display: none;
+  opacity: 0;
+  visibility: hidden;
+}
+.cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation--cBottom--cSwitch:after {
+  content: "NO";
+  position: absolute;
+  background-color: #fff;
+  color: #d74742;
+  left: 2px;
+  width: 65px;
+  height: 32px;
+  border-radius: 0.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation--cBottom--cSwitch:before {
+  content: "SÍ";
+  position: absolute;
+  background-color: transparent;
+  color: #fff;
+  right: 2px;
+  width: 65px;
+  height: 32px;
+  border-radius: 0.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /*# sourceMappingURL=styles.css.map */
