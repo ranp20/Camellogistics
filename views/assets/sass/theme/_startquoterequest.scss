@@ -23,8 +23,11 @@
 				padding: 0.65rem;
 				/* NOMBRE E ÍCONO DEL PAÍS */
 				&--cNameFlag{
+					display: flex;
+					align-items: center;
+					justify-content: center;
 					span{
-
+						font-weight: 600;
 					}
 				}
 
@@ -32,6 +35,19 @@
 				&--cDescMap{
 					span{
 						
+					}
+				}
+
+				/* ÍCONO DEL TIPO DE OPERACIÓN */
+				&--cIcon{
+					max-width: 30px;
+			    width: 90%;
+			    height: auto;
+			    display: inline-block;
+			    margin-right: .5rem;
+			    
+					svg{
+
 					}
 				}
 			}
@@ -43,25 +59,11 @@
 		padding: 0.5rem 0.5rem 0.5rem 250px;
 		height: 100%;
 		text-align: center;
-		overflow: hidden;
-
-		&.showMoreSteps{
-			overflow-x: hidden;
-			overflow-y: auto;
-		}
+		overflow-x: hidden !important;
+		overflow-y: hidden !important;
 
 		&--item{
 			overflow: hidden;
-
-			&:first-child{
-				min-height: 100vh;
-				height: auto;
-			}
-
-			&.step-s{
-				min-height: 100vh;
-				height: auto;
-			}
 
 			/* CONTENIDO DEL TÍTULO */			
 			&--cTitle{
@@ -74,11 +76,13 @@
 
 			/* CONTENIDO DEL PASO */
 			&--cStep{
+
+				/* LISTADO DE ITEMS - CARDS */
 				&--m{
 					display: flex;
 					align-items: flex-start;
 					justify-content: center;
-					gap: 3rem;
+					gap: 2rem;
 					&--item{
 					}
 	
@@ -109,6 +113,228 @@
 
 						p{
 							font-size: 1.1rem;
+						}
+					}
+				}
+
+				/* LISTADO DE ITEMS - INPUTS Y BUTTONS(SUM AND RES) */
+				&--mIptsItems{
+					display: flex;
+					align-items: center;
+					justify-content: space-between;
+					gap: 3rem;
+					padding: 0 1rem;
+
+					/* ITEMS - CONTAINERS */
+					&--item{
+						width: calc(100% * 1/3);
+						&--cImg{
+							img{
+
+							}
+						}
+
+						&--cC{
+							&--label{
+								color: $primary-color;
+								text-align: left;
+								display: flex;
+								font-weight: 600;
+						    align-items: center;
+						    justify-content: flex-start;
+						    width: 95%;
+								margin: 0 auto .5rem auto;
+							}
+
+							&--control{
+								display: flex;
+								align-items: stretch;
+								justify-content: center;
+								width: 100%;
+								margin: 0 auto;
+								border: thin solid #ccc;
+								&--btn{
+									border: none;
+									background-color: #000;
+									color: #fff;
+									line-height: 1.5;
+									padding: 0.3rem 1.5rem;
+								}
+
+								&--input{
+									border: thin solid transparent;
+									text-align: center;
+									outline: none;
+									width: 100%;
+									line-height: 1.5;
+									padding: 0.3rem 0.5rem;
+
+									&[type=number]::-webkit-inner-spin-button, 
+									&[type=number]::-webkit-outer-spin-button { 
+										-webkit-appearance: none;
+										margin: 0;
+									}
+									&[type=number]{ 
+										-moz-appearance:textfield;
+									}
+								}
+							}
+						}
+					}
+				}
+
+				/* SWITCH - CONTENEDORES REFRIGERADOS */
+				&--cBtnSwitch{
+					display: flex;
+					align-items: center;
+					justify-content: flex-start;
+					padding: 1rem 1rem 0 1rem;
+					&--cSwitch{
+						cursor: pointer;
+						background-color: #d74742;
+						padding: 0.15rem;
+						position: relative;
+						height: 37px;
+						flex: 0 0 134px;
+						border-radius: .2rem;
+						vertical-align: middle;
+						transition: .2s ease-in-out;
+						margin: 0 1rem 0 0;
+
+						&.active{
+							background-color: #70C767;
+
+							&:after{
+								content: "NO";
+								position: absolute;
+								background-color: transparent;
+								color: #fff;
+								left: 2px;
+								width: 65px;
+								height: 32px;
+								border-radius: .2rem;
+								display: flex;
+								align-items: center;
+								justify-content: center;
+							}
+
+							&:before{
+								content: "SÍ";
+								position: absolute;
+								background-color: #fff;
+								color: #70C767;
+								right: 2px;
+								width: 65px;
+								height: 32px;
+								border-radius: .2rem;
+								display: flex;
+								align-items: center;
+								justify-content: center;	
+							}
+						}
+
+						&--chck{
+							display: none;
+							opacity: 0;
+							visibility: hidden;
+						}
+						
+						&:after{
+							content: "NO";
+							position: absolute;
+							background-color: #fff;
+							color: #d74742;
+							left: 2px;
+							width: 65px;
+							height: 32px;
+							border-radius: .2rem;
+							display: flex;
+							align-items: center;
+							justify-content: center;
+						}
+
+						&:before{
+							content: "SÍ";
+							position: absolute;
+							background-color: transparent;
+							color: #fff;
+							right: 2px;
+							width: 65px;
+							height: 32px;
+							border-radius: .2rem;
+							display: flex;
+							align-items: center;
+							justify-content: center;
+						}
+					}
+
+					span{
+						vertical-align: middle;
+					}
+				}
+
+				/* FORMULARIO DE DATOS - CALCULADORA DE FLETE */
+				&--mFrmIptsControls{
+					display: flex;
+					flex-direction: column;
+					align-items: flex-start;
+					justify-content: center;
+					max-width: 500px;
+					width: 95%;
+					margin: 0 auto;
+
+					/* CONTENEDOR DE CONTROLES */
+					&--cControl{
+						width: 100%;
+						display: flex;
+						flex-direction: column;
+						align-items: flex-start;
+						justify-content: center;
+						margin-bottom: 1rem;
+						&--label{
+							color: $primary-color;
+							font-weight: 300;
+							padding-left: 1rem;
+							font-size: 0.85rem;
+							letter-spacing: .2rem;
+						}
+
+						&--input{
+							width: 100%;
+							border: thin solid $primary-color;
+							font-size: 1rem;
+							padding: 0.5rem;
+							line-height: 1.5;
+
+							&[type=number]::-webkit-inner-spin-button, 
+							&[type=number]::-webkit-outer-spin-button { 
+								-webkit-appearance: none;
+								margin: 0;
+							}
+							&[type=number]{ 
+								-moz-appearance:textfield;
+							}
+						}
+					}
+
+					/* BOTÓN - ABRIR MODAL DE CALCULADORA VOLUMÉTRICA */
+					&--cBtnModalCalculator{
+						width: 100%;
+						display: flex;
+						align-items: center;
+						justify-content: center;
+						text-align: center;
+						background-color: $primary-color;
+						color: #fff;
+						padding: 1rem 0.5rem;
+
+						&:hover{
+							color: #fff;
+							opacity: 0.6;
+						}
+
+						span{
+
 						}
 					}
 				}

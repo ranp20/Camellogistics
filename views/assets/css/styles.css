@@ -3027,29 +3027,34 @@ img {
   padding: 0.65rem;
   /* NOMBRE E ÍCONO DEL PAÍS */
   /* NOMBRE DEL PAÍS DE ORIGEN/DESTINO */
+  /* ÍCONO DEL TIPO DE OPERACIÓN */
+}
+.cont-MainCamelLog--c--contResumeCalc--item--cardStep--cNameFlag {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.cont-MainCamelLog--c--contResumeCalc--item--cardStep--cNameFlag span {
+  font-weight: 600;
+}
+.cont-MainCamelLog--c--contResumeCalc--item--cardStep--cIcon {
+  max-width: 30px;
+  width: 90%;
+  height: auto;
+  display: inline-block;
+  margin-right: 0.5rem;
 }
 .cont-MainCamelLog--c--contSteps {
   padding: 0.5rem 0.5rem 0.5rem 250px;
   height: 100%;
   text-align: center;
-  overflow: hidden;
-}
-.cont-MainCamelLog--c--contSteps.showMoreSteps {
-  overflow-x: hidden;
-  overflow-y: auto;
+  overflow-x: hidden !important;
+  overflow-y: hidden !important;
 }
 .cont-MainCamelLog--c--contSteps--item {
   overflow: hidden;
   /* CONTENIDO DEL TÍTULO */
   /* CONTENIDO DEL PASO */
-}
-.cont-MainCamelLog--c--contSteps--item:first-child {
-  min-height: 100vh;
-  height: auto;
-}
-.cont-MainCamelLog--c--contSteps--item.step-s {
-  min-height: 100vh;
-  height: auto;
 }
 .cont-MainCamelLog--c--contSteps--item--cTitle {
   padding-top: 2rem;
@@ -3058,11 +3063,17 @@ img {
 .cont-MainCamelLog--c--contSteps--item--cTitle--title {
   font-weight: 300;
 }
+.cont-MainCamelLog--c--contSteps--item--cStep {
+  /* LISTADO DE ITEMS - CARDS */
+  /* LISTADO DE ITEMS - INPUTS Y BUTTONS(SUM AND RES) */
+  /* SWITCH - CONTENEDORES REFRIGERADOS */
+  /* FORMULARIO DE DATOS - CALCULADORA DE FLETE */
+}
 .cont-MainCamelLog--c--contSteps--item--cStep--m {
   display: flex;
   align-items: flex-start;
   justify-content: center;
-  gap: 3rem;
+  gap: 2rem;
 }
 .cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem {
   display: block;
@@ -3090,6 +3101,192 @@ img {
 }
 .cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem p {
   font-size: 1.1rem;
+}
+.cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 3rem;
+  padding: 0 1rem;
+  /* ITEMS - CONTAINERS */
+}
+.cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item {
+  width: calc(100% * 1/3);
+}
+.cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cC--label {
+  color: #B58440;
+  text-align: left;
+  display: flex;
+  font-weight: 600;
+  align-items: center;
+  justify-content: flex-start;
+  width: 95%;
+  margin: 0 auto 0.5rem auto;
+}
+.cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cC--control {
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  width: 100%;
+  margin: 0 auto;
+  border: thin solid #ccc;
+}
+.cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cC--control--btn {
+  border: none;
+  background-color: #000;
+  color: #fff;
+  line-height: 1.5;
+  padding: 0.3rem 1.5rem;
+}
+.cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cC--control--input {
+  border: thin solid transparent;
+  text-align: center;
+  outline: none;
+  width: 100%;
+  line-height: 1.5;
+  padding: 0.3rem 0.5rem;
+}
+.cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cC--control--input[type=number]::-webkit-inner-spin-button, .cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cC--control--input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cC--control--input[type=number] {
+  -moz-appearance: textfield;
+}
+.cont-MainCamelLog--c--contSteps--item--cStep--cBtnSwitch {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 1rem 1rem 0 1rem;
+}
+.cont-MainCamelLog--c--contSteps--item--cStep--cBtnSwitch--cSwitch {
+  cursor: pointer;
+  background-color: #d74742;
+  padding: 0.15rem;
+  position: relative;
+  height: 37px;
+  flex: 0 0 134px;
+  border-radius: 0.2rem;
+  vertical-align: middle;
+  transition: 0.2s ease-in-out;
+  margin: 0 1rem 0 0;
+}
+.cont-MainCamelLog--c--contSteps--item--cStep--cBtnSwitch--cSwitch.active {
+  background-color: #70C767;
+}
+.cont-MainCamelLog--c--contSteps--item--cStep--cBtnSwitch--cSwitch.active:after {
+  content: "NO";
+  position: absolute;
+  background-color: transparent;
+  color: #fff;
+  left: 2px;
+  width: 65px;
+  height: 32px;
+  border-radius: 0.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.cont-MainCamelLog--c--contSteps--item--cStep--cBtnSwitch--cSwitch.active:before {
+  content: "SÍ";
+  position: absolute;
+  background-color: #fff;
+  color: #70C767;
+  right: 2px;
+  width: 65px;
+  height: 32px;
+  border-radius: 0.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.cont-MainCamelLog--c--contSteps--item--cStep--cBtnSwitch--cSwitch--chck {
+  display: none;
+  opacity: 0;
+  visibility: hidden;
+}
+.cont-MainCamelLog--c--contSteps--item--cStep--cBtnSwitch--cSwitch:after {
+  content: "NO";
+  position: absolute;
+  background-color: #fff;
+  color: #d74742;
+  left: 2px;
+  width: 65px;
+  height: 32px;
+  border-radius: 0.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.cont-MainCamelLog--c--contSteps--item--cStep--cBtnSwitch--cSwitch:before {
+  content: "SÍ";
+  position: absolute;
+  background-color: transparent;
+  color: #fff;
+  right: 2px;
+  width: 65px;
+  height: 32px;
+  border-radius: 0.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.cont-MainCamelLog--c--contSteps--item--cStep--cBtnSwitch span {
+  vertical-align: middle;
+}
+.cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControls {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  max-width: 500px;
+  width: 95%;
+  margin: 0 auto;
+  /* CONTENEDOR DE CONTROLES */
+  /* BOTÓN - ABRIR MODAL DE CALCULADORA VOLUMÉTRICA */
+}
+.cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControls--cControl {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+.cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControls--cControl--label {
+  color: #B58440;
+  font-weight: 300;
+  padding-left: 1rem;
+  font-size: 0.85rem;
+  letter-spacing: 0.2rem;
+}
+.cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControls--cControl--input {
+  width: 100%;
+  border: thin solid #B58440;
+  font-size: 1rem;
+  padding: 0.5rem;
+  line-height: 1.5;
+}
+.cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControls--cControl--input[type=number]::-webkit-inner-spin-button, .cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControls--cControl--input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControls--cControl--input[type=number] {
+  -moz-appearance: textfield;
+}
+.cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControls--cBtnModalCalculator {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background-color: #B58440;
+  color: #fff;
+  padding: 1rem 0.5rem;
+}
+.cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControls--cBtnModalCalculator:hover {
+  color: #fff;
+  opacity: 0.6;
 }
 
 /*# sourceMappingURL=styles.css.map */
