@@ -3052,7 +3052,13 @@ img {
   padding: 0.5rem;
   position: fixed;
   max-width: 250px;
+  overflow-y: auto;
   width: 100%;
+  min-height: 100vh;
+  height: 100%;
+  top: 4.5rem;
+  left: 0;
+  z-index: 999;
 }
 .cont-MainCamelLog--c--contResumeCalc--item {
   /* TIPO DE OPERACIÓN */
@@ -3062,6 +3068,36 @@ img {
 }
 .cont-MainCamelLog--c--contResumeCalc--item[data-advlevel=d-chargeload] .cont-MainCamelLog--c--contResumeCalc--item--cardStep span {
   font-weight: 600;
+}
+.cont-MainCamelLog--c--contResumeCalc--item[data-advlevel=d-typecontainer] {
+  display: none;
+  opacity: 0;
+  pointer-events: none;
+}
+.cont-MainCamelLog--c--contResumeCalc--item[data-advlevel=d-typecontainer].show {
+  display: block;
+  opacity: 1;
+  pointer-events: auto;
+}
+.cont-MainCamelLog--c--contResumeCalc--item[data-advlevel=d-typecontainer] .cont-MainCamelLog--c--contResumeCalc--item--cardStep--cIconStepLeft {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0.3rem;
+}
+.cont-MainCamelLog--c--contResumeCalc--item[data-advlevel=d-typecontainer] .cont-MainCamelLog--c--contResumeCalc--item--cardStep--cIconStepLeft img {
+  width: auto;
+  height: 35px;
+  margin: 0 auto;
+}
+.cont-MainCamelLog--c--contResumeCalc--item[data-advlevel=d-typecontainer] .cont-MainCamelLog--c--contResumeCalc--item--cardStep--cIconStepLeft span {
+  font-size: 0.9rem;
+  margin-left: 0.2rem;
+}
+.cont-MainCamelLog--c--contResumeCalc--item[data-advlevel=d-typecontainer] .cont-MainCamelLog--c--contResumeCalc--item--cardStep--cIconStepLeft p {
+  margin-left: 0.5rem;
+  margin-bottom: 0;
 }
 .cont-MainCamelLog--c--contResumeCalc--item--cardStep {
   border-radius: 0.4rem;
@@ -3080,6 +3116,12 @@ img {
 }
 .cont-MainCamelLog--c--contResumeCalc--item--cardStep--cNameFlag span {
   font-weight: 600;
+}
+.cont-MainCamelLog--c--contResumeCalc--item--cardStep--cDescMap {
+  padding-top: 0.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .cont-MainCamelLog--c--contResumeCalc--item--cardStep--cIcon {
   max-width: 30px;

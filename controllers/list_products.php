@@ -26,8 +26,7 @@ class Products extends Connection{
 									(SELECT tbr.name FROM tbl_regulators tbr WHERE tbr.id = tbp.id_regulator) as 'reguladorOne',
 									(SELECT tbrtwo.name FROM tbl_regulators tbrtwo WHERE tbrtwo.id = tbp.id_regulator_two) as 'reguladorTwo'
 								FROM tbl_products tbp
-								WHERE tbp.id LIKE '%".$search."%' OR
-											tbp.name LIKE '%".$search."%' OR
+								WHERE tbp.name LIKE '%".$search."%' OR
 											tbp.regulated LIKE '%".$search."%'
 								ORDER BY tbp.id ASC";
 			}

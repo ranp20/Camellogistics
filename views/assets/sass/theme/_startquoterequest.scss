@@ -11,9 +11,16 @@
 	/* RESUMEN DEL PROCESO DE COTIZACIÓN - NUEVA INTERFAZ */
 	&--contResumeCalc{
 		padding: 0.5rem;
-		position: fixed;
-		max-width: 250px;
-		width: 100%;
+    position: fixed;
+    max-width: 250px;
+    overflow-y: auto;
+    width: 100%;
+    min-height: 100vh;
+    height: 100%;
+    top: 4.5rem;
+    left: 0;
+    z-index: 999;
+
 		&--item{
 
 			/* TIPO DE OPERACIÓN */
@@ -22,6 +29,40 @@
 					text-align: center;
 					span{
 						font-weight: 600;
+					}
+				}
+			}
+
+			&[data-advlevel="d-typecontainer"]{
+				display: none;
+				opacity: 0;
+				pointer-events: none;
+				&.show{
+					display: block;
+					opacity: 1;
+					pointer-events: auto;
+				}
+				.cont-MainCamelLog--c--contResumeCalc--item--cardStep{
+					&--cIconStepLeft{
+						display: grid;
+				    grid-template-columns: 1fr 1fr;
+				    align-items: center;
+				    justify-content: center;
+				    margin-bottom: 0.3rem;
+						img{
+							width: auto;
+					    height: 35px;
+					    margin: 0 auto;
+						}
+						span{
+							font-size: 0.9rem;
+							margin-left: 0.2rem;
+						}
+
+						p{
+							margin-left: 0.5rem;
+							margin-bottom: 0;
+						}
 					}
 				}
 			}
@@ -45,6 +86,10 @@
 
 				/* NOMBRE DEL PAÍS DE ORIGEN/DESTINO */
 				&--cDescMap{
+					padding-top: 0.25rem;
+					display: flex;
+					align-items: center;
+					justify-content: center;
 					span{
 						
 					}

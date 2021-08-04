@@ -10,11 +10,33 @@ $(() => {
 	/************************** LISTAR LOS DISTRITOS DE ACUERDO AL PAÍS DE DESTINO **************************/
 	listDistricsByCountry();
 });
-/************************** RECOGER LAS VARIABLES GLOBALES A USAR EN EL PROCESO **************************/
+/************************** RECOGER LAS VARIABLES RECIBIDAS POR POST **************************/
 var ipt_idPortOrigin = $("#ipt-vportidOrigin").val(),
 		ipt_idPortcountryOrigin = $("#ipt-vportidcountryOrigin").val(),
 		ipt_idPortDestiny = $("#ipt-vportidDestiny").val(),
 		ipt_idPortcountryDestiny = $("#ipt-vportidcountryDestiny").val();
+
+
+/************************** VARIABLES GLOBALES A USAR EN EL RESUMEN DE PROCESO **************************/
+var v_TypeOp = ""; // 1. TIPO DE OPERACIÓN
+
+var v_TypeChargeImgSrc = ""; // 2. TIPO DE CARGA - NOMBRE
+var v_TypeChargeName = ""; // 2. TIPO CARGA - IMAGEN
+
+var v_QContainersImgSrc20 = ""; // 3. CANTIDAD DE CONTENEDORES - IMAGEN 20'
+var v_QContainersName20 = ""; // 3. CANTIDAD DE CONTENEDORES - NOMBRE 20'
+var v_QContainersValue20 = 0; // 3. CANTIDAD DE CONTENEDORES - VALOR 20'
+var v_QContainersImgSrc40 = ""; // 3. CANTIDAD DE CONTENEDORES - IMAGEN 40'
+var v_QContainersName40 = ""; // 3. CANTIDAD DE CONTENEDORES - NOMBRE 40'
+var v_QContainersValue40 = 0; // 3. CANTIDAD DE CONTENEDORES - VALOR 40'
+var v_QContainersImgSrc40_hq = ""; // 3. CANTIDAD DE CONTENEDORES - IMAGEN 40-hq'
+var v_QContainersName40_hq = ""; // 3. CANTIDAD DE CONTENEDORES - NOMBRE 40-hq'
+var v_QContainersValue40_hq = 0; // 3. CANTIDAD DE CONTENEDORES - VALOR 40-hq'
+
+var v_ValQuantityPackages = 0; // 4. CANTIDAD DE BULTOS
+var v_ValTotalWeight = 0; // 4. PESO TOTAL
+var v_ValTotalVolume = 0; // 4. VOLUMEN TOTAL
+
 /************************** PLUGIN - FULLPAGE.JS **************************/
 const sectionsSteps = new fullpage('#fullpage', {
   anchors:['step-typeoperation',
@@ -30,6 +52,8 @@ const sectionsSteps = new fullpage('#fullpage', {
   scrollingSpeed: 400,
   autoScrolling: true,
   keyboardScrolling: false,
+  //fixedElements: '#id-resumeLeftQuoteCamel',
+  normalScrollElements: '#id-resumeLeftQuoteCamel, #m-listAllNamTypeProds',
   //lockAnchors: true,
   loopTop: false,
   loopBottom: false,
@@ -40,25 +64,64 @@ function hiddenAllNextSteps(){
 }
 /************************** LISTAR EL PUERTO DE ORIGEN Y EL PUERTO DE DESTINO **************************/
 function listPortOriginandDestiny(){
-	// $.ajax({
-	// 	url: "controllers/list_puertoOriginByIds.php",
- //    method: "POST",
- //    datatype: "JSON",
- //    contentType: 'application/x-www-form-urlencoded;charset=UTF-8',
- //    data: {searchList : searchVal},
-	// }).done((e) => {
-	// 	console.log(e);
-	// });
+  var tempOriginDestiny = "";
+	$.ajax({
+		url: "controllers/list_puertoOriginByIds.php",
+    method: "POST",
+    datatype: "JSON",
+    contentType: 'application/x-www-form-urlencoded;charset=UTF-8',
+    data: {idpaisportOrigin : ipt_idPortcountryOrigin, idportOrigin : ipt_idPortOrigin},
+	}).done((e) => {
+    var result = JSON.parse(e);
+		$.each(result, function(i, e){
+
+      tempOriginDestiny += `
+        <div class="cont-MainCamelLog--c--contResumeCalc--item--cardStep">
+          <div class="cont-MainCamelLog--c--contResumeCalc--item--cardStep--cNameFlag">
+            <span>ORIGEN</span>
+          </div>
+          <div class="cont-MainCamelLog--c--contResumeCalc--item--cardStep--cDescMap">
+            <span>${e.nom_puerto} - ${e.nom_pais}</span>
+          </div>
+        </div>
+      `;
+    });
+
+    $.ajax({
+      url: "controllers/list_puertoDestinyByIds.php",
+      method: "POST",
+      datatype: "JSON",
+      contentType: 'application/x-www-form-urlencoded;charset=UTF-8',
+      data: {idpaisportDestiny : ipt_idPortcountryDestiny, idportDestiny : ipt_idPortDestiny},
+    }).done((e) => {
+      var result2 = JSON.parse(e);
+      $.each(result2, function(i, e){
+
+        tempOriginDestiny += `
+          <div class="cont-MainCamelLog--c--contResumeCalc--item--cardStep">
+            <div class="cont-MainCamelLog--c--contResumeCalc--item--cardStep--cNameFlag">
+              <span>DESTINO</span>
+            </div>
+            <div class="cont-MainCamelLog--c--contResumeCalc--item--cardStep--cDescMap">
+              <span>${e.nom_puerto} - ${e.nom_pais}</span>
+            </div>
+          </div>
+        `;
+      });
+      $("#id-resumeLeftQuoteCamel .cont-MainCamelLog--c--contResumeCalc--item[data-advlevel=d-firstChargeLoad]").html(tempOriginDestiny);
+    });
+	});
 }
 /*=======================================================================================
 =            									2. ELEGIR EL TIPO DE OPERACIÓN            									=
 =========================================================================================*/
 $(document).on("click", "#list-typeOperationItems li", function(){
 	$(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-chargeload]").addClass("show");
-	sectionsSteps.setAutoScrolling(true);
-	sectionsSteps.setAllowScrolling(true);
+	
 	var tTypeOperation = $(this).index();
 	if(tTypeOperation == 0){
+    /************************** ASIGNAR A LA VARIABLE BLOBAL **************************/
+    v_TypeOp = $(this).find("a").find("p").text();
     /************************** MOSTRAR EL SIGUIENTE PASO **************************/
 		sectionsSteps.moveTo('step-chargeload', 1);
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-chargeload]").html(`
@@ -91,10 +154,12 @@ $(document).on("click", "#list-typeOperationItems li", function(){
 				<div class="cont-MainCamelLog--c--contResumeCalc--item--cardStep--cIcon">
           <svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="anchor" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" class="svg-inline--fa fa-anchor fa-w-18 fa-3x"><path fill="currentColor" d="M571.515 331.515l-67.029-67.029c-4.686-4.686-12.284-4.686-16.971 0l-67.029 67.029c-7.56 7.56-2.206 20.485 8.485 20.485h44.268C453.531 417.326 380.693 456.315 312 462.865V216h60c6.627 0 12-5.373 12-12v-24c0-6.627-5.373-12-12-12h-60v-11.668c32.456-10.195 56-40.512 56-76.332 0-44.183-35.817-80-80-80s-80 35.817-80 80c0 35.82 23.544 66.138 56 76.332V168h-60c-6.627 0-12 5.373-12 12v24c0 6.627 5.373 12 12 12h60v246.865C195.192 456.304 122.424 417.176 102.762 352h44.268c10.691 0 16.045-12.926 8.485-20.485l-67.029-67.029c-4.686-4.686-12.284-4.686-16.971 0l-67.03 67.029C-3.074 339.074 2.28 352 12.971 352h40.284C73.657 451.556 181.238 512 288 512c113.135 0 215.338-65.3 234.745-160h40.284c10.691 0 16.045-12.926 8.486-20.485zM288 48c17.645 0 32 14.355 32 32s-14.355 32-32 32-32-14.355-32-32 14.355-32 32-32z" class=""></path></svg>
         </div>
-				<span>`+$(this).find("a").find("p").text()+`</span>
+				<span>`+v_TypeOp+`</span>
 			</div>
 		`);
 	}else{
+    /************************** ASIGNAR A LA VARIABLE BLOBAL **************************/
+    v_TypeOp = $(this).find("a").find("p").text();
     /************************** MOSTRAR EL SIGUIENTE PASO **************************/
 		sectionsSteps.moveTo('step-chargeload', 1);
 		$(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-chargeload]").html(`
@@ -127,7 +192,7 @@ $(document).on("click", "#list-typeOperationItems li", function(){
 				<div class="cont-MainCamelLog--c--contResumeCalc--item--cardStep--cIcon">
           <svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="anchor" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" class="svg-inline--fa fa-anchor fa-w-18 fa-3x"><path fill="currentColor" d="M571.515 331.515l-67.029-67.029c-4.686-4.686-12.284-4.686-16.971 0l-67.029 67.029c-7.56 7.56-2.206 20.485 8.485 20.485h44.268C453.531 417.326 380.693 456.315 312 462.865V216h60c6.627 0 12-5.373 12-12v-24c0-6.627-5.373-12-12-12h-60v-11.668c32.456-10.195 56-40.512 56-76.332 0-44.183-35.817-80-80-80s-80 35.817-80 80c0 35.82 23.544 66.138 56 76.332V168h-60c-6.627 0-12 5.373-12 12v24c0 6.627 5.373 12 12 12h60v246.865C195.192 456.304 122.424 417.176 102.762 352h44.268c10.691 0 16.045-12.926 8.485-20.485l-67.029-67.029c-4.686-4.686-12.284-4.686-16.971 0l-67.03 67.029C-3.074 339.074 2.28 352 12.971 352h40.284C73.657 451.556 181.238 512 288 512c113.135 0 215.338-65.3 234.745-160h40.284c10.691 0 16.045-12.926 8.486-20.485zM288 48c17.645 0 32 14.355 32 32s-14.355 32-32 32-32-14.355-32-32 14.355-32 32-32z" class=""></path></svg>
         </div>
-				<span>`+$(this).find("a").find("p").text()+`</span>
+				<span>`+v_TypeOp+`</span>
 			</div>
 		`);
 	}
@@ -139,6 +204,12 @@ $(document).on("click", "#list-typeChargeLoadItems li", function(){
 	$(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-qcontainers]").addClass("show");
 	var tTypeChargeLoad = $(this).index();
 	if(tTypeChargeLoad == 0){
+    /************************** ASGINAR A LAS VARIABLES GLOBALES **************************/
+    v_TypeChargeImgSrc = $(this).find("a").find("div").find("img").attr("src");
+    v_TypeChargeName = $(this).find("a").find("p").text();
+    /************************** ASIGNAR AL RESUMEN DEL LISTADO **************************/
+    $(".cont-MainCamelLog--c--contResumeCalc--item--cardStep--cIconStepLeft[data-merchandise=rsm-typecharge]").find("img").attr("src", v_TypeChargeImgSrc);
+    $(".cont-MainCamelLog--c--contResumeCalc--item--cardStep--cIconStepLeft[data-merchandise=rsm-typecharge]").find("span").text(v_TypeChargeName);
     /************************** MOSTRAR EL SIGUIENTE PASO **************************/
 		sectionsSteps.moveTo('step-qcontainers', 1);
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-qcontainers]").html(`
@@ -202,6 +273,12 @@ $(document).on("click", "#list-typeChargeLoadItems li", function(){
       </div>
 		`);
 	}else{
+    /************************** ASGINAR A LAS VARIABLES GLOBALES **************************/
+    v_TypeChargeImgSrc = $(this).find("a").find("div").find("img").attr("src");
+    v_TypeChargeName = $(this).find("a").find("p").text();
+    /************************** ASIGNAR AL RESUMEN DEL LISTADO **************************/
+    $(".cont-MainCamelLog--c--contResumeCalc--item--cardStep--cIconStepLeft[data-merchandise=rsm-typecharge]").find("img").attr("src", v_TypeChargeImgSrc);
+    $(".cont-MainCamelLog--c--contResumeCalc--item--cardStep--cIconStepLeft[data-merchandise=rsm-typecharge]").find("span").text(v_TypeChargeName);
     /************************** MOSTRAR EL SIGUIENTE PASO **************************/
 		sectionsSteps.moveTo('step-qcontainers', 1);
 		$(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-qcontainers]").html(`
@@ -278,6 +355,14 @@ $(document).on("click", "#c-incdecBtns20 button", function(){
   if(tindBtn == 2){
     newValipt20 = parseInt(input20) + 1;
     $(this).parent().find("input").val(newValipt20);
+    /************************** ASIGNAR VALORES A LA VARIABLE GLOBAL REFERENTE **************************/
+    v_QContainersName20 = $(this).parent().parent().find("label").text();
+    v_QContainersImgSrc20 = $(this).parent().parent().parent().find("div").find("img").attr("src");
+    v_QContainersValue20 = newValipt20;
+
+    return v_QContainersName20;
+    return v_QContainersImgSrc20;
+
   }else if(tindBtn == 0){
     if(input20 > 0){
       newValipt20 = parseInt(input20) - 1;
@@ -293,18 +378,23 @@ $(document).on("click", "#c-incdecBtns20 button", function(){
 /************************** SEGUNDO INPUT **************************/
 $(document).on("click", "#c-incdecBtns40 button", function(){
   var tindBtn = $(this).index();
-  var input20 = $(this).parent().find("input").val();
-  var newValipt20 = $(this).parent().find("input").val();
+  var input40 = $(this).parent().find("input").val();
+  var newValipt40 = $(this).parent().find("input").val();
   if(tindBtn == 2){
-    newValipt20 = parseInt(input20) + 1;
-    $(this).parent().find("input").val(newValipt20);
+    newValipt40 = parseInt(input40) + 1;
+    $(this).parent().find("input").val(newValipt40);
+    /************************** ASIGNAR VALORES A LA VARIABLE GLOBAL REFERENTE **************************/
+    v_QContainersName40 = $(this).parent().parent().find("label").text();
+    v_QContainersImgSrc40 = $(this).parent().parent().parent().find("div").find("img").attr("src");
+    v_QContainersValue40 = $(this).parent().find("input").val(newValipt40);
+
   }else if(tindBtn == 0){
-    if(input20 > 0){
-      newValipt20 = parseInt(input20) - 1;
-      $(this).parent().find("input").val(newValipt20);
+    if(input40 > 0){
+      newValipt40 = parseInt(input40) - 1;
+      $(this).parent().find("input").val(newValipt40);
     }else{
-      newValipt20 = 0;
-      $(this).parent().find("input").val(newValipt20);
+      newValipt40 = 0;
+      $(this).parent().find("input").val(newValipt40);
     }
   }else{
     console.log('Sin acción');
@@ -313,18 +403,23 @@ $(document).on("click", "#c-incdecBtns40 button", function(){
 /************************** TERCERO INPUT **************************/
 $(document).on("click", "#c-incdecBtns40-hc button", function(){
   var tindBtn = $(this).index();
-  var input20 = $(this).parent().find("input").val();
-  var newValipt20 = $(this).parent().find("input").val();
+  var input40_hq = $(this).parent().find("input").val();
+  var newValipt40_hq = $(this).parent().find("input").val();
   if(tindBtn == 2){
-    newValipt20 = parseInt(input20) + 1;
-    $(this).parent().find("input").val(newValipt20);
+    newValipt40_hq = parseInt(input40_hq) + 1;
+    $(this).parent().find("input").val(newValipt40_hq);
+    /************************** ASIGNAR VALORES A LA VARIABLE GLOBAL REFERENTE **************************/
+    v_QContainersName40_hq = $(this).parent().parent().find("label").text();
+    v_QContainersImgSrc40_hq = $(this).parent().parent().parent().find("div").find("img").attr("src");
+    v_QContainersValue40_hq = $(this).parent().find("input").val(newValipt40_hq);
+
   }else if(tindBtn == 0){
-    if(input20 > 0){
-      newValipt20 = parseInt(input20) - 1;
-      $(this).parent().find("input").val(newValipt20);
+    if(input40_hq > 0){
+      newValipt40_hq = parseInt(input40_hq) - 1;
+      $(this).parent().find("input").val(newValipt40_hq);
     }else{
-      newValipt20 = 0;
-      $(this).parent().find("input").val(newValipt20);
+      newValipt40_hq = 0;
+      $(this).parent().find("input").val(newValipt40_hq);
     }
   }else{
     console.log('Sin acción');
@@ -345,6 +440,11 @@ $(document).on("click", "#btn-NextStepToChargeLoad", function(){
   if($("#c-incdecBtns20").find("input").val() != 0 && $("#c-incdecBtns20").find("input").val() != "" || 
      $("#c-incdecBtns40").find("input").val() != 0 && $("#c-incdecBtns40").find("input").val() != "" ||
      $("#c-incdecBtns40-hc").find("input").val() != 0 && $("#c-incdecBtns40-hc").find("input").val() != ""){
+    
+    /************************** ASIGNAR AL RESUMEN DEL LISTADO **************************/
+    $(".cont-MainCamelLog--c--contResumeCalc--item--cardStep--cIconStepLeft[data-merchandise=rsm-qcontainer]").find("img").attr("src", v_QContainersImgSrc20);
+    $(".cont-MainCamelLog--c--contResumeCalc--item--cardStep--cIconStepLeft[data-merchandise=rsm-qcontainer]").find("p").find("span").eq(0).text(v_QContainersValue20);
+    $(".cont-MainCamelLog--c--contResumeCalc--item--cardStep--cIconStepLeft[data-merchandise=rsm-qcontainer]").find("p").find("span").eq(2).text(v_QContainersName20);
     
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-chargedata]").addClass("show");
     /************************** MOSTRAR EL SIGUIENTE PASO **************************/
@@ -784,8 +884,12 @@ $(document).on("click", "#btn-NextStepTochargedata", function(){
      $("#val-iptWeightNInterface").val() != 0 && $("#val-iptWeightNInterface").val() != "" &&
      $("#val-iptVolumeNInterface").val() != 0 && $("#val-iptVolumeNInterface").val() != ""){
 
-    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-merchandisedata]").addClass("show");
+    /************************** ASIGNAR A LAS VARIABLES GLOBALES **************************/
+    v_ValQuantityPackages = $("#val-iptPackagesNInterface").val();
+    v_ValTotalWeight = $("#val-iptWeightNInterface").val();
+    v_ValTotalVolume = $("#val-iptVolumeNInterface").val();
 
+    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-merchandisedata]").addClass("show");
     /************************** MOSTRAR EL SIGUIENTE PASO **************************/
     sectionsSteps.moveTo('step-merchandisedata', 1);
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-merchandisedata]").html(`
@@ -827,6 +931,8 @@ $(document).on("click", "#btn-NextStepTochargedata", function(){
       </div>
     `);
 
+    /************************** MOSTRAR EL RESUMEN HASTA ESTE PASO **************************/
+    $(".cont-MainCamelLog--c--contResumeCalc--item[data-advlevel=d-typecontainer]").addClass("show");
   }else{
     alert("Por favor, rellena todos los campos relativos a las dimensiones de carga.");
   }
@@ -891,14 +997,6 @@ function listProductsUser(searchVal){
 $(document).on("focus", "#ipt-valNameTypeProdNInterface", function(){
 	$("#m-listAllNamTypeProds").addClass("show");
   listProductsUser();
-  var menuListNTypeProds = document.querySelector("#m-listAllNamTypeProds");
-  if(menuListNTypeProds.classList.contains("show")){
-    sectionsSteps.setAutoScrolling(false);
-    console.log('Tiene la clase');
-  }else{
-    console.log('No tiene la clase');
-    sectionsSteps.setAutoScrolling(true);
-  }
 });
 $(document).on("keyup", "#ipt-valNameTypeProdNInterface", function(){
   $("#m-listAllNamTypeProds").addClass("show");
@@ -1155,6 +1253,7 @@ $(document).on("click", "#list-requirespickup li", function(){
           </div>
         </div>
       </div>
+      <div class="cont-MainCamelLog--c--contSteps--item--cBtnNextStep"></div>
     `);
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-requirespickup] .cont-MainCamelLog--c--contSteps--item--cBtnNextStep").html("");
   }else{
@@ -1228,6 +1327,7 @@ $(document).on("keyup", "#ipt-valDistricByCountryNInterface", function(){
   if(searchVal != ""){
    	$("#ipt-valDistricByCountryNInterface").attr("iddistrict", ""); 
     listDistricsByCountry(searchVal);
+    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-pickuplocation] .cont-MainCamelLog--c--contSteps--item--cBtnNextStep").html("");
   }else{
     listDistricsByCountry();
   }
@@ -1237,4 +1337,10 @@ $(document).on("click", ".cont-MainCamelLog--c--contSteps--item--cStep--mFrmIpts
   $("#m-listAllDistricsByCountry").removeClass("show");
   $("#ipt-valDistricByCountryNInterface").attr("iddistrict", $(this).attr("id"));
   $("#ipt-valDistricByCountryNInterface").val($(this).find("span").text());
+  $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-pickuplocation] .cont-MainCamelLog--c--contSteps--item--cBtnNextStep").html(`
+    <button type="button" class="cont-MainCamelLog--c--contSteps--item--cBtnNextStep--btn" id="btn-NextStepTopickuplocation">
+      <span>CALCULAR COTIZACIÓN</span>
+      <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 100 125" enable-background="new 0 0 100 100" xml:space="preserve"><g><g><polygon points="19.318,43.363 19.318,61.189 49.497,95 79.675,61.189 79.675,43.363 49.497,77.174   "></polygon><polygon points="50.504,38.811 20.326,5 20.326,24.872 49.497,60.537 79.675,24.872 80.682,5   "></polygon></g></g></svg>
+    </button>
+  `);
 });

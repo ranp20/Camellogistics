@@ -22,31 +22,44 @@
       <input type="hidden" id="ipt-vportidDestiny" value="<?= $_POST['v-iptportdestinypost']; ?>">
       <input type="hidden" id="ipt-vportidcountryDestiny" value="<?= $_POST['v-iptcountryportdestinypost']; ?>">
       <section class="cont-MainCamelLog--c--contResumeCalc" id="id-resumeLeftQuoteCamel">
-        <div class="cont-MainCamelLog--c--contResumeCalc--item">
+        <div class="cont-MainCamelLog--c--contResumeCalc--item" data-advlevel="d-firstChargeLoad"></div>
+        <div class="cont-MainCamelLog--c--contResumeCalc--item" data-advlevel="d-chargeload"></div>
+        <div class="cont-MainCamelLog--c--contResumeCalc--item" data-advlevel="d-typecontainer">
           <div class="cont-MainCamelLog--c--contResumeCalc--item--cardStep">
             <div class="cont-MainCamelLog--c--contResumeCalc--item--cardStep--cNameFlag">
-              <span>ORIGEN</span>
+              <span>TRANSPORTE</span>
             </div>
-            <div class="cont-MainCamelLog--c--contResumeCalc--item--cardStep--cDescMap">
-              <span>Qingdao</span>
+            <div class="cont-MainCamelLog--c--contResumeCalc--item--cardStep--cIconStepLeft" data-merchandise="rsm-typecharge">
+              <img src="" alt="">
+              <span></span>
             </div>
-          </div>
-          <div class="cont-MainCamelLog--c--contResumeCalc--item--cardStep">
-            <div class="cont-MainCamelLog--c--contResumeCalc--item--cardStep--cNameFlag">
-              <span>DESTINO</span>
+            <div class="cont-MainCamelLog--c--contResumeCalc--item--cardStep--cIconStepLeft" data-merchandise="rsm-qcontainer">
+              <img src="" alt="">
+              <p>
+                <span></span>
+                <span>x</span>
+                <span></span>
+              </p>
             </div>
-            <div class="cont-MainCamelLog--c--contResumeCalc--item--cardStep--cDescMap">
-              <span>Callao</span>
+            <div class="cont-MainCamelLog--c--contResumeCalc--item--cardStep--cIconStepLeft" data-merchandise="rsm-totpackages">
+              <span>Bultos</span>
+              <span></span>
+            </div>
+            <div class="cont-MainCamelLog--c--contResumeCalc--item--cardStep--cIconStepLeft" data-merchandise="rsm-totweight">
+              <span>Peso(Kg)</span>
+              <span></span>
+            </div>
+            <div class="cont-MainCamelLog--c--contResumeCalc--item--cardStep--cIconStepLeft" data-merchandise="rsm-totvolume">
+              <span>Volumen(M³)</span>
+              <span></span>
             </div>
           </div>
         </div>
-        <div class="cont-MainCamelLog--c--contResumeCalc--item" data-advlevel="d-chargeload"></div>
-        <div class="cont-MainCamelLog--c--contResumeCalc--item" data-advlevel="d-typecontainer"></div>
         <div class="cont-MainCamelLog--c--contResumeCalc--item" data-advlevel="d-quantitycontainer"></div>
       </section>
       <section class="cont-MainCamelLog--c--contSteps" id="fullpage">
         <!-- PASO #1 -->
-        <div class="cont-MainCamelLog--c--contSteps--item section" data-anchor="step-typeoperation" data-transportquote>
+        <div class="cont-MainCamelLog--c--contSteps--item active section" data-anchor="step-typeoperation" data-transportquote>
           <div class="cont-MainCamelLog--c--contSteps--item--cTitle">
             <h3 class="cont-MainCamelLog--c--contSteps--item--cTitle--title">¿Qué tipo de operación vas a realizar?</h3>
           </div>
