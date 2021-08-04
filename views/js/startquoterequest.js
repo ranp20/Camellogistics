@@ -48,13 +48,14 @@ function listPortOriginandDestiny(){
 	// });
 }
 /*=======================================================================================
-=            									2. ELEGIR EL TIPO DE OPRACIÓN            									=
+=            									2. ELEGIR EL TIPO DE OPERACIÓN            									=
 =========================================================================================*/
 $(document).on("click", "#list-typeOperationItems li", function(){
 	sectionsSteps.setAutoScrolling(true);
 	sectionsSteps.setAllowScrolling(true);
 	var tTypeOperation = $(this).index();
 	if(tTypeOperation == 0){
+    /************************** MOSTRAR EL SIGUIENTE PASO **************************/
 		sectionsSteps.moveTo('step-chargeload', 1);
 		$(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-chargeload]").html(`
 			<div class="cont-MainCamelLog--c--contSteps--item--cTitle">
@@ -90,6 +91,7 @@ $(document).on("click", "#list-typeOperationItems li", function(){
 			</div>
 		`);
 	}else{
+    /************************** MOSTRAR EL SIGUIENTE PASO **************************/
 		sectionsSteps.moveTo('step-chargeload', 1);
 		$(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-chargeload]").html(`
 			<div class="cont-MainCamelLog--c--contSteps--item--cTitle">
@@ -127,11 +129,12 @@ $(document).on("click", "#list-typeOperationItems li", function(){
 	}
 });
 /*=======================================================================================
-=            									2. ELEGIR EL TIPO DE CARGA            									  =
+=            									3. ELEGIR EL TIPO DE CARGA            									  =
 =========================================================================================*/
 $(document).on("click", "#list-typeChargeLoadItems li", function(){
 	var tTypeChargeLoad = $(this).index();
 	if(tTypeChargeLoad == 0){
+    /************************** MOSTRAR EL SIGUIENTE PASO **************************/
 		sectionsSteps.moveTo('step-qcontainers', 1);
 		$(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-qcontainers]").html(`
 			<div class="cont-MainCamelLog--c--contSteps--item--cTitle">
@@ -145,7 +148,7 @@ $(document).on("click", "#list-typeChargeLoadItems li", function(){
             </div>
             <div class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cC">
               <label for="" class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cC--label">20'</label>
-              <div class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cC--control">
+              <div class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cC--control" id="c-incdecBtns20">
                 <button type="button" class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cC--control--btn">-</button>
                 <input type="number" class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cC--control--input" maxlength="16" value="0" min="0" max="50">
                 <button type="button" class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cC--control--btn">+</button>
@@ -158,7 +161,7 @@ $(document).on("click", "#list-typeChargeLoadItems li", function(){
             </div>
             <div class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cC">
               <label for="" class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cC--label">40'</label>
-              <div class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cC--control">
+              <div class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cC--control" id="c-incdecBtns40">
                 <button type="button" class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cC--control--btn">-</button>
                 <input type="number" class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cC--control--input" maxlength="16" value="0" min="0" max="50">
                 <button type="button" class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cC--control--btn">+</button>
@@ -171,7 +174,7 @@ $(document).on("click", "#list-typeChargeLoadItems li", function(){
             </div>
             <div class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cC">
               <label for="" class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cC--label">40' HQ</label>
-              <div class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cC--control">
+              <div class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cC--control" id="c-incdecBtns40-hc">
                 <button type="button" class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cC--control--btn">-</button>
                 <input type="number" class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cC--control--input" maxlength="16" value="0" min="0" max="50">
                 <button type="button" class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cC--control--btn">+</button>
@@ -185,9 +188,16 @@ $(document).on("click", "#list-typeChargeLoadItems li", function(){
           </label>
           <span>¿Necesitas contenedores refrigerados?</span>
         </div>
+      </div>
+      <div class="cont-MainCamelLog--c--contSteps--item--cBtnNextStep">
+        <button type="button" class="cont-MainCamelLog--c--contSteps--item--cBtnNextStep--btn" id="btn-NextStepToChargeLoad">
+          <span>Seguir</span>
+          <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 100 125" enable-background="new 0 0 100 100" xml:space="preserve"><g><g><polygon points="19.318,43.363 19.318,61.189 49.497,95 79.675,61.189 79.675,43.363 49.497,77.174   "/><polygon points="50.504,38.811 20.326,5 20.326,24.872 49.497,60.537 79.675,24.872 80.682,5   "/></g></g></svg>
+        </button>
       </div>
 		`);
 	}else{
+    /************************** MOSTRAR EL SIGUIENTE PASO **************************/
 		sectionsSteps.moveTo('step-qcontainers', 1);
 		$(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-qcontainers]").html(`
 			<div class="cont-MainCamelLog--c--contSteps--item--cTitle">
@@ -201,7 +211,7 @@ $(document).on("click", "#list-typeChargeLoadItems li", function(){
             </div>
             <div class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cC">
               <label for="" class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cC--label">20'</label>
-              <div class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cC--control">
+              <div class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cC--control" id="c-incdecBtns20">
                 <button type="button" class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cC--control--btn">-</button>
                 <input type="number" class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cC--control--input" maxlength="16" value="0" min="0" max="50">
                 <button type="button" class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cC--control--btn">+</button>
@@ -214,7 +224,7 @@ $(document).on("click", "#list-typeChargeLoadItems li", function(){
             </div>
             <div class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cC">
               <label for="" class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cC--label">40'</label>
-              <div class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cC--control">
+              <div class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cC--control" id="c-incdecBtns40">
                 <button type="button" class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cC--control--btn">-</button>
                 <input type="number" class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cC--control--input" maxlength="16" value="0" min="0" max="50">
                 <button type="button" class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cC--control--btn">+</button>
@@ -227,7 +237,7 @@ $(document).on("click", "#list-typeChargeLoadItems li", function(){
             </div>
             <div class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cC">
               <label for="" class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cC--label">40' HQ</label>
-              <div class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cC--control">
+              <div class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cC--control" id="c-incdecBtns40-hc">
                 <button type="button" class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cC--control--btn">-</button>
                 <input type="number" class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cC--control--input" maxlength="16" value="0" min="0" max="50">
                 <button type="button" class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cC--control--btn">+</button>
@@ -241,6 +251,12 @@ $(document).on("click", "#list-typeChargeLoadItems li", function(){
           </label>
           <span>¿Necesitas contenedores refrigerados?</span>
         </div>
+      </div>
+      <div class="cont-MainCamelLog--c--contSteps--item--cBtnNextStep">
+        <button type="button" class="cont-MainCamelLog--c--contSteps--item--cBtnNextStep--btn" id="btn-NextStepToChargeLoad">
+          <span>Seguir</span>
+          <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 100 125" enable-background="new 0 0 100 100" xml:space="preserve"><g><g><polygon points="19.318,43.363 19.318,61.189 49.497,95 79.675,61.189 79.675,43.363 49.497,77.174   "/><polygon points="50.504,38.811 20.326,5 20.326,24.872 49.497,60.537 79.675,24.872 80.682,5   "/></g></g></svg>
+        </button>
       </div>
 		`);
 	}
@@ -248,6 +264,67 @@ $(document).on("click", "#list-typeChargeLoadItems li", function(){
 /*========================================================================================
 =           							 4. AÑADIR LA CANTIDAD DE CONTENEDORES            						 =
 =========================================================================================*/
+/************************** INCREMENTAR/DECREMENTAR INPUTS **************************/
+/************************** PRIMER INPUT **************************/
+$(document).on("click", "#c-incdecBtns20 button", function(){
+  var tindBtn = $(this).index();
+  var input20 = $(this).parent().find("input").val();
+  var newValipt20 = $(this).parent().find("input").val();
+  if(tindBtn == 2){
+    newValipt20 = parseInt(input20) + 1;
+    $(this).parent().find("input").val(newValipt20);
+  }else if(tindBtn == 0){
+    if(input20 > 0){
+      newValipt20 = parseInt(input20) - 1;
+      $(this).parent().find("input").val(newValipt20);
+    }else{
+      newValipt20 = 0;
+      $(this).parent().find("input").val(newValipt20);
+    }
+  }else{
+    console.log('Sin acción');
+  }
+});
+/************************** SEGUNDO INPUT **************************/
+$(document).on("click", "#c-incdecBtns40 button", function(){
+  var tindBtn = $(this).index();
+  var input20 = $(this).parent().find("input").val();
+  var newValipt20 = $(this).parent().find("input").val();
+  if(tindBtn == 2){
+    newValipt20 = parseInt(input20) + 1;
+    $(this).parent().find("input").val(newValipt20);
+  }else if(tindBtn == 0){
+    if(input20 > 0){
+      newValipt20 = parseInt(input20) - 1;
+      $(this).parent().find("input").val(newValipt20);
+    }else{
+      newValipt20 = 0;
+      $(this).parent().find("input").val(newValipt20);
+    }
+  }else{
+    console.log('Sin acción');
+  }
+});
+/************************** TERCERO INPUT **************************/
+$(document).on("click", "#c-incdecBtns40-hc button", function(){
+  var tindBtn = $(this).index();
+  var input20 = $(this).parent().find("input").val();
+  var newValipt20 = $(this).parent().find("input").val();
+  if(tindBtn == 2){
+    newValipt20 = parseInt(input20) + 1;
+    $(this).parent().find("input").val(newValipt20);
+  }else if(tindBtn == 0){
+    if(input20 > 0){
+      newValipt20 = parseInt(input20) - 1;
+      $(this).parent().find("input").val(newValipt20);
+    }else{
+      newValipt20 = 0;
+      $(this).parent().find("input").val(newValipt20);
+    }
+  }else{
+    console.log('Sin acción');
+  }
+});
 /************************** SWITCH DE CONTENEDORES REFRIGERADOS **************************/
 $(document).on("click", "#chck-containerfreeze", function(){
 	if($(this).is(":checked")){
@@ -257,6 +334,49 @@ $(document).on("click", "#chck-containerfreeze", function(){
 		$(this).parent().removeClass("active");
 		$(this).parent().attr("switch-CFreeze", "NO");
 	}
+});
+/************************** VALIDAR EL BOTÓN DE PASO SIGUIENTE - DESDE CONTENEDORES **************************/
+$(document).on("click", "#btn-NextStepToChargeLoad", function(){
+  if($("#c-incdecBtns20").find("input").val() != 0 && $("#c-incdecBtns20").find("input").val() != "" || 
+     $("#c-incdecBtns40").find("input").val() != 0 && $("#c-incdecBtns40").find("input").val() != "" ||
+     $("#c-incdecBtns40-hc").find("input").val() != 0 && $("#c-incdecBtns40-hc").find("input").val() != ""){
+    
+    /************************** MOSTRAR EL SIGUIENTE PASO **************************/
+    sectionsSteps.moveTo('step-chargedata', 1);
+    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-chargedata]").html(`
+      <div class="cont-MainCamelLog--c--contSteps--item--cTitle">
+        <h3 class="cont-MainCamelLog--c--contSteps--item--cTitle--title">Dimensiones de carga</h3>
+      </div>
+      <div class="cont-MainCamelLog--c--contSteps--item--cStep">
+        <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControls">
+          <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControls--cControl">
+            <label for="" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControls--cControl--label">BULTOS</label>
+            <input type="number" id="val-iptPackagesNInterface" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControls--cControl--input">
+          </div>
+          <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControls--cControl">
+            <label for="" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControls--cControl--label">PESO (KG)</label>
+            <input type="text" id="val-iptWeightNInterface" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControls--cControl--input" maxlength="11">
+          </div>
+          <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControls--cControl">
+            <label for="" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControls--cControl--label">VOLUMEN (M³)</label>
+            <input type="number" id="val-iptVolumeNInterface" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControls--cControl--input" maxlength="13">
+          </div>
+          <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControls--cBtnModalCalculator" id="link-showModalCalcVolum">
+            <span>AYUDA - ¡CALCULAR VOLUMEN (M³) AQUÍ!</span>
+          </a>
+        </div>
+      </div>
+      <div class="cont-MainCamelLog--c--contSteps--item--cBtnNextStep">
+        <button type="button" class="cont-MainCamelLog--c--contSteps--item--cBtnNextStep--btn" id="btn-NextStepTochargedata">
+          <span>Seguir</span>
+          <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 100 125" enable-background="new 0 0 100 100" xml:space="preserve"><g><g><polygon points="19.318,43.363 19.318,61.189 49.497,95 79.675,61.189 79.675,43.363 49.497,77.174   "/><polygon points="50.504,38.811 20.326,5 20.326,24.872 49.497,60.537 79.675,24.872 80.682,5   "/></g></g></svg>
+        </button>
+      </div>
+    `); 
+
+  }else{
+    alert("No se ha añadido nigún contenedor. Por favor añade al emnos un contenedor o selecciona LCL como tipo de carga.");
+  }  
 });
 /*========================================================================================
 =           	 						5. AGREGAR LAS DIMENSIONES DE LA CARGA            						 =
@@ -652,6 +772,56 @@ $(document).on("click", "#btn-addCalcValueToCalculator", function(e){
 		console.log('No hay registros a fijar');
 	}
 });
+/************************** VALIDAR EL BOTÓN DE PASO SIGUIENTE DESDE - DIMENSIONES DE CARGA **************************/
+$(document).on("click", "#btn-NextStepTochargedata", function(){
+  if($("#val-iptPackagesNInterface").val() != 0 && $("#val-iptPackagesNInterface").val() != "" &&
+     $("#val-iptWeightNInterface").val() != 0 && $("#val-iptWeightNInterface").val() != "" &&
+     $("#val-iptVolumeNInterface").val() != 0 && $("#val-iptVolumeNInterface").val() != ""){
+
+    sectionsSteps.moveTo('step-merchandisedata', 1);
+    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-merchandisedata]").html(`
+      <div class="cont-MainCamelLog--c--contSteps--item--cTitle">
+        <h3 class="cont-MainCamelLog--c--contSteps--item--cTitle--title">Mercancía</h3>
+      </div>
+      <div class="cont-MainCamelLog--c--contSteps--item--cStep">
+        <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise">
+          <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC">
+            <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl">
+              <label for="" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl--label">CATEGORÍA</label>
+              <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl--cListChange">
+                <input type="text" id="ipt-valNameTypeProdNInterface" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl--cListChange--input" autocomplete="off">
+                <ul class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl--cListChange--m" id="m-listAllNamTypeProds"></ul>
+              </div>
+            </div>
+          </div>
+          <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC">
+            <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl">
+              <label for="" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl--label">VALOR</label>
+              <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl--cListChange">
+                <input type="text" id="ipt-valPriceProdNInterface" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl--cListChange--input" maxlength="13" autocomplete="off">
+              </div>
+            </div>
+          </div>
+          <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cBottom">
+            <label for="chck-importpreview" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cBottom--cSwitch" switch-CFreeze="NO">
+              <input type="checkbox" id="chck-importpreview" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cBottom--cSwitch--chck">
+            </label>
+            <span>¿Has realizado importaciones previamente?</span>
+          </div>
+        </div>
+      </div>
+      <div class="cont-MainCamelLog--c--contSteps--item--cBtnNextStep">
+        <button type="button" class="cont-MainCamelLog--c--contSteps--item--cBtnNextStep--btn" id="btn-NextStepTomerchandisedata">
+          <span>Seguir</span>
+          <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 100 125" enable-background="new 0 0 100 100" xml:space="preserve"><g><g><polygon points="19.318,43.363 19.318,61.189 49.497,95 79.675,61.189 79.675,43.363 49.497,77.174   "/><polygon points="50.504,38.811 20.326,5 20.326,24.872 49.497,60.537 79.675,24.872 80.682,5   "/></g></g></svg>
+        </button>
+      </div>
+    `);
+
+  }else{
+    alert("Por favor, rellena todos los campos relativos a las dimensiones de carga.");
+  }
+});
 /*=====================================================================================
 =            							6. AGREGAR LOS DATOS DE MERCANCÍA            								=
 ======================================================================================*/
@@ -712,6 +882,12 @@ function listProductsUser(searchVal){
 $(document).on("focus", "#ipt-valNameTypeProdNInterface", function(){
 	$("#m-listAllNamTypeProds").addClass("show");listProductsUser();
 	sectionsSteps.setAutoScrolling(false);
+  var thisIptTypeProd = $(this).val();
+  if(thisIptTypeProd == "" || thisIptTypeProd == 0){
+    setTimeout(function(){
+      $("#m-listAllNamTypeProds").removeClass("show");
+    }, 4500);
+  }
 });
 $(document).on("blur", "#ipt-valNameTypeProdNInterface", function(){
 	sectionsSteps.setAutoScrolling(true);
@@ -720,9 +896,12 @@ $(document).on("keyup", "#ipt-valNameTypeProdNInterface", function(){
   $("#m-listAllNamTypeProds").addClass("show");
   var searchVal = $(this).val();
   if(searchVal != ""){
-   	$("#ipt-valNameTypeProdNInterface").attr("idproduct", ""); 
+   	$("#ipt-valNameTypeProdNInterface").attr("idproduct", "");
     listProductsUser(searchVal);
   }else{
+    setTimeout(function(){
+      $("#m-listAllNamTypeProds").removeClass("show");
+    }, 4500);
     listProductsUser();
   }
 });
@@ -768,8 +947,211 @@ $(document).on("click", "#chck-importpreview", function(){
 		$(this).parent().attr("switch-CFreeze", "NO");
 	}
 });
+/************************** VALIDAR EL BOTÓN DE PASOS SIGUIENTES DESDE - MERCANCÍA **************************/
+$(document).on("click", "#btn-NextStepTomerchandisedata", function(){
+  if($("#ipt-valNameTypeProdNInterface").val() != "" && $("#ipt-valNameTypeProdNInterface").val() != 0 &&
+     $("#ipt-valNameTypeProdNInterface").attr("idproduct") &&
+     $("#ipt-valPriceProdNInterface").val() != "" && $("#ipt-valPriceProdNInterface").val() != 0){
+
+    sectionsSteps.moveTo('step-insuremerchandise', 1);
+    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-insuremerchandise]").html(`
+      <div class="cont-MainCamelLog--c--contSteps--item--cTitle">
+        <h3 class="cont-MainCamelLog--c--contSteps--item--cTitle--title">¿Quieres asegurar la mercancía?</h3>
+      </div>
+      <div class="cont-MainCamelLog--c--contSteps--item--cStep">
+        <ul class="cont-MainCamelLog--c--contSteps--item--cStep--m" id="list-insuremerchandise">
+          <li class="cont-MainCamelLog--c--contSteps--item--cStep--m--item">
+            <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem">
+              <div class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem--cImg">
+                <img src="views/assets/img/steps/insurance.png" alt="">
+              </div>
+              <p>SÍ</p>
+            </a>
+          </li>
+          <li class="cont-MainCamelLog--c--contSteps--item--cStep--m--item">
+            <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem">
+              <div class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem--cImg">
+                <img src="views/assets/img/steps/no-insurance.png" alt="">
+              </div>
+              <p>NO</p>
+            </a>
+          </li>
+        </ul>
+      </div>
+    `);
+
+  }else{
+    alert("Por favor, elige el tio de mercancía y su valor");
+  }
+});
 /*===================================================================================
-=	            				9. AGREGAR DATOS DE UBICACIÓN - RECOGIDA            					=
+=                     7. AGREGAR O NO SEGURO DE MERCANCÍA                           =
+====================================================================================*/
+$(document).on("click", "#list-insuremerchandise li", function(){
+  var tinsuremerchandise = $(this).index();
+  if(tinsuremerchandise == 0){
+    sectionsSteps.moveTo('step-customsclearance', 1);
+    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-customsclearance]").html(`
+      <div class="cont-MainCamelLog--c--contSteps--item--cTitle">
+        <h3 class="cont-MainCamelLog--c--contSteps--item--cTitle--title">¿Necesitas despacho de aduanas?</h3>
+      </div>
+      <div class="cont-MainCamelLog--c--contSteps--item--cStep">
+        <ul class="cont-MainCamelLog--c--contSteps--item--cStep--m" id="list-customsclearance">
+          <li class="cont-MainCamelLog--c--contSteps--item--cStep--m--item">
+            <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem">
+              <div class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem--cImg">
+                <img src="views/assets/img/steps/customs-clearance.png" alt="">
+              </div>
+              <p>SÍ</p>
+            </a>
+          </li>
+          <li class="cont-MainCamelLog--c--contSteps--item--cStep--m--item">
+            <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem">
+              <div class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem--cImg">
+                <img src="views/assets/img/steps/no-customs-clearance.png" alt="">
+              </div>
+              <p>NO</p>
+            </a>
+          </li>
+        </ul>
+      </div>
+    `);
+  }else{
+    sectionsSteps.moveTo('step-customsclearance', 1);
+    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-customsclearance]").html(`
+      <div class="cont-MainCamelLog--c--contSteps--item--cTitle">
+        <h3 class="cont-MainCamelLog--c--contSteps--item--cTitle--title">¿Necesitas despacho de aduanas?</h3>
+      </div>
+      <div class="cont-MainCamelLog--c--contSteps--item--cStep">
+        <ul class="cont-MainCamelLog--c--contSteps--item--cStep--m" id="list-customsclearance">
+          <li class="cont-MainCamelLog--c--contSteps--item--cStep--m--item">
+            <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem">
+              <div class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem--cImg">
+                <img src="views/assets/img/steps/customs-clearance.png" alt="">
+              </div>
+              <p>SÍ</p>
+            </a>
+          </li>
+          <li class="cont-MainCamelLog--c--contSteps--item--cStep--m--item">
+            <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem">
+              <div class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem--cImg">
+                <img src="views/assets/img/steps/no-customs-clearance.png" alt="">
+              </div>
+              <p>NO</p>
+            </a>
+          </li>
+        </ul>
+      </div>
+    `);
+  }
+});
+/*===================================================================================
+=                     8. AGREGAR DESPACHO DE ADUANAS                                =
+====================================================================================*/
+$(document).on("click", "#list-customsclearance li", function(){
+  var tcustomsclearance = $(this).index();
+  if(tcustomsclearance == 0){
+    sectionsSteps.moveTo('step-requirespickup', 1);
+    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-requirespickup]").html(`
+      <div class="cont-MainCamelLog--c--contSteps--item--cTitle">
+        <h3 class="cont-MainCamelLog--c--contSteps--item--cTitle--title">¿Necesitas Recogida?</h3>
+      </div>
+      <div class="cont-MainCamelLog--c--contSteps--item--cStep">
+        <ul class="cont-MainCamelLog--c--contSteps--item--cStep--m" id="list-requirespickup">
+          <li class="cont-MainCamelLog--c--contSteps--item--cStep--m--item">
+            <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem">
+              <div class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem--cImg">
+                <img src="views/assets/img/steps/inland-trans.png" alt="">
+              </div>
+              <p>SÍ</p>
+            </a>
+          </li>
+          <li class="cont-MainCamelLog--c--contSteps--item--cStep--m--item">
+            <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem">
+              <div class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem--cImg">
+                <img src="views/assets/img/steps/no-inland-trans.png" alt="">
+              </div>
+              <p>NO</p>
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div class="cont-MainCamelLog--c--contSteps--item--cBtnNextStep"></div>
+    `);
+  }else{
+    sectionsSteps.moveTo('step-requirespickup', 1);
+    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-requirespickup]").html(`
+      <div class="cont-MainCamelLog--c--contSteps--item--cTitle">
+        <h3 class="cont-MainCamelLog--c--contSteps--item--cTitle--title">¿Necesitas Recogida?</h3>
+      </div>
+      <div class="cont-MainCamelLog--c--contSteps--item--cStep">
+        <ul class="cont-MainCamelLog--c--contSteps--item--cStep--m" id="list-requirespickup">
+          <li class="cont-MainCamelLog--c--contSteps--item--cStep--m--item">
+            <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem">
+              <div class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem--cImg">
+                <img src="views/assets/img/steps/inland-trans.png" alt="">
+              </div>
+              <p>SÍ</p>
+            </a>
+          </li>
+          <li class="cont-MainCamelLog--c--contSteps--item--cStep--m--item">
+            <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem">
+              <div class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem--cImg">
+                <img src="views/assets/img/steps/no-inland-trans.png" alt="">
+              </div>
+              <p>NO</p>
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div class="cont-MainCamelLog--c--contSteps--item--cBtnNextStep"></div>
+    `);
+  }
+});
+/*===================================================================================
+=                     9. AGREGAR - RECOGIDA                                         =
+====================================================================================*/
+$(document).on("click", "#list-requirespickup li", function(){
+  var trequirespickup = $(this).index();
+  if(trequirespickup == 0){
+    sectionsSteps.moveTo('step-pickuplocation', 1);
+    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-pickuplocation]").html(`
+      <div class="cont-MainCamelLog--c--contSteps--item--cTitle">
+        <h3 class="cont-MainCamelLog--c--contSteps--item--cTitle--title">Recogida - Ubicación</h3>
+      </div>
+      <div class="cont-MainCamelLog--c--contSteps--item--cStep">
+        <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation">
+          <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation--cC">
+            <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation--cC--cControl">
+              <label for="" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation--cC--cControl--label">DISTRITO</label>
+              <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation--cC--cControl--cListChange">
+                <input type="text" id="ipt-valDistricByCountryNInterface" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation--cC--cControl--cListChange--input" autocomplete="off">
+                <ul class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation--cC--cControl--cListChange--m" id="m-listAllDistricsByCountry"></ul>
+              </div>
+            </div>
+          </div>
+          <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation--cBottom">
+            <label for="chck-insuremerchandise" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation--cBottom--cSwitch" switch-CFreeze="NO">
+              <input type="checkbox" id="chck-insuremerchandise" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation--cBottom--cSwitch--chck">
+            </label>
+            <span>¿Quieres asegurar la mercancía?</span>
+          </div>
+        </div>
+      </div>
+    `);
+    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-requirespickup] .cont-MainCamelLog--c--contSteps--item--cBtnNextStep").html("");
+  }else{
+    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-pickuplocation]").html("");
+    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-requirespickup] .cont-MainCamelLog--c--contSteps--item--cBtnNextStep").html(`
+      <button type="button" class="cont-MainCamelLog--c--contSteps--item--cBtnNextStep--btn" id="btn-NextStepTomerchandisedata">
+        <span>CALCULAR COTIZACIÓN</span>
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 100 125" enable-background="new 0 0 100 100" xml:space="preserve"><g><g><polygon points="19.318,43.363 19.318,61.189 49.497,95 79.675,61.189 79.675,43.363 49.497,77.174   "></polygon><polygon points="50.504,38.811 20.326,5 20.326,24.872 49.497,60.537 79.675,24.872 80.682,5   "></polygon></g></g></svg>
+      </button>
+    `);
+  }
+});
+/*===================================================================================
+=	            				10. AGREGAR DATOS DE UBICACIÓN - RECOGIDA            					=
 ====================================================================================*/
 /************************** SWITCH DE IMPORTACIONES PREVIAS **************************/
 $(document).on("click", "#chck-insuremerchandise", function(){

@@ -67,167 +67,18 @@
         <div class="cont-MainCamelLog--c--contSteps--item section" data-anchor="step-chargeload" data-transportquote></div>
         <!-- PASO #3 -->
         <div class="cont-MainCamelLog--c--contSteps--item section" data-anchor="step-qcontainers" data-transportquote></div>
-        <!------------------------------------------------- PASO #4 ------------------------------------------------>
-        <div class="cont-MainCamelLog--c--contSteps--item section" data-anchor="step-chargedata" data-transportquote>
-          <div class="cont-MainCamelLog--c--contSteps--item--cTitle">
-            <h3 class="cont-MainCamelLog--c--contSteps--item--cTitle--title">Dimensiones de carga</h3>
-          </div>
-          <div class="cont-MainCamelLog--c--contSteps--item--cStep">
-            <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControls">
-              <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControls--cControl">
-                <label for="" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControls--cControl--label">BULTOS</label>
-                <input type="number" id="val-iptPackagesNInterface" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControls--cControl--input">
-              </div>
-              <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControls--cControl">
-                <label for="" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControls--cControl--label">PESO (KG)</label>
-                <input type="text" id="val-iptWeightNInterface" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControls--cControl--input" maxlength="11">
-              </div>
-              <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControls--cControl">
-                <label for="" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControls--cControl--label">VOLUMEN (M³)</label>
-                <input type="number" id="val-iptVolumeNInterface" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControls--cControl--input" maxlength="13">
-              </div>
-              <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControls--cBtnModalCalculator" id="link-showModalCalcVolum">
-                <span>AYUDA - ¡CALCULAR VOLUMEN (M³) AQUÍ!</span>
-              </a>
-            </div>
-          </div>
-        </div>
-        <!------------------------------------------------- PASO #5 ------------------------------------------------>
-        <div class="cont-MainCamelLog--c--contSteps--item section" data-anchor="step-merchandisedata" data-transportquote>
-          <div class="cont-MainCamelLog--c--contSteps--item--cTitle">
-            <h3 class="cont-MainCamelLog--c--contSteps--item--cTitle--title">Mercancía</h3>
-          </div>
-          <div class="cont-MainCamelLog--c--contSteps--item--cStep">
-            <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise">
-              <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC">
-                <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl">
-                  <label for="" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl--label">CATEGORÍA</label>
-                  <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl--cListChange">
-                    <input type="text" id="ipt-valNameTypeProdNInterface" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl--cListChange--input" autocomplete="off">
-                    <ul class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl--cListChange--m" id="m-listAllNamTypeProds"></ul>
-                  </div>
-                </div>
-              </div>
-              <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC">
-                <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl">
-                  <label for="" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl--label">VALOR</label>
-                  <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl--cListChange">
-                    <input type="text" id="ipt-valPriceProdNInterface" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl--cListChange--input" maxlength="13" autocomplete="off">
-                  </div>
-                </div>
-              </div>
-              <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cBottom">
-                <label for="chck-importpreview" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cBottom--cSwitch" switch-CFreeze="NO">
-                  <input type="checkbox" id="chck-importpreview" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cBottom--cSwitch--chck">
-                </label>
-                <span>¿Has realizado importaciones previamente?</span>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!------------------------------------------------- PASO #6 ------------------------------------------------>
-        <div class="cont-MainCamelLog--c--contSteps--item section" data-anchor="step-insuremerchandise" data-transportquote>
-          <div class="cont-MainCamelLog--c--contSteps--item--cTitle">
-            <h3 class="cont-MainCamelLog--c--contSteps--item--cTitle--title">¿Quieres asegurar la mercancía?</h3>
-          </div>
-          <div class="cont-MainCamelLog--c--contSteps--item--cStep">
-            <ul class="cont-MainCamelLog--c--contSteps--item--cStep--m" id="list-insuremerchandise">
-              <li class="cont-MainCamelLog--c--contSteps--item--cStep--m--item">
-                <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem">
-                  <div class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem--cImg">
-                    <img src="views/assets/img/steps/insurance.png" alt="">
-                  </div>
-                  <p>SÍ</p>
-                </a>
-              </li>
-              <li class="cont-MainCamelLog--c--contSteps--item--cStep--m--item">
-                <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem">
-                  <div class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem--cImg">
-                    <img src="views/assets/img/steps/no-insurance.png" alt="">
-                  </div>
-                  <p>NO</p>
-                </a>
-              </li>
-            </ul>
-          </div>
-        </div>
-        <!------------------------------------------------- PASO #7 ------------------------------------------------>
-        <div class="cont-MainCamelLog--c--contSteps--item section" data-anchor="step-customsclearance" data-transportquote>
-          <div class="cont-MainCamelLog--c--contSteps--item--cTitle">
-            <h3 class="cont-MainCamelLog--c--contSteps--item--cTitle--title">¿Necesitas despacho de aduanas?</h3>
-          </div>
-          <div class="cont-MainCamelLog--c--contSteps--item--cStep">
-            <ul class="cont-MainCamelLog--c--contSteps--item--cStep--m" id="list-customsclearance">
-              <li class="cont-MainCamelLog--c--contSteps--item--cStep--m--item">
-                <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem">
-                  <div class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem--cImg">
-                    <img src="views/assets/img/steps/customs-clearance.png" alt="">
-                  </div>
-                  <p>SÍ</p>
-                </a>
-              </li>
-              <li class="cont-MainCamelLog--c--contSteps--item--cStep--m--item">
-                <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem">
-                  <div class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem--cImg">
-                    <img src="views/assets/img/steps/no-customs-clearance.png" alt="">
-                  </div>
-                  <p>NO</p>
-                </a>
-              </li>
-            </ul>
-          </div>
-        </div>
-        <!------------------------------------------------- PASO #8 ------------------------------------------------>
-        <div class="cont-MainCamelLog--c--contSteps--item section" data-anchor="step-requirespickup" data-transportquote>
-          <div class="cont-MainCamelLog--c--contSteps--item--cTitle">
-            <h3 class="cont-MainCamelLog--c--contSteps--item--cTitle--title">¿Necesitas Recogida?</h3>
-          </div>
-          <div class="cont-MainCamelLog--c--contSteps--item--cStep">
-            <ul class="cont-MainCamelLog--c--contSteps--item--cStep--m" id="list-requirespickup">
-              <li class="cont-MainCamelLog--c--contSteps--item--cStep--m--item">
-                <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem">
-                  <div class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem--cImg">
-                    <img src="views/assets/img/steps/inland-trans.png" alt="">
-                  </div>
-                  <p>SÍ</p>
-                </a>
-              </li>
-              <li class="cont-MainCamelLog--c--contSteps--item--cStep--m--item">
-                <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem">
-                  <div class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem--cImg">
-                    <img src="views/assets/img/steps/no-inland-trans.png" alt="">
-                  </div>
-                  <p>NO</p>
-                </a>
-              </li>
-            </ul>
-          </div>
-        </div>
-        <!------------------------------------------------- PASO #9 ------------------------------------------------>
-        <div class="cont-MainCamelLog--c--contSteps--item section" data-anchor="step-pickuplocation" data-transportquote>
-          <div class="cont-MainCamelLog--c--contSteps--item--cTitle">
-            <h3 class="cont-MainCamelLog--c--contSteps--item--cTitle--title">Recogida - Ubicación</h3>
-          </div>
-          <div class="cont-MainCamelLog--c--contSteps--item--cStep">
-            <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation">
-              <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation--cC">
-                <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation--cC--cControl">
-                  <label for="" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation--cC--cControl--label">DISTRITO</label>
-                  <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation--cC--cControl--cListChange">
-                    <input type="text" id="ipt-valDistricByCountryNInterface" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation--cC--cControl--cListChange--input" autocomplete="off">
-                    <ul class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation--cC--cControl--cListChange--m" id="m-listAllDistricsByCountry"></ul>
-                  </div>
-                </div>
-              </div>
-              <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation--cBottom">
-                <label for="chck-insuremerchandise" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation--cBottom--cSwitch" switch-CFreeze="NO">
-                  <input type="checkbox" id="chck-insuremerchandise" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation--cBottom--cSwitch--chck">
-                </label>
-                <span>¿Quieres asegurar la mercancía?</span>
-              </div>
-            </div>
-          </div>
-        </div>
+        <!-- PASO #4 -->
+        <div class="cont-MainCamelLog--c--contSteps--item section" data-anchor="step-chargedata" data-transportquote></div>
+        <!-- PASO #5 -->
+        <div class="cont-MainCamelLog--c--contSteps--item section" data-anchor="step-merchandisedata" data-transportquote></div>
+        <!-- PASO #6 -->
+        <div class="cont-MainCamelLog--c--contSteps--item section" data-anchor="step-insuremerchandise" data-transportquote></div>
+        <!-- PASO #7 -->
+        <div class="cont-MainCamelLog--c--contSteps--item section" data-anchor="step-customsclearance" data-transportquote></div>
+        <!-- PASO #8 -->
+        <div class="cont-MainCamelLog--c--contSteps--item section" data-anchor="step-requirespickup" data-transportquote></div>
+        <!-- PASO #9 -->
+        <div class="cont-MainCamelLog--c--contSteps--item section" data-anchor="step-pickuplocation" data-transportquote></div>
       </section>
     </div>
   </main>

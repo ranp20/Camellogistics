@@ -3064,6 +3064,7 @@ img {
   overflow: hidden;
   /* CONTENIDO DEL TÍTULO */
   /* CONTENIDO DEL PASO */
+  /* CONTENIDO - BOTÓN DE PASO SIGUIENTE */
 }
 .cont-MainCamelLog--c--contSteps--item--cTitle {
   padding-top: 2rem;
@@ -3634,6 +3635,43 @@ img {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+.cont-MainCamelLog--c--contSteps--item--cBtnNextStep {
+  position: absolute;
+  bottom: 12%;
+  left: 0;
+  width: 100%;
+  margin: 0 auto;
+}
+.cont-MainCamelLog--c--contSteps--item--cBtnNextStep button {
+  border: thin solid orange;
+  background-color: transparent;
+  color: orange;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  padding: 0.5rem 2rem;
+}
+.cont-MainCamelLog--c--contSteps--item--cBtnNextStep button:hover {
+  background-color: orange;
+  color: #fff;
+}
+.cont-MainCamelLog--c--contSteps--item--cBtnNextStep button:hover svg {
+  fill: #fff;
+  stroke: #fff;
+}
+.cont-MainCamelLog--c--contSteps--item--cBtnNextStep button span {
+  font-weight: 600;
+}
+.cont-MainCamelLog--c--contSteps--item--cBtnNextStep button svg {
+  color: orange;
+  fill: orange;
+  stroke: orange;
+  width: 30px;
+  height: 30px;
 }
 
 /*# sourceMappingURL=styles.css.map */
