@@ -1,12 +1,20 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" style="overflow: hidden;">
 <head>
   <title>Camel Logistics | Pasos de cotización</title>
   <?php require_once 'includes/header-links.php'; ?>
   <link rel="stylesheet" href="<?= $url ?>js/fullpage/fullpage.min.css">
 </head>
 <body>
-  <?php require_once 'includes/header-top.php'; ?>
+  <nav class="c-Htopbar" id="c-HTopQuotation-camel">
+    <div class="c-Htopbar--c">
+      <div class="c-Htopbar--c--cLogo">
+        <a href="./">
+          <img src="<?= $url ?>assets/img/logos/logotipo-camel.png" alt="logo_camel">
+        </a>
+      </div>
+    </div>
+  </nav>
   <main class="cont-MainCamelLog" id="cont-MainCamelLog">
     <div class="cont-MainCamelLog--c ptop-headertop" id="cont-MainCamelLog--cStartQuoteRequest">
       <input type="hidden" id="ipt-vportidOrigin" value="<?= $_POST['v-iptportoriginpost']; ?>">

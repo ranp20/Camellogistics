@@ -1,3 +1,4 @@
+/************************** HEADER TOP - PÁGINAS PRINCIPALES **************************/
 #c-HTop-camel{
 	position: fixed;
 	z-index: 9999999;
@@ -132,6 +133,42 @@
 						font-size: 1rem;
 						padding: 0;
 					}
+				}
+			}
+		}
+	}
+}
+/************************** HEADER TOP - PÁGINA DE COTIZACIÓN **************************/
+#c-HTopQuotation-camel{
+	position: fixed;
+	z-index: 9999999;
+	width: 100%;
+	top: 0;
+	left: 0;
+	background-color: #fff;
+	min-height: $min-headertop;
+	border-bottom: thin solid $border-bottom-headertop;
+
+	.c-Htopbar--c{
+		width: 100%;
+		margin-left: auto;
+		margin-right: auto;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		padding: .65rem;
+
+		&--cLogo{
+			width: 7rem;
+			height: auto;
+		
+			a{
+				display: table;
+				img{
+					width: 100%;
+					height: 100%;
+					object-fit: contain;
+					object-position: center;
 				}
 			}
 		}

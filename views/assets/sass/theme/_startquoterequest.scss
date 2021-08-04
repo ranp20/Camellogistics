@@ -71,11 +71,24 @@
 		padding: 0.5rem 0.5rem 0.5rem 250px;
 		height: 100%;
 		text-align: center;
-		overflow-x: hidden !important;
-		overflow-y: hidden !important;
 
 		&--item{
-			overflow: hidden;
+			
+			&[data-anchor="step-chargeload"]{display: none;&.show{display: block;}}
+
+			&[data-anchor="step-qcontainers"]{display: none;&.show{display: block;}}
+
+			&[data-anchor="step-chargedata"]{display: none;&.show{display: block;}}
+
+			&[data-anchor="step-merchandisedata"]{display: none;&.show{display: block;}}
+
+			&[data-anchor="step-insuremerchandise"]{display: none;&.show{display: block;}}
+
+			&[data-anchor="step-customsclearance"]{display: none;&.show{display: block;}}
+
+			&[data-anchor="step-requirespickup"]{display: none;&.show{display: block;}}
+
+			&[data-anchor="step-pickuplocation"]{display: none;&.show{display: block;}}
 
 			/* CONTENIDO DEL TÍTULO */			
 			&--cTitle{
@@ -741,8 +754,9 @@
 			&--cBtnNextStep{
 				position: absolute;
 		    bottom: 12%;
-		    left: 0;
-		    width: 100%;
+		    left: 50%;
+		    transform: translateX(-50%);
+		    width: auto;
 		    margin: 0 auto;
 
 				button{

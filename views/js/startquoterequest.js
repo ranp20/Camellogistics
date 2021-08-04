@@ -28,12 +28,15 @@ const sectionsSteps = new fullpage('#fullpage', {
   				 'step-pickuplocation'],
   verticalCentered: false,
   scrollingSpeed: 400,
-  autoScrolling: false,
+  autoScrolling: true,
+  keyboardScrolling: false,
+  //lockAnchors: true,
+  loopTop: false,
+  loopBottom: false,
 });
 /************************** OCULTAR LOS DEMÁS PASOS **************************/
 function hiddenAllNextSteps(){
-  $("#fullpage").css({"overflow":"hidden"});
-  sectionsSteps.setAllowScrolling(false);
+  sectionsSteps.setKeyboardScrolling(false);
 }
 /************************** LISTAR EL PUERTO DE ORIGEN Y EL PUERTO DE DESTINO **************************/
 function listPortOriginandDestiny(){
@@ -51,13 +54,14 @@ function listPortOriginandDestiny(){
 =            									2. ELEGIR EL TIPO DE OPERACIÓN            									=
 =========================================================================================*/
 $(document).on("click", "#list-typeOperationItems li", function(){
+	$(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-chargeload]").addClass("show");
 	sectionsSteps.setAutoScrolling(true);
 	sectionsSteps.setAllowScrolling(true);
 	var tTypeOperation = $(this).index();
 	if(tTypeOperation == 0){
     /************************** MOSTRAR EL SIGUIENTE PASO **************************/
 		sectionsSteps.moveTo('step-chargeload', 1);
-		$(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-chargeload]").html(`
+    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-chargeload]").html(`
 			<div class="cont-MainCamelLog--c--contSteps--item--cTitle">
         <h3 class="cont-MainCamelLog--c--contSteps--item--cTitle--title">Tipo de carga</h3>
       </div>
@@ -132,11 +136,12 @@ $(document).on("click", "#list-typeOperationItems li", function(){
 =            									3. ELEGIR EL TIPO DE CARGA            									  =
 =========================================================================================*/
 $(document).on("click", "#list-typeChargeLoadItems li", function(){
+	$(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-qcontainers]").addClass("show");
 	var tTypeChargeLoad = $(this).index();
 	if(tTypeChargeLoad == 0){
     /************************** MOSTRAR EL SIGUIENTE PASO **************************/
 		sectionsSteps.moveTo('step-qcontainers', 1);
-		$(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-qcontainers]").html(`
+    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-qcontainers]").html(`
 			<div class="cont-MainCamelLog--c--contSteps--item--cTitle">
         <h3 class="cont-MainCamelLog--c--contSteps--item--cTitle--title">Contenedores</h3>
       </div>
@@ -341,6 +346,7 @@ $(document).on("click", "#btn-NextStepToChargeLoad", function(){
      $("#c-incdecBtns40").find("input").val() != 0 && $("#c-incdecBtns40").find("input").val() != "" ||
      $("#c-incdecBtns40-hc").find("input").val() != 0 && $("#c-incdecBtns40-hc").find("input").val() != ""){
     
+    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-chargedata]").addClass("show");
     /************************** MOSTRAR EL SIGUIENTE PASO **************************/
     sectionsSteps.moveTo('step-chargedata', 1);
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-chargedata]").html(`
@@ -778,6 +784,9 @@ $(document).on("click", "#btn-NextStepTochargedata", function(){
      $("#val-iptWeightNInterface").val() != 0 && $("#val-iptWeightNInterface").val() != "" &&
      $("#val-iptVolumeNInterface").val() != 0 && $("#val-iptVolumeNInterface").val() != ""){
 
+    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-merchandisedata]").addClass("show");
+
+    /************************** MOSTRAR EL SIGUIENTE PASO **************************/
     sectionsSteps.moveTo('step-merchandisedata', 1);
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-merchandisedata]").html(`
       <div class="cont-MainCamelLog--c--contSteps--item--cTitle">
@@ -880,17 +889,16 @@ function listProductsUser(searchVal){
 }
 /************************** MOSTRAR EL LISTADO DE TIPOS DE PRODUCTOS **************************/
 $(document).on("focus", "#ipt-valNameTypeProdNInterface", function(){
-	$("#m-listAllNamTypeProds").addClass("show");listProductsUser();
-	sectionsSteps.setAutoScrolling(false);
-  var thisIptTypeProd = $(this).val();
-  if(thisIptTypeProd == "" || thisIptTypeProd == 0){
-    setTimeout(function(){
-      $("#m-listAllNamTypeProds").removeClass("show");
-    }, 4500);
+	$("#m-listAllNamTypeProds").addClass("show");
+  listProductsUser();
+  var menuListNTypeProds = document.querySelector("#m-listAllNamTypeProds");
+  if(menuListNTypeProds.classList.contains("show")){
+    sectionsSteps.setAutoScrolling(false);
+    console.log('Tiene la clase');
+  }else{
+    console.log('No tiene la clase');
+    sectionsSteps.setAutoScrolling(true);
   }
-});
-$(document).on("blur", "#ipt-valNameTypeProdNInterface", function(){
-	sectionsSteps.setAutoScrolling(true);
 });
 $(document).on("keyup", "#ipt-valNameTypeProdNInterface", function(){
   $("#m-listAllNamTypeProds").addClass("show");
@@ -953,6 +961,8 @@ $(document).on("click", "#btn-NextStepTomerchandisedata", function(){
      $("#ipt-valNameTypeProdNInterface").attr("idproduct") &&
      $("#ipt-valPriceProdNInterface").val() != "" && $("#ipt-valPriceProdNInterface").val() != 0){
 
+    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-insuremerchandise]").addClass("show");
+    /************************** MOSTRAR EL SIGUIENTE PASO **************************/
     sectionsSteps.moveTo('step-insuremerchandise', 1);
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-insuremerchandise]").html(`
       <div class="cont-MainCamelLog--c--contSteps--item--cTitle">
@@ -988,8 +998,10 @@ $(document).on("click", "#btn-NextStepTomerchandisedata", function(){
 =                     7. AGREGAR O NO SEGURO DE MERCANCÍA                           =
 ====================================================================================*/
 $(document).on("click", "#list-insuremerchandise li", function(){
+  $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-customsclearance]").addClass("show");
   var tinsuremerchandise = $(this).index();
   if(tinsuremerchandise == 0){
+    /************************** MOSTRAR EL SIGUIENTE PASO **************************/
     sectionsSteps.moveTo('step-customsclearance', 1);
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-customsclearance]").html(`
       <div class="cont-MainCamelLog--c--contSteps--item--cTitle">
@@ -1017,6 +1029,7 @@ $(document).on("click", "#list-insuremerchandise li", function(){
       </div>
     `);
   }else{
+    /************************** MOSTRAR EL SIGUIENTE PASO **************************/
     sectionsSteps.moveTo('step-customsclearance', 1);
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-customsclearance]").html(`
       <div class="cont-MainCamelLog--c--contSteps--item--cTitle">
@@ -1049,8 +1062,10 @@ $(document).on("click", "#list-insuremerchandise li", function(){
 =                     8. AGREGAR DESPACHO DE ADUANAS                                =
 ====================================================================================*/
 $(document).on("click", "#list-customsclearance li", function(){
+  $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-requirespickup]").addClass("show");
   var tcustomsclearance = $(this).index();
   if(tcustomsclearance == 0){
+    /************************** MOSTRAR EL SIGUIENTE PASO **************************/
     sectionsSteps.moveTo('step-requirespickup', 1);
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-requirespickup]").html(`
       <div class="cont-MainCamelLog--c--contSteps--item--cTitle">
@@ -1079,6 +1094,7 @@ $(document).on("click", "#list-customsclearance li", function(){
       <div class="cont-MainCamelLog--c--contSteps--item--cBtnNextStep"></div>
     `);
   }else{
+    /************************** MOSTRAR EL SIGUIENTE PASO **************************/
     sectionsSteps.moveTo('step-requirespickup', 1);
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-requirespickup]").html(`
       <div class="cont-MainCamelLog--c--contSteps--item--cTitle">
@@ -1114,6 +1130,7 @@ $(document).on("click", "#list-customsclearance li", function(){
 $(document).on("click", "#list-requirespickup li", function(){
   var trequirespickup = $(this).index();
   if(trequirespickup == 0){
+    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-pickuplocation]").addClass("show");
     sectionsSteps.moveTo('step-pickuplocation', 1);
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-pickuplocation]").html(`
       <div class="cont-MainCamelLog--c--contSteps--item--cTitle">
@@ -1141,6 +1158,7 @@ $(document).on("click", "#list-requirespickup li", function(){
     `);
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-requirespickup] .cont-MainCamelLog--c--contSteps--item--cBtnNextStep").html("");
   }else{
+    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-pickuplocation]").removeClass("show");
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-pickuplocation]").html("");
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-requirespickup] .cont-MainCamelLog--c--contSteps--item--cBtnNextStep").html(`
       <button type="button" class="cont-MainCamelLog--c--contSteps--item--cBtnNextStep--btn" id="btn-NextStepTomerchandisedata">

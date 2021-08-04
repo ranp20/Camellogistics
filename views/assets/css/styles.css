@@ -655,6 +655,7 @@ img {
   font-size: 1.25rem;
   font-weight: 600;
 }
+/************************** HEADER TOP - PÁGINAS PRINCIPALES **************************/
 #c-HTop-camel {
   position: fixed;
   z-index: 9999999;
@@ -790,6 +791,40 @@ img {
     font-size: 1rem;
     padding: 0;
   }
+}
+
+/************************** HEADER TOP - PÁGINA DE COTIZACIÓN **************************/
+#c-HTopQuotation-camel {
+  position: fixed;
+  z-index: 9999999;
+  width: 100%;
+  top: 0;
+  left: 0;
+  background-color: #fff;
+  min-height: 4.5rem;
+  border-bottom: thin solid #cccc;
+}
+#c-HTopQuotation-camel .c-Htopbar--c {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.65rem;
+}
+#c-HTopQuotation-camel .c-Htopbar--c--cLogo {
+  width: 7rem;
+  height: auto;
+}
+#c-HTopQuotation-camel .c-Htopbar--c--cLogo a {
+  display: table;
+}
+#c-HTopQuotation-camel .c-Htopbar--c--cLogo a img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
 }
 
 /* HOJAS DE ESTILOS PARA LA CALCULADORA */
@@ -3057,14 +3092,59 @@ img {
   padding: 0.5rem 0.5rem 0.5rem 250px;
   height: 100%;
   text-align: center;
-  overflow-x: hidden !important;
-  overflow-y: hidden !important;
 }
 .cont-MainCamelLog--c--contSteps--item {
-  overflow: hidden;
   /* CONTENIDO DEL TÍTULO */
   /* CONTENIDO DEL PASO */
   /* CONTENIDO - BOTÓN DE PASO SIGUIENTE */
+}
+.cont-MainCamelLog--c--contSteps--item[data-anchor=step-chargeload] {
+  display: none;
+}
+.cont-MainCamelLog--c--contSteps--item[data-anchor=step-chargeload].show {
+  display: block;
+}
+.cont-MainCamelLog--c--contSteps--item[data-anchor=step-qcontainers] {
+  display: none;
+}
+.cont-MainCamelLog--c--contSteps--item[data-anchor=step-qcontainers].show {
+  display: block;
+}
+.cont-MainCamelLog--c--contSteps--item[data-anchor=step-chargedata] {
+  display: none;
+}
+.cont-MainCamelLog--c--contSteps--item[data-anchor=step-chargedata].show {
+  display: block;
+}
+.cont-MainCamelLog--c--contSteps--item[data-anchor=step-merchandisedata] {
+  display: none;
+}
+.cont-MainCamelLog--c--contSteps--item[data-anchor=step-merchandisedata].show {
+  display: block;
+}
+.cont-MainCamelLog--c--contSteps--item[data-anchor=step-insuremerchandise] {
+  display: none;
+}
+.cont-MainCamelLog--c--contSteps--item[data-anchor=step-insuremerchandise].show {
+  display: block;
+}
+.cont-MainCamelLog--c--contSteps--item[data-anchor=step-customsclearance] {
+  display: none;
+}
+.cont-MainCamelLog--c--contSteps--item[data-anchor=step-customsclearance].show {
+  display: block;
+}
+.cont-MainCamelLog--c--contSteps--item[data-anchor=step-requirespickup] {
+  display: none;
+}
+.cont-MainCamelLog--c--contSteps--item[data-anchor=step-requirespickup].show {
+  display: block;
+}
+.cont-MainCamelLog--c--contSteps--item[data-anchor=step-pickuplocation] {
+  display: none;
+}
+.cont-MainCamelLog--c--contSteps--item[data-anchor=step-pickuplocation].show {
+  display: block;
 }
 .cont-MainCamelLog--c--contSteps--item--cTitle {
   padding-top: 2rem;
@@ -3639,8 +3719,9 @@ img {
 .cont-MainCamelLog--c--contSteps--item--cBtnNextStep {
   position: absolute;
   bottom: 12%;
-  left: 0;
-  width: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: auto;
   margin: 0 auto;
 }
 .cont-MainCamelLog--c--contSteps--item--cBtnNextStep button {
