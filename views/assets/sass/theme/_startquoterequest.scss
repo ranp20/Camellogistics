@@ -205,6 +205,10 @@
 							img{
 							}
 
+							&:hover > img{
+								opacity: .4;
+							}
+
 							&:hover &--ctooltipR{
 								display: block;
 								pointer-events: auto;

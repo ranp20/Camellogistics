@@ -3252,6 +3252,9 @@ img {
   cursor: pointer;
   margin-bottom: 0.5rem;
 }
+.cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cImg:hover > img {
+  opacity: 0.4;
+}
 .cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cImg:hover .cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cImg--ctooltipR {
   display: block;
   pointer-events: auto;
