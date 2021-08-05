@@ -3240,12 +3240,221 @@ img {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 3rem;
+  gap: 1rem;
   padding: 0 1rem;
   /* ITEMS - CONTAINERS */
 }
 .cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item {
-  width: calc(100% * 1/3);
+  width: calc(100% * 1/4);
+  position: relative;
+}
+.cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cImg {
+  cursor: pointer;
+  margin-bottom: 0.5rem;
+}
+.cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cImg:hover .cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cImg--ctooltipR {
+  display: block;
+  pointer-events: auto;
+}
+.cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cImg:hover .cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cImg--ctooltipL {
+  display: block;
+  pointer-events: auto;
+}
+.cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cImg--ctooltipR {
+  position: absolute;
+  background-color: #fff;
+  box-shadow: 0 4px 10px 1px rgba(0, 0, 0, 0.4);
+  border-radius: 0.5rem;
+  overflow: hidden;
+  z-index: 9;
+  top: -90px;
+  right: -110%;
+  min-width: 330px;
+  max-width: 420px;
+  width: 100%;
+  transition: opacity 0.4s;
+  opacity: 0;
+  transform: translateY(-200%);
+  display: none;
+  pointer-events: none;
+  animation-name: moveToTopTooltip;
+  animation-duration: 0.4s;
+  animation-timing-function: ease-in-out;
+  animation-fill-mode: forwards;
+}
+@keyframes moveToTopTooltip {
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cImg--ctooltipR--cTitle {
+  background-color: #B58440;
+  color: #fff;
+  padding: 0.8rem 0.5rem;
+}
+.cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cImg--ctooltipR--cTitle--title {
+  font-weight: 600;
+  font-size: 1rem;
+  margin: 0;
+}
+.cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cImg--ctooltipR--cDetailCont--item {
+  display: grid;
+  align-items: center;
+  margin: 0;
+  font-size: 0.75rem;
+  grid-template-columns: 1fr 1fr;
+  text-align: center;
+}
+.cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cImg--ctooltipR--cDetailCont--item span {
+  margin: 0 auto;
+  text-align: center;
+  padding: 0.2rem;
+  color: #666;
+}
+.cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cImg--ctooltipR--cDetailCont--item:first-child {
+  background-color: #eeee;
+}
+.cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cImg--ctooltipR--cMediumText {
+  background-color: #B58440;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: #fff;
+  padding: 0.5rem;
+}
+.cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cImg--ctooltipR--cMediumText span {
+  letter-spacing: 0.1rem;
+}
+.cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cImg--ctooltipR--cDetailsB--m {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  margin-bottom: 0.5rem;
+}
+.cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cImg--ctooltipR--cDetailsB--m--item {
+  padding: 0;
+  margin: 0;
+  font-size: 0.75rem;
+}
+.cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cImg--ctooltipR--cDetailsB--m--item p {
+  margin: 0;
+  padding: 0.2rem;
+  color: #666;
+}
+.cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cImg--ctooltipR--cDetailsB--m--item span {
+  display: block;
+  padding: 0.2rem;
+  color: #666;
+}
+.cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cImg--ctooltipR--cDetailsB--m--item span:nth-child(2) {
+  background-color: #eeee;
+}
+.cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cImg--ctooltipR--cNote {
+  background-color: red;
+  color: #fff;
+  padding: 0.85rem 0.85rem 1rem 0.85rem;
+  line-height: 1.2;
+  text-align: left;
+}
+.cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cImg--ctooltipR--cNote span {
+  font-size: 0.8rem;
+}
+.cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cImg--ctooltipL {
+  position: absolute;
+  background-color: #fff;
+  box-shadow: 0 4px 10px 1px rgba(0, 0, 0, 0.4);
+  border-radius: 0.5rem;
+  overflow: hidden;
+  z-index: 9;
+  top: -90px;
+  left: -110%;
+  min-width: 330px;
+  max-width: 420px;
+  width: 100%;
+  transition: opacity 0.4s;
+  opacity: 0;
+  transform: translateY(-200%);
+  display: none;
+  pointer-events: none;
+  animation-name: moveToTopTooltip;
+  animation-duration: 0.4s;
+  animation-timing-function: ease-in-out;
+  animation-fill-mode: forwards;
+}
+@keyframes moveToTopTooltip {
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cImg--ctooltipL--cTitle {
+  background-color: #B58440;
+  color: #fff;
+  padding: 0.8rem 0.5rem;
+}
+.cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cImg--ctooltipL--cTitle--title {
+  font-weight: 600;
+  font-size: 1rem;
+  margin: 0;
+}
+.cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cImg--ctooltipL--cDetailCont--item {
+  display: grid;
+  align-items: center;
+  margin: 0;
+  font-size: 0.75rem;
+  grid-template-columns: 1fr 1fr;
+  text-align: center;
+}
+.cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cImg--ctooltipL--cDetailCont--item span {
+  margin: 0 auto;
+  text-align: center;
+  padding: 0.2rem;
+  color: #666;
+}
+.cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cImg--ctooltipL--cDetailCont--item:first-child {
+  background-color: #eeee;
+}
+.cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cImg--ctooltipL--cMediumText {
+  background-color: #B58440;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: #fff;
+  padding: 0.5rem;
+}
+.cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cImg--ctooltipL--cMediumText span {
+  letter-spacing: 0.1rem;
+}
+.cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cImg--ctooltipL--cDetailsB--m {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  margin-bottom: 0.5rem;
+}
+.cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cImg--ctooltipL--cDetailsB--m--item {
+  padding: 0;
+  margin: 0;
+  font-size: 0.75rem;
+}
+.cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cImg--ctooltipL--cDetailsB--m--item p {
+  margin: 0;
+  padding: 0.2rem;
+  color: #666;
+}
+.cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cImg--ctooltipL--cDetailsB--m--item span {
+  display: block;
+  padding: 0.2rem;
+  color: #666;
+}
+.cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cImg--ctooltipL--cDetailsB--m--item span:nth-child(2) {
+  background-color: #eeee;
+}
+.cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cImg--ctooltipL--cNote {
+  background-color: red;
+  color: #fff;
+  padding: 0.85rem 0.85rem 1rem 0.85rem;
+  line-height: 1.2;
+  text-align: left;
+}
+.cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cImg--ctooltipL--cNote span {
+  font-size: 0.8rem;
 }
 .cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cC--label {
   color: #B58440;

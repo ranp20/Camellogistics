@@ -219,8 +219,48 @@ $(document).on("click", "#list-typeChargeLoadItems li", function(){
       <div class="cont-MainCamelLog--c--contSteps--item--cStep">
         <div class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems">
           <div class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item">
-            <div class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cImg">
+            <div class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cImg" id="info-tooltip20">
               <img src="views/assets/img/steps/20.png" alt="">
+              <div class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cImg--ctooltipR">
+                <div class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cImg--ctooltipR--cTitle">
+                  <h3 class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cImg--ctooltipR--cTitle--title">20' STANDARD</h3>
+                </div>
+                <div class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cImg--ctooltipR--cImg">
+                  <img src="views/assets/img/steps/20std.png" alt="">
+                </div>
+                <div class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cImg--ctooltipR--cDetailCont">
+                  <p class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cImg--ctooltipR--cDetailCont--item">
+                    <span>PESO MAX. PERMITIDO</span>
+                    <span>26 TONELADAS</span>
+                  </p>
+                  <p class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cImg--ctooltipR--cDetailCont--item">
+                    <span>VOL. MAX. CARGABLE</span>
+                    <span>33 M³</span>
+                  </p>
+                </div>
+                <div class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cImg--ctooltipR--cMediumText">
+                  <span>MEDIDAS INTERNAS CONTENEDOR</span>
+                </div>
+                <div class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cImg--ctooltipR--cDetailsB">
+                  <ul class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cImg--ctooltipR--cDetailsB--m">
+                    <li class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cImg--ctooltipR--cDetailsB--m--item">
+                      <p>LARGO</p>
+                      <span>5.89 MTS</span>
+                    </li>
+                    <li class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cImg--ctooltipR--cDetailsB--m--item">
+                      <p>ANCHO</p>
+                      <span>2.35 MTS</span>
+                    </li>
+                    <li class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cImg--ctooltipR--cDetailsB--m--item">
+                      <p>ALTO</p>
+                      <span>2.38 MTS</span>
+                    </li>
+                  </ul>
+                </div>
+                <div class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cImg--ctooltipR--cNote">
+                  <span><b>NOTA: </b>El peso máximo permitido variará de acuerdo a las normativas establecidas de cada naviera.</span>
+                </div>
+              </div>
             </div>
             <div class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cC">
               <label for="" class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cC--label">20'</label>
@@ -232,8 +272,48 @@ $(document).on("click", "#list-typeChargeLoadItems li", function(){
             </div>
           </div>
           <div class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item">
-            <div class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cImg">
+            <div class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cImg" id="info-tooltip40">
               <img src="views/assets/img/steps/40.png" alt="">
+              <div class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cImg--ctooltipR">
+                <div class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cImg--ctooltipR--cTitle">
+                  <h3 class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cImg--ctooltipR--cTitle--title">40' STANDARD</h3>
+                </div>
+                <div class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cImg--ctooltipR--cImg">
+                  <img src="views/assets/img/steps/40std.png" alt="">
+                </div>
+                <div class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cImg--ctooltipR--cDetailCont">
+                  <p class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cImg--ctooltipR--cDetailCont--item">
+                    <span>PESO MAX. PERMITIDO</span>
+                    <span>26 TONELADAS</span>
+                  </p>
+                  <p class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cImg--ctooltipR--cDetailCont--item">
+                    <span>VOL. MAX. CARGABLE</span>
+                    <span>67 M³</span>
+                  </p>
+                </div>
+                <div class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cImg--ctooltipR--cMediumText">
+                  <span>MEDIDAS INTERNAS CONTENEDOR</span>
+                </div>
+                <div class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cImg--ctooltipR--cDetailsB">
+                  <ul class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cImg--ctooltipR--cDetailsB--m">
+                    <li class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cImg--ctooltipR--cDetailsB--m--item">
+                      <p>LARGO</p>
+                      <span>12.03 MTS</span>
+                    </li>
+                    <li class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cImg--ctooltipR--cDetailsB--m--item">
+                      <p>ANCHO</p>
+                      <span>2.35 MTS</span>
+                    </li>
+                    <li class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cImg--ctooltipR--cDetailsB--m--item">
+                      <p>ALTO</p>
+                      <span>2.38 MTS</span>
+                    </li>
+                  </ul>
+                </div>
+                <div class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cImg--ctooltipR--cNote">
+                  <span><b>NOTA: </b>El peso máximo permitido variará de acuerdo a las normativas establecidas de cada naviera.</span>
+                </div>
+              </div>
             </div>
             <div class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cC">
               <label for="" class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cC--label">40'</label>
@@ -245,12 +325,105 @@ $(document).on("click", "#list-typeChargeLoadItems li", function(){
             </div>
           </div>
           <div class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item">
-            <div class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cImg">
+            <div class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cImg" id="info-tooltip40-hq">
               <img src="views/assets/img/steps/40-hc.png" alt="">
+              <div class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cImg--ctooltipL">
+                <div class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cImg--ctooltipL--cTitle">
+                  <h3 class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cImg--ctooltipL--cTitle--title">40' HQ</h3>
+                </div>
+                <div class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cImg--ctooltipL--cImg">
+                  <img src="views/assets/img/steps/40hq.png" alt="">
+                </div>
+                <div class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cImg--ctooltipL--cDetailCont">
+                  <p class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cImg--ctooltipL--cDetailCont--item">
+                    <span>PESO MAX. PERMITIDO</span>
+                    <span>26 TONELADAS</span>
+                  </p>
+                  <p class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cImg--ctooltipL--cDetailCont--item">
+                    <span>VOL. MAX. CARGABLE</span>
+                    <span>76 M³</span>
+                  </p>
+                </div>
+                <div class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cImg--ctooltipL--cMediumText">
+                  <span>MEDIDAS INTERNAS CONTENEDOR</span>
+                </div>
+                <div class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cImg--ctooltipL--cDetailsB">
+                  <ul class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cImg--ctooltipL--cDetailsB--m">
+                    <li class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cImg--ctooltipL--cDetailsB--m--item">
+                      <p>LARGO</p>
+                      <span>12.03 MTS</span>
+                    </li>
+                    <li class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cImg--ctooltipL--cDetailsB--m--item">
+                      <p>ANCHO</p>
+                      <span>2.35 MTS</span>
+                    </li>
+                    <li class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cImg--ctooltipL--cDetailsB--m--item">
+                      <p>ALTO</p>
+                      <span>2.69 MTS</span>
+                    </li>
+                  </ul>
+                </div>
+                <div class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cImg--ctooltipL--cNote">
+                  <span><b>NOTA: </b>El peso máximo permitido variará de acuerdo a las normativas establecidas de cada naviera.</span>
+                </div>
+              </div>
             </div>
             <div class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cC">
               <label for="" class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cC--label">40' HQ</label>
               <div class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cC--control" id="c-incdecBtns40-hc">
+                <button type="button" class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cC--control--btn">-</button>
+                <input type="number" class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cC--control--input" maxlength="16" value="0" min="0" max="50">
+                <button type="button" class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cC--control--btn">+</button>
+              </div>
+            </div>
+          </div>
+          <div class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item">
+            <div class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cImg" id="info-tooltip40-nor">
+              <img src="views/assets/img/steps/40-hc.png" alt="">
+              <div class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cImg--ctooltipL">
+                <div class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cImg--ctooltipL--cTitle">
+                  <h3 class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cImg--ctooltipL--cTitle--title">40' NOR</h3>
+                </div>
+                <div class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cImg--ctooltipL--cImg">
+                  <img src="views/assets/img/steps/40nor.png" alt="">
+                </div>
+                <div class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cImg--ctooltipL--cDetailCont">
+                  <p class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cImg--ctooltipL--cDetailCont--item">
+                    <span>PESO MAX. PERMITIDO</span>
+                    <span>26 TONELADAS</span>
+                  </p>
+                  <p class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cImg--ctooltipL--cDetailCont--item">
+                    <span>VOL. MAX. CARGABLE</span>
+                    <span>48 M³</span>
+                  </p>
+                </div>
+                <div class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cImg--ctooltipL--cMediumText">
+                  <span>MEDIDAS INTERNAS CONTENEDOR</span>
+                </div>
+                <div class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cImg--ctooltipL--cDetailsB">
+                  <ul class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cImg--ctooltipL--cDetailsB--m">
+                    <li class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cImg--ctooltipL--cDetailsB--m--item">
+                      <p>LARGO</p>
+                      <span>12.03 MTS</span>
+                    </li>
+                    <li class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cImg--ctooltipL--cDetailsB--m--item">
+                      <p>ANCHO</p>
+                      <span>2.35 MTS</span>
+                    </li>
+                    <li class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cImg--ctooltipL--cDetailsB--m--item">
+                      <p>ALTO</p>
+                      <span>2.38 MTS</span>
+                    </li>
+                  </ul>
+                </div>
+                <div class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cImg--ctooltipL--cNote">
+                  <span><b>NOTA: </b>Es un contenedor con un equipo de refrigeración interno que está apagado, el cual se utiliza para cargas de menor volumen ya qu tienes 10 M³ menos que el 40 ST debido al equipo que tiene internamente.</span>
+                </div>
+              </div>
+            </div>
+            <div class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cC">
+              <label for="" class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cC--label">40' NOR</label>
+              <div class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cC--control" id="c-incdecBtns40-nor">
                 <button type="button" class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cC--control--btn">-</button>
                 <input type="number" class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cC--control--input" maxlength="16" value="0" min="0" max="50">
                 <button type="button" class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cC--control--btn">+</button>
@@ -280,67 +453,41 @@ $(document).on("click", "#list-typeChargeLoadItems li", function(){
     $(".cont-MainCamelLog--c--contResumeCalc--item--cardStep--cIconStepLeft[data-merchandise=rsm-typecharge]").find("img").attr("src", v_TypeChargeImgSrc);
     $(".cont-MainCamelLog--c--contResumeCalc--item--cardStep--cIconStepLeft[data-merchandise=rsm-typecharge]").find("span").text(v_TypeChargeName);
     /************************** MOSTRAR EL SIGUIENTE PASO **************************/
-		sectionsSteps.moveTo('step-qcontainers', 1);
-		$(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-qcontainers]").html(`
-			<div class="cont-MainCamelLog--c--contSteps--item--cTitle">
-        <h3 class="cont-MainCamelLog--c--contSteps--item--cTitle--title">Contenedores</h3>
+    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-qcontainers]").html("");
+    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-qcontainers]").removeClass("show");
+		$(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-chargedata]").addClass("show");
+    /************************** MOSTRAR EL SIGUIENTE PASO **************************/
+    sectionsSteps.moveTo('step-chargedata', 1);
+    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-chargedata]").html(`
+      <div class="cont-MainCamelLog--c--contSteps--item--cTitle">
+        <h3 class="cont-MainCamelLog--c--contSteps--item--cTitle--title">Dimensiones de carga</h3>
       </div>
       <div class="cont-MainCamelLog--c--contSteps--item--cStep">
-        <div class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems">
-          <div class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item">
-            <div class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cImg">
-              <img src="views/assets/img/steps/20.png" alt="">
-            </div>
-            <div class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cC">
-              <label for="" class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cC--label">20'</label>
-              <div class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cC--control" id="c-incdecBtns20">
-                <button type="button" class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cC--control--btn">-</button>
-                <input type="number" class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cC--control--input" maxlength="16" value="0" min="0" max="50">
-                <button type="button" class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cC--control--btn">+</button>
-              </div>
-            </div>
+        <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControls">
+          <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControls--cControl">
+            <label for="" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControls--cControl--label">BULTOS</label>
+            <input type="number" id="val-iptPackagesNInterface" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControls--cControl--input">
           </div>
-          <div class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item">
-            <div class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cImg">
-              <img src="views/assets/img/steps/40.png" alt="">
-            </div>
-            <div class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cC">
-              <label for="" class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cC--label">40'</label>
-              <div class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cC--control" id="c-incdecBtns40">
-                <button type="button" class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cC--control--btn">-</button>
-                <input type="number" class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cC--control--input" maxlength="16" value="0" min="0" max="50">
-                <button type="button" class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cC--control--btn">+</button>
-              </div>
-            </div>
+          <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControls--cControl">
+            <label for="" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControls--cControl--label">PESO (KG)</label>
+            <input type="text" id="val-iptWeightNInterface" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControls--cControl--input" maxlength="11">
           </div>
-          <div class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item">
-            <div class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cImg">
-              <img src="views/assets/img/steps/40-hc.png" alt="">
-            </div>
-            <div class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cC">
-              <label for="" class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cC--label">40' HQ</label>
-              <div class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cC--control" id="c-incdecBtns40-hc">
-                <button type="button" class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cC--control--btn">-</button>
-                <input type="number" class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cC--control--input" maxlength="16" value="0" min="0" max="50">
-                <button type="button" class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cC--control--btn">+</button>
-              </div>
-            </div>
+          <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControls--cControl">
+            <label for="" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControls--cControl--label">VOLUMEN (M³)</label>
+            <input type="number" id="val-iptVolumeNInterface" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControls--cControl--input" maxlength="13">
           </div>
-        </div>
-        <div class="cont-MainCamelLog--c--contSteps--item--cStep--cBtnSwitch">
-          <label for="chck-containerfreeze" class="cont-MainCamelLog--c--contSteps--item--cStep--cBtnSwitch--cSwitch" switch-CFreeze="NO">
-            <input type="checkbox" id="chck-containerfreeze" class="cont-MainCamelLog--c--contSteps--item--cStep--cBtnSwitch--cSwitch--chck">
-          </label>
-          <span>¿Necesitas contenedores refrigerados?</span>
+          <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControls--cBtnModalCalculator" id="link-showModalCalcVolum">
+            <span>AYUDA - ¡CALCULAR VOLUMEN (M³) AQUÍ!</span>
+          </a>
         </div>
       </div>
       <div class="cont-MainCamelLog--c--contSteps--item--cBtnNextStep">
-        <button type="button" class="cont-MainCamelLog--c--contSteps--item--cBtnNextStep--btn" id="btn-NextStepToChargeLoad">
+        <button type="button" class="cont-MainCamelLog--c--contSteps--item--cBtnNextStep--btn" id="btn-NextStepTochargedata">
           <span>Seguir</span>
           <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 100 125" enable-background="new 0 0 100 100" xml:space="preserve"><g><g><polygon points="19.318,43.363 19.318,61.189 49.497,95 79.675,61.189 79.675,43.363 49.497,77.174   "/><polygon points="50.504,38.811 20.326,5 20.326,24.872 49.497,60.537 79.675,24.872 80.682,5   "/></g></g></svg>
         </button>
       </div>
-		`);
+    `); 
 	}
 });
 /*========================================================================================
@@ -425,6 +572,31 @@ $(document).on("click", "#c-incdecBtns40-hc button", function(){
     console.log('Sin acción');
   }
 });
+/************************** TERCERO INPUT **************************/
+$(document).on("click", "#c-incdecBtns40-nor button", function(){
+  var tindBtn = $(this).index();
+  var input40_nor = $(this).parent().find("input").val();
+  var newValipt40_nor = $(this).parent().find("input").val();
+  if(tindBtn == 2){
+    newValipt40_nor = parseInt(input40_nor) + 1;
+    $(this).parent().find("input").val(newValipt40_nor);
+    /************************** ASIGNAR VALORES A LA VARIABLE GLOBAL REFERENTE **************************/
+    v_QContainersName40_nor = $(this).parent().parent().find("label").text();
+    v_QContainersImgSrc40_nor = $(this).parent().parent().parent().find("div").find("img").attr("src");
+    v_QContainersValue40_nor = $(this).parent().find("input").val(newValipt40_nor);
+
+  }else if(tindBtn == 0){
+    if(input40_nor > 0){
+      newValipt40_nor = parseInt(input40_nor) - 1;
+      $(this).parent().find("input").val(newValipt40_nor);
+    }else{
+      newValipt40_nor = 0;
+      $(this).parent().find("input").val(newValipt40_nor);
+    }
+  }else{
+    console.log('Sin acción');
+  }
+});
 /************************** SWITCH DE CONTENEDORES REFRIGERADOS **************************/
 $(document).on("click", "#chck-containerfreeze", function(){
 	if($(this).is(":checked")){
@@ -439,7 +611,8 @@ $(document).on("click", "#chck-containerfreeze", function(){
 $(document).on("click", "#btn-NextStepToChargeLoad", function(){
   if($("#c-incdecBtns20").find("input").val() != 0 && $("#c-incdecBtns20").find("input").val() != "" || 
      $("#c-incdecBtns40").find("input").val() != 0 && $("#c-incdecBtns40").find("input").val() != "" ||
-     $("#c-incdecBtns40-hc").find("input").val() != 0 && $("#c-incdecBtns40-hc").find("input").val() != ""){
+     $("#c-incdecBtns40-hc").find("input").val() != 0 && $("#c-incdecBtns40-hc").find("input").val() != "" ||
+     $("#c-incdecBtns40-nor").find("input").val() != 0 && $("#c-incdecBtns40-nor").find("input").val() != ""){
     
     /************************** ASIGNAR AL RESUMEN DEL LISTADO **************************/
     $(".cont-MainCamelLog--c--contResumeCalc--item--cardStep--cIconStepLeft[data-merchandise=rsm-qcontainer]").find("img").attr("src", v_QContainersImgSrc20);
