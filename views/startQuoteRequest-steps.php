@@ -88,6 +88,8 @@
         <div class="cont-MainCamelLog--c--contSteps--item section" data-anchor="step-chargeload" data-transportquote></div>
         <!-- PASO #3 -->
         <div class="cont-MainCamelLog--c--contSteps--item section" data-anchor="step-qcontainers" data-transportquote></div>
+        <!-- PASO #3.5 -->
+        <div class="cont-MainCamelLog--c--contSteps--item section" data-anchor="step-integservorfleteinte" data-transportquote></div>
         <!-- PASO #4 -->
         <div class="cont-MainCamelLog--c--contSteps--item section" data-anchor="step-chargedata" data-transportquote></div>
         <!-- PASO #5 -->

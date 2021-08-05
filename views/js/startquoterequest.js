@@ -41,7 +41,8 @@ var v_ValTotalVolume = 0; // 4. VOLUMEN TOTAL
 const sectionsSteps = new fullpage('#fullpage', {
   anchors:['step-typeoperation',
   				 'step-chargeload', 
-  				 'step-qcontainers', 
+  				 'step-qcontainers',
+           'step-integservorfleteinte',
   				 'step-chargedata',
   				 'step-merchandisedata',
   				 'step-insuremerchandise',
@@ -439,7 +440,7 @@ $(document).on("click", "#list-typeChargeLoadItems li", function(){
         </div>
       </div>
       <div class="cont-MainCamelLog--c--contSteps--item--cBtnNextStep">
-        <button type="button" class="cont-MainCamelLog--c--contSteps--item--cBtnNextStep--btn" id="btn-NextStepToChargeLoad">
+        <button type="button" class="cont-MainCamelLog--c--contSteps--item--cBtnNextStep--btn" id="btn-NextStepToSelOptResultExp">
           <span>Seguir</span>
           <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 100 125" enable-background="new 0 0 100 100" xml:space="preserve"><g><g><polygon points="19.318,43.363 19.318,61.189 49.497,95 79.675,61.189 79.675,43.363 49.497,77.174   "/><polygon points="50.504,38.811 20.326,5 20.326,24.872 49.497,60.537 79.675,24.872 80.682,5   "/></g></g></svg>
         </button>
@@ -489,6 +490,96 @@ $(document).on("click", "#list-typeChargeLoadItems li", function(){
       </div>
     `); 
 	}
+});
+/************************** MOSTRAR EL PASO DE - ELIGE UNA OPCIÓN **************************/
+$(document).on("click", "#btn-NextStepToSelOptResultExp", function(){
+  $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-integservorfleteinte]").addClass("show");
+  /************************** MOSTRAR EL SIGUIENTE PASO **************************/
+  sectionsSteps.moveTo('step-integservorfleteinte', 1);
+  $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-integservorfleteinte]").html(`
+    <div class="cont-MainCamelLog--c--contSteps--item--cTitle">
+      <h3 class="cont-MainCamelLog--c--contSteps--item--cTitle--title">Eliga una opción</h3>
+    </div>
+    <div class="cont-MainCamelLog--c--contSteps--item--cStep">
+      <ul class="cont-MainCamelLog--c--contSteps--item--cStep--mOpts" id="list-SelOptionResultExp">
+        <li class="cont-MainCamelLog--c--contSteps--item--cStep--mOpts--item">
+          <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--mOpts--cardItem">
+            <h3>Opción 1</h3>
+            <p>AGREGAR SERVICIOS DE ADUANA EN DESTINO</p>
+          </a>
+        </li>
+        <li class="cont-MainCamelLog--c--contSteps--item--cStep--mOpts--item">
+          <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--mOpts--cardItem">
+            <h3>Opción 2</h3>
+            <p>NO AGREGAR SERVICIOS <b>"SOLO DESEEO FLETE"</b></p>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="cont-MainCamelLog--c--contSteps--item--cBtnNextStep"></div>
+  `);
+});
+$(document).on("click", "#list-SelOptionResultExp li", function(){
+  var tItemSelOptExp = $(this).index();
+  if(tItemSelOptExp == 0){
+    $(this).addClass("selected");
+    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-merchandisedata]").addClass("show");
+    /************************** MOSTRAR EL SIGUIENTE PASO **************************/
+    sectionsSteps.moveTo('step-merchandisedata', 1);
+    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-merchandisedata]").html(`
+      <div class="cont-MainCamelLog--c--contSteps--item--cTitle">
+        <h3 class="cont-MainCamelLog--c--contSteps--item--cTitle--title">Mercancía</h3>
+      </div>
+      <div class="cont-MainCamelLog--c--contSteps--item--cStep">
+        <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise">
+          <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC">
+            <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl">
+              <label for="" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl--label">CATEGORÍA</label>
+              <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl--cListChange">
+                <input type="text" id="ipt-valNameTypeProdNInterface" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl--cListChange--input" autocomplete="off">
+                <ul class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl--cListChange--m" id="m-listAllNamTypeProds"></ul>
+              </div>
+            </div>
+          </div>
+          <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC">
+            <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl">
+              <label for="" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl--label">VALOR</label>
+              <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl--cListChange">
+                <input type="text" id="ipt-valPriceProdNInterface" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl--cListChange--input" maxlength="13" autocomplete="off">
+              </div>
+            </div>
+          </div>
+          <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cBottom">
+            <label for="chck-importpreview" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cBottom--cSwitch" switch-CFreeze="NO">
+              <input type="checkbox" id="chck-importpreview" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cBottom--cSwitch--chck">
+            </label>
+            <span>¿Has realizado importaciones previamente?</span>
+          </div>
+        </div>
+      </div>
+      <div class="cont-MainCamelLog--c--contSteps--item--cBtnNextStep">
+        <button type="button" class="cont-MainCamelLog--c--contSteps--item--cBtnNextStep--btn" id="btn-NextStepTomerchandisedata">
+          <span>Seguir</span>
+          <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 100 125" enable-background="new 0 0 100 100" xml:space="preserve"><g><g><polygon points="19.318,43.363 19.318,61.189 49.497,95 79.675,61.189 79.675,43.363 49.497,77.174   "/><polygon points="50.504,38.811 20.326,5 20.326,24.872 49.497,60.537 79.675,24.872 80.682,5   "/></g></g></svg>
+        </button>
+      </div>
+    `);
+  }else{
+    $(this).addClass("selected");
+    /************************** OCULTAR - DIMENSIONES DE CARGA **************************/
+    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-chargedata]").removeClass("show");
+    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-chargedata]").html("");
+    /************************** OCULTAR - DATOS DE MERCANCÍA **************************/
+    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-merchandisedata]").removeClass("show");
+    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-merchandisedata]").html("");
+    /************************** MOSTRAR EL BOTÓN DE CALCULAR COTIZACIÓN **************************/
+    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-integservorfleteinte] .cont-MainCamelLog--c--contSteps--item--cBtnNextStep").html(`
+      <button type="button" class="cont-MainCamelLog--c--contSteps--item--cBtnNextStep--btn" id="btn-NextStepTomerchandisedata">
+        <span>CALCULAR COTIZACIÓN</span>
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 100 125" enable-background="new 0 0 100 100" xml:space="preserve"><g><g><polygon points="19.318,43.363 19.318,61.189 49.497,95 79.675,61.189 79.675,43.363 49.497,77.174   "></polygon><polygon points="50.504,38.811 20.326,5 20.326,24.872 49.497,60.537 79.675,24.872 80.682,5   "></polygon></g></g></svg>
+      </button>
+    `);
+  }
 });
 /*========================================================================================
 =           							 4. AÑADIR LA CANTIDAD DE CONTENEDORES            						 =
@@ -1369,7 +1460,7 @@ $(document).on("click", "#list-customsclearance li", function(){
     sectionsSteps.moveTo('step-requirespickup', 1);
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-requirespickup]").html(`
       <div class="cont-MainCamelLog--c--contSteps--item--cTitle">
-        <h3 class="cont-MainCamelLog--c--contSteps--item--cTitle--title">¿Necesitas Recogida?</h3>
+        <h3 class="cont-MainCamelLog--c--contSteps--item--cTitle--title">¿Necesitas Transporte?</h3>
       </div>
       <div class="cont-MainCamelLog--c--contSteps--item--cStep">
         <ul class="cont-MainCamelLog--c--contSteps--item--cStep--m" id="list-requirespickup">
@@ -1418,12 +1509,12 @@ $(document).on("click", "#list-requirespickup li", function(){
               </div>
             </div>
           </div>
-          <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation--cBottom">
+          <!--<div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation--cBottom">
             <label for="chck-insuremerchandise" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation--cBottom--cSwitch" switch-CFreeze="NO">
               <input type="checkbox" id="chck-insuremerchandise" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation--cBottom--cSwitch--chck">
             </label>
             <span>¿Quieres asegurar la mercancía?</span>
-          </div>
+          </div>-->
         </div>
       </div>
       <div class="cont-MainCamelLog--c--contSteps--item--cBtnNextStep"></div>
@@ -1443,16 +1534,16 @@ $(document).on("click", "#list-requirespickup li", function(){
 /*===================================================================================
 =	            				10. AGREGAR DATOS DE UBICACIÓN - RECOGIDA            					=
 ====================================================================================*/
-/************************** SWITCH DE IMPORTACIONES PREVIAS **************************/
-$(document).on("click", "#chck-insuremerchandise", function(){
-	if($(this).is(":checked")){
-		$(this).parent().addClass("active");
-		$(this).parent().attr("switch-CFreeze", "SÍ");
-	}else{
-		$(this).parent().removeClass("active");
-		$(this).parent().attr("switch-CFreeze", "NO");
-	}
-});
+/************************** SWITCH DE AGREGAR SEGURO **************************/
+// $(document).on("click", "#chck-insuremerchandise", function(){
+// 	if($(this).is(":checked")){
+// 		$(this).parent().addClass("active");
+// 		$(this).parent().attr("switch-CFreeze", "SÍ");
+// 	}else{
+// 		$(this).parent().removeClass("active");
+// 		$(this).parent().attr("switch-CFreeze", "NO");
+// 	}
+// });
 /************************** LISTAR LOS DISTRITOS POR ID DE PAÍS **************************/
 function listDistricsByCountry(searchVal){
   $.ajax({

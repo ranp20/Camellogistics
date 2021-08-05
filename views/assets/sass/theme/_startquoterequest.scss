@@ -123,6 +123,8 @@
 
 			&[data-anchor="step-qcontainers"]{display: none;&.show{display: block;}}
 
+			&[data-anchor="step-integservorfleteinte"]{display: none;&.show{display: block;}}
+
 			&[data-anchor="step-chargedata"]{display: none;&.show{display: block;}}
 
 			&[data-anchor="step-merchandisedata"]{display: none;&.show{display: block;}}
@@ -183,6 +185,72 @@
 
 						p{
 							font-size: 1.1rem;
+						}
+					}
+				}
+
+				/* LISTADO DE ITEMS - ELIGE UNA OPCIÓN */
+				&--mOpts{
+					display: flex;
+					align-items: flex-start;
+					justify-content: center;
+					gap: 2rem;
+					&--item{
+
+						&.selected{
+							.cont-MainCamelLog--c--contSteps--item--cStep--mOpts--cardItem{
+								opacity: 1;
+							}
+						}
+
+						&:first-child{
+							.cont-MainCamelLog--c--contSteps--item--cStep--mOpts--cardItem{
+								background-color: $primary-color;
+								color: #fff;
+							}
+						}
+
+						&:nth-child(2){
+							.cont-MainCamelLog--c--contSteps--item--cStep--mOpts--cardItem{
+								color: $primary-color;
+								border: 1px solid $primary-color;
+
+								&:hover{
+									border: 1px solid #000;
+									opacity: 1;		
+								}
+							}
+						}
+					}
+	
+					&--cardItem{
+						display: block;
+						color: #000;
+						font-weight: 600;
+						padding: 0.5rem 1rem;
+						border-radius: .5rem;
+						border: 1px solid transparent;
+					  opacity: 0.5;
+
+						&:hover{
+							color: #000;
+							border: 1px solid #000;
+							opacity: 1;
+						}
+						&--cImg{
+							max-width: 16rem;
+					    width: 100%;
+					    margin-bottom: 1rem;
+					    display: inline-block;
+							img{
+								width: 100%;
+								height: 100%;
+							}
+						}
+
+						p{
+							font-size: 1.1rem;
+							font-weight: 500;
 						}
 					}
 				}
