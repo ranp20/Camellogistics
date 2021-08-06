@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es" style="overflow: hidden;">
+<html lang="es">
 <head>
   <title>Camel Logistics | Pasos de cotización</title>
   <?php require_once 'includes/header-links.php'; ?>
@@ -17,10 +17,10 @@
   </nav>
   <main class="cont-MainCamelLog" id="cont-MainCamelLog">
     <div class="cont-MainCamelLog--c ptop-headertop" id="cont-MainCamelLog--cStartQuoteRequest">
-      <input type="hidden" id="ipt-vportidOrigin" value="<?= $_POST['v-iptportoriginpost']; ?>">
-      <input type="hidden" id="ipt-vportidcountryOrigin" value="<?= $_POST['v-iptcountryportoriginpost']; ?>">
-      <input type="hidden" id="ipt-vportidDestiny" value="<?= $_POST['v-iptportdestinypost']; ?>">
-      <input type="hidden" id="ipt-vportidcountryDestiny" value="<?= $_POST['v-iptcountryportdestinypost']; ?>">
+      <input type="hidden" id="ipt-vportidOrigin" value="<?= $_POST['v_iptportoriginpost']; ?>">
+      <input type="hidden" id="ipt-vportidcountryOrigin" value="<?= $_POST['v_iptcountryportoriginpost']; ?>">
+      <input type="hidden" id="ipt-vportidDestiny" value="<?= $_POST['v_iptportdestinypost']; ?>">
+      <input type="hidden" id="ipt-vportidcountryDestiny" value="<?= $_POST['v_iptcountryportdestinypost']; ?>">
       <section class="cont-MainCamelLog--c--contResumeCalc" id="id-resumeLeftQuoteCamel">
         <div class="cont-MainCamelLog--c--contResumeCalc--item" data-advlevel="d-firstChargeLoad"></div>
         <div class="cont-MainCamelLog--c--contResumeCalc--item" data-advlevel="d-chargeload"></div>

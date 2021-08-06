@@ -39,10 +39,10 @@ function changesTabsOperation(){
       localStorage.setItem("type_service", typeService);
       $("#c-cTabsItem").html(`
         <div class="cont-MainCamelLog--c--cOptionsMarket--f--cont--cTabsItem--item">
-          <input type="hidden" id="v-iptportoriginpost" name="v-iptportoriginpost">
-          <input type="hidden" id="v-iptcountryportoriginpost" name="v-iptcountryportoriginpost">
-          <input type="hidden" id="v-iptportdestinypost" name="v-iptportdestinypost">
-          <input type="hidden" id="v-iptcountryportdestinypost" name="v-iptcountryportdestinypost">
+          <input type="hidden" id="v_iptportoriginpost" name="v_iptportoriginpost">
+          <input type="hidden" id="v_iptcountryportoriginpost" name="v_iptcountryportoriginpost">
+          <input type="hidden" id="v_iptportdestinypost" name="v_iptportdestinypost">
+          <input type="hidden" id="v_iptcountryportdestinypost" name="v_iptcountryportdestinypost">
           <div class="cont-MainCamelLog--c--cOptionsMarket--f--cont--cTabsItem--item--cControl">
             <div class="cont-MainCamelLog--c--cOptionsMarket--f--cont--cTabsItem--item--cControl--control">
               <div class="cont-MainCamelLog--c--cOptionsMarket--f--cont--cTabsItem--item--cControl--control--cGroupIptsIcon">
@@ -64,7 +64,7 @@ function changesTabsOperation(){
                 </div>
               </div>
             </div>
-            <button type="submit" class="cont-MainCamelLog--c--cOptionsMarket--f--cont--cTabsItem--item--cControl--link">
+            <button type="submit" class="cont-MainCamelLog--c--cOptionsMarket--f--cont--cTabsItem--item--cControl--link" data-typeselsp="${typeService}" data-indselsp="${ind}">
               <span>Solicitar Presupuesto</span>
             </button>
           </div>
@@ -92,7 +92,7 @@ function changesTabsOperation(){
                 <input type="text" class="cont-MainCamelLog--c--cOptionsMarket--f--cont--cTabsItem--item--cControl--control--cGroupIptsIcon--cInput--input" placeholder="Aeropuerto de destino" autocomplete="off" required>
               </div>
             </div>
-            <button type="submit" class="cont-MainCamelLog--c--cOptionsMarket--f--cont--cTabsItem--item--cControl--link">
+            <button type="submit" class="cont-MainCamelLog--c--cOptionsMarket--f--cont--cTabsItem--item--cControl--link" data-typeselsp="${typeService}" data-indselsp="${ind}">
               <span>Solicitar Presupuesto</span>
             </button>
           </div>
@@ -114,7 +114,7 @@ function changesTabsOperation(){
                 </div>
               </div>
             </div>
-            <button type="submit" class="cont-MainCamelLog--c--cOptionsMarket--f--cont--cTabsItem--item--cControl--link">
+            <button type="submit" class="cont-MainCamelLog--c--cOptionsMarket--f--cont--cTabsItem--item--cControl--link" data-typeselsp="${typeService}" data-indselsp="${ind}">
               <span>Solicitar Presupuesto</span>
             </button>
           </div>
@@ -167,10 +167,6 @@ $(document).on("keyup", "#ipt-valNamePortOrigin", function(){
   var searchVal = $(this).val();
   (searchVal != "") ? list_puertoOriginLCL(searchVal) : list_puertoOriginLCL();
 });
-/************************** FOCUS EN EL INPUT DE ORIGEN **************************/
-// $("#input-vallistorigin").focus(function(){
-  
-// });
 /************************** FIJAR EL VALOR DEL PUERTO EN EL INPUT **************************/
 $(document).on("click", "#list-itemsNamePortsOrigin .cont-MainCamelLog--c--cOptionsMarket--f--cont--cTabsItem--item--cControl--control--cGroupIptsIcon--cInput--m--item", function(){ 
   $("#list-itemsNamePortsOrigin").removeClass("show");
@@ -178,8 +174,8 @@ $(document).on("click", "#list-itemsNamePortsOrigin .cont-MainCamelLog--c--cOpti
   $("#ipt-valNamePortOrigin").attr("id-paispuertoorigin", $(this).attr("idpaisattr"));
   $("#ipt-valNamePortOrigin").val($(this).find("span:nth-child(2)").text());
   /************************** GUARDAR PARA ENVIAR POR POST **************************/
-  $("#v-iptportoriginpost").val($(this).attr("id"));
-  $("#v-iptcountryportoriginpost").val($(this).attr("idpaisattr"));
+  $("#v_iptportoriginpost").val($(this).attr("id"));
+  $("#v_iptcountryportoriginpost").val($(this).attr("idpaisattr"));
   /************************** GUARDAR INFO. EN LOCALSTORAGE **************************/
   localStorage.setItem("port_OId", $(this).attr("id"));
   localStorage.setItem("port_OName", $(this).find("span:nth-child(2)").text());
@@ -237,121 +233,65 @@ function list_puertoDestinyLCL(searchVal){
 }
 /************************** BUSQUEDA EN TIEMPO REAL DE PUERTO DE DESTINO - LCL **************************/
 $(document).on("keyup", "#ipt-valNamePortDestiny", function(){  
-  
-  // if($("#input-vallistorigin").val() == ""){
-  //   $("#input-vallistdestiny").attr("aria-expanded", false);
-  //   $("#input-vallistdestiny").css({"background-color":"#dddd","cursor":"not-allowed"});
-  //   $("#input-vallistdestiny").attr("title", "Seleccione un puerto de origen");
-  //   $("#list-destinyCountriesandPort").html(`
-  //     <li class="c-CalculatorStep--form--contStep--cStepSelects--item--listItems--list--anyresults">
-  //       <span>No encontrado</span>
-  //     </li>
-  //   `);
-  // }else{
-  //   $("#input-vallistdestiny").attr("aria-expanded", true);
-  //   $("#input-vallistdestiny").css({"background-color":"#fff","cursor":"pointer"});
-  //   $("#input-vallistdestiny").removeAttr("title");
-  // }
-
-  // /************************** VALIDACIÓN AL PUERTO DE DESTINO **************************/
-  // if($("#input-vallistdestiny").val() == ""){
-  //   $("#input-vallistdestiny").removeAttr("id-puertodestiny");
-  //   $("#input-vallistdestiny").removeAttr("idpaisDestino");
-  // }else{
-  //   $("#input-vallistdestiny").attr("aria-expanded", true);
-  //   $("#input-vallistdestiny").removeAttr("disabled");
-  // }
-
   $("#list-itemsNamePortsDestiny").addClass("show");
   var searchVal = $(this).val();
   (searchVal != "") ? list_puertoDestinyLCL(searchVal) : list_puertoDestinyLCL();
 
 });
-/************************** FOCUS EN EL INPUT DE DESTINO **************************/
-// $("#ipt-valNamePortDestiny").focus(function(){
-//   if($("#input-vallistorigin").val() == ""){
-//     alert("Debes seleccionar una opcíon de origen válida");
-//     $("#input-vallistdestiny").attr("aria-expanded", false);
-//     $("#input-vallistdestiny").css({"background-color":"#dddd","cursor":"not-allowed"});
-//     $("#input-vallistdestiny").attr("disabled","disabled");
-//   }else{
-//     $("#input-vallistdestiny").attr("aria-expanded", true);
-//     $("#input-vallistdestiny").css({"background-color":"#fff","cursor":"pointer"});
-//     $("#input-vallistdestiny").removeAttr("disabled");
-//   }
-// });
 /************************** FIJAR EL VALOR DEL PUERTO EN EL INPUT **************************/
 $(document).on("click", "#list-itemsNamePortsDestiny .cont-MainCamelLog--c--cOptionsMarket--f--cont--cTabsItem--item--cControl--control--cGroupIptsIcon--cInput--m--item", function(){ 
   $("#list-itemsNamePortsDestiny").removeClass("show");
   $("#ipt-valNamePortDestiny").attr("id-puertodestiny", $(this).attr("id"));
+  $("#ipt-valNamePortDestiny").attr("id-paispuertodestiny", $(this).attr("idpaisattr"));
   $("#ipt-valNamePortDestiny").val($(this).find("span:nth-child(2)").text());
   /************************** GUARDAR PARA ENVIAR POR POST **************************/
-  $("#v-iptportdestinypost").val($(this).attr("id"));
-  $("#v-iptcountryportdestinypost").val($(this).attr("idpaisattr"));
+  $("#v_iptportdestinypost").val($(this).attr("id"));
+  $("#v_iptcountryportdestinypost").val($(this).attr("idpaisattr"));
   /************************** GUARDAR INFO. EN LOCALSTORAGE **************************/
   localStorage.setItem("port_DId", $(this).attr("id"));
   localStorage.setItem("port_DName", $(this).find("span:nth-child(2)").text());
 });
-// /*==========================================================================================================
-// =            PASO 2.1. AVANZAR AL PASO 2.1 AL HACER CLICK EN EL BOTÓN DE "SIGUIENTE" DEL PASO 2            =
-// ===========================================================================================================*/
-// $(document).on("click", "#btn-ValidToshowNextStep", function(){
-  
-//   if($("#val-typecontainerflete").attr("idtypecontainer") && 
-//     $("#val-CalcPacksRequestModal").val() != "" &&
-//     $("#val-CalcWeightRequestModal").val() != "" &&
-//     $("#val-CalcVolumeRequestModal").val() != "" &&
-//     $("#input-vallistorigin").attr("id-puertoorigin") &&
-//     $("#input-vallistdestiny").attr("id-puertodestiny")){
+/************************** COMPROBAR SI UN ELEMENTOS U OBJETO ES NUMÉRICO **************************/
+function is_numeric(value) {
+  return !isNaN(parseFloat(value)) && isFinite(value);
+}
+/*==========================================================================================================
+=            PASO 1. AVANZAR AL PASO 2 AL HACER CLICK EN EL BOTÓN DE SOLICITAR COTIZACIÓN                  =
+===========================================================================================================*/
+// $(document).on("submit", "#f-cOptionsMarkLogistic", function(e){
+//   e.preventDefault();
 
-//     /************************** LOADER PARA HABILITAR LA SIGUIENTE FASE **************************/
-//     $("#portfolio").append(`
-//       <div id="loader-clasic-op85">
-//         <div class="loader-clasic-op85--c"></div>
-//       </div>
-//     `);
-
-//     setTimeout(function(){
-//       $("#loader-clasic-op85").remove();
-//     }, 1100);
-
-//     $("#step-TwoPointOne").addClass("show");
-//     $("#step-TwoPointOne").removeClass("hide step-hidden");
+//   var indbutton = $(this).find("#c-cTabsItem").find("button").attr("data-indselsp");
+//   if(indbutton == 1){
     
-//     $("#step-TwoPointOne").html(`
-//       <div class="box-container">
-//         <div class="c-SelServicesOrNotStep--contStep--cTitle">
-//           <h3 class="c-SelServicesOrNotStep--contStep--cTitle--title">2.1 Elige una opción</h3>
-//         </div>
-//         <div class="c-SelServicesOrNotStep--contStep--cOptionsServices">
-//           <ul class="c-SelServicesOrNotStep--contStep--cOptionsServices--m" id="c-listItemsSelRs">
-//             <li class="c-SelServicesOrNotStep--contStep--cOptionsServices--m--item" id="c-listItemsSelRs--withS">
-//               <a href="#" class="c-SelServicesOrNotStep--contStep--cOptionsServices--m--link">
-//                 <p>OPCIÓN 1</p>
-//                 <div class="c-SelServicesOrNotStep--contStep--cOptionsServices--m--link--cControl">
-//                   <input type="radio" id="chk-optServSel-1" name="chk-optServSel-1" class="c-SelServicesOrNotStep--contStep--cOptionsServices--m--link--check">
-//                   <label for="chk-optServSel-1">AGREGAR SERVICIOS DE ADUANA EN DESTINO</label>
-//                 </div>
-//               </a>
-//             </li>
-//             <li class="c-SelServicesOrNotStep--contStep--cOptionsServices--m--item" id="c-listItemsSelRs--withoutS">
-//               <a href="#" class="c-SelServicesOrNotStep--contStep--cOptionsServices--m--link">
-//                 <p>OPCIÓN 2</p>
-//                 <div class="c-SelServicesOrNotStep--contStep--cOptionsServices--m--link--cControl">
-//                   <input type="radio" id="chk-optServSel-2" name="chk-optServSel-2" class="c-SelServicesOrNotStep--contStep--cOptionsServices--m--link--check">
-//                   <label for="chk-optServSel-2">NO AGREGAR SERVICIOS "SOLO DESEEO FLETE"</label>
-//                 </div>
-//               </a>
-//             </li>
-//           </ul>
-//         </div>
-//       </div>
-//     `);
+//     /************************** VALIDAR SI EXISTEN DATOS VÁLIDOS EN LOS INPUT - MARÍTIMO **************************/
+//     if($("#ipt-valNamePortOrigin").val() != "" || $("#ipt-valNamePortOrigin").val() != 0 &&
+//        $("#ipt-valNamePortDestiny").val() != "" || $("#ipt-valNamePortDestiny").val() != 0 &&
+//        $("#ipt-valNamePortOrigin").attr("id-puertoorigin") && is_numeric($("#ipt-valNamePortOrigin").attr("id-puertoorigin")) &&
+//        $("#ipt-valNamePortOrigin").attr("id-paispuertoorigin") && is_numeric($("#ipt-valNamePortOrigin").attr("id-paispuertoorigin")) &&
+//        $("#ipt-valNamePortDestiny").attr("id-puertodestiny") && is_numeric($("#ipt-valNamePortDestiny").attr("id-puertodestiny")) &&
+//        $("#ipt-valNamePortDestiny").attr("id-paispuertodestiny") && is_numeric($("#ipt-valNamePortDestiny").attr("id-paispuertodestiny"))){
+        
+//       var idportOrigin = $("#ipt-valNamePortOrigin").attr("id-puertoorigin");
+//       var idcountryportOrigin = $("#ipt-valNamePortOrigin").attr("id-paispuertoorigin");
+//       var idportDestiny = $("#ipt-valNamePortDestiny").attr("id-puertodestiny");
+//       var idcountryportDestiny = $("#ipt-valNamePortDestiny").attr("id-paispuertodestiny");
 
-//     if(!document.querySelector("#step-TwoPointOne").classList.contains("hide") && !document.querySelector("#step-TwoPointOne").classList.contains("step-hidden")){
-//       $("#btn-ValidToshowNextStep").remove();
+//       var quotationdata = [
+//         idportOrigin,
+//         idcountryportOrigin,
+//         idportDestiny,
+//         idcountryportDestiny  
+//       ];
+//       alert(quotationdata);
+      
+//     }else{
+//       alert("Debes completar los campos requeridos");
 //     }
+
+//   }else if(indbutton == 2){
+//     alert("Deseeas solicitar un presupuesto Aéreo");
 //   }else{
-//     alert("Completa los campos primero");
+//     alert("Deseeas solicitar un presupuesto Aduanero");
 //   }
 // });

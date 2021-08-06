@@ -519,6 +519,7 @@ $(document).on("click", "#btn-NextStepToSelOptResultExp", function(){
     <div class="cont-MainCamelLog--c--contSteps--item--cBtnNextStep"></div>
   `);
 });
+/************************** VALIDAR DE ACUERDO A LA OPCIÓN SELECCIONADA **************************/
 $(document).on("click", "#list-SelOptionResultExp li", function(){
   var tItemSelOptExp = $(this).index();
   if(tItemSelOptExp == 0){
