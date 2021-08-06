@@ -723,7 +723,7 @@ $(document).on("click", "#btn-NextStepToSelOptResultExp", function(){
         <h3 class="cont-MainCamelLog--c--contSteps--item--cTitle--title">Eliga una opción</h3>
         <span>
           <input type="hidden" value="" id="opt-genfquotation" name="opt-genfquotation">
-          </span>
+        </span>
       </div>
       <div class="cont-MainCamelLog--c--contSteps--item--cStep">
         <ul class="cont-MainCamelLog--c--contSteps--item--cStep--mOpts" id="list-SelOptionResultExp">
@@ -753,6 +753,7 @@ $(document).on("click", "#list-SelOptionResultExp li", function(){
   var tItemSelOptExp = $(this).index();
   if(tItemSelOptExp == 0){
     $(this).addClass("selected");
+    /************************** ASIGNAR VALORES DE LOS INPUTS HIDDEN - ELIGE UNA OPCIÓN **************************/
     $("#opt-genfquotation").val("y-moreOpts");
 
     /************************** OCULTAR - DIMENSIONES DE CARGA **************************/
@@ -764,6 +765,11 @@ $(document).on("click", "#list-SelOptionResultExp li", function(){
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-merchandisedata]").html(`
       <div class="cont-MainCamelLog--c--contSteps--item--cTitle">
         <h3 class="cont-MainCamelLog--c--contSteps--item--cTitle--title">Mercancía</h3>
+        <span>
+          <input type="hidden" value="" id="val-categProdquot" name="val-categProdquot">
+          <input type="hidden" value="" id="val-valProdquot" name="val-valProdquot">
+          <input type="hidden" value="NO" id="val-prevImports" name="val-prevImports">
+        </span>
       </div>
       <div class="cont-MainCamelLog--c--contSteps--item--cStep">
         <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise">
@@ -801,6 +807,7 @@ $(document).on("click", "#list-SelOptionResultExp li", function(){
     `);
   }else{
     $(this).addClass("selected");
+    /************************** ASIGNAR VALORES DE LOS INPUTS HIDDEN - ELIGE UNA OPCIÓN **************************/
     $("#opt-genfquotation").val("not-moreOpts");
     /************************** OCULTAR - CONTENEDORES **************************/
     // $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-qcontainers]").removeClass("show");
@@ -1225,12 +1232,17 @@ $(document).on("click", "#btn-NextStepTochargedata", function(){
     v_ValTotalWeight = $("#val-iptWeightNInterface").val();
     v_ValTotalVolume = $("#val-iptVolumeNInterface").val();
 
-    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-merchandisedata]").addClass("show");
     /************************** MOSTRAR EL SIGUIENTE PASO **************************/
+    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-merchandisedata]").addClass("show");
     sectionsSteps.moveTo('step-merchandisedata', 1);
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-merchandisedata]").html(`
       <div class="cont-MainCamelLog--c--contSteps--item--cTitle">
         <h3 class="cont-MainCamelLog--c--contSteps--item--cTitle--title">Mercancía</h3>
+        <span>
+          <input type="hidden" value="" id="val-categProdquot" name="val-categProdquot">
+          <input type="hidden" value="" id="val-valProdquot" name="val-valProdquot">
+          <input type="hidden" value="NO" id="val-prevImports" name="val-prevImports">
+        </span>
       </div>
       <div class="cont-MainCamelLog--c--contSteps--item--cStep">
         <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise">
@@ -1352,6 +1364,8 @@ $(document).on("click", ".cont-MainCamelLog--c--contSteps--item--cStep--mFrmIpts
   $("#m-listAllNamTypeProds").removeClass("show");
   $("#ipt-valNameTypeProdNInterface").attr("idproduct", $(this).attr("id"));
   $("#ipt-valNameTypeProdNInterface").val($(this).find("p").text());
+  /************************** ASIGNAR VALORES DE LOS INPUTS HIDDEN - MERCANCÍA **************************/
+  $("#val-categProdquot").val($(this).find("p").text());
 });
 /************************** VALIDAR INPUT - VALOR DE PRODUCTO IMPORTADO **************************/
 $(document).on("input", "#ipt-valPriceProdNInterface", function(e){
@@ -1369,6 +1383,8 @@ $(document).on("input", "#ipt-valPriceProdNInterface", function(e){
   $(this).val(function(i, v) {
     return v.replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d)\.?)/g, ".") + " USD";
   });
+  /************************** ASIGNAR VALORES DE LOS INPUTS HIDDEN - MERCANCÍA **************************/
+  $("#val-valProdquot").val($(this).val());
 });
 /************************** VALIDAR SI CONTIENE ALGÚN VALOR NULO O 0 **************************/
 $(document).on("keyup", "#ipt-valPriceProdNInterface", function(){
@@ -1384,9 +1400,15 @@ $(document).on("click", "#chck-importpreview", function(){
 	if($(this).is(":checked")){
 		$(this).parent().addClass("active");
 		$(this).parent().attr("switch-CFreeze", "SÍ");
+    var yesImportPrev = $(this).parent().attr("switch-CFreeze");
+    /************************** ASIGNAR VALORES DE LOS INPUTS HIDDEN - MERCANCÍA **************************/
+    $("#val-prevImports").val(yesImportPrev);
 	}else{
 		$(this).parent().removeClass("active");
 		$(this).parent().attr("switch-CFreeze", "NO");
+    var notImportPrev = $(this).parent().attr("switch-CFreeze");
+    /************************** ASIGNAR VALORES DE LOS INPUTS HIDDEN - MERCANCÍA **************************/
+    $("#val-prevImports").val(notImportPrev);
 	}
 });
 /************************** VALIDAR EL BOTÓN DE PASOS SIGUIENTES DESDE - MERCANCÍA **************************/
@@ -1395,12 +1417,20 @@ $(document).on("click", "#btn-NextStepTomerchandisedata", function(){
      $("#ipt-valNameTypeProdNInterface").attr("idproduct") &&
      $("#ipt-valPriceProdNInterface").val() != "" && $("#ipt-valPriceProdNInterface").val() != 0){
 
-    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-insuremerchandise]").addClass("show");
+    /************************** ASIGNAR VALORES DE LOS INPUTS HIDDEN - MERCANCÍA **************************/
+    $("#val-categProdquot").val($("#ipt-valNameTypeProdNInterface").val());
+    $("#val-valProdquot").val($("#ipt-valPriceProdNInterface").val());
+    $("#val-prevImports").val($("#chck-importpreview").parent().attr("switch-CFreeze"));
+
     /************************** MOSTRAR EL SIGUIENTE PASO **************************/
+    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-insuremerchandise]").addClass("show");
     sectionsSteps.moveTo('step-insuremerchandise', 1);
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-insuremerchandise]").html(`
       <div class="cont-MainCamelLog--c--contSteps--item--cTitle">
         <h3 class="cont-MainCamelLog--c--contSteps--item--cTitle--title">¿Quieres asegurar la mercancía?</h3>
+        <span>
+          <input type="hidden" value="" id="res-insuremerch" name="res-insuremerch">
+        </span>
       </div>
       <div class="cont-MainCamelLog--c--contSteps--item--cStep">
         <ul class="cont-MainCamelLog--c--contSteps--item--cStep--m" id="list-insuremerchandise">
@@ -1435,11 +1465,17 @@ $(document).on("click", "#list-insuremerchandise li", function(){
   $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-customsclearance]").addClass("show");
   var tinsuremerchandise = $(this).index();
   if(tinsuremerchandise == 0){
+
+    /************************** ASIGNAR VALORES DE LOS INPUTS HIDDEN - QUIERES ASEGURAR LA MERCANCÍA **************************/
+    $("#res-insuremerch").val("SI");
     /************************** MOSTRAR EL SIGUIENTE PASO **************************/
     sectionsSteps.moveTo('step-customsclearance', 1);
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-customsclearance]").html(`
       <div class="cont-MainCamelLog--c--contSteps--item--cTitle">
         <h3 class="cont-MainCamelLog--c--contSteps--item--cTitle--title">¿Necesitas despacho de aduanas?</h3>
+        <span>
+          <input type="hidden" value="" id="res-requireclearance" name="res-requireclearance">
+        </span>
       </div>
       <div class="cont-MainCamelLog--c--contSteps--item--cStep">
         <ul class="cont-MainCamelLog--c--contSteps--item--cStep--m" id="list-customsclearance">
@@ -1463,11 +1499,16 @@ $(document).on("click", "#list-insuremerchandise li", function(){
       </div>
     `);
   }else{
+    /************************** ASIGNAR VALORES DE LOS INPUTS HIDDEN - QUIERES ASEGURAR LA MERCANCÍA **************************/
+    $("#res-insuremerch").val("NO");
     /************************** MOSTRAR EL SIGUIENTE PASO **************************/
     sectionsSteps.moveTo('step-customsclearance', 1);
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-customsclearance]").html(`
       <div class="cont-MainCamelLog--c--contSteps--item--cTitle">
         <h3 class="cont-MainCamelLog--c--contSteps--item--cTitle--title">¿Necesitas despacho de aduanas?</h3>
+        <span>
+          <input type="hidden" value="" id="res-requireclearance" name="res-requireclearance">
+        </span>
       </div>
       <div class="cont-MainCamelLog--c--contSteps--item--cStep">
         <ul class="cont-MainCamelLog--c--contSteps--item--cStep--m" id="list-customsclearance">
@@ -1499,11 +1540,17 @@ $(document).on("click", "#list-customsclearance li", function(){
   $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-requirespickup]").addClass("show");
   var tcustomsclearance = $(this).index();
   if(tcustomsclearance == 0){
+    /************************** ASIGNAR VALORES DE LOS INPUTS HIDDEN - NECESITAS DESPACHO DE ADUANAS **************************/
+    $("#res-requireclearance").val("SI");
+
     /************************** MOSTRAR EL SIGUIENTE PASO **************************/
     sectionsSteps.moveTo('step-requirespickup', 1);
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-requirespickup]").html(`
       <div class="cont-MainCamelLog--c--contSteps--item--cTitle">
-        <h3 class="cont-MainCamelLog--c--contSteps--item--cTitle--title">¿Necesitas Recogida?</h3>
+        <h3 class="cont-MainCamelLog--c--contSteps--item--cTitle--title">¿Necesitas Transporte?</h3>
+        <span>
+          <input type="hidden" value="" id="opt-reqtransport" name="opt-reqtransport">
+        </span>
       </div>
       <div class="cont-MainCamelLog--c--contSteps--item--cStep">
         <ul class="cont-MainCamelLog--c--contSteps--item--cStep--m" id="list-requirespickup">
@@ -1528,11 +1575,16 @@ $(document).on("click", "#list-customsclearance li", function(){
       <div class="cont-MainCamelLog--c--contSteps--item--cBtnNextStep"></div>
     `);
   }else{
+    /************************** ASIGNAR VALORES DE LOS INPUTS HIDDEN - NECESITAS DESPACHO DE ADUANAS **************************/
+    $("#res-requireclearance").val("NO");
     /************************** MOSTRAR EL SIGUIENTE PASO **************************/
     sectionsSteps.moveTo('step-requirespickup', 1);
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-requirespickup]").html(`
       <div class="cont-MainCamelLog--c--contSteps--item--cTitle">
         <h3 class="cont-MainCamelLog--c--contSteps--item--cTitle--title">¿Necesitas Transporte?</h3>
+        <span>
+          <input type="hidden" value="" id="opt-reqtransport" name="opt-reqtransport">
+        </span>
       </div>
       <div class="cont-MainCamelLog--c--contSteps--item--cStep">
         <ul class="cont-MainCamelLog--c--contSteps--item--cStep--m" id="list-requirespickup">
@@ -1564,11 +1616,17 @@ $(document).on("click", "#list-customsclearance li", function(){
 $(document).on("click", "#list-requirespickup li", function(){
   var trequirespickup = $(this).index();
   if(trequirespickup == 0){
+    /************************** ASIGNAR VALORES DE LOS INPUTS HIDDEN - NECESITAS TRANSPORTE **************************/
+    $("#opt-reqtransport").val("SI")
+
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-pickuplocation]").addClass("show");
     sectionsSteps.moveTo('step-pickuplocation', 1);
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-pickuplocation]").html(`
       <div class="cont-MainCamelLog--c--contSteps--item--cTitle">
         <h3 class="cont-MainCamelLog--c--contSteps--item--cTitle--title">Recogida - Ubicación</h3>
+        <span>
+          <input type="hidden" value="" id="plc-pickuploc" name="plc-pickuploc">
+        </span>
       </div>
       <div class="cont-MainCamelLog--c--contSteps--item--cStep">
         <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation">
@@ -1593,8 +1651,12 @@ $(document).on("click", "#list-requirespickup li", function(){
     `);
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-requirespickup] .cont-MainCamelLog--c--contSteps--item--cBtnNextStep").html("");
   }else{
+    /************************** ASIGNAR VALORES DE LOS INPUTS HIDDEN - NECESITAS TRANSPORTE **************************/
+    $("#opt-reqtransport").val("NO")
+    /************************** OCULTAR EL SIGUIENTE PASO **************************/
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-pickuplocation]").removeClass("show");
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-pickuplocation]").html("");
+    /************************** MOSTRAR EL BOTÓN DE COTIZACIÓN **************************/
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-requirespickup] .cont-MainCamelLog--c--contSteps--item--cBtnNextStep").html(`
       <button type="button" class="cont-MainCamelLog--c--contSteps--item--cBtnNextStep--btn" id="btn-NextStepTomerchandisedata">
         <span>CALCULAR COTIZACIÓN</span>
@@ -1673,6 +1735,11 @@ $(document).on("click", ".cont-MainCamelLog--c--contSteps--item--cStep--mFrmIpts
   $("#m-listAllDistricsByCountry").removeClass("show");
   $("#ipt-valDistricByCountryNInterface").attr("iddistrict", $(this).attr("id"));
   $("#ipt-valDistricByCountryNInterface").val($(this).find("span").text());
+
+  /************************** ASIGNAR VALORES DE LOS INPUTS HIDDEN - RECOGIDA UBICACIÓN **************************/
+  $("#plc-pickuploc").val($(this).find("span").text());
+
+  /************************** MOSTRAR EL BOTÓN DE COTIZACIÓN **************************/
   $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-pickuplocation] .cont-MainCamelLog--c--contSteps--item--cBtnNextStep").html(`
     <button type="button" class="cont-MainCamelLog--c--contSteps--item--cBtnNextStep--btn" id="btn-NextStepTopickuplocation">
       <span>CALCULAR COTIZACIÓN</span>
