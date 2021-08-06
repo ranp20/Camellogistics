@@ -167,6 +167,12 @@
 						border: 1px solid transparent;
 					  opacity: 0.5;
 
+						&.active{
+					  	color: #000;
+							border: 1px solid #000;
+							opacity: 1;
+						}
+
 						&:hover{
 							color: #000;
 							border: 1px solid #000;
@@ -196,31 +202,6 @@
 					justify-content: center;
 					gap: 2rem;
 					&--item{
-
-						&.selected{
-							.cont-MainCamelLog--c--contSteps--item--cStep--mOpts--cardItem{
-								opacity: 1;
-							}
-						}
-
-						&:first-child{
-							.cont-MainCamelLog--c--contSteps--item--cStep--mOpts--cardItem{
-								background-color: $primary-color;
-								color: #fff;
-							}
-						}
-
-						&:nth-child(2){
-							.cont-MainCamelLog--c--contSteps--item--cStep--mOpts--cardItem{
-								color: $primary-color;
-								border: 1px solid $primary-color;
-
-								&:hover{
-									border: 1px solid #000;
-									opacity: 1;		
-								}
-							}
-						}
 					}
 	
 					&--cardItem{
@@ -232,11 +213,29 @@
 						border: 1px solid transparent;
 					  opacity: 0.5;
 
-						&:hover{
-							color: #000;
+
+						&:first-child{
+							background-color: $primary-color;
+							color: #fff;
+							&:hover{
+								color: #fff;
+							}
+						}
+
+						&:nth-child(2){
+							color: $primary-color;
+							border: 1px solid $primary-color;
+							&:hover{
+								border: 1px solid #000;
+								opacity: 1;		
+							}
+						}
+
+					  &.active{
 							border: 1px solid #000;
 							opacity: 1;
-						}
+					  }
+
 						&--cImg{
 							max-width: 16rem;
 					    width: 100%;

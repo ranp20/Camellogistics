@@ -3225,6 +3225,11 @@ img {
   border: 1px solid transparent;
   opacity: 0.5;
 }
+.cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem.active {
+  color: #000;
+  border: 1px solid #000;
+  opacity: 1;
+}
 .cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem:hover {
   color: #000;
   border: 1px solid #000;
@@ -3249,21 +3254,6 @@ img {
   justify-content: center;
   gap: 2rem;
 }
-.cont-MainCamelLog--c--contSteps--item--cStep--mOpts--item.selected .cont-MainCamelLog--c--contSteps--item--cStep--mOpts--cardItem {
-  opacity: 1;
-}
-.cont-MainCamelLog--c--contSteps--item--cStep--mOpts--item:first-child .cont-MainCamelLog--c--contSteps--item--cStep--mOpts--cardItem {
-  background-color: #B58440;
-  color: #fff;
-}
-.cont-MainCamelLog--c--contSteps--item--cStep--mOpts--item:nth-child(2) .cont-MainCamelLog--c--contSteps--item--cStep--mOpts--cardItem {
-  color: #B58440;
-  border: 1px solid #B58440;
-}
-.cont-MainCamelLog--c--contSteps--item--cStep--mOpts--item:nth-child(2) .cont-MainCamelLog--c--contSteps--item--cStep--mOpts--cardItem:hover {
-  border: 1px solid #000;
-  opacity: 1;
-}
 .cont-MainCamelLog--c--contSteps--item--cStep--mOpts--cardItem {
   display: block;
   color: #000;
@@ -3273,8 +3263,22 @@ img {
   border: 1px solid transparent;
   opacity: 0.5;
 }
-.cont-MainCamelLog--c--contSteps--item--cStep--mOpts--cardItem:hover {
-  color: #000;
+.cont-MainCamelLog--c--contSteps--item--cStep--mOpts--cardItem:first-child {
+  background-color: #B58440;
+  color: #fff;
+}
+.cont-MainCamelLog--c--contSteps--item--cStep--mOpts--cardItem:first-child:hover {
+  color: #fff;
+}
+.cont-MainCamelLog--c--contSteps--item--cStep--mOpts--cardItem:nth-child(2) {
+  color: #B58440;
+  border: 1px solid #B58440;
+}
+.cont-MainCamelLog--c--contSteps--item--cStep--mOpts--cardItem:nth-child(2):hover {
+  border: 1px solid #000;
+  opacity: 1;
+}
+.cont-MainCamelLog--c--contSteps--item--cStep--mOpts--cardItem.active {
   border: 1px solid #000;
   opacity: 1;
 }

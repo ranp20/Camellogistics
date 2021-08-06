@@ -1,4 +1,5 @@
 $(() => {
+  ChangesSibblingsLinks();
   hiddenAllNextSteps();
   /************************** LISTAR LOS PUERTOS DE ORIGEN Y DE DESTINO DE ACUERDO AL ID RECIBIDO POR POST **************************/
 	listPortOriginandDestiny();
@@ -16,26 +17,13 @@ var ipt_idPortOrigin = $("#ipt-vportidOrigin").val(),
 		ipt_idPortDestiny = $("#ipt-vportidDestiny").val(),
 		ipt_idPortcountryDestiny = $("#ipt-vportidcountryDestiny").val();
 
-
-/************************** VARIABLES GLOBALES A USAR EN EL RESUMEN DE PROCESO **************************/
-var v_TypeOp = ""; // 1. TIPO DE OPERACIÓN
-
-var v_TypeChargeImgSrc = ""; // 2. TIPO DE CARGA - NOMBRE
-var v_TypeChargeName = ""; // 2. TIPO CARGA - IMAGEN
-
-var v_QContainersImgSrc20 = ""; // 3. CANTIDAD DE CONTENEDORES - IMAGEN 20'
-var v_QContainersName20 = ""; // 3. CANTIDAD DE CONTENEDORES - NOMBRE 20'
-var v_QContainersValue20 = 0; // 3. CANTIDAD DE CONTENEDORES - VALOR 20'
-var v_QContainersImgSrc40 = ""; // 3. CANTIDAD DE CONTENEDORES - IMAGEN 40'
-var v_QContainersName40 = ""; // 3. CANTIDAD DE CONTENEDORES - NOMBRE 40'
-var v_QContainersValue40 = 0; // 3. CANTIDAD DE CONTENEDORES - VALOR 40'
-var v_QContainersImgSrc40_hq = ""; // 3. CANTIDAD DE CONTENEDORES - IMAGEN 40-hq'
-var v_QContainersName40_hq = ""; // 3. CANTIDAD DE CONTENEDORES - NOMBRE 40-hq'
-var v_QContainersValue40_hq = 0; // 3. CANTIDAD DE CONTENEDORES - VALOR 40-hq'
-
-var v_ValQuantityPackages = 0; // 4. CANTIDAD DE BULTOS
-var v_ValTotalWeight = 0; // 4. PESO TOTAL
-var v_ValTotalVolume = 0; // 4. VOLUMEN TOTAL
+/************************** CAMBIAR/REMOVER EL ESTADO ENTRE OPCIONES **************************/
+function ChangesSibblingsLinks(){
+  $(document).on("click", ".cont-MainCamelLog--c--contSteps--item--cStep--m a", function(){
+    var t = $(this);
+    t.addClass("active").siblings().removeClass("active");
+  });
+}
 
 /************************** PLUGIN - FULLPAGE.JS **************************/
 const sectionsSteps = new fullpage('#fullpage', {
@@ -116,13 +104,12 @@ function listPortOriginandDestiny(){
 /*=======================================================================================
 =            									2. ELEGIR EL TIPO DE OPERACIÓN            									=
 =========================================================================================*/
-$(document).on("click", "#list-typeOperationItems li", function(){
+$(document).on("click", "#list-typeOperationItems a", function(){
 	$(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-chargeload]").addClass("show");
-	
 	var tTypeOperation = $(this).index();
 	if(tTypeOperation == 0){
     /************************** ASIGNAR A LA VARIABLE BLOBAL **************************/
-    v_TypeOp = $(this).find("a").find("p").text();
+    v_TypeOp = $(this).find("li").find("p").text();
     /************************** VALOR DEL TIPO DE OPERACIÓN **************************/
     $("#loadTypeOpe").val(v_TypeOp);
     /************************** MOSTRAR EL SIGUIENTE PASO **************************/
@@ -136,22 +123,22 @@ $(document).on("click", "#list-typeOperationItems li", function(){
       </div>
       <div class="cont-MainCamelLog--c--contSteps--item--cStep">
         <ul class="cont-MainCamelLog--c--contSteps--item--cStep--m" id="list-typeChargeLoadItems">
-          <li class="cont-MainCamelLog--c--contSteps--item--cStep--m--item">
-            <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem">
+          <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem">
+            <li class="cont-MainCamelLog--c--contSteps--item--cStep--m--item">
               <div class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem--cImg">
                 <img src="views/assets/img/steps/fcl.png" alt="">
               </div>
               <p>FCL</p>
-            </a>
-          </li>
-          <li class="cont-MainCamelLog--c--contSteps--item--cStep--m--item">
-            <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem">
+            </li>
+          </a>
+          <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem">
+            <li class="cont-MainCamelLog--c--contSteps--item--cStep--m--item">
               <div class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem--cImg">
                 <img src="views/assets/img/steps/lcl.png" alt="">
               </div>
               <p>LCL</p>
-            </a>
-          </li>
+            </li>
+          </a>
         </ul>
       </div>
 		`);
@@ -165,7 +152,7 @@ $(document).on("click", "#list-typeOperationItems li", function(){
 		`);
 	}else{
     /************************** ASIGNAR A LA VARIABLE BLOBAL **************************/
-    v_TypeOp = $(this).find("a").find("p").text();
+    v_TypeOp = $(this).find("li").find("p").text();
     /************************** VALOR DEL TIPO DE OPERACIÓN **************************/
     $("#loadTypeOpe").val(v_TypeOp);
     /************************** MOSTRAR EL SIGUIENTE PASO **************************/
@@ -179,22 +166,22 @@ $(document).on("click", "#list-typeOperationItems li", function(){
       </div>
       <div class="cont-MainCamelLog--c--contSteps--item--cStep">
         <ul class="cont-MainCamelLog--c--contSteps--item--cStep--m" id="list-typeChargeLoadItems">
-          <li class="cont-MainCamelLog--c--contSteps--item--cStep--m--item">
-            <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem">
+          <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem">
+            <li class="cont-MainCamelLog--c--contSteps--item--cStep--m--item">
               <div class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem--cImg">
                 <img src="views/assets/img/steps/fcl.png" alt="">
               </div>
               <p>FCL</p>
-            </a>
-          </li>
-          <li class="cont-MainCamelLog--c--contSteps--item--cStep--m--item">
-            <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem">
+            </li>
+          </a>
+          <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem">
+            <li class="cont-MainCamelLog--c--contSteps--item--cStep--m--item">
               <div class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem--cImg">
                 <img src="views/assets/img/steps/lcl.png" alt="">
               </div>
               <p>LCL</p>
-            </a>
-          </li>
+            </li>
+          </a>
         </ul>
       </div>
 		`);
@@ -211,13 +198,13 @@ $(document).on("click", "#list-typeOperationItems li", function(){
 /*=======================================================================================
 =            									3. ELEGIR EL TIPO DE CARGA            									  =
 =========================================================================================*/
-$(document).on("click", "#list-typeChargeLoadItems li", function(){
+$(document).on("click", "#list-typeChargeLoadItems a", function(){
 	$(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-qcontainers]").addClass("show");
 	var tTypeChargeLoad = $(this).index();
 	if(tTypeChargeLoad == 0){
     /************************** ASGINAR A LAS VARIABLES GLOBALES **************************/
-    v_TypeChargeImgSrc = $(this).find("a").find("div").find("img").attr("src");
-    v_TypeChargeName = $(this).find("a").find("p").text();
+    v_TypeChargeImgSrc = $(this).find("li").find("div").find("img").attr("src");
+    v_TypeChargeName = $(this).find("li").find("p").text();
     /************************** VALOR DEL TIPO DE CARGA **************************/
     $("#loadTypeCharge").val(v_TypeChargeName);
     /************************** ASIGNAR AL RESUMEN DEL LISTADO **************************/
@@ -471,8 +458,8 @@ $(document).on("click", "#list-typeChargeLoadItems li", function(){
 
 	}else{
     /************************** ASGINAR A LAS VARIABLES GLOBALES **************************/
-    v_TypeChargeImgSrc = $(this).find("a").find("div").find("img").attr("src");
-    v_TypeChargeName = $(this).find("a").find("p").text();
+    v_TypeChargeImgSrc = $(this).find("li").find("div").find("img").attr("src");
+    v_TypeChargeName = $(this).find("li").find("p").text();
     /************************** VALOR DEL TIPO DE CARGA **************************/
     $("#loadTypeCharge").val(v_TypeChargeName);
     /************************** ASIGNAR AL RESUMEN DEL LISTADO **************************/
@@ -727,32 +714,37 @@ $(document).on("click", "#btn-NextStepToSelOptResultExp", function(){
       </div>
       <div class="cont-MainCamelLog--c--contSteps--item--cStep">
         <ul class="cont-MainCamelLog--c--contSteps--item--cStep--mOpts" id="list-SelOptionResultExp">
-          <li class="cont-MainCamelLog--c--contSteps--item--cStep--mOpts--item">
-            <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--mOpts--cardItem">
+          <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--mOpts--cardItem">
+            <li class="cont-MainCamelLog--c--contSteps--item--cStep--mOpts--item">
               <h3>Opción 1</h3>
               <p>AGREGAR SERVICIOS DE ADUANA EN DESTINO</p>
-            </a>
-          </li>
-          <li class="cont-MainCamelLog--c--contSteps--item--cStep--mOpts--item">
-            <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--mOpts--cardItem">
+            </li>
+          </a>
+          <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--mOpts--cardItem">
+            <li class="cont-MainCamelLog--c--contSteps--item--cStep--mOpts--item">
               <h3>Opción 2</h3>
               <p>NO AGREGAR SERVICIOS <b>"SOLO DESEEO FLETE"</b></p>
-            </a>
-          </li>
+            </li>
+          </a>
         </ul>
       </div>
       <div class="cont-MainCamelLog--c--contSteps--item--cBtnNextStep"></div>
     `);
+
+    $(document).on("click", ".cont-MainCamelLog--c--contSteps--item--cStep--mOpts a", function(){
+      var t = $(this);
+      t.addClass("active").siblings().removeClass("active");
+    });
 
   }else{
     alert("No se ha añadido nigún contenedor. Por favor añade al menos un contenedor o selecciona LCL como tipo de carga.");
   }  
 });
 /************************** VALIDAR DE ACUERDO A LA OPCIÓN SELECCIONADA - ELIGE UNA OPCIÓN **************************/
-$(document).on("click", "#list-SelOptionResultExp li", function(){
+$(document).on("click", "#list-SelOptionResultExp a", function(){
   var tItemSelOptExp = $(this).index();
   if(tItemSelOptExp == 0){
-    $(this).addClass("selected");
+    $(this).addClass("active");
     /************************** ASIGNAR VALORES DE LOS INPUTS HIDDEN - ELIGE UNA OPCIÓN **************************/
     $("#opt-genfquotation").val("y-moreOpts");
 
@@ -806,7 +798,7 @@ $(document).on("click", "#list-SelOptionResultExp li", function(){
       </div>
     `);
   }else{
-    $(this).addClass("selected");
+    $(this).addClass("active");
     /************************** ASIGNAR VALORES DE LOS INPUTS HIDDEN - ELIGE UNA OPCIÓN **************************/
     $("#opt-genfquotation").val("not-moreOpts");
     /************************** OCULTAR - CONTENEDORES **************************/
