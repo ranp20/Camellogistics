@@ -123,11 +123,16 @@ $(document).on("click", "#list-typeOperationItems li", function(){
 	if(tTypeOperation == 0){
     /************************** ASIGNAR A LA VARIABLE BLOBAL **************************/
     v_TypeOp = $(this).find("a").find("p").text();
+    /************************** VALOR DEL TIPO DE OPERACIÓN **************************/
+    $("#loadTypeOpe").val(v_TypeOp);
     /************************** MOSTRAR EL SIGUIENTE PASO **************************/
 		sectionsSteps.moveTo('step-chargeload', 1);
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-chargeload]").html(`
 			<div class="cont-MainCamelLog--c--contSteps--item--cTitle">
         <h3 class="cont-MainCamelLog--c--contSteps--item--cTitle--title">Tipo de carga</h3>
+        <span>
+          <input type="hidden" value="" id="loadTypeCharge" name="loadTypeCharge">
+        </span>
       </div>
       <div class="cont-MainCamelLog--c--contSteps--item--cStep">
         <ul class="cont-MainCamelLog--c--contSteps--item--cStep--m" id="list-typeChargeLoadItems">
@@ -161,11 +166,16 @@ $(document).on("click", "#list-typeOperationItems li", function(){
 	}else{
     /************************** ASIGNAR A LA VARIABLE BLOBAL **************************/
     v_TypeOp = $(this).find("a").find("p").text();
+    /************************** VALOR DEL TIPO DE OPERACIÓN **************************/
+    $("#loadTypeOpe").val(v_TypeOp);
     /************************** MOSTRAR EL SIGUIENTE PASO **************************/
 		sectionsSteps.moveTo('step-chargeload', 1);
 		$(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-chargeload]").html(`
 			<div class="cont-MainCamelLog--c--contSteps--item--cTitle">
         <h3 class="cont-MainCamelLog--c--contSteps--item--cTitle--title">Tipo de carga</h3>
+        <span>
+          <input type="hidden" value="" id="loadTypeCharge" name="loadTypeCharge">
+        </span>
       </div>
       <div class="cont-MainCamelLog--c--contSteps--item--cStep">
         <ul class="cont-MainCamelLog--c--contSteps--item--cStep--m" id="list-typeChargeLoadItems">
@@ -208,6 +218,8 @@ $(document).on("click", "#list-typeChargeLoadItems li", function(){
     /************************** ASGINAR A LAS VARIABLES GLOBALES **************************/
     v_TypeChargeImgSrc = $(this).find("a").find("div").find("img").attr("src");
     v_TypeChargeName = $(this).find("a").find("p").text();
+    /************************** VALOR DEL TIPO DE CARGA **************************/
+    $("#loadTypeCharge").val(v_TypeChargeName);
     /************************** ASIGNAR AL RESUMEN DEL LISTADO **************************/
     $(".cont-MainCamelLog--c--contResumeCalc--item--cardStep--cIconStepLeft[data-merchandise=rsm-typecharge]").find("img").attr("src", v_TypeChargeImgSrc);
     $(".cont-MainCamelLog--c--contResumeCalc--item--cardStep--cIconStepLeft[data-merchandise=rsm-typecharge]").find("span").text(v_TypeChargeName);
@@ -216,6 +228,16 @@ $(document).on("click", "#list-typeChargeLoadItems li", function(){
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-qcontainers]").html(`
 			<div class="cont-MainCamelLog--c--contSteps--item--cTitle">
         <h3 class="cont-MainCamelLog--c--contSteps--item--cTitle--title">Contenedores</h3>
+        <span>
+          <input type="hidden" value="" id="loadTypeContainer20" name="loadTypeContainer20">
+          <input type="hidden" value="0" id="loadQContainer20" name="loadQContainer20">
+          <input type="hidden" value="" id="loadTypeContainer40" name="loadTypeContainer40">
+          <input type="hidden" value="0" id="loadQContainer40" name="loadQContainer40">
+          <input type="hidden" value="" id="loadTypeContainer40hq" name="loadTypeContainer40hq">
+          <input type="hidden" value="0" id="loadQContainer40hq" name="loadQContainer40hq">
+          <input type="hidden" value="" id="loadTypeContainer40nor" name="loadTypeContainer40nor">
+          <input type="hidden" value="0" id="loadQContainer40nor" name="loadQContainer40nor">
+        </span>
       </div>
       <div class="cont-MainCamelLog--c--contSteps--item--cStep">
         <div class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems">
@@ -267,7 +289,7 @@ $(document).on("click", "#list-typeChargeLoadItems li", function(){
               <label for="" class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cC--label">20'</label>
               <div class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cC--control" id="c-incdecBtns20">
                 <button type="button" class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cC--control--btn">-</button>
-                <input type="number" class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cC--control--input" maxlength="16" value="0" min="0" max="50">
+                <input type="number" id="ipt-qvalContainer20" class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cC--control--input" maxlength="16" value="0" min="0" max="50">
                 <button type="button" class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cC--control--btn">+</button>
               </div>
             </div>
@@ -446,22 +468,35 @@ $(document).on("click", "#list-typeChargeLoadItems li", function(){
         </button>
       </div>
 		`);
+
 	}else{
     /************************** ASGINAR A LAS VARIABLES GLOBALES **************************/
     v_TypeChargeImgSrc = $(this).find("a").find("div").find("img").attr("src");
     v_TypeChargeName = $(this).find("a").find("p").text();
+    /************************** VALOR DEL TIPO DE CARGA **************************/
+    $("#loadTypeCharge").val(v_TypeChargeName);
     /************************** ASIGNAR AL RESUMEN DEL LISTADO **************************/
     $(".cont-MainCamelLog--c--contResumeCalc--item--cardStep--cIconStepLeft[data-merchandise=rsm-typecharge]").find("img").attr("src", v_TypeChargeImgSrc);
     $(".cont-MainCamelLog--c--contResumeCalc--item--cardStep--cIconStepLeft[data-merchandise=rsm-typecharge]").find("span").text(v_TypeChargeName);
-    /************************** MOSTRAR EL SIGUIENTE PASO **************************/
+    
+    /************************** OCULTAR - ELIGE UNA OPCIÓN **************************/
+    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-integservorfleteinte]").removeClass("show");
+    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-integservorfleteinte]").html("");
+    /************************** OCULTAR - CONTENEDORES **************************/
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-qcontainers]").html("");
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-qcontainers]").removeClass("show");
+
 		$(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-chargedata]").addClass("show");
     /************************** MOSTRAR EL SIGUIENTE PASO **************************/
     sectionsSteps.moveTo('step-chargedata', 1);
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-chargedata]").html(`
       <div class="cont-MainCamelLog--c--contSteps--item--cTitle">
         <h3 class="cont-MainCamelLog--c--contSteps--item--cTitle--title">Dimensiones de carga</h3>
+        <span>
+          <input type="hidden" value="" id="loadQPackages" name="loadQPackages">
+          <input type="hidden" value="" id="loadTotWeight" name="loadTotWeight">
+          <input type="hidden" value="" id="loadTotVolume" name="loadTotVolume">
+        </span>
       </div>
       <div class="cont-MainCamelLog--c--contSteps--item--cStep">
         <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControls">
@@ -491,41 +526,240 @@ $(document).on("click", "#list-typeChargeLoadItems li", function(){
     `); 
 	}
 });
-/************************** MOSTRAR EL PASO DE - ELIGE UNA OPCIÓN **************************/
-$(document).on("click", "#btn-NextStepToSelOptResultExp", function(){
-  $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-integservorfleteinte]").addClass("show");
-  /************************** MOSTRAR EL SIGUIENTE PASO **************************/
-  sectionsSteps.moveTo('step-integservorfleteinte', 1);
-  $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-integservorfleteinte]").html(`
-    <div class="cont-MainCamelLog--c--contSteps--item--cTitle">
-      <h3 class="cont-MainCamelLog--c--contSteps--item--cTitle--title">Eliga una opción</h3>
-    </div>
-    <div class="cont-MainCamelLog--c--contSteps--item--cStep">
-      <ul class="cont-MainCamelLog--c--contSteps--item--cStep--mOpts" id="list-SelOptionResultExp">
-        <li class="cont-MainCamelLog--c--contSteps--item--cStep--mOpts--item">
-          <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--mOpts--cardItem">
-            <h3>Opción 1</h3>
-            <p>AGREGAR SERVICIOS DE ADUANA EN DESTINO</p>
-          </a>
-        </li>
-        <li class="cont-MainCamelLog--c--contSteps--item--cStep--mOpts--item">
-          <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--mOpts--cardItem">
-            <h3>Opción 2</h3>
-            <p>NO AGREGAR SERVICIOS <b>"SOLO DESEEO FLETE"</b></p>
-          </a>
-        </li>
-      </ul>
-    </div>
-    <div class="cont-MainCamelLog--c--contSteps--item--cBtnNextStep"></div>
-  `);
+/*========================================================================================
+=                          4. AÑADIR LA CANTIDAD DE CONTENEDORES                         =
+=========================================================================================*/
+/************************** INCREMENTAR/DECREMENTAR INPUTS **************************/
+/************************** PRIMER INPUT **************************/
+$(document).on("click", "#c-incdecBtns20 button", function(){
+  var tindBtn = $(this).index();
+  var input20 = $(this).parent().find("input").val();
+  var newValipt20 = $(this).parent().find("input").val();
+  var val20inputhidden = $("#loadQContainer20").val();
+  var val20inputhiddenNew = $("#loadQContainer20").val();
+  if(tindBtn == 2){
+    newValipt20 = parseInt(input20) + 1;
+    $(this).parent().find("input").val(newValipt20);
+    
+
+    /************************** ASIGNAR VALORES A LA VARIABLE GLOBAL REFERENTE **************************/
+    v_QContainersName20 = $(this).parent().parent().find("label").text();
+    v_QContainersImgSrc20 = $(this).parent().parent().parent().find("div").find("img").attr("src");
+    v_QContainersValue20 = newValipt20;
+
+    /************************** ASIGNAR VALORES DE LOS INPUTS HIDDEN **************************/
+    $("#loadTypeContainer20").val(v_QContainersName20);
+    val20inputhiddenNew = parseInt(val20inputhidden) + 1;
+    $("#loadQContainer20").val(val20inputhiddenNew);
+
+    return v_QContainersName20;
+    return v_QContainersImgSrc20;
+
+  }else if(tindBtn == 0){
+    if(input20 > 0){
+      newValipt20 = parseInt(input20) - 1;
+      $(this).parent().find("input").val(newValipt20);
+      /************************** ASIGNAR VALORES DE LOS INPUTS HIDDEN **************************/
+      val20inputhiddenNew = parseInt(val20inputhidden) - 1;
+      $("#loadQContainer20").val(val20inputhiddenNew);
+    }else{
+      newValipt20 = 0;
+      $(this).parent().find("input").val(newValipt20);
+      /************************** ASIGNAR VALORES DE LOS INPUTS HIDDEN **************************/
+      $("#loadTypeContainer20").val("");
+      val20inputhiddenNew = 0;
+      $("#loadQContainer20").val(0);
+    }
+  }else{
+    console.log('Sin acción');
+  }
 });
-/************************** VALIDAR DE ACUERDO A LA OPCIÓN SELECCIONADA **************************/
+/************************** SEGUNDO INPUT **************************/
+$(document).on("click", "#c-incdecBtns40 button", function(){
+  var tindBtn = $(this).index();
+  var input40 = $(this).parent().find("input").val();
+  var newValipt40 = $(this).parent().find("input").val();
+  var val40inputhidden = $("#loadQContainer40").val();
+  var val40inputhiddenNew = $("#loadQContainer40").val();
+  if(tindBtn == 2){
+    newValipt40 = parseInt(input40) + 1;
+    $(this).parent().find("input").val(newValipt40);
+
+    /************************** ASIGNAR VALORES A LA VARIABLE GLOBAL REFERENTE **************************/
+    v_QContainersName40 = $(this).parent().parent().find("label").text();
+    v_QContainersImgSrc40 = $(this).parent().parent().parent().find("div").find("img").attr("src");
+    v_QContainersValue40 = $(this).parent().find("input").val(newValipt40);
+
+    /************************** ASIGNAR VALORES DE LOS INPUTS HIDDEN **************************/
+    $("#loadTypeContainer40").val(v_QContainersName40);
+    val40inputhiddenNew = parseInt(val40inputhidden) + 1;
+    $("#loadQContainer40").val(val40inputhiddenNew);
+
+  }else if(tindBtn == 0){
+    if(input40 > 0){
+      newValipt40 = parseInt(input40) - 1;
+      $(this).parent().find("input").val(newValipt40);
+      /************************** ASIGNAR VALORES DE LOS INPUTS HIDDEN **************************/
+      val40inputhiddenNew = parseInt(val40inputhidden) - 1;
+      $("#loadQContainer40").val(val40inputhiddenNew);
+    }else{
+      newValipt40 = 0;
+      $(this).parent().find("input").val(newValipt40);
+      /************************** ASIGNAR VALORES DE LOS INPUTS HIDDEN **************************/
+      $("#loadTypeContainer40").val("");
+      val40inputhiddenNew = 0;
+      $("#loadQContainer40").val(0);
+    }
+  }else{
+    console.log('Sin acción');
+  }
+});
+/************************** TERCERO INPUT **************************/
+$(document).on("click", "#c-incdecBtns40-hc button", function(){
+  var tindBtn = $(this).index();
+  var input40_hq = $(this).parent().find("input").val();
+  var newValipt40_hq = $(this).parent().find("input").val();
+  var val40hqinputhidden = $("#loadQContainer40hq").val();
+  var val40hqinputhiddenNew = $("#loadQContainer40hq").val();
+  if(tindBtn == 2){
+    newValipt40_hq = parseInt(input40_hq) + 1;
+    $(this).parent().find("input").val(newValipt40_hq);
+    /************************** ASIGNAR VALORES A LA VARIABLE GLOBAL REFERENTE **************************/
+    v_QContainersName40_hq = $(this).parent().parent().find("label").text();
+    v_QContainersImgSrc40_hq = $(this).parent().parent().parent().find("div").find("img").attr("src");
+    v_QContainersValue40_hq = $(this).parent().find("input").val(newValipt40_hq);
+
+    /************************** ASIGNAR VALORES DE LOS INPUTS HIDDEN **************************/
+    $("#loadTypeContainer40hq").val(v_QContainersName40_hq);
+    val40hqinputhiddenNew = parseInt(val40hqinputhidden) + 1;
+    $("#loadQContainer40hq").val(val40hqinputhiddenNew);
+
+  }else if(tindBtn == 0){
+    if(input40_hq > 0){
+      newValipt40_hq = parseInt(input40_hq) - 1;
+      $(this).parent().find("input").val(newValipt40_hq);
+      /************************** ASIGNAR VALORES DE LOS INPUTS HIDDEN **************************/
+      val40hqinputhiddenNew = parseInt(val40hqinputhidden) - 1;
+      $("#loadQContainer40hq").val(val40hqinputhiddenNew);
+    }else{
+      newValipt40_hq = 0;
+      $(this).parent().find("input").val(newValipt40_hq);
+      /************************** ASIGNAR VALORES DE LOS INPUTS HIDDEN **************************/
+      $("#loadTypeContainer40hq").val("");
+      val40hqinputhiddenNew = 0;
+      $("#loadQContainer40hq").val(0);
+    }
+  }else{
+    console.log('Sin acción');
+  }
+});
+/************************** TERCERO INPUT **************************/
+$(document).on("click", "#c-incdecBtns40-nor button", function(){
+  var tindBtn = $(this).index();
+  var input40_nor = $(this).parent().find("input").val();
+  var newValipt40_nor = $(this).parent().find("input").val();
+  var val40norinputhidden = $("#loadQContainer40nor").val();
+  var val40norinputhiddenNew = $("#loadQContainer40nor").val();
+  if(tindBtn == 2){
+    newValipt40_nor = parseInt(input40_nor) + 1;
+    $(this).parent().find("input").val(newValipt40_nor);
+    /************************** ASIGNAR VALORES A LA VARIABLE GLOBAL REFERENTE **************************/
+    v_QContainersName40_nor = $(this).parent().parent().find("label").text();
+    v_QContainersImgSrc40_nor = $(this).parent().parent().parent().find("div").find("img").attr("src");
+    v_QContainersValue40_nor = $(this).parent().find("input").val(newValipt40_nor);
+
+    /************************** ASIGNAR VALORES DE LOS INPUTS HIDDEN **************************/
+    $("#loadTypeContainer40nor").val(v_QContainersName40_nor);
+    val40norinputhiddenNew = parseInt(val40norinputhidden) + 1;
+    $("#loadQContainer40nor").val(val40norinputhiddenNew);
+
+  }else if(tindBtn == 0){
+    if(input40_nor > 0){
+      newValipt40_nor = parseInt(input40_nor) - 1;
+      $(this).parent().find("input").val(newValipt40_nor);
+      /************************** ASIGNAR VALORES DE LOS INPUTS HIDDEN **************************/
+      val40norinputhiddenNew = parseInt(val40norinputhidden) - 1;
+      $("#loadQContainer40nor").val(val40norinputhiddenNew);
+    }else{
+      newValipt40_nor = 0;
+      $(this).parent().find("input").val(newValipt40_nor);
+      /************************** ASIGNAR VALORES DE LOS INPUTS HIDDEN **************************/
+      $("#loadTypeContainer40nor").val("");
+      val40norinputhiddenNew = 0;
+      $("#loadQContainer40nor").val(0);
+    }
+  }else{
+    console.log('Sin acción');
+  }
+});
+/************************** SWITCH DE CONTENEDORES REFRIGERADOS **************************/
+$(document).on("click", "#chck-containerfreeze", function(){
+  if($(this).is(":checked")){
+    $(this).parent().addClass("active");
+    $(this).parent().attr("switch-CFreeze", "SÍ");
+  }else{
+    $(this).parent().removeClass("active");
+    $(this).parent().attr("switch-CFreeze", "NO");
+  }
+});
+/************************** VALIDAR EL BOTÓN DE PASO SIGUIENTE - DESDE CONTENEDORES **************************/
+$(document).on("click", "#btn-NextStepToSelOptResultExp", function(){
+  if($("#c-incdecBtns20").find("input").val() != 0 && $("#c-incdecBtns20").find("input").val() != "" || 
+     $("#c-incdecBtns40").find("input").val() != 0 && $("#c-incdecBtns40").find("input").val() != "" ||
+     $("#c-incdecBtns40-hc").find("input").val() != 0 && $("#c-incdecBtns40-hc").find("input").val() != "" ||
+     $("#c-incdecBtns40-nor").find("input").val() != 0 && $("#c-incdecBtns40-nor").find("input").val() != ""){
+    
+    /************************** ASIGNAR AL RESUMEN DEL LISTADO **************************/
+    $(".cont-MainCamelLog--c--contResumeCalc--item--cardStep--cIconStepLeft[data-merchandise=rsm-qcontainer]").find("img").attr("src", v_QContainersImgSrc20);
+    $(".cont-MainCamelLog--c--contResumeCalc--item--cardStep--cIconStepLeft[data-merchandise=rsm-qcontainer]").find("p").find("span").eq(0).text(v_QContainersValue20);
+    $(".cont-MainCamelLog--c--contResumeCalc--item--cardStep--cIconStepLeft[data-merchandise=rsm-qcontainer]").find("p").find("span").eq(2).text(v_QContainersName20);
+    
+
+    /************************** MOSTRAR EL PASO DE - ELIGE UNA OPCIÓN **************************/
+    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-integservorfleteinte]").addClass("show");
+    sectionsSteps.moveTo('step-integservorfleteinte', 1);
+    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-integservorfleteinte]").html(`
+      <div class="cont-MainCamelLog--c--contSteps--item--cTitle">
+        <h3 class="cont-MainCamelLog--c--contSteps--item--cTitle--title">Eliga una opción</h3>
+        <span>
+          <input type="hidden" value="" id="opt-genfquotation" name="opt-genfquotation">
+          </span>
+      </div>
+      <div class="cont-MainCamelLog--c--contSteps--item--cStep">
+        <ul class="cont-MainCamelLog--c--contSteps--item--cStep--mOpts" id="list-SelOptionResultExp">
+          <li class="cont-MainCamelLog--c--contSteps--item--cStep--mOpts--item">
+            <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--mOpts--cardItem">
+              <h3>Opción 1</h3>
+              <p>AGREGAR SERVICIOS DE ADUANA EN DESTINO</p>
+            </a>
+          </li>
+          <li class="cont-MainCamelLog--c--contSteps--item--cStep--mOpts--item">
+            <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--mOpts--cardItem">
+              <h3>Opción 2</h3>
+              <p>NO AGREGAR SERVICIOS <b>"SOLO DESEEO FLETE"</b></p>
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div class="cont-MainCamelLog--c--contSteps--item--cBtnNextStep"></div>
+    `);
+
+  }else{
+    alert("No se ha añadido nigún contenedor. Por favor añade al menos un contenedor o selecciona LCL como tipo de carga.");
+  }  
+});
+/************************** VALIDAR DE ACUERDO A LA OPCIÓN SELECCIONADA - ELIGE UNA OPCIÓN **************************/
 $(document).on("click", "#list-SelOptionResultExp li", function(){
   var tItemSelOptExp = $(this).index();
   if(tItemSelOptExp == 0){
     $(this).addClass("selected");
-    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-merchandisedata]").addClass("show");
+    $("#opt-genfquotation").val("y-moreOpts");
+
+    /************************** OCULTAR - DIMENSIONES DE CARGA **************************/
+    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-chargedata]").removeClass("show");
+    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-chargedata]").html("");
     /************************** MOSTRAR EL SIGUIENTE PASO **************************/
+    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-merchandisedata]").addClass("show");
     sectionsSteps.moveTo('step-merchandisedata', 1);
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-merchandisedata]").html(`
       <div class="cont-MainCamelLog--c--contSteps--item--cTitle">
@@ -567,6 +801,10 @@ $(document).on("click", "#list-SelOptionResultExp li", function(){
     `);
   }else{
     $(this).addClass("selected");
+    $("#opt-genfquotation").val("not-moreOpts");
+    /************************** OCULTAR - CONTENEDORES **************************/
+    // $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-qcontainers]").removeClass("show");
+    // $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-qcontainers]").html("");
     /************************** OCULTAR - DIMENSIONES DE CARGA **************************/
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-chargedata]").removeClass("show");
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-chargedata]").html("");
@@ -581,173 +819,6 @@ $(document).on("click", "#list-SelOptionResultExp li", function(){
       </button>
     `);
   }
-});
-/*========================================================================================
-=           							 4. AÑADIR LA CANTIDAD DE CONTENEDORES            						 =
-=========================================================================================*/
-/************************** INCREMENTAR/DECREMENTAR INPUTS **************************/
-/************************** PRIMER INPUT **************************/
-$(document).on("click", "#c-incdecBtns20 button", function(){
-  var tindBtn = $(this).index();
-  var input20 = $(this).parent().find("input").val();
-  var newValipt20 = $(this).parent().find("input").val();
-  if(tindBtn == 2){
-    newValipt20 = parseInt(input20) + 1;
-    $(this).parent().find("input").val(newValipt20);
-    /************************** ASIGNAR VALORES A LA VARIABLE GLOBAL REFERENTE **************************/
-    v_QContainersName20 = $(this).parent().parent().find("label").text();
-    v_QContainersImgSrc20 = $(this).parent().parent().parent().find("div").find("img").attr("src");
-    v_QContainersValue20 = newValipt20;
-
-    return v_QContainersName20;
-    return v_QContainersImgSrc20;
-
-  }else if(tindBtn == 0){
-    if(input20 > 0){
-      newValipt20 = parseInt(input20) - 1;
-      $(this).parent().find("input").val(newValipt20);
-    }else{
-      newValipt20 = 0;
-      $(this).parent().find("input").val(newValipt20);
-    }
-  }else{
-    console.log('Sin acción');
-  }
-});
-/************************** SEGUNDO INPUT **************************/
-$(document).on("click", "#c-incdecBtns40 button", function(){
-  var tindBtn = $(this).index();
-  var input40 = $(this).parent().find("input").val();
-  var newValipt40 = $(this).parent().find("input").val();
-  if(tindBtn == 2){
-    newValipt40 = parseInt(input40) + 1;
-    $(this).parent().find("input").val(newValipt40);
-    /************************** ASIGNAR VALORES A LA VARIABLE GLOBAL REFERENTE **************************/
-    v_QContainersName40 = $(this).parent().parent().find("label").text();
-    v_QContainersImgSrc40 = $(this).parent().parent().parent().find("div").find("img").attr("src");
-    v_QContainersValue40 = $(this).parent().find("input").val(newValipt40);
-
-  }else if(tindBtn == 0){
-    if(input40 > 0){
-      newValipt40 = parseInt(input40) - 1;
-      $(this).parent().find("input").val(newValipt40);
-    }else{
-      newValipt40 = 0;
-      $(this).parent().find("input").val(newValipt40);
-    }
-  }else{
-    console.log('Sin acción');
-  }
-});
-/************************** TERCERO INPUT **************************/
-$(document).on("click", "#c-incdecBtns40-hc button", function(){
-  var tindBtn = $(this).index();
-  var input40_hq = $(this).parent().find("input").val();
-  var newValipt40_hq = $(this).parent().find("input").val();
-  if(tindBtn == 2){
-    newValipt40_hq = parseInt(input40_hq) + 1;
-    $(this).parent().find("input").val(newValipt40_hq);
-    /************************** ASIGNAR VALORES A LA VARIABLE GLOBAL REFERENTE **************************/
-    v_QContainersName40_hq = $(this).parent().parent().find("label").text();
-    v_QContainersImgSrc40_hq = $(this).parent().parent().parent().find("div").find("img").attr("src");
-    v_QContainersValue40_hq = $(this).parent().find("input").val(newValipt40_hq);
-
-  }else if(tindBtn == 0){
-    if(input40_hq > 0){
-      newValipt40_hq = parseInt(input40_hq) - 1;
-      $(this).parent().find("input").val(newValipt40_hq);
-    }else{
-      newValipt40_hq = 0;
-      $(this).parent().find("input").val(newValipt40_hq);
-    }
-  }else{
-    console.log('Sin acción');
-  }
-});
-/************************** TERCERO INPUT **************************/
-$(document).on("click", "#c-incdecBtns40-nor button", function(){
-  var tindBtn = $(this).index();
-  var input40_nor = $(this).parent().find("input").val();
-  var newValipt40_nor = $(this).parent().find("input").val();
-  if(tindBtn == 2){
-    newValipt40_nor = parseInt(input40_nor) + 1;
-    $(this).parent().find("input").val(newValipt40_nor);
-    /************************** ASIGNAR VALORES A LA VARIABLE GLOBAL REFERENTE **************************/
-    v_QContainersName40_nor = $(this).parent().parent().find("label").text();
-    v_QContainersImgSrc40_nor = $(this).parent().parent().parent().find("div").find("img").attr("src");
-    v_QContainersValue40_nor = $(this).parent().find("input").val(newValipt40_nor);
-
-  }else if(tindBtn == 0){
-    if(input40_nor > 0){
-      newValipt40_nor = parseInt(input40_nor) - 1;
-      $(this).parent().find("input").val(newValipt40_nor);
-    }else{
-      newValipt40_nor = 0;
-      $(this).parent().find("input").val(newValipt40_nor);
-    }
-  }else{
-    console.log('Sin acción');
-  }
-});
-/************************** SWITCH DE CONTENEDORES REFRIGERADOS **************************/
-$(document).on("click", "#chck-containerfreeze", function(){
-	if($(this).is(":checked")){
-		$(this).parent().addClass("active");
-		$(this).parent().attr("switch-CFreeze", "SÍ");
-	}else{
-		$(this).parent().removeClass("active");
-		$(this).parent().attr("switch-CFreeze", "NO");
-	}
-});
-/************************** VALIDAR EL BOTÓN DE PASO SIGUIENTE - DESDE CONTENEDORES **************************/
-$(document).on("click", "#btn-NextStepToChargeLoad", function(){
-  if($("#c-incdecBtns20").find("input").val() != 0 && $("#c-incdecBtns20").find("input").val() != "" || 
-     $("#c-incdecBtns40").find("input").val() != 0 && $("#c-incdecBtns40").find("input").val() != "" ||
-     $("#c-incdecBtns40-hc").find("input").val() != 0 && $("#c-incdecBtns40-hc").find("input").val() != "" ||
-     $("#c-incdecBtns40-nor").find("input").val() != 0 && $("#c-incdecBtns40-nor").find("input").val() != ""){
-    
-    /************************** ASIGNAR AL RESUMEN DEL LISTADO **************************/
-    $(".cont-MainCamelLog--c--contResumeCalc--item--cardStep--cIconStepLeft[data-merchandise=rsm-qcontainer]").find("img").attr("src", v_QContainersImgSrc20);
-    $(".cont-MainCamelLog--c--contResumeCalc--item--cardStep--cIconStepLeft[data-merchandise=rsm-qcontainer]").find("p").find("span").eq(0).text(v_QContainersValue20);
-    $(".cont-MainCamelLog--c--contResumeCalc--item--cardStep--cIconStepLeft[data-merchandise=rsm-qcontainer]").find("p").find("span").eq(2).text(v_QContainersName20);
-    
-    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-chargedata]").addClass("show");
-    /************************** MOSTRAR EL SIGUIENTE PASO **************************/
-    sectionsSteps.moveTo('step-chargedata', 1);
-    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-chargedata]").html(`
-      <div class="cont-MainCamelLog--c--contSteps--item--cTitle">
-        <h3 class="cont-MainCamelLog--c--contSteps--item--cTitle--title">Dimensiones de carga</h3>
-      </div>
-      <div class="cont-MainCamelLog--c--contSteps--item--cStep">
-        <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControls">
-          <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControls--cControl">
-            <label for="" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControls--cControl--label">BULTOS</label>
-            <input type="number" id="val-iptPackagesNInterface" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControls--cControl--input">
-          </div>
-          <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControls--cControl">
-            <label for="" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControls--cControl--label">PESO (KG)</label>
-            <input type="text" id="val-iptWeightNInterface" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControls--cControl--input" maxlength="11">
-          </div>
-          <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControls--cControl">
-            <label for="" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControls--cControl--label">VOLUMEN (M³)</label>
-            <input type="number" id="val-iptVolumeNInterface" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControls--cControl--input" maxlength="13">
-          </div>
-          <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControls--cBtnModalCalculator" id="link-showModalCalcVolum">
-            <span>AYUDA - ¡CALCULAR VOLUMEN (M³) AQUÍ!</span>
-          </a>
-        </div>
-      </div>
-      <div class="cont-MainCamelLog--c--contSteps--item--cBtnNextStep">
-        <button type="button" class="cont-MainCamelLog--c--contSteps--item--cBtnNextStep--btn" id="btn-NextStepTochargedata">
-          <span>Seguir</span>
-          <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 100 125" enable-background="new 0 0 100 100" xml:space="preserve"><g><g><polygon points="19.318,43.363 19.318,61.189 49.497,95 79.675,61.189 79.675,43.363 49.497,77.174   "/><polygon points="50.504,38.811 20.326,5 20.326,24.872 49.497,60.537 79.675,24.872 80.682,5   "/></g></g></svg>
-        </button>
-      </div>
-    `); 
-
-  }else{
-    alert("No se ha añadido nigún contenedor. Por favor añade al emnos un contenedor o selecciona LCL como tipo de carga.");
-  }  
 });
 /*========================================================================================
 =           	 						5. AGREGAR LAS DIMENSIONES DE LA CARGA            						 =

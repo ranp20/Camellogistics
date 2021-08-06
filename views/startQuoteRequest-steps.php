@@ -62,6 +62,9 @@
         <div class="cont-MainCamelLog--c--contSteps--item active section" data-anchor="step-typeoperation" data-transportquote>
           <div class="cont-MainCamelLog--c--contSteps--item--cTitle">
             <h3 class="cont-MainCamelLog--c--contSteps--item--cTitle--title">¿Qué tipo de operación vas a realizar?</h3>
+            <span>
+              <input type="hidden" value="" id="loadTypeOpe" name="loadTypeOpe">
+            </span>
           </div>
           <div class="cont-MainCamelLog--c--contSteps--item--cStep">
             <ul class="cont-MainCamelLog--c--contSteps--item--cStep--m" id="list-typeOperationItems">
