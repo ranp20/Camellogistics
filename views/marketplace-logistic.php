@@ -17,7 +17,7 @@
         <div class="cont-MainCamelLog--c--cTop--cImg">
           <ul class="cont-MainCamelLog--c--cTop--cImg--m">
             <li class="cont-MainCamelLog--c--cTop--cImg--m--item">
-              <img src="views/assets/img/utilities/p1.png" alt="">
+              <img src="views/assets/img/utilities/p1.png" alt="" loading="lazy">
             </li>
           </ul>
         </div>

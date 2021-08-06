@@ -126,7 +126,7 @@ $(document).on("click", "#list-typeOperationItems a", function(){
           <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem">
             <li class="cont-MainCamelLog--c--contSteps--item--cStep--m--item">
               <div class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem--cImg">
-                <img src="views/assets/img/steps/fcl.png" alt="">
+                <img src="views/assets/img/steps/fcl.png" alt="" loading="lazy">
               </div>
               <p>FCL</p>
             </li>
@@ -134,7 +134,7 @@ $(document).on("click", "#list-typeOperationItems a", function(){
           <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem">
             <li class="cont-MainCamelLog--c--contSteps--item--cStep--m--item">
               <div class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem--cImg">
-                <img src="views/assets/img/steps/lcl.png" alt="">
+                <img src="views/assets/img/steps/lcl.png" alt="" loading="lazy">
               </div>
               <p>LCL</p>
             </li>
@@ -169,7 +169,7 @@ $(document).on("click", "#list-typeOperationItems a", function(){
           <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem">
             <li class="cont-MainCamelLog--c--contSteps--item--cStep--m--item">
               <div class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem--cImg">
-                <img src="views/assets/img/steps/fcl.png" alt="">
+                <img src="views/assets/img/steps/fcl.png" alt="" loading="lazy">
               </div>
               <p>FCL</p>
             </li>
@@ -177,7 +177,7 @@ $(document).on("click", "#list-typeOperationItems a", function(){
           <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem">
             <li class="cont-MainCamelLog--c--contSteps--item--cStep--m--item">
               <div class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem--cImg">
-                <img src="views/assets/img/steps/lcl.png" alt="">
+                <img src="views/assets/img/steps/lcl.png" alt="" loading="lazy">
               </div>
               <p>LCL</p>
             </li>
@@ -230,13 +230,13 @@ $(document).on("click", "#list-typeChargeLoadItems a", function(){
         <div class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems">
           <div class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item">
             <div class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cImg" id="info-tooltip20">
-              <img src="views/assets/img/steps/20.png" alt="">
+              <img src="views/assets/img/steps/20.png" alt="" loading="lazy">
               <div class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cImg--ctooltipR">
                 <div class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cImg--ctooltipR--cTitle">
                   <h3 class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cImg--ctooltipR--cTitle--title">20' STANDARD</h3>
                 </div>
                 <div class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cImg--ctooltipR--cImg">
-                  <img src="views/assets/img/steps/20std.png" alt="">
+                  <img src="views/assets/img/steps/20std.png" alt="" loading="lazy">
                 </div>
                 <div class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cImg--ctooltipR--cDetailCont">
                   <p class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cImg--ctooltipR--cDetailCont--item">
@@ -283,13 +283,13 @@ $(document).on("click", "#list-typeChargeLoadItems a", function(){
           </div>
           <div class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item">
             <div class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cImg" id="info-tooltip40">
-              <img src="views/assets/img/steps/40.png" alt="">
+              <img src="views/assets/img/steps/40.png" alt="" loading="lazy">
               <div class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cImg--ctooltipR">
                 <div class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cImg--ctooltipR--cTitle">
                   <h3 class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cImg--ctooltipR--cTitle--title">40' STANDARD</h3>
                 </div>
                 <div class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cImg--ctooltipR--cImg">
-                  <img src="views/assets/img/steps/40std.png" alt="">
+                  <img src="views/assets/img/steps/40std.png" alt="" loading="lazy">
                 </div>
                 <div class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cImg--ctooltipR--cDetailCont">
                   <p class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cImg--ctooltipR--cDetailCont--item">
@@ -336,13 +336,13 @@ $(document).on("click", "#list-typeChargeLoadItems a", function(){
           </div>
           <div class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item">
             <div class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cImg" id="info-tooltip40-hq">
-              <img src="views/assets/img/steps/40-hc.png" alt="">
+              <img src="views/assets/img/steps/40-hc.png" alt="" loading="lazy">
               <div class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cImg--ctooltipL">
                 <div class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cImg--ctooltipL--cTitle">
                   <h3 class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cImg--ctooltipL--cTitle--title">40' HQ</h3>
                 </div>
                 <div class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cImg--ctooltipL--cImg">
-                  <img src="views/assets/img/steps/40hq.png" alt="">
+                  <img src="views/assets/img/steps/40hq.png" alt="" loading="lazy">
                 </div>
                 <div class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cImg--ctooltipL--cDetailCont">
                   <p class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cImg--ctooltipL--cDetailCont--item">
@@ -389,13 +389,13 @@ $(document).on("click", "#list-typeChargeLoadItems a", function(){
           </div>
           <div class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item">
             <div class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cImg" id="info-tooltip40-nor">
-              <img src="views/assets/img/steps/40-hc.png" alt="">
+              <img src="views/assets/img/steps/40-hc.png" alt="" loading="lazy">
               <div class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cImg--ctooltipL">
                 <div class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cImg--ctooltipL--cTitle">
                   <h3 class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cImg--ctooltipL--cTitle--title">40' NOR</h3>
                 </div>
                 <div class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cImg--ctooltipL--cImg">
-                  <img src="views/assets/img/steps/40nor.png" alt="">
+                  <img src="views/assets/img/steps/40nor.png" alt="" loading="lazy">
                 </div>
                 <div class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cImg--ctooltipL--cDetailCont">
                   <p class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cImg--ctooltipL--cDetailCont--item">
@@ -1429,7 +1429,7 @@ $(document).on("click", "#btn-NextStepTomerchandisedata", function(){
           <li class="cont-MainCamelLog--c--contSteps--item--cStep--m--item">
             <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem">
               <div class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem--cImg">
-                <img src="views/assets/img/steps/insurance.png" alt="">
+                <img src="views/assets/img/steps/insurance.png" alt="" loading="lazy">
               </div>
               <p>SÍ</p>
             </a>
@@ -1437,7 +1437,7 @@ $(document).on("click", "#btn-NextStepTomerchandisedata", function(){
           <li class="cont-MainCamelLog--c--contSteps--item--cStep--m--item">
             <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem">
               <div class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem--cImg">
-                <img src="views/assets/img/steps/no-insurance.png" alt="">
+                <img src="views/assets/img/steps/no-insurance.png" alt="" loading="lazy">
               </div>
               <p>NO</p>
             </a>
@@ -1474,7 +1474,7 @@ $(document).on("click", "#list-insuremerchandise li", function(){
           <li class="cont-MainCamelLog--c--contSteps--item--cStep--m--item">
             <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem">
               <div class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem--cImg">
-                <img src="views/assets/img/steps/customs-clearance.png" alt="">
+                <img src="views/assets/img/steps/customs-clearance.png" alt="" loading="lazy">
               </div>
               <p>SÍ</p>
             </a>
@@ -1482,7 +1482,7 @@ $(document).on("click", "#list-insuremerchandise li", function(){
           <li class="cont-MainCamelLog--c--contSteps--item--cStep--m--item">
             <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem">
               <div class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem--cImg">
-                <img src="views/assets/img/steps/no-customs-clearance.png" alt="">
+                <img src="views/assets/img/steps/no-customs-clearance.png" alt="" loading="lazy">
               </div>
               <p>NO</p>
             </a>
@@ -1507,7 +1507,7 @@ $(document).on("click", "#list-insuremerchandise li", function(){
           <li class="cont-MainCamelLog--c--contSteps--item--cStep--m--item">
             <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem">
               <div class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem--cImg">
-                <img src="views/assets/img/steps/customs-clearance.png" alt="">
+                <img src="views/assets/img/steps/customs-clearance.png" alt="" loading="lazy">
               </div>
               <p>SÍ</p>
             </a>
@@ -1515,7 +1515,7 @@ $(document).on("click", "#list-insuremerchandise li", function(){
           <li class="cont-MainCamelLog--c--contSteps--item--cStep--m--item">
             <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem">
               <div class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem--cImg">
-                <img src="views/assets/img/steps/no-customs-clearance.png" alt="">
+                <img src="views/assets/img/steps/no-customs-clearance.png" alt="" loading="lazy">
               </div>
               <p>NO</p>
             </a>
@@ -1549,7 +1549,7 @@ $(document).on("click", "#list-customsclearance li", function(){
           <li class="cont-MainCamelLog--c--contSteps--item--cStep--m--item">
             <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem">
               <div class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem--cImg">
-                <img src="views/assets/img/steps/inland-trans.png" alt="">
+                <img src="views/assets/img/steps/inland-trans.png" alt="" loading="lazy">
               </div>
               <p>SÍ</p>
             </a>
@@ -1557,7 +1557,7 @@ $(document).on("click", "#list-customsclearance li", function(){
           <li class="cont-MainCamelLog--c--contSteps--item--cStep--m--item">
             <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem">
               <div class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem--cImg">
-                <img src="views/assets/img/steps/no-inland-trans.png" alt="">
+                <img src="views/assets/img/steps/no-inland-trans.png" alt="" loading="lazy">
               </div>
               <p>NO</p>
             </a>
@@ -1583,7 +1583,7 @@ $(document).on("click", "#list-customsclearance li", function(){
           <li class="cont-MainCamelLog--c--contSteps--item--cStep--m--item">
             <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem">
               <div class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem--cImg">
-                <img src="views/assets/img/steps/inland-trans.png" alt="">
+                <img src="views/assets/img/steps/inland-trans.png" alt="" loading="lazy">
               </div>
               <p>SÍ</p>
             </a>
@@ -1591,7 +1591,7 @@ $(document).on("click", "#list-customsclearance li", function(){
           <li class="cont-MainCamelLog--c--contSteps--item--cStep--m--item">
             <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem">
               <div class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem--cImg">
-                <img src="views/assets/img/steps/no-inland-trans.png" alt="">
+                <img src="views/assets/img/steps/no-inland-trans.png" alt="" loading="lazy">
               </div>
               <p>NO</p>
             </a>
