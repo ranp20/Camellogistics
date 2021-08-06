@@ -1,3 +1,7 @@
+<?php 
+  $actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]";
+  $urlAdmin =  $actual_link . "/Camellogistics/admin/";
+?>
 <header id="h-dashCamel" class="h-dashCamel">
 	<div class="h-dashCamel--c">
 		<div id="icon-togglemenuMobile">
@@ -34,7 +38,7 @@
 			</div>
 			<ul class="h-dashCamel--c--cUserDesktop--m" id="list-opts-sessuser">
 				<li class="h-dashCamel--c--cUserDesktop--m--item">
-					<a href="controllers/prcss_logout-adm.php" class="h-dashCamel--c--cUserDesktop--m--link">CERRAR SESIÓN</a>
+					<a href="<?= $urlAdmin ?>controllers/prcss_logout-adm.php" class="h-dashCamel--c--cUserDesktop--m--link">CERRAR SESIÓN</a>
 				</li>
 			</ul>
 		</div>

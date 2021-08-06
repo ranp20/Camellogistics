@@ -3,6 +3,9 @@
 	if(isset($_SESSION['admin_camel'])){
 		header("Location: dashboard");
 	}
+
+  $actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]";
+  $url =  $actual_link . "/Camellogistics/admin/views/";
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -55,6 +58,6 @@
 		</div>
 		<div class="c-LoginAdm--cBcImage"></div>
 	</main>
-	<script src="views/js/actions_pages/adm-login.js"></script>
+	<script src="<?= $url ?>js/actions_pages/adm-login.js"></script>
 </body>
 </html>
