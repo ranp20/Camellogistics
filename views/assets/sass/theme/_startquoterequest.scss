@@ -1129,7 +1129,8 @@
 		    width: auto;
 		    margin: 0 auto;
 
-				button{
+				/* BOTÓN CON ÍCONO ABAJO */
+				&--btn{
 					border: thin solid orange;
 			    background-color: transparent;
 			    color: orange;
@@ -1161,6 +1162,45 @@
 						stroke: orange;
 						width: 30px;
 						height: 30px;
+					}
+				}
+
+				/* BOTÓN CON ÍCONO A LA DERECHA */
+				&--btnR{
+					border: thin solid orange;
+			    background-color: transparent;
+			    color: orange;
+			    display: flex;
+			    align-items: center;
+			    justify-content: center;
+			    margin: 0 auto;
+			    padding: .75rem 2rem;
+			    font-size: 1.1rem;
+
+			    &:hover{
+			    	background-color: orange;
+			    	color: #fff;
+
+			    	svg{
+			    		fill: #fff;
+			    		stroke: #fff;
+			    	}
+			    }
+
+			    span{
+			    	font-weight: 600;
+			    	vertical-align: middle;
+			    }
+
+					svg{
+				    color: orange;
+				    fill: orange;
+				    stroke: orange;
+				    width: 36px;
+				    height: 36px;
+				    margin-left: 0.5rem;
+				    position: relative;
+				    top: 4px;
 					}
 				}
 			}
