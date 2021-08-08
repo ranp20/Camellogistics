@@ -34,13 +34,33 @@
                 <img src="" alt="">
                 <span></span>
               </div>
-              <div class="cont-MainCamelLog--c--contResumeCalc--item--cardStep--cIconStepLeft" data-merchandise="rsm-qcontainer">
-                <img src="" alt="">
-                <p>
-                  <span></span>
-                  <span>x</span>
-                  <span></span>
-                </p>
+              <div>
+                <div class="cont-MainCamelLog--c--contResumeCalc--item--cardStep--cIconStepLeft" data-merchandise="rsm-qcontainer">
+                  <div data-merchandisetype="rsm-qcontainer20">
+                    <img src="" alt="">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                  </div>
+                  <div data-merchandisetype="rsm-qcontainer40">
+                    <img src="" alt="">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                  </div>
+                  <div data-merchandisetype="rsm-qcontainer40hq">
+                    <img src="" alt="">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                  </div>
+                  <div data-merchandisetype="rsm-qcontainer40nor">
+                    <img src="" alt="">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                  </div>
+                </div>
               </div>
               <div class="cont-MainCamelLog--c--contResumeCalc--item--cardStep--cIconStepLeft" data-merchandise="rsm-totpackages">
                 <span>Bultos</span>
@@ -56,7 +76,9 @@
               </div>
             </div>
           </div>
-          <div class="cont-MainCamelLog--c--contResumeCalc--item" data-advlevel="d-quantitycontainer"></div>
+          <div class="cont-MainCamelLog--c--contResumeCalc--item" data-advlevel="d-quantitycontainer">
+            
+          </div>
         </section>
         <section class="cont-MainCamelLog--c--contSteps" id="fullpage">
           <!-- PASO #1 -->
@@ -92,7 +114,7 @@
           <div class="cont-MainCamelLog--c--contSteps--item section" data-anchor="step-chargeload" data-transportquote></div>
           <!-- PASO #3 -->
           <div class="cont-MainCamelLog--c--contSteps--item section" data-anchor="step-qcontainers" data-transportquote></div>
-          <!-- PASO #3.5 -->
+          <!-- PASO #3.5 o 4.5 -->
           <div class="cont-MainCamelLog--c--contSteps--item section" data-anchor="step-integservorfleteinte" data-transportquote></div>
           <!-- PASO #4 -->
           <div class="cont-MainCamelLog--c--contSteps--item section" data-anchor="step-chargedata" data-transportquote></div>

@@ -29,8 +29,8 @@ const sectionsSteps = new fullpage('#fullpage', {
   anchors:['step-typeoperation',
   				 'step-chargeload', 
   				 'step-qcontainers',
-           'step-integservorfleteinte',
   				 'step-chargedata',
+           'step-integservorfleteinte',
   				 'step-merchandisedata',
   				 'step-insuremerchandise',
   				 'step-customsclearance',
@@ -424,6 +424,27 @@ $(document).on("click", "#list-typeChargeLoadItems a", function(){
     /************************** ASIGNAR A LAS VARIABLES GLOBALES **************************/
     v_TypeChargeImgSrc = $(this).find("li").find("div").find("img").attr("src");
     v_TypeChargeName = $(this).find("li").find("p").text();
+    /************************** LIMPIAR EL LISTADO DE RESUMEN IZQUIERDO **************************/
+    /** LIMIPIAR 20' **/
+    $("div[data-merchandisetype=rsm-qcontainer20]").find("img").attr("src", "");
+    $("div[data-merchandisetype=rsm-qcontainer20]").find("span").eq(0).text("");
+    $("div[data-merchandisetype=rsm-qcontainer20]").find("span").eq(1).text("");
+    $("div[data-merchandisetype=rsm-qcontainer20]").find("span").eq(2).text("");
+    /** LIMIPIAR 40' **/
+    $("div[data-merchandisetype=rsm-qcontainer40]").find("img").attr("src", "");
+    $("div[data-merchandisetype=rsm-qcontainer40]").find("span").eq(0).text("");
+    $("div[data-merchandisetype=rsm-qcontainer40]").find("span").eq(1).text("");
+    $("div[data-merchandisetype=rsm-qcontainer40]").find("span").eq(2).text("");
+    /** LIMIPIAR 40hq **/
+    $("div[data-merchandisetype=rsm-qcontainer40hq]").find("img").attr("src", "");
+    $("div[data-merchandisetype=rsm-qcontainer40hq]").find("span").eq(0).text("");
+    $("div[data-merchandisetype=rsm-qcontainer40hq]").find("span").eq(1).text("");
+    $("div[data-merchandisetype=rsm-qcontainer40hq]").find("span").eq(2).text("");
+    /** LIMIPIAR 40nor **/
+    $("div[data-merchandisetype=rsm-qcontainer40nor]").find("img").attr("src", "");
+    $("div[data-merchandisetype=rsm-qcontainer40nor]").find("span").eq(0).text("");
+    $("div[data-merchandisetype=rsm-qcontainer40nor]").find("span").eq(1).text("");
+    $("div[data-merchandisetype=rsm-qcontainer40nor]").find("span").eq(2).text("");
     /************************** VALOR DEL TIPO DE CARGA **************************/
     $("#loadTypeCharge").val(v_TypeChargeName);
     /************************** ASIGNAR AL RESUMEN DEL LISTADO **************************/
@@ -431,8 +452,8 @@ $(document).on("click", "#list-typeChargeLoadItems a", function(){
     $(".cont-MainCamelLog--c--contResumeCalc--item--cardStep--cIconStepLeft[data-merchandise=rsm-typecharge]").find("span").text(v_TypeChargeName);
     
     /************************** OCULTAR - ELIGE UNA OPCIÓN **************************/
-    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-integservorfleteinte]").removeClass("show");
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-integservorfleteinte]").html("");
+    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-integservorfleteinte]").removeClass("show");
     /************************** OCULTAR - CONTENEDORES **************************/
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-qcontainers]").html("");
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-qcontainers]").removeClass("show");
@@ -502,9 +523,11 @@ $(document).on("click", "#c-incdecBtns20 button", function(){
     $("#loadTypeContainer20").val(v_QContainersName20);
     val20inputhiddenNew = parseInt(val20inputhidden) + 1;
     $("#loadQContainer20").val(val20inputhiddenNew);
-
-    return v_QContainersName20;
-    return v_QContainersImgSrc20;
+    /************************** RESUMEN DEL LISTADO - CONTENEDORES 20' **************************/
+    $("div[data-merchandisetype=rsm-qcontainer20]").find("img").attr("src", v_QContainersImgSrc20);
+    $("div[data-merchandisetype=rsm-qcontainer20]").find("span").eq(0).text(val20inputhiddenNew);
+    $("div[data-merchandisetype=rsm-qcontainer20]").find("span").eq(1).text("x");
+    $("div[data-merchandisetype=rsm-qcontainer20]").find("span").eq(2).text(v_QContainersName20);
 
   }else if(tindBtn == 0){
     if(input20 > 0){
@@ -513,6 +536,11 @@ $(document).on("click", "#c-incdecBtns20 button", function(){
       /************************** ASIGNAR VALORES DE LOS INPUTS HIDDEN **************************/
       val20inputhiddenNew = parseInt(val20inputhidden) - 1;
       $("#loadQContainer20").val(val20inputhiddenNew);
+      /************************** RESUMEN DEL LISTADO - CONTENEDORES 20' **************************/
+      $("div[data-merchandisetype=rsm-qcontainer20]").find("img").attr("src", v_QContainersImgSrc20);
+      $("div[data-merchandisetype=rsm-qcontainer20]").find("span").eq(0).text(val20inputhiddenNew);
+      $("div[data-merchandisetype=rsm-qcontainer20]").find("span").eq(1).text("x");
+      $("div[data-merchandisetype=rsm-qcontainer20]").find("span").eq(2).text(v_QContainersName20);
     }else{
       newValipt20 = 0;
       $(this).parent().find("input").val(newValipt20);
@@ -520,6 +548,11 @@ $(document).on("click", "#c-incdecBtns20 button", function(){
       $("#loadTypeContainer20").val("");
       val20inputhiddenNew = 0;
       $("#loadQContainer20").val(0);
+      /************************** RESUMEN DEL LISTADO - CONTENEDORES 20' **************************/
+      $("div[data-merchandisetype=rsm-qcontainer20]").find("img").attr("src", "");
+      $("div[data-merchandisetype=rsm-qcontainer20]").find("span").eq(0).text("");
+      $("div[data-merchandisetype=rsm-qcontainer20]").find("span").eq(1).text("");
+      $("div[data-merchandisetype=rsm-qcontainer20]").find("span").eq(2).text("");
     }
   }else{
     console.log('Sin acción');
@@ -545,6 +578,11 @@ $(document).on("click", "#c-incdecBtns40 button", function(){
     $("#loadTypeContainer40").val(v_QContainersName40);
     val40inputhiddenNew = parseInt(val40inputhidden) + 1;
     $("#loadQContainer40").val(val40inputhiddenNew);
+    /************************** RESUMEN DEL LISTADO - CONTENEDORES 40' **************************/
+    $("div[data-merchandisetype=rsm-qcontainer40]").find("img").attr("src", v_QContainersImgSrc40);
+    $("div[data-merchandisetype=rsm-qcontainer40]").find("span").eq(0).text(val40inputhiddenNew);
+    $("div[data-merchandisetype=rsm-qcontainer40]").find("span").eq(1).text("x");
+    $("div[data-merchandisetype=rsm-qcontainer40]").find("span").eq(2).text(v_QContainersName40);
 
   }else if(tindBtn == 0){
     if(input40 > 0){
@@ -553,6 +591,11 @@ $(document).on("click", "#c-incdecBtns40 button", function(){
       /************************** ASIGNAR VALORES DE LOS INPUTS HIDDEN **************************/
       val40inputhiddenNew = parseInt(val40inputhidden) - 1;
       $("#loadQContainer40").val(val40inputhiddenNew);
+      /************************** RESUMEN DEL LISTADO - CONTENEDORES 40' **************************/
+      $("div[data-merchandisetype=rsm-qcontainer40]").find("img").attr("src", v_QContainersImgSrc40);
+      $("div[data-merchandisetype=rsm-qcontainer40]").find("span").eq(0).text(val40inputhiddenNew);
+      $("div[data-merchandisetype=rsm-qcontainer40]").find("span").eq(1).text("x");
+      $("div[data-merchandisetype=rsm-qcontainer40]").find("span").eq(2).text(v_QContainersName40);
     }else{
       newValipt40 = 0;
       $(this).parent().find("input").val(newValipt40);
@@ -560,6 +603,11 @@ $(document).on("click", "#c-incdecBtns40 button", function(){
       $("#loadTypeContainer40").val("");
       val40inputhiddenNew = 0;
       $("#loadQContainer40").val(0);
+      /************************** RESUMEN DEL LISTADO - CONTENEDORES 40' **************************/
+      $("div[data-merchandisetype=rsm-qcontainer40]").find("img").attr("src", "");
+      $("div[data-merchandisetype=rsm-qcontainer40]").find("span").eq(0).text("");
+      $("div[data-merchandisetype=rsm-qcontainer40]").find("span").eq(1).text("");
+      $("div[data-merchandisetype=rsm-qcontainer40]").find("span").eq(2).text("");
     }
   }else{
     console.log('Sin acción');
@@ -584,6 +632,11 @@ $(document).on("click", "#c-incdecBtns40-hc button", function(){
     $("#loadTypeContainer40hq").val(v_QContainersName40_hq);
     val40hqinputhiddenNew = parseInt(val40hqinputhidden) + 1;
     $("#loadQContainer40hq").val(val40hqinputhiddenNew);
+    /************************** RESUMEN DEL LISTADO - CONTENEDORES 40hq' **************************/
+    $("div[data-merchandisetype=rsm-qcontainer40hq]").find("img").attr("src", v_QContainersImgSrc40_hq);
+    $("div[data-merchandisetype=rsm-qcontainer40hq]").find("span").eq(0).text(val40hqinputhiddenNew);
+    $("div[data-merchandisetype=rsm-qcontainer40hq]").find("span").eq(1).text("x");
+    $("div[data-merchandisetype=rsm-qcontainer40hq]").find("span").eq(2).text(v_QContainersName40_hq);
 
   }else if(tindBtn == 0){
     if(input40_hq > 0){
@@ -592,6 +645,11 @@ $(document).on("click", "#c-incdecBtns40-hc button", function(){
       /************************** ASIGNAR VALORES DE LOS INPUTS HIDDEN **************************/
       val40hqinputhiddenNew = parseInt(val40hqinputhidden) - 1;
       $("#loadQContainer40hq").val(val40hqinputhiddenNew);
+      /************************** RESUMEN DEL LISTADO - CONTENEDORES 40hq' **************************/
+      $("div[data-merchandisetype=rsm-qcontainer40hq]").find("img").attr("src", v_QContainersImgSrc40_hq);
+      $("div[data-merchandisetype=rsm-qcontainer40hq]").find("span").eq(0).text(val40hqinputhiddenNew);
+      $("div[data-merchandisetype=rsm-qcontainer40hq]").find("span").eq(1).text("x");
+      $("div[data-merchandisetype=rsm-qcontainer40hq]").find("span").eq(2).text(v_QContainersName40_hq);
     }else{
       newValipt40_hq = 0;
       $(this).parent().find("input").val(newValipt40_hq);
@@ -599,6 +657,11 @@ $(document).on("click", "#c-incdecBtns40-hc button", function(){
       $("#loadTypeContainer40hq").val("");
       val40hqinputhiddenNew = 0;
       $("#loadQContainer40hq").val(0);
+      /************************** RESUMEN DEL LISTADO - CONTENEDORES 40hq' **************************/
+      $("div[data-merchandisetype=rsm-qcontainer40hq]").find("img").attr("src", "");
+      $("div[data-merchandisetype=rsm-qcontainer40hq]").find("span").eq(0).text("");
+      $("div[data-merchandisetype=rsm-qcontainer40hq]").find("span").eq(1).text("");
+      $("div[data-merchandisetype=rsm-qcontainer40hq]").find("span").eq(2).text("");
     }
   }else{
     console.log('Sin acción');
@@ -623,6 +686,11 @@ $(document).on("click", "#c-incdecBtns40-nor button", function(){
     $("#loadTypeContainer40nor").val(v_QContainersName40_nor);
     val40norinputhiddenNew = parseInt(val40norinputhidden) + 1;
     $("#loadQContainer40nor").val(val40norinputhiddenNew);
+    /************************** RESUMEN DEL LISTADO - CONTENEDORES 40nor' **************************/
+    $("div[data-merchandisetype=rsm-qcontainer40nor]").find("img").attr("src", v_QContainersImgSrc40_nor);
+    $("div[data-merchandisetype=rsm-qcontainer40nor]").find("span").eq(0).text(val40norinputhiddenNew);
+    $("div[data-merchandisetype=rsm-qcontainer40nor]").find("span").eq(1).text("x");
+    $("div[data-merchandisetype=rsm-qcontainer40nor]").find("span").eq(2).text(v_QContainersName40_nor);
 
   }else if(tindBtn == 0){
     if(input40_nor > 0){
@@ -631,6 +699,11 @@ $(document).on("click", "#c-incdecBtns40-nor button", function(){
       /************************** ASIGNAR VALORES DE LOS INPUTS HIDDEN **************************/
       val40norinputhiddenNew = parseInt(val40norinputhidden) - 1;
       $("#loadQContainer40nor").val(val40norinputhiddenNew);
+      /************************** RESUMEN DEL LISTADO - CONTENEDORES 40nor' **************************/
+      $("div[data-merchandisetype=rsm-qcontainer40nor]").find("img").attr("src", v_QContainersImgSrc40_nor);
+      $("div[data-merchandisetype=rsm-qcontainer40nor]").find("span").eq(0).text(val40norinputhiddenNew);
+      $("div[data-merchandisetype=rsm-qcontainer40nor]").find("span").eq(1).text("x");
+      $("div[data-merchandisetype=rsm-qcontainer40nor]").find("span").eq(2).text(v_QContainersName40_nor);
     }else{
       newValipt40_nor = 0;
       $(this).parent().find("input").val(newValipt40_nor);
@@ -638,6 +711,11 @@ $(document).on("click", "#c-incdecBtns40-nor button", function(){
       $("#loadTypeContainer40nor").val("");
       val40norinputhiddenNew = 0;
       $("#loadQContainer40nor").val(0);
+      /************************** RESUMEN DEL LISTADO - CONTENEDORES 40nor' **************************/
+      $("div[data-merchandisetype=rsm-qcontainer40nor]").find("img").attr("src", "");
+      $("div[data-merchandisetype=rsm-qcontainer40nor]").find("span").eq(0).text("");
+      $("div[data-merchandisetype=rsm-qcontainer40nor]").find("span").eq(1).text("");
+      $("div[data-merchandisetype=rsm-qcontainer40nor]").find("span").eq(2).text("");
     }
   }else{
     console.log('Sin acción');
@@ -660,11 +738,8 @@ $(document).on("click", "#btn-NextStepToSelOptResultExp", function(){
      $("#c-incdecBtns40-hc").find("input").val() != 0 && $("#c-incdecBtns40-hc").find("input").val() != "" ||
      $("#c-incdecBtns40-nor").find("input").val() != 0 && $("#c-incdecBtns40-nor").find("input").val() != ""){
     
-    /************************** ASIGNAR AL RESUMEN DEL LISTADO **************************/
-    $(".cont-MainCamelLog--c--contResumeCalc--item--cardStep--cIconStepLeft[data-merchandise=rsm-qcontainer]").find("img").attr("src", v_QContainersImgSrc20);
-    $(".cont-MainCamelLog--c--contResumeCalc--item--cardStep--cIconStepLeft[data-merchandise=rsm-qcontainer]").find("p").find("span").eq(0).text(v_QContainersValue20);
-    $(".cont-MainCamelLog--c--contResumeCalc--item--cardStep--cIconStepLeft[data-merchandise=rsm-qcontainer]").find("p").find("span").eq(2).text(v_QContainersName20);
-    
+    /************************** MOSTRAR EL RESUMEN HASTA ESTE PASO **************************/
+    $(".cont-MainCamelLog--c--contResumeCalc--item[data-advlevel=d-typecontainer]").addClass("show");
 
     /************************** MOSTRAR EL PASO DE - ELIGE UNA OPCIÓN **************************/
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-integservorfleteinte]").addClass("show");
@@ -677,28 +752,29 @@ $(document).on("click", "#btn-NextStepToSelOptResultExp", function(){
         </span>
       </div>
       <div class="cont-MainCamelLog--c--contSteps--item--cStep">
-        <ul class="cont-MainCamelLog--c--contSteps--item--cStep--mOpts" id="list-SelOptionResultExp">
-          <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--mOpts--cardItem">
-            <li class="cont-MainCamelLog--c--contSteps--item--cStep--mOpts--item">
+        <ul class="cont-MainCamelLog--c--contSteps--item--cStep--m" id="list-SelOptionResultExp">
+          <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem">
+            <li class="cont-MainCamelLog--c--contSteps--item--cStep--m--item">
               <h3>Opción 1</h3>
+              <div class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem--cImg">
+                <img src="views/assets/img/steps/customs-clearance.png" alt="" loading="lazy">
+              </div>
               <p>AGREGAR SERVICIOS DE ADUANA EN DESTINO</p>
             </li>
           </a>
-          <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--mOpts--cardItem">
-            <li class="cont-MainCamelLog--c--contSteps--item--cStep--mOpts--item">
+          <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem">
+            <li class="cont-MainCamelLog--c--contSteps--item--cStep--m--item">
               <h3>Opción 2</h3>
-              <p>NO AGREGAR SERVICIOS <b>"SOLO DESEEO FLETE"</b></p>
+              <div class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem--cImg">
+                <img src="views/assets/img/steps/no-customs-clearance.png" alt="" loading="lazy">
+              </div>
+              <p>NO AGREGAR SERVICIOS "SOLO DESEO FLETE"</p>
             </li>
           </a>
         </ul>
       </div>
       <div class="cont-MainCamelLog--c--contSteps--item--cBtnNextStep"></div>
     `);
-
-    $(document).on("click", ".cont-MainCamelLog--c--contSteps--item--cStep--mOpts a", function(){
-      var t = $(this);
-      t.addClass("active").siblings().removeClass("active");
-    });
 
   }else{
     alert("No se ha añadido nigún contenedor. Por favor añade al menos un contenedor o selecciona LCL como tipo de carga.");
@@ -708,7 +784,6 @@ $(document).on("click", "#btn-NextStepToSelOptResultExp", function(){
 $(document).on("click", "#list-SelOptionResultExp a", function(){
   var tItemSelOptExp = $(this).index();
   if(tItemSelOptExp == 0){
-    $(this).addClass("active");
     /************************** ASIGNAR VALORES DE LOS INPUTS HIDDEN - ELIGE UNA OPCIÓN **************************/
     $("#opt-genfquotation").val("y-moreOpts");
 
@@ -762,7 +837,6 @@ $(document).on("click", "#list-SelOptionResultExp a", function(){
       </div>
     `);
   }else{
-    $(this).addClass("active");
     /************************** ASIGNAR VALORES DE LOS INPUTS HIDDEN - ELIGE UNA OPCIÓN **************************/
     $("#opt-genfquotation").val("not-moreOpts");
     /************************** OCULTAR - CONTENEDORES **************************/
@@ -1188,55 +1262,40 @@ $(document).on("click", "#btn-NextStepTochargedata", function(){
     v_ValTotalWeight = $("#val-iptWeightNInterface").val();
     v_ValTotalVolume = $("#val-iptVolumeNInterface").val();
 
-    /************************** MOSTRAR EL SIGUIENTE PASO **************************/
-    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-merchandisedata]").addClass("show");
-    sectionsSteps.moveTo('step-merchandisedata', 1);
-    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-merchandisedata]").html(`
+    /************************** MOSTRAR EL PASO DE - ELIGE UNA OPCIÓN **************************/
+    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-integservorfleteinte]").addClass("show");
+    sectionsSteps.moveTo('step-integservorfleteinte', 1);
+    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-integservorfleteinte]").html(`
       <div class="cont-MainCamelLog--c--contSteps--item--cTitle">
-        <h3 class="cont-MainCamelLog--c--contSteps--item--cTitle--title">Mercancía</h3>
+        <h3 class="cont-MainCamelLog--c--contSteps--item--cTitle--title">Eliga una opción</h3>
         <span>
-          <input type="hidden" value="" id="val-categProdquot" name="val-categProdquot">
-          <input type="hidden" value="" id="val-valProdquot" name="val-valProdquot">
-          <input type="hidden" value="NO" id="val-prevImports" name="val-prevImports">
+          <input type="hidden" value="" id="opt-genfquotation" name="opt-genfquotation">
         </span>
       </div>
       <div class="cont-MainCamelLog--c--contSteps--item--cStep">
-        <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise">
-          <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC">
-            <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl">
-              <label for="" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl--label">CATEGORÍA</label>
-              <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl--cListChange">
-                <input type="text" id="ipt-valNameTypeProdNInterface" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl--cListChange--input" autocomplete="off">
-                <ul class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl--cListChange--m" id="m-listAllNamTypeProds"></ul>
+        <ul class="cont-MainCamelLog--c--contSteps--item--cStep--m" id="list-SelOptionResultExp">
+          <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem">
+            <li class="cont-MainCamelLog--c--contSteps--item--cStep--m--item">
+              <h3>Opción 1</h3>
+              <div class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem--cImg">
+                <img src="views/assets/img/steps/customs-clearance.png" alt="" loading="lazy">
               </div>
-            </div>
-          </div>
-          <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC">
-            <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl">
-              <label for="" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl--label">VALOR</label>
-              <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl--cListChange">
-                <input type="text" id="ipt-valPriceProdNInterface" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl--cListChange--input" maxlength="13" autocomplete="off">
+              <p>AGREGAR SERVICIOS DE ADUANA EN DESTINO</p>
+            </li>
+          </a>
+          <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem">
+            <li class="cont-MainCamelLog--c--contSteps--item--cStep--m--item">
+              <h3>Opción 2</h3>
+              <div class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem--cImg">
+                <img src="views/assets/img/steps/no-customs-clearance.png" alt="" loading="lazy">
               </div>
-            </div>
-          </div>
-          <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cBottom">
-            <label for="chck-importpreview" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cBottom--cSwitch" switch-CFreeze="NO">
-              <input type="checkbox" id="chck-importpreview" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cBottom--cSwitch--chck">
-            </label>
-            <span>¿Has realizado importaciones previamente?</span>
-          </div>
-        </div>
+              <p>NO AGREGAR SERVICIOS "SOLO DESEO FLETE"</p>
+            </li>
+          </a>
+        </ul>
       </div>
-      <div class="cont-MainCamelLog--c--contSteps--item--cBtnNextStep">
-        <button type="button" class="cont-MainCamelLog--c--contSteps--item--cBtnNextStep--btn" id="btn-NextStepTomerchandisedata">
-          <span>Seguir</span>
-          <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 100 125" enable-background="new 0 0 100 100" xml:space="preserve"><g><g><polygon points="19.318,43.363 19.318,61.189 49.497,95 79.675,61.189 79.675,43.363 49.497,77.174   "/><polygon points="50.504,38.811 20.326,5 20.326,24.872 49.497,60.537 79.675,24.872 80.682,5   "/></g></g></svg>
-        </button>
-      </div>
+      <div class="cont-MainCamelLog--c--contSteps--item--cBtnNextStep"></div>
     `);
-
-    /************************** MOSTRAR EL RESUMEN HASTA ESTE PASO **************************/
-    $(".cont-MainCamelLog--c--contResumeCalc--item[data-advlevel=d-typecontainer]").addClass("show");
   }else{
     alert("Por favor, rellena todos los campos relativos a las dimensiones de carga.");
   }
