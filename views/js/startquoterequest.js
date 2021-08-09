@@ -194,6 +194,21 @@ $(document).on("click", "#list-typeChargeLoadItems a", function(){
     $(".cont-MainCamelLog--c--contResumeCalc--item--cardStep--cIconStepLeft[data-merchandise=rsm-totpackages]").find("span:first-child").text("");
     $(".cont-MainCamelLog--c--contResumeCalc--item--cardStep--cIconStepLeft[data-merchandise=rsm-totweight]").find("span:first-child").text("");
     $(".cont-MainCamelLog--c--contResumeCalc--item--cardStep--cIconStepLeft[data-merchandise=rsm-totvolume]").find("span:first-child").text("");
+    
+    /************************** OCULTAR LOS OTROS PASOS AJENOS A ESTA ELECCIÓN **************************/
+    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-chargedata]").removeClass("show");
+    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-chargedata]").html("");
+    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-integservorfleteinte]").removeClass("show");
+    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-integservorfleteinte]").html("");
+    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-merchandisedata]").removeClass("show");
+    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-merchandisedata]").html("");
+    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-insuremerchandise]").removeClass("show");
+    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-insuremerchandise]").html("");
+    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-requirespickup]").removeClass("show");
+    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-requirespickup]").html("show");
+    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-pickuplocation]").removeClass("show");
+    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-pickuplocation]").html("");
+
     /************************** MOSTRAR EL SIGUIENTE PASO **************************/
 		sectionsSteps.moveTo('step-qcontainers', 1);
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-qcontainers]").html(`
