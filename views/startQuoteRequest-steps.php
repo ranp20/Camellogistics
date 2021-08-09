@@ -126,7 +126,7 @@
           <!-- PASO #6 -->
           <div class="cont-MainCamelLog--c--contSteps--item section" data-anchor="step-insuremerchandise" data-transportquote></div>
           <!-- PASO #7 -->
-          <div class="cont-MainCamelLog--c--contSteps--item section" data-anchor="step-customsclearance" data-transportquote></div>
+          <!--<div class="cont-MainCamelLog--c--contSteps--item section" data-anchor="step-customsclearance" data-transportquote></div>-->
           <!-- PASO #8 -->
           <div class="cont-MainCamelLog--c--contSteps--item section" data-anchor="step-requirespickup" data-transportquote></div>
           <!-- PASO #9 -->

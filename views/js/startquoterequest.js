@@ -37,7 +37,6 @@ const sectionsSteps = new fullpage('#fullpage', {
            'step-integservorfleteinte',
   				 'step-merchandisedata',
   				 'step-insuremerchandise',
-  				 'step-customsclearance',
   				 'step-requirespickup',
   				 'step-pickuplocation'],
   verticalCentered: false,
@@ -823,6 +822,8 @@ $(document).on("click", "#list-SelOptionResultExp a", function(){
   if(tItemSelOptExp == 0){
     /************************** ASIGNAR VALORES DE LOS INPUTS HIDDEN - ELIGE UNA OPCIÓN **************************/
     $("#opt-genfquotation").val("y-moreOpts");
+    /************************** OCULTAR EL BOTÓN DE ENVIAR **************************/
+    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-integservorfleteinte] .cont-MainCamelLog--c--contSteps--item--cBtnNextStep").html("");
     /************************** AGREGAR AL LISTADO DE RESUMEN - ELIGE UN OPCIÓN **************************/
     $(".cont-MainCamelLog--c--contResumeCalc--item[data-advlevel=d-reqspeacialservs]").addClass("show");
     $(".cont-MainCamelLog--c--contResumeCalc--item[data-advlevel=d-reqspeacialservs]").find("span").text("Despacho de aduanas");
@@ -1528,27 +1529,27 @@ $(document).on("click", "#btn-NextStepTomerchandisedata", function(){
 =                     7. AGREGAR O NO SEGURO DE MERCANCÍA                           =
 ====================================================================================*/
 $(document).on("click", "#list-insuremerchandise li", function(){
-  $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-customsclearance]").addClass("show");
+  $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-requirespickup]").addClass("show");
   var tinsuremerchandise = $(this).index();
   if(tinsuremerchandise == 0){
 
     /************************** ASIGNAR VALORES DE LOS INPUTS HIDDEN - QUIERES ASEGURAR LA MERCANCÍA **************************/
     $("#res-insuremerch").val("SI");
-    /************************** MOSTRAR EL SIGUIENTE PASO **************************/
-    sectionsSteps.moveTo('step-customsclearance', 1);
-    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-customsclearance]").html(`
+    /************************** MOSTRAR EL SIGUIENTE PASO - ¿ NECESITAS TRANSPORTE ? **************************/
+    sectionsSteps.moveTo('step-requirespickup', 1);
+    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-requirespickup]").html(`
       <div class="cont-MainCamelLog--c--contSteps--item--cTitle">
-        <h3 class="cont-MainCamelLog--c--contSteps--item--cTitle--title">¿Necesitas despacho de aduanas?</h3>
+        <h3 class="cont-MainCamelLog--c--contSteps--item--cTitle--title">¿Necesitas Transporte?</h3>
         <span>
-          <input type="hidden" value="" id="res-requireclearance" name="res-requireclearance">
+          <input type="hidden" value="" id="opt-reqtransport" name="opt-reqtransport">
         </span>
       </div>
       <div class="cont-MainCamelLog--c--contSteps--item--cStep">
-        <ul class="cont-MainCamelLog--c--contSteps--item--cStep--m" id="list-customsclearance">
+        <ul class="cont-MainCamelLog--c--contSteps--item--cStep--m" id="list-requirespickup">
           <li class="cont-MainCamelLog--c--contSteps--item--cStep--m--item">
             <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem">
               <div class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem--cImg">
-                <img src="views/assets/img/steps/customs-clearance.png" alt="" loading="lazy">
+                <img src="views/assets/img/steps/inland-trans.png" alt="" loading="lazy">
               </div>
               <p>SÍ</p>
             </a>
@@ -1556,32 +1557,33 @@ $(document).on("click", "#list-insuremerchandise li", function(){
           <li class="cont-MainCamelLog--c--contSteps--item--cStep--m--item">
             <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem">
               <div class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem--cImg">
-                <img src="views/assets/img/steps/no-customs-clearance.png" alt="" loading="lazy">
+                <img src="views/assets/img/steps/no-inland-trans.png" alt="" loading="lazy">
               </div>
               <p>NO</p>
             </a>
           </li>
         </ul>
       </div>
+      <div class="cont-MainCamelLog--c--contSteps--item--cBtnNextStep"></div>
     `);
+
   }else{
     /************************** ASIGNAR VALORES DE LOS INPUTS HIDDEN - QUIERES ASEGURAR LA MERCANCÍA **************************/
     $("#res-insuremerch").val("NO");
-    /************************** MOSTRAR EL SIGUIENTE PASO **************************/
-    sectionsSteps.moveTo('step-customsclearance', 1);
-    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-customsclearance]").html(`
+    sectionsSteps.moveTo('step-requirespickup', 1);
+    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-requirespickup]").html(`
       <div class="cont-MainCamelLog--c--contSteps--item--cTitle">
-        <h3 class="cont-MainCamelLog--c--contSteps--item--cTitle--title">¿Necesitas despacho de aduanas?</h3>
+        <h3 class="cont-MainCamelLog--c--contSteps--item--cTitle--title">¿Necesitas Transporte?</h3>
         <span>
-          <input type="hidden" value="" id="res-requireclearance" name="res-requireclearance">
+          <input type="hidden" value="" id="opt-reqtransport" name="opt-reqtransport">
         </span>
       </div>
       <div class="cont-MainCamelLog--c--contSteps--item--cStep">
-        <ul class="cont-MainCamelLog--c--contSteps--item--cStep--m" id="list-customsclearance">
+        <ul class="cont-MainCamelLog--c--contSteps--item--cStep--m" id="list-requirespickup">
           <li class="cont-MainCamelLog--c--contSteps--item--cStep--m--item">
             <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem">
               <div class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem--cImg">
-                <img src="views/assets/img/steps/customs-clearance.png" alt="" loading="lazy">
+                <img src="views/assets/img/steps/inland-trans.png" alt="" loading="lazy">
               </div>
               <p>SÍ</p>
             </a>
@@ -1589,93 +1591,94 @@ $(document).on("click", "#list-insuremerchandise li", function(){
           <li class="cont-MainCamelLog--c--contSteps--item--cStep--m--item">
             <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem">
               <div class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem--cImg">
-                <img src="views/assets/img/steps/no-customs-clearance.png" alt="" loading="lazy">
+                <img src="views/assets/img/steps/no-inland-trans.png" alt="" loading="lazy">
               </div>
               <p>NO</p>
             </a>
           </li>
         </ul>
       </div>
+      <div class="cont-MainCamelLog--c--contSteps--item--cBtnNextStep"></div>
     `);
   }
 });
 /*===================================================================================
 =                     8. AGREGAR DESPACHO DE ADUANAS                                =
 ====================================================================================*/
-$(document).on("click", "#list-customsclearance li", function(){
-  $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-requirespickup]").addClass("show");
-  var tcustomsclearance = $(this).index();
-  if(tcustomsclearance == 0){
-    /************************** ASIGNAR VALORES DE LOS INPUTS HIDDEN - NECESITAS DESPACHO DE ADUANAS **************************/
-    $("#res-requireclearance").val("SI");
+// $(document).on("click", "#list-customsclearance li", function(){
+//   $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-requirespickup]").addClass("show");
+//   var tcustomsclearance = $(this).index();
+//   if(tcustomsclearance == 0){
+//     /************************** ASIGNAR VALORES DE LOS INPUTS HIDDEN - NECESITAS DESPACHO DE ADUANAS **************************/
+//     $("#res-requireclearance").val("SI");
 
-    /************************** MOSTRAR EL SIGUIENTE PASO **************************/
-    sectionsSteps.moveTo('step-requirespickup', 1);
-    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-requirespickup]").html(`
-      <div class="cont-MainCamelLog--c--contSteps--item--cTitle">
-        <h3 class="cont-MainCamelLog--c--contSteps--item--cTitle--title">¿Necesitas Transporte?</h3>
-        <span>
-          <input type="hidden" value="" id="opt-reqtransport" name="opt-reqtransport">
-        </span>
-      </div>
-      <div class="cont-MainCamelLog--c--contSteps--item--cStep">
-        <ul class="cont-MainCamelLog--c--contSteps--item--cStep--m" id="list-requirespickup">
-          <li class="cont-MainCamelLog--c--contSteps--item--cStep--m--item">
-            <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem">
-              <div class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem--cImg">
-                <img src="views/assets/img/steps/inland-trans.png" alt="" loading="lazy">
-              </div>
-              <p>SÍ</p>
-            </a>
-          </li>
-          <li class="cont-MainCamelLog--c--contSteps--item--cStep--m--item">
-            <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem">
-              <div class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem--cImg">
-                <img src="views/assets/img/steps/no-inland-trans.png" alt="" loading="lazy">
-              </div>
-              <p>NO</p>
-            </a>
-          </li>
-        </ul>
-      </div>
-      <div class="cont-MainCamelLog--c--contSteps--item--cBtnNextStep"></div>
-    `);
-  }else{
-    /************************** ASIGNAR VALORES DE LOS INPUTS HIDDEN - NECESITAS DESPACHO DE ADUANAS **************************/
-    $("#res-requireclearance").val("NO");
-    /************************** MOSTRAR EL SIGUIENTE PASO **************************/
-    sectionsSteps.moveTo('step-requirespickup', 1);
-    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-requirespickup]").html(`
-      <div class="cont-MainCamelLog--c--contSteps--item--cTitle">
-        <h3 class="cont-MainCamelLog--c--contSteps--item--cTitle--title">¿Necesitas Transporte?</h3>
-        <span>
-          <input type="hidden" value="" id="opt-reqtransport" name="opt-reqtransport">
-        </span>
-      </div>
-      <div class="cont-MainCamelLog--c--contSteps--item--cStep">
-        <ul class="cont-MainCamelLog--c--contSteps--item--cStep--m" id="list-requirespickup">
-          <li class="cont-MainCamelLog--c--contSteps--item--cStep--m--item">
-            <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem">
-              <div class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem--cImg">
-                <img src="views/assets/img/steps/inland-trans.png" alt="" loading="lazy">
-              </div>
-              <p>SÍ</p>
-            </a>
-          </li>
-          <li class="cont-MainCamelLog--c--contSteps--item--cStep--m--item">
-            <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem">
-              <div class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem--cImg">
-                <img src="views/assets/img/steps/no-inland-trans.png" alt="" loading="lazy">
-              </div>
-              <p>NO</p>
-            </a>
-          </li>
-        </ul>
-      </div>
-      <div class="cont-MainCamelLog--c--contSteps--item--cBtnNextStep"></div>
-    `);
-  }
-});
+//     /************************** MOSTRAR EL SIGUIENTE PASO **************************/
+//     sectionsSteps.moveTo('step-requirespickup', 1);
+//     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-requirespickup]").html(`
+//       <div class="cont-MainCamelLog--c--contSteps--item--cTitle">
+//         <h3 class="cont-MainCamelLog--c--contSteps--item--cTitle--title">¿Necesitas Transporte?</h3>
+//         <span>
+//           <input type="hidden" value="" id="opt-reqtransport" name="opt-reqtransport">
+//         </span>
+//       </div>
+//       <div class="cont-MainCamelLog--c--contSteps--item--cStep">
+//         <ul class="cont-MainCamelLog--c--contSteps--item--cStep--m" id="list-requirespickup">
+//           <li class="cont-MainCamelLog--c--contSteps--item--cStep--m--item">
+//             <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem">
+//               <div class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem--cImg">
+//                 <img src="views/assets/img/steps/inland-trans.png" alt="" loading="lazy">
+//               </div>
+//               <p>SÍ</p>
+//             </a>
+//           </li>
+//           <li class="cont-MainCamelLog--c--contSteps--item--cStep--m--item">
+//             <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem">
+//               <div class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem--cImg">
+//                 <img src="views/assets/img/steps/no-inland-trans.png" alt="" loading="lazy">
+//               </div>
+//               <p>NO</p>
+//             </a>
+//           </li>
+//         </ul>
+//       </div>
+//       <div class="cont-MainCamelLog--c--contSteps--item--cBtnNextStep"></div>
+//     `);
+//   }else{
+//     /************************** ASIGNAR VALORES DE LOS INPUTS HIDDEN - NECESITAS DESPACHO DE ADUANAS **************************/
+//     $("#res-requireclearance").val("NO");
+//     /************************** MOSTRAR EL SIGUIENTE PASO **************************/
+//     sectionsSteps.moveTo('step-requirespickup', 1);
+//     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-requirespickup]").html(`
+//       <div class="cont-MainCamelLog--c--contSteps--item--cTitle">
+//         <h3 class="cont-MainCamelLog--c--contSteps--item--cTitle--title">¿Necesitas Transporte?</h3>
+//         <span>
+//           <input type="hidden" value="" id="opt-reqtransport" name="opt-reqtransport">
+//         </span>
+//       </div>
+//       <div class="cont-MainCamelLog--c--contSteps--item--cStep">
+//         <ul class="cont-MainCamelLog--c--contSteps--item--cStep--m" id="list-requirespickup">
+//           <li class="cont-MainCamelLog--c--contSteps--item--cStep--m--item">
+//             <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem">
+//               <div class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem--cImg">
+//                 <img src="views/assets/img/steps/inland-trans.png" alt="" loading="lazy">
+//               </div>
+//               <p>SÍ</p>
+//             </a>
+//           </li>
+//           <li class="cont-MainCamelLog--c--contSteps--item--cStep--m--item">
+//             <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem">
+//               <div class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem--cImg">
+//                 <img src="views/assets/img/steps/no-inland-trans.png" alt="" loading="lazy">
+//               </div>
+//               <p>NO</p>
+//             </a>
+//           </li>
+//         </ul>
+//       </div>
+//       <div class="cont-MainCamelLog--c--contSteps--item--cBtnNextStep"></div>
+//     `);
+//   }
+// });
 /*===================================================================================
 =                     9. AGREGAR - RECOGIDA                                         =
 ====================================================================================*/
