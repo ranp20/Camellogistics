@@ -1,3 +1,9 @@
+<?php 
+  if(!isset($_POST) || $_POST == []){
+    header("Location: marketplace-logistico");
+  }
+
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -17,6 +23,7 @@
   </nav>
   <main class="cont-MainCamelLog" id="cont-MainCamelLog">
     <div class="cont-MainCamelLog--c ptop-headertop" id="cont-MainCamelLog--cStartQuoteRequest">
+      <h1>MOSTRAR LOS DATOS DEVUELTOS DESDE CONTROLADORES DE CALCULO DE COTIZACIÓN...</h1>
       <?php print_r($_POST); ?>
     </div>
   </main>

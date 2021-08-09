@@ -11,6 +11,10 @@ $(() => {
 	/************************** LISTAR LOS DISTRITOS DE ACUERDO AL PAÍS DE DESTINO **************************/
 	listDistricsByCountry();
 });
+////OTRAS TAREAS - MEJORA DE UI Y UX
+/* - Mostrar al inicio solo los pasos a usar antes de cada elección, luego ir añadiendo o quitando de acuerdo a los elementos seleccionados
+*/
+
 /************************** RECOGER LAS VARIABLES RECIBIDAS POR POST **************************/
 var ipt_idPortOrigin = $("#ipt-vportidOrigin").val(),
 		ipt_idPortcountryOrigin = $("#ipt-vportidcountryOrigin").val(),
@@ -107,18 +111,25 @@ $(document).on("click", "#list-typeOperationItems a", function(){
 	$(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-chargeload]").addClass("show");
 	var tTypeOperation = $(this).index();
 	if(tTypeOperation == 0){
+
     $(this).removeClass("active");
     $(this).css({
       "opacity" : "0.5",
       "border" : "unset"
     });
 		alert("Esta opción aún no está disponible. Por favor, pase a elegir IMPORTACIÓN");
+    /************************** OCULTAR AL LISTADO DE RESUMEN - ELIGE UN OPCIÓN **************************/
+    $(".cont-MainCamelLog--c--contResumeCalc--item[data-advlevel=d-reqspeacialservs]").removeClass("show");
+    $(".cont-MainCamelLog--c--contResumeCalc--item[data-advlevel=d-reqspeacialservs]").find("span").text("");
     /************************** OCULTAR TODOS LOS PASOS ABIERTOS EN CASO SE VUELVA HASTA ESTE PASO **************************/
 	}else{
     /************************** ASIGNAR A LA VARIABLE BLOBAL **************************/
     v_TypeOp = $(this).find("li").find("p").text();
     /************************** VALOR DEL TIPO DE OPERACIÓN **************************/
     $("#loadTypeOpe").val(v_TypeOp);
+    /************************** OCULTAR AL LISTADO DE RESUMEN - ELIGE UN OPCIÓN **************************/
+    $(".cont-MainCamelLog--c--contResumeCalc--item[data-advlevel=d-reqspeacialservs]").removeClass("show");
+    $(".cont-MainCamelLog--c--contResumeCalc--item[data-advlevel=d-reqspeacialservs]").find("span").text("");
     /************************** MOSTRAR EL SIGUIENTE PASO **************************/
 		sectionsSteps.moveTo('step-chargeload', 1);
 		$(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-chargeload]").html(`
@@ -171,9 +182,19 @@ $(document).on("click", "#list-typeChargeLoadItems a", function(){
     v_TypeChargeName = $(this).find("li").find("p").text();
     /************************** VALOR DEL TIPO DE CARGA **************************/
     $("#loadTypeCharge").val(v_TypeChargeName);
+    /************************** OCULTAR AL LISTADO DE RESUMEN - ELIGE UN OPCIÓN **************************/
+    $(".cont-MainCamelLog--c--contResumeCalc--item[data-advlevel=d-reqspeacialservs]").removeClass("show");
+    $(".cont-MainCamelLog--c--contResumeCalc--item[data-advlevel=d-reqspeacialservs]").find("span").text("");
     /************************** ASIGNAR AL RESUMEN DEL LISTADO **************************/
     $(".cont-MainCamelLog--c--contResumeCalc--item--cardStep--cIconStepLeft[data-merchandise=rsm-typecharge]").find("img").attr("src", v_TypeChargeImgSrc);
     $(".cont-MainCamelLog--c--contResumeCalc--item--cardStep--cIconStepLeft[data-merchandise=rsm-typecharge]").find("span").text(v_TypeChargeName);
+    /************************** LIMPIAR EL LISTADO DE RESUMEN IZQUIERDO - DIMENSIONES DE CARGA **************************/
+    $(".cont-MainCamelLog--c--contResumeCalc--item--cardStep--cIconStepLeft[data-merchandise=rsm-totpackages]").find("span:nth-child(2)").text("");
+    $(".cont-MainCamelLog--c--contResumeCalc--item--cardStep--cIconStepLeft[data-merchandise=rsm-totweight]").find("span:nth-child(2)").text("");
+    $(".cont-MainCamelLog--c--contResumeCalc--item--cardStep--cIconStepLeft[data-merchandise=rsm-totvolume]").find("span:nth-child(2)").text("");
+    $(".cont-MainCamelLog--c--contResumeCalc--item--cardStep--cIconStepLeft[data-merchandise=rsm-totpackages]").find("span:first-child").text("");
+    $(".cont-MainCamelLog--c--contResumeCalc--item--cardStep--cIconStepLeft[data-merchandise=rsm-totweight]").find("span:first-child").text("");
+    $(".cont-MainCamelLog--c--contResumeCalc--item--cardStep--cIconStepLeft[data-merchandise=rsm-totvolume]").find("span:first-child").text("");
     /************************** MOSTRAR EL SIGUIENTE PASO **************************/
 		sectionsSteps.moveTo('step-qcontainers', 1);
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-qcontainers]").html(`
@@ -424,7 +445,7 @@ $(document).on("click", "#list-typeChargeLoadItems a", function(){
     /************************** ASIGNAR A LAS VARIABLES GLOBALES **************************/
     v_TypeChargeImgSrc = $(this).find("li").find("div").find("img").attr("src");
     v_TypeChargeName = $(this).find("li").find("p").text();
-    /************************** LIMPIAR EL LISTADO DE RESUMEN IZQUIERDO **************************/
+    /************************** LIMPIAR EL LISTADO DE RESUMEN IZQUIERDO - CONTENEDORES **************************/
     /** LIMIPIAR 20' **/
     $("div[data-merchandisetype=rsm-qcontainer20]").find("img").attr("src", "");
     $("div[data-merchandisetype=rsm-qcontainer20]").find("span").eq(0).text("");
@@ -447,6 +468,9 @@ $(document).on("click", "#list-typeChargeLoadItems a", function(){
     $("div[data-merchandisetype=rsm-qcontainer40nor]").find("span").eq(2).text("");
     /************************** VALOR DEL TIPO DE CARGA **************************/
     $("#loadTypeCharge").val(v_TypeChargeName);
+    /************************** OCULTAR AL LISTADO DE RESUMEN - ELIGE UN OPCIÓN **************************/
+    $(".cont-MainCamelLog--c--contResumeCalc--item[data-advlevel=d-reqspeacialservs]").removeClass("show");
+    $(".cont-MainCamelLog--c--contResumeCalc--item[data-advlevel=d-reqspeacialservs]").find("span").text("");
     /************************** ASIGNAR AL RESUMEN DEL LISTADO **************************/
     $(".cont-MainCamelLog--c--contResumeCalc--item--cardStep--cIconStepLeft[data-merchandise=rsm-typecharge]").find("img").attr("src", v_TypeChargeImgSrc);
     $(".cont-MainCamelLog--c--contResumeCalc--item--cardStep--cIconStepLeft[data-merchandise=rsm-typecharge]").find("span").text(v_TypeChargeName);
@@ -473,16 +497,16 @@ $(document).on("click", "#list-typeChargeLoadItems a", function(){
       <div class="cont-MainCamelLog--c--contSteps--item--cStep">
         <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControls">
           <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControls--cControl">
-            <label for="" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControls--cControl--label">BULTOS</label>
-            <input type="number" id="val-iptPackagesNInterface" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControls--cControl--input">
+            <label for="val-iptPackagesNInterface" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControls--cControl--label">BULTOS</label>
+            <input type="number" id="val-iptPackagesNInterface" name="val-iptPackagesNInterface" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControls--cControl--input">
           </div>
           <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControls--cControl">
-            <label for="" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControls--cControl--label">PESO (KG)</label>
-            <input type="text" id="val-iptWeightNInterface" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControls--cControl--input" maxlength="11">
+            <label for="val-iptWeightNInterface" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControls--cControl--label">PESO (KG)</label>
+            <input type="text" id="val-iptWeightNInterface" name="val-iptWeightNInterface" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControls--cControl--input" maxlength="11">
           </div>
           <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControls--cControl">
-            <label for="" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControls--cControl--label">VOLUMEN (M³)</label>
-            <input type="number" id="val-iptVolumeNInterface" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControls--cControl--input" maxlength="13">
+            <label for="val-iptVolumeNInterface" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControls--cControl--label">VOLUMEN (M³)</label>
+            <input type="text" id="val-iptVolumeNInterface" name="val-iptVolumeNInterface" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControls--cControl--input" maxlength="13">
           </div>
           <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControls--cBtnModalCalculator" id="link-showModalCalcVolum">
             <span>AYUDA - ¡CALCULAR VOLUMEN (M³) AQUÍ!</span>
@@ -721,6 +745,19 @@ $(document).on("click", "#c-incdecBtns40-nor button", function(){
     console.log('Sin acción');
   }
 });
+/************************** DEVOLVER EL VALOR DE LOS CONTROLES (DIMENSIONES DE CARGA) AL RESUMEN DEL PROCESO **************************/
+$(document).on("change input keyup", "#val-iptPackagesNInterface", function(e){
+  $(".cont-MainCamelLog--c--contResumeCalc--item--cardStep--cIconStepLeft[data-merchandise=rsm-totpackages]").find("span:first-child").text("Bultos");
+  $(".cont-MainCamelLog--c--contResumeCalc--item--cardStep--cIconStepLeft[data-merchandise=rsm-totpackages]").find("span:nth-child(2)").text($(this).val());
+});
+$(document).on("change input keyup", "#val-iptWeightNInterface", function(e){
+  $(".cont-MainCamelLog--c--contResumeCalc--item--cardStep--cIconStepLeft[data-merchandise=rsm-totweight]").find("span:first-child").text("Peso(Kg)");
+  $(".cont-MainCamelLog--c--contResumeCalc--item--cardStep--cIconStepLeft[data-merchandise=rsm-totweight]").find("span:nth-child(2)").text($(this).val());
+});
+$(document).on("change input keyup", "#val-iptVolumeNInterface", function(e){
+  $(".cont-MainCamelLog--c--contResumeCalc--item--cardStep--cIconStepLeft[data-merchandise=rsm-totvolume]").find("span:first-child").text("Volumen(M³)");
+  $(".cont-MainCamelLog--c--contResumeCalc--item--cardStep--cIconStepLeft[data-merchandise=rsm-totvolume]").find("span:nth-child(2)").text($(this).val());
+});
 /************************** SWITCH DE CONTENEDORES REFRIGERADOS **************************/
 // $(document).on("click", "#chck-containerfreeze", function(){
 //   if($(this).is(":checked")){
@@ -786,10 +823,10 @@ $(document).on("click", "#list-SelOptionResultExp a", function(){
   if(tItemSelOptExp == 0){
     /************************** ASIGNAR VALORES DE LOS INPUTS HIDDEN - ELIGE UNA OPCIÓN **************************/
     $("#opt-genfquotation").val("y-moreOpts");
+    /************************** AGREGAR AL LISTADO DE RESUMEN - ELIGE UN OPCIÓN **************************/
+    $(".cont-MainCamelLog--c--contResumeCalc--item[data-advlevel=d-reqspeacialservs]").addClass("show");
+    $(".cont-MainCamelLog--c--contResumeCalc--item[data-advlevel=d-reqspeacialservs]").find("span").text("Despacho de aduanas");
 
-    /************************** OCULTAR - DIMENSIONES DE CARGA **************************/
-    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-chargedata]").removeClass("show");
-    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-chargedata]").html("");
     /************************** MOSTRAR EL SIGUIENTE PASO **************************/
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-merchandisedata]").addClass("show");
     sectionsSteps.moveTo('step-merchandisedata', 1);
@@ -839,18 +876,18 @@ $(document).on("click", "#list-SelOptionResultExp a", function(){
   }else{
     /************************** ASIGNAR VALORES DE LOS INPUTS HIDDEN - ELIGE UNA OPCIÓN **************************/
     $("#opt-genfquotation").val("not-moreOpts");
+    /************************** AGREGAR AL LISTADO DE RESUMEN - ELIGE UN OPCIÓN **************************/
+    $(".cont-MainCamelLog--c--contResumeCalc--item[data-advlevel=d-reqspeacialservs]").removeClass("show");
+    $(".cont-MainCamelLog--c--contResumeCalc--item[data-advlevel=d-reqspeacialservs]").find("span").text("");
     /************************** OCULTAR - CONTENEDORES **************************/
     // $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-qcontainers]").removeClass("show");
     // $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-qcontainers]").html("");
-    /************************** OCULTAR - DIMENSIONES DE CARGA **************************/
-    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-chargedata]").removeClass("show");
-    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-chargedata]").html("");
     /************************** OCULTAR - DATOS DE MERCANCÍA **************************/
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-merchandisedata]").removeClass("show");
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-merchandisedata]").html("");
     /************************** MOSTRAR EL BOTÓN DE CALCULAR COTIZACIÓN **************************/
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-integservorfleteinte] .cont-MainCamelLog--c--contSteps--item--cBtnNextStep").html(`
-      <button type="submit" class="cont-MainCamelLog--c--contSteps--item--cBtnNextStep--btnR" id="btn-NextStepTomerchandisedata">
+      <button type="submit" class="cont-MainCamelLog--c--contSteps--item--cBtnNextStep--btnR" id="btn-CalcQuoteToChargerdata">
         <span>CALCULAR COTIZACIÓN</span>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 125" x="0px" y="0px"><g data-name="13-Quotation"><path d="M53.47,77.72h.88a1.06,1.06,0,0,0,0-2.12H19.46V7.19H61.17V22.81a1.06,1.06,0,0,0,1.06,1.06H77.1V65.09a1.06,1.06,0,0,0,2.11,0V22.81s0,0,0-.07a2.38,2.38,0,0,0,0-.26l0-.1a1.17,1.17,0,0,0-.19-.3L63,5.41a1,1,0,0,0-.79-.32H18.41a1.05,1.05,0,0,0-1.06,1.06V75.6H6.11a1.06,1.06,0,0,0-1.05,1.06c0,7.43,5.29,13.47,11.79,13.47h37.5a1.06,1.06,0,1,0,0-2.12H16.85c-5,0-9.18-4.53-9.64-10.29H53.47ZM63.28,8.83l12.4,12.92H63.28Z"/><path d="M73.84,64V33.17a1.05,1.05,0,0,0-1.06-1.06h-49a1.05,1.05,0,0,0-1.06,1.06V64a1.05,1.05,0,0,0,1.06,1.06h49A1.05,1.05,0,0,0,73.84,64ZM71.73,38.29H39.25V34.22H71.73Zm-39.4,0V34.22h4.81v4.07Zm4.81,2.11V63H32.33V40.4ZM24.83,34.22h5.38v4.07H24.83Zm0,6.18h5.38V63H24.83ZM39.25,63V40.4H71.73V63Z"/><path d="M60.49,69.27a1.05,1.05,0,0,0-1.06-1.06H55.81a1.06,1.06,0,1,0,0,2.11h3.62A1.05,1.05,0,0,0,60.49,69.27Z"/><path d="M51.57,69.27a.95.95,0,1,0,1-1A.95.95,0,0,0,51.57,69.27Z"/><path d="M23,17.73H34.47a1.06,1.06,0,0,0,0-2.11H23a1.06,1.06,0,1,0,0,2.11Z"/><path d="M23,21.52H38.36a1.06,1.06,0,0,0,0-2.12H23a1.06,1.06,0,0,0,0,2.12Z"/><path d="M42.48,20.46a.95.95,0,1,0-.94.95A.95.95,0,0,0,42.48,20.46Z"/><path d="M71.47,75.84a2,2,0,0,1,2,2,1.06,1.06,0,0,0,1,1.1,1,1,0,0,0,1.09-1,4,4,0,0,0-3-4l0-.75a1.06,1.06,0,0,0-2.11-.08l0,.75a4,4,0,0,0-3.25,3.74,4,4,0,0,0,1.12,2.9,4.21,4.21,0,0,0,2.88,1.27,2.12,2.12,0,0,1,1.44.63,1.82,1.82,0,0,1,.53,1.35,2.05,2.05,0,0,1-4.09-.16,1.07,1.07,0,0,0-1-1.1,1,1,0,0,0-1.1,1,4,4,0,0,0,2.95,4l0,.68a1.05,1.05,0,0,0,1,1.1h0a1.06,1.06,0,0,0,1.05-1l0-.67a4,4,0,0,0,3.25-3.75,4,4,0,0,0-1.12-2.9,4.25,4.25,0,0,0-2.88-1.27A2.12,2.12,0,0,1,69.88,79a1.82,1.82,0,0,1-.53-1.35A2,2,0,0,1,71.47,75.84Z"/><path d="M83.67,92.54a1,1,0,0,0-1-.78,6.53,6.53,0,0,1-3.2-1,13.68,13.68,0,1,0-8.67,3.1A13.48,13.48,0,0,0,74,93.52,8.58,8.58,0,0,0,78.77,95a8.68,8.68,0,0,0,2.31-.31L83,94.15a1,1,0,0,0,.74-1.29Zm-6.67-1a8.39,8.39,0,0,0,1.88,1.32,6.37,6.37,0,0,1-4.07-1.34,1.08,1.08,0,0,0-.64-.22,1.26,1.26,0,0,0-.28,0,11.79,11.79,0,0,1-3.08.43,11.59,11.59,0,1,1,6.32-1.89,1.07,1.07,0,0,0-.47.8A1,1,0,0,0,77,91.56Z"/></g></svg>
       </button>
@@ -1097,6 +1134,14 @@ function list_Calculation_Total(){
 		$("#b-valTotalPackages").val(listCalcTotal[i].packagesTotal++);
 		$("#b-valTotalWeight").val(listCalcTotal[i].weightTotal++);
 		$("#b-valTotalVolume").val(listCalcTotal[i].volumeTotal++);
+
+    /************************** AÑADIR LOS TOTALES AL LISTADO DE RESUMEN **************************/
+    $(".cont-MainCamelLog--c--contResumeCalc--item--cardStep--cIconStepLeft[data-merchandise=rsm-totpackages]").find("span:first-child").text("Bultos");
+    $(".cont-MainCamelLog--c--contResumeCalc--item--cardStep--cIconStepLeft[data-merchandise=rsm-totpackages]").find("span:nth-child(2)").text(listCalcTotal[i].packagesTotal++);
+    $(".cont-MainCamelLog--c--contResumeCalc--item--cardStep--cIconStepLeft[data-merchandise=rsm-totweight]").find("span:first-child").text("Peso(Kg)");
+    $(".cont-MainCamelLog--c--contResumeCalc--item--cardStep--cIconStepLeft[data-merchandise=rsm-totweight]").find("span:nth-child(2)").text(listCalcTotal[i].weightTotal++);
+    $(".cont-MainCamelLog--c--contResumeCalc--item--cardStep--cIconStepLeft[data-merchandise=rsm-totvolume]").find("span:first-child").text("Volumen(M³)");
+    $(".cont-MainCamelLog--c--contResumeCalc--item--cardStep--cIconStepLeft[data-merchandise=rsm-totvolume]").find("span:nth-child(2)").text(listCalcTotal[i].volumeTotal++);
 	}
 }
 /************************** LISTAR TODOS LOS CALCULOS PREVIOS **************************/
@@ -1182,6 +1227,9 @@ $(document).on("click", ".del-calculation-item", function(e){
 		$("#b-valTotalPackages").val(valTotalResultPackages);
 		$("#b-valTotalWeight").val(valTotalResultWeight);
 		$("#b-valTotalVolume").val(valTotalvolumenfinal);
+
+    /************************** AÑADIR LOS TOTALES AL LISTADO DE RESUMEN **************************/
+    
 		
 		/************************** ELIMINAR FILA **************************/
 		$(this).remove();
@@ -1261,6 +1309,9 @@ $(document).on("click", "#btn-NextStepTochargedata", function(){
     v_ValQuantityPackages = $("#val-iptPackagesNInterface").val();
     v_ValTotalWeight = $("#val-iptWeightNInterface").val();
     v_ValTotalVolume = $("#val-iptVolumeNInterface").val();
+
+    /************************** MOSTRAR EL RESUMEN HASTA ESTE PASO **************************/
+    $(".cont-MainCamelLog--c--contResumeCalc--item[data-advlevel=d-typecontainer]").addClass("show");
 
     /************************** MOSTRAR EL PASO DE - ELIGE UNA OPCIÓN **************************/
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-integservorfleteinte]").addClass("show");
@@ -1762,3 +1813,6 @@ $(document).on("click", ".cont-MainCamelLog--c--contSteps--item--cStep--mFrmIpts
     </button>
   `);
 });
+/*============================================================================================================
+=            CALCULAR Y MOSTRAR EL RESUMEN DE COTIZACIÓN - INTERFAZ DE PRESENTACIÓN DE COTIZACIÓN            =
+============================================================================================================*/

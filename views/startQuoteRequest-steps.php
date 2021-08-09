@@ -16,8 +16,9 @@
     </div>
   </nav>
   <main class="cont-MainCamelLog" id="cont-MainCamelLog">
+    <!--<div class="cont-MainCamelLog--cFinalQuoteResult ptop-headertop" id="cont-MainCamelLog--cFinalQuotationResult"></div>-->
     <div class="cont-MainCamelLog--c ptop-headertop" id="cont-MainCamelLog--cStartQuoteRequest">
-      <form action="finalQuotationreturn" method="POST" id="f-expquotationFrmClient">
+      <form action="fquotationgenerate" method="POST" id="f-expquotationFrmClient">
         <input type="hidden" id="ipt-vportidOrigin" value="<?= $_POST['v_iptportoriginpost']; ?>">
         <input type="hidden" id="ipt-vportidcountryOrigin" value="<?= $_POST['v_iptcountryportoriginpost']; ?>">
         <input type="hidden" id="ipt-vportidDestiny" value="<?= $_POST['v_iptportdestinypost']; ?>">
@@ -63,21 +64,23 @@
                 </div>
               </div>
               <div class="cont-MainCamelLog--c--contResumeCalc--item--cardStep--cIconStepLeft" data-merchandise="rsm-totpackages">
-                <span>Bultos</span>
+                <span></span>
                 <span></span>
               </div>
               <div class="cont-MainCamelLog--c--contResumeCalc--item--cardStep--cIconStepLeft" data-merchandise="rsm-totweight">
-                <span>Peso(Kg)</span>
+                <span></span>
                 <span></span>
               </div>
               <div class="cont-MainCamelLog--c--contResumeCalc--item--cardStep--cIconStepLeft" data-merchandise="rsm-totvolume">
-                <span>Volumen(M³)</span>
+                <span></span>
                 <span></span>
               </div>
             </div>
           </div>
-          <div class="cont-MainCamelLog--c--contResumeCalc--item" data-advlevel="d-quantitycontainer">
-            
+          <div class="cont-MainCamelLog--c--contResumeCalc--item" data-advlevel="d-reqspeacialservs">
+            <div class="cont-MainCamelLog--c--contResumeCalc--item--cardStep">
+              <span></span>
+            </div>
           </div>
         </section>
         <section class="cont-MainCamelLog--c--contSteps" id="fullpage">
@@ -137,5 +140,6 @@
   <script type="text/javascript" src="<?= $url ?>js/fullpage/scrolloverflow.min.js"></script>
   <script type="text/javascript" src="<?= $url ?>js/fullpage/fullpage.min.js"></script>
   <script src="<?= $url ?>js/startquoterequest.js"></script>
+  <script src="<?= $url ?>js/finalquotationreturn.js"></script>
 </body>
 </html>

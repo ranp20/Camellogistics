@@ -9,7 +9,8 @@ RewriteRule ^/?$ index.php
 ############NUEVO PROCEDIMIENTO
 RewriteRule marketplace-logistico?$ views/marketplace-logistic.php
 RewriteRule startQuoteRequest?$ views/startQuoteRequest-steps.php
-RewriteRule finalQuotationreturn?$ views/finalQuotation-return.php
+RewriteRule finalQuotationreturn?$ controllers/c_finalquotationreturn.php
+RewriteRule fquotationgenerate?$ views/finalQuotation-return.php
 
 ############ANTIGUO PROCEDIMIENTO
 RewriteRule calculadora?$ views/calculadora.php

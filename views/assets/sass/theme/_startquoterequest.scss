@@ -44,12 +44,13 @@
 					pointer-events: auto;
 				}
 				.cont-MainCamelLog--c--contResumeCalc--item--cardStep{
+					padding: .65rem .65rem 1rem .65rem;
 					&--cIconStepLeft{
 						display: grid;
 				    grid-template-columns: 1fr 1fr;
 				    align-items: center;
 				    justify-content: center;
-				    margin-bottom: 0.3rem;
+				    margin-bottom: 0;
 
 				    &[data-merchandise="rsm-qcontainer"]{
 					    display: grid;
@@ -85,6 +86,23 @@
 				}
 			}
 
+			/************************** ELIGE UNA OPCIÓN **************************/
+			&[data-advlevel="d-reqspeacialservs"]{
+				display: none;
+				opacity: 0;
+				pointer-events: none;
+				&.show{
+					display: block;
+					opacity: 1;
+					pointer-events: auto;
+				}
+				.cont-MainCamelLog--c--contResumeCalc--item--cardStep{
+					text-align: center;
+					span{
+						font-weight: 600;
+					}
+				}
+			}
 
 			&--cardStep{
 				border-radius: .4rem;

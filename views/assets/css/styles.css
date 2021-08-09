@@ -3063,6 +3063,7 @@ img {
 .cont-MainCamelLog--c--contResumeCalc--item {
   /************************** TIPO DE CARGA **************************/
   /************************** CONTENEDORES **************************/
+  /************************** ELIGE UNA OPCIÓN **************************/
 }
 .cont-MainCamelLog--c--contResumeCalc--item[data-advlevel=d-chargeload] .cont-MainCamelLog--c--contResumeCalc--item--cardStep {
   text-align: center;
@@ -3080,12 +3081,15 @@ img {
   opacity: 1;
   pointer-events: auto;
 }
+.cont-MainCamelLog--c--contResumeCalc--item[data-advlevel=d-typecontainer] .cont-MainCamelLog--c--contResumeCalc--item--cardStep {
+  padding: 0.65rem 0.65rem 1rem 0.65rem;
+}
 .cont-MainCamelLog--c--contResumeCalc--item[data-advlevel=d-typecontainer] .cont-MainCamelLog--c--contResumeCalc--item--cardStep--cIconStepLeft {
   display: grid;
   grid-template-columns: 1fr 1fr;
   align-items: center;
   justify-content: center;
-  margin-bottom: 0.3rem;
+  margin-bottom: 0;
 }
 .cont-MainCamelLog--c--contResumeCalc--item[data-advlevel=d-typecontainer] .cont-MainCamelLog--c--contResumeCalc--item--cardStep--cIconStepLeft[data-merchandise=rsm-qcontainer] {
   display: grid;
@@ -3113,6 +3117,22 @@ img {
 }
 .cont-MainCamelLog--c--contResumeCalc--item[data-advlevel=d-typecontainer] .cont-MainCamelLog--c--contResumeCalc--item--cardStep--cIconStepLeft p {
   margin-bottom: 0;
+}
+.cont-MainCamelLog--c--contResumeCalc--item[data-advlevel=d-reqspeacialservs] {
+  display: none;
+  opacity: 0;
+  pointer-events: none;
+}
+.cont-MainCamelLog--c--contResumeCalc--item[data-advlevel=d-reqspeacialservs].show {
+  display: block;
+  opacity: 1;
+  pointer-events: auto;
+}
+.cont-MainCamelLog--c--contResumeCalc--item[data-advlevel=d-reqspeacialservs] .cont-MainCamelLog--c--contResumeCalc--item--cardStep {
+  text-align: center;
+}
+.cont-MainCamelLog--c--contResumeCalc--item[data-advlevel=d-reqspeacialservs] .cont-MainCamelLog--c--contResumeCalc--item--cardStep span {
+  font-weight: 600;
 }
 .cont-MainCamelLog--c--contResumeCalc--item--cardStep {
   border-radius: 0.4rem;
