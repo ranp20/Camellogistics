@@ -44,6 +44,7 @@ function changesTabsOperation(){
       localStorage.setItem("type_service", typeService);
       $("#c-cTabsItem").html(`
         <div class="cont-MainCamelLog--c--cOptionsMarket--f--cont--cTabsItem--item">
+          <input type="hidden" id="v_typetranspinit" name="v_typetranspinit" value="${ind}">
           <input type="hidden" id="v_iptportoriginpost" name="v_iptportoriginpost">
           <input type="hidden" id="v_iptcountryportoriginpost" name="v_iptcountryportoriginpost">
           <input type="hidden" id="v_iptportdestinypost" name="v_iptportdestinypost">
@@ -263,40 +264,3 @@ function is_numeric(value) {
 /*==========================================================================================================
 =            PASO 1. AVANZAR AL PASO 2 AL HACER CLICK EN EL BOTÓN DE SOLICITAR COTIZACIÓN                  =
 ===========================================================================================================*/
-// $(document).on("submit", "#f-cOptionsMarkLogistic", function(e){
-//   e.preventDefault();
-
-//   var indbutton = $(this).find("#c-cTabsItem").find("button").attr("data-indselsp");
-//   if(indbutton == 1){
-    
-//     /************************** VALIDAR SI EXISTEN DATOS VÁLIDOS EN LOS INPUT - MARÍTIMO **************************/
-//     if($("#ipt-valNamePortOrigin").val() != "" || $("#ipt-valNamePortOrigin").val() != 0 &&
-//        $("#ipt-valNamePortDestiny").val() != "" || $("#ipt-valNamePortDestiny").val() != 0 &&
-//        $("#ipt-valNamePortOrigin").attr("id-puertoorigin") && is_numeric($("#ipt-valNamePortOrigin").attr("id-puertoorigin")) &&
-//        $("#ipt-valNamePortOrigin").attr("id-paispuertoorigin") && is_numeric($("#ipt-valNamePortOrigin").attr("id-paispuertoorigin")) &&
-//        $("#ipt-valNamePortDestiny").attr("id-puertodestiny") && is_numeric($("#ipt-valNamePortDestiny").attr("id-puertodestiny")) &&
-//        $("#ipt-valNamePortDestiny").attr("id-paispuertodestiny") && is_numeric($("#ipt-valNamePortDestiny").attr("id-paispuertodestiny"))){
-        
-//       var idportOrigin = $("#ipt-valNamePortOrigin").attr("id-puertoorigin");
-//       var idcountryportOrigin = $("#ipt-valNamePortOrigin").attr("id-paispuertoorigin");
-//       var idportDestiny = $("#ipt-valNamePortDestiny").attr("id-puertodestiny");
-//       var idcountryportDestiny = $("#ipt-valNamePortDestiny").attr("id-paispuertodestiny");
-
-//       var quotationdata = [
-//         idportOrigin,
-//         idcountryportOrigin,
-//         idportDestiny,
-//         idcountryportDestiny  
-//       ];
-//       alert(quotationdata);
-      
-//     }else{
-//       alert("Debes completar los campos requeridos");
-//     }
-
-//   }else if(indbutton == 2){
-//     alert("Deseeas solicitar un presupuesto Aéreo");
-//   }else{
-//     alert("Deseeas solicitar un presupuesto Aduanero");
-//   }
-// });

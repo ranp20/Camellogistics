@@ -83,6 +83,10 @@
 								align-items: center;
 								justify-content: space-between;
 								font-size: 0.8rem;
+
+								p{
+									margin: 0;
+								}
 							}
 						}
 
@@ -128,7 +132,6 @@
 
 		/* CONTENIDO - DETALLE DE LA PARTE INFERIOR */
 		&--cBottom{
-			padding-top: 1rem;
 			/* LOGO DE LA EMPRESA */
 			&--cImgInfoEnterprise{
 				display: flex;
@@ -160,43 +163,48 @@
 				align-items: center;
 				justify-content: space-between;
 				flex: 0 0 100%;
-				padding: 0 4rem;
-				padding-bottom: 0.5rem;
 				border-bottom: thin solid #cccc;
 				&--moreDetails{
 					flex: 48%;
-					&--include{
-						text-align: left;
-						&--title{
-							color: $step-title-color;
-							font-weight: 600;
-							font-size: 0.9rem;
-							padding-inline-start: 40px;
-							margin: 0;
-						}
-						&--m{
-							padding-inline-start: 40px;
-							list-style: disc !important;
-							font-size: 0.9rem;
-							&--item{
+					border-right: thin solid #cccc;
+					padding: 1rem 0;
+
+					/************************** CONTENEDOR DE - SERVICIOS INCLUIDOS Y NO INCLUIDOS **************************/
+					&--cInnotIn{
+					padding: 0 0 0 4rem;
+						&--include{
+							text-align: left;
+							&--title{
+								color: $step-title-color;
+								font-weight: 600;
+								font-size: 0.9rem;
+								padding-inline-start: 40px;
+								margin: 0;
+							}
+							&--m{
+								padding-inline-start: 40px;
+								list-style: disc !important;
+								font-size: 0.9rem;
+								&--item{
+								}
 							}
 						}
-					}
 
-					&--notinclude{
-						text-align: left;
-						&--title{
-							color: $step-title-color;
-							font-weight: 600;
-							font-size: 0.9rem;
-							padding-inline-start: 40px;
-							margin: 0;
-						}
-						&--m{
-							padding-inline-start: 40px;
-							list-style: disc !important;
-							font-size: 0.9rem;
-							&--item{
+						&--notinclude{
+							text-align: left;
+							&--title{
+								color: $step-title-color;
+								font-weight: 600;
+								font-size: 0.9rem;
+								padding-inline-start: 40px;
+								margin: 0;
+							}
+							&--m{
+								padding-inline-start: 40px;
+								list-style: disc !important;
+								font-size: 0.9rem;
+								&--item{
+								}
 							}
 						}
 					}
@@ -222,6 +230,103 @@
 					color: $step-title-color;
 					font-weight: 600;
 					font-size: 0.9rem;
+				}
+			}
+
+			/* IMPUESTOS DE ADUANA Y SUNAT */
+			&--cAduanaImpst{	
+				&--cTop{
+					background-color: #CBE1F4;
+  				&--m{
+  					display: flex;
+  					align-items: flex-start;
+  					flex: 0 0 100%;
+  					&--item{
+							position: relative;
+							flex: 15%;
+							padding: 0.5rem;
+
+							&:first-child{
+								flex: 50%;
+							}
+
+							&--cImg{
+								max-width: 9.2rem;
+						    position: absolute;
+						    top: .5rem;
+						    left: 1.5rem;
+								img{
+								}
+							}
+
+							&--cInfo{
+								h3,
+								p,
+								span{
+									color: #555759;
+									margin-bottom: 0.25rem;
+								}
+
+								h3{
+									margin-bottom: .25rem;
+							    font-size: 1.55rem;
+							    font-weight: 600;
+								}
+
+								h4{
+									font-size: 1.2rem;
+									color: #6F7375;
+									b{
+										color: red;
+									}
+								}
+
+								p{
+									font-size: 1.2rem;
+									font-weight: 800;
+								}
+
+								span{
+									font-weight: 800;	
+								}
+							}
+  					}
+  				}
+				}
+
+				&--cBottom{
+					background-color: #4875AB;
+					color: #fff;
+
+  				&--m{
+  					display: flex;
+  					align-items: flex-start;
+  					flex: 0 0 100%;
+  					&--item{
+							border-left: thin solid #fff;
+  						flex: 15%;
+  						padding: 0.5rem;
+							&:first-child{
+								flex: 50%;
+								border: unset;			
+							}
+
+							h3,
+							p{
+								margin-bottom: 0;
+							}
+
+							h3{
+						    font-size: 1.55rem;
+						    font-weight: 600;
+							}
+
+							p{
+								font-size: 1.2rem;
+								font-weight: 800;
+							}
+  					}
+  				}
 				}
 			}
 		}

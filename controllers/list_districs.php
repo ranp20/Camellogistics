@@ -5,14 +5,14 @@ class list_Districs extends Connection{
 		$id = $_POST['idpaisdestiny'];
 
 		try{
-			$sql = "SELECT tdist.id, tdist.name as 'distric',	tdist.id_province 
+			$sql = "SELECT tdist.id, tdist.name as 'distric',	tdist.id_province, tbp.name as 'province' 
 							FROM tbl_distric tdist INNER JOIN tbl_province tbp ON tbp.id = tdist.id_province INNER JOIN tbl_aq_paises tbpai ON tbpai.pais_id = tbp.id_pais
 							WHERE tbpai.pais_id = '".$id."' ORDER BY tdist.name ASC";
 
 			if(isset($_POST['searchList'])){
 				//$search = $this->con->real_escape_string($_POST['searchList']);
 				$search = addslashes($_POST['searchList']);
-				$sql = "SELECT tdist.id, tdist.name as 'distric',	tdist.id_province 
+				$sql = "SELECT tdist.id, tdist.name as 'distric',	tdist.id_province, tbp.name as 'province' 
 								FROM tbl_distric tdist INNER JOIN tbl_province tbp ON tbp.id = tdist.id_province INNER JOIN tbl_aq_paises tbpai ON tbpai.pais_id = tbp.id_pais 
 								WHERE tdist.name LIKE '%".$search."%'
 								AND tbpai.pais_id = '".$id."'

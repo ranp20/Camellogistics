@@ -16,7 +16,8 @@ $(() => {
 */
 
 /************************** RECOGER LAS VARIABLES RECIBIDAS POR POST **************************/
-var ipt_idPortOrigin = $("#ipt-vportidOrigin").val(),
+var ipt_idTypeTransport = $("#ipt-vtypetranspinit").val(),
+    ipt_idPortOrigin = $("#ipt-vportidOrigin").val(),
 		ipt_idPortcountryOrigin = $("#ipt-vportidcountryOrigin").val(),
 		ipt_idPortDestiny = $("#ipt-vportidDestiny").val(),
 		ipt_idPortcountryDestiny = $("#ipt-vportidcountryDestiny").val();
@@ -53,6 +54,10 @@ const sectionsSteps = new fullpage('#fullpage', {
 function hiddenAllNextSteps(){
   sectionsSteps.setKeyboardScrolling(false);
 }
+/************************** ASIGNAR EL ID DEL TIPO DE TRANSPORTE **************************/
+$(".cont-MainCamelLog--c--contResumeCalc--item[data-advlevel=d-typetransportnumb]").html(`
+  <input type="hidden" id="idtypetransportsendinit" name="idtypetransportsendinit" value="${ipt_idTypeTransport}">
+`);
 /************************** LISTAR EL PUERTO DE ORIGEN Y EL PUERTO DE DESTINO **************************/
 function listPortOriginandDestiny(){
   var tempOriginDestiny = "";
@@ -505,9 +510,6 @@ $(document).on("click", "#list-typeChargeLoadItems a", function(){
       <div class="cont-MainCamelLog--c--contSteps--item--cTitle">
         <h3 class="cont-MainCamelLog--c--contSteps--item--cTitle--title">Dimensiones de carga</h3>
         <span>
-          <input type="hidden" value="" id="loadQPackages" name="loadQPackages">
-          <input type="hidden" value="" id="loadTotWeight" name="loadTotWeight">
-          <input type="hidden" value="" id="loadTotVolume" name="loadTotVolume">
         </span>
       </div>
       <div class="cont-MainCamelLog--c--contSteps--item--cStep">
@@ -1697,7 +1699,7 @@ function listDistricsByCountry(searchVal){
     }else{
       response.forEach(e => {
       template += `
-        <li class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation--cC--cControl--cListChange--m--item" id="${e.id}" idprovince="${e.id_province}">
+        <li class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation--cC--cControl--cListChange--m--item" id="${e.id}" idprovince="${e.id_province}" namprovince="${e.province}">
            <span>${e.distric}</span>
          </li>
       `;
@@ -1732,7 +1734,7 @@ $(document).on("click", ".cont-MainCamelLog--c--contSteps--item--cStep--mFrmIpts
   $("#ipt-valDistricByCountryNInterface").val($(this).find("span").text());
 
   /************************** ASIGNAR VALORES DE LOS INPUTS HIDDEN - RECOGIDA UBICACIÓN **************************/
-  $("#plc-pickuploc").val($(this).find("span").text());
+  $("#plc-pickuploc").val($(this).attr("namprovince")+" - "+$(this).find("span").text());
 
   /************************** MOSTRAR EL BOTÓN DE COTIZACIÓN **************************/
   $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-pickuplocation] .cont-MainCamelLog--c--contSteps--item--cBtnNextStep").html(`

@@ -40,7 +40,7 @@
                 <div class="c-FinalQuotation--contStep--cQuotation--cTop--c--nOriginDestinyInfo--cCodeQuotation">
                   <p>
                     <span>ID:&nbsp;</span>
-                    <span>30201 - LCL</span>
+                    <span>30201 - <?= $_POST['loadTypeCharge']; ?></span>
                   </p>
                 </div>
               </div>
@@ -49,7 +49,7 @@
                   <li class="c-FinalQuotation--contStep--cQuotation--cTop--c--cDetailsQuotation--m--item">
                     <div class="c-FinalQuotation--contStep--cQuotation--cTop--c--cDetailsQuotation--m--item--info">
                       <span>Transporte</span>
-                      <span>MARÍTIMO</span>
+                      <span><?= ($_POST['idtypetransportsendinit'] == 1) ? "MARÍTIMO" : "No Especificado"; ?></span>
                     </div>
                   </li>
                   <li class="c-FinalQuotation--contStep--cQuotation--cTop--c--cDetailsQuotation--m--item">
@@ -67,19 +67,19 @@
                   <li class="c-FinalQuotation--contStep--cQuotation--cTop--c--cDetailsQuotation--m--item">
                     <div class="c-FinalQuotation--contStep--cQuotation--cTop--c--cDetailsQuotation--m--item--info">
                       <span>Gasto Portuario y Almacenamiento aduanero</span>
-                      <span>NO</span>
+                      <span><?= ($_POST['opt-genfquotation'] == "not-moreOpts") ? "NO" : "SÍ"; ?></span>
                     </div>
                   </li>
                   <li class="c-FinalQuotation--contStep--cQuotation--cTop--c--cDetailsQuotation--m--item">
                     <div class="c-FinalQuotation--contStep--cQuotation--cTop--c--cDetailsQuotation--m--item--info">
                       <span>Tipo de Producto</span>
-                      <span>AGRICULTURA(FRUTAS Y VEGETALES)</span>
+                      <span><?= (isset($_POST['val-categProdquot'])) ? $_POST['val-categProdquot'] : "No especificado"; ?></span>
                     </div>
                   </li>
                   <li class="c-FinalQuotation--contStep--cQuotation--cTop--c--cDetailsQuotation--m--item">
                     <div class="c-FinalQuotation--contStep--cQuotation--cTop--c--cDetailsQuotation--m--item--info">
                       <span>Impuestos</span>
-                      <span>Primera importación</span>
+                      <span><?= ($_POST['val-prevImports'] == "NO") ? "Primer importación" : "Importado previamente"; ?></span>
                     </div>
                   </li>
                 </ul>
@@ -87,7 +87,7 @@
                   <li class="c-FinalQuotation--contStep--cQuotation--cTop--c--cDetailsQuotation--m--item">
                     <div class="c-FinalQuotation--contStep--cQuotation--cTop--c--cDetailsQuotation--m--item--info">
                       <span>Valor de Mercancía</span>
-                      <span>45 000 USD</span>
+                      <span><?= (isset($_POST['val-valProdquot'])) ? $_POST['val-valProdquot'] : "No especificado"; ?></span>
                     </div>
                   </li>
                   <li class="c-FinalQuotation--contStep--cQuotation--cTop--c--cDetailsQuotation--m--item">
@@ -99,13 +99,13 @@
                   <li class="c-FinalQuotation--contStep--cQuotation--cTop--c--cDetailsQuotation--m--item">
                     <div class="c-FinalQuotation--contStep--cQuotation--cTop--c--cDetailsQuotation--m--item--info">
                       <span>Transporte a Domicilio</span>
-                      <span>NO</span>
+                      <span><?= (isset($_POST['plc-pickuploc'])) ? $_POST['plc-pickuploc'] : "NO"; ?></span>
                     </div>
                   </li>
                   <li class="c-FinalQuotation--contStep--cQuotation--cTop--c--cDetailsQuotation--m--item">
                     <div class="c-FinalQuotation--contStep--cQuotation--cTop--c--cDetailsQuotation--m--item--info">
                       <span>Seguro de Mercancía</span>
-                      <span>NO</span>
+                      <span><?= ($_POST['res-insuremerch'] == "NO") ? "NO" : "SÍ"; ?></span>
                     </div>
                   </li>
                   <li class="c-FinalQuotation--contStep--cQuotation--cTop--c--cDetailsQuotation--m--item">
@@ -125,48 +125,50 @@
             </div>
           </div>
           <div class="c-FinalQuotation--contStep--cQuotation--cBottom">
-            <div class="c-FinalQuotation--contStep--cQuotation--cBottom--cImgInfoEnterprise">
-              <img src="views/assets/img/logos/logotipo-camel.png" alt="">
-              <div class="c-FinalQuotation--contStep--cQuotation--cBottom--cImgInfoEnterprise--info">
-                <h3>SERVICIO LOGÍSTICO</h3>
-                <span>Valor FIJO</span>
-              </div>
-            </div>
             <div class="c-FinalQuotation--contStep--cQuotation--cBottom--c">
               <div class="c-FinalQuotation--contStep--cQuotation--cBottom--c--moreDetails">
-                <div class="c-FinalQuotation--contStep--cQuotation--cBottom--c--moreDetails--include">
-                  <p class="c-FinalQuotation--contStep--cQuotation--cBottom--c--moreDetails--include--title">Incluye</p>
-                  <ul class="c-FinalQuotation--contStep--cQuotation--cBottom--c--moreDetails--include--m">
-                    <li class="c-FinalQuotation--contStep--cQuotation--cBottom--c--moreDetails--include--m--item">
-                      <span>FLETE MARÍTIMO</span>
-                    </li>
-                    <li class="c-FinalQuotation--contStep--cQuotation--cBottom--c--moreDetails--include--m--item">
-                      <span>HANDLING Y MANEJO DESTINO</span>
-                    </li>
-                    <li class="c-FinalQuotation--contStep--cQuotation--cBottom--c--moreDetails--include--m--item">
-                      <span>VISTOS BUENOS</span>
-                    </li>
-                    <li class="c-FinalQuotation--contStep--cQuotation--cBottom--c--moreDetails--include--m--item">
-                      <span>DESCARGA</span>
-                    </li>
-                  </ul>
+                <div class="c-FinalQuotation--contStep--cQuotation--cBottom--cImgInfoEnterprise">
+                  <img src="views/assets/img/logos/logotipo-camel.png" alt="">
+                  <div class="c-FinalQuotation--contStep--cQuotation--cBottom--cImgInfoEnterprise--info">
+                    <h3>SERVICIO LOGÍSTICO</h3>
+                    <span>Valor FIJO</span>
+                  </div>
                 </div>
-                <div class="c-FinalQuotation--contStep--cQuotation--cBottom--c--moreDetails--notinclude">
-                  <p class="c-FinalQuotation--contStep--cQuotation--cBottom--c--moreDetails--notinclude--title">No incluye</p>
-                  <ul class="c-FinalQuotation--contStep--cQuotation--cBottom--c--moreDetails--notinclude--m">
-                    <li class="c-FinalQuotation--contStep--cQuotation--cBottom--c--moreDetails--notinclude--m--item">
-                      <span>ALMACEN ADUANERO</span>
-                    </li>
-                    <li class="c-FinalQuotation--contStep--cQuotation--cBottom--c--moreDetails--notinclude--m--item">
-                      <span>HONORARIOS DE AGENCIA DE ADUANA</span>
-                    </li>
-                    <li class="c-FinalQuotation--contStep--cQuotation--cBottom--c--moreDetails--notinclude--m--item">
-                      <span>TRANSPORTE A FÁBRICA IMPORTADOR</span>
-                    </li>
-                    <li class="c-FinalQuotation--contStep--cQuotation--cBottom--c--moreDetails--notinclude--m--item">
-                      <span>SEGURO DE MERCANCÍA</span>
-                    </li>
-                  </ul>
+                <div class="c-FinalQuotation--contStep--cQuotation--cBottom--c--moreDetails--cInnotIn">
+                  <div class="c-FinalQuotation--contStep--cQuotation--cBottom--c--moreDetails--cInnotIn--include">
+                    <p class="c-FinalQuotation--contStep--cQuotation--cBottom--c--moreDetails--cInnotIn--include--title">Incluye</p>
+                    <ul class="c-FinalQuotation--contStep--cQuotation--cBottom--c--moreDetails--cInnotIn--include--m">
+                      <li class="c-FinalQuotation--contStep--cQuotation--cBottom--c--moreDetails--cInnotIn--include--m--item">
+                        <span>FLETE MARÍTIMO</span>
+                      </li>
+                      <li class="c-FinalQuotation--contStep--cQuotation--cBottom--c--moreDetails--cInnotIn--include--m--item">
+                        <span>HANDLING Y MANEJO DESTINO</span>
+                      </li>
+                      <li class="c-FinalQuotation--contStep--cQuotation--cBottom--c--moreDetails--cInnotIn--include--m--item">
+                        <span>VISTOS BUENOS</span>
+                      </li>
+                      <li class="c-FinalQuotation--contStep--cQuotation--cBottom--c--moreDetails--cInnotIn--include--m--item">
+                        <span>DESCARGA</span>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="c-FinalQuotation--contStep--cQuotation--cBottom--c--moreDetails--cInnotIn--notinclude">
+                    <p class="c-FinalQuotation--contStep--cQuotation--cBottom--c--moreDetails--cInnotIn--notinclude--title">No incluye</p>
+                    <ul class="c-FinalQuotation--contStep--cQuotation--cBottom--c--moreDetails--cInnotIn--notinclude--m">
+                      <li class="c-FinalQuotation--contStep--cQuotation--cBottom--c--moreDetails--cInnotIn--notinclude--m--item">
+                        <span>ALMACEN ADUANERO</span>
+                      </li>
+                      <li class="c-FinalQuotation--contStep--cQuotation--cBottom--c--moreDetails--cInnotIn--notinclude--m--item">
+                        <span>HONORARIOS DE AGENCIA DE ADUANA</span>
+                      </li>
+                      <li class="c-FinalQuotation--contStep--cQuotation--cBottom--c--moreDetails--cInnotIn--notinclude--m--item">
+                        <span>TRANSPORTE A FÁBRICA IMPORTADOR</span>
+                      </li>
+                      <li class="c-FinalQuotation--contStep--cQuotation--cBottom--c--moreDetails--cInnotIn--notinclude--m--item">
+                        <span>SEGURO DE MERCANCÍA</span>
+                      </li>
+                    </ul>
+                  </div>
                 </div>
               </div>
               <div class="c-FinalQuotation--contStep--cQuotation--cBottom--c--QuantityQuotation">
@@ -178,6 +180,37 @@
             </div>
             <div class="c-FinalQuotation--contStep--cQuotation--cBottom--cMsgNote">
               <p>NOTA: Los conceptos están sujetos a IGV, excepto al flete internacional.</p>
+            </div>
+            <div class="c-FinalQuotation--contStep--cQuotation--cBottom--cAduanaImpst">
+              <div class="c-FinalQuotation--contStep--cQuotation--cBottom--cAduanaImpst--cTop">
+                <ul class="c-FinalQuotation--contStep--cQuotation--cBottom--cAduanaImpst--cTop--m">
+                  <li class="c-FinalQuotation--contStep--cQuotation--cBottom--cAduanaImpst--cTop--m--item">
+                    <div class="c-FinalQuotation--contStep--cQuotation--cBottom--cAduanaImpst--cTop--m--item--cImg">
+                      <img src="views/assets/img/utilities/SUNAT.png" alt="">
+                    </div>
+                    <div class="c-FinalQuotation--contStep--cQuotation--cBottom--cAduanaImpst--cTop--m--item--cInfo">
+                      <h3>IMPUESTOS DE ADUANA</h3>
+                      <h4>Valor <b>VARIABLE</b> según descripción de producto</h4>
+                    </div>
+                  </li>
+                  <li class="c-FinalQuotation--contStep--cQuotation--cBottom--cAduanaImpst--cTop--m--item">
+                    <div class="c-FinalQuotation--contStep--cQuotation--cBottom--cAduanaImpst--cTop--m--item--cInfo">
+                      <span>BAJO</span>
+                      <p>1.739,<sup>00</sup>USD</p>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+              <div class="c-FinalQuotation--contStep--cQuotation--cBottom--cAduanaImpst--cBottom">
+                <ul class="c-FinalQuotation--contStep--cQuotation--cBottom--cAduanaImpst--cBottom--m">
+                  <li class="c-FinalQuotation--contStep--cQuotation--cBottom--cAduanaImpst--cBottom--m--item">
+                    <h3>TOTALES (incluye IGV)</h3>
+                  </li>
+                  <li class="c-FinalQuotation--contStep--cQuotation--cBottom--cAduanaImpst--cBottom--m--item">
+                    <p>3.580,<sup>00</sup>USD</p>
+                  </li>
+                </ul>
+              </div>
             </div>
           </div>
         </div>
