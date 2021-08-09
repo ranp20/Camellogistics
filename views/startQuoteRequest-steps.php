@@ -1,3 +1,9 @@
+<?php 
+  if(!isset($_POST) || $_POST == []){
+    header("Location: marketplace-logistico");
+  }
+
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
