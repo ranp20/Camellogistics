@@ -146,6 +146,5 @@
   <script type="text/javascript" src="<?= $url ?>js/fullpage/scrolloverflow.min.js"></script>
   <script type="text/javascript" src="<?= $url ?>js/fullpage/fullpage.min.js"></script>
   <script src="<?= $url ?>js/startquoterequest.js"></script>
-  <script src="<?= $url ?>js/finalquotationreturn.js"></script>
 </body>
 </html>
