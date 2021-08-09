@@ -73,6 +73,7 @@ function listPortOriginandDestiny(){
           </div>
           <div class="cont-MainCamelLog--c--contResumeCalc--item--cardStep--cDescMap">
             <span>${e.nom_puerto} - ${e.nom_pais}</span>
+            <input type="hidden" id="val-originPortSend" name="val-originPortSend" value="${e.nom_puerto} - ${e.nom_pais}">
           </div>
         </div>
       `;
@@ -95,6 +96,7 @@ function listPortOriginandDestiny(){
             </div>
             <div class="cont-MainCamelLog--c--contResumeCalc--item--cardStep--cDescMap">
               <span>${e.nom_puerto} - ${e.nom_pais}</span>
+              <input type="hidden" id="val-destinyPortSend" name="val-destinyPortSend" value="${e.nom_puerto} - ${e.nom_pais}">
             </div>
           </div>
         `;
@@ -851,6 +853,7 @@ $(document).on("click", "#list-SelOptionResultExp a", function(){
         <h3 class="cont-MainCamelLog--c--contSteps--item--cTitle--title">Mercancía</h3>
         <span>
           <input type="hidden" value="" id="val-categProdquot" name="val-categProdquot">
+          <input type="hidden" value="" id="val-reqPermisoProdquot" name="val-reqPermisoProdquot">
           <input type="hidden" value="" id="val-valProdquot" name="val-valProdquot">
           <input type="hidden" value="NO" id="val-prevImports" name="val-prevImports">
         </span>
@@ -895,9 +898,6 @@ $(document).on("click", "#list-SelOptionResultExp a", function(){
     /************************** AGREGAR AL LISTADO DE RESUMEN - ELIGE UN OPCIÓN **************************/
     $(".cont-MainCamelLog--c--contResumeCalc--item[data-advlevel=d-reqspeacialservs]").removeClass("show");
     $(".cont-MainCamelLog--c--contResumeCalc--item[data-advlevel=d-reqspeacialservs]").find("span").text("");
-    /************************** OCULTAR - CONTENEDORES **************************/
-    // $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-qcontainers]").removeClass("show");
-    // $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-qcontainers]").html("");
     /************************** OCULTAR - DATOS DE MERCANCÍA **************************/
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-merchandisedata]").removeClass("show");
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-merchandisedata]").html("");
@@ -1448,6 +1448,7 @@ $(document).on("click", ".cont-MainCamelLog--c--contSteps--item--cStep--mFrmIpts
   $("#ipt-valNameTypeProdNInterface").val($(this).find("p").text());
   /************************** ASIGNAR VALORES DE LOS INPUTS HIDDEN - MERCANCÍA **************************/
   $("#val-categProdquot").val($(this).find("p").text());
+  $("#val-reqPermisoProdquot").val($(this).find("small").find("span:nth-child(2)").text());
 });
 /************************** VALIDAR INPUT - VALOR DE PRODUCTO IMPORTADO **************************/
 $(document).on("input", "#ipt-valPriceProdNInterface", function(e){

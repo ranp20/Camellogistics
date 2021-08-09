@@ -20,6 +20,8 @@
 		&--cTop{
 			&--title{
 				margin: 0;
+		    font-weight: 600;
+		    font-size: .95rem;
 			}
 
 			&--c{
@@ -41,8 +43,12 @@
 							margin: 0;
 							font-size: 0.8rem;
 							margin-left: 0.5rem;
+							text-transform: uppercase;
 							span{
-
+								&:nth-child(2){
+									position: relative;
+									top: -2px;
+								}
 							}
 						}
 					}
@@ -50,7 +56,8 @@
 					&--cCodeQuotation{
 						p{
 							margin: 0;
-							font-size: 0.8rem;
+					    font-size: 0.75rem;
+					    font-weight: 600;
 							span{
 
 							}
@@ -75,7 +82,18 @@
 								display: flex;
 								align-items: center;
 								justify-content: space-between;
-								font-size: 0.9rem;
+								font-size: 0.8rem;
+							}
+						}
+
+						&:nth-child(2){
+							.c-FinalQuotation--contStep--cQuotation--cTop--c--cDetailsQuotation--m--item:last-child{
+								div{
+									span:nth-child(2){
+										color: $step-title-color;
+										font-weight: 600;
+									}
+								}
 							}
 						}
 					}
@@ -84,6 +102,8 @@
 				/* PREGUNTA - ¿ DUDAS ? */
 				&--cDudeInfo{
 					background-color: orange;
+					min-height: 2px;
+    			margin: .5rem 0;
 					p{
 						margin: 0;
 						color: #fff;
