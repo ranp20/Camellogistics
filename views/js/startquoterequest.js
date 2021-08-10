@@ -1152,14 +1152,6 @@ function list_Calculation_Total(){
 		$("#b-valTotalPackages").val(listCalcTotal[i].packagesTotal++);
 		$("#b-valTotalWeight").val(listCalcTotal[i].weightTotal++);
 		$("#b-valTotalVolume").val(listCalcTotal[i].volumeTotal++);
-
-    /************************** AÑADIR LOS TOTALES AL LISTADO DE RESUMEN **************************/
-    $(".cont-MainCamelLog--c--contResumeCalc--item--cardStep--cIconStepLeft[data-merchandise=rsm-totpackages]").find("span:first-child").text("Bultos");
-    $(".cont-MainCamelLog--c--contResumeCalc--item--cardStep--cIconStepLeft[data-merchandise=rsm-totpackages]").find("span:nth-child(2)").text(listCalcTotal[i].packagesTotal++);
-    $(".cont-MainCamelLog--c--contResumeCalc--item--cardStep--cIconStepLeft[data-merchandise=rsm-totweight]").find("span:first-child").text("Peso(Kg)");
-    $(".cont-MainCamelLog--c--contResumeCalc--item--cardStep--cIconStepLeft[data-merchandise=rsm-totweight]").find("span:nth-child(2)").text(listCalcTotal[i].weightTotal++);
-    $(".cont-MainCamelLog--c--contResumeCalc--item--cardStep--cIconStepLeft[data-merchandise=rsm-totvolume]").find("span:first-child").text("Volumen(M³)");
-    $(".cont-MainCamelLog--c--contResumeCalc--item--cardStep--cIconStepLeft[data-merchandise=rsm-totvolume]").find("span:nth-child(2)").text(listCalcTotal[i].volumeTotal++);
 	}
 }
 /************************** LISTAR TODOS LOS CALCULOS PREVIOS **************************/
@@ -1301,6 +1293,14 @@ $(document).on("click", "#btn-addCalcValueToCalculator", function(e){
 		localStorage.setItem("tot_packages", valCalculadoPackages);
 		localStorage.setItem("tot_weight", valCalculadoWeight);
 		localStorage.setItem("tot_volume", valCalculadoVolume);
+
+    /************************** AÑADIR LOS TOTALES AL LISTADO DE RESUMEN **************************/
+    $(".cont-MainCamelLog--c--contResumeCalc--item--cardStep--cIconStepLeft[data-merchandise=rsm-totpackages]").find("span:first-child").text("Bultos");
+    $(".cont-MainCamelLog--c--contResumeCalc--item--cardStep--cIconStepLeft[data-merchandise=rsm-totpackages]").find("span:nth-child(2)").text(valCalculadoPackages);
+    $(".cont-MainCamelLog--c--contResumeCalc--item--cardStep--cIconStepLeft[data-merchandise=rsm-totweight]").find("span:first-child").text("Peso(Kg)");
+    $(".cont-MainCamelLog--c--contResumeCalc--item--cardStep--cIconStepLeft[data-merchandise=rsm-totweight]").find("span:nth-child(2)").text(valCalculadoWeight);
+    $(".cont-MainCamelLog--c--contResumeCalc--item--cardStep--cIconStepLeft[data-merchandise=rsm-totvolume]").find("span:first-child").text("Volumen(M³)");
+    $(".cont-MainCamelLog--c--contResumeCalc--item--cardStep--cIconStepLeft[data-merchandise=rsm-totvolume]").find("span:nth-child(2)").text(valCalculadoVolume);
 
 		/************************** OCULTAR Y LIMPIAR EL MODAL **************************/
 		$("#cnt-modalFormCalculator").removeClass("show");
