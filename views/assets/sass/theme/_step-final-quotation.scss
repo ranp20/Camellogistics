@@ -118,6 +118,47 @@
 					}
 				}
 
+				/* CONTACTO CON AGENCIA DE ADUANA */
+				&--cWhatsappContact{
+					max-width: 790px;
+					width: 95%;
+					border-radius: 1rem;
+					margin-left: auto;
+					margin-right: auto;
+					text-align: center;
+					display: flex;
+					align-items: center;
+					justify-content: center;
+					&--link{
+						color: #fff;
+						display: flex;
+						align-items: center;
+						justify-content: center;
+						border-radius: 1rem;
+						background-color: #6BBD6C;
+						padding: 0.5rem;
+						width: 100%;
+							
+						&--cImg{
+							max-width: 4.5rem;
+							width: 95%;
+							img{
+							}
+						}
+
+						h3{
+							margin-left: 0.5rem;
+							margin-bottom: 0;
+							font-size: 1.55em;
+						}
+
+						&:hover{
+							color: #fff;
+							opacity: 0.8;
+						}
+					}
+				}
+
 				/* VALIDEZ DE LA COTIZACIÓN */
 				&--cValidTimeQuotation{
 					border-bottom: thin solid #cccc;
@@ -125,6 +166,7 @@
 						margin: 0;
 						color: $color-paragraph;
 						font-weight: 600;
+						padding: 0.5rem 0;
 					}
 				}
 			}

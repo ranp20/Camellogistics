@@ -2193,6 +2193,7 @@ img {
   /* RESUMEN Y TIPO DE TRANSPORTE */
   /* RESUMEN Y LISTA DE SERVICIOS AGREGADOS */
   /* PREGUNTA - ¿ DUDAS ? */
+  /* CONTACTO CON AGENCIA DE ADUANA */
   /* VALIDEZ DE LA COTIZACIÓN */
 }
 .c-FinalQuotation--contStep--cQuotation--cTop--c--nOriginDestinyInfo {
@@ -2265,6 +2266,40 @@ img {
   color: #fff;
   text-decoration: underline !important;
 }
+.c-FinalQuotation--contStep--cQuotation--cTop--c--cWhatsappContact {
+  max-width: 790px;
+  width: 95%;
+  border-radius: 1rem;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.c-FinalQuotation--contStep--cQuotation--cTop--c--cWhatsappContact--link {
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 1rem;
+  background-color: #6BBD6C;
+  padding: 0.5rem;
+  width: 100%;
+}
+.c-FinalQuotation--contStep--cQuotation--cTop--c--cWhatsappContact--link--cImg {
+  max-width: 4.5rem;
+  width: 95%;
+}
+.c-FinalQuotation--contStep--cQuotation--cTop--c--cWhatsappContact--link h3 {
+  margin-left: 0.5rem;
+  margin-bottom: 0;
+  font-size: 1.55em;
+}
+.c-FinalQuotation--contStep--cQuotation--cTop--c--cWhatsappContact--link:hover {
+  color: #fff;
+  opacity: 0.8;
+}
 .c-FinalQuotation--contStep--cQuotation--cTop--c--cValidTimeQuotation {
   border-bottom: thin solid #cccc;
 }
@@ -2272,6 +2307,7 @@ img {
   margin: 0;
   color: #888;
   font-weight: 600;
+  padding: 0.5rem 0;
 }
 .c-FinalQuotation--contStep--cQuotation--cBottom {
   /* LOGO DE LA EMPRESA */

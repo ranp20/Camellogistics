@@ -185,6 +185,14 @@
               <div class="c-FinalQuotation--contStep--cQuotation--cTop--c--cDudeInfo">
                 <!--<p>¿Dudas? - <a href="#">Click Aquí</a></p>-->
               </div>
+              <div class="c-FinalQuotation--contStep--cQuotation--cTop--c--cWhatsappContact">
+                <a href="#" class="c-FinalQuotation--contStep--cQuotation--cTop--c--cWhatsappContact--link">
+                  <span class="c-FinalQuotation--contStep--cQuotation--cTop--c--cWhatsappContact--link--cImg">
+                    <img src="<?= $url ?>assets/img/utilities/whatsapp.svg" alt="">
+                  </span>
+                  <h3>CONTACTAR A LA AGENCIA DE ADUANA</h3>
+                </a>
+              </div>
               <div class="c-FinalQuotation--contStep--cQuotation--cTop--c--cValidTimeQuotation">
                 <p>Validez de tarifa: 12 Jul - 31 Jul</p>
               </div>
