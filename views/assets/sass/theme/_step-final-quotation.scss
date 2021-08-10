@@ -94,7 +94,7 @@
 							.c-FinalQuotation--contStep--cQuotation--cTop--c--cDetailsQuotation--m--item:last-child{
 								div{
 									span:nth-child(2){
-										color: $step-title-color;
+										color: $quotation-titles;
 										font-weight: 600;
 									}
 								}
@@ -120,9 +120,9 @@
 
 				/* CONTACTO CON AGENCIA DE ADUANA */
 				&--cWhatsappContact{
-					max-width: 790px;
+					max-width: 760px;
 					width: 95%;
-					border-radius: 1rem;
+					border-radius: 1.25rem;
 					margin-left: auto;
 					margin-right: auto;
 					text-align: center;
@@ -134,13 +134,13 @@
 						display: flex;
 						align-items: center;
 						justify-content: center;
-						border-radius: 1rem;
+						border-radius: 1.25rem;
 						background-color: #6BBD6C;
 						padding: 0.5rem;
 						width: 100%;
 							
 						&--cImg{
-							max-width: 4.5rem;
+							max-width: 4rem;
 							width: 95%;
 							img{
 							}
@@ -149,7 +149,7 @@
 						h3{
 							margin-left: 0.5rem;
 							margin-bottom: 0;
-							font-size: 1.55em;
+							font-size: 1.5em;
 						}
 
 						&:hover{
@@ -166,7 +166,7 @@
 						margin: 0;
 						color: $color-paragraph;
 						font-weight: 600;
-						padding: 0.5rem 0;
+						padding: 0.25rem 0 0 0;
 					}
 				}
 			}
@@ -217,7 +217,7 @@
 						&--include{
 							text-align: left;
 							&--title{
-								color: $step-title-color;
+								color: $quotation-titles;
 								font-weight: 600;
 								font-size: 0.9rem;
 								padding-inline-start: 40px;
@@ -235,7 +235,7 @@
 						&--notinclude{
 							text-align: left;
 							&--title{
-								color: $step-title-color;
+								color: $quotation-titles;
 								font-weight: 600;
 								font-size: 0.9rem;
 								padding-inline-start: 40px;
@@ -261,7 +261,8 @@
 						}
 					}
 					p{
-
+						color: $color-paragraph;
+						font-weight: 600;
 					}
 				}
 			}
@@ -269,9 +270,11 @@
 			/* NOTA DE LA PARTE INFERIOR DEL IGV */
 			&--cMsgNote{
 				p{
-					color: $step-title-color;
-					font-weight: 600;
+					color: $quotation-titles;
+					font-weight: 800;
 					font-size: 0.9rem;
+					margin-bottom: 0;
+					padding: 0.35rem 0;
 				}
 			}
 
@@ -293,10 +296,10 @@
 							}
 
 							&--cImg{
-								max-width: 9.2rem;
+								max-width: 9rem;
 						    position: absolute;
 						    top: .5rem;
-						    left: 1.5rem;
+						    left: 1.1rem;
 								img{
 								}
 							}
@@ -311,12 +314,12 @@
 
 								h3{
 									margin-bottom: .25rem;
-							    font-size: 1.55rem;
-							    font-weight: 600;
+							    font-size: 1.5rem;
+							    font-weight: 800;
 								}
 
 								h4{
-									font-size: 1.2rem;
+									font-size: 1.15rem;
 									color: #6F7375;
 									b{
 										color: red;
@@ -324,7 +327,7 @@
 								}
 
 								p{
-									font-size: 1.2rem;
+									font-size: 1.15rem;
 									font-weight: 800;
 								}
 
@@ -359,7 +362,7 @@
 							}
 
 							h3{
-						    font-size: 1.55rem;
+						    font-size: 1.5rem;
 						    font-weight: 600;
 							}
 

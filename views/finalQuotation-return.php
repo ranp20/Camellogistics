@@ -253,7 +253,7 @@
               </div>
             </div>
             <div class="c-FinalQuotation--contStep--cQuotation--cBottom--cMsgNote">
-              <p><?php print_r($_POST); ?>NOTA: Los conceptos están sujetos a IGV, excepto al flete internacional.</p>
+              <p>NOTA: Los conceptos están sujetos a IGV, excepto al flete internacional.</p>
             </div>
             <div class="c-FinalQuotation--contStep--cQuotation--cBottom--cAduanaImpst">
               <div class="c-FinalQuotation--contStep--cQuotation--cBottom--cAduanaImpst--cTop">

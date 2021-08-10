@@ -2250,7 +2250,7 @@ img {
   margin: 0;
 }
 .c-FinalQuotation--contStep--cQuotation--cTop--c--cDetailsQuotation--m:nth-child(2) .c-FinalQuotation--contStep--cQuotation--cTop--c--cDetailsQuotation--m--item:last-child div span:nth-child(2) {
-  color: steelblue;
+  color: #2B5186;
   font-weight: 600;
 }
 .c-FinalQuotation--contStep--cQuotation--cTop--c--cDudeInfo {
@@ -2267,9 +2267,9 @@ img {
   text-decoration: underline !important;
 }
 .c-FinalQuotation--contStep--cQuotation--cTop--c--cWhatsappContact {
-  max-width: 790px;
+  max-width: 760px;
   width: 95%;
-  border-radius: 1rem;
+  border-radius: 1.25rem;
   margin-left: auto;
   margin-right: auto;
   text-align: center;
@@ -2282,19 +2282,19 @@ img {
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 1rem;
+  border-radius: 1.25rem;
   background-color: #6BBD6C;
   padding: 0.5rem;
   width: 100%;
 }
 .c-FinalQuotation--contStep--cQuotation--cTop--c--cWhatsappContact--link--cImg {
-  max-width: 4.5rem;
+  max-width: 4rem;
   width: 95%;
 }
 .c-FinalQuotation--contStep--cQuotation--cTop--c--cWhatsappContact--link h3 {
   margin-left: 0.5rem;
   margin-bottom: 0;
-  font-size: 1.55em;
+  font-size: 1.5em;
 }
 .c-FinalQuotation--contStep--cQuotation--cTop--c--cWhatsappContact--link:hover {
   color: #fff;
@@ -2307,7 +2307,7 @@ img {
   margin: 0;
   color: #888;
   font-weight: 600;
-  padding: 0.5rem 0;
+  padding: 0.25rem 0 0 0;
 }
 .c-FinalQuotation--contStep--cQuotation--cBottom {
   /* LOGO DE LA EMPRESA */
@@ -2357,7 +2357,7 @@ img {
   text-align: left;
 }
 .c-FinalQuotation--contStep--cQuotation--cBottom--c--moreDetails--cInnotIn--include--title {
-  color: steelblue;
+  color: #2B5186;
   font-weight: 600;
   font-size: 0.9rem;
   padding-inline-start: 40px;
@@ -2372,7 +2372,7 @@ img {
   text-align: left;
 }
 .c-FinalQuotation--contStep--cQuotation--cBottom--c--moreDetails--cInnotIn--notinclude--title {
-  color: steelblue;
+  color: #2B5186;
   font-weight: 600;
   font-size: 0.9rem;
   padding-inline-start: 40px;
@@ -2389,10 +2389,16 @@ img {
 .c-FinalQuotation--contStep--cQuotation--cBottom--c--QuantityQuotation h1 {
   margin: 0;
 }
-.c-FinalQuotation--contStep--cQuotation--cBottom--cMsgNote p {
-  color: steelblue;
+.c-FinalQuotation--contStep--cQuotation--cBottom--c--QuantityQuotation p {
+  color: #888;
   font-weight: 600;
+}
+.c-FinalQuotation--contStep--cQuotation--cBottom--cMsgNote p {
+  color: #2B5186;
+  font-weight: 800;
   font-size: 0.9rem;
+  margin-bottom: 0;
+  padding: 0.35rem 0;
 }
 .c-FinalQuotation--contStep--cQuotation--cBottom--cAduanaImpst--cTop {
   background-color: #CBE1F4;
@@ -2411,10 +2417,10 @@ img {
   flex: 50%;
 }
 .c-FinalQuotation--contStep--cQuotation--cBottom--cAduanaImpst--cTop--m--item--cImg {
-  max-width: 9.2rem;
+  max-width: 9rem;
   position: absolute;
   top: 0.5rem;
-  left: 1.5rem;
+  left: 1.1rem;
 }
 .c-FinalQuotation--contStep--cQuotation--cBottom--cAduanaImpst--cTop--m--item--cInfo h3,
 .c-FinalQuotation--contStep--cQuotation--cBottom--cAduanaImpst--cTop--m--item--cInfo p,
@@ -2424,18 +2430,18 @@ img {
 }
 .c-FinalQuotation--contStep--cQuotation--cBottom--cAduanaImpst--cTop--m--item--cInfo h3 {
   margin-bottom: 0.25rem;
-  font-size: 1.55rem;
-  font-weight: 600;
+  font-size: 1.5rem;
+  font-weight: 800;
 }
 .c-FinalQuotation--contStep--cQuotation--cBottom--cAduanaImpst--cTop--m--item--cInfo h4 {
-  font-size: 1.2rem;
+  font-size: 1.15rem;
   color: #6F7375;
 }
 .c-FinalQuotation--contStep--cQuotation--cBottom--cAduanaImpst--cTop--m--item--cInfo h4 b {
   color: red;
 }
 .c-FinalQuotation--contStep--cQuotation--cBottom--cAduanaImpst--cTop--m--item--cInfo p {
-  font-size: 1.2rem;
+  font-size: 1.15rem;
   font-weight: 800;
 }
 .c-FinalQuotation--contStep--cQuotation--cBottom--cAduanaImpst--cTop--m--item--cInfo span {
@@ -2464,7 +2470,7 @@ img {
   margin-bottom: 0;
 }
 .c-FinalQuotation--contStep--cQuotation--cBottom--cAduanaImpst--cBottom--m--item h3 {
-  font-size: 1.55rem;
+  font-size: 1.5rem;
   font-weight: 600;
 }
 .c-FinalQuotation--contStep--cQuotation--cBottom--cAduanaImpst--cBottom--m--item p {
