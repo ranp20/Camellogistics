@@ -562,7 +562,7 @@ $(document).on("click", "#c-incdecBtns20 button", function(){
     v_QContainersValue20 = newValipt20;
 
     /************************** ASIGNAR VALORES DE LOS INPUTS HIDDEN **************************/
-    $("#loadTypeContainer20").val(v_QContainersName20);
+    $("#loadTypeContainer20").val(v_QContainersName20+" "+"Std");
     val20inputhiddenNew = parseInt(val20inputhidden) + 1;
     $("#loadQContainer20").val(val20inputhiddenNew);
     /************************** RESUMEN DEL LISTADO - CONTENEDORES 20' **************************/
@@ -617,7 +617,7 @@ $(document).on("click", "#c-incdecBtns40 button", function(){
     v_QContainersValue40 = $(this).parent().find("input").val(newValipt40);
 
     /************************** ASIGNAR VALORES DE LOS INPUTS HIDDEN **************************/
-    $("#loadTypeContainer40").val(v_QContainersName40);
+    $("#loadTypeContainer40").val(v_QContainersName40+" "+"Std");
     val40inputhiddenNew = parseInt(val40inputhidden) + 1;
     $("#loadQContainer40").val(val40inputhiddenNew);
     /************************** RESUMEN DEL LISTADO - CONTENEDORES 40' **************************/
@@ -671,7 +671,7 @@ $(document).on("click", "#c-incdecBtns40-hc button", function(){
     v_QContainersValue40_hq = $(this).parent().find("input").val(newValipt40_hq);
 
     /************************** ASIGNAR VALORES DE LOS INPUTS HIDDEN **************************/
-    $("#loadTypeContainer40hq").val(v_QContainersName40_hq);
+    $("#loadTypeContainer40hq").val("40' HIGH CUBE");
     val40hqinputhiddenNew = parseInt(val40hqinputhidden) + 1;
     $("#loadQContainer40hq").val(val40hqinputhiddenNew);
     /************************** RESUMEN DEL LISTADO - CONTENEDORES 40hq' **************************/
@@ -725,7 +725,7 @@ $(document).on("click", "#c-incdecBtns40-nor button", function(){
     v_QContainersValue40_nor = $(this).parent().find("input").val(newValipt40_nor);
 
     /************************** ASIGNAR VALORES DE LOS INPUTS HIDDEN **************************/
-    $("#loadTypeContainer40nor").val(v_QContainersName40_nor);
+    $("#loadTypeContainer40nor").val("40' NOR");
     val40norinputhiddenNew = parseInt(val40norinputhidden) + 1;
     $("#loadQContainer40nor").val(val40norinputhiddenNew);
     /************************** RESUMEN DEL LISTADO - CONTENEDORES 40nor' **************************/

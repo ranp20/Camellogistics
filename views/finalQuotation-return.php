@@ -61,7 +61,53 @@
                   <li class="c-FinalQuotation--contStep--cQuotation--cTop--c--cDetailsQuotation--m--item">
                     <div class="c-FinalQuotation--contStep--cQuotation--cTop--c--cDetailsQuotation--m--item--info">
                       <span>Cantidad</span>
-                      <span>1 Bulto de 300kg y 1.08 M³</span>
+                      <?php 
+
+                        $templateQq = "";
+                        $textpackages = "";
+                        $textContain20Std = "";
+                        $textContain40Std = "";
+                        $textContain40HC = "";
+                        $textContain40Nor = "";
+                        $textcompleteContains = "";
+
+                      if(isset($_POST['loadTypeCharge'])){
+                        if($_POST['loadTypeCharge'] == "FCL"){
+  (isset($_POST['loadTypeContainer20']) && isset($_POST['loadQContainer20']) && $_POST['loadQContainer20'] != 0) ? $textContain20Std = $_POST['loadQContainer20']."x".$_POST['loadTypeContainer20'].", " : "";
+  (isset($_POST['loadTypeContainer40']) && isset($_POST['loadQContainer40']) && $_POST['loadQContainer40'] != 0) ? $textContain40Std = $_POST['loadQContainer40']."x".$_POST['loadTypeContainer40'].", " : "";
+  (isset($_POST['loadTypeContainer40hq']) && isset($_POST['loadQContainer40hq']) && $_POST['loadQContainer40hq'] != 0) ? $textContain40HC = $_POST['loadQContainer40hq']."x".$_POST['loadTypeContainer40hq'].", " : "";
+  (isset($_POST['loadTypeContainer40nor']) && isset($_POST['loadQContainer40nor']) && $_POST['loadQContainer40nor'] != 0) ? $textContain40Nor = $_POST['loadQContainer40nor']."x".$_POST['loadTypeContainer40nor'].", " : "";
+                          
+                        $textcompleteContains = $textContain20Std.$textContain40Std.$textContain40HC.$textContain40Nor;
+
+                        $withoutcomaStr = substr(trim($textcompleteContains), 0, -1);
+                          $templateQq.="<p>
+                            <span>{$withoutcomaStr}</span>
+                          </p>
+                          ";
+                        }else{
+                          if($_POST['val-iptPackagesNInterface'] > 1){
+                            $textpackages = "Bultos";
+                            $templateQq.="<p>
+                              <span></span>
+                              <span>{$_POST['val-iptPackagesNInterface']} {$textpackages} de {$_POST['val-iptWeightNInterface']} Kg y {$_POST['val-iptVolumeNInterface']} M³</span>
+                            </p>
+                            ";
+                          }else{
+                            $textpackages = "Bulto";
+                            $templateQq.="<p>
+                              <span></span>
+                              <span>{$_POST['val-iptPackagesNInterface']} {$textpackages} de {$_POST['val-iptWeightNInterface']} Kg y {$_POST['val-iptVolumeNInterface']} M³</span>
+                            </p>
+                            ";
+                          }
+                        }
+                      }else{
+                        echo "<span>No especificado</span>";
+                      }
+
+                      echo $templateQq;
+                      ?>
                     </div>
                   </li>
                   <li class="c-FinalQuotation--contStep--cQuotation--cTop--c--cDetailsQuotation--m--item">
@@ -79,7 +125,17 @@
                   <li class="c-FinalQuotation--contStep--cQuotation--cTop--c--cDetailsQuotation--m--item">
                     <div class="c-FinalQuotation--contStep--cQuotation--cTop--c--cDetailsQuotation--m--item--info">
                       <span>Impuestos</span>
-                      <span><?= ($_POST['val-prevImports'] == "NO") ? "Primer importación" : "Importado previamente"; ?></span>
+                      <span>
+                        <?php 
+                          if(!isset($_POST['val-prevImports'])){
+                            echo "No especificado";
+                          }else if($_POST['val-prevImports'] == "NO"){
+                            echo "Primer importación";
+                          }else{
+                            echo "Importado previamente";
+                          }
+                        ?>
+                      </span>
                     </div>
                   </li>
                 </ul>
@@ -93,7 +149,7 @@
                   <li class="c-FinalQuotation--contStep--cQuotation--cTop--c--cDetailsQuotation--m--item">
                     <div class="c-FinalQuotation--contStep--cQuotation--cTop--c--cDetailsQuotation--m--item--info">
                       <span>Impuesto de Aduana</span>
-                      <span>NO</span>
+                      <span><?= ($_POST['opt-genfquotation'] == "y-moreOpts") ? "SÍ" : "NO"; ?></span>
                     </div>
                   </li>
                   <li class="c-FinalQuotation--contStep--cQuotation--cTop--c--cDetailsQuotation--m--item">
@@ -105,7 +161,17 @@
                   <li class="c-FinalQuotation--contStep--cQuotation--cTop--c--cDetailsQuotation--m--item">
                     <div class="c-FinalQuotation--contStep--cQuotation--cTop--c--cDetailsQuotation--m--item--info">
                       <span>Seguro de Mercancía</span>
-                      <span><?= ($_POST['res-insuremerch'] == "NO") ? "NO" : "SÍ"; ?></span>
+                      <span>
+                        <?php 
+                          if(!isset($_POST['res-insuremerch'])){
+                            echo "No especificado";
+                          }else if($_POST['res-insuremerch'] == "NO"){
+                            echo "NO";
+                          }else{
+                            echo "SÍ";
+                          }
+                        ?>
+                      </span>
                     </div>
                   </li>
                   <li class="c-FinalQuotation--contStep--cQuotation--cTop--c--cDetailsQuotation--m--item">
@@ -179,7 +245,7 @@
               </div>
             </div>
             <div class="c-FinalQuotation--contStep--cQuotation--cBottom--cMsgNote">
-              <p>NOTA: Los conceptos están sujetos a IGV, excepto al flete internacional.</p>
+              <p><?php print_r($_POST); ?>NOTA: Los conceptos están sujetos a IGV, excepto al flete internacional.</p>
             </div>
             <div class="c-FinalQuotation--contStep--cQuotation--cBottom--cAduanaImpst">
               <div class="c-FinalQuotation--contStep--cQuotation--cBottom--cAduanaImpst--cTop">
