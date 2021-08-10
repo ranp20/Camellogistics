@@ -35,7 +35,7 @@
 						display: flex;
 						align-items: center;
 						img{
-							max-width: 70px;
+							max-width: 3rem;
 							width: 100%;
 							height: 100%;
 						}
@@ -210,7 +210,7 @@
 				&--moreDetails{
 					flex: 48%;
 					border-right: thin solid #cccc;
-					padding: 1rem 0;
+					padding: 1.15rem 0;
 
 					/************************** CONTENEDOR DE - SERVICIOS INCLUIDOS Y NO INCLUIDOS **************************/
 					&--cInnotIn{
@@ -389,7 +389,7 @@
 		    box-shadow: 0 0 0 4px #fff inset, 0 2px 14px 1px rgba(0,0,0,.25);
 		    position: fixed;
 		    z-index: 99;
-		    bottom: 4%;
+		    bottom: 3%;
 		    left: 50%;
 		    transform: translateX(-50%);
 		    animation-name: movetoToptoDown;

@@ -30,7 +30,15 @@
             <div class="c-FinalQuotation--contStep--cQuotation--cTop--c">
               <div class="c-FinalQuotation--contStep--cQuotation--cTop--c--nOriginDestinyInfo">
                 <div class="c-FinalQuotation--contStep--cQuotation--cTop--c--nOriginDestinyInfo--cImgInfo">
-                  <img src="views/assets/img/logos/logotipo-camel.png" alt="">
+                  <?php 
+                    if($_POST['idtypetransportsendinit'] == 1){
+                      echo "<img src='{$url}assets/img/utilities/fleteMaritimo.png' alt='fletemaritimoicon_camel'>";
+                    }else if($_POST['idtypetransportsendinit'] == 2){
+                      echo "<img src='{$url}assets/img/utilities/fleteAereo.png' alt='fleteaereoicon_camel'>";
+                    }else{
+                      echo "<img src='{$url}assets/img/logos/logotipo-camel.png' alt=''>";
+                    }
+                  ?>
                   <p class="c-FinalQuotation--contStep--cQuotation--cTop--c--nOriginDestinyInfo--cImgInfo--info">
                     <span><?= strtoupper($_POST['val-originPortSend']); ?></span>
                     <span>&#8594;</span>
