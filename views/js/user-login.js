@@ -1,5 +1,5 @@
 /************************** ABRIR EL MODAL DE LOGIN/REGISTER **************************/
-$(document).on("click", "#btn-showLoginForm", function(){
+$(document).on("click", "#btn-showDownloadLoginForm", function(){
 	$("#cnt-modalFormSessLoginorRegister").addClass("show");
 	$(".cnt-modalFormSessLoginorRegister--c").addClass("show");
 });
