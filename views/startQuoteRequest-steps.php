@@ -1,7 +1,15 @@
 <?php 
-  if(!isset($_POST) || $_POST == []){
+  
+  //COMPRIMIR ARCHIVOS DE TEXTO...
+  (substr_count($_SERVER["HTTP_ACCEPT_ENCODING"], "gzip")) ? ob_start("ob_gzhandler") : ob_start();
+
+  if(!isset($_POST) || $_POST == [] && !isset($_POST['v_iptportoriginpost']) || !is_numeric($_POST['v_iptportoriginpost']) && 
+     !isset($_POST['v_iptcountryportoriginpost']) || !is_numeric($_POST['v_iptcountryportoriginpost']) &&
+     !isset($_POST['v_iptportdestinypost']) || !is_numeric($_POST['v_iptportdestinypost']) &&
+     !isset($_POST['v_iptcountryportdestinypost']) || !is_numeric($_POST['v_iptcountryportdestinypost'])){
     header("Location: marketplace-logistico");
   }
+  
 ?>
 <!DOCTYPE html>
 <html lang="es">

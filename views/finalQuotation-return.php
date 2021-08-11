@@ -1,4 +1,8 @@
 <?php 
+  
+  //COMPRIMIR ARCHIVOS DE TEXTO...
+  (substr_count($_SERVER["HTTP_ACCEPT_ENCODING"], "gzip")) ? ob_start("ob_gzhandler") : ob_start();
+
   if(!isset($_POST) || $_POST == []){
     header("Location: marketplace-logistico");
   }
@@ -261,7 +265,7 @@
               </div>
             </div>
             <div class="c-FinalQuotation--contStep--cQuotation--cBottom--cMsgNote">
-              <p>NOTA: Los conceptos están sujetos a IGV, excepto al flete internacional.</p>
+              <p><?php print_r($_POST); ?>NOTA: Los conceptos están sujetos a IGV, excepto al flete internacional.</p>
             </div>
             <div class="c-FinalQuotation--contStep--cQuotation--cBottom--cAduanaImpst">
               <div class="c-FinalQuotation--contStep--cQuotation--cBottom--cAduanaImpst--cTop">
