@@ -86,6 +86,12 @@ img {
   text-align: center !important;
 }
 
+.box-window-border {
+  border-radius: 0.25rem;
+  box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.15);
+  padding: 0.5rem 1rem 1rem 1rem;
+}
+
 /************************** LOADER DEL ADMINISTRADOR **************************/
 /* MENSAJE DE ÉXITO O LOADER DE ACCESO */
 #msgAlertLoginSuccess {
@@ -522,10 +528,15 @@ img {
 
 /* DASHBOARD - CONTENIDO AND DIFERENTS PAGES*/
 .cont-dashCamel {
-  padding: 0.8rem 0.8rem;
+  padding: 0.5em;
   /************************** CONTENIDO DE LA PARTE INFERIOR **************************/
   /************************** STYLES INTO INPUT SEARCH **************************/
   /************************** CONTENIDO DE LA PARTE SUPERIOR **************************/
+}
+@media (min-width: 991px) {
+  .cont-dashCamel {
+    padding: 0.8rem 0.8rem;
+  }
 }
 .cont-dashCamel__list-results {
   width: 100%;
@@ -621,6 +632,7 @@ img {
     font-size: 1rem;
     padding: 0.4rem 0.8rem 0.4rem 0.8rem;
     line-height: 1.5;
+    width: 30%;
   }
 }
 .cont-dashCamel__addtitle {

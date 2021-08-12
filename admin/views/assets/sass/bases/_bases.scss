@@ -64,6 +64,11 @@ img{
 .center{
 	text-align: center !important;
 }
+.box-window-border{
+	border-radius: .25rem;
+  box-shadow: 0 0 10px 1px rgb(0 0 0 / 15%);
+  padding: 0.5rem 1rem 1rem 1rem;
+}
 /************************** LOADER DEL ADMINISTRADOR **************************/
 /* MENSAJE DE ÉXITO O LOADER DE ACCESO */
 #msgAlertLoginSuccess{

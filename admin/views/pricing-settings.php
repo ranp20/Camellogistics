@@ -20,7 +20,12 @@
 		<main id="main-dashCamel">
 			<?php require_once 'includes/adm-header-top.php'; ?>
 			<div class="cont-dashCamel">
-				<h2>Confirguración de precios</h2>
+				<div class="box-window-border">
+					<div class="cont-dashCamel__addtitle">
+						<h2 class="cont-dashCamel__addtitle--title">Configuración de precios</h2>
+						<!--<button type="button" href="#" id="add-regulator" class="cont-dashCamel__addtitle--btn-add" data-toggle="modal" data-target="#addproductModal"><span class="cont-dashCamel__addtitle--btn-add__hidden">Agregar&nbsp;</span>+</button>-->
+					</div>
+				</div>
 			</div>
 		</main>
 	</div>

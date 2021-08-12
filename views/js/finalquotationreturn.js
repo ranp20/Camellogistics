@@ -15,6 +15,7 @@ $(document).ready(() => {
 			fleteportDestiny = $("#v-listportsOandD").find("span:last-child").text(),
 			contentFlete = $("#m-first-listresume").find("li:nth-child(3)").find("div").find("p").find("span").text(),
 			impuestosFlete = $("#m-second-listresume").find("li:nth-child(2)").find("div").find("span:nth-child(2)").text(),
+			transportFlete = $("#m-second-listresume").find("li:nth-child(3)").find("div").find("span:nth-child(2)").text();
 			seguroFlete = $("#m-second-listresume").find("li:nth-child(4)").find("div").find("span:nth-child(2)").text();
 
 	var objDataTxtWhatsapp = {
@@ -24,9 +25,11 @@ $(document).ready(() => {
 		fportdestiny : fleteportDestiny,
 		containtflete : contentFlete,
 		impuestosflete : impuestosFlete,
+		tranportflete : transportFlete,
 		seguroflete : seguroFlete
 	}
 
+	/************************** AÑADIR LOS DATOS AL ENLACE DE WHATSAPP **************************/
 	$("#d-link-messagecontact").attr("href", 
 `https://api.whatsapp.com/send?phone=51951488317&text=Saludos,%20me%20gustaría%20cotizar%20
 	ID:31798-LCL,%20
@@ -38,7 +41,7 @@ $(document).ready(() => {
 	Valor%20Flete:%202136,%20
 	gastos:%20SI,%20
 	Impuestos:%20${objDataTxtWhatsapp.impuestosflete},%20
-	Transporte:%20SI,%20
+	Transporte:%20${objDataTxtWhatsapp.tranportflete},%20
 	Seguro:%20${objDataTxtWhatsapp.seguroflete},%20
 	ImpuestoAprox:%2010.279`);
 	
