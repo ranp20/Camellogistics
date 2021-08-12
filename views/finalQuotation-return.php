@@ -265,7 +265,7 @@
               </div>
             </div>
             <div class="c-FinalQuotation--contStep--cQuotation--cBottom--cMsgNote">
-              <p><?php print_r($_POST); ?>NOTA: Los conceptos están sujetos a IGV, excepto al flete internacional.</p>
+              <p>NOTA: Los conceptos están sujetos a IGV, excepto al flete internacional.</p>
             </div>
             <div class="c-FinalQuotation--contStep--cQuotation--cBottom--cAduanaImpst">
               <div class="c-FinalQuotation--contStep--cQuotation--cBottom--cAduanaImpst--cTop">
@@ -281,7 +281,7 @@
                   </li>
                   <li class="c-FinalQuotation--contStep--cQuotation--cBottom--cAduanaImpst--cTop--m--item">
                     <div class="c-FinalQuotation--contStep--cQuotation--cBottom--cAduanaImpst--cTop--m--item--cInfo">
-                      <span>BAJO</span>
+                      <span>APROX.</span>
                       <p>1.739,<sup>00</sup>USD</p>
                     </div>
                   </li>
@@ -305,7 +305,7 @@
             </a>
           </div>
           <div class="c-FinalQuotation--contStep--cQuotation--cBtnDownload">
-            <button type="button" class="c-FinalQuotation--contStep--cQuotation--cBtnDownload--btn" id="btn-showDownloadLoginForm">
+            <button type="button" class="c-FinalQuotation--contStep--cQuotation--cBtnDownload--btn" id="btn-requireDownloadQuotaion">
               <span class="c-FinalQuotation--contStep--cQuotation--cBtnDownload--btn--cIcon">
                 <svg class="MuiSvgIcon-root" focusable="false" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"></path></svg>
               </span>
@@ -316,9 +316,9 @@
       </div>
     </div>
   </main>
-  <?php require_once 'includes/form-login-user.php'; ?>
+  <?php require_once 'includes/form-before-download-pdf.php'; ?>
   <script src="<?= $url ?>js/jquery-3.6.0.min.js"></script>
   <script src="<?= $url ?>js/finalquotationreturn.js"></script>
-  <script src="<?= $url ?>js/user-login.js"></script>
+  <script src="<?= $url ?>js/register-before-download.js"></script>
 </body>
 </html>

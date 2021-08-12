@@ -2656,7 +2656,7 @@ img {
 }
 .cnt-modalFormLoginyRegister--c--cForm {
   padding: 1.25rem;
-  text-align-last: left;
+  text-align: center;
   /************************** BOTONES VÁLIDOS PARA DESCARGAR **************************/
   /************************** TOGGLE CONTROL **************************/
 }
@@ -2686,7 +2686,7 @@ img {
   padding: 0.5rem 0.8rem;
   border: thin solid #ccc;
   border-radius: 0.4rem !important;
-  text-align: left !important;
+  text-align: center;
 }
 .cnt-modalFormLoginyRegister--c--cForm--cControl--input[type=number]::-webkit-inner-spin-button, .cnt-modalFormLoginyRegister--c--cForm--cControl--input[type=number]::-webkit-outer-spin-button {
   -webkit-appearance: none;
@@ -2694,6 +2694,9 @@ img {
 }
 .cnt-modalFormLoginyRegister--c--cForm--cControl--input[type=number] {
   -moz-appearance: textfield;
+}
+.cnt-modalFormLoginyRegister--c--cForm--cControl:focus {
+  text-align: left;
 }
 .cnt-modalFormLoginyRegister--c--cForm--cBtnsDownloadPdf {
   display: flex;
@@ -2718,7 +2721,7 @@ img {
 }
 .cnt-modalFormLoginyRegister--c--cForm #control-inputaddEmail {
   display: none;
-  align-items: flex-start;
+  align-items: center;
   justify-content: center;
 }
 .cnt-modalFormLoginyRegister--c--cForm #control-inputaddEmail.show {

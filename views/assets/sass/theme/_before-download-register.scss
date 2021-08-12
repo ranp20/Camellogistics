@@ -79,7 +79,7 @@
 		}
 		&--cForm{
 			padding: 1.25rem;
-			text-align-last: left;
+			text-align: center;
 
 			&--cControl{
 				display: flex;
@@ -109,7 +109,7 @@
 					padding: 0.5rem .8rem;
 					border: thin solid #ccc;
 					border-radius: .4rem !important;
-					text-align: left !important;
+					text-align: center;
 				}
 				&--input[type=number]::-webkit-inner-spin-button, 
 				&--input[type=number]::-webkit-outer-spin-button { 
@@ -118,6 +118,10 @@
 				}
 				&--input[type=number]{ 
 					-moz-appearance:textfield;
+				}
+
+				&:focus{
+					text-align: left;
 				}
 			}
 
@@ -147,7 +151,7 @@
 			}
 			#control-inputaddEmail{
 				display: none;
-				align-items: flex-start;
+				align-items: center;
 				justify-content: center;
 			}
 			#control-inputaddEmail.show{
