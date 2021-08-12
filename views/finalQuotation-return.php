@@ -43,7 +43,7 @@
                       echo "<img src='{$url}assets/img/logos/logotipo-camel.png' alt=''>";
                     }
                   ?>
-                  <p class="c-FinalQuotation--contStep--cQuotation--cTop--c--nOriginDestinyInfo--cImgInfo--info">
+                  <p class="c-FinalQuotation--contStep--cQuotation--cTop--c--nOriginDestinyInfo--cImgInfo--info" id="v-listportsOandD">
                     <span><?= strtoupper($_POST['val-originPortSend']); ?></span>
                     <span>&#8594;</span>
                     <span><?= strtoupper($_POST['val-destinyPortSend']); ?></span>
@@ -57,7 +57,7 @@
                 </div>
               </div>
               <div class="c-FinalQuotation--contStep--cQuotation--cTop--c--cDetailsQuotation">
-                <ul class="c-FinalQuotation--contStep--cQuotation--cTop--c--cDetailsQuotation--m">
+                <ul class="c-FinalQuotation--contStep--cQuotation--cTop--c--cDetailsQuotation--m" id="m-first-listresume">
                   <li class="c-FinalQuotation--contStep--cQuotation--cTop--c--cDetailsQuotation--m--item">
                     <div class="c-FinalQuotation--contStep--cQuotation--cTop--c--cDetailsQuotation--m--item--info">
                       <span>Transporte</span>
@@ -101,14 +101,12 @@
                           if($_POST['val-iptPackagesNInterface'] > 1){
                             $textpackages = "Bultos";
                             $templateQq.="<p>
-                              <span></span>
                               <span>{$_POST['val-iptPackagesNInterface']} {$textpackages} de {$_POST['val-iptWeightNInterface']} Kg y {$_POST['val-iptVolumeNInterface']} M³</span>
                             </p>
                             ";
                           }else{
                             $textpackages = "Bulto";
                             $templateQq.="<p>
-                              <span></span>
                               <span>{$_POST['val-iptPackagesNInterface']} {$textpackages} de {$_POST['val-iptWeightNInterface']} Kg y {$_POST['val-iptVolumeNInterface']} M³</span>
                             </p>
                             ";
@@ -151,7 +149,7 @@
                     </div>
                   </li>
                 </ul>
-                <ul class="c-FinalQuotation--contStep--cQuotation--cTop--c--cDetailsQuotation--m">
+                <ul class="c-FinalQuotation--contStep--cQuotation--cTop--c--cDetailsQuotation--m" id="m-second-listresume">
                   <li class="c-FinalQuotation--contStep--cQuotation--cTop--c--cDetailsQuotation--m--item">
                     <div class="c-FinalQuotation--contStep--cQuotation--cTop--c--cDetailsQuotation--m--item--info">
                       <span>Valor de Mercancía</span>
@@ -173,17 +171,7 @@
                   <li class="c-FinalQuotation--contStep--cQuotation--cTop--c--cDetailsQuotation--m--item">
                     <div class="c-FinalQuotation--contStep--cQuotation--cTop--c--cDetailsQuotation--m--item--info">
                       <span>Seguro de Mercancía</span>
-                      <span>
-                        <?php 
-                          if(!isset($_POST['res-insuremerch'])){
-                            echo "No especificado";
-                          }else if($_POST['res-insuremerch'] == "NO"){
-                            echo "NO";
-                          }else{
-                            echo "SÍ";
-                          }
-                        ?>
-                      </span>
+                      <span><?php if(!isset($_POST['res-insuremerch'])){echo "No especificado";}else if($_POST['res-insuremerch'] == "NO"){echo "NO";}else{echo "SÍ";}?></span>
                     </div>
                   </li>
                   <li class="c-FinalQuotation--contStep--cQuotation--cTop--c--cDetailsQuotation--m--item">
@@ -198,7 +186,7 @@
                 <!--<p>¿Dudas? - <a href="#">Click Aquí</a></p>-->
               </div>
               <div class="c-FinalQuotation--contStep--cQuotation--cTop--c--cWhatsappContact">
-                <a href="#" class="c-FinalQuotation--contStep--cQuotation--cTop--c--cWhatsappContact--link">
+                <a href="#" target="_blank" class="c-FinalQuotation--contStep--cQuotation--cTop--c--cWhatsappContact--link" id="d-link-messagecontact">
                   <span class="c-FinalQuotation--contStep--cQuotation--cTop--c--cWhatsappContact--link--cImg">
                     <img src="<?= $url ?>assets/img/utilities/whatsapp.svg" alt="">
                   </span>
@@ -265,7 +253,7 @@
               </div>
             </div>
             <div class="c-FinalQuotation--contStep--cQuotation--cBottom--cMsgNote">
-              <p>NOTA: Los conceptos están sujetos a IGV, excepto al flete internacional.</p>
+              <p><?php print_r($_POST); ?>NOTA: Los conceptos están sujetos a IGV, excepto al flete internacional.</p>
             </div>
             <div class="c-FinalQuotation--contStep--cQuotation--cBottom--cAduanaImpst">
               <div class="c-FinalQuotation--contStep--cQuotation--cBottom--cAduanaImpst--cTop">
