@@ -25,6 +25,74 @@
 						<h2 class="cont-dashCamel__addtitle--title">Configuración de precios</h2>
 						<!--<button type="button" href="#" id="add-regulator" class="cont-dashCamel__addtitle--btn-add" data-toggle="modal" data-target="#addproductModal"><span class="cont-dashCamel__addtitle--btn-add__hidden">Agregar&nbsp;</span>+</button>-->
 					</div>
+					<div class="cont-dashCamel__cControlsList">
+						<div class="cont-dashCamel__cControlsList--cC">
+							<div class="cont-dashCamel__cControlsList--cC--cControl">
+								<label for="" class="cont-dashCamel__cControlsList--cC--cControl--label">Emisión de BL/EWB<span>*</span></label>
+								<input type="number" id="" name="" class="cont-dashCamel__cControlsList--cC--cControl--input">
+							</div>
+							<div class="cont-dashCamel__cControlsList--cC--cControl">
+								<label for="" class="cont-dashCamel__cControlsList--cC--cControl--label">Handling<span>*</span></label>
+								<input type="number" id="" name="" class="cont-dashCamel__cControlsList--cC--cControl--input">
+							</div>
+							<div class="cont-dashCamel__cControlsList--cC--cControl">
+								<label for="" class="cont-dashCamel__cControlsList--cC--cControl--label">Visto Bueno</label>
+								<input type="number" id="" name="" class="cont-dashCamel__cControlsList--cC--cControl--input">
+							</div>
+							<div class="cont-dashCamel__cControlsList--cC--cControl">
+								<label for="" class="cont-dashCamel__cControlsList--cC--cControl--label">Desconsolidación<span>*</span></label>
+								<input type="number" id="" name="" class="cont-dashCamel__cControlsList--cC--cControl--input">
+							</div>
+							<div class="cont-dashCamel__cControlsList--cC--cControl">
+								<label for="" class="cont-dashCamel__cControlsList--cC--cControl--label">Almacén referencial</label>
+								<input type="number" id="" name="" class="cont-dashCamel__cControlsList--cC--cControl--input">
+							</div>
+							<div class="cont-dashCamel__cControlsList--cC--cControl">
+								<label for="" class="cont-dashCamel__cControlsList--cC--cControl--label">Transporte interno</label>
+								<input type="number" id="" name="" class="cont-dashCamel__cControlsList--cC--cControl--input">
+							</div>
+							<div class="cont-dashCamel__cControlsList--cC--cControl">
+								<label for="" class="cont-dashCamel__cControlsList--cC--cControl--label">Aforo Físico y previo</label>
+								<input type="number" id="" name="" class="cont-dashCamel__cControlsList--cC--cControl--input">
+							</div>
+							<div class="cont-dashCamel__cControlsList--cC--cControl">
+								<label for="" class="cont-dashCamel__cControlsList--cC--cControl--label">Gremios marítimos</label>
+								<input type="number" id="" name="" class="cont-dashCamel__cControlsList--cC--cControl--input">
+							</div>
+							<div class="cont-dashCamel__cControlsList--cC--cControl">
+								<label for="" class="cont-dashCamel__cControlsList--cC--cControl--label">THC</label>
+								<input type="number" id="" name="" class="cont-dashCamel__cControlsList--cC--cControl--input">
+							</div>
+							<div class="cont-dashCamel__cControlsList--cC--cControl">
+								<label for="" class="cont-dashCamel__cControlsList--cC--cControl--label">Devolución de contenedores</label>
+								<input type="number" id="" name="" class="cont-dashCamel__cControlsList--cC--cControl--input">
+							</div>
+							<div class="cont-dashCamel__cControlsList--cC--cControl">
+								<label for="" class="cont-dashCamel__cControlsList--cC--cControl--label">Derechos de Embarque</label>
+								<input type="number" id="" name="" class="cont-dashCamel__cControlsList--cC--cControl--input">
+							</div>
+							<div class="cont-dashCamel__cControlsList--cC--cControl">
+								<label for="" class="cont-dashCamel__cControlsList--cC--cControl--label">Consolidación</label>
+								<input type="number" id="" name="" class="cont-dashCamel__cControlsList--cC--cControl--input">
+							</div>
+							<div class="cont-dashCamel__cControlsList--cC--cControl">
+								<label for="" class="cont-dashCamel__cControlsList--cC--cControl--label">Bohe e Inspección</label>
+								<input type="number" id="" name="" class="cont-dashCamel__cControlsList--cC--cControl--input">
+							</div>
+							<div class="cont-dashCamel__cControlsList--cC--cControl">
+								<label for="" class="cont-dashCamel__cControlsList--cC--cControl--label">Comisión de Agencia</label>
+								<input type="number" id="" name="" class="cont-dashCamel__cControlsList--cC--cControl--input">
+							</div>
+							<div class="cont-dashCamel__cControlsList--cC--cControl">
+								<label for="" class="cont-dashCamel__cControlsList--cC--cControl--label">Gastos Operativos</label>
+								<input type="number" id="" name="" class="cont-dashCamel__cControlsList--cC--cControl--input">
+							</div>
+							<div class="cont-dashCamel__cControlsList--cC--cControl">
+								<label for="" class="cont-dashCamel__cControlsList--cC--cControl--label">Estiba</label>
+								<input type="number" id="" name="" class="cont-dashCamel__cControlsList--cC--cControl--input">
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
 		</main>
