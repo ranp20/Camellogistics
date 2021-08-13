@@ -542,6 +542,12 @@ img {
 .cont-dashCamel__cControlsList {
   display: flex;
   gap: 1rem;
+  flex-direction: column;
+}
+@media (min-width: 1200px) {
+  .cont-dashCamel__cControlsList {
+    flex-direction: row;
+  }
 }
 .cont-dashCamel__cControlsList--cC {
   max-width: 650px;
@@ -552,7 +558,11 @@ img {
     width: 95%;
   }
 }
-.cont-dashCamel__cControlsList--cC--cControl {
+.cont-dashCamel__cControlsList--cC--cTable {
+  width: 100%;
+  border: none;
+}
+.cont-dashCamel__cControlsList--cC--cTable--cControl {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
@@ -564,7 +574,7 @@ img {
   text-align: left;
 }
 @media (min-width: 720px) {
-  .cont-dashCamel__cControlsList--cC--cControl {
+  .cont-dashCamel__cControlsList--cC--cTable--cControl {
     flex-direction: row;
     align-items: center;
     justify-content: center;
@@ -573,30 +583,56 @@ img {
     margin-bottom: 0.6rem;
   }
 }
-.cont-dashCamel__cControlsList--cC--cControl--label {
+.cont-dashCamel__cControlsList--cC--cTable--cControl--label {
   flex: 32%;
   text-align: right;
   margin-bottom: 0;
 }
-.cont-dashCamel__cControlsList--cC--cControl--label span {
+@media (min-width: 1024px) {
+  .cont-dashCamel__cControlsList--cC--cTable--cControl--label a {
+    display: none;
+    opacity: 0;
+    pointer-events: none;
+  }
+  .cont-dashCamel__cControlsList--cC--cTable--cControl--label:hover a {
+    display: inline-block;
+    opacity: 1;
+    pointer-events: auto;
+  }
+}
+.cont-dashCamel__cControlsList--cC--cTable--cControl--label a {
+  display: inline-block;
+}
+.cont-dashCamel__cControlsList--cC--cTable--cControl--label a svg {
+  fill: #20AFDB;
+  vertical-align: middle;
+  width: 1.2rem;
+  position: relative;
+  top: 2px;
+  margin-right: 0.25rem;
+}
+.cont-dashCamel__cControlsList--cC--cTable--cControl--label span {
+  vertical-align: middle;
+}
+.cont-dashCamel__cControlsList--cC--cTable--cControl--label span:last-child {
   color: red;
   margin-left: 0.15rem;
 }
-.cont-dashCamel__cControlsList--cC--cControl--input {
+.cont-dashCamel__cControlsList--cC--cTable--cControl--input {
   outline: none;
   flex: auto;
   padding: 0.15rem 0.3rem;
   width: 100%;
 }
-.cont-dashCamel__cControlsList--cC--cControl--input[type=number]::-webkit-inner-spin-button, .cont-dashCamel__cControlsList--cC--cControl--input[type=number]::-webkit-outer-spin-button {
+.cont-dashCamel__cControlsList--cC--cTable--cControl--input[type=number]::-webkit-inner-spin-button, .cont-dashCamel__cControlsList--cC--cTable--cControl--input[type=number]::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
-.cont-dashCamel__cControlsList--cC--cControl--input[type=number] {
+.cont-dashCamel__cControlsList--cC--cTable--cControl--input[type=number] {
   -moz-appearance: textfield;
 }
 @media (min-width: 720px) {
-  .cont-dashCamel__cControlsList--cC--cControl--input {
+  .cont-dashCamel__cControlsList--cC--cTable--cControl--input {
     width: auto;
   }
 }
