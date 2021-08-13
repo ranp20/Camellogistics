@@ -52,6 +52,10 @@
 								<input type="number" id="" name="" class="cont-dashCamel__cControlsList--cC--cControl--input">
 							</div>
 							<div class="cont-dashCamel__cControlsList--cC--cControl">
+								<label for="" class="cont-dashCamel__cControlsList--cC--cControl--label">Seguro<span>*</span></label>
+								<input type="number" id="" name="" class="cont-dashCamel__cControlsList--cC--cControl--input">
+							</div>
+							<div class="cont-dashCamel__cControlsList--cC--cControl">
 								<label for="" class="cont-dashCamel__cControlsList--cC--cControl--label">Aforo Físico y previo</label>
 								<input type="number" id="" name="" class="cont-dashCamel__cControlsList--cC--cControl--input">
 							</div>
@@ -92,11 +96,16 @@
 								<input type="number" id="" name="" class="cont-dashCamel__cControlsList--cC--cControl--input">
 							</div>
 						</div>
+						<div class="cont-dashCamel__cControlsList--cActionsBtns">
+							<a href="#" class="cont-dashCamel__cControlsList--cActionsBtns--btn">AGREGAR VALOR</a>
+							<a href="#" class="cont-dashCamel__cControlsList--cActionsBtns--btn">ACTUALIZAR</a>
+						</div>
 					</div>
 				</div>
 			</div>
 		</main>
 	</div>
 	<script src="<?= $url ?>js/main.js"></script>
+	<script src="<?= $url ?>js/actions_pages/pricing-settings.js"></script>
 </body>
 </html>

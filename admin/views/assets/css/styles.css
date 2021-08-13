@@ -529,6 +529,7 @@ img {
 /* DASHBOARD - CONTENIDO AND DIFERENTS PAGES*/
 .cont-dashCamel {
   padding: 0.5em;
+  /************************** CONTENIDO CONTROLES - CONFIGURACIÓN DE PRECIOS **************************/
   /************************** CONTENIDO DE LA PARTE INFERIOR **************************/
   /************************** STYLES INTO INPUT SEARCH **************************/
   /************************** CONTENIDO DE LA PARTE SUPERIOR **************************/
@@ -537,6 +538,93 @@ img {
   .cont-dashCamel {
     padding: 0.8rem 0.8rem;
   }
+}
+.cont-dashCamel__cControlsList {
+  display: flex;
+  gap: 1rem;
+}
+.cont-dashCamel__cControlsList--cC {
+  max-width: 650px;
+  width: 100%;
+}
+@media (min-width: 991px) {
+  .cont-dashCamel__cControlsList--cC {
+    width: 95%;
+  }
+}
+.cont-dashCamel__cControlsList--cC--cControl {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: center;
+  flex: 0 0 100%;
+  gap: 0;
+  margin-bottom: 0.6rem;
+  text-align: left;
+}
+@media (min-width: 720px) {
+  .cont-dashCamel__cControlsList--cC--cControl {
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 100%;
+    gap: 1rem;
+    margin-bottom: 0.6rem;
+  }
+}
+.cont-dashCamel__cControlsList--cC--cControl--label {
+  flex: 32%;
+  text-align: right;
+  margin-bottom: 0;
+}
+.cont-dashCamel__cControlsList--cC--cControl--label span {
+  color: red;
+  margin-left: 0.15rem;
+}
+.cont-dashCamel__cControlsList--cC--cControl--input {
+  outline: none;
+  flex: auto;
+  padding: 0.15rem 0.3rem;
+  width: 100%;
+}
+.cont-dashCamel__cControlsList--cC--cControl--input[type=number]::-webkit-inner-spin-button, .cont-dashCamel__cControlsList--cC--cControl--input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.cont-dashCamel__cControlsList--cC--cControl--input[type=number] {
+  -moz-appearance: textfield;
+}
+@media (min-width: 720px) {
+  .cont-dashCamel__cControlsList--cC--cControl--input {
+    width: auto;
+  }
+}
+.cont-dashCamel__cControlsList--cActionsBtns {
+  display: inline-block;
+  flex-wrap: wrap;
+}
+.cont-dashCamel__cControlsList--cActionsBtns--btn {
+  display: inline-block;
+  outline: none;
+  border-radius: 0.4rem;
+  padding: 0.5rem 1rem;
+  color: #fff;
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-left: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+.cont-dashCamel__cControlsList--cActionsBtns--btn:first-child {
+  background-color: yellow;
+  margin-left: unset;
+}
+.cont-dashCamel__cControlsList--cActionsBtns--btn:nth-child(2) {
+  background-color: blue;
+}
+.cont-dashCamel__cControlsList--cActionsBtns--btn:hover {
+  color: #fff;
+  opacity: 0.6;
 }
 .cont-dashCamel__list-results {
   width: 100%;
@@ -644,11 +732,15 @@ img {
   padding-left: 0;
   padding-right: 0;
   flex-wrap: wrap;
+  box-shadow: 0 -2px 0 0px #1797be inset;
+  margin-bottom: 1rem;
 }
 .cont-dashCamel__addtitle--title {
-  font-weight: bold;
-  font-size: 1.6rem;
+  font-weight: 600;
+  font-size: 1.2rem !important;
   word-break: break-word;
+  color: #909FA7;
+  margin: 0;
 }
 .cont-dashCamel__addtitle--btn-add {
   border: none;

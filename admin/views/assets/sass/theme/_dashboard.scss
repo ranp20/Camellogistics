@@ -82,6 +82,101 @@
 		padding: 0.8rem 0.8rem;
 	}
 
+	/************************** CONTENIDO CONTROLES - CONFIGURACIÓN DE PRECIOS **************************/
+	&__cControlsList{
+		display: flex;
+		gap: 1rem;
+		&--cC{
+			max-width: 650px;
+	    width: 100%;
+
+	    @media (min-width: 991px){
+	    	width: 95%;
+	    }
+
+			&--cControl{
+				display: flex;
+		    flex-direction: column;
+		    flex-wrap: wrap;
+		    align-items: flex-start;
+		    justify-content: center;
+		    flex: 0 0 100%;
+		    gap: 0;
+		    margin-bottom: 0.6rem;
+		    text-align: left;
+
+				@media (min-width: 720px){
+					flex-direction: row;
+					align-items: center;
+					justify-content: center;
+					flex: 0 0 100%;
+					gap: 1rem;
+					margin-bottom: 0.6rem;
+				}
+
+				&--label{
+					flex: 32%;
+					text-align: right;
+					margin-bottom: 0;
+
+					span{
+						color: red;
+						margin-left: 0.15rem;
+					}
+				}
+
+				&--input{
+					outline: none;
+					flex: auto;
+					padding: 0.15rem 0.3rem;
+					width: 100%;
+
+					&[type=number]::-webkit-inner-spin-button, &[type=number]::-webkit-outer-spin-button { 
+			    	-webkit-appearance: none;
+			    	margin: 0;
+			    }
+					&[type=number]{ 
+						-moz-appearance:textfield;
+					}
+
+					@media (min-width: 720px){
+						width: auto;
+					}
+				}
+			}
+		}
+
+		&--cActionsBtns{
+			display: inline-block;
+			flex-wrap: wrap;
+			&--btn{
+				display: inline-block;
+				outline: none;
+				border-radius: .4rem;
+				padding: 0.5rem 1rem;
+				color: #fff;
+				font-size: 0.9rem;
+				font-weight: 600;
+				margin-left: 0.5rem;
+				margin-bottom: 0.5rem;
+
+				&:first-child{
+					background-color: yellow;
+					margin-left: unset;
+				}
+
+				&:nth-child(2){
+					background-color: blue;
+				}
+
+				&:hover{
+					color: #fff;
+					opacity: 0.6;
+				}
+			}
+		}
+	}
+
 	/************************** CONTENIDO DE LA PARTE INFERIOR **************************/
 	&__list-results{
 		width: 100%;
@@ -213,11 +308,15 @@
 		padding-left: 0;
 		padding-right: 0;
 		flex-wrap: wrap;
+		box-shadow: 0 -2px 0 0px #1797be inset;
+    margin-bottom: 1rem;
 
 		&--title{
-			font-weight: bold;
-			font-size: 1.6rem;
+			font-weight: 600;
+			font-size: 1.2rem !important;
 			word-break: break-word;
+			color: $color-titles-windows;
+			margin: 0;
 		}
 
 		&--btn-add{
