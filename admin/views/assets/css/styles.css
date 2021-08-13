@@ -1772,6 +1772,9 @@ img {
   justify-content: flex-start;
   padding: 0.5rem 1rem;
   background-color: #20AFDB;
+  /* TÍTULO DE ADMINISTRADOR CAMEL */
+  /* RELOJ DEL SISTEMA */
+  /* BOTÓN DE IR AL SITIO WEB */
   /* OPCIONES DE USUARIO - MOBILE */
   /* OPCIONES DE USUARIO - DESKTOP */
 }
@@ -1793,6 +1796,7 @@ img {
 .h-dashCamel--c--cTitle h2 {
   font-weight: 300;
   margin-bottom: 0;
+  font-size: 1.25rem !important;
 }
 .h-dashCamel--c--cClock {
   display: none;
@@ -1809,8 +1813,32 @@ img {
   color: #fff;
   font-weight: 600;
 }
+.h-dashCamel--c--cCBtnWebPage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  margin: 0 auto;
+}
+@media (min-width: 960px) {
+  .h-dashCamel--c--cCBtnWebPage {
+    margin-left: unset;
+    margin-right: 0.6rem;
+  }
+}
+.h-dashCamel--c--cCBtnWebPage--link {
+  cursor: pointer;
+  background-color: #3A3F51;
+  padding: 0.35rem 2rem;
+  border-radius: 0.3rem;
+}
+.h-dashCamel--c--cCBtnWebPage--link:hover {
+  opacity: 0.6;
+}
+.h-dashCamel--c--cCBtnWebPage--link svg {
+  fill: #fff;
+}
 .h-dashCamel--c--cUserMobile {
-  margin-left: auto;
   display: block;
   pointer-events: auto;
 }

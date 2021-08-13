@@ -45,4 +45,28 @@ $(document).ready(() => {
 	Seguro:%20${objDataTxtWhatsapp.seguroflete},%20
 	ImpuestoAprox:%2010.279`);
 	
+	/************************** FORMULARIO DE DATOS DEL USUARIO - ANTES DE DESCARGAR SU COTIZACIÓN **************************/
+	$(document).on("submit","#btn-gen_formDataUserQuotation",function(e){
+		e.preventDefault();
+
+		($("#n_document_cli").val() != "" || $("#n_document_cli").val() != 0) ? $("#msg-nounNumberDoc").text("") : $("#msg-nounNumberDoc").text("Ingrese un número de documento");
+		($("#msg-nounValidEmail").val() != "" || $("#msg-nounValidEmail").val() != 0) ? $("#msg-nounValidEmail").text("") : $("#msg-nounValidEmail").text("Ingrese un correo electrónico");
+
+		if($("#n_document_cli").val() != "" || $("#n_document_cli").val() != 0 &&
+			 $("#msg-nounValidEmail").val() != "" || $("#msg-nounValidEmail").val() != 0){
+
+			$.ajax({
+				url: "controllers/c_generate-pdf.php",
+		    method: "POST",
+		    datatype: "JSON",
+		    contentType: 'application/x-www-form-urlencoded;charset=UTF-8',
+		    data: objDataTxtWhatsapp,
+			}).done((res) =>{
+				console.log(res);
+			});
+
+		}else{
+			console.log('Debes completar los campos requeridos');
+		}
+	});
 });

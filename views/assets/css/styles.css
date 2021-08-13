@@ -2688,6 +2688,9 @@ img {
   border-radius: 0.4rem !important;
   text-align: center;
 }
+.cnt-modalFormLoginyRegister--c--cForm--cControl--input:focus {
+  text-align: left;
+}
 .cnt-modalFormLoginyRegister--c--cForm--cControl--input[type=number]::-webkit-inner-spin-button, .cnt-modalFormLoginyRegister--c--cForm--cControl--input[type=number]::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
@@ -2695,8 +2698,11 @@ img {
 .cnt-modalFormLoginyRegister--c--cForm--cControl--input[type=number] {
   -moz-appearance: textfield;
 }
-.cnt-modalFormLoginyRegister--c--cForm--cControl:focus {
-  text-align: left;
+.cnt-modalFormLoginyRegister--c--cForm--cControl #msg-nounNumberDoc,
+.cnt-modalFormLoginyRegister--c--cForm--cControl #msg-nounValidEmail {
+  color: red;
+  font-size: 0.9rem;
+  font-weight: 600;
 }
 .cnt-modalFormLoginyRegister--c--cForm--cBtnsDownloadPdf {
   display: flex;

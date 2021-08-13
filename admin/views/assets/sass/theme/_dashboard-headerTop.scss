@@ -10,6 +10,7 @@
 			padding: 0 1rem;
 		}
 
+		/* TÍTULO DE ADMINISTRADOR CAMEL */
 		&--cTitle{
 			display: none;
 			color: #fff;
@@ -22,9 +23,11 @@
 			h2{
 				font-weight: 300;
 				margin-bottom: 0;
+				font-size: 1.25rem !important;
 			}
 		}
 
+		/* RELOJ DEL SISTEMA */
 		&--cClock{
 			display: none;
 			margin-right: 0.8rem;
@@ -41,9 +44,37 @@
 			}
 		}
 
+		/* BOTÓN DE IR AL SITIO WEB */
+		&--cCBtnWebPage{
+	    display: flex;
+	    align-items: center;
+	    justify-content: center;
+	    text-align: center;
+	    margin: 0 auto;
+
+	    @media (min-width: 960px){
+	    	margin-left: unset;
+	    	margin-right: 0.6rem;
+	    }
+
+			&--link{
+				cursor: pointer;
+		    background-color: $dashboard-color;
+		    padding: 0.35rem 2rem;
+		    border-radius: 0.3rem;
+				
+		    &:hover{
+		    	opacity: 0.6;
+		    }
+
+				svg{
+					fill: #fff;
+				}
+			}
+		}
+
 		/* OPCIONES DE USUARIO - MOBILE */
 		&--cUserMobile{
-			margin-left: auto;
 			display: block;
 			pointer-events: auto;
 			@media (min-width: 960px){

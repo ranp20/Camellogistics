@@ -110,6 +110,10 @@
 					border: thin solid #ccc;
 					border-radius: .4rem !important;
 					text-align: center;
+	
+					&:focus{
+						text-align: left;
+					}
 				}
 				&--input[type=number]::-webkit-inner-spin-button, 
 				&--input[type=number]::-webkit-outer-spin-button { 
@@ -120,8 +124,11 @@
 					-moz-appearance:textfield;
 				}
 
-				&:focus{
-					text-align: left;
+				#msg-nounNumberDoc,
+				#msg-nounValidEmail{
+					color: red;
+					font-size: 0.9rem;
+					font-weight: 600;
 				}
 			}
 
