@@ -1,19 +1,52 @@
 /*============================================================================================================
 =            CALCULAR Y MOSTRAR EL RESUMEN DE COTIZACIÓN - INTERFAZ DE PRESENTACIÓN DE COTIZACIÓN            =
 ============================================================================================================*/
+function myRound(num, dec) {
+  var exp = Math.pow(10, dec || 2); // 2 decimales por defecto
+  return parseInt(num * exp, 10) / exp;
+}
 $(document).ready(() => {
 	/************************** IR HACIA ABAJO **************************/
-	$("#btn-scrollingtTtB").on("click", function(){
-		$("body, html").animate({
-			scrollTop: '300'
-		}, 300);
+	$("#btn-scrollingtTtB").on("click", function(){$("body, html").animate({scrollTop: '300'}, 300);});
+
+	/************************** LISTAR LOS VALORES DE CÁLCULO DESDE EL ADMINISTRADOR **************************/
+	//DE OTRA FORMA, CREAR UN CONTROLADOR EN DONDE SE CALCULEN LOS VALORES, ASÍ PROTEGER LOS DATOS...
+	$.ajax({
+		url: "controllers/list_quotation-values.php",
+    method: "POST",
+    datatype: "JSON",
+    contentType: 'application/x-www-form-urlencoded;charset=UTF-8'
+	}).done((res) =>{
+		var result = JSON.parse(res);
+		
+		/************************** DATOS PARA CALCULAR **************************/
+		var sumvaluesQuote = 0;
+		var totalquote = 0;
+		var printTotalQuote = 0;
+		var partInteger = 0;
+		var partDecimal = 0;
+
+		$.each(result, function(i, e){
+			sumvaluesQuote+= parseFloat(e.data_value);
+		});
+		totalquote = sumvaluesQuote.toFixed(3);
+		printTotalQuote = myRound(totalquote);
+		console.log("VALOR SIN EL FLETE: "+printTotalQuote);
+		var n = Math.abs(printTotalQuote);
+		partInteger = Math.trunc(n);
+		partDecimal = printTotalQuote.toString().substr(-2);
+		console.log(partInteger);
+		console.log(partDecimal);
+		
 	});
+
 	/************************** CARGAR LOS VALORES E INCLUIRLOS EN EL TEXTO PARA EL BOTÓN DE WHATSAPP **************************/
 	var typeFleteService = $("#m-first-listresume").find("li:first-child").find("div").find("span:nth-child(2)").text(),
 			typeFleteContainer = $("#m-first-listresume").find("li:nth-child(2)").find("div").find("span:nth-child(2)").text(),
 			fleteportOrigin = $("#v-listportsOandD").find("span:first-child").text(),
 			fleteportDestiny = $("#v-listportsOandD").find("span:last-child").text(),
 			contentFlete = $("#m-first-listresume").find("li:nth-child(3)").find("div").find("p").find("span").text(),
+			valormercanciaFlete = $("#m-second-listresume").find("li:first-child").find("div").find("span:nth-child(2)").text(),
 			impuestosFlete = $("#m-second-listresume").find("li:nth-child(2)").find("div").find("span:nth-child(2)").text(),
 			transportFlete = $("#m-second-listresume").find("li:nth-child(3)").find("div").find("span:nth-child(2)").text();
 			seguroFlete = $("#m-second-listresume").find("li:nth-child(4)").find("div").find("span:nth-child(2)").text();
@@ -24,6 +57,7 @@ $(document).ready(() => {
 		fportorigin : fleteportOrigin,
 		fportdestiny : fleteportDestiny,
 		containtflete : contentFlete,
+		valmercanciaflete: valormercanciaFlete,
 		impuestosflete : impuestosFlete,
 		tranportflete : transportFlete,
 		seguroflete : seguroFlete
@@ -39,7 +73,7 @@ $(document).ready(() => {
 	Flete%20Destino:%20${objDataTxtWhatsapp.fportdestiny},%20
 	Contenido%20Flete:%20${objDataTxtWhatsapp.containtflete},%20
 	Valor%20Flete:%202136,%20
-	gastos:%20SI,%20
+	gastos:%20${objDataTxtWhatsapp.valmercanciaflete},%20
 	Impuestos:%20${objDataTxtWhatsapp.impuestosflete},%20
 	Transporte:%20${objDataTxtWhatsapp.tranportflete},%20
 	Seguro:%20${objDataTxtWhatsapp.seguroflete},%20
