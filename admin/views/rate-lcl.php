@@ -23,7 +23,12 @@
 				<div class="box-window-border">
 					<div class="cont-dashCamel__addtitle">
 						<h2 class="cont-dashCamel__addtitle--title">TARIFAS LCL</h2>
-						<!--<button type="button" href="#" id="add-bannerp" class="cont-dashCamel__addtitle--btn-add" data-toggle="modal" data-target="#addbannerpModal"><span class="cont-dashCamel__addtitle--btn-add__hidden">Agregar&nbsp;</span>+</button>-->
+						<button type="button" href="#" id="add-spreadsheetlcl" class="cont-dashCamel__addtitle--btn-add" data-toggle="modal" data-target="#addspreadsheetlclModal">
+							<span class="cont-dashCamel__addtitle--btn-add__hidden">Importar&nbsp;</span>
+							<span>
+								<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 55 81.25" enable-background="new 0 0 55 65" xml:space="preserve"><path d="M55,22C55,22,55,22,55,22c0-0.2-0.1-0.4-0.2-0.6c0,0,0-0.1-0.1-0.1c-0.1-0.2-0.2-0.4-0.4-0.5l-20-20  c-0.2-0.2-0.3-0.3-0.5-0.4c0,0-0.1-0.1-0.1-0.1C33.4,0.2,33.2,0.1,33,0c0,0,0,0,0,0c-0.2,0-0.3,0-0.5,0h-25C3.4,0,0,3.4,0,7.5v50  C0,61.6,3.4,65,7.5,65h40c4.1,0,7.5-3.4,7.5-7.5v-35C55,22.3,55,22.2,55,22z M46.5,20h-9c-1.4,0-2.5-1.1-2.5-2.5v-9l5.7,5.7L46.5,20  z M24,51v-7h7v7H24z M14,51v-7h7v7H14z M41,41h-7v-7h7V41z M31,41h-7v-7h7V41z M14,34h7v7h-7V34z M24,31v-8h7v8H24z M14,23h7v8h-7  V23z M34,44h7v7h-7V44z M41,31h-7v-6.9c1,0.6,2.2,0.9,3.5,0.9H41V31z M47.5,60h-40C6.1,60,5,58.9,5,57.5v-50C5,6.1,6.1,5,7.5,5H30v6  H12.5c-0.8,0-1.5,0.7-1.5,1.5v40c0,0.8,0.7,1.5,1.5,1.5h30c0.8,0,1.5-0.7,1.5-1.5V25h6v32.5C50,58.9,48.9,60,47.5,60z"/></svg>
+							</span>
+						</button>
 					</div>
 					<!--<div class="cont-dashCamel__inputsearch-table">
 						<input type="text" class="cont-dashCamel__inputsearch-table--input" name="searchbannerp" id="searchbannerp" maxlength="200" placeholder="Buscar reguladores...">
@@ -54,11 +59,11 @@
 				    </div>
 				  </div> -->
 					<!-- MODAL - AGREGAR NUEVO ITEM -->
-					<!-- <div class="modal fade bootstrapmodal-custom" id="addregulatorModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+					<div class="modal fade bootstrapmodal-custom" id="addspreadsheetlclModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 					  <div class="modal-dialog" role="document">
 					    <div class="modal-content">
 					      <div class="modal-header">
-					        <h5 class="modal-title" id="exampleModalLabel">AGREGAR REGULADOR</h5>
+					        <h5 class="modal-title" id="exampleModalLabel">IMPORTAR EXCEL</h5>
 					        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 					          <span aria-hidden="true">&times;</span>
 					        </button>
@@ -66,9 +71,23 @@
 					      <div class="modal-body">
 					      	<div class="cont-modalbootstrap">
 						        <form id="form-add-regulator" method="POST" class="cont-modalbootstrap__form" autocomplete="false">
+							        <div class="cont-modalbootstrap__form--control">
+						        		<label for="spreadsheet">Foto del Banco</label>
+						        		<input id="images" class="cont-modalbootstrap__form--control__input-photo spreadsheet" name="spreadsheet[]" type="file" required>
+						        	</div>
 						        	<div class="cont-modalbootstrap__form--control">
-						        		<label for="name" class="cont-modalbootstrap__form--control__label">Nombre del Regulador</label>
-						        		<input id="name" class="cont-modalbootstrap__form--control__input" name="name" type="text" maxlength="200" required placeholder="Ingrese el nombre del regulador">
+						        		<label for="utilitylcl" class="cont-modalbootstrap__form--control__label">Utilidad</label>
+						        		<input id="utilitylcl" class="cont-modalbootstrap__form--control__input" name="utilitylcl" type="number" maxlength="200" required placeholder="Ingrese un valor de utilidad">
+						        	</div>
+						        	<div class="cont-group-form-controls">
+							        	<div class="cont-modalbootstrap__form--control cont-group-form-controls__control">
+							        		<label for="validdesde" class="cont-modalbootstrap__form--control__label">Válido Desde</label>
+							        		<input id="validdesde" class="cont-modalbootstrap__form--control__input" name="validdesde" type="text" required placeholder="Selecciona una fecha">
+							        	</div>
+							        	<div class="cont-modalbootstrap__form--control cont-group-form-controls__control">
+							        		<label for="validhasta" class="cont-modalbootstrap__form--control__label">Válido Hasta</label>
+							        		<input id="validhasta" class="cont-modalbootstrap__form--control__input" name="validhasta" type="text" required placeholder="Selecciona una fecha">
+							        	</div>
 						        	</div>
 								      <div class="cont-modalbootstrap__footer">
 								        <button type="button" class="cont-modalbootstrap__footer--btncancel" data-dismiss="modal">CANCELAR</button>
@@ -79,7 +98,7 @@
 					      </div>
 					    </div>
 					  </div>
-					</div> -->
+					</div>
 					<!-- MODAL - EDITAR ITEM -->
 					<div class="modal fade bootstrapmodalupdate-custom" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 					  <div class="modal-dialog" role="document">

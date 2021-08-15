@@ -398,6 +398,22 @@ img {
   }
 }
 
+.cont-group-form-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+
+.cont-group-form-controls__control {
+  width: 100%;
+}
+@media (min-width: 1024px) {
+  .cont-group-form-controls__control {
+    width: 48%;
+  }
+}
+
 /* CONTENEDOR PRINCIPAL DEL DASHBOARD */
 #dash-contT {
   display: flex;
@@ -792,6 +808,9 @@ img {
   z-index: 9999;
   bottom: 0.8rem;
   box-shadow: 0 1px 15px 1px rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
   /* TAMAÑO - TABLET(768px)*/
 }
 .cont-dashCamel__addtitle--btn-add__hidden {
@@ -815,6 +834,25 @@ img {
   .cont-dashCamel__addtitle--btn-add__hidden {
     display: block;
   }
+}
+.cont-dashCamel__addtitle--btn-add span:nth-child(2) {
+  max-width: 1.3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+@media (min-width: 768px) {
+  .cont-dashCamel__addtitle--btn-add span:nth-child(2) {
+    max-width: 1.05rem;
+    position: relative;
+    top: 2px;
+    margin-left: 0.4rem;
+  }
+}
+.cont-dashCamel__addtitle--btn-add span:nth-child(2) svg {
+  width: 100%;
+  height: auto;
+  fill: #fff;
 }
 
 /* DATATABLES - MINIMUM DEVICE WIDTH */
@@ -961,7 +999,10 @@ img {
   }
 }
 .bootstrapmodal-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrap__form--control__input-photo {
-  border-bottom: thin solid #767676;
+  padding: 0.5rem;
+  border: thin solid #767676;
+  border-radius: 0.4rem;
+  cursor: pointer;
 }
 .bootstrapmodal-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrap__form--control__select {
   border: thin solid #767676;
