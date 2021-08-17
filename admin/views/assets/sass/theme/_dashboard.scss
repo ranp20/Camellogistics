@@ -819,6 +819,11 @@
 					    	padding: 0.5rem 1rem;
 					    	line-height: 1.8;
 					    }
+
+					    &.not-cancel{
+					    	cursor: not-allowed;
+					    	opacity: 0.5;
+					    }
 						}
 
 						&--btnadd{
@@ -834,6 +839,9 @@
 					    background-color: $dashboard-color;
 					    color: #fff;
 					    transition: .2s ease-in-out;
+					    display: flex;
+					    align-items: center;
+					    justify-content: center;
 
 					    &:hover{
 					    	opacity: .5;
@@ -843,6 +851,29 @@
 					    	width: 38%;
 					    	padding: 0.5rem 1rem;
 					    	line-height: 1.8;
+					    }
+
+					    &--cpreloader{
+					    	display: none;
+					    	opacity: 0;
+					    	pointer-events: auto;
+					    	align-items: center;
+					    	justify-content: center;
+					    	margin-left: 0.35rem;
+
+					    	span{
+					    		@include loader-clasic(20px, #fff);
+					    	}
+					    }
+
+					    &.showloader{
+					    	cursor: not-allowed;
+					    	opacity: 0.5;
+					    	.cont-modalbootstrap__footer--btnadd--cpreloader{
+					    		display: flex;
+					    		opacity: 1;
+					    		pointer-events: auto;
+					    	}
 					    }
 						}
 					}

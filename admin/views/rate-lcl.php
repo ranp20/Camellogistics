@@ -70,10 +70,11 @@
 					      </div>
 					      <div class="modal-body">
 					      	<div class="cont-modalbootstrap">
-						        <form id="form-add-regulator" method="POST" class="cont-modalbootstrap__form" autocomplete="false">
+						        <form id="form-add-spreadsheetlcl" method="POST" class="cont-modalbootstrap__form" autocomplete="false" enctype="multipart/form-data">
 							        <div class="cont-modalbootstrap__form--control">
-						        		<label for="spreadsheet">Foto del Banco</label>
-						        		<input id="images" class="cont-modalbootstrap__form--control__input-photo spreadsheet" name="spreadsheet[]" type="file" required>
+						        		<label for="spreadsheetlcl">Foto del Banco</label>
+						        		<!--<input id="spreadsheetlcl" class="cont-modalbootstrap__form--control__input-photo spreadsheetlcl" name="spreadsheetlcl" type="file" required>-->
+						        		<input id="spreadsheetlcl" name="spreadsheetlcl" class="cont-modalbootstrap__form--control__input-photo spreadsheetlcl" type="file" accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" required/>
 						        	</div>
 						        	<div class="cont-modalbootstrap__form--control">
 						        		<label for="utilitylcl" class="cont-modalbootstrap__form--control__label">Utilidad</label>
@@ -81,17 +82,22 @@
 						        	</div>
 						        	<div class="cont-group-form-controls">
 							        	<div class="cont-modalbootstrap__form--control cont-group-form-controls__control">
-							        		<label for="validdesde" class="cont-modalbootstrap__form--control__label">Válido Desde</label>
-							        		<input id="validdesde" class="cont-modalbootstrap__form--control__input" name="validdesde" type="text" required placeholder="Selecciona una fecha">
+							        		<label for="validdesdelcl" class="cont-modalbootstrap__form--control__label">Válido Desde</label>
+							        		<input id="validdesdelcl" class="cont-modalbootstrap__form--control__input" name="validdesdelcl" type="date" required placeholder="Selecciona una fecha">
 							        	</div>
 							        	<div class="cont-modalbootstrap__form--control cont-group-form-controls__control">
-							        		<label for="validhasta" class="cont-modalbootstrap__form--control__label">Válido Hasta</label>
-							        		<input id="validhasta" class="cont-modalbootstrap__form--control__input" name="validhasta" type="text" required placeholder="Selecciona una fecha">
+							        		<label for="validhastalcl" class="cont-modalbootstrap__form--control__label">Válido Hasta</label>
+							        		<input id="validhastalcl" class="cont-modalbootstrap__form--control__input" name="validhastalcl" type="date" required placeholder="Selecciona una fecha">
 							        	</div>
 						        	</div>
 								      <div class="cont-modalbootstrap__footer">
 								        <button type="button" class="cont-modalbootstrap__footer--btncancel" data-dismiss="modal">CANCELAR</button>
-								        <button type="submit" class="cont-modalbootstrap__footer--btnadd" id="btnadd-regulator">GUARDAR</button>
+								        <button type="submit" class="cont-modalbootstrap__footer--btnadd" id="btnadd-spreadsheetlcl">
+								        	<span>GUARDAR</span>
+								        	<span class="cont-modalbootstrap__footer--btnadd--cpreloader">
+								        		<span></span>
+								        	</span>
+								        </button>
 								      </div>
 						        </form>
 					      	</div>
@@ -100,7 +106,7 @@
 					  </div>
 					</div>
 					<!-- MODAL - EDITAR ITEM -->
-					<div class="modal fade bootstrapmodalupdate-custom" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+					<!--<div class="modal fade bootstrapmodalupdate-custom" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 					  <div class="modal-dialog" role="document">
 					    <div class="modal-content">
 					      <div class="modal-header">
@@ -129,7 +135,7 @@
 					      </div>
 					    </div>
 					  </div>
-					</div>
+					</div>-->
 					<!-- MODAL - ELIMINAR ITEM -->
 					<!--<div class="modal fade bootstrapmodaldelete-custom" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 					  <div class="modal-dialog" role="document">
@@ -162,5 +168,6 @@
 		</main>
 	</div>
 	<script src="<?= $url ?>js/main.js"></script>
+	<script src="<?= $url ?>js/actions_pages/rate_lcl-add-spreadsheet.js"></script>
 </body>
 </html>

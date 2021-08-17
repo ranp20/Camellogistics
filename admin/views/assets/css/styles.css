@@ -1168,6 +1168,10 @@ img {
     line-height: 1.8;
   }
 }
+.bootstrapmodal-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrap__footer--btncancel.not-cancel {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
 .bootstrapmodal-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrap__footer--btnadd {
   border: thin solid transparent;
   padding: 0.4rem 1rem;
@@ -1181,6 +1185,9 @@ img {
   background-color: #3A3F51;
   color: #fff;
   transition: 0.2s ease-in-out;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .bootstrapmodal-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrap__footer--btnadd:hover {
   opacity: 0.5;
@@ -1191,6 +1198,42 @@ img {
     padding: 0.5rem 1rem;
     line-height: 1.8;
   }
+}
+.bootstrapmodal-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrap__footer--btnadd--cpreloader {
+  display: none;
+  opacity: 0;
+  pointer-events: auto;
+  align-items: center;
+  justify-content: center;
+  margin-left: 0.35rem;
+}
+.bootstrapmodal-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrap__footer--btnadd--cpreloader span {
+  border: 4px solid rgba(0, 0, 0, 0.1);
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border-left-color: #fff;
+  animation-name: girar;
+  animation-duration: 0.2s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+@keyframes girar {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.bootstrapmodal-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrap__footer--btnadd.showloader {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+.bootstrapmodal-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrap__footer--btnadd.showloader .cont-modalbootstrap__footer--btnadd--cpreloader {
+  display: flex;
+  opacity: 1;
+  pointer-events: auto;
 }
 
 /* MODAL BOOTSTRAP - CONFIGURATIONS UPDATE ITEMS*/
