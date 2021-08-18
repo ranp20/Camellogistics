@@ -7,7 +7,7 @@ function myRound(num, dec) {
 }
 $(document).ready(() => {
 	/************************** IR HACIA ABAJO **************************/
-	$("#btn-scrollingtTtB").on("click", function(){$("body, html").animate({scrollTop: '300'}, 300);});
+	$("#btn-scrollingtTtB").on("click", function(){$("body, html").animate({scrollTop: '500'}, 350);});
 
 	/************************** LISTAR LOS VALORES DE CÁLCULO DESDE EL ADMINISTRADOR **************************/
 	//DE OTRA FORMA, CREAR UN CONTROLADOR EN DONDE SE CALCULEN LOS VALORES, ASÍ PROTEGER LOS DATOS...
