@@ -20,67 +20,97 @@ if(isset($_FILES) && isset($_POST)){
 
 
 			/************************** COMPROBAR SI EXISTE INFORMACIÓN EN LA TABLA **************************/
-			// require_once 'c_list_id_rate_lcl.php';
-			// $rateidlcl = new List_Ids_rateLCL();
-			// $listids = $rateidlcl->list();
+			require 'c_list_id_rate_lcl.php';
+			$rateidlcl = new List_Ids_rateLCL();
+			$listids = $rateidlcl->list();
 
-			// if(!empty($listids)){
+			if(!empty($listids)){
+
+				$ilistid = 0;
+				$arrupdated = [];
+
+				for ($i = 6; $i < $numberrows; $i++){
+					$countryOrigin = $archivoExcel->getActiveSheet()->getCell('A'.$i)->getCalculatedValue();
+					$portOrigin = $archivoExcel->getActiveSheet()->getCell('B'.$i)->getCalculatedValue();
+					$portDestiny = $archivoExcel->getActiveSheet()->getCell('C'.$i)->getCalculatedValue();
+					$max5cbm = $archivoExcel->getActiveSheet()->getCell('D'.$i)->getCalculatedValue();
+					$total5cbm = $archivoExcel->getActiveSheet()->getCell('E'.$i)->getCalculatedValue();
+					$max15cbm = $archivoExcel->getActiveSheet()->getCell('F'.$i)->getCalculatedValue();
+					$total15cbm = $archivoExcel->getActiveSheet()->getCell('G'.$i)->getCalculatedValue();
+					$frecuencies = $archivoExcel->getActiveSheet()->getCell('H'.$i)->getCalculatedValue();
+					$ttaprox = $archivoExcel->getActiveSheet()->getCell('I'.$i)->getCalculatedValue();
+					$cooloder = $archivoExcel->getActiveSheet()->getCell('J'.$i)->getCalculatedValue();
 				
-			// 	foreach ($listids as $value){
-			// 		echo $value['id']." - ";
-			// 	}
-				
-			// 	// for ($i = 6; $i < $numberrows; $i++){
-			// 	// 	$countryOrigin = $archivoExcel->getActiveSheet()->getCell('A'.$i)->getCalculatedValue();
-			// 	// 	$portOrigin = $archivoExcel->getActiveSheet()->getCell('B'.$i)->getCalculatedValue();
-			// 	// 	$portDestiny = $archivoExcel->getActiveSheet()->getCell('C'.$i)->getCalculatedValue();
-			// 	// 	$max5cbm = $archivoExcel->getActiveSheet()->getCell('D'.$i)->getCalculatedValue();
-			// 	// 	$total5cbm = $archivoExcel->getActiveSheet()->getCell('E'.$i)->getCalculatedValue();
-			// 	// 	$max15cbm = $archivoExcel->getActiveSheet()->getCell('F'.$i)->getCalculatedValue();
-			// 	// 	$total15cbm = $archivoExcel->getActiveSheet()->getCell('G'.$i)->getCalculatedValue();
-			// 	// 	$frecuencies = $archivoExcel->getActiveSheet()->getCell('H'.$i)->getCalculatedValue();
-			// 	// 	$ttaprox = $archivoExcel->getActiveSheet()->getCell('I'.$i)->getCalculatedValue();
-			// 	// 	$cooloder = $archivoExcel->getActiveSheet()->getCell('J'.$i)->getCalculatedValue();
-				
-			// 	// 	if($countryOrigin != "" || $portOrigin != "" || $portDestiny != "" || $max5cbm != "" || $total5cbm != ""){
+					if($countryOrigin != "" || $portOrigin != "" || $portDestiny != "" || $max5cbm != "" || $total5cbm != ""){
+						
+						array_push($arrupdated, 
+						[$countryOrigin, $portOrigin,	$portDestiny,	$max5cbm,	$total5cbm,	$max15cbm, $total15cbm, $frecuencies, $ttaprox, $cooloder]);
 
-			// 	// 		/************************** ACTUALIZAR LA INFORMACIÓN DE LA HOJA DE CÁLCULO **************************/
-			// 	// 		$sql = "UPDATE tbl_rate_lcl SET
-			// 	// 		country_origin = '".$countryOrigin."', 
-			// 	// 		port_origin = '".$portOrigin."', 
-			// 	// 		port_destiny = '".$portDestiny."', 
-			// 	// 		hasta5cbm = '".$max5cbm."', 
-			// 	// 		total5cbm = '".$total5cbm."', 
-			// 	// 		hasta15cbm = '".$max15cbm."', 
-			// 	// 		total15cbm = '".$total15cbm."', 
-			// 	// 		frecuencia = '".$frecuencies."', 
-			// 	// 		tt_aprox = '".$ttaprox."', 
-			// 	// 		cooloder = '".$cooloder."', 
-			// 	// 		validdesde = '".$_POST['validdesdelcl']."', 
-			// 	// 		validhasta = '".$_POST['validhastalcl']."', 
-			// 	// 		utility = ".$_POST['utilitylcl']." WHERE id = ".$idsratesLCL[$i]['id']."";
-			// 	// 		$result = $conexion->prepare($sql);
-			// 	// 		$result->execute();
+					}
+				}
 
-			// 	// 		if($result == true){
-			// 	// 			$res = array(
-			// 	// 				'response' => 'true'
-			// 	// 			);
-			// 	// 		}else{
-			// 	// 			$res = array(
-			// 	// 				'response' => 'false'
-			// 	// 			);
-			// 	// 		}
-			// 	// 	}
-			// 	// }
-				
+				//echo count($arrupdated);
+				while ($ilistid < count($arrupdated)) {
+					//echo $arrupdated[$ilistid][0];
+					/************************** ACTUALIZAR LA INFORMACIÓN DE LA HOJA DE CÁLCULO **************************/
+					$sql = "UPDATE tbl_rate_lcl SET
+					country_origin = '".$arrupdated[$ilistid][0]."', 
+					port_origin = '".$arrupdated[$ilistid][1]."', 
+					port_destiny = '".$arrupdated[$ilistid][2]."', 
+					hasta5cbm = '".$arrupdated[$ilistid][3]."', 
+					total5cbm = '".$arrupdated[$ilistid][4]."', 
+					hasta15cbm = '".$arrupdated[$ilistid][5]."', 
+					total15cbm = '".$arrupdated[$ilistid][6]."', 
+					frecuencia = '".$arrupdated[$ilistid][7]."', 
+					tt_aprox = '".$arrupdated[$ilistid][8]."', 
+					cooloder = '".$arrupdated[$ilistid][9]."', 
+					validdesde = '".$_POST['validdesdelcl']."', 
+					validhasta = '".$_POST['validhastalcl']."',
+					utility = ".$_POST['utilitylcl']." WHERE id = ".$listids[$ilistid]['id']."";
+					$result = $conexion->prepare($sql);
+					$result->execute();
 
-			// 	//echo "Existen datos en la tabla";
+					if($result == true){
+						$res = array(
+							'response' => 'true'
+						);
+					}else{
+						$res = array(
+							'response' => 'false'
+						);
+					}
+					$ilistid++;
+				}
 
-			// }else{
+				/************************** ENVIAR LA HOJA DE CÁLCULO A GUARDAR **************************/
+				$file_name = $_FILES['spreadsheetlcl']['name'];
+				$file_lowercase = strtolower($file_name);
+				$file_origin = $_FILES['spreadsheetlcl']['tmp_name'];
+				$file_folder = "../views/assets/spreadsheets/lcl/";
+
+				if(move_uploaded_file($file_origin, $file_folder . $file_lowercase)){
+					$sql = "CALL tbl_add_spreadsheet_rate_lcl(:spreadsheet)";
+					$stm = $conexion->prepare($sql);
+					$stm->bindValue(":spreadsheet", $file_name);
+					$stm->execute();
+					if($stm == true){
+						$res = array(
+							'response' => 'true'
+						);
+					}else{
+						$res = array(
+							'response' => 'false'
+						);
+					}
+					
+				}else{
+					echo "Error fatal";
+				}
+
+				//echo "Existen datos en la tabla";
+			}else{
 	
-			// 	//echo "No hay datos en la tabla";
-			// }
+				//echo "No hay datos en la tabla";
 				for ($i = 6; $i < $numberrows; $i++){
 					$countryOrigin = $archivoExcel->getActiveSheet()->getCell('A'.$i)->getCalculatedValue();
 					$portOrigin = $archivoExcel->getActiveSheet()->getCell('B'.$i)->getCalculatedValue();
@@ -140,6 +170,32 @@ if(isset($_FILES) && isset($_POST)){
 				}
 
 
+				/************************** ENVIAR LA HOJA DE CÁLCULO A GUARDAR **************************/
+				$file_name = $_FILES['spreadsheetlcl']['name'];
+				$file_lowercase = strtolower($file_name);
+				$file_origin = $_FILES['spreadsheetlcl']['tmp_name'];
+				$file_folder = "../views/assets/spreadsheets/lcl/";
+
+				if(move_uploaded_file($file_origin, $file_folder . $file_lowercase)){
+					$sql = "CALL tbl_add_spreadsheet_rate_lcl(:spreadsheet)";
+					$stm = $conexion->prepare($sql);
+					$stm->bindValue(":spreadsheet", $file_name);
+					$stm->execute();
+					if($stm == true){
+						$res = array(
+							'response' => 'true'
+						);
+					}else{
+						$res = array(
+							'response' => 'false'
+						);
+					}
+					
+				}else{
+					echo "Error fatal";
+				}
+			}
+
 			$res = array(
 				'response' => 'true'
 			);
@@ -160,28 +216,3 @@ if(isset($_FILES) && isset($_POST)){
 	);
 }
 die(json_encode($res));
-
-/************************** ENVIAR LA HOJA DE CÁLCULO A GUARDAR **************************/
-// $file_name = $_FILES['spreadsheetlcl']['name'];
-// $file_lowercase = strtolower($file_name);
-// $file_origin = $_FILES['spreadsheetlcl']['tmp_name'];
-// $file_folder = "../views/assets/spreadsheets/lcl/";
-
-// if(move_uploaded_file($file_origin, $file_folder . $file_lowercase)){
-// 	$sql = "CALL tbl_add_spreadsheet_rate_lcl(:spreadsheet)";
-// 	$stm = $conexion->prepare($sql);
-// 	$stm->bindValue(":spreadsheet", $file_name);
-// 	$stm->execute();
-// 	if($stm == true){
-// 		$res = array(
-// 			'response' => 'true'
-// 		);
-// 	}else{
-// 		$res = array(
-// 			'response' => 'false'
-// 		);
-// 	}
-	
-// }else{
-// 	echo "Error fatal";
-// }
