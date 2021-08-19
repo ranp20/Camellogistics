@@ -72,7 +72,7 @@ if(isset($_FILES) && isset($_POST)){
 
 					if($result == true){
 						$res = array(
-							'response' => 'true'
+							'response' => 'updated'
 						);
 					}else{
 						$res = array(
@@ -95,7 +95,7 @@ if(isset($_FILES) && isset($_POST)){
 					$stm->execute();
 					if($stm == true){
 						$res = array(
-							'response' => 'true'
+							'response' => 'updated'
 						);
 					}else{
 						$res = array(
@@ -159,7 +159,7 @@ if(isset($_FILES) && isset($_POST)){
 
 						if($result == true){
 							$res = array(
-								'response' => 'true'
+								'response' => 'inserted'
 							);
 						}else{
 							$res = array(
@@ -183,7 +183,7 @@ if(isset($_FILES) && isset($_POST)){
 					$stm->execute();
 					if($stm == true){
 						$res = array(
-							'response' => 'true'
+							'response' => 'inserted'
 						);
 					}else{
 						$res = array(
@@ -195,10 +195,6 @@ if(isset($_FILES) && isset($_POST)){
 					echo "Error fatal";
 				}
 			}
-
-			$res = array(
-				'response' => 'true'
-			);
 
 		}else{			
 			$res = array(

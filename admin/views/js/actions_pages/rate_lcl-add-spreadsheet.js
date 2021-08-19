@@ -27,8 +27,17 @@ $(document).on('submit', '#form-add-spreadsheetlcl', function(e){
 	  contentType: false
 	}).done((res) => {
 		var result = JSON.parse(res);
-		if(result.response == "true"){
-			alert("Excel actualizado");
+		if(result.response == "inserted"){
+			alert("Se ha insertado con éxito el Excel");
+			//listProducts();
+			$("#btnadd-spreadsheetlcl").attr("disabled", false);
+			$("#btnadd-spreadsheetlcl").removeClass("showloader");
+			$(".cont-modalbootstrap__footer--btncancel").attr("disabled", false);
+  		$(".cont-modalbootstrap__footer--btncancel").removeClass("not-cancel");
+      $('#addspreadsheetlclModal').modal("hide");
+			$('#form-add-spreadsheetlcl')[0].reset();
+		}else if(result.response == "updated"){
+			alert("Se ha actuaizado con éxito el Excel");
 			//listProducts();
 			$("#btnadd-spreadsheetlcl").attr("disabled", false);
 			$("#btnadd-spreadsheetlcl").removeClass("showloader");
