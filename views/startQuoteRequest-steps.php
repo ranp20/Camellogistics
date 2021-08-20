@@ -9,6 +9,8 @@
      !isset($_POST['v_iptcountryportdestinypost']) || !is_numeric($_POST['v_iptcountryportdestinypost'])){
     header("Location: marketplace-logistico");
   }
+
+  echo "<input type='hidden' name='port-norigin' id='val-port-norigin' value='".$_POST['ipt-valNamePortOrigin']."'>";
   
 ?>
 <!DOCTYPE html>

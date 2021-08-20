@@ -1,7 +1,8 @@
 /*============================================================================================================
 =            CALCULAR Y MOSTRAR EL RESUMEN DE COTIZACIÓN - INTERFAZ DE PRESENTACIÓN DE COTIZACIÓN            =
 ============================================================================================================*/
-function myRound(num, dec) {
+/************************** DEJAR EN 2 DECIMALES POR DEFECTO **************************/
+function myRound(num, dec){
   var exp = Math.pow(10, dec || 2); // 2 decimales por defecto
   return parseInt(num * exp, 10) / exp;
 }
@@ -103,4 +104,5 @@ $(document).ready(() => {
 			console.log('Debes completar los campos requeridos');
 		}
 	});
+
 });

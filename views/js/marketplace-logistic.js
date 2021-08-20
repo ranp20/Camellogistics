@@ -12,7 +12,10 @@ function changesTabsOperation(){
   var stepTwo_LocalStorage = localStorage.setItem("stepTwo", false);
   var stepThree_LocalStorage = localStorage.setItem("stepThree", false);
   var stepFour_LocalStorage = localStorage.setItem("stepFour", false);
-  //#2. CREAR LOS VALORES DE CÁLCULO...
+  //#2. CREAR LOS VALORES PARA LAS TARIFAS...
+  // var var_ratesOfOrigin_5cbm = localStorage.setItem("val_rateorigin-5cbm", 0);
+  // var var_ratesOfOrigin_15cbm = localStorage.setItem("val_rateorigin-15cbm", 0);
+  //#2.1 CREAR LOS VALORES DE CÁLCULO...
   var TotalPackages = localStorage.setItem("tot_packages", 0);
   var TotalWeight = localStorage.setItem("tot_weight", 0);
   var TotalVolume = localStorage.setItem("tot_volume", 0);
@@ -22,17 +25,17 @@ function changesTabsOperation(){
   var portOriginName = localStorage.setItem("port_OName", "");
   var portDestinyName = localStorage.setItem("port_DName", "");
   //#4. REUNIR LA INFORMACIÓN DE LOS PASOS...
-  // var key_typeOperation = localStorage.setItem("key_typeOp", ""); //TIPO DE OPERACIÓN...
-  // var key_typeCharge = localStorage.setItem("key_typeChrg", ""); //TIPO DE CARGA...
-  // var key_qContainers = localStorage.setItem("key_qContainers", 0); //CONTENEDORES...
+  var key_typeOperation = localStorage.setItem("key_typeOp", ""); //TIPO DE OPERACIÓN...
+  var key_typeCharge = localStorage.setItem("key_typeChrg", ""); //TIPO DE CARGA...
+  var key_qContainers = localStorage.setItem("key_qContainers", 0); //CONTENEDORES...
 
 
   parentLinks = $("#c-cOptionsMarket");
 	links = parentLinks.find("a");
 	parentItems = $("#c-cTabsItem");
 	items = $(".cont-MainCamelLog--c--cOptionsMarket--f--cont--cTabsItem--item");
-	links.eq(0).add(items.eq(0)).addClass("active");
-  localStorage.setItem("type_service", links.eq(0).find("li").find("span:nth-child(2)").text());
+	links.eq(1).add(items.eq(1)).addClass("active");
+  localStorage.setItem("type_service", links.eq(1).find("li").find("span:nth-child(2)").text());
 
   parentLinks.on("click", "a", function(){
 		var t = $(this);
@@ -56,7 +59,7 @@ function changesTabsOperation(){
                   <svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="anchor" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" class="svg-inline--fa fa-anchor fa-w-18 fa-3x"><path fill="currentColor" d="M571.515 331.515l-67.029-67.029c-4.686-4.686-12.284-4.686-16.971 0l-67.029 67.029c-7.56 7.56-2.206 20.485 8.485 20.485h44.268C453.531 417.326 380.693 456.315 312 462.865V216h60c6.627 0 12-5.373 12-12v-24c0-6.627-5.373-12-12-12h-60v-11.668c32.456-10.195 56-40.512 56-76.332 0-44.183-35.817-80-80-80s-80 35.817-80 80c0 35.82 23.544 66.138 56 76.332V168h-60c-6.627 0-12 5.373-12 12v24c0 6.627 5.373 12 12 12h60v246.865C195.192 456.304 122.424 417.176 102.762 352h44.268c10.691 0 16.045-12.926 8.485-20.485l-67.029-67.029c-4.686-4.686-12.284-4.686-16.971 0l-67.03 67.029C-3.074 339.074 2.28 352 12.971 352h40.284C73.657 451.556 181.238 512 288 512c113.135 0 215.338-65.3 234.745-160h40.284c10.691 0 16.045-12.926 8.486-20.485zM288 48c17.645 0 32 14.355 32 32s-14.355 32-32 32-32-14.355-32-32 14.355-32 32-32z" class=""></path></svg>
                 </div>
                 <div class="cont-MainCamelLog--c--cOptionsMarket--f--cont--cTabsItem--item--cControl--control--cGroupIptsIcon--cInput">
-                  <input type="text" id="ipt-valNamePortOrigin" class="cont-MainCamelLog--c--cOptionsMarket--f--cont--cTabsItem--item--cControl--control--cGroupIptsIcon--cInput--input" placeholder="Puerto de origen" maxlength="180" autocomplete="off" required>
+                  <input type="text" id="ipt-valNamePortOrigin" name="ipt-valNamePortOrigin" class="cont-MainCamelLog--c--cOptionsMarket--f--cont--cTabsItem--item--cControl--control--cGroupIptsIcon--cInput--input" placeholder="Puerto de origen" maxlength="180" autocomplete="off" required>
                   <ul class="cont-MainCamelLog--c--cOptionsMarket--f--cont--cTabsItem--item--cControl--control--cGroupIptsIcon--cInput--m" id="list-itemsNamePortsOrigin"></ul>
                 </div>
               </div>
@@ -65,7 +68,7 @@ function changesTabsOperation(){
                   <svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="anchor" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" class="svg-inline--fa fa-anchor fa-w-18 fa-3x"><path fill="currentColor" d="M571.515 331.515l-67.029-67.029c-4.686-4.686-12.284-4.686-16.971 0l-67.029 67.029c-7.56 7.56-2.206 20.485 8.485 20.485h44.268C453.531 417.326 380.693 456.315 312 462.865V216h60c6.627 0 12-5.373 12-12v-24c0-6.627-5.373-12-12-12h-60v-11.668c32.456-10.195 56-40.512 56-76.332 0-44.183-35.817-80-80-80s-80 35.817-80 80c0 35.82 23.544 66.138 56 76.332V168h-60c-6.627 0-12 5.373-12 12v24c0 6.627 5.373 12 12 12h60v246.865C195.192 456.304 122.424 417.176 102.762 352h44.268c10.691 0 16.045-12.926 8.485-20.485l-67.029-67.029c-4.686-4.686-12.284-4.686-16.971 0l-67.03 67.029C-3.074 339.074 2.28 352 12.971 352h40.284C73.657 451.556 181.238 512 288 512c113.135 0 215.338-65.3 234.745-160h40.284c10.691 0 16.045-12.926 8.486-20.485zM288 48c17.645 0 32 14.355 32 32s-14.355 32-32 32-32-14.355-32-32 14.355-32 32-32z" class=""></path></svg>
                 </div>
                 <div class="cont-MainCamelLog--c--cOptionsMarket--f--cont--cTabsItem--item--cControl--control--cGroupIptsIcon--cInput">
-                  <input type="text" id="ipt-valNamePortDestiny" class="cont-MainCamelLog--c--cOptionsMarket--f--cont--cTabsItem--item--cControl--control--cGroupIptsIcon--cInput--input" placeholder="Puerto de destino" maxlength="180" autocomplete="off" required>
+                  <input type="text" id="ipt-valNamePortDestiny" name="ipt-valNamePortDestiny" class="cont-MainCamelLog--c--cOptionsMarket--f--cont--cTabsItem--item--cControl--control--cGroupIptsIcon--cInput--input" placeholder="Puerto de destino" maxlength="180" autocomplete="off" required>
                   <ul class="cont-MainCamelLog--c--cOptionsMarket--f--cont--cTabsItem--item--cControl--control--cGroupIptsIcon--cInput--m" id="list-itemsNamePortsDestiny"></ul>
                 </div>
               </div>
