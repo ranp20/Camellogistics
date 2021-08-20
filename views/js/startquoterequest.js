@@ -1477,7 +1477,28 @@ $(document).on("click", "#btn-NextStepTochargedata", function(){
         $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-integservorfleteinte]").removeClass("show");
         $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-integservorfleteinte]").html("");
 
-        alert("El volumen registrado no debe exceder los 15 M³, seleccione CONTENEDOR COMPLETO o contacte a un ASESOR +51 990 234 625.");
+        /************************** MOSTRAR EL MENSAJE DE ALERTA PERSONALIZADO **************************/
+        $("#idMessageSteps-prcss").html(`
+          <div class="cntMessageSteps-prcss--cont">
+            <div class="cntMessageSteps-prcss--cont--c">
+              <span class="cntMessageSteps-prcss--cont--c--btnclose" id="btnclose-modalMessage"></span>
+              <!--<h3 class="cntMessageSteps-prcss--cont--c--title">No se completaron los datos de la carga</h3>
+              <p class="cntMessageSteps-prcss--cont--c--text">Por favor, rellena todos los campos relativos a las dimensiones de carga.</p>-->
+              <h3 class="cntMessageSteps-prcss--cont--c--title">Carga excedida</h3>
+              <p class="cntMessageSteps-prcss--cont--c--text">El volumen registrado no debe exceder los 15 M³, seleccione CONTENEDOR COMPLETO o contacte a un ASESOR +51 990 234 625.</p>
+            </div>
+          </div>
+        `)
+        /************************** CERRA EL MODAL **************************/
+        setTimeout(function(){
+          $("#idMessageSteps-prcss .cntMessageSteps-prcss--cont").remove();
+        }, 6500)
+        $("#btnclose-modalMessage").on("click", function(){
+          $(this).parent().parent().remove();
+        });
+
+
+        //alert(", ");
       }else{
         console.log('Error de cálculo');
       }

@@ -21,6 +21,7 @@
   <link rel="stylesheet" href="<?= $url ?>js/fullpage/fullpage.min.css">
 </head>
 <body>
+  <div id="idMessageSteps-prcss" class="cntMessageSteps-prcss"></div>
   <nav class="c-Htopbar" id="c-HTopQuotation-camel">
     <div class="c-Htopbar--c">
       <div class="c-Htopbar--c--cLogo">

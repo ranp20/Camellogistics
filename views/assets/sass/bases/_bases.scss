@@ -446,3 +446,73 @@ img{
 		}
 	}
 }
+/************************** MENSAJE DE ALERTA - PASOS INCOMPLETOS **************************/
+.cntMessageSteps-prcss{
+	&--cont{
+		position: fixed;
+		z-index: 99999999;
+		width: 100%;
+		min-height: auto;
+		height: auto;
+		top: 0;
+		left: 0;
+		background-color: transparent;
+		display: flex;
+		align-items: flex-start;
+		justify-content: center;
+		transition: .4s ease-in-out;
+
+		&--c{
+			margin-top: .5rem;
+			max-width: 850px;
+			width: 92%;
+			background-image: repeating-linear-gradient(-45deg, #FFABA2, #FFABA2 35px, #FFC4BE 35px, #FFC4BE 65px);
+			border-radius: .3rem;
+			box-shadow: 0 4px 10px 1px rgba(0,0,0,.15);
+			padding: 1.2rem;
+			position: relative;
+			transition: .4s ease-in-out;
+			transform: translateY(-200%);
+			animation-name: moveToTopMessageAlert;
+			animation-duration: .4s;
+			animation-timing-function: ease-in-out;
+			animation-fill-mode: forwards;
+
+			@keyframes moveToTopMessageAlert{
+				0%{
+					transform: translateY(-200%);
+				}
+				100%{
+					transform: translateY(0);
+				}
+			}
+			
+			&--btnclose{
+				width: 15px;
+				height: 15px;
+				background:
+	    		linear-gradient(44deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 49%, #4F0800 43%, #4F0800 55%, rgba(0, 0, 0, 0) 57%, rgba(0, 0, 0, 0) 100%), 
+	    		linear-gradient(135deg, transparent 0%, transparent 49%, #4F0800 43%, #4F0800 55%, transparent 57%, transparent 100%);
+	    	border-radius: 50%;
+	  		//box-shadow: 0 0 0 1px #000, 0 0 0 4px #000, 0 0 0 7px #fff;
+	  		position: absolute;
+	  		top: .85rem;
+	  		right: .85rem;
+	  		cursor: pointer;
+			}
+
+			&--title{
+				font-size: 1.4rem;
+				font-weight: 300;
+				color: #DC3545;
+			}
+
+			&--text{
+				font-size: 1.15rem;
+				line-height: 1.35;
+				color: #4F0800;
+				margin: 0;
+			}
+		}
+	}
+}
