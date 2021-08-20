@@ -86,7 +86,7 @@ function listUtilitiesLCL(){
       template += `
         <tr id="item-${e.id}">
           <td class='center'>${e.id}</td>
-          <td>${e.utility}</td>
+          <td class='center'>${e.utility}</td>
           <td class='center'>${e.val_desde}</td>
           <td class='center'>${e.val_hasta}</td>
           <!--<td class="cont-btn-update">

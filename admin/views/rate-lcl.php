@@ -37,10 +37,10 @@
 						<table class="cont-dashCamel__list-results">
 							<thead>
 								<tr>
-									<th>Item</th>
-									<th>Utilidad</th>
-									<th>Vigencia desde</th>
-									<th>Vigencia Hasta</th>
+									<th class='center'>Item</th>
+									<th class='center'>Utilidad</th>
+									<th class='center'>Vigencia desde</th>
+									<th class='center'>Vigencia Hasta</th>
 									<th></th>
 								</tr>
 							</thead>

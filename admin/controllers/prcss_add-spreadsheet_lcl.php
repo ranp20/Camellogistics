@@ -6,7 +6,7 @@ use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 use PhpOffice\PhpSpreadsheet\IOFactory;
 
 /************************** ABRIENDO CONEXIÓN SECUNDARIA - USANDO MYSQLI **************************/
-require_once 'conexion.php';
+require_once 'connection.php';
 
 if(isset($_FILES) && isset($_POST)){
 	if($_FILES['spreadsheetlcl']['error'] == 0){
