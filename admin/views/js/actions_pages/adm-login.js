@@ -20,6 +20,8 @@ $(document).on("click", "#icon-passControladm", function(){
 /************************** FORMULARIO DE LOGIN - ADMINISTRADOR **************************/
 $(document).on("submit", "#c-formvalidLoginAdm", function(e){
 	e.preventDefault();
+	$(this).find("button[type=submit]").addClass("showActive");
+
 	var frm = $(this).serializeArray();
 
 	$.ajax({
@@ -41,6 +43,8 @@ $(document).on("submit", "#c-formvalidLoginAdm", function(e){
 												</div>
 												`);
 
+			$(this).find("button[type=submit]").addClass("showActive");
+
 			setTimeout(function(){
 				window.location.replace("dashboard");
 			}, 500);
@@ -54,6 +58,8 @@ $(document).on("submit", "#c-formvalidLoginAdm", function(e){
 											</div>
 											`);
 		
+			$(this).find("button[type=submit]").removeClass("showActive");
+
 			setTimeout(function(){
 				$('#msgAlertLoginErr').addClass('disabled');
 			}, 4500);

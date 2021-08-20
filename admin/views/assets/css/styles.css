@@ -351,15 +351,60 @@ img {
   align-items: center;
   justify-content: center;
 }
-.c-LoginAdm--cLoginF--cForm--form--btnLoginAdm:hover, .c-LoginAdm--cLoginF--cForm--form--btnLoginAdm:active {
-  opacity: 0.6;
-}
 .c-LoginAdm--cLoginF--cForm--form--btnLoginAdm img {
-  width: 27px;
+  width: 0;
   height: 27px;
   margin-left: 0.65rem;
   position: relative;
   top: 2px;
+  transition: 0.2s ease-in-out;
+}
+.c-LoginAdm--cLoginF--cForm--form--btnLoginAdm:hover, .c-LoginAdm--cLoginF--cForm--form--btnLoginAdm:active {
+  opacity: 0.6;
+}
+.c-LoginAdm--cLoginF--cForm--form--btnLoginAdm:hover img, .c-LoginAdm--cLoginF--cForm--form--btnLoginAdm:active img {
+  width: 27px;
+}
+.c-LoginAdm--cLoginF--cForm--form--btnLoginAdm span:last-child {
+  display: none;
+  opacity: 0;
+  pointer-events: none;
+  margin-left: 0.5rem;
+  margin-top: 0.1rem;
+  margin-bottom: 0.1rem;
+}
+.c-LoginAdm--cLoginF--cForm--form--btnLoginAdm span:last-child {
+  border: 4px solid rgba(0, 0, 0, 0.1);
+  width: 23px;
+  height: 23px;
+  border-radius: 50%;
+  border-left-color: #fff;
+  animation-name: girar;
+  animation-duration: 0.2s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+@keyframes girar {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.c-LoginAdm--cLoginF--cForm--form--btnLoginAdm.showActive {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+.c-LoginAdm--cLoginF--cForm--form--btnLoginAdm.showActive img {
+  display: none;
+  opacity: 0;
+  pointer-events: none;
+}
+.c-LoginAdm--cLoginF--cForm--form--btnLoginAdm.showActive span:last-child {
+  display: flex;
+  opacity: 1;
+  pointer-events: auto;
 }
 .c-LoginAdm--cLoginF--cBottInfo {
   display: none;
