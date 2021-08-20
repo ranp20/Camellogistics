@@ -664,6 +664,9 @@ img {
   color: #4F0800;
   margin: 0;
 }
+.cntMessageSteps-prcss--cont--c--text b {
+  font-weight: 600;
+}
 
 /* IMPORTAR LAS HOJAS DE ESTILOS */
 #h-heroImage-init {

@@ -851,7 +851,23 @@ $(document).on("click", "#btn-NextStepToSelOptResultExp", function(){
     `);
 
   }else{
-    alert("No se ha añadido nigún contenedor. Por favor añade al menos un contenedor o selecciona LCL como tipo de carga.");
+    /************************** MOSTRAR EL MENSAJE DE ALERTA PERSONALIZADO **************************/
+    $("#idMessageSteps-prcss").html(`
+      <div class="cntMessageSteps-prcss--cont">
+        <div class="cntMessageSteps-prcss--cont--c">
+          <span class="cntMessageSteps-prcss--cont--c--btnclose" id="btnclose-modalMessage"></span>
+          <h3 class="cntMessageSteps-prcss--cont--c--title">No se ha añadido ningún contenedor</h3>
+          <p class="cntMessageSteps-prcss--cont--c--text">Por favor añade al menos un contenedor o selecciona LCL como tipo de carga.</p>
+        </div>
+      </div>
+    `)
+    /************************** CERRAR EL MODAL **************************/
+    setTimeout(function(){
+      $("#idMessageSteps-prcss .cntMessageSteps-prcss--cont").remove();
+    }, 6500)
+    $("#btnclose-modalMessage").on("click", function(){
+      $(this).parent().parent().remove();
+    });
   }  
 });
 /************************** VALIDAR DE ACUERDO A LA OPCIÓN SELECCIONADA - ELIGE UNA OPCIÓN **************************/
@@ -1369,13 +1385,13 @@ $(document).on("click", "#btn-NextStepTochargedata", function(){
       v_ValDividedTotalWeight = v_ValTotalWeight / 1000;
 
       if(v_ValTotalVolume <= 5){
-        console.log("Flete - tarifa total 5CBM");
+
         if(v_ValTotalVolume > v_ValDividedTotalWeight){
-          //console.log("El Volumen es mayor al Peso");
+
           totwithoutvalues = roundToTwo(twodecimal_rate_5cbm * v_ValTotalVolume);
           console.log(totwithoutvalues);
         }else{
-          //console.log("El Peso es mayor al Volumen");
+
           totwithoutvalues = roundToTwo(twodecimal_rate_5cbm * v_ValDividedTotalWeight);
           console.log(totwithoutvalues);
         }
@@ -1420,13 +1436,13 @@ $(document).on("click", "#btn-NextStepTochargedata", function(){
 
 
       }else if(v_ValTotalVolume > 5 && v_ValTotalVolume <= 15){
-        console.log("Flete - tarifa total 15CBM");
+
         if(v_ValTotalVolume > v_ValDividedTotalWeight){
-          //console.log("El Volumen es mayor al Peso");
+
           totwithoutvalues = roundToTwo(twodecimal_rate_15cbm * v_ValTotalVolume);
           console.log(totwithoutvalues);
         }else{
-          //console.log("El Peso es mayor al Volumen");
+
           totwithoutvalues = roundToTwo(twodecimal_rate_15cbm * v_ValDividedTotalWeight);
           console.log(totwithoutvalues);
         }
@@ -1482,14 +1498,12 @@ $(document).on("click", "#btn-NextStepTochargedata", function(){
           <div class="cntMessageSteps-prcss--cont">
             <div class="cntMessageSteps-prcss--cont--c">
               <span class="cntMessageSteps-prcss--cont--c--btnclose" id="btnclose-modalMessage"></span>
-              <!--<h3 class="cntMessageSteps-prcss--cont--c--title">No se completaron los datos de la carga</h3>
-              <p class="cntMessageSteps-prcss--cont--c--text">Por favor, rellena todos los campos relativos a las dimensiones de carga.</p>-->
               <h3 class="cntMessageSteps-prcss--cont--c--title">Carga excedida</h3>
-              <p class="cntMessageSteps-prcss--cont--c--text">El volumen registrado no debe exceder los 15 M³, seleccione CONTENEDOR COMPLETO o contacte a un ASESOR +51 990 234 625.</p>
+              <p class="cntMessageSteps-prcss--cont--c--text">El <b>VOLUMEN</b> registrado no debe exceder los 15 M³, seleccione <b>CONTENEDOR COMPLETO o contacte a un ASESOR +51 990 234 625.</b></p>
             </div>
           </div>
         `)
-        /************************** CERRA EL MODAL **************************/
+        /************************** CERRAR EL MODAL **************************/
         setTimeout(function(){
           $("#idMessageSteps-prcss .cntMessageSteps-prcss--cont").remove();
         }, 6500)
@@ -1497,15 +1511,34 @@ $(document).on("click", "#btn-NextStepTochargedata", function(){
           $(this).parent().parent().remove();
         });
 
-
-        //alert(", ");
       }else{
         console.log('Error de cálculo');
       }
     });
 
   }else{
-    alert("Por favor, rellena todos los campos relativos a las dimensiones de carga.");
+
+    /************************** OCULTAR EL PASO DE - ELIGE UNA OPCIÓN **************************/
+    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-integservorfleteinte]").removeClass("show");
+    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-integservorfleteinte]").html("");
+
+    /************************** MOSTRAR EL MENSAJE DE ALERTA PERSONALIZADO **************************/
+    $("#idMessageSteps-prcss").html(`
+      <div class="cntMessageSteps-prcss--cont">
+        <div class="cntMessageSteps-prcss--cont--c">
+          <span class="cntMessageSteps-prcss--cont--c--btnclose" id="btnclose-modalMessage"></span>
+          <h3 class="cntMessageSteps-prcss--cont--c--title">No se completaron los datos de la carga</h3>
+          <p class="cntMessageSteps-prcss--cont--c--text">Por favor, rellena todos los campos relativos a las dimensiones de carga.</p>
+        </div>
+      </div>
+    `)
+    /************************** CERRAR EL MODAL **************************/
+    setTimeout(function(){
+      $("#idMessageSteps-prcss .cntMessageSteps-prcss--cont").remove();
+    }, 6500)
+    $("#btnclose-modalMessage").on("click", function(){
+      $(this).parent().parent().remove();
+    });
   }
 });
 /*=====================================================================================
@@ -1679,7 +1712,28 @@ $(document).on("click", "#btn-NextStepTomerchandisedata", function(){
     `);
 
   }else{
-    alert("Por favor, elige el tio de mercancía y su valor");
+    /************************** OCULTAR EL SIGUIENTE PASO **************************/
+    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-insuremerchandise]").removeClass("show");
+    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-insuremerchandise]").html("");
+    
+    /************************** MOSTRAR EL MENSAJE DE ALERTA PERSONALIZADO **************************/
+    $("#idMessageSteps-prcss").html(`
+      <div class="cntMessageSteps-prcss--cont">
+        <div class="cntMessageSteps-prcss--cont--c">
+          <span class="cntMessageSteps-prcss--cont--c--btnclose" id="btnclose-modalMessage"></span>
+          <h3 class="cntMessageSteps-prcss--cont--c--title">No se han completado los datos de mercancía.</h3>
+          <p class="cntMessageSteps-prcss--cont--c--text">Por favor rellena todos los campos que son necesarios.</p>
+        </div>
+      </div>
+    `)
+    /************************** CERRAR EL MODAL **************************/
+    setTimeout(function(){
+      $("#idMessageSteps-prcss .cntMessageSteps-prcss--cont").remove();
+    }, 6500)
+    $("#btnclose-modalMessage").on("click", function(){
+      $(this).parent().parent().remove();
+    });
+
   }
 });
 /*===================================================================================
