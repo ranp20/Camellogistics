@@ -1389,11 +1389,11 @@ $(document).on("click", "#btn-NextStepTochargedata", function(){
         if(v_ValTotalVolume > v_ValDividedTotalWeight){
 
           totwithoutvalues = roundToTwo(twodecimal_rate_5cbm * v_ValTotalVolume);
-          console.log(totwithoutvalues);
+          localStorage.setItem("key_v-totalflette", totwithoutvalues);
         }else{
 
           totwithoutvalues = roundToTwo(twodecimal_rate_5cbm * v_ValDividedTotalWeight);
-          console.log(totwithoutvalues);
+          localStorage.setItem("key_v-totalflette", totwithoutvalues);
         }
 
         /************************** MOSTRAR EL RESUMEN HASTA ESTE PASO **************************/
@@ -1440,11 +1440,11 @@ $(document).on("click", "#btn-NextStepTochargedata", function(){
         if(v_ValTotalVolume > v_ValDividedTotalWeight){
 
           totwithoutvalues = roundToTwo(twodecimal_rate_15cbm * v_ValTotalVolume);
-          console.log(totwithoutvalues);
+          localStorage.setItem("key_v-totalflette", totwithoutvalues);
         }else{
 
           totwithoutvalues = roundToTwo(twodecimal_rate_15cbm * v_ValDividedTotalWeight);
-          console.log(totwithoutvalues);
+          localStorage.setItem("key_v-totalflette", totwithoutvalues);
         }
 
         /************************** MOSTRAR EL RESUMEN HASTA ESTE PASO **************************/

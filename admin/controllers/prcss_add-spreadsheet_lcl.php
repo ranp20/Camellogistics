@@ -18,7 +18,6 @@ if(isset($_FILES) && isset($_POST)){
 			$archivoExcel->setActiveSheetIndex(0); // CARGAR LA HOJA DE CÁLCULO QUE QUEREMOS...
 			$numberrows = $archivoExcel->setActiveSheetIndex(0)->getHighestRow(); // OBTENER EL NÚMERO DE FILAS DE LA HOJA ACTUAL...
 
-
 			/************************** COMPROBAR SI EXISTE INFORMACIÓN EN LA TABLA **************************/
 			require 'c_list_id_rate_lcl.php';
 			$rateidlcl = new List_Ids_rateLCL();
@@ -49,9 +48,8 @@ if(isset($_FILES) && isset($_POST)){
 					}
 				}
 
-				//echo count($arrupdated);
+				/************************** RECORRER LOS IDs Y ACTUALIZAR LOS REGISTROS PREVIOS **************************/
 				while ($ilistid < count($arrupdated)) {
-					//echo $arrupdated[$ilistid][0];
 					/************************** ACTUALIZAR LA INFORMACIÓN DE LA HOJA DE CÁLCULO **************************/
 					$sql = "UPDATE tbl_rate_lcl SET
 					country_origin = '".$arrupdated[$ilistid][0]."', 
@@ -106,6 +104,29 @@ if(isset($_FILES) && isset($_POST)){
 				}else{
 					echo "Error fatal";
 				}
+
+				/************************** AGREGAR A LA TABLA - LÍNEA DE TIEMPO DE CAMBIOS EN UTILIDAD  **************************/
+				$sql = "INSERT INTO tbl_utility_rate_lcl(
+				utility,
+				val_desde,
+				val_hasta)
+				VALUES 
+				(".$_POST['utilitylcl'].",
+				'".$_POST['validdesdelcl']."', 
+				'".$_POST['validhastalcl']."')";
+				$result = $conexion->prepare($sql);
+				$result->execute();
+
+				if($result == true){
+					$res = array(
+						'response' => 'updated'
+					);
+				}else{
+					$res = array(
+						'response' => 'false'
+					);
+				}
+
 
 				//echo "Existen datos en la tabla";
 			}else{
@@ -193,6 +214,29 @@ if(isset($_FILES) && isset($_POST)){
 					
 				}else{
 					echo "Error fatal";
+				}
+
+
+				/************************** AGREGAR A LA TABLA - LÍNEA DE TIEMPO DE CAMBIOS EN UTILIDAD  **************************/
+				$sql = "INSERT INTO tbl_utility_rate_lcl(
+				utility,
+				val_desde,
+				val_hasta)
+				VALUES 
+				(".$_POST['utilitylcl'].",
+				'".$_POST['validdesdelcl']."', 
+				'".$_POST['validhastalcl']."')";
+				$result = $conexion->prepare($sql);
+				$result->execute();
+
+				if($result == true){
+					$res = array(
+						'response' => 'inserted'
+					);
+				}else{
+					$res = array(
+						'response' => 'false'
+					);
 				}
 			}
 

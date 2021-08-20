@@ -41,6 +41,11 @@ $(document).ready(() => {
 		
 	});
 
+
+	/************************** LISTAR LOS VALORES DEL FLETE REAL **************************/
+	var totflete = parseFloat(localStorage.getItem("key_v-totalflette"));
+	console.log(totflete);
+
 	/************************** CARGAR LOS VALORES E INCLUIRLOS EN EL TEXTO PARA EL BOTÓN DE WHATSAPP **************************/
 	var typeFleteService = $("#m-first-listresume").find("li:first-child").find("div").find("span:nth-child(2)").text(),
 			typeFleteContainer = $("#m-first-listresume").find("li:nth-child(2)").find("div").find("span:nth-child(2)").text(),

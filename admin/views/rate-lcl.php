@@ -44,7 +44,7 @@
 									<th></th>
 								</tr>
 							</thead>
-							<tbody id="">
+							<tbody id="tbl_utilities_rate_lcl">
 									
 							</tbody>
 						</table>
@@ -168,6 +168,6 @@
 		</main>
 	</div>
 	<script src="<?= $url ?>js/main.js"></script>
-	<script src="<?= $url ?>js/actions_pages/rate_lcl-add-spreadsheet.js"></script>
+	<script src="<?= $url ?>js/actions_pages/rate_lcl.js"></script>
 </body>
 </html>
