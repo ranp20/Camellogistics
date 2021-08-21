@@ -451,11 +451,13 @@ img{
 	&--cont{
 		position: fixed;
 		z-index: 99999999;
-		width: 100%;
+		max-width: 850px;
+		width: 92%;
 		min-height: auto;
 		height: auto;
 		top: 0;
-		left: 0;
+		left: 50%;
+		transform: translateX(-50%);
 		background-color: transparent;
 		display: flex;
 		align-items: flex-start;
@@ -464,8 +466,7 @@ img{
 
 		&--c{
 			margin-top: .5rem;
-			max-width: 850px;
-			width: 92%;
+			width: 100%;
 			background-image: repeating-linear-gradient(-45deg, #FFABA2, #FFABA2 35px, #FFC4BE 35px, #FFC4BE 65px);
 			border-radius: .3rem;
 			box-shadow: 0 4px 10px 1px rgba(0,0,0,.15);
