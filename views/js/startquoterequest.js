@@ -786,14 +786,35 @@ $(document).on("click", "#c-incdecBtns40-nor button", function(){
 $(document).on("change input keyup", "#val-iptPackagesNInterface", function(e){
   $(".cont-MainCamelLog--c--contResumeCalc--item--cardStep--cIconStepLeft[data-merchandise=rsm-totpackages]").find("span:first-child").text("Bultos");
   $(".cont-MainCamelLog--c--contResumeCalc--item--cardStep--cIconStepLeft[data-merchandise=rsm-totpackages]").find("span:nth-child(2)").text($(this).val());
+  if(e.target.value == "" || e.target.value == 0){
+    /************************** OCULTAR EL PASO DE - ELIGE UNA OPCIÓN **************************/
+    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-integservorfleteinte]").removeClass("show");
+    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-integservorfleteinte]").html("");
+  }else{
+    console.log("Campo completado");
+  }
 });
 $(document).on("change input keyup", "#val-iptWeightNInterface", function(e){
   $(".cont-MainCamelLog--c--contResumeCalc--item--cardStep--cIconStepLeft[data-merchandise=rsm-totweight]").find("span:first-child").text("Peso(Kg)");
   $(".cont-MainCamelLog--c--contResumeCalc--item--cardStep--cIconStepLeft[data-merchandise=rsm-totweight]").find("span:nth-child(2)").text($(this).val());
+  if(e.target.value == "" || e.target.value == 0){
+    /************************** OCULTAR EL PASO DE - ELIGE UNA OPCIÓN **************************/
+    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-integservorfleteinte]").removeClass("show");
+    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-integservorfleteinte]").html("");
+  }else{
+    console.log("Campo completado");
+  }
 });
 $(document).on("change input keyup", "#val-iptVolumeNInterface", function(e){
   $(".cont-MainCamelLog--c--contResumeCalc--item--cardStep--cIconStepLeft[data-merchandise=rsm-totvolume]").find("span:first-child").text("Volumen(M³)");
   $(".cont-MainCamelLog--c--contResumeCalc--item--cardStep--cIconStepLeft[data-merchandise=rsm-totvolume]").find("span:nth-child(2)").text($(this).val());
+  if(e.target.value == "" || e.target.value == 0){
+    /************************** OCULTAR EL PASO DE - ELIGE UNA OPCIÓN **************************/
+    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-integservorfleteinte]").removeClass("show");
+    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-integservorfleteinte]").html("");
+  }else{
+    console.log("Campo completado");
+  }
 });
 /************************** SWITCH DE CONTENEDORES REFRIGERADOS **************************/
 // $(document).on("click", "#chck-containerfreeze", function(){
@@ -1642,12 +1663,42 @@ $(document).on("input", "#ipt-valPriceProdNInterface", function(e){
   });
   /************************** ASIGNAR VALORES DE LOS INPUTS HIDDEN - MERCANCÍA **************************/
   $("#val-valProdquot").val($(this).val());
+
+  if(e.target.value == "" || e.target.value == 0){
+    /************************** OCULTAR EL SIGUIENTE PASO **************************/
+    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-insuremerchandise]").removeClass("show");
+    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-insuremerchandise]").html("");
+    /************************** OCULTAR EL TRASSIGUIENTE PASO **************************/
+    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-requirespickup]").removeClass("show");
+    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-requirespickup]").html("");
+  }else{
+    console.log("Campo completado");
+  }
+});
+/************************** VALIDAR SI HAY ALGÚN VALOR EN EL CONTROL - VALOR DE PRODUCTO IMPORTADO **************************/
+$(document).on("change input keyup", "#ipt-valPriceProdNInterface", function(e){
+  if(e.target.value == "" || e.target.value == 0){
+    /************************** OCULTAR EL SIGUIENTE PASO **************************/
+    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-insuremerchandise]").removeClass("show");
+    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-insuremerchandise]").html("");
+    /************************** OCULTAR EL TRASSIGUIENTE PASO **************************/
+    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-requirespickup]").removeClass("show");
+    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-requirespickup]").html("");
+  }else{
+    console.log("Campo completado");
+  }
 });
 /************************** VALIDAR SI CONTIENE ALGÚN VALOR NULO O 0 **************************/
 $(document).on("keyup", "#ipt-valPriceProdNInterface", function(){
   if($(this).val() == "" || $(this).val() == 0 || $(this).val() == " USD" || $(this).val() == ".00" || $(this).val() == 0.00){
     $("#MsgItemValueProdRequired").text("Ingrese valor exacto, SIN DECIMALES");
     $(this).val("");
+    /************************** OCULTAR EL SIGUIENTE PASO **************************/
+    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-insuremerchandise]").removeClass("show");
+    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-insuremerchandise]").html("");
+    /************************** OCULTAR EL TRASSIGUIENTE PASO **************************/
+    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-requirespickup]").removeClass("show");
+    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-requirespickup]").html("");
   }else{
     $("#MsgItemValueProdRequired").text("");
   }
