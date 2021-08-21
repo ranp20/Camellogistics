@@ -791,7 +791,7 @@ $(document).on("change input keyup", "#val-iptPackagesNInterface", function(e){
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-integservorfleteinte]").removeClass("show");
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-integservorfleteinte]").html("");
   }else{
-    console.log("Campo completado");
+    //console.log("Campo completado");
   }
 });
 $(document).on("change input keyup", "#val-iptWeightNInterface", function(e){
@@ -802,7 +802,7 @@ $(document).on("change input keyup", "#val-iptWeightNInterface", function(e){
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-integservorfleteinte]").removeClass("show");
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-integservorfleteinte]").html("");
   }else{
-    console.log("Campo completado");
+    //console.log("Campo completado");
   }
 });
 $(document).on("change input keyup", "#val-iptVolumeNInterface", function(e){
@@ -813,7 +813,7 @@ $(document).on("change input keyup", "#val-iptVolumeNInterface", function(e){
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-integservorfleteinte]").removeClass("show");
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-integservorfleteinte]").html("");
   }else{
-    console.log("Campo completado");
+    //console.log("Campo completado");
   }
 });
 /************************** SWITCH DE CONTENEDORES REFRIGERADOS **************************/
@@ -1400,8 +1400,6 @@ $(document).on("click", "#btn-NextStepTochargedata", function(){
       twodecimal_rate_5cbm = roundToTwo(rate_5cbm);
       twodecimal_rate_15cbm = roundToTwo(rate_15cbm);
 
-      console.log(twodecimal_rate_5cbm);
-      console.log(twodecimal_rate_15cbm);
       /************************** DEVOLVER EL RESULTADO MAYOR - VOLUMEN O PESO **************************/
       v_ValDividedTotalWeight = v_ValTotalWeight / 1000;
 
@@ -1623,7 +1621,7 @@ $(document).on("focus", "#ipt-valNameTypeProdNInterface", function(){
 	$("#m-listAllNamTypeProds").addClass("show");
   listProductsUser();
 });
-$(document).on("keyup", "#ipt-valNameTypeProdNInterface", function(){
+$(document).on("keyup keydown", "#ipt-valNameTypeProdNInterface", function(e){
   $("#m-listAllNamTypeProds").addClass("show");
   var searchVal = $(this).val();
   if(searchVal != ""){
@@ -1634,6 +1632,17 @@ $(document).on("keyup", "#ipt-valNameTypeProdNInterface", function(){
       $("#m-listAllNamTypeProds").removeClass("show");
     }, 4500);
     listProductsUser();
+  }
+
+  if(e.which == 8 || event.keyCode == 46){
+    /************************** OCULTAR EL SIGUIENTE PASO **************************/
+    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-insuremerchandise]").removeClass("show");
+    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-insuremerchandise]").html("");
+    /************************** OCULTAR EL TRASSIGUIENTE PASO **************************/
+    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-requirespickup]").removeClass("show");
+    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-requirespickup]").html("");
+  }else{
+    console.log('Con contenido');
   }
 });
 /************************** FIJAR EL VALOR DE ITEM EN EL INPUT - TIPOS DE PRODUCTOS **************************/
@@ -1672,7 +1681,7 @@ $(document).on("input", "#ipt-valPriceProdNInterface", function(e){
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-requirespickup]").removeClass("show");
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-requirespickup]").html("");
   }else{
-    console.log("Campo completado");
+    //console.log("Campo completado");
   }
 });
 /************************** VALIDAR SI HAY ALGÚN VALOR EN EL CONTROL - VALOR DE PRODUCTO IMPORTADO **************************/
@@ -1685,7 +1694,7 @@ $(document).on("change input keyup", "#ipt-valPriceProdNInterface", function(e){
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-requirespickup]").removeClass("show");
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-requirespickup]").html("");
   }else{
-    console.log("Campo completado");
+    //console.log("Campo completado");
   }
 });
 /************************** VALIDAR SI CONTIENE ALGÚN VALOR NULO O 0 **************************/

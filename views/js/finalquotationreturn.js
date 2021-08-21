@@ -32,19 +32,19 @@ $(document).ready(() => {
 		});
 		totalquote = sumvaluesQuote.toFixed(3);
 		printTotalQuote = myRound(totalquote);
-		console.log("VALOR SIN EL FLETE: "+printTotalQuote);
+		//console.log("VALOR SIN EL FLETE: "+printTotalQuote);
 		var n = Math.abs(printTotalQuote);
 		partInteger = Math.trunc(n);
 		partDecimal = printTotalQuote.toString().substr(-2);
-		console.log(partInteger);
-		console.log(partDecimal);
+		//console.log(partInteger);
+		//console.log(partDecimal);
 		
 	});
 
 
 	/************************** LISTAR LOS VALORES DEL FLETE REAL **************************/
 	var totflete = parseFloat(localStorage.getItem("key_v-totalflette"));
-	console.log(totflete);
+	//console.log(totflete);
 
 	/************************** CARGAR LOS VALORES E INCLUIRLOS EN EL TEXTO PARA EL BOTÓN DE WHATSAPP **************************/
 	var typeFleteService = $("#m-first-listresume").find("li:first-child").find("div").find("span:nth-child(2)").text(),
