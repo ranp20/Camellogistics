@@ -72,8 +72,7 @@
 					      	<div class="cont-modalbootstrap">
 						        <form id="form-add-spreadsheetlcl" method="POST" class="cont-modalbootstrap__form" autocomplete="false" enctype="multipart/form-data">
 							        <div class="cont-modalbootstrap__form--control">
-						        		<label for="spreadsheetlcl">Foto del Banco</label>
-						        		<!--<input id="spreadsheetlcl" class="cont-modalbootstrap__form--control__input-photo spreadsheetlcl" name="spreadsheetlcl" type="file" required>-->
+						        		<label for="spreadsheetlcl">Hoja de cálculo</label>
 						        		<input id="spreadsheetlcl" name="spreadsheetlcl" class="cont-modalbootstrap__form--control__input-photo spreadsheetlcl" type="file" accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" required/>
 						        	</div>
 						        	<div class="cont-modalbootstrap__form--control">

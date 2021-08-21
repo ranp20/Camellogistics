@@ -44,7 +44,7 @@
 									<th></th>
 								</tr>
 							</thead>
-							<tbody id="">
+							<tbody id="tbl_utilities_rate_fcl">
 									
 							</tbody>
 						</table>
@@ -59,34 +59,53 @@
 				    </div>
 				  </div> -->
 					<!-- MODAL - AGREGAR NUEVO ITEM -->
-					<!-- <div class="modal fade bootstrapmodal-custom" id="addregulatorModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+					<div class="modal fade bootstrapmodal-custom" id="addspreadsheetfclModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 					  <div class="modal-dialog" role="document">
 					    <div class="modal-content">
 					      <div class="modal-header">
-					        <h5 class="modal-title" id="exampleModalLabel">AGREGAR REGULADOR</h5>
+					        <h5 class="modal-title" id="exampleModalLabel">IMPORTAR EXCEL</h5>
 					        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 					          <span aria-hidden="true">&times;</span>
 					        </button>
 					      </div>
 					      <div class="modal-body">
 					      	<div class="cont-modalbootstrap">
-						        <form id="form-add-regulator" method="POST" class="cont-modalbootstrap__form" autocomplete="false">
+						        <form id="form-add-spreadsheetfcl" method="POST" class="cont-modalbootstrap__form" autocomplete="false" enctype="multipart/form-data">
+							        <div class="cont-modalbootstrap__form--control">
+						        		<label for="spreadsheetfcl">Hoja de cálculo</label>
+						        		<input id="spreadsheetfcl" name="spreadsheetfcl" class="cont-modalbootstrap__form--control__input-photo spreadsheetfcl" type="file" accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" required/>
+						        	</div>
 						        	<div class="cont-modalbootstrap__form--control">
-						        		<label for="name" class="cont-modalbootstrap__form--control__label">Nombre del Regulador</label>
-						        		<input id="name" class="cont-modalbootstrap__form--control__input" name="name" type="text" maxlength="200" required placeholder="Ingrese el nombre del regulador">
+						        		<label for="utilityfcl" class="cont-modalbootstrap__form--control__label">Utilidad</label>
+						        		<input id="utilityfcl" class="cont-modalbootstrap__form--control__input" name="utilityfcl" type="number" maxlength="200" required placeholder="Ingrese un valor de utilidad">
+						        	</div>
+						        	<div class="cont-group-form-controls">
+							        	<div class="cont-modalbootstrap__form--control cont-group-form-controls__control">
+							        		<label for="validdesdefcl" class="cont-modalbootstrap__form--control__label">Válido Desde</label>
+							        		<input id="validdesdefcl" class="cont-modalbootstrap__form--control__input" name="validdesdefcl" type="date" required placeholder="Selecciona una fecha">
+							        	</div>
+							        	<div class="cont-modalbootstrap__form--control cont-group-form-controls__control">
+							        		<label for="validhastafcl" class="cont-modalbootstrap__form--control__label">Válido Hasta</label>
+							        		<input id="validhastafcl" class="cont-modalbootstrap__form--control__input" name="validhastafcl" type="date" required placeholder="Selecciona una fecha">
+							        	</div>
 						        	</div>
 								      <div class="cont-modalbootstrap__footer">
 								        <button type="button" class="cont-modalbootstrap__footer--btncancel" data-dismiss="modal">CANCELAR</button>
-								        <button type="submit" class="cont-modalbootstrap__footer--btnadd" id="btnadd-regulator">GUARDAR</button>
+								        <button type="submit" class="cont-modalbootstrap__footer--btnadd" id="btnadd-spreadsheetfcl">
+								        	<span>GUARDAR</span>
+								        	<span class="cont-modalbootstrap__footer--btnadd--cpreloader">
+								        		<span></span>
+								        	</span>
+								        </button>
 								      </div>
 						        </form>
 					      	</div>
 					      </div>
 					    </div>
 					  </div>
-					</div> -->
+					</div>
 					<!-- MODAL - EDITAR ITEM -->
-					<div class="modal fade bootstrapmodalupdate-custom" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+					<!--<div class="modal fade bootstrapmodalupdate-custom" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 					  <div class="modal-dialog" role="document">
 					    <div class="modal-content">
 					      <div class="modal-header">
@@ -115,7 +134,7 @@
 					      </div>
 					    </div>
 					  </div>
-					</div>
+					</div>-->
 					<!-- MODAL - ELIMINAR ITEM -->
 					<!--<div class="modal fade bootstrapmodaldelete-custom" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 					  <div class="modal-dialog" role="document">
@@ -147,5 +166,6 @@
 		</main>
 	</div>
 	<script src="<?= $url ?>js/main.js"></script>
+	<script src="<?= $url ?>js/actions_pages/rate_fcl.js"></script>
 </body>
 </html>
