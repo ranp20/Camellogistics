@@ -3,14 +3,31 @@
   //COMPRIMIR ARCHIVOS DE TEXTO...
   (substr_count($_SERVER["HTTP_ACCEPT_ENCODING"], "gzip")) ? ob_start("ob_gzhandler") : ob_start();
 
-  if(!isset($_POST) || $_POST == [] && !isset($_POST['v_iptportoriginpost']) || !is_numeric($_POST['v_iptportoriginpost']) && 
-     !isset($_POST['v_iptcountryportoriginpost']) || !is_numeric($_POST['v_iptcountryportoriginpost']) &&
-     !isset($_POST['v_iptportdestinypost']) || !is_numeric($_POST['v_iptportdestinypost']) &&
-     !isset($_POST['v_iptcountryportdestinypost']) || !is_numeric($_POST['v_iptcountryportdestinypost'])){
+  if(isset($_POST) || $_POST != []){
+    
+    if($_POST['v_typetranspinit'] == 0){
+      echo "Solo calcular el flete sin valores desde administrador";
+      //print_r($_POST);
+    }else if($_POST['v_typetranspinit'] == 1){
+      if(isset($_POST['v_iptportoriginpost']) || is_numeric($_POST['v_iptportoriginpost']) && 
+         isset($_POST['v_iptcountryportoriginpost']) || is_numeric($_POST['v_iptcountryportoriginpost']) &&
+         isset($_POST['v_iptportdestinypost']) || is_numeric($_POST['v_iptportdestinypost']) &&
+         isset($_POST['v_iptcountryportdestinypost']) || is_numeric($_POST['v_iptcountryportdestinypost'])){
+        //return true;
+        //print_r($_POST);
+        echo "<input type='hidden' name='port-norigin' id='val-port-norigin' value='".$_POST['ipt-valNamePortOrigin']."'>";
+      }else{
+        header("Location: marketplace-logistico");
+      }
+    }else if($_POST['v_typetranspinit'] == 2){
+      echo "Transporte aéreo";
+    }else{
+      header("Location: marketplace-logistico");
+    }
+  }else{
     header("Location: marketplace-logistico");
   }
 
-  echo "<input type='hidden' name='port-norigin' id='val-port-norigin' value='".$_POST['ipt-valNamePortOrigin']."'>";
   
 ?>
 <!DOCTYPE html>

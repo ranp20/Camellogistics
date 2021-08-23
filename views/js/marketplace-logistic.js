@@ -114,7 +114,8 @@ function changesTabsOperation(){
       localStorage.setItem("type_service", typeService);
       $("#c-cTabsItem").html(`
         <div class="cont-MainCamelLog--c--cOptionsMarket--f--cont--cTabsItem--item">
-          <div class="cont-MainCamelLog--c--cOptionsMarket--f--cont--cTabsItem--item--cControl">
+          <input type="hidden" id="v_typetranspinit" name="v_typetranspinit" value="${ind}">
+          <!--<div class="cont-MainCamelLog--c--cOptionsMarket--f--cont--cTabsItem--item--cControl">
             <div class="cont-MainCamelLog--c--cOptionsMarket--f--cont--cTabsItem--item--cControl--control">
               <div class="cont-MainCamelLog--c--cOptionsMarket--f--cont--cTabsItem--item--cControl--control--cGroupIptsIcon">
                 <div class="cont-MainCamelLog--c--cOptionsMarket--f--cont--cTabsItem--item--cControl--control--cGroupIptsIcon--cIcon">
@@ -128,7 +129,7 @@ function changesTabsOperation(){
             <button type="submit" class="cont-MainCamelLog--c--cOptionsMarket--f--cont--cTabsItem--item--cControl--link" data-typeselsp="${typeService}" data-indselsp="${ind}">
               <span>Solicitar Presupuesto</span>
             </button>
-          </div>
+          </div>-->
         </div>
       `);
     }
