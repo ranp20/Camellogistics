@@ -133,6 +133,7 @@ $(document).on("click", "#list-typeOperationItems a", function(){
 	var tTypeOperation = $(this).index();
 	if(tTypeOperation == 0){
     //localStorage.setItem("key_typeOp", $(this).find("li").find("p").text());
+    localStorage.setItem("key_v-totalflette", 0);
 
     $(this).removeClass("active");
     $(this).css({
@@ -145,6 +146,7 @@ $(document).on("click", "#list-typeOperationItems a", function(){
     $(".cont-MainCamelLog--c--contResumeCalc--item[data-advlevel=d-reqspeacialservs]").find("span").text("");
     /************************** OCULTAR TODOS LOS PASOS ABIERTOS EN CASO SE VUELVA HASTA ESTE PASO **************************/
 	}else{
+    localStorage.setItem("key_v-totalflette", 0);
     localStorage.setItem("key_typeOp", $(this).find("li").find("p").text());
     /************************** ASIGNAR A LA VARIABLE BLOBAL **************************/
     v_TypeOp = $(this).find("li").find("p").text();
@@ -200,6 +202,7 @@ $(document).on("click", "#list-typeChargeLoadItems a", function(){
 	$(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-qcontainers]").addClass("show");
 	var tTypeChargeLoad = $(this).index();
 	if(tTypeChargeLoad == 0){
+    localStorage.setItem("key_v-totalflette", 0);
     localStorage.setItem("key_typeChrg", $(this).find("li").find("p").text());
     /************************** ASIGNAR A LAS VARIABLES GLOBALES **************************/
     v_TypeChargeImgSrc = $(this).find("li").find("div").find("img").attr("src");
@@ -482,6 +485,7 @@ $(document).on("click", "#list-typeChargeLoadItems a", function(){
     
 
 	}else{
+    localStorage.setItem("key_v-totalflette", 0);
     localStorage.setItem("key_typeChrg", $(this).find("li").find("p").text());
     /************************** ASIGNAR A LAS VARIABLES GLOBALES **************************/
     v_TypeChargeImgSrc = $(this).find("li").find("div").find("img").attr("src");
