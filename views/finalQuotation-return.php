@@ -303,7 +303,7 @@
             </button>
           </div>
         </div>
-        <?php 
+<?php
 
 //VARIABLES DE ITEMS...
 $tipotranporte = "";
@@ -343,9 +343,9 @@ if($_POST['opt-reqtransport'] != "NO"){array_push($arr_include, $transportefabri
 if($_POST['res-insuremerch'] != "NO"){array_push($arr_include, $seguromercancia);
 }else{array_push($arr_notinclude, $seguromercancia);}
 
-print_r($arr_include);
-print_r($arr_notinclude)
-                  ?>
+// print_r($arr_include);
+// print_r($arr_notinclude)
+?>
       </div>
     </div>
   </main>
