@@ -251,7 +251,7 @@ $(document).on("click", "#list-typeChargeLoadItems a", function(){
         </span>
       </div>
       <div class="cont-MainCamelLog--c--contSteps--item--cStep">
-        <div class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems">
+        <div class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems" id="list-mIptsItemsContainers">
           <div class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item">
             <div class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cImg" id="info-tooltip20">
               <img src="views/assets/img/steps/20.png" alt="" loading="lazy">
@@ -300,7 +300,7 @@ $(document).on("click", "#list-typeChargeLoadItems a", function(){
               <label for="" class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cC--label">20'</label>
               <div class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cC--control" id="c-incdecBtns20">
                 <button type="button" class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cC--control--btn">-</button>
-                <input type="number" id="ipt-qvalContainer20" class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cC--control--input" maxlength="16" value="0" min="0" max="50">
+                <input type="number" id="ipt-qvalContainer20ST" class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cC--control--input" maxlength="16" value="0" min="0" max="50">
                 <button type="button" class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cC--control--btn">+</button>
               </div>
             </div>
@@ -353,7 +353,7 @@ $(document).on("click", "#list-typeChargeLoadItems a", function(){
               <label for="" class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cC--label">40'</label>
               <div class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cC--control" id="c-incdecBtns40">
                 <button type="button" class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cC--control--btn">-</button>
-                <input type="number" class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cC--control--input" maxlength="16" value="0" min="0" max="50">
+                <input type="number" id="ipt-qvalContainer40ST" class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cC--control--input" maxlength="16" value="0" min="0" max="50">
                 <button type="button" class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cC--control--btn">+</button>
               </div>
             </div>
@@ -406,7 +406,7 @@ $(document).on("click", "#list-typeChargeLoadItems a", function(){
               <label for="" class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cC--label">40' HQ</label>
               <div class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cC--control" id="c-incdecBtns40-hc">
                 <button type="button" class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cC--control--btn">-</button>
-                <input type="number" class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cC--control--input" maxlength="16" value="0" min="0" max="50">
+                <input type="number" id="ipt-qvalContainer40HQ" class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cC--control--input" maxlength="16" value="0" min="0" max="50">
                 <button type="button" class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cC--control--btn">+</button>
               </div>
             </div>
@@ -459,7 +459,7 @@ $(document).on("click", "#list-typeChargeLoadItems a", function(){
               <label for="" class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cC--label">40' NOR</label>
               <div class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cC--control" id="c-incdecBtns40-nor">
                 <button type="button" class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cC--control--btn">-</button>
-                <input type="number" class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cC--control--input" maxlength="16" value="0" min="0" max="50">
+                <input type="number" id="ipt-qvalContainer40NOR" class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cC--control--input" maxlength="16" value="0" min="0" max="50">
                 <button type="button" class="cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cC--control--btn">+</button>
               </div>
             </div>
@@ -479,6 +479,7 @@ $(document).on("click", "#list-typeChargeLoadItems a", function(){
         </button>
       </div>
 		`);
+    
 
 	}else{
     localStorage.setItem("key_typeChrg", $(this).find("li").find("p").text());
@@ -562,6 +563,25 @@ $(document).on("click", "#list-typeChargeLoadItems a", function(){
 /*========================================================================================
 =                          4. AÑADIR LA CANTIDAD DE CONTENEDORES                         =
 =========================================================================================*/
+/************************** VALIDAR SI OTRO CONTROL TIENE ALGÚN VALOR **************************/
+// $(document).on("click", "#btn-NextStepToSelOptResultExp",function(){
+//   var arrContainersSel = [];
+//   var arrCountContainers = $(".cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cC--control .cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cC--control--btn:last-child").map(function(){
+    
+//     $(this).click(function(){
+//       if($(this).index() == 2){
+//         arrContainersSel.push($(this));
+//         return arrContainersSel;
+//       }
+
+//     });
+//   }).get();
+//   console.log(arrContainersSel.length);
+// });
+// $(document).on("click","#list-mIptsItemsContainers .cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item .cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cC .cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cC--control button", function(e){
+//   //console.log($(this).text());
+// });
+
 /************************** INCREMENTAR/DECREMENTAR INPUTS **************************/
 /************************** PRIMER INPUT **************************/
 $(document).on("click", "#c-incdecBtns20 button", function(){
@@ -570,54 +590,111 @@ $(document).on("click", "#c-incdecBtns20 button", function(){
   var newValipt20 = $(this).parent().find("input").val();
   var val20inputhidden = $("#loadQContainer20").val();
   var val20inputhiddenNew = $("#loadQContainer20").val();
-  if(tindBtn == 2){
-    newValipt20 = parseInt(input20) + 1;
-    $(this).parent().find("input").val(newValipt20);
-    
+  /************************** LISTAR LA TARIFA DEL PUERTO DE ORIGEN - FCL **************************/
+  $.ajax({
+    url: "controllers/list_rateByPortOriginFCL.php",
+    method: "POST",
+    datatype: "JSON",
+    contentType: 'application/x-www-form-urlencoded;charset=UTF-8',
+    data: {nameportOrigin : arrPortOrigin[0], container : "20ST"},
+  }).done((e) => {
+    var totalFCL = JSON.parse(e);
+    var totalSend20ST = 0;
+    var total20ST = 0;
 
-    /************************** ASIGNAR VALORES A LA VARIABLE GLOBAL REFERENTE **************************/
-    v_QContainersName20 = $(this).parent().parent().find("label").text();
-    v_QContainersImgSrc20 = $(this).parent().parent().parent().find("div").find("img").attr("src");
-    v_QContainersValue20 = newValipt20;
+    /************************** VALIDAR SI OTRO CONTROL TIENE ALGÚN VALOR **************************/
+    if($("#ipt-qvalContainer40ST").val() > 0 || $("#ipt-qvalContainer40HQ").val() > 0 || $("#ipt-qvalContainer40NOR").val() > 0){
+      /************************** MOSTRAR EL MENSAJE DE ALERTA PERSONALIZADO **************************/
+      $("#idMessageSteps-prcss").html(`
+        <div class="cntMessageSteps-prcss--cont">
+          <div class="cntMessageSteps-prcss--cont--c">
+            <span class="cntMessageSteps-prcss--cont--c--btnclose" id="btnclose-modalMessage"></span>
+            <h3 class="cntMessageSteps-prcss--cont--c--title">Un solo tipo</h3>
+            <p class="cntMessageSteps-prcss--cont--c--text">Por favor, elija <b>un solo tipo de contenedor.</b></p>
+          </div>
+        </div>
+      `)
+      /************************** CERRAR EL MODAL **************************/
+      setTimeout(function(){
+        $("#idMessageSteps-prcss .cntMessageSteps-prcss--cont").remove();
+      }, 6500)
+      $("#btnclose-modalMessage").on("click", function(){
+        $(this).parent().parent().remove();
+      });
 
-    /************************** ASIGNAR VALORES DE LOS INPUTS HIDDEN **************************/
-    $("#loadTypeContainer20").val(v_QContainersName20+" "+"Std");
-    val20inputhiddenNew = parseInt(val20inputhidden) + 1;
-    $("#loadQContainer20").val(val20inputhiddenNew);
-    /************************** RESUMEN DEL LISTADO - CONTENEDORES 20' **************************/
-    $("div[data-merchandisetype=rsm-qcontainer20]").find("img").attr("src", v_QContainersImgSrc20);
-    $("div[data-merchandisetype=rsm-qcontainer20]").find("span").eq(0).text(val20inputhiddenNew);
-    $("div[data-merchandisetype=rsm-qcontainer20]").find("span").eq(1).text("x");
-    $("div[data-merchandisetype=rsm-qcontainer20]").find("span").eq(2).text(v_QContainersName20);
-
-  }else if(tindBtn == 0){
-    if(input20 > 0){
-      newValipt20 = parseInt(input20) - 1;
-      $(this).parent().find("input").val(newValipt20);
-      /************************** ASIGNAR VALORES DE LOS INPUTS HIDDEN **************************/
-      val20inputhiddenNew = parseInt(val20inputhidden) - 1;
-      $("#loadQContainer20").val(val20inputhiddenNew);
-      /************************** RESUMEN DEL LISTADO - CONTENEDORES 20' **************************/
-      $("div[data-merchandisetype=rsm-qcontainer20]").find("img").attr("src", v_QContainersImgSrc20);
-      $("div[data-merchandisetype=rsm-qcontainer20]").find("span").eq(0).text(val20inputhiddenNew);
-      $("div[data-merchandisetype=rsm-qcontainer20]").find("span").eq(1).text("x");
-      $("div[data-merchandisetype=rsm-qcontainer20]").find("span").eq(2).text(v_QContainersName20);
+      $("#ipt-qvalContainer20ST").val(0);
+      total20ST = 0;
+      totalSend20ST = 0;
     }else{
-      newValipt20 = 0;
-      $(this).parent().find("input").val(newValipt20);
-      /************************** ASIGNAR VALORES DE LOS INPUTS HIDDEN **************************/
-      $("#loadTypeContainer20").val("");
-      val20inputhiddenNew = 0;
-      $("#loadQContainer20").val(0);
-      /************************** RESUMEN DEL LISTADO - CONTENEDORES 20' **************************/
-      $("div[data-merchandisetype=rsm-qcontainer20]").find("img").attr("src", "");
-      $("div[data-merchandisetype=rsm-qcontainer20]").find("span").eq(0).text("");
-      $("div[data-merchandisetype=rsm-qcontainer20]").find("span").eq(1).text("");
-      $("div[data-merchandisetype=rsm-qcontainer20]").find("span").eq(2).text("");
+      
+      total20ST = 0;
+      totalSend20ST = 0;
+
+      if(tindBtn == 2){
+        newValipt20 = parseInt(input20) + 1;
+        $(this).parent().find("input").val(newValipt20);
+        
+        /************************** ASIGNAR VALORES A LA VARIABLE GLOBAL REFERENTE **************************/
+        v_QContainersName20 = $(this).parent().parent().find("label").text();
+        v_QContainersImgSrc20 = $(this).parent().parent().parent().find("div").find("img").attr("src");
+        v_QContainersValue20 = newValipt20;
+
+        /************************** ASIGNAR VALORES DE LOS INPUTS HIDDEN **************************/
+        $("#loadTypeContainer20").val(v_QContainersName20+" "+"Std");
+        val20inputhiddenNew = parseInt(val20inputhidden) + 1;
+        $("#loadQContainer20").val(val20inputhiddenNew);
+        /************************** CALCULAR EL VALOR DEL TOTAL - 20ST **************************/
+        totalSend20ST = parseFloat(totalFCL[0].total) * $("#ipt-qvalContainer20ST").val();
+        console.log(totalSend20ST);
+        /************************** ASIGNAR A LA VARIABLE LOCAL - LOCALSTORAGE **************************/
+        localStorage.setItem("key_v-totalflette", totalSend20ST);
+
+        /************************** RESUMEN DEL LISTADO - CONTENEDORES 20' **************************/
+        $("div[data-merchandisetype=rsm-qcontainer20]").find("img").attr("src", v_QContainersImgSrc20);
+        $("div[data-merchandisetype=rsm-qcontainer20]").find("span").eq(0).text(val20inputhiddenNew);
+        $("div[data-merchandisetype=rsm-qcontainer20]").find("span").eq(1).text("x");
+        $("div[data-merchandisetype=rsm-qcontainer20]").find("span").eq(2).text(v_QContainersName20);
+
+      }else if(tindBtn == 0){
+        if(input20 > 0){
+          newValipt20 = parseInt(input20) - 1;
+          $(this).parent().find("input").val(newValipt20);
+          /************************** ASIGNAR VALORES DE LOS INPUTS HIDDEN **************************/
+          val20inputhiddenNew = parseInt(val20inputhidden) - 1;
+          $("#loadQContainer20").val(val20inputhiddenNew);
+          /************************** CALCULAR EL VALOR DEL TOTAL - 20ST **************************/
+          totalSend20ST = parseFloat(totalFCL[0].total) * $("#ipt-qvalContainer20ST").val();
+          console.log(totalSend20ST);
+          /************************** ASIGNAR A LA VARIABLE LOCAL - LOCALSTORAGE **************************/
+          localStorage.setItem("key_v-totalflette", totalSend20ST);
+          /************************** RESUMEN DEL LISTADO - CONTENEDORES 20' **************************/
+          $("div[data-merchandisetype=rsm-qcontainer20]").find("img").attr("src", v_QContainersImgSrc20);
+          $("div[data-merchandisetype=rsm-qcontainer20]").find("span").eq(0).text(val20inputhiddenNew);
+          $("div[data-merchandisetype=rsm-qcontainer20]").find("span").eq(1).text("x");
+          $("div[data-merchandisetype=rsm-qcontainer20]").find("span").eq(2).text(v_QContainersName20);
+        }else{
+          newValipt20 = 0;
+          $(this).parent().find("input").val(newValipt20);
+          /************************** ASIGNAR VALORES DE LOS INPUTS HIDDEN **************************/
+          $("#loadTypeContainer20").val("");
+          val20inputhiddenNew = 0;
+          $("#loadQContainer20").val(0);
+          /************************** CALCULAR EL VALOR DEL TOTAL - 20ST **************************/
+          totalSend20ST = 0;
+          console.log(totalSend20ST);
+          /************************** ASIGNAR A LA VARIABLE LOCAL - LOCALSTORAGE **************************/
+          localStorage.setItem("key_v-totalflette", 0);
+          /************************** RESUMEN DEL LISTADO - CONTENEDORES 20' **************************/
+          $("div[data-merchandisetype=rsm-qcontainer20]").find("img").attr("src", "");
+          $("div[data-merchandisetype=rsm-qcontainer20]").find("span").eq(0).text("");
+          $("div[data-merchandisetype=rsm-qcontainer20]").find("span").eq(1).text("");
+          $("div[data-merchandisetype=rsm-qcontainer20]").find("span").eq(2).text("");
+        }
+      }else{
+        console.log('Sin acción');
+      }
     }
-  }else{
-    console.log('Sin acción');
-  }
+  });
 });
 /************************** SEGUNDO INPUT **************************/
 $(document).on("click", "#c-incdecBtns40 button", function(){
@@ -626,53 +703,108 @@ $(document).on("click", "#c-incdecBtns40 button", function(){
   var newValipt40 = $(this).parent().find("input").val();
   var val40inputhidden = $("#loadQContainer40").val();
   var val40inputhiddenNew = $("#loadQContainer40").val();
-  if(tindBtn == 2){
-    newValipt40 = parseInt(input40) + 1;
-    $(this).parent().find("input").val(newValipt40);
+  /************************** LISTAR LA TARIFA DEL PUERTO DE ORIGEN - FCL **************************/
+  $.ajax({
+    url: "controllers/list_rateByPortOriginFCL.php",
+    method: "POST",
+    datatype: "JSON",
+    contentType: 'application/x-www-form-urlencoded;charset=UTF-8',
+    data: {nameportOrigin : arrPortOrigin[0], container : "40ST"},
+  }).done((e) => {
+    var totalFCL = JSON.parse(e);
+    var totalSend40ST = 0;
+    var total40ST = 0;
 
-    /************************** ASIGNAR VALORES A LA VARIABLE GLOBAL REFERENTE **************************/
-    v_QContainersName40 = $(this).parent().parent().find("label").text();
-    v_QContainersImgSrc40 = $(this).parent().parent().parent().find("div").find("img").attr("src");
-    v_QContainersValue40 = $(this).parent().find("input").val(newValipt40);
+    /************************** VALIDAR SI OTRO CONTROL TIENE ALGÚN VALOR **************************/
+    if($("#ipt-qvalContainer20ST").val() > 0 || $("#ipt-qvalContainer40HQ").val() > 0 || $("#ipt-qvalContainer40NOR").val() > 0){
+      /************************** MOSTRAR EL MENSAJE DE ALERTA PERSONALIZADO **************************/
+      $("#idMessageSteps-prcss").html(`
+        <div class="cntMessageSteps-prcss--cont">
+          <div class="cntMessageSteps-prcss--cont--c">
+            <span class="cntMessageSteps-prcss--cont--c--btnclose" id="btnclose-modalMessage"></span>
+            <h3 class="cntMessageSteps-prcss--cont--c--title">Un solo tipo</h3>
+            <p class="cntMessageSteps-prcss--cont--c--text">Por favor, elija <b>un solo tipo de contenedor.</b></p>
+          </div>
+        </div>
+      `)
+      /************************** CERRAR EL MODAL **************************/
+      setTimeout(function(){
+        $("#idMessageSteps-prcss .cntMessageSteps-prcss--cont").remove();
+      }, 6500)
+      $("#btnclose-modalMessage").on("click", function(){
+        $(this).parent().parent().remove();
+      });
 
-    /************************** ASIGNAR VALORES DE LOS INPUTS HIDDEN **************************/
-    $("#loadTypeContainer40").val(v_QContainersName40+" "+"Std");
-    val40inputhiddenNew = parseInt(val40inputhidden) + 1;
-    $("#loadQContainer40").val(val40inputhiddenNew);
-    /************************** RESUMEN DEL LISTADO - CONTENEDORES 40' **************************/
-    $("div[data-merchandisetype=rsm-qcontainer40]").find("img").attr("src", v_QContainersImgSrc40);
-    $("div[data-merchandisetype=rsm-qcontainer40]").find("span").eq(0).text(val40inputhiddenNew);
-    $("div[data-merchandisetype=rsm-qcontainer40]").find("span").eq(1).text("x");
-    $("div[data-merchandisetype=rsm-qcontainer40]").find("span").eq(2).text(v_QContainersName40);
-
-  }else if(tindBtn == 0){
-    if(input40 > 0){
-      newValipt40 = parseInt(input40) - 1;
-      $(this).parent().find("input").val(newValipt40);
-      /************************** ASIGNAR VALORES DE LOS INPUTS HIDDEN **************************/
-      val40inputhiddenNew = parseInt(val40inputhidden) - 1;
-      $("#loadQContainer40").val(val40inputhiddenNew);
-      /************************** RESUMEN DEL LISTADO - CONTENEDORES 40' **************************/
-      $("div[data-merchandisetype=rsm-qcontainer40]").find("img").attr("src", v_QContainersImgSrc40);
-      $("div[data-merchandisetype=rsm-qcontainer40]").find("span").eq(0).text(val40inputhiddenNew);
-      $("div[data-merchandisetype=rsm-qcontainer40]").find("span").eq(1).text("x");
-      $("div[data-merchandisetype=rsm-qcontainer40]").find("span").eq(2).text(v_QContainersName40);
+      $("#ipt-qvalContainer40ST").val(0);
+      total40ST = 0;
+      totalSend40ST = 0;
     }else{
-      newValipt40 = 0;
-      $(this).parent().find("input").val(newValipt40);
-      /************************** ASIGNAR VALORES DE LOS INPUTS HIDDEN **************************/
-      $("#loadTypeContainer40").val("");
-      val40inputhiddenNew = 0;
-      $("#loadQContainer40").val(0);
-      /************************** RESUMEN DEL LISTADO - CONTENEDORES 40' **************************/
-      $("div[data-merchandisetype=rsm-qcontainer40]").find("img").attr("src", "");
-      $("div[data-merchandisetype=rsm-qcontainer40]").find("span").eq(0).text("");
-      $("div[data-merchandisetype=rsm-qcontainer40]").find("span").eq(1).text("");
-      $("div[data-merchandisetype=rsm-qcontainer40]").find("span").eq(2).text("");
+
+      if(tindBtn == 2){
+        newValipt40 = parseInt(input40) + 1;
+        $(this).parent().find("input").val(newValipt40);
+
+        /************************** ASIGNAR VALORES A LA VARIABLE GLOBAL REFERENTE **************************/
+        v_QContainersName40 = $(this).parent().parent().find("label").text();
+        v_QContainersImgSrc40 = $(this).parent().parent().parent().find("div").find("img").attr("src");
+        v_QContainersValue40 = $(this).parent().find("input").val(newValipt40);
+
+        /************************** ASIGNAR VALORES DE LOS INPUTS HIDDEN **************************/
+        $("#loadTypeContainer40").val(v_QContainersName40+" "+"Std");
+        val40inputhiddenNew = parseInt(val40inputhidden) + 1;
+        $("#loadQContainer40").val(val40inputhiddenNew);
+        /************************** CALCULAR EL VALOR DEL TOTAL - 20ST **************************/
+        totalSend40ST = parseFloat(totalFCL[0].total) * $("#ipt-qvalContainer40ST").val();
+        console.log(totalSend40ST);
+        /************************** ASIGNAR A LA VARIABLE LOCAL - LOCALSTORAGE **************************/
+        localStorage.setItem("key_v-totalflette", totalSend40ST);
+        /************************** RESUMEN DEL LISTADO - CONTENEDORES 40' **************************/
+        $("div[data-merchandisetype=rsm-qcontainer40]").find("img").attr("src", v_QContainersImgSrc40);
+        $("div[data-merchandisetype=rsm-qcontainer40]").find("span").eq(0).text(val40inputhiddenNew);
+        $("div[data-merchandisetype=rsm-qcontainer40]").find("span").eq(1).text("x");
+        $("div[data-merchandisetype=rsm-qcontainer40]").find("span").eq(2).text(v_QContainersName40);
+
+      }else if(tindBtn == 0){
+        if(input40 > 0){
+          newValipt40 = parseInt(input40) - 1;
+          $(this).parent().find("input").val(newValipt40);
+          /************************** ASIGNAR VALORES DE LOS INPUTS HIDDEN **************************/
+          val40inputhiddenNew = parseInt(val40inputhidden) - 1;
+          $("#loadQContainer40").val(val40inputhiddenNew);
+          /************************** CALCULAR EL VALOR DEL TOTAL - 20ST **************************/
+          totalSend40ST = parseFloat(totalFCL[0].total) * $("#ipt-qvalContainer40ST").val();
+          console.log(totalSend40ST);
+          /************************** ASIGNAR A LA VARIABLE LOCAL - LOCALSTORAGE **************************/
+          localStorage.setItem("key_v-totalflette", totalSend40ST);
+          /************************** RESUMEN DEL LISTADO - CONTENEDORES 40' **************************/
+          $("div[data-merchandisetype=rsm-qcontainer40]").find("img").attr("src", v_QContainersImgSrc40);
+          $("div[data-merchandisetype=rsm-qcontainer40]").find("span").eq(0).text(val40inputhiddenNew);
+          $("div[data-merchandisetype=rsm-qcontainer40]").find("span").eq(1).text("x");
+          $("div[data-merchandisetype=rsm-qcontainer40]").find("span").eq(2).text(v_QContainersName40);
+        }else{
+          newValipt40 = 0;
+          $(this).parent().find("input").val(newValipt40);
+          /************************** ASIGNAR VALORES DE LOS INPUTS HIDDEN **************************/
+          $("#loadTypeContainer40").val("");
+          val40inputhiddenNew = 0;
+          $("#loadQContainer40").val(0);
+          /************************** CALCULAR EL VALOR DEL TOTAL - 20ST **************************/
+          totalSend40ST = 0;
+          console.log(totalSend40ST);
+          /************************** ASIGNAR A LA VARIABLE LOCAL - LOCALSTORAGE **************************/
+          localStorage.setItem("key_v-totalflette", 0);
+          /************************** RESUMEN DEL LISTADO - CONTENEDORES 40' **************************/
+          $("div[data-merchandisetype=rsm-qcontainer40]").find("img").attr("src", "");
+          $("div[data-merchandisetype=rsm-qcontainer40]").find("span").eq(0).text("");
+          $("div[data-merchandisetype=rsm-qcontainer40]").find("span").eq(1).text("");
+          $("div[data-merchandisetype=rsm-qcontainer40]").find("span").eq(2).text("");
+        }
+      }else{
+        console.log('Sin acción');
+      }
     }
-  }else{
-    console.log('Sin acción');
-  }
+
+  });
 });
 /************************** TERCERO INPUT **************************/
 $(document).on("click", "#c-incdecBtns40-hc button", function(){
@@ -681,106 +813,221 @@ $(document).on("click", "#c-incdecBtns40-hc button", function(){
   var newValipt40_hq = $(this).parent().find("input").val();
   var val40hqinputhidden = $("#loadQContainer40hq").val();
   var val40hqinputhiddenNew = $("#loadQContainer40hq").val();
-  if(tindBtn == 2){
-    newValipt40_hq = parseInt(input40_hq) + 1;
-    $(this).parent().find("input").val(newValipt40_hq);
-    /************************** ASIGNAR VALORES A LA VARIABLE GLOBAL REFERENTE **************************/
-    v_QContainersName40_hq = $(this).parent().parent().find("label").text();
-    v_QContainersImgSrc40_hq = $(this).parent().parent().parent().find("div").find("img").attr("src");
-    v_QContainersValue40_hq = $(this).parent().find("input").val(newValipt40_hq);
 
-    /************************** ASIGNAR VALORES DE LOS INPUTS HIDDEN **************************/
-    $("#loadTypeContainer40hq").val("40' HIGH CUBE");
-    val40hqinputhiddenNew = parseInt(val40hqinputhidden) + 1;
-    $("#loadQContainer40hq").val(val40hqinputhiddenNew);
-    /************************** RESUMEN DEL LISTADO - CONTENEDORES 40hq' **************************/
-    $("div[data-merchandisetype=rsm-qcontainer40hq]").find("img").attr("src", v_QContainersImgSrc40_hq);
-    $("div[data-merchandisetype=rsm-qcontainer40hq]").find("span").eq(0).text(val40hqinputhiddenNew);
-    $("div[data-merchandisetype=rsm-qcontainer40hq]").find("span").eq(1).text("x");
-    $("div[data-merchandisetype=rsm-qcontainer40hq]").find("span").eq(2).text(v_QContainersName40_hq);
+  /************************** LISTAR LA TARIFA DEL PUERTO DE ORIGEN - FCL **************************/
+  $.ajax({
+    url: "controllers/list_rateByPortOriginFCL.php",
+    method: "POST",
+    datatype: "JSON",
+    contentType: 'application/x-www-form-urlencoded;charset=UTF-8',
+    data: {nameportOrigin : arrPortOrigin[0], container : "40HQ"},
+  }).done((e) => {
+    var totalFCL = JSON.parse(e);
+    var totalSend40HQ = 0;
+    var total40HQ = 0;
 
-  }else if(tindBtn == 0){
-    if(input40_hq > 0){
-      newValipt40_hq = parseInt(input40_hq) - 1;
-      $(this).parent().find("input").val(newValipt40_hq);
-      /************************** ASIGNAR VALORES DE LOS INPUTS HIDDEN **************************/
-      val40hqinputhiddenNew = parseInt(val40hqinputhidden) - 1;
-      $("#loadQContainer40hq").val(val40hqinputhiddenNew);
-      /************************** RESUMEN DEL LISTADO - CONTENEDORES 40hq' **************************/
-      $("div[data-merchandisetype=rsm-qcontainer40hq]").find("img").attr("src", v_QContainersImgSrc40_hq);
-      $("div[data-merchandisetype=rsm-qcontainer40hq]").find("span").eq(0).text(val40hqinputhiddenNew);
-      $("div[data-merchandisetype=rsm-qcontainer40hq]").find("span").eq(1).text("x");
-      $("div[data-merchandisetype=rsm-qcontainer40hq]").find("span").eq(2).text(v_QContainersName40_hq);
+    /************************** VALIDAR SI OTRO CONTROL TIENE ALGÚN VALOR **************************/
+    if($("#ipt-qvalContainer20ST").val() > 0 || $("#ipt-qvalContainer40ST").val() > 0 || $("#ipt-qvalContainer40NOR").val() > 0){
+      /************************** MOSTRAR EL MENSAJE DE ALERTA PERSONALIZADO **************************/
+      $("#idMessageSteps-prcss").html(`
+        <div class="cntMessageSteps-prcss--cont">
+          <div class="cntMessageSteps-prcss--cont--c">
+            <span class="cntMessageSteps-prcss--cont--c--btnclose" id="btnclose-modalMessage"></span>
+            <h3 class="cntMessageSteps-prcss--cont--c--title">Un solo tipo</h3>
+            <p class="cntMessageSteps-prcss--cont--c--text">Por favor, elija <b>un solo tipo de contenedor.</b></p>
+          </div>
+        </div>
+      `)
+      /************************** CERRAR EL MODAL **************************/
+      setTimeout(function(){
+        $("#idMessageSteps-prcss .cntMessageSteps-prcss--cont").remove();
+      }, 6500)
+      $("#btnclose-modalMessage").on("click", function(){
+        $(this).parent().parent().remove();
+      });
+
+      $("#ipt-qvalContainer40HQ").val(0);
+      total40HQ = 0;
+      totalSend40HQ = 0;
     }else{
-      newValipt40_hq = 0;
-      $(this).parent().find("input").val(newValipt40_hq);
-      /************************** ASIGNAR VALORES DE LOS INPUTS HIDDEN **************************/
-      $("#loadTypeContainer40hq").val("");
-      val40hqinputhiddenNew = 0;
-      $("#loadQContainer40hq").val(0);
-      /************************** RESUMEN DEL LISTADO - CONTENEDORES 40hq' **************************/
-      $("div[data-merchandisetype=rsm-qcontainer40hq]").find("img").attr("src", "");
-      $("div[data-merchandisetype=rsm-qcontainer40hq]").find("span").eq(0).text("");
-      $("div[data-merchandisetype=rsm-qcontainer40hq]").find("span").eq(1).text("");
-      $("div[data-merchandisetype=rsm-qcontainer40hq]").find("span").eq(2).text("");
+      
+      if(tindBtn == 2){
+        newValipt40_hq = parseInt(input40_hq) + 1;
+        $(this).parent().find("input").val(newValipt40_hq);
+        /************************** ASIGNAR VALORES A LA VARIABLE GLOBAL REFERENTE **************************/
+        v_QContainersName40_hq = $(this).parent().parent().find("label").text();
+        v_QContainersImgSrc40_hq = $(this).parent().parent().parent().find("div").find("img").attr("src");
+        v_QContainersValue40_hq = $(this).parent().find("input").val(newValipt40_hq);
+
+        /************************** ASIGNAR VALORES DE LOS INPUTS HIDDEN **************************/
+        $("#loadTypeContainer40hq").val("40' HIGH CUBE");
+        val40hqinputhiddenNew = parseInt(val40hqinputhidden) + 1;
+        $("#loadQContainer40hq").val(val40hqinputhiddenNew);
+        /************************** CALCULAR EL VALOR DEL TOTAL - 20ST **************************/
+        totalSend40HQ = parseFloat(totalFCL[0].total) * $("#ipt-qvalContainer40HQ").val();
+        console.log(totalSend40HQ);
+        /************************** ASIGNAR A LA VARIABLE LOCAL - LOCALSTORAGE **************************/
+        localStorage.setItem("key_v-totalflette", totalSend40HQ);
+        /************************** RESUMEN DEL LISTADO - CONTENEDORES 40hq' **************************/
+        $("div[data-merchandisetype=rsm-qcontainer40hq]").find("img").attr("src", v_QContainersImgSrc40_hq);
+        $("div[data-merchandisetype=rsm-qcontainer40hq]").find("span").eq(0).text(val40hqinputhiddenNew);
+        $("div[data-merchandisetype=rsm-qcontainer40hq]").find("span").eq(1).text("x");
+        $("div[data-merchandisetype=rsm-qcontainer40hq]").find("span").eq(2).text(v_QContainersName40_hq);
+
+      }else if(tindBtn == 0){
+        if(input40_hq > 0){
+          newValipt40_hq = parseInt(input40_hq) - 1;
+          $(this).parent().find("input").val(newValipt40_hq);
+          /************************** ASIGNAR VALORES DE LOS INPUTS HIDDEN **************************/
+          val40hqinputhiddenNew = parseInt(val40hqinputhidden) - 1;
+          $("#loadQContainer40hq").val(val40hqinputhiddenNew);
+          /************************** CALCULAR EL VALOR DEL TOTAL - 20ST **************************/
+          totalSend40HQ = parseFloat(totalFCL[0].total) * $("#ipt-qvalContainer40HQ").val();
+          console.log(totalSend40HQ);
+          /************************** ASIGNAR A LA VARIABLE LOCAL - LOCALSTORAGE **************************/
+          localStorage.setItem("key_v-totalflette", totalSend40HQ);
+          /************************** RESUMEN DEL LISTADO - CONTENEDORES 40hq' **************************/
+          $("div[data-merchandisetype=rsm-qcontainer40hq]").find("img").attr("src", v_QContainersImgSrc40_hq);
+          $("div[data-merchandisetype=rsm-qcontainer40hq]").find("span").eq(0).text(val40hqinputhiddenNew);
+          $("div[data-merchandisetype=rsm-qcontainer40hq]").find("span").eq(1).text("x");
+          $("div[data-merchandisetype=rsm-qcontainer40hq]").find("span").eq(2).text(v_QContainersName40_hq);
+        }else{
+          newValipt40_hq = 0;
+          $(this).parent().find("input").val(newValipt40_hq);
+          /************************** ASIGNAR VALORES DE LOS INPUTS HIDDEN **************************/
+          $("#loadTypeContainer40hq").val("");
+          val40hqinputhiddenNew = 0;
+          $("#loadQContainer40hq").val(0);
+          /************************** CALCULAR EL VALOR DEL TOTAL - 20ST **************************/
+          totalSend40HQ = 0;
+          console.log(totalSend40HQ);
+          /************************** ASIGNAR A LA VARIABLE LOCAL - LOCALSTORAGE **************************/
+          localStorage.setItem("key_v-totalflette", 0);
+          /************************** RESUMEN DEL LISTADO - CONTENEDORES 40hq' **************************/
+          $("div[data-merchandisetype=rsm-qcontainer40hq]").find("img").attr("src", "");
+          $("div[data-merchandisetype=rsm-qcontainer40hq]").find("span").eq(0).text("");
+          $("div[data-merchandisetype=rsm-qcontainer40hq]").find("span").eq(1).text("");
+          $("div[data-merchandisetype=rsm-qcontainer40hq]").find("span").eq(2).text("");
+        }
+      }else{
+        console.log('Sin acción');
+      }
+
     }
-  }else{
-    console.log('Sin acción');
-  }
+  });
+
+
 });
-/************************** TERCERO INPUT **************************/
+/************************** CUARTO INPUT **************************/
 $(document).on("click", "#c-incdecBtns40-nor button", function(){
   var tindBtn = $(this).index();
   var input40_nor = $(this).parent().find("input").val();
   var newValipt40_nor = $(this).parent().find("input").val();
   var val40norinputhidden = $("#loadQContainer40nor").val();
   var val40norinputhiddenNew = $("#loadQContainer40nor").val();
-  if(tindBtn == 2){
-    newValipt40_nor = parseInt(input40_nor) + 1;
-    $(this).parent().find("input").val(newValipt40_nor);
-    /************************** ASIGNAR VALORES A LA VARIABLE GLOBAL REFERENTE **************************/
-    v_QContainersName40_nor = $(this).parent().parent().find("label").text();
-    v_QContainersImgSrc40_nor = $(this).parent().parent().parent().find("div").find("img").attr("src");
-    v_QContainersValue40_nor = $(this).parent().find("input").val(newValipt40_nor);
 
-    /************************** ASIGNAR VALORES DE LOS INPUTS HIDDEN **************************/
-    $("#loadTypeContainer40nor").val("40' NOR");
-    val40norinputhiddenNew = parseInt(val40norinputhidden) + 1;
-    $("#loadQContainer40nor").val(val40norinputhiddenNew);
-    /************************** RESUMEN DEL LISTADO - CONTENEDORES 40nor' **************************/
-    $("div[data-merchandisetype=rsm-qcontainer40nor]").find("img").attr("src", v_QContainersImgSrc40_nor);
-    $("div[data-merchandisetype=rsm-qcontainer40nor]").find("span").eq(0).text(val40norinputhiddenNew);
-    $("div[data-merchandisetype=rsm-qcontainer40nor]").find("span").eq(1).text("x");
-    $("div[data-merchandisetype=rsm-qcontainer40nor]").find("span").eq(2).text(v_QContainersName40_nor);
 
-  }else if(tindBtn == 0){
-    if(input40_nor > 0){
-      newValipt40_nor = parseInt(input40_nor) - 1;
-      $(this).parent().find("input").val(newValipt40_nor);
-      /************************** ASIGNAR VALORES DE LOS INPUTS HIDDEN **************************/
-      val40norinputhiddenNew = parseInt(val40norinputhidden) - 1;
-      $("#loadQContainer40nor").val(val40norinputhiddenNew);
-      /************************** RESUMEN DEL LISTADO - CONTENEDORES 40nor' **************************/
-      $("div[data-merchandisetype=rsm-qcontainer40nor]").find("img").attr("src", v_QContainersImgSrc40_nor);
-      $("div[data-merchandisetype=rsm-qcontainer40nor]").find("span").eq(0).text(val40norinputhiddenNew);
-      $("div[data-merchandisetype=rsm-qcontainer40nor]").find("span").eq(1).text("x");
-      $("div[data-merchandisetype=rsm-qcontainer40nor]").find("span").eq(2).text(v_QContainersName40_nor);
+  /************************** LISTAR LA TARIFA DEL PUERTO DE ORIGEN - FCL **************************/
+  $.ajax({
+    url: "controllers/list_rateByPortOriginFCL.php",
+    method: "POST",
+    datatype: "JSON",
+    contentType: 'application/x-www-form-urlencoded;charset=UTF-8',
+    data: {nameportOrigin : arrPortOrigin[0], container : "NOR"},
+  }).done((e) => {
+    var totalFCL = JSON.parse(e);
+    var totalSend40NOR = 0;
+    var total40NOR = 0;
+
+    /************************** VALIDAR SI OTRO CONTROL TIENE ALGÚN VALOR **************************/
+    if($("#ipt-qvalContainer20ST").val() > 0 || $("#ipt-qvalContainer40ST").val() > 0 || $("#ipt-qvalContainer40HQ").val() > 0){
+      /************************** MOSTRAR EL MENSAJE DE ALERTA PERSONALIZADO **************************/
+      $("#idMessageSteps-prcss").html(`
+        <div class="cntMessageSteps-prcss--cont">
+          <div class="cntMessageSteps-prcss--cont--c">
+            <span class="cntMessageSteps-prcss--cont--c--btnclose" id="btnclose-modalMessage"></span>
+            <h3 class="cntMessageSteps-prcss--cont--c--title">Un solo tipo</h3>
+            <p class="cntMessageSteps-prcss--cont--c--text">Por favor, elija <b>un solo tipo de contenedor.</b></p>
+          </div>
+        </div>
+      `)
+      /************************** CERRAR EL MODAL **************************/
+      setTimeout(function(){
+        $("#idMessageSteps-prcss .cntMessageSteps-prcss--cont").remove();
+      }, 6500)
+      $("#btnclose-modalMessage").on("click", function(){
+        $(this).parent().parent().remove();
+      });
+
+      $("#ipt-qvalContainer40NOR").val(0);
+      total40NOR = 0;
+      totalSend40NOR = 0;
     }else{
-      newValipt40_nor = 0;
-      $(this).parent().find("input").val(newValipt40_nor);
-      /************************** ASIGNAR VALORES DE LOS INPUTS HIDDEN **************************/
-      $("#loadTypeContainer40nor").val("");
-      val40norinputhiddenNew = 0;
-      $("#loadQContainer40nor").val(0);
-      /************************** RESUMEN DEL LISTADO - CONTENEDORES 40nor' **************************/
-      $("div[data-merchandisetype=rsm-qcontainer40nor]").find("img").attr("src", "");
-      $("div[data-merchandisetype=rsm-qcontainer40nor]").find("span").eq(0).text("");
-      $("div[data-merchandisetype=rsm-qcontainer40nor]").find("span").eq(1).text("");
-      $("div[data-merchandisetype=rsm-qcontainer40nor]").find("span").eq(2).text("");
+
+      if(tindBtn == 2){
+        newValipt40_nor = parseInt(input40_nor) + 1;
+        $(this).parent().find("input").val(newValipt40_nor);
+        /************************** ASIGNAR VALORES A LA VARIABLE GLOBAL REFERENTE **************************/
+        v_QContainersName40_nor = $(this).parent().parent().find("label").text();
+        v_QContainersImgSrc40_nor = $(this).parent().parent().parent().find("div").find("img").attr("src");
+        v_QContainersValue40_nor = $(this).parent().find("input").val(newValipt40_nor);
+
+        /************************** ASIGNAR VALORES DE LOS INPUTS HIDDEN **************************/
+        $("#loadTypeContainer40nor").val("40' NOR");
+        val40norinputhiddenNew = parseInt(val40norinputhidden) + 1;
+        $("#loadQContainer40nor").val(val40norinputhiddenNew);
+        /************************** CALCULAR EL VALOR DEL TOTAL - 20ST **************************/
+        totalSend40NOR = parseFloat(totalFCL[0].total) * $("#ipt-qvalContainer40NOR").val();
+        console.log(totalSend40NOR);
+        /************************** ASIGNAR A LA VARIABLE LOCAL - LOCALSTORAGE **************************/
+        localStorage.setItem("key_v-totalflette", totalSend40NOR);
+        /************************** RESUMEN DEL LISTADO - CONTENEDORES 40nor' **************************/
+        $("div[data-merchandisetype=rsm-qcontainer40nor]").find("img").attr("src", v_QContainersImgSrc40_nor);
+        $("div[data-merchandisetype=rsm-qcontainer40nor]").find("span").eq(0).text(val40norinputhiddenNew);
+        $("div[data-merchandisetype=rsm-qcontainer40nor]").find("span").eq(1).text("x");
+        $("div[data-merchandisetype=rsm-qcontainer40nor]").find("span").eq(2).text(v_QContainersName40_nor);
+
+      }else if(tindBtn == 0){
+        if(input40_nor > 0){
+          newValipt40_nor = parseInt(input40_nor) - 1;
+          $(this).parent().find("input").val(newValipt40_nor);
+          /************************** ASIGNAR VALORES DE LOS INPUTS HIDDEN **************************/
+          val40norinputhiddenNew = parseInt(val40norinputhidden) - 1;
+          $("#loadQContainer40nor").val(val40norinputhiddenNew);
+          /************************** CALCULAR EL VALOR DEL TOTAL - 20ST **************************/
+          totalSend40NOR = parseFloat(totalFCL[0].total) * $("#ipt-qvalContainer40NOR").val();
+          console.log(totalSend40NOR);
+          /************************** ASIGNAR A LA VARIABLE LOCAL - LOCALSTORAGE **************************/
+          localStorage.setItem("key_v-totalflette", totalSend40NOR);
+          /************************** RESUMEN DEL LISTADO - CONTENEDORES 40nor' **************************/
+          $("div[data-merchandisetype=rsm-qcontainer40nor]").find("img").attr("src", v_QContainersImgSrc40_nor);
+          $("div[data-merchandisetype=rsm-qcontainer40nor]").find("span").eq(0).text(val40norinputhiddenNew);
+          $("div[data-merchandisetype=rsm-qcontainer40nor]").find("span").eq(1).text("x");
+          $("div[data-merchandisetype=rsm-qcontainer40nor]").find("span").eq(2).text(v_QContainersName40_nor);
+        }else{
+          newValipt40_nor = 0;
+          $(this).parent().find("input").val(newValipt40_nor);
+          /************************** ASIGNAR VALORES DE LOS INPUTS HIDDEN **************************/
+          $("#loadTypeContainer40nor").val("");
+          val40norinputhiddenNew = 0;
+          $("#loadQContainer40nor").val(0);
+          /************************** CALCULAR EL VALOR DEL TOTAL - 20ST **************************/
+          totalSend40NOR = 0;
+          console.log(totalSend40NOR);
+          /************************** ASIGNAR A LA VARIABLE LOCAL - LOCALSTORAGE **************************/
+          localStorage.setItem("key_v-totalflette", 0);
+          /************************** RESUMEN DEL LISTADO - CONTENEDORES 40nor' **************************/
+          $("div[data-merchandisetype=rsm-qcontainer40nor]").find("img").attr("src", "");
+          $("div[data-merchandisetype=rsm-qcontainer40nor]").find("span").eq(0).text("");
+          $("div[data-merchandisetype=rsm-qcontainer40nor]").find("span").eq(1).text("");
+          $("div[data-merchandisetype=rsm-qcontainer40nor]").find("span").eq(2).text("");
+        }
+      }else{
+        console.log('Sin acción');
+      }
     }
-  }else{
-    console.log('Sin acción');
-  }
+  });
+
 });
 /************************** DEVOLVER EL VALOR DE LOS CONTROLES (DIMENSIONES DE CARGA) AL RESUMEN DEL PROCESO **************************/
 $(document).on("change input keyup", "#val-iptPackagesNInterface", function(e){
@@ -1387,7 +1634,7 @@ $(document).on("click", "#btn-NextStepTochargedata", function(){
     var totwithoutvalues = 0;
     /************************** LISTAR LA TARIFA DEL PUERTO DE ORIGEN **************************/
     $.ajax({
-      url: "controllers/list_rateByPortOrigin.php",
+      url: "controllers/list_rateByPortOriginLCL.php",
       method: "POST",
       datatype: "JSON",
       contentType: 'application/x-www-form-urlencoded;charset=UTF-8',

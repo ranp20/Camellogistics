@@ -53,10 +53,10 @@
     <div class="cont-MainCamelLog--c ptop-headertop" id="cont-MainCamelLog--cStartQuoteRequest">
       <form action="fquotationgenerate" method="POST" id="f-expquotationFrmClient">
         <input type="hidden" id="ipt-vtypetranspinit" value="<?= $_POST['v_typetranspinit']; ?>">
-        <input type="hidden" id="ipt-vportidOrigin" value="<?= $_POST['v_iptportoriginpost']; ?>">
-        <input type="hidden" id="ipt-vportidcountryOrigin" value="<?= $_POST['v_iptcountryportoriginpost']; ?>">
-        <input type="hidden" id="ipt-vportidDestiny" value="<?= $_POST['v_iptportdestinypost']; ?>">
-        <input type="hidden" id="ipt-vportidcountryDestiny" value="<?= $_POST['v_iptcountryportdestinypost']; ?>">
+        <input type="hidden" id="ipt-vportidOrigin" value="<?= (isset($_POST['v_iptportoriginpost'])) ? $_POST['v_iptportoriginpost'] : ""; ?>">
+        <input type="hidden" id="ipt-vportidcountryOrigin" value="<?= (isset($_POST['v_iptcountryportoriginpost'])) ? $_POST['v_iptcountryportoriginpost'] : ""; ?>">
+        <input type="hidden" id="ipt-vportidDestiny" value="<?=  (isset($_POST['v_iptportdestinypost'])) ? $_POST['v_iptportdestinypost'] : ""; ?>">
+        <input type="hidden" id="ipt-vportidcountryDestiny" value="<?=  (isset($_POST['v_iptcountryportdestinypost'])) ? $_POST['v_iptcountryportdestinypost'] : ""; ?>">
         <section class="cont-MainCamelLog--c--contResumeCalc" id="id-resumeLeftQuoteCamel">
           <div class="cont-MainCamelLog--c--contResumeCalc--item" data-advlevel="d-typetransportnumb"></div>
           <div class="cont-MainCamelLog--c--contResumeCalc--item" data-advlevel="d-firstChargeLoad"></div>

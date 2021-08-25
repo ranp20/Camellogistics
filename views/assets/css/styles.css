@@ -3189,16 +3189,16 @@ img {
   width: 100%;
   padding: 2rem 1rem;
   transition: 0.3s ease-in-out;
+  color: #999;
 }
 .cont-MainCamelLog--c--cOptionsMarket--f--cont--m--link {
   transition: 0.3s ease-in-out;
   text-align: center;
   width: calc(100% * 1/3);
   border: thin solid #cccc;
-  color: #999;
   font-weight: 500;
 }
-.cont-MainCamelLog--c--cOptionsMarket--f--cont--m--link:hover {
+.cont-MainCamelLog--c--cOptionsMarket--f--cont--m--link:hover button {
   color: #000;
 }
 .cont-MainCamelLog--c--cOptionsMarket--f--cont--m--link.active button {

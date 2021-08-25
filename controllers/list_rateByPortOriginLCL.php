@@ -1,12 +1,12 @@
 <?php 
 require_once '../models/db/connection.php';
-class list_rateByPortOrigin extends Connection{
+class list_rateByPortOriginLCL extends Connection{
 	function list(){
 		
 		$portOrigin = $_POST['nameportOrigin'];
 
 		try{
-			$sql = "CALL sp_list_rateByPortOrigin(:namePortOrigin)";
+			$sql = "CALL sp_list_rateByPortOriginLCL(:namePortOrigin)";
 			$stm = $this->con->prepare($sql);
 			$stm->bindValue(":namePortOrigin", $portOrigin);
 			$stm->execute();
@@ -20,5 +20,5 @@ class list_rateByPortOrigin extends Connection{
 		}
 	}
 }
-$puertoOrigin = new list_rateByPortOrigin();
-echo $puertoOrigin->list();
+$puertoOriginLCL = new list_rateByPortOriginLCL();
+echo $puertoOriginLCL->list();
