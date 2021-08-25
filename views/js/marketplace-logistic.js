@@ -109,6 +109,7 @@ function changesTabsOperation(){
         </div>
       `);
     }else{
+      t.find("button").attr("type", "submit");
       typeService = t.eq(0).find("li").find("span:nth-child(2)").text();
       localStorage.setItem("type_service", typeService);
       $("#c-cTabsItem").html(`
@@ -262,7 +263,7 @@ $(document).on("click", "#list-itemsNamePortsDestiny .cont-MainCamelLog--c--cOpt
   localStorage.setItem("port_DId", $(this).attr("id"));
   localStorage.setItem("port_DName", $(this).find("span:nth-child(2)").text());
 });
-/************************** COMPROBAR SI UN ELEMENTOS U OBJETO ES NUMÉRICO **************************/
+/************************** COMPROBAR SI UN ELEMENTO U OBJETO ES NUMÉRICO **************************/
 function is_numeric(value) {
   return !isNaN(parseFloat(value)) && isFinite(value);
 }
