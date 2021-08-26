@@ -91,6 +91,14 @@ class ComposerStaticInitf823bac93e24573a25b364f6ec7c2035
             'MyCLabs\\Enum\\' => 13,
             'Matrix\\' => 7,
         ),
+        'F' => 
+        array (
+            'FontLib\\' => 8,
+        ),
+        'D' => 
+        array (
+            'Dompdf\\' => 7,
+        ),
         'C' => 
         array (
             'Complex\\' => 8,
@@ -135,6 +143,14 @@ class ComposerStaticInitf823bac93e24573a25b364f6ec7c2035
         array (
             0 => __DIR__ . '/..' . '/markbaker/matrix/classes/src',
         ),
+        'FontLib\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/phenx/php-font-lib/src/FontLib',
+        ),
+        'Dompdf\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/dompdf/dompdf/src',
+        ),
         'Complex\\' => 
         array (
             0 => __DIR__ . '/..' . '/markbaker/complex/classes/src',
@@ -158,12 +174,22 @@ class ComposerStaticInitf823bac93e24573a25b364f6ec7c2035
         ),
     );
 
+    public static $classMap = array (
+        'Dompdf\\Cpdf' => __DIR__ . '/..' . '/dompdf/dompdf/lib/Cpdf.php',
+        'HTML5_Data' => __DIR__ . '/..' . '/dompdf/dompdf/lib/html5lib/Data.php',
+        'HTML5_InputStream' => __DIR__ . '/..' . '/dompdf/dompdf/lib/html5lib/InputStream.php',
+        'HTML5_Parser' => __DIR__ . '/..' . '/dompdf/dompdf/lib/html5lib/Parser.php',
+        'HTML5_Tokenizer' => __DIR__ . '/..' . '/dompdf/dompdf/lib/html5lib/Tokenizer.php',
+        'HTML5_TreeBuilder' => __DIR__ . '/..' . '/dompdf/dompdf/lib/html5lib/TreeBuilder.php',
+    );
+
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
             $loader->prefixLengthsPsr4 = ComposerStaticInitf823bac93e24573a25b364f6ec7c2035::$prefixLengthsPsr4;
             $loader->prefixDirsPsr4 = ComposerStaticInitf823bac93e24573a25b364f6ec7c2035::$prefixDirsPsr4;
             $loader->prefixesPsr0 = ComposerStaticInitf823bac93e24573a25b364f6ec7c2035::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInitf823bac93e24573a25b364f6ec7c2035::$classMap;
 
         }, null, ClassLoader::class);
     }
