@@ -679,6 +679,10 @@ img {
   color: red;
   margin-left: 0.15rem;
 }
+.cont-dashCamel__cControlsList--cC--cTable--cControl--cInputs {
+  max-width: 370px;
+  width: 100%;
+}
 .cont-dashCamel__cControlsList--cC--cTable--cControl--cInputs--input {
   outline: none;
   flex: auto;
@@ -1749,6 +1753,10 @@ img {
   animation-name: showSidebarLeft;
   animation-duration: 0.3s;
   animation-timing-function: ease-in-out;
+  /* Estilos barra (thumb) de scroll */
+  /* Estilos track de scroll */
+  /* scrollling */
+  /* ANCHO DEL SCROLLING */
 }
 @keyframes showSidebarLeft {
   0% {
@@ -1762,6 +1770,47 @@ img {
   transform: translateX(0);
   pointer-events: auto;
   opacity: 1;
+  overflow-y: auto;
+}
+.nav-dashCamel--c::-webkit-scrollbar {
+  width: 0;
+}
+.nav-dashCamel--c::-webkit-scrollbar-thumb {
+  background: transparent;
+}
+.nav-dashCamel--c::-webkit-scrollbar-thumb:active {
+  background-color: #999999;
+}
+.nav-dashCamel--c::-webkit-scrollbar-thumb:hover {
+  background: #b3b3b3;
+  box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.2);
+}
+.nav-dashCamel--c::-webkit-scrollbar-track {
+  background: #e1e1e1;
+  border-radius: 4px;
+}
+.nav-dashCamel--c::-webkit-scrollbar-track:hover, .nav-dashCamel--c::-webkit-scrollbar-track:active {
+  background: #d4d4d4;
+}
+.nav-dashCamel--c::-webkit-scrollbar {
+  width: 0;
+}
+.nav-dashCamel--c::-webkit-scrollbar-thumb {
+  background: #cccc;
+  border-radius: 4px;
+}
+.nav-dashCamel--c::-webkit-scrollbar-thumb:active {
+  background: #999999;
+}
+.nav-dashCamel--c::-webkit-scrollbar-thumb:hover {
+  background: #b3b3b3;
+  box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.2);
+}
+.nav-dashCamel--c::-webkit-scrollbar-track {
+  background: #e1e1e1;
+}
+.nav-dashCamel--c::-webkit-scrollbar-track:active, .nav-dashCamel--c::-webkit-scrollbar-track:hover {
+  background: #d4d4d4;
 }
 @media (min-width: 960px) {
   .nav-dashCamel--c {
