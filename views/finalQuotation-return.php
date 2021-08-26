@@ -16,15 +16,7 @@
   <link rel="stylesheet" href="<?= $url ?>js/fullpage/fullpage.min.css">
 </head>
 <body>
-  <nav class="c-Htopbar" id="c-HTopQuotation-camel">
-    <div class="c-Htopbar--c">
-      <div class="c-Htopbar--c--cLogo">
-        <a href="./">
-          <img src="<?= $url ?>assets/img/logos/logotipo-camel.png" alt="logo_camel">
-        </a>
-      </div>
-    </div>
-  </nav>
+  <?php require_once 'includes/header-top.php'; ?>
   <main class="cont-MainCamelLog" id="cont-MainCamelLog">
     <div class="cont-MainCamelLog--c ptop-headertop" id="cont-MainCamelLog--cFinalDownloadQuoteReturn">
       <div class="box-container">
