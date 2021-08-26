@@ -1,5 +1,4 @@
 <?php 
-
 	//COMPRIMIR ARCHIVOS DE TEXTO...
   (substr_count($_SERVER["HTTP_ACCEPT_ENCODING"], "gzip")) ? ob_start("ob_gzhandler") : ob_start();
 
@@ -12,7 +11,7 @@
 <html lang="es">
 <head>
 	<?php require_once 'includes/adm-header-index.php'; ?>
-	<title>Admin - Precios</title>
+	<title>Admin - Seguro</title>
 </head>
 <body>
 	<div id="dash-contT">
@@ -22,22 +21,21 @@
 			<div class="cont-dashCamel">
 				<div class="box-window-border">
 					<div class="cont-dashCamel__addtitle">
-						<h2 class="cont-dashCamel__addtitle--title">Configuración de precios</h2>
-						<!--<button type="button" href="#" id="add-regulator" class="cont-dashCamel__addtitle--btn-add" data-toggle="modal" data-target="#addproductModal"><span class="cont-dashCamel__addtitle--btn-add__hidden">Agregar&nbsp;</span>+</button>-->
+						<h2 class="cont-dashCamel__addtitle--title">Configuración de Seguro</h2>
 					</div>
 					<div class="cont-dashCamel__cControlsList">
 						<div class="cont-dashCamel__cControlsList--cC">
 							<table class="cont-dashCamel__cControlsList--cC--cTable">
-								<tbody id="tbl_quotationvalues"></tbody>
+								<tbody id="tbl_insurancevalues"></tbody>
 							</table>
 						</div>
-						<div class="cont-dashCamel__cControlsList--cActionsBtns">
+						<!--<div class="cont-dashCamel__cControlsList--cActionsBtns">
 							<a href="#" class="cont-dashCamel__cControlsList--cActionsBtns--btn">AGREGAR VALOR</a>
 							<a href="#" class="cont-dashCamel__cControlsList--cActionsBtns--btn">ACTUALIZAR</a>
-						</div>
+						</div>-->
 					</div>
 					<!-- MODAL - EDITAR ITEM -->
-					<div class="modal fade bootstrapmodalupdate-custom" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+					<!-- <div class="modal fade bootstrapmodalupdate-custom" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 					  <div class="modal-dialog" role="document">
 					    <div class="modal-content">
 					      <div class="modal-header">
@@ -67,12 +65,12 @@
 					      </div>
 					    </div>
 					  </div>
-					</div>
+					</div> -->
 				</div>
 			</div>
 		</main>
 	</div>
 	<script src="<?= $url ?>js/main.js"></script>
-	<script src="<?= $url ?>js/actions_pages/pricing-settings.js"></script>
+	<script src="<?= $url ?>js/actions_pages/insurance-settings.js"></script>
 </body>
 </html>

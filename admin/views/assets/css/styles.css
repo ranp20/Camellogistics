@@ -611,7 +611,7 @@ img {
   }
 }
 .cont-dashCamel__cControlsList--cC {
-  max-width: 650px;
+  max-width: 750px;
   width: 100%;
 }
 @media (min-width: 991px) {
@@ -679,22 +679,24 @@ img {
   color: red;
   margin-left: 0.15rem;
 }
-.cont-dashCamel__cControlsList--cC--cTable--cControl--input {
+.cont-dashCamel__cControlsList--cC--cTable--cControl--cInputs--input {
   outline: none;
   flex: auto;
   padding: 0.15rem 0.3rem;
   width: 100%;
+  margin-top: 0.5rem;
 }
-.cont-dashCamel__cControlsList--cC--cTable--cControl--input[type=number]::-webkit-inner-spin-button, .cont-dashCamel__cControlsList--cC--cTable--cControl--input[type=number]::-webkit-outer-spin-button {
+.cont-dashCamel__cControlsList--cC--cTable--cControl--cInputs--input[type=number]::-webkit-inner-spin-button, .cont-dashCamel__cControlsList--cC--cTable--cControl--cInputs--input[type=number]::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
-.cont-dashCamel__cControlsList--cC--cTable--cControl--input[type=number] {
+.cont-dashCamel__cControlsList--cC--cTable--cControl--cInputs--input[type=number] {
   -moz-appearance: textfield;
 }
 @media (min-width: 720px) {
-  .cont-dashCamel__cControlsList--cC--cTable--cControl--input {
+  .cont-dashCamel__cControlsList--cC--cTable--cControl--cInputs--input {
     width: auto;
+    margin: 0;
   }
 }
 .cont-dashCamel__cControlsList--cActionsBtns {

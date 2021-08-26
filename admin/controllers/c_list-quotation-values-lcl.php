@@ -1,10 +1,10 @@
 <?php 
 require_once '../../models/db/connection.php';
-class Quotation_values extends Connection{
+class Quotation_values_LCL extends Connection{
 	function list(){
 
 		try{
-			$sql = "SELECT * FROM tbl_quotation_values";
+			$sql = "SELECT * FROM tbl_quotation_values_lcl";
 			$stm = $this->con->query($sql);
 			$stm->execute();
 			
@@ -17,5 +17,5 @@ class Quotation_values extends Connection{
 		}
 	}
 }
-$quotation_values = new Quotation_values();
-echo $quotation_values->list();
+$quotation_values_lcl = new Quotation_values_LCL();
+echo $quotation_values_lcl->list();
