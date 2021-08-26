@@ -17,10 +17,12 @@ RewriteRule calculadora?$ views/calculadora.php
 ############PAGES FOR THE ADMIN
 RewriteRule admin?$ admin/index.php
 RewriteRule dashboard?$ admin/views/dashboard.php
+RewriteRule precios-fcl?$ admin/views/pricing-settings-fcl.php
+RewriteRule precios-lcl?$ admin/views/pricing-settings-lcl.php
 RewriteRule tarifas-fcl?$ admin/views/rate-fcl.php
 RewriteRule tarifas-lcl?$ admin/views/rate-lcl.php
+RewriteRule seguro?$ admin/views/insurance-settings.php
 RewriteRule reguladores?$ admin/views/regulators.php
 RewriteRule productos?$ admin/views/products.php
-RewriteRule precios?$ admin/views/pricing-settings.php
 RewriteRule ajustes-del-home?$ admin/views/home-settings.php
 RewriteRule banner-principal?$ admin/views/banner-principal.php
