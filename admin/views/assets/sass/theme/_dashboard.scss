@@ -483,6 +483,12 @@
 								padding-left: 0.65rem;
 							}
 
+							/* MENSAJE DE ALERTA - MONTO ADICIONAL */
+							#msgErrNounAmountAdditionalProduct{
+								color: red;
+								padding-left: 0.65rem;	
+							}
+
 							&__contIconLeft{
 								position: relative;
 						    display: flex;
@@ -747,7 +753,17 @@
 						/* CONTROLES - RADIO */
 						&--controlRadios{
 							margin-bottom: 1rem;
+							
+							/* ALERTA - REGULADORES*/
 							#msgErrNounWithOrNotRegulator{
+								display: block;
+								color: red;
+								text-align: center;
+								padding-right: .5rem;
+							}
+
+							/* ALERTA - MONTO ADICIONAL */
+							#msgErrNounWithOrNotAmountAdditional{
 								display: block;
 								color: red;
 								text-align: center;

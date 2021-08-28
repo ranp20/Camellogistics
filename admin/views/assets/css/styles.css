@@ -923,8 +923,13 @@ img {
   margin-bottom: 0.5rem;
   position: relative;
   /* MENSAJE DE ALERTA  - REGULADOR TWO*/
+  /* MENSAJE DE ALERTA - MONTO ADICIONAL */
 }
 .bootstrapmodal-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrap__form--control #msgErrNounNameProduct {
+  color: red;
+  padding-left: 0.65rem;
+}
+.bootstrapmodal-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrap__form--control #msgErrNounAmountAdditionalProduct {
   color: red;
   padding-left: 0.65rem;
 }
@@ -1157,8 +1162,16 @@ img {
 }
 .bootstrapmodal-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrap__form--controlRadios {
   margin-bottom: 1rem;
+  /* ALERTA - REGULADORES*/
+  /* ALERTA - MONTO ADICIONAL */
 }
 .bootstrapmodal-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrap__form--controlRadios #msgErrNounWithOrNotRegulator {
+  display: block;
+  color: red;
+  text-align: center;
+  padding-right: 0.5rem;
+}
+.bootstrapmodal-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrap__form--controlRadios #msgErrNounWithOrNotAmountAdditional {
   display: block;
   color: red;
   text-align: center;

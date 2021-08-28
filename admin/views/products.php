@@ -88,6 +88,21 @@
 						        		<span id="msgErrNounWithOrNotRegulator"></span>
 						        	</div>
 						        	<div id="sel-optsRegulatorsMore"></div>
+						        	<div class="cont-modalbootstrap__form--controlRadios">
+						        		<p class="cont-modalbootstrap__form--controlRadios--title">Monto adicional del Producto</p>
+						        		<div class="cont-modalbootstrap__form--controlRadios--c">
+							        		<label for="required-amountadditional" class="cont-modalbootstrap__form--controlRadios--c--control">
+							        			<input type="radio" id="required-amountadditional" name="sel-addornotadd" class="cont-modalbootstrap__form--controlRadios--c--control--input">
+							        			<span class="cont-modalbootstrap__form--controlRadios--c--control--fakelabel">SI</span>
+							        		</label>
+							        		<label for="noun-required-amountadditional" class="cont-modalbootstrap__form--controlRadios--c--control">
+							        			<input type="radio" id="noun-required-amountadditional" name="sel-addornotadd" class="cont-modalbootstrap__form--controlRadios--c--control--input">
+							        			<span class="cont-modalbootstrap__form--controlRadios--c--control--fakelabel">NO</span>
+							        		</label>
+						        		</div>
+						        		<span id="msgErrNounWithOrNotAmountAdditional"></span>
+						        	</div>
+						        	<div id="sel-optsAmountAdditionalMore"></div>
 								      <div class="cont-modalbootstrap__footer">
 								        <button type="button" class="cont-modalbootstrap__footer--btncancel" data-dismiss="modal">CANCELAR</button>
 								        <button type="submit" class="cont-modalbootstrap__footer--btnadd" id="btnadd-product">GUARDAR</button>

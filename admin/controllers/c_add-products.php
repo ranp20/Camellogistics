@@ -6,11 +6,12 @@ class Add_Products extends Connection{
 			"name" => $_POST['name'],
 			"regulate" => $_POST['regulate'],
 			"id_regulator" => (isset($_POST['id_regulatorone'])) ? $_POST['id_regulatorone'] : 0,
-			"id_regulator_two" => (isset($_POST['id_regulatortwo'])) ? $_POST['id_regulatortwo'] : 0
+			"id_regulator_two" => (isset($_POST['id_regulatortwo'])) ? $_POST['id_regulatortwo'] : 0,
+			"amount_additional" => (isset($_POST['amount_additional'])) ? $_POST['amount_additional'] : 0
 		];
 
 		try{
-			$sql = "CALL sp_add_product(:name, :regulate, :id_regulator, :id_regulator_two)";
+			$sql = "CALL sp_add_product(:name, :regulate, :id_regulator, :id_regulator_two, :amount_additional)";
 			$stm = $this->con->prepare($sql);
 			foreach ($arr_product as $key => $value) {
 				$stm->bindValue($key, $value);

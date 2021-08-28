@@ -2,6 +2,16 @@ $(function(){
   listProducts();
   //load(1);
 });
+/************************** FUNCIÓN - LIMITAR A DOS DECIMALES SIN REDONDEO **************************/
+function twodecimals(n) {
+  let t = n.toString();
+  let regex = /(\d*.\d{0,2})/;
+  return t.match(regex)[0];
+}
+/************************** LIMITAR A DOS DECIMALES CUALQUIER INPUT DE TIPO NÚMERO EN DONDE ESTÁ IMPORTADO ESTE ARCHIVO **************************/
+$(document).on("input","input[type=number]",function(e){
+  ($(this).val() == "") ? $(this).val() : $(this).val(twodecimals(e.target.value));
+});
 // /************************** PAGINACIÓN DE CONTENIDO **************************/
 // // function load(page){
 // //   var parametros = {"action": "filter","page": page};
@@ -20,7 +30,10 @@ $(function(){
 // //     }
 // //   });
 // // }
-/************************** MOSTRAR/OCULTAR DE ACUERDO AL CHECKBOX SELECCINADO **************************/
+/*=======================================================
+=            NOMBRE Y REGULADORES - PRODUCTO            =
+=======================================================*/
+/************************** MOSTRAR/OCULTAR DE ACUERDO AL CHECKBOX SELECCINADO - REGULADOR/NO REQUIERE **************************/
 $(document).on("click", ".cont-modalbootstrap__form--controlRadios--c--control--input[name=sel-reornotreg]", function(){
   if($(this).attr("id") == "noun-required-reg"){
     $("#sel-optsRegulatorsMore").html("");
@@ -53,7 +66,7 @@ $(document).on("click", ".cont-modalbootstrap__form--controlRadios--c--control--
     `);
   }
 });
-/************************** VALIDAR SI EL NOMBRE DE BANCO ESTÁ VACÍO **************************/
+/************************** VALIDAR SI EL NOMBRE DEL PRODUCTO ESTÁ VACÍO **************************/
 $(document).on("keyup", "#nameProduct", function(){
   ($(this).val() != 0) ? $("#msgErrNounNameProduct").text("") : $("#msgErrNounNameProduct").text("Debes ingresar un nombre");
 });
@@ -90,7 +103,7 @@ $(document).on("click", "#btn-FakeListRegulatorOne", function(){
       $("#c-listitems-regulatorOne").html(template);
     }else{
       template += `
-        <li class="cont-modalbootstrap__form--controlSelect--m--item">No se enconraron datos</li>
+        <li class="cont-modalbootstrap__form--controlSelect--m--item">No se encontraron datos</li>
       `;
 
       $("#c-listitems-regulatorOne").html(template);
@@ -131,7 +144,7 @@ $(document).on("click", "#btn-FakeListRegulatorTwo", function(){
       $("#c-listitems-regulatorTwo").html(template);
     }else{
       template += `
-        <li class="cont-modalbootstrap__form--controlSelect--m--item">No se enconraron datos</li>
+        <li class="cont-modalbootstrap__form--controlSelect--m--item">No se encontraron datos</li>
       `;
 
       $("#c-listitems-regulatorTwo").html(template);
@@ -147,6 +160,35 @@ $(document).on("click", "#c-listitems-regulatorTwo .cont-modalbootstrap__form--c
   $("#SelectedItem-inputfakeselRegTwo").attr("regulartwo", $(this).attr("regulartwo"));
   $("#SelectedItem-inputfakeselRegTwo").attr("idtregulartwo", $(this).attr("id"));
 });
+/*==================================================
+=            MONTO ADICIONAL - PRODUCTO            =
+==================================================*/
+/************************** MOSTRAR/OCULTAR DE ACUERDO AL CHECKBOX SELECCIONADO - MONTO ADICIONAL **************************/
+$(document).on("click", ".cont-modalbootstrap__form--controlRadios--c--control--input[name=sel-addornotadd]", function(){
+  if($(this).attr("id") == "noun-required-amountadditional"){
+    $("#sel-optsAmountAdditionalMore").html("");
+  }else{
+    $("#sel-optsAmountAdditionalMore").html(`
+      <div class="cont-modalbootstrap__form--control">
+        <label for="amountadditionalProduct" class="cont-modalbootstrap__form--control__label">Precio adicional</label>
+        <input id="amountadditionalProduct" class="cont-modalbootstrap__form--control__input" name="amountadditionalProduct" type="number" maxlength="300" placeholder="Ingrese el monto del producto">
+        <span id="msgErrNounAmountAdditionalProduct"></span>
+      </div>
+    `);
+  }
+});
+/************************** VALIDAR SI EL MONTO ESTÁ VACÍO **************************/
+$(document).on("keyup", "#amountadditionalProduct", function(){
+  ($(this).val() != 0) ? $("#msgErrNounAmountAdditionalProduct").text("") : $("#msgErrNounAmountAdditionalProduct").text("Debe colocar un monto");
+});
+/************************** VALIDAR SI ESTÁ MARCADO EL RADIOBUTTON - IZQUIERDA **************************/
+$(document).on("click", "#required-amountadditional", function(){
+  ($(this).is(':checked')) ? $("#msgErrNounWithOrNotAmountAdditional").text("") : $("#msgErrNounWithOrNotAmountAdditional").text("Debes marcar una opción");
+});
+/************************** VALIDAR SI ESTÁ MARCADO EL RADIOBUTTON - DERECHA **************************/
+$(document).on("click", "#noun-required-amountadditional", function(){
+  ($(this).is(':checked')) ? $("#msgErrNounWithOrNotAmountAdditional").text("") : $("#msgErrNounWithOrNotAmountAdditional").text("Debes marcar una opción");
+});
 /************************** AGREGAR REGULADOR **************************/
 $(document).on('submit', '#form-add-product', function(e){
   e.preventDefault();
@@ -155,17 +197,20 @@ $(document).on('submit', '#form-add-product', function(e){
   ($("#SelectedItem-inputfakeselRegOne").attr("idtregularOne")) ? $("#msgErrNounReguladorOne").text("") : $("#msgErrNounReguladorOne").text("Debe seleccionar un regulador");
   ($("#SelectedItem-inputfakeselRegTwo").attr("idtregulartwo")) ? $("#msgErrNounReguladorTwo").text("") : $("#msgErrNounReguladorTwo").text("Debe seleccionar un regulador");
   ($("#required-reg").is(":checked") || $("#noun-required-reg").is(":checked")) ? $("#msgErrNounWithOrNotRegulator").text("") : $("#msgErrNounWithOrNotRegulator").text("Debe marcar una opción"); 
+  ($("#required-amountadditional").is(":checked") || $("#noun-required-amountadditional").is(":checked")) ? $("#msgErrNounWithOrNotAmountAdditional").text("") : $("#msgErrNounWithOrNotAmountAdditional").text("Debe marcar una opción"); 
 
-  if($("#required-reg").is(":checked")){
-    if($("#SelectedItem-inputfakeselRegOne").attr("idtregularOne") &&
-       $("#SelectedItem-inputfakeselRegOne").attr("regularone") &&
-       $("#nameProduct").val() != 0 && $("#required-reg").is(":checked")){
+  if($("#nameProduct").val() != 0 && $("#required-reg").is(":checked") && $("#required-amountadditional").is(":checked")){
+    ($("#amountadditionalProduct").val() != 0 || $("#amountadditionalProduct").val() != "") ? $("#msgErrNounAmountAdditionalProduct").text("") : $("#msgErrNounAmountAdditionalProduct").text("Debe colocar un monto");
+    if($("#SelectedItem-inputfakeselRegOne").attr("idtregularOne") && 
+      $("#SelectedItem-inputfakeselRegOne").attr("regularone") &&
+      $("#amountadditionalProduct").val() != 0 && $("#amountadditionalProduct").val() != ""){
+      
       var formdata = new FormData();
-
       formdata.append("name", $("#nameProduct").val());
       formdata.append("regulate", $("#required-reg").parent().find("span").text());
       formdata.append("id_regulatorone", $("#SelectedItem-inputfakeselRegOne").attr("idtregularOne"));
       formdata.append("id_regulatortwo", $("#SelectedItem-inputfakeselRegTwo").attr("idtregulartwo"));
+      formdata.append("amount_additional", $("#amountadditionalProduct").val());
 
       $.ajax({
         url: "../admin/controllers/c_add-products.php",
@@ -178,21 +223,28 @@ $(document).on('submit', '#form-add-product', function(e){
         if(res == "true"){
           $('#form-add-product')[0].reset();
           $("#sel-optsRegulatorsMore").html("");
+          $("#sel-optsAmountAdditionalMore").html("");
           listProducts();
           $('#addproductModal').modal("hide");
         }else{
           console.log('Lo sentimos, ocurrió un error al agregar el registro');
         }
       });
+
     }else{
       console.log("Falta rellenar los campos");
     }
-  }else{
-    if($("#nameProduct").val() != 0 && $("#noun-required-reg").is(":checked")){
-      var formdata = new FormData();
+  }else if($("#nameProduct").val() != 0 && $("#required-reg").is(":checked") && $("#noun-required-amountadditional").is(":checked")){
 
+    if($("#SelectedItem-inputfakeselRegOne").attr("idtregularOne") && 
+      $("#SelectedItem-inputfakeselRegOne").attr("regularone")){
+      
+      var formdata = new FormData();
       formdata.append("name", $("#nameProduct").val());
-      formdata.append("regulate", $("#noun-required-reg").parent().find("span").text());
+      formdata.append("regulate", $("#required-reg").parent().find("span").text());
+      formdata.append("id_regulatorone", $("#SelectedItem-inputfakeselRegOne").attr("idtregularOne"));
+      formdata.append("id_regulatortwo", $("#SelectedItem-inputfakeselRegTwo").attr("idtregulartwo"));
+      formdata.append("amount_additional", 0.00);
 
       $.ajax({
         url: "../admin/controllers/c_add-products.php",
@@ -204,15 +256,74 @@ $(document).on('submit', '#form-add-product', function(e){
       }).done((res) => {
         if(res == "true"){
           $('#form-add-product')[0].reset();
+          $("#sel-optsRegulatorsMore").html("");
+          $("#sel-optsAmountAdditionalMore").html("");
           listProducts();
           $('#addproductModal').modal("hide");
         }else{
           console.log('Lo sentimos, ocurrió un error al agregar el registro');
         }
       });
+
     }else{
-      console.log("Falta rellenar los campos");
+      console.log("Falta rellenar los campos");      
     }
+  }else if($("#nameProduct").val() != 0 && $("#noun-required-reg").is(":checked") && $("#required-amountadditional").is(":checked")){
+      
+    if($("#amountadditionalProduct").val() != 0 || $("#amountadditionalProduct").val() != ""){
+      $("#msgErrNounAmountAdditionalProduct").text("");
+
+      var formdata = new FormData();
+      formdata.append("name", $("#nameProduct").val());
+      formdata.append("regulate", $("#noun-required-reg").parent().find("span").text());
+      formdata.append("amount_additional", $("#amountadditionalProduct").val());
+
+      $.ajax({
+        url: "../admin/controllers/c_add-products.php",
+        method: "POST",
+        data: formdata,
+        contentType: false,
+        cache: false,
+        processData: false,
+      }).done((res) => {
+        if(res == "true"){
+          $('#form-add-product')[0].reset();
+          $("#sel-optsAmountAdditionalMore").html("");
+          listProducts();
+          $('#addproductModal').modal("hide");
+        }else{
+          console.log('Lo sentimos, ocurrió un error al agregar el registro');
+        }
+      });
+
+    }else{
+      $("#msgErrNounAmountAdditionalProduct").text("Debe colocar un monto");
+    }
+
+  }else if($("#nameProduct").val() != 0 && $("#noun-required-reg").is(":checked") && $("#noun-required-amountadditional").is(":checked")){
+    var formdata = new FormData();
+    formdata.append("name", $("#nameProduct").val());
+    formdata.append("regulate", $("#noun-required-reg").parent().find("span").text());
+    formdata.append("amount_additional", 0.00);
+
+    $.ajax({
+      url: "../admin/controllers/c_add-products.php",
+      method: "POST",
+      data: formdata,
+      contentType: false,
+      cache: false,
+      processData: false,
+    }).done((res) => {
+      if(res == "true"){
+        $('#form-add-product')[0].reset();
+        listProducts();
+        $('#addproductModal').modal("hide");
+      }else{
+        console.log('Lo sentimos, ocurrió un error al agregar el registro');
+      }
+    });
+  }else{
+    console.log("Falta rellenar los campos");
   }
 
 });
@@ -362,7 +473,7 @@ $(document).on("click", "#btn-FakeListRegulatorOneUpdate", function(){
       $("#c-listitems-regulatorOneUpdate").html(template);
     }else{
       template += `
-        <li class="cont-modalbootstrapupdate__form--controlSelect--m--item">No se enconraron datos</li>
+        <li class="cont-modalbootstrapupdate__form--controlSelect--m--item">No se encontraron datos</li>
       `;
 
       $("#c-listitems-regulatorOneUpdate").html(template);
@@ -400,7 +511,7 @@ $(document).on("click", "#btn-FakeListRegulatorTwoUpdate", function(){
       $("#c-listitems-regulatorTwoUpdate").html(template);
     }else{
       template += `
-        <li class="cont-modalbootstrapupdate__form--controlSelect--m--item">No se enconraron datos</li>
+        <li class="cont-modalbootstrapupdate__form--controlSelect--m--item">No se encontraron datos</li>
       `;
 
       $("#c-listitems-regulatorTwoUpdate").html(template);
