@@ -934,8 +934,14 @@
 							margin-bottom: 1.2rem;
 							position: relative;
 
-							/* MENSAJE DE ALERTA  - NOMBRE DE BANCO*/
+							/* MENSAJE DE ALERTA  - NOMBRE DE REGULADOR */
 							#msgErrNounNombBank-update{
+								color: red;
+								padding-left: 0.65rem;
+							}
+
+							/* MENSAJE DE ALERTA - MONTO DE PRODUCTO */
+							#msgErrNounAmountAdditionalProductUpdate{
 								color: red;
 								padding-left: 0.65rem;
 							}

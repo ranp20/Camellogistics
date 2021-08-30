@@ -37,6 +37,7 @@
 									<th>Regula</th>
 									<th>Regulador 1</th>
 									<th>Regulador 2</th>
+									<th>M. Adicional</th>
 									<th></th>
 									<th></th>
 								</tr>
@@ -127,6 +128,8 @@
 					      	<div class="cont-modalbootstrapupdate">
 						        <form id="form-update-product" method="POST" class="cont-modalbootstrapupdate__form" autocomplete="false">
 						        	<input type="hidden" id="idupdate-product">
+						        	<!--<input type="hidden" id="idupdate-regulatorone" name="idupdate-regulatorone">
+						        	<input type="hidden" id="idupdate-regulatortwo" name="idupdate-regulatortwo">-->
 						        	<div class="cont-modalbootstrapupdate__form--control">
 						        		<label for="name-update" class="cont-modalbootstrapupdate__form--control__label complete">Nombre del producto</label>
 						        		<input id="name-update" class="cont-modalbootstrapupdate__form--control__input" name="name-update" type="text" maxlength="300" placeholder="Ingrese el nombre del producto">
@@ -173,6 +176,21 @@
 									        <span id="msgErrNounReguladorTwoUpdate"></span>
 									      </div>
 						        	</div>
+						        	<div class="cont-modalbootstrapupdate__form--controlRadios">
+						        		<p class="cont-modalbootstrapupdate__form--controlRadios--title">Monto adicional del Producto</p>
+						        		<div class="cont-modalbootstrapupdate__form--controlRadios--c">
+							        		<label for="required-amountadditionalupdate" class="cont-modalbootstrapupdate__form--controlRadios--c--control">
+							        			<input type="radio" id="required-amountadditionalupdate" name="sel-addornotaddupdate" class="cont-modalbootstrapupdate__form--controlRadios--c--control--input">
+							        			<span class="cont-modalbootstrapupdate__form--controlRadios--c--control--fakelabel">SI</span>
+							        		</label>
+							        		<label for="noun-required-amountadditionalupdate" class="cont-modalbootstrapupdate__form--controlRadios--c--control">
+							        			<input type="radio" id="noun-required-amountadditionalupdate" name="sel-addornotaddupdate" class="cont-modalbootstrapupdate__form--controlRadios--c--control--input">
+							        			<span class="cont-modalbootstrapupdate__form--controlRadios--c--control--fakelabel">NO</span>
+							        		</label>
+						        		</div>
+						        		<span id="msgErrNounWithOrNotAmountAdditional"></span>
+						        	</div>
+						        	<div id="sel-optsAmountAdditionalMoreUpdate"></div>
 								      <div class="cont-modalbootstrapupdate__footer">
 								        <button type="button" class="cont-modalbootstrapupdate__footer--btncancel" data-dismiss="modal">CANCELAR</button>
 								        <button type="submit" class="cont-modalbootstrapupdate__footer--btnupdate" id="btnupdate-product">GUARDAR</button>

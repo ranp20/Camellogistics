@@ -163,7 +163,7 @@ $(document).on("click", "#c-listitems-regulatorTwo .cont-modalbootstrap__form--c
 /*==================================================
 =            MONTO ADICIONAL - PRODUCTO            =
 ==================================================*/
-/************************** MOSTRAR/OCULTAR DE ACUERDO AL CHECKBOX SELECCIONADO - MONTO ADICIONAL **************************/
+/************************** MOSTRAR/OCULTAR DE ACUERDO AL CHECKBOX SELECCIONADO - MONTO ADICIONAL(AGREGAR) **************************/
 $(document).on("click", ".cont-modalbootstrap__form--controlRadios--c--control--input[name=sel-addornotadd]", function(){
   if($(this).attr("id") == "noun-required-amountadditional"){
     $("#sel-optsAmountAdditionalMore").html("");
@@ -173,6 +173,20 @@ $(document).on("click", ".cont-modalbootstrap__form--controlRadios--c--control--
         <label for="amountadditionalProduct" class="cont-modalbootstrap__form--control__label">Precio adicional</label>
         <input id="amountadditionalProduct" class="cont-modalbootstrap__form--control__input" name="amountadditionalProduct" type="number" maxlength="300" placeholder="Ingrese el monto del producto">
         <span id="msgErrNounAmountAdditionalProduct"></span>
+      </div>
+    `);
+  }
+});
+/************************** MOSTRAR/OCULTAR DE ACUERDO AL CHECKBOX SELECCIONADO - MONTO ADICIONAL(ACTUALIZAR) **************************/
+$(document).on("click", ".cont-modalbootstrapupdate__form--controlRadios--c--control--input[name=sel-addornotaddupdate]", function(){
+  if($(this).attr("id") == "noun-required-amountadditionalupdate"){
+    $("#sel-optsAmountAdditionalMoreUpdate").html("");
+  }else{
+    $("#sel-optsAmountAdditionalMoreUpdate").html(`
+      <div class="cont-modalbootstrapupdate__form--control">
+        <label for="amountadditionalProduct-update" class="cont-modalbootstrapupdate__form--control__label">Precio adicional</label>
+        <input id="amountadditionalProduct-update" class="cont-modalbootstrapupdate__form--control__input" name="amountadditionalProduct-update" type="number" maxlength="300" placeholder="Ingrese el monto del producto">
+        <span id="msgErrNounAmountAdditionalProductUpdate"></span>
       </div>
     `);
   }
@@ -368,6 +382,7 @@ function listProducts(searchVal){
           <td class='center'>${e.regulated}</td>
           <td>${nounRegOne}</td>
           <td>${nounRegTwo}</td>
+          <td>${e.montoadd}</td>
           <td class="cont-btn-update">
             <a class="btn-update-product" data-toggle="modal" data-target="#updateModal"  href="#" 
               data-id="${e.id_prod}"
@@ -377,6 +392,7 @@ function listProducts(searchVal){
               data-idregulatortwo="${e.id_regulator_two}"
               data-regulatorone="${nounRegOne}"
               data-regulatortwo="${nounRegTwo}"
+              data-amountadditional="${e.montoadd}"
               >Editar</a>
           </td>
           <td class="cont-btn-delete" id="cont-btn-delete">
@@ -414,7 +430,8 @@ $(document).on('click', '.btn-update-product', function(e){
       idregulator: $(this).attr('data-idregulator'),
       idregulatortwo: $(this).attr('data-idregulatortwo'),
       regulatorone: $(this).attr('data-regulatorone'),
-      regulatortwo: $(this).attr('data-regulatortwo')
+      regulatortwo: $(this).attr('data-regulatortwo'),
+      amountadditional: $(this).attr('data-amountadditional')
     };
     if(item_data['regulated'] == "NO"){
       $("#sel-optsRegulatorsMoreUpdate").addClass("hidden");
@@ -428,7 +445,6 @@ $(document).on('click', '.btn-update-product', function(e){
       ($("#required-reg").attr("checked")) ? $("#required-reg").attr("checked", true) : $("#noun-required-reg").attr("checked", false);
     }
 
-
     $('#idupdate-product').val(item_data['id']);
     $('#name-update').val(item_data['name']);
     $('#SelectedItem-inputfakeselRegOneUpdate').attr("idtregularone", item_data['idregulator']);
@@ -437,6 +453,20 @@ $(document).on('click', '.btn-update-product', function(e){
     $('#SelectedItem-inputfakeselRegTwoUpdate').attr("regulartwo", item_data['regulatortwo']);
     $("#selectedItem-fakeSelRegOneUpdate").text(item_data['regulatorone']);
     $("#selectedItem-fakeSelRegTwoUpdate").text(item_data['regulatortwo']);
+    //$("#idupdate-regulatorone").val(item_data['idregulator']);
+    //$("#idupdate-regulatortwo").val(item_data['idregulatortwo']);
+
+    if(item_data['amountadditional'] > 0 || item_data['amountadditional'] != 0.00){
+      $("#sel-optsAmountAdditionalMoreUpdate").html(`
+        <div class="cont-modalbootstrapupdate__form--control">
+          <label for="amountadditionalProduct-update" class="cont-modalbootstrapupdate__form--control__label">Precio adicional</label>
+          <input id="amountadditionalProduct-update" class="cont-modalbootstrapupdate__form--control__input" name="amountadditionalProduct-update" type="number" maxlength="300" placeholder="Ingrese el monto del producto" value="${item_data['amountadditional']}">
+          <span id="msgErrNounAmountAdditionalProductUpdate"></span>
+        </div>
+      `);
+    }else{
+      $("#sel-optsAmountAdditionalMoreUpdate").html("");
+    }
   });
 });
 /************************** MOSTRAR/OCULTAR DATOS EN EL MODAL **************************/
@@ -528,40 +558,64 @@ $(document).on("click", "#c-listitems-regulatorTwoUpdate .cont-modalbootstrapupd
   $("#SelectedItem-inputfakeselRegTwoUpdate").attr("idtregulartwo", $(this).attr("id"));
 });
 /************************** ACTUALIZAR PRODUCTO POR ID **************************/
-$(document).on('click', '#btnupdate-product', function(e){
+$(document).on('submit', '#form-update-product', function(e){
   e.preventDefault();
 
-  var stateRegulated = "";
-  if($("#required-reg").is(":checked")){
-    stateRegulated = $("#required-reg").parent().find("span").text();
+  if($('#idupdate-product').val() != 0 || $('#idupdate-product').val() != ""){
+    
+    //var stateRegulated = "";
+    //($("#required-reg").is(":checked")) ? stateRegulated = $("#required-reg").parent().find("span").text() : stateRegulated = $("#noun-required-reg").parent().find("span").text();
+    
+    if($("#noun-required-regupdate").is(":checked")){
+      
+      var formdata = new FormData();
+      formdata.append("name", $('#name-update').val());
+      formdata.append("regulated", "NO");
+      formdata.append("id_regulator", 0);
+      formdata.append("id_regulatortwo", 0);
+      formdata.append("amount_additional", $("#amountadditionalProduct-update").val());
+      formdata.append("id", $('#idupdate-product').val());
+
+      $.ajax({
+        url: "../admin/controllers/c_update-product.php",
+        method: "POST",
+        data: formdata,
+        contentType: false,
+        cache: false,
+        processData: false
+      }).done((res) => {
+        console.log(res);
+        listProducts();
+        $('#updateModal').modal("hide");
+      });
+
+    }else{
+
+      var formdata = new FormData();
+      formdata.append("name", $('#name-update').val());
+      formdata.append("regulated", "SI");
+      formdata.append("id_regulator", $("#SelectedItem-inputfakeselRegOneUpdate").attr("idtregularone"));
+      formdata.append("id_regulatortwo", $("#SelectedItem-inputfakeselRegTwoUpdate").attr("idtregulartwo"));
+      formdata.append("amount_additional", $("#amountadditionalProduct-update").val());
+      formdata.append("id", $('#idupdate-product').val());
+
+      $.ajax({
+        url: "../admin/controllers/c_update-product.php",
+        method: "POST",
+        data: formdata,
+        contentType: false,
+        cache: false,
+        processData: false
+      }).done((res) => {
+        console.log(res);
+        listProducts();
+        $('#updateModal').modal("hide");
+      });
+    }
   }else{
-    $("#SelectedItem-inputfakeselRegOneUpdate").attr("idtregularone", 0);
-    $("#SelectedItem-inputfakeselRegOneUpdate").removeAttr("regularone");
-    $("#SelectedItem-inputfakeselRegTwoUpdate").attr("idtregulartwo", 0);
-    $("#SelectedItem-inputfakeselRegTwoUpdate").removeAttr("regulartwo");
-    stateRegulated = $("#noun-required-reg").parent().find("span").text();
+    console.log('Falta rellenar los campos');
   }
-  
-  var formdata = new FormData();
 
-  formdata.append("name", $('#name-update').val());
-  formdata.append("regulated", stateRegulated);
-  formdata.append("id_regulator", $("#SelectedItem-inputfakeselRegOneUpdate").attr("idtregularone"));
-  formdata.append("id_regulatortwo", $("#SelectedItem-inputfakeselRegTwoUpdate").attr("idtregulartwo"));
-  formdata.append("id", $('#idupdate-product').val());
-
-  $.ajax({
-    url: "../admin/controllers/c_update-product.php",
-    method: "POST",
-    data: formdata,
-    contentType: false,
-    cache: false,
-    processData: false
-  }).done((res) => {
-    console.log(res);
-    listProducts();
-    $('#updateModal').modal("hide");
-  });
 });
 /************************** LISTAR ID EN EL MODAL - ELIMINAR **************************/
 $(document).on('click', '.btn-delete-product', function(e){

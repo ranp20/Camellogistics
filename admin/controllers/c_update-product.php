@@ -7,13 +7,14 @@ class Update_Product extends Connection{
 			"regulated" => $_POST['regulated'],
 			"id_regulator" => $_POST['id_regulator'],
 			"id_regulator_two" => $_POST['id_regulatortwo'],
+			"amount_additional" => ($_POST['amount_additional'] == 'undefined') ? 0 : $_POST['amount_additional'],
 			"id" => $_POST['id']
 		];
 
 		try{
-			$sql = "CALL sp_update_product(:name, :regulated, :id_regulator, :id_regulator_two, :id)";
+			$sql = "CALL sp_update_product(:name, :regulated, :id_regulator, :id_regulator_two, :amount_additional, :id)";
 			$stm = $this->con->prepare($sql);
-			foreach ($arr_product as $key => $value) {
+			foreach ($arr_product as $key => $value){
 				$stm->bindValue($key, $value);
 			}
 			$stm->execute();
