@@ -1178,6 +1178,7 @@ $(document).on("click", "#list-SelOptionResultExp a", function(){
               </div>
             </div>
           </div>
+          <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC" id="ipt-valCantOfAmountAdditional"></div>
           <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC">
             <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl">
               <label for="" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl--label">VALOR</label>
@@ -1854,7 +1855,7 @@ function listProductsUser(searchVal){
         nounOneAndTwoRegs = e.reguladorOne + " / " + e.reguladorTwo;
       }
       template += `
-        <li class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl--cListChange--m--item" id="${e.id_prod}">
+        <li class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl--cListChange--m--item" id="${e.id_prod}" data-amountadditional="${e.montoadd}">
           <p>${e.name_prod}</p>
           <small>
             <span>Regulador: </span>
@@ -1862,6 +1863,7 @@ function listProductsUser(searchVal){
           </small>
         </li>
       `;
+
       });
       $("#m-listAllNamTypeProds").html(template);
     }
@@ -1901,9 +1903,38 @@ $(document).on("click", ".cont-MainCamelLog--c--contSteps--item--cStep--mFrmIpts
   $("#m-listAllNamTypeProds").removeClass("show");
   $("#ipt-valNameTypeProdNInterface").attr("idproduct", $(this).attr("id"));
   $("#ipt-valNameTypeProdNInterface").val($(this).find("p").text());
+  /************************** MOSTRAR/OCULTAR DE ACUERDO A EL VALOR DEL MONTO ADICIONAL **************************/
+  if($(this).attr("data-amountadditional") != 0 || $(this).attr("data-amountadditional") != 0.00){
+    $("#ipt-valCantOfAmountAdditional").html(`
+      <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl">
+        <label for="" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl--label">CANTIDAD</label>
+        <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl--cListChange">
+          <input type="text" id="ipt-valQuantityAmAddProdNInterface" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl--cListChange--input" maxlength="13" autocomplete="off">
+        </div>
+      </div>
+    `);
+  }else{
+    $("#ipt-valCantOfAmountAdditional").html("");
+  }
   /************************** ASIGNAR VALORES DE LOS INPUTS HIDDEN - MERCANCÍA **************************/
   $("#val-categProdquot").val($(this).find("p").text());
   $("#val-reqPermisoProdquot").val($(this).find("small").find("span:nth-child(2)").text());
+});
+/************************** VALIDAR INPUT - CANTIDAD DE PRODUSTOS **************************/
+$(document).on("keyup keypress blur change", "#ipt-valQuantityAmAddProdNInterface", function(e){
+  if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+    return false;
+  }else{
+    /************************** LIMITAR EL MÁXMIMO DE CARACTERES **************************/
+    if( $(this).val().length >= parseInt($(this).attr('maxlength')) && (e.which != 8 && e.which != 0)){
+      return false;
+    }
+  }
+  let value = e.target.value;
+  e.target.value = value.replace(/[^A-Z\d-]/g, "");
+  $(this).val(function(i, v) {
+    return v.replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d)\.?)/g, ".");
+  });
 });
 /************************** VALIDAR INPUT - VALOR DE PRODUCTO IMPORTADO **************************/
 $(document).on("input", "#ipt-valPriceProdNInterface", function(e){
@@ -1981,71 +2012,141 @@ $(document).on("click", "#chck-importpreview", function(){
 });
 /************************** VALIDAR EL BOTÓN DE PASOS SIGUIENTES DESDE - MERCANCÍA **************************/
 $(document).on("click", "#btn-NextStepTomerchandisedata", function(){
-  if($("#ipt-valNameTypeProdNInterface").val() != "" && $("#ipt-valNameTypeProdNInterface").val() != 0 &&
-     $("#ipt-valNameTypeProdNInterface").attr("idproduct") &&
-     $("#ipt-valPriceProdNInterface").val() != "" && $("#ipt-valPriceProdNInterface").val() != 0){
+  
+  if(document.querySelector("#ipt-valCantOfAmountAdditional").contains(document.querySelector("#ipt-valQuantityAmAddProdNInterface"))){
+    console.log('Existe input');
+    if($("#ipt-valNameTypeProdNInterface").val() != "" && $("#ipt-valNameTypeProdNInterface").val() != 0 &&
+       $("#ipt-valNameTypeProdNInterface").attr("idproduct") &&
+       $("#ipt-valQuantityAmAddProdNInterface").val() != 0 && $("#ipt-valQuantityAmAddProdNInterface").val() != "" &&
+       $("#ipt-valPriceProdNInterface").val() != "" && $("#ipt-valPriceProdNInterface").val() != 0){
 
-    /************************** ASIGNAR VALORES DE LOS INPUTS HIDDEN - MERCANCÍA **************************/
-    $("#val-categProdquot").val($("#ipt-valNameTypeProdNInterface").val());
-    $("#val-valProdquot").val($("#ipt-valPriceProdNInterface").val());
-    $("#val-prevImports").val($("#chck-importpreview").parent().attr("switch-CFreeze"));
+      /************************** ASIGNAR VALORES DE LOS INPUTS HIDDEN - MERCANCÍA **************************/
+      $("#val-categProdquot").val($("#ipt-valNameTypeProdNInterface").val());
+      $("#val-valProdquot").val($("#ipt-valPriceProdNInterface").val());
+      $("#val-prevImports").val($("#chck-importpreview").parent().attr("switch-CFreeze"));
 
-    /************************** MOSTRAR EL SIGUIENTE PASO **************************/
-    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-insuremerchandise]").addClass("show");
-    sectionsSteps.moveTo('step-insuremerchandise', 1);
-    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-insuremerchandise]").html(`
-      <div class="cont-MainCamelLog--c--contSteps--item--cTitle">
-        <h3 class="cont-MainCamelLog--c--contSteps--item--cTitle--title">¿Quieres asegurar la mercancía?</h3>
-        <span>
-          <input type="hidden" value="" id="res-insuremerch" name="res-insuremerch">
-        </span>
-      </div>
-      <div class="cont-MainCamelLog--c--contSteps--item--cStep">
-        <ul class="cont-MainCamelLog--c--contSteps--item--cStep--m" id="list-insuremerchandise">
-          <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem">
-            <li class="cont-MainCamelLog--c--contSteps--item--cStep--m--item">
-              <div class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem--cImg">
-                <img src="views/assets/img/steps/insurance.png" alt="" loading="lazy">
-              </div>
-              <p>SÍ</p>
-            </li>
-          </a>
-          <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem">
-            <li class="cont-MainCamelLog--c--contSteps--item--cStep--m--item">
-              <div class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem--cImg">
-                <img src="views/assets/img/steps/no-insurance.png" alt="" loading="lazy">
-              </div>
-              <p>NO</p>
-            </li>
-          </a>
-        </ul>
-      </div>
-    `);
+      /************************** MOSTRAR EL SIGUIENTE PASO **************************/
+      $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-insuremerchandise]").addClass("show");
+      sectionsSteps.moveTo('step-insuremerchandise', 1);
+      $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-insuremerchandise]").html(`
+        <div class="cont-MainCamelLog--c--contSteps--item--cTitle">
+          <h3 class="cont-MainCamelLog--c--contSteps--item--cTitle--title">¿Quieres asegurar la mercancía?</h3>
+          <span>
+            <input type="hidden" value="" id="res-insuremerch" name="res-insuremerch">
+          </span>
+        </div>
+        <div class="cont-MainCamelLog--c--contSteps--item--cStep">
+          <ul class="cont-MainCamelLog--c--contSteps--item--cStep--m" id="list-insuremerchandise">
+            <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem">
+              <li class="cont-MainCamelLog--c--contSteps--item--cStep--m--item">
+                <div class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem--cImg">
+                  <img src="views/assets/img/steps/insurance.png" alt="" loading="lazy">
+                </div>
+                <p>SÍ</p>
+              </li>
+            </a>
+            <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem">
+              <li class="cont-MainCamelLog--c--contSteps--item--cStep--m--item">
+                <div class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem--cImg">
+                  <img src="views/assets/img/steps/no-insurance.png" alt="" loading="lazy">
+                </div>
+                <p>NO</p>
+              </li>
+            </a>
+          </ul>
+        </div>
+      `);
+    }else{
+      /************************** OCULTAR EL SIGUIENTE PASO **************************/
+      $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-insuremerchandise]").removeClass("show");
+      $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-insuremerchandise]").html("");
+      
+      /************************** MOSTRAR EL MENSAJE DE ALERTA PERSONALIZADO **************************/
+      $("#idMessageSteps-prcss").html(`
+        <div class="cntMessageSteps-prcss--cont">
+          <div class="cntMessageSteps-prcss--cont--c">
+            <span class="cntMessageSteps-prcss--cont--c--btnclose" id="btnclose-modalMessage"></span>
+            <h3 class="cntMessageSteps-prcss--cont--c--title">No se han completado los datos de mercancía.</h3>
+            <p class="cntMessageSteps-prcss--cont--c--text">Por favor rellena todos los campos que son necesarios.</p>
+          </div>
+        </div>
+      `)
+      /************************** CERRAR EL MODAL **************************/
+      setTimeout(function(){
+        $("#idMessageSteps-prcss .cntMessageSteps-prcss--cont").remove();
+      }, 6500)
+      $("#btnclose-modalMessage").on("click", function(){
+        $(this).parent().parent().remove();
+      });
+    }
 
   }else{
-    /************************** OCULTAR EL SIGUIENTE PASO **************************/
-    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-insuremerchandise]").removeClass("show");
-    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-insuremerchandise]").html("");
-    
-    /************************** MOSTRAR EL MENSAJE DE ALERTA PERSONALIZADO **************************/
-    $("#idMessageSteps-prcss").html(`
-      <div class="cntMessageSteps-prcss--cont">
-        <div class="cntMessageSteps-prcss--cont--c">
-          <span class="cntMessageSteps-prcss--cont--c--btnclose" id="btnclose-modalMessage"></span>
-          <h3 class="cntMessageSteps-prcss--cont--c--title">No se han completado los datos de mercancía.</h3>
-          <p class="cntMessageSteps-prcss--cont--c--text">Por favor rellena todos los campos que son necesarios.</p>
-        </div>
-      </div>
-    `)
-    /************************** CERRAR EL MODAL **************************/
-    setTimeout(function(){
-      $("#idMessageSteps-prcss .cntMessageSteps-prcss--cont").remove();
-    }, 6500)
-    $("#btnclose-modalMessage").on("click", function(){
-      $(this).parent().parent().remove();
-    });
+    console.log('No existe input');
+    if($("#ipt-valNameTypeProdNInterface").val() != "" && $("#ipt-valNameTypeProdNInterface").val() != 0 &&
+       $("#ipt-valNameTypeProdNInterface").attr("idproduct") &&
+       $("#ipt-valPriceProdNInterface").val() != "" && $("#ipt-valPriceProdNInterface").val() != 0){
 
+      /************************** ASIGNAR VALORES DE LOS INPUTS HIDDEN - MERCANCÍA **************************/
+      $("#val-categProdquot").val($("#ipt-valNameTypeProdNInterface").val());
+      $("#val-valProdquot").val($("#ipt-valPriceProdNInterface").val());
+      $("#val-prevImports").val($("#chck-importpreview").parent().attr("switch-CFreeze"));
+
+      /************************** MOSTRAR EL SIGUIENTE PASO **************************/
+      $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-insuremerchandise]").addClass("show");
+      sectionsSteps.moveTo('step-insuremerchandise', 1);
+      $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-insuremerchandise]").html(`
+        <div class="cont-MainCamelLog--c--contSteps--item--cTitle">
+          <h3 class="cont-MainCamelLog--c--contSteps--item--cTitle--title">¿Quieres asegurar la mercancía?</h3>
+          <span>
+            <input type="hidden" value="" id="res-insuremerch" name="res-insuremerch">
+          </span>
+        </div>
+        <div class="cont-MainCamelLog--c--contSteps--item--cStep">
+          <ul class="cont-MainCamelLog--c--contSteps--item--cStep--m" id="list-insuremerchandise">
+            <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem">
+              <li class="cont-MainCamelLog--c--contSteps--item--cStep--m--item">
+                <div class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem--cImg">
+                  <img src="views/assets/img/steps/insurance.png" alt="" loading="lazy">
+                </div>
+                <p>SÍ</p>
+              </li>
+            </a>
+            <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem">
+              <li class="cont-MainCamelLog--c--contSteps--item--cStep--m--item">
+                <div class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem--cImg">
+                  <img src="views/assets/img/steps/no-insurance.png" alt="" loading="lazy">
+                </div>
+                <p>NO</p>
+              </li>
+            </a>
+          </ul>
+        </div>
+      `);
+    }else{
+      /************************** OCULTAR EL SIGUIENTE PASO **************************/
+      $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-insuremerchandise]").removeClass("show");
+      $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-insuremerchandise]").html("");
+      
+      /************************** MOSTRAR EL MENSAJE DE ALERTA PERSONALIZADO **************************/
+      $("#idMessageSteps-prcss").html(`
+        <div class="cntMessageSteps-prcss--cont">
+          <div class="cntMessageSteps-prcss--cont--c">
+            <span class="cntMessageSteps-prcss--cont--c--btnclose" id="btnclose-modalMessage"></span>
+            <h3 class="cntMessageSteps-prcss--cont--c--title">No se han completado los datos de mercancía.</h3>
+            <p class="cntMessageSteps-prcss--cont--c--text">Por favor rellena todos los campos que son necesarios.</p>
+          </div>
+        </div>
+      `)
+      /************************** CERRAR EL MODAL **************************/
+      setTimeout(function(){
+        $("#idMessageSteps-prcss .cntMessageSteps-prcss--cont").remove();
+      }, 6500)
+      $("#btnclose-modalMessage").on("click", function(){
+        $(this).parent().parent().remove();
+      });
+    }
   }
+
 });
 /*===================================================================================
 =                     7. AGREGAR O NO SEGURO DE MERCANCÍA                           =

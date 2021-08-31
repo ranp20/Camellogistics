@@ -11,7 +11,8 @@ class Products extends Connection{
 								tbp.id_regulator,
 								tbp.id_regulator_two,
 								(SELECT tbr.name FROM tbl_regulators tbr WHERE tbr.id = tbp.id_regulator) as 'reguladorOne',
-								(SELECT tbrtwo.name FROM tbl_regulators tbrtwo WHERE tbrtwo.id = tbp.id_regulator_two) as 'reguladorTwo'
+								(SELECT tbrtwo.name FROM tbl_regulators tbrtwo WHERE tbrtwo.id = tbp.id_regulator_two) as 'reguladorTwo',
+								tbp.amount_additional as 'montoadd'
 							FROM tbl_products tbp
 							ORDER BY tbp.id ASC";
 
@@ -24,7 +25,8 @@ class Products extends Connection{
 									tbp.id_regulator,
 									tbp.id_regulator_two,
 									(SELECT tbr.name FROM tbl_regulators tbr WHERE tbr.id = tbp.id_regulator) as 'reguladorOne',
-									(SELECT tbrtwo.name FROM tbl_regulators tbrtwo WHERE tbrtwo.id = tbp.id_regulator_two) as 'reguladorTwo'
+									(SELECT tbrtwo.name FROM tbl_regulators tbrtwo WHERE tbrtwo.id = tbp.id_regulator_two) as 'reguladorTwo',
+									tbp.amount_additional as 'montoadd'
 								FROM tbl_products tbp
 								WHERE tbp.name LIKE '%".$search."%' OR
 											tbp.regulated LIKE '%".$search."%'
