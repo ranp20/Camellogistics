@@ -12,6 +12,7 @@ $(document).ready(() => {
 
 	/************************** LISTAR LOS VALORES DE CÁLCULO DESDE EL ADMINISTRADOR **************************/
 	//DE OTRA FORMA, CREAR UN CONTROLADOR EN DONDE SE CALCULEN LOS VALORES, ASÍ PROTEGER LOS DATOS...
+	/************************** LISTAR LOS VALORES DE ACUERDO AL TIPO DE CONTENEDOR - LCL/FCL **************************/
 	$.ajax({
 		url: "controllers/list_quotation-values.php",
     method: "POST",
@@ -44,7 +45,8 @@ $(document).ready(() => {
 
 	/************************** LISTAR LOS VALORES DEL FLETE REAL **************************/
 	var totflete = parseFloat(localStorage.getItem("key_v-totalflette"));
-	//console.log(totflete);
+	var amountadditional = localStorage.getItem("key_v-ammountadditional");
+	console.log(amountadditional);
 
 	/************************** CARGAR LOS VALORES E INCLUIRLOS EN EL TEXTO PARA EL BOTÓN DE WHATSAPP **************************/
 	var typeFleteService = $("#m-first-listresume").find("li:first-child").find("div").find("span:nth-child(2)").text(),

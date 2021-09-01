@@ -121,7 +121,10 @@
                   <li class="c-FinalQuotation--contStep--cQuotation--cTop--c--cDetailsQuotation--m--item">
                     <div class="c-FinalQuotation--contStep--cQuotation--cTop--c--cDetailsQuotation--m--item--info">
                       <span>Tipo de Producto</span>
-                      <span><?= (isset($_POST['val-categProdquot'])) ? $_POST['val-categProdquot'] : "No especificado"; ?></span>
+                      <span>
+                        <?= (isset($_POST['val-categProdquot'])) ? $_POST['val-categProdquot'] : "No especificado"; ?>
+                        <?= (isset($_POST['val-quantityProdsAmmAdd']) && $_POST['val-quantityProdsAmmAdd'] != 0 && $_POST['val-quantityProdsAmmAdd'] != "") ? " x ".$_POST['val-quantityProdsAmmAdd'] : ""; ?>
+                        </span>
                     </div>
                   </li>
                   <li class="c-FinalQuotation--contStep--cQuotation--cTop--c--cDetailsQuotation--m--item">

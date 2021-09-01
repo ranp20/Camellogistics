@@ -33,16 +33,34 @@ if(isset($_FILES) && isset($_POST)){
 					$portOrigin = $archivoExcel->getActiveSheet()->getCell('B'.$i)->getCalculatedValue();
 					$portDestiny = $archivoExcel->getActiveSheet()->getCell('C'.$i)->getCalculatedValue();
 					$container = $archivoExcel->getActiveSheet()->getCell('D'.$i)->getCalculatedValue();
-					$amount = $archivoExcel->getActiveSheet()->getCell('E'.$i)->getCalculatedValue();
-					$totalamount = $archivoExcel->getActiveSheet()->getCell('F'.$i)->getCalculatedValue();
-					$naviera = $archivoExcel->getActiveSheet()->getCell('G'.$i)->getCalculatedValue();
-					//$validez = $archivoExcel->getActiveSheet()->getCell('H'.$i)->getCalculatedValue();
-					$cooloder = $archivoExcel->getActiveSheet()->getCell('I'.$i)->getCalculatedValue();
+					$amount_general = $archivoExcel->getActiveSheet()->getCell('E'.$i)->getCalculatedValue();
+					$totalamount_general = $archivoExcel->getActiveSheet()->getCell('F'.$i)->getCalculatedValue();
+					$amount_imo = $archivoExcel->getActiveSheet()->getCell('G'.$i)->getCalculatedValue();
+					$totalamount_imo = $archivoExcel->getActiveSheet()->getCell('H'.$i)->getCalculatedValue();
+					$amount_refrigerado = $archivoExcel->getActiveSheet()->getCell('I'.$i)->getCalculatedValue();
+					$totalamount_refrigerado = $archivoExcel->getActiveSheet()->getCell('J'.$i)->getCalculatedValue();
+					$naviera = $archivoExcel->getActiveSheet()->getCell('K'.$i)->getCalculatedValue();
+					//$validez = $archivoExcel->getActiveSheet()->getCell('L'.$i)->getCalculatedValue();
+					$cooloder = $archivoExcel->getActiveSheet()->getCell('M'.$i)->getCalculatedValue();
 				
-					if($countryOrigin != "" || $portOrigin != "" || $portDestiny != "" || $container != "" || $totalamount != ""){
+					if($countryOrigin != "" || $portOrigin != "" || $portDestiny != "" || $container != "" || $totalamount_general != ""){
 						
 						array_push($arrupdated, 
-						[$countryOrigin, $portOrigin,	$portDestiny,	$container,	$amount,	$totalamount, $naviera, $cooloder]);
+											[
+												$countryOrigin, 
+												$portOrigin,	
+												$portDestiny,	
+												$container,	
+												$amount_general,
+												$totalamount_general,
+												$amount_imo,
+												$totalamount_imo,
+												$amount_refrigerado,
+												$totalamount_refrigerado,
+												$naviera, 
+												$cooloder
+											]
+											);
 
 					}
 				}
@@ -55,10 +73,14 @@ if(isset($_FILES) && isset($_POST)){
 					port_origin = '".$arrupdated[$ilistid][1]."', 
 					port_destiny = '".$arrupdated[$ilistid][2]."', 
 					container = '".$arrupdated[$ilistid][3]."', 
-					monto = '".$arrupdated[$ilistid][4]."', 
-					total = '".$arrupdated[$ilistid][5]."', 
-					naviera = '".$arrupdated[$ilistid][6]."', 
-					cooloder = '".$arrupdated[$ilistid][7]."', 
+					monto_general = '".$arrupdated[$ilistid][4]."', 
+					total_general = '".$arrupdated[$ilistid][5]."',
+					monto_imo = '".$arrupdated[$ilistid][6]."', 
+					total_imo = '".$arrupdated[$ilistid][7]."',
+					monto_refrigerado = '".$arrupdated[$ilistid][8]."', 
+					total_refrigerado = '".$arrupdated[$ilistid][9]."',
+					naviera = '".$arrupdated[$ilistid][10]."', 
+					cooloder = '".$arrupdated[$ilistid][11]."', 
 					validdesde = '".$_POST['validdesdefcl']."', 
 					validhasta = '".$_POST['validhastafcl']."',
 					utility = ".$_POST['utilityfcl']." WHERE id = ".$listids[$ilistid]['id']."";
@@ -133,34 +155,46 @@ if(isset($_FILES) && isset($_POST)){
 					$portOrigin = $archivoExcel->getActiveSheet()->getCell('B'.$i)->getCalculatedValue();
 					$portDestiny = $archivoExcel->getActiveSheet()->getCell('C'.$i)->getCalculatedValue();
 					$container = $archivoExcel->getActiveSheet()->getCell('D'.$i)->getCalculatedValue();
-					$amount = $archivoExcel->getActiveSheet()->getCell('E'.$i)->getCalculatedValue();
-					$totalamount = $archivoExcel->getActiveSheet()->getCell('F'.$i)->getCalculatedValue();
-					$naviera = $archivoExcel->getActiveSheet()->getCell('G'.$i)->getCalculatedValue();
-					//$validez = $archivoExcel->getActiveSheet()->getCell('H'.$i)->getCalculatedValue();
-					$cooloder = $archivoExcel->getActiveSheet()->getCell('I'.$i)->getCalculatedValue();
+					$amount_general = $archivoExcel->getActiveSheet()->getCell('E'.$i)->getCalculatedValue();
+					$totalamount_general = $archivoExcel->getActiveSheet()->getCell('F'.$i)->getCalculatedValue();
+					$amount_imo = $archivoExcel->getActiveSheet()->getCell('G'.$i)->getCalculatedValue();
+					$totalamount_imo = $archivoExcel->getActiveSheet()->getCell('H'.$i)->getCalculatedValue();
+					$amount_refrigerado = $archivoExcel->getActiveSheet()->getCell('I'.$i)->getCalculatedValue();
+					$totalamount_refrigerado = $archivoExcel->getActiveSheet()->getCell('J'.$i)->getCalculatedValue();
+					$naviera = $archivoExcel->getActiveSheet()->getCell('K'.$i)->getCalculatedValue();
+					//$validez = $archivoExcel->getActiveSheet()->getCell('L'.$i)->getCalculatedValue();
+					$cooloder = $archivoExcel->getActiveSheet()->getCell('M'.$i)->getCalculatedValue();
 					
-					if($countryOrigin != "" || $portOrigin != "" || $portDestiny != "" || $container != "" || $totalamount != ""){
+					if($countryOrigin != "" || $portOrigin != "" || $portDestiny != "" || $container != "" || $totalamount_general != ""){
 
 						/************************** INSERTAR LA INFORMACIÓN DE LA HOJA DE CÁLCULO **************************/
 						$sql = "INSERT INTO tbl_rate_fcl(
-						country_origin, 
-						port_origin, 
-						port_destiny, 
-						container, 
-						monto, 
-						total, 
-						naviera, 
-						cooloder, 
-						validdesde, 
-						validhasta, 
+						country_origin,
+						port_origin,
+						port_destiny,
+						container,
+						monto_general,
+						total_general,
+						monto_imo,
+						total_imo,
+						monto_refrigerado,
+						total_refrigerado,
+						naviera,
+						cooloder,
+						validdesde,
+						validhasta,
 						utility) 
 						VALUES 
 						('".$countryOrigin."', 
 						'".$portOrigin."', 
 						'".$portDestiny."',
 						'".$container."', 
-						'".$amount."', 
-						'".$totalamount."', 
+						'".$amount_general."', 
+						'".$totalamount_general."', 
+						'".$amount_imo."', 
+						'".$totalamount_imo."', 
+						'".$amount_refrigerado."', 
+						'".$totalamount_refrigerado."', 
 						'".$naviera."',
 						'".$cooloder."',
 						'".$_POST['validdesdefcl']."', 

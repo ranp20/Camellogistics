@@ -11,14 +11,6 @@ function twodecimals(n) {
 $(document).on("input","input[type=number]",function(e){
 	($(this).val() == "") ? $(this).val() : $(this).val(twodecimals(e.target.value));
 });
-/************************** AÑADIR DOS CEROS DESPUÉS DE UN NÚMERO ENTERO **************************/
-// $(document).on("blur","input[type=number]",function(e){
-//   if($(this).val() - Math.floor($(this).val()) != 0){
-//     $(this).val(e.target.value+".00");
-//   }else{
-//     console.log('Es decimal');
-//   }
-// });
 /************************** LISTAR LOS DATOS **************************/
 function listInsuranceValues(){ 
   $.ajax({

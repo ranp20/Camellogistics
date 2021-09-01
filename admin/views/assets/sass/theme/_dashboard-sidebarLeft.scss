@@ -152,7 +152,6 @@
 			/* PRIMER LISTA DE OPCIONES */
 			&--m{
 				&--item{
-
 				}
 
 				&--link{
@@ -160,11 +159,6 @@
 					display: block;
 					padding: 0.65rem 0.5rem 0.65rem 1.5rem;
     			font-size: .8rem;
-
-					@media (min-width: 768px){
-						padding: .7rem 0.5rem .7rem 1.5rem;
-						font-size: .9rem;
-					}
 
 					&:hover{
 						color: #fff;
@@ -181,8 +175,8 @@
 					svg{
 						vertical-align: middle;
 						color: #fff;
-						width: 23px;
-						height: 23px;
+						width: 22px;
+						height: 22px;
 						margin-right: 0.5rem;
 					}
 

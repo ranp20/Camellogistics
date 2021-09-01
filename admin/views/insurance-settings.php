@@ -53,7 +53,7 @@
 						        		<input id="dataname-update" class="cont-modalbootstrapupdate__form--control__input" name="dataname-update" type="text" maxlength="300" placeholder="Ingrese el nombre del valor">
 						        	</div>
 						        	<div class="cont-modalbootstrapupdate__form--control">
-						        		<label for="datavalue-update" class="cont-modalbootstrapupdate__form--control__label complete">Precio del Seguro</label>
+						        		<label for="datavalue-update" class="cont-modalbootstrapupdate__form--control__label complete">Porcentaje del Seguro (%)</label>
 						        		<input id="datavalue-update" class="cont-modalbootstrapupdate__form--control__input" name="datavalue-update" type="number" maxlength="300" placeholder="Ingrese el precio del seguro">
 						        	</div>
 								      <div class="cont-modalbootstrapupdate__footer">

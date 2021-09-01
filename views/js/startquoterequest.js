@@ -44,6 +44,12 @@ function ChangesSibblingsLinks(){
 function roundToTwo(num){    
   return +(Math.round(num + "e+2")  + "e-2");
 }
+/************************** FUNCIÓN - LIMITAR A DOS DECIMALES SIN REDONDEO **************************/
+function twodecimals(n) {
+  let t = n.toString();
+  let regex = /(\d*.\d{0,2})/;
+  return t.match(regex)[0];
+}
 /************************** PLUGIN - FULLPAGE.JS **************************/
 const sectionsSteps = new fullpage('#fullpage', {
   anchors:['step-typeoperation',
@@ -199,7 +205,6 @@ $(document).on("click", "#list-typeOperationItems a", function(){
 =            									3. ELEGIR EL TIPO DE CARGA            									  =
 =========================================================================================*/
 $(document).on("click", "#list-typeChargeLoadItems a", function(){
-	$(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-qcontainers]").addClass("show");
 	var tTypeChargeLoad = $(this).index();
 	if(tTypeChargeLoad == 0){
     localStorage.setItem("key_v-totalflette", 0);
@@ -238,6 +243,7 @@ $(document).on("click", "#list-typeChargeLoadItems a", function(){
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-pickuplocation]").html("");
 
     /************************** MOSTRAR EL SIGUIENTE PASO **************************/
+	  $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-qcontainers]").addClass("show");
 		sectionsSteps.moveTo('step-qcontainers', 1);
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-qcontainers]").html(`
 			<div class="cont-MainCamelLog--c--contSteps--item--cTitle">
@@ -1165,6 +1171,7 @@ $(document).on("click", "#list-SelOptionResultExp a", function(){
           <input type="hidden" value="" id="val-reqPermisoProdquot" name="val-reqPermisoProdquot">
           <input type="hidden" value="" id="val-valProdquot" name="val-valProdquot">
           <input type="hidden" value="NO" id="val-prevImports" name="val-prevImports">
+          <input type="hidden" value="" id="val-quantityProdsAmmAdd" name="val-quantityProdsAmmAdd">
         </span>
       </div>
       <div class="cont-MainCamelLog--c--contSteps--item--cStep">
@@ -1920,7 +1927,7 @@ $(document).on("click", ".cont-MainCamelLog--c--contSteps--item--cStep--mFrmIpts
   $("#val-categProdquot").val($(this).find("p").text());
   $("#val-reqPermisoProdquot").val($(this).find("small").find("span:nth-child(2)").text());
 });
-/************************** VALIDAR INPUT - CANTIDAD DE PRODUSTOS **************************/
+/************************** VALIDAR INPUT - CANTIDAD DE PRODUCTOS CON MONTO ADICIONAL **************************/
 $(document).on("keyup keypress blur change", "#ipt-valQuantityAmAddProdNInterface", function(e){
   if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
     return false;
@@ -1935,6 +1942,9 @@ $(document).on("keyup keypress blur change", "#ipt-valQuantityAmAddProdNInterfac
   $(this).val(function(i, v) {
     return v.replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d)\.?)/g, ".");
   });
+  /************************** AGREGAR AL INPUT DE ENVÍO POST Y AGREGAR A LA VARIABLE LOCAL **************************/
+  $("#val-quantityProdsAmmAdd").val(e.target.value);
+  localStorage.setItem("key_v-ammountadditional", e.target.value);
 });
 /************************** VALIDAR INPUT - VALOR DE PRODUCTO IMPORTADO **************************/
 $(document).on("input", "#ipt-valPriceProdNInterface", function(e){
@@ -1954,7 +1964,8 @@ $(document).on("input", "#ipt-valPriceProdNInterface", function(e){
   });
   /************************** ASIGNAR VALORES DE LOS INPUTS HIDDEN - MERCANCÍA **************************/
   $("#val-valProdquot").val($(this).val());
-
+  /************************** ASIGNAR A LA VARIABLE LOCAL **************************/
+  localStorage.setItem("key_v-valueproduct", $(this).val());
   if(e.target.value == "" || e.target.value == 0){
     /************************** OCULTAR EL SIGUIENTE PASO **************************/
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-insuremerchandise]").removeClass("show");
@@ -1965,6 +1976,46 @@ $(document).on("input", "#ipt-valPriceProdNInterface", function(e){
   }else{
     //console.log("Campo completado");
   }
+
+  /************************** CALCULAR DE ACUERDO A SI SELECCIONÓ SEGURO O NO **************************/
+  // $.ajax({
+  //   url: "controllers/list_insurancevalues.php",
+  //   method: "POST",
+  //   datatype: "JSON",
+  //   contentType: 'application/x-www-form-urlencoded;charset=UTF-8'
+  // }).done((e) => {
+  //   var thisresutlinsurance = JSON.parse(e);
+  //   var thisvalfobproduct = $(this).val();
+  //   var thiscutefobprice = thisvalfobproduct.split(" USD");
+  //   var thiswithoutpointsfob = thiscutefobprice[0].replace(/\./g, '');
+  //   var thisfinalvaluefob = twodecimals(thiswithoutpointsfob);
+    
+  //   var thisvalorfinalseguro = 0;
+  //   if($("#res-insuremerch").val() != "NO"){
+  //     //console.log(thisfinalvaluefob);
+  //     if(thisfinalvaluefob > 25000){
+  //       /************************** ASIGNAR AL VALOR DE LA VARIABLE LOCAL **************************/
+  //       thisvalorfinalseguro = (thisfinalvaluefob * thisresutlinsurance[1].data_value) / 100;
+  //       localStorage.setItem("key_v-valueinsurance", roundToTwo(thisvalorfinalseguro));
+  //     }else{
+  //       ************************* ASIGNAR AL VALOR DE LA VARIABLE LOCAL *************************
+  //       thisvalorfinalseguro = (thisfinalvaluefob * thisresutlinsurance[0].data_value) / 100;
+  //       localStorage.setItem("key_v-valueinsurance", roundToTwo(thisvalorfinalseguro));
+  //     }
+
+  //   }else{
+  //     //sasdsa
+  //     if(thisfinalvaluefob > 25000){
+  //       /************************** ASIGNAR AL VALOR DE LA VARIABLE LOCAL **************************/
+  //       thisvalorfinalseguro = (thisfinalvaluefob * thisresutlinsurance[0].data_value) / 100;
+  //       localStorage.setItem("key_v-valueinsurance", roundToTwo(thisvalorfinalseguro));
+  //     }else{
+  //       /************************** ASIGNAR AL VALOR DE LA VARIABLE LOCAL **************************/
+  //       thisvalorfinalseguro = (thisfinalvaluefob * thisresutlinsurance[0].data_value) / 100;
+  //       localStorage.setItem("key_v-valueinsurance", roundToTwo(thisvalorfinalseguro));
+  //     }
+  //   }
+  // });
 });
 /************************** VALIDAR SI HAY ALGÚN VALOR EN EL CONTROL - VALOR DE PRODUCTO IMPORTADO **************************/
 $(document).on("change input keyup", "#ipt-valPriceProdNInterface", function(e){
@@ -2014,7 +2065,7 @@ $(document).on("click", "#chck-importpreview", function(){
 $(document).on("click", "#btn-NextStepTomerchandisedata", function(){
   
   if(document.querySelector("#ipt-valCantOfAmountAdditional").contains(document.querySelector("#ipt-valQuantityAmAddProdNInterface"))){
-    console.log('Existe input');
+    //console.log('Existe input');
     if($("#ipt-valNameTypeProdNInterface").val() != "" && $("#ipt-valNameTypeProdNInterface").val() != 0 &&
        $("#ipt-valNameTypeProdNInterface").attr("idproduct") &&
        $("#ipt-valQuantityAmAddProdNInterface").val() != 0 && $("#ipt-valQuantityAmAddProdNInterface").val() != "" &&
@@ -2033,6 +2084,7 @@ $(document).on("click", "#btn-NextStepTomerchandisedata", function(){
           <h3 class="cont-MainCamelLog--c--contSteps--item--cTitle--title">¿Quieres asegurar la mercancía?</h3>
           <span>
             <input type="hidden" value="" id="res-insuremerch" name="res-insuremerch">
+            <input type="hidden" value="" id="res-insurancevaluet" name="res-insurancevaluet">
           </span>
         </div>
         <div class="cont-MainCamelLog--c--contSteps--item--cStep">
@@ -2081,7 +2133,7 @@ $(document).on("click", "#btn-NextStepTomerchandisedata", function(){
     }
 
   }else{
-    console.log('No existe input');
+    //console.log('No existe input');
     if($("#ipt-valNameTypeProdNInterface").val() != "" && $("#ipt-valNameTypeProdNInterface").val() != 0 &&
        $("#ipt-valNameTypeProdNInterface").attr("idproduct") &&
        $("#ipt-valPriceProdNInterface").val() != "" && $("#ipt-valPriceProdNInterface").val() != 0){
@@ -2099,6 +2151,7 @@ $(document).on("click", "#btn-NextStepTomerchandisedata", function(){
           <h3 class="cont-MainCamelLog--c--contSteps--item--cTitle--title">¿Quieres asegurar la mercancía?</h3>
           <span>
             <input type="hidden" value="" id="res-insuremerch" name="res-insuremerch">
+            <input type="hidden" value="" id="res-insurancevaluet" name="res-insurancevaluet">
           </span>
         </div>
         <div class="cont-MainCamelLog--c--contSteps--item--cStep">
@@ -2154,76 +2207,113 @@ $(document).on("click", "#btn-NextStepTomerchandisedata", function(){
 $(document).on("click", "#list-insuremerchandise a", function(){
   $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-requirespickup]").addClass("show");
   var tinsuremerchandise = $(this).index();
-  if(tinsuremerchandise == 0){
+  
+  $.ajax({
+    url: "controllers/list_insurancevalues.php",
+    method: "POST",
+    datatype: "JSON",
+    contentType: 'application/x-www-form-urlencoded;charset=UTF-8'
+  }).done((e) => {
+    var resutlinsurance = JSON.parse(e);
+    //localStorage.setItem("key_v-valueproduct", $(this).val());
+    var valfobproduct = $("#val-valProdquot").val();
+    var cutefobprice = valfobproduct.split(" USD");
+    var withoutpointsfob = cutefobprice[0].replace(/\./g, '');
+    var finalvaluefob = twodecimals(withoutpointsfob);
 
-    /************************** ASIGNAR VALORES DE LOS INPUTS HIDDEN - QUIERES ASEGURAR LA MERCANCÍA **************************/
-    $("#res-insuremerch").val("SI");
-    /************************** MOSTRAR EL SIGUIENTE PASO - ¿ NECESITAS TRANSPORTE ? **************************/
-    sectionsSteps.moveTo('step-requirespickup', 1);
-    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-requirespickup]").html(`
-      <div class="cont-MainCamelLog--c--contSteps--item--cTitle">
-        <h3 class="cont-MainCamelLog--c--contSteps--item--cTitle--title">¿Necesitas Transporte?</h3>
-        <span>
-          <input type="hidden" value="" id="opt-reqtransport" name="opt-reqtransport">
-        </span>
-      </div>
-      <div class="cont-MainCamelLog--c--contSteps--item--cStep">
-        <ul class="cont-MainCamelLog--c--contSteps--item--cStep--m" id="list-requirespickup">
-          <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem">
-            <li class="cont-MainCamelLog--c--contSteps--item--cStep--m--item">
-              <div class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem--cImg">
-                <img src="views/assets/img/steps/inland-trans.png" alt="" loading="lazy">
-              </div>
-              <p>SÍ</p>
-            </li>
-          </a>
-          <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem">
-            <li class="cont-MainCamelLog--c--contSteps--item--cStep--m--item">
-              <div class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem--cImg">
-                <img src="views/assets/img/steps/no-inland-trans.png" alt="" loading="lazy">
-              </div>
-              <p>NO</p>
-            </li>
-          </a>
-        </ul>
-      </div>
-      <div class="cont-MainCamelLog--c--contSteps--item--cBtnNextStep"></div>
-    `);
+    if(tinsuremerchandise == 0){
+      /************************** ASIGNAR VALORES DE LOS INPUTS HIDDEN - QUIERES ASEGURAR LA MERCANCÍA **************************/
+      $("#res-insuremerch").val("SI");
+      var valorfinalseguro = 0;
+      if(finalvaluefob > 25000){
+        /************************** ASIGNAR AL VALOR DE LA VARIABLE LOCAL **************************/
+        valorfinalseguro = (finalvaluefob * resutlinsurance[1].data_value) / 100;
+        localStorage.setItem("key_v-valueinsurance", roundToTwo(valorfinalseguro));
+      }else{
+        /************************** ASIGNAR AL VALOR DE LA VARIABLE LOCAL **************************/
+        valorfinalseguro = (finalvaluefob * resutlinsurance[0].data_value) / 100;
+        localStorage.setItem("key_v-valueinsurance", roundToTwo(valorfinalseguro));
+      }
 
-  }else{
-    /************************** ASIGNAR VALORES DE LOS INPUTS HIDDEN - QUIERES ASEGURAR LA MERCANCÍA **************************/
-    $("#res-insuremerch").val("NO");
-    sectionsSteps.moveTo('step-requirespickup', 1);
-    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-requirespickup]").html(`
-      <div class="cont-MainCamelLog--c--contSteps--item--cTitle">
-        <h3 class="cont-MainCamelLog--c--contSteps--item--cTitle--title">¿Necesitas Transporte?</h3>
-        <span>
-          <input type="hidden" value="" id="opt-reqtransport" name="opt-reqtransport">
-        </span>
-      </div>
-      <div class="cont-MainCamelLog--c--contSteps--item--cStep">
-        <ul class="cont-MainCamelLog--c--contSteps--item--cStep--m" id="list-requirespickup">
-          <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem">
-            <li class="cont-MainCamelLog--c--contSteps--item--cStep--m--item">
-              <div class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem--cImg">
-                <img src="views/assets/img/steps/inland-trans.png" alt="" loading="lazy">
-              </div>
-              <p>SÍ</p>
-            </li>
-          </a>
-          <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem">
-            <li class="cont-MainCamelLog--c--contSteps--item--cStep--m--item">
-              <div class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem--cImg">
-                <img src="views/assets/img/steps/no-inland-trans.png" alt="" loading="lazy">
-              </div>
-              <p>NO</p>
-            </li>
-          </a>
-        </ul>
-      </div>
-      <div class="cont-MainCamelLog--c--contSteps--item--cBtnNextStep"></div>
-    `);
-  }
+      //$("#res-insurancevaluet").val(resutlinsurance[1].data_value);
+      /************************** MOSTRAR EL SIGUIENTE PASO - ¿ NECESITAS TRANSPORTE ? **************************/
+      sectionsSteps.moveTo('step-requirespickup', 1);
+      $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-requirespickup]").html(`
+        <div class="cont-MainCamelLog--c--contSteps--item--cTitle">
+          <h3 class="cont-MainCamelLog--c--contSteps--item--cTitle--title">¿Necesitas Transporte?</h3>
+          <span>
+            <input type="hidden" value="" id="opt-reqtransport" name="opt-reqtransport">
+          </span>
+        </div>
+        <div class="cont-MainCamelLog--c--contSteps--item--cStep">
+          <ul class="cont-MainCamelLog--c--contSteps--item--cStep--m" id="list-requirespickup">
+            <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem">
+              <li class="cont-MainCamelLog--c--contSteps--item--cStep--m--item">
+                <div class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem--cImg">
+                  <img src="views/assets/img/steps/inland-trans.png" alt="" loading="lazy">
+                </div>
+                <p>SÍ</p>
+              </li>
+            </a>
+            <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem">
+              <li class="cont-MainCamelLog--c--contSteps--item--cStep--m--item">
+                <div class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem--cImg">
+                  <img src="views/assets/img/steps/no-inland-trans.png" alt="" loading="lazy">
+                </div>
+                <p>NO</p>
+              </li>
+            </a>
+          </ul>
+        </div>
+        <div class="cont-MainCamelLog--c--contSteps--item--cBtnNextStep"></div>
+      `);
+    }else{
+      /************************** ASIGNAR VALORES DE LOS INPUTS HIDDEN - QUIERES ASEGURAR LA MERCANCÍA **************************/
+      $("#res-insuremerch").val("NO");
+      //$("#res-insurancevaluet").val(resutlinsurance[0].data_value);
+      var valorfinalseguro = 0;
+      if(finalvaluefob > 25000){
+        /************************** ASIGNAR AL VALOR DE LA VARIABLE LOCAL **************************/
+        valorfinalseguro = (finalvaluefob * resutlinsurance[0].data_value) / 100;
+        localStorage.setItem("key_v-valueinsurance", roundToTwo(valorfinalseguro));
+      }else{
+        /************************** ASIGNAR AL VALOR DE LA VARIABLE LOCAL **************************/
+        valorfinalseguro = (finalvaluefob * resutlinsurance[0].data_value) / 100;
+        localStorage.setItem("key_v-valueinsurance", roundToTwo(valorfinalseguro));
+      }
+      sectionsSteps.moveTo('step-requirespickup', 1);
+      $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-requirespickup]").html(`
+        <div class="cont-MainCamelLog--c--contSteps--item--cTitle">
+          <h3 class="cont-MainCamelLog--c--contSteps--item--cTitle--title">¿Necesitas Transporte?</h3>
+          <span>
+            <input type="hidden" value="" id="opt-reqtransport" name="opt-reqtransport">
+          </span>
+        </div>
+        <div class="cont-MainCamelLog--c--contSteps--item--cStep">
+          <ul class="cont-MainCamelLog--c--contSteps--item--cStep--m" id="list-requirespickup">
+            <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem">
+              <li class="cont-MainCamelLog--c--contSteps--item--cStep--m--item">
+                <div class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem--cImg">
+                  <img src="views/assets/img/steps/inland-trans.png" alt="" loading="lazy">
+                </div>
+                <p>SÍ</p>
+              </li>
+            </a>
+            <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem">
+              <li class="cont-MainCamelLog--c--contSteps--item--cStep--m--item">
+                <div class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem--cImg">
+                  <img src="views/assets/img/steps/no-inland-trans.png" alt="" loading="lazy">
+                </div>
+                <p>NO</p>
+              </li>
+            </a>
+          </ul>
+        </div>
+        <div class="cont-MainCamelLog--c--contSteps--item--cBtnNextStep"></div>
+      `);
+    }
+  });
+
 });
 /*===================================================================================
 =                     9. AGREGAR - RECOGIDA                                         =

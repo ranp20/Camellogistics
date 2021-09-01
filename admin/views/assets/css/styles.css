@@ -1321,9 +1321,14 @@ img {
   flex-direction: column;
   margin-bottom: 1.2rem;
   position: relative;
-  /* MENSAJE DE ALERTA  - NOMBRE DE BANCO*/
+  /* MENSAJE DE ALERTA  - NOMBRE DE REGULADOR */
+  /* MENSAJE DE ALERTA - MONTO DE PRODUCTO */
 }
 .bootstrapmodalupdate-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrapupdate__form--control #msgErrNounNombBank-update {
+  color: red;
+  padding-left: 0.65rem;
+}
+.bootstrapmodalupdate-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrapupdate__form--control #msgErrNounAmountAdditionalProductUpdate {
   color: red;
   padding-left: 0.65rem;
 }
@@ -1896,12 +1901,6 @@ img {
   padding: 0.65rem 0.5rem 0.65rem 1.5rem;
   font-size: 0.8rem;
 }
-@media (min-width: 768px) {
-  .nav-dashCamel--c--cList--m--link {
-    padding: 0.7rem 0.5rem 0.7rem 1.5rem;
-    font-size: 0.9rem;
-  }
-}
 .nav-dashCamel--c--cList--m--link:hover {
   color: #fff;
   background-color: #262A36;
@@ -1915,8 +1914,8 @@ img {
 .nav-dashCamel--c--cList--m--link svg {
   vertical-align: middle;
   color: #fff;
-  width: 23px;
-  height: 23px;
+  width: 22px;
+  height: 22px;
   margin-right: 0.5rem;
 }
 .nav-dashCamel--c--cList--m--link span {
