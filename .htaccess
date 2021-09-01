@@ -21,6 +21,7 @@ RewriteRule precios-fcl?$ admin/views/pricing-settings-fcl.php
 RewriteRule precios-lcl?$ admin/views/pricing-settings-lcl.php
 RewriteRule tarifas-fcl?$ admin/views/rate-fcl.php
 RewriteRule tarifas-lcl?$ admin/views/rate-lcl.php
+RewriteRule tarifas-lcl-transporte?$ admin/views/rate-lcl-transport.php
 RewriteRule seguro?$ admin/views/insurance-settings.php
 RewriteRule reguladores?$ admin/views/regulators.php
 RewriteRule productos?$ admin/views/products.php
