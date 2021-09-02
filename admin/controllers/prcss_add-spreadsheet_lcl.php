@@ -36,14 +36,33 @@ if(isset($_FILES) && isset($_POST)){
 					$total5cbm = $archivoExcel->getActiveSheet()->getCell('E'.$i)->getCalculatedValue();
 					$max15cbm = $archivoExcel->getActiveSheet()->getCell('F'.$i)->getCalculatedValue();
 					$total15cbm = $archivoExcel->getActiveSheet()->getCell('G'.$i)->getCalculatedValue();
-					$frecuencies = $archivoExcel->getActiveSheet()->getCell('H'.$i)->getCalculatedValue();
-					$ttaprox = $archivoExcel->getActiveSheet()->getCell('I'.$i)->getCalculatedValue();
-					$cooloder = $archivoExcel->getActiveSheet()->getCell('J'.$i)->getCalculatedValue();
+					$amount_imo = $archivoExcel->getActiveSheet()->getCell('H'.$i)->getCalculatedValue();
+					$total_imo = $archivoExcel->getActiveSheet()->getCell('I'.$i)->getCalculatedValue();
+					$amount_refrigerado = $archivoExcel->getActiveSheet()->getCell('J'.$i)->getCalculatedValue();
+					$total_refrigerado = $archivoExcel->getActiveSheet()->getCell('K'.$i)->getCalculatedValue();
+					$frecuencies = $archivoExcel->getActiveSheet()->getCell('L'.$i)->getCalculatedValue();
+					$ttaprox = $archivoExcel->getActiveSheet()->getCell('M'.$i)->getCalculatedValue();
+					$cooloder = $archivoExcel->getActiveSheet()->getCell('N'.$i)->getCalculatedValue();
 				
 					if($countryOrigin != "" || $portOrigin != "" || $portDestiny != "" || $max5cbm != "" || $total5cbm != ""){
 						
 						array_push($arrupdated, 
-						[$countryOrigin, $portOrigin,	$portDestiny,	$max5cbm,	$total5cbm,	$max15cbm, $total15cbm, $frecuencies, $ttaprox, $cooloder]);
+											[
+												$countryOrigin, 
+												$portOrigin,	
+												$portDestiny,	
+												$max5cbm,	
+												$total5cbm,	
+												$max15cbm, 
+												$total15cbm,
+												$amount_imo,
+												$total_imo,
+												$amount_refrigerado,
+												$total_refrigerado,
+												$frecuencies,
+												$ttaprox, 
+												$cooloder
+											]);
 
 					}
 				}
@@ -58,10 +77,14 @@ if(isset($_FILES) && isset($_POST)){
 					hasta5cbm = '".$arrupdated[$ilistid][3]."', 
 					total5cbm = '".$arrupdated[$ilistid][4]."', 
 					hasta15cbm = '".$arrupdated[$ilistid][5]."', 
-					total15cbm = '".$arrupdated[$ilistid][6]."', 
-					frecuencia = '".$arrupdated[$ilistid][7]."', 
-					tt_aprox = '".$arrupdated[$ilistid][8]."', 
-					cooloder = '".$arrupdated[$ilistid][9]."', 
+					total15cbm = '".$arrupdated[$ilistid][6]."',
+					amount_imo = '".$arrupdated[$ilistid][7]."',
+					total_imo = '".$arrupdated[$ilistid][8]."',
+					amount_refrigerado = '".$arrupdated[$ilistid][9]."',
+					total_refrigerado = '".$arrupdated[$ilistid][10]."',
+					frecuencia = '".$arrupdated[$ilistid][11]."', 
+					tt_aprox = '".$arrupdated[$ilistid][12]."', 
+					cooloder = '".$arrupdated[$ilistid][13]."', 
 					validdesde = '".$_POST['validdesdelcl']."', 
 					validhasta = '".$_POST['validhastalcl']."',
 					utility = ".$_POST['utilitylcl']." WHERE id = ".$listids[$ilistid]['id']."";
@@ -140,9 +163,13 @@ if(isset($_FILES) && isset($_POST)){
 					$total5cbm = $archivoExcel->getActiveSheet()->getCell('E'.$i)->getCalculatedValue();
 					$max15cbm = $archivoExcel->getActiveSheet()->getCell('F'.$i)->getCalculatedValue();
 					$total15cbm = $archivoExcel->getActiveSheet()->getCell('G'.$i)->getCalculatedValue();
-					$frecuencies = $archivoExcel->getActiveSheet()->getCell('H'.$i)->getCalculatedValue();
-					$ttaprox = $archivoExcel->getActiveSheet()->getCell('I'.$i)->getCalculatedValue();
-					$cooloder = $archivoExcel->getActiveSheet()->getCell('J'.$i)->getCalculatedValue();
+					$amount_imo = $archivoExcel->getActiveSheet()->getCell('H'.$i)->getCalculatedValue();
+					$total_imo = $archivoExcel->getActiveSheet()->getCell('I'.$i)->getCalculatedValue();
+					$amount_refrigerado = $archivoExcel->getActiveSheet()->getCell('J'.$i)->getCalculatedValue();
+					$total_refrigerado = $archivoExcel->getActiveSheet()->getCell('K'.$i)->getCalculatedValue();
+					$frecuencies = $archivoExcel->getActiveSheet()->getCell('L'.$i)->getCalculatedValue();
+					$ttaprox = $archivoExcel->getActiveSheet()->getCell('M'.$i)->getCalculatedValue();
+					$cooloder = $archivoExcel->getActiveSheet()->getCell('N'.$i)->getCalculatedValue();
 					
 					if($countryOrigin != "" || $portOrigin != "" || $portDestiny != "" || $max5cbm != "" || $total5cbm != ""){
 
@@ -155,6 +182,10 @@ if(isset($_FILES) && isset($_POST)){
 						total5cbm, 
 						hasta15cbm, 
 						total15cbm, 
+						amount_imo,
+						total_imo,
+						amount_refrigerado,
+						total_refrigerado,
 						frecuencia, 
 						tt_aprox, 
 						cooloder, 
@@ -169,6 +200,10 @@ if(isset($_FILES) && isset($_POST)){
 						'".$total5cbm."', 
 						'".$max15cbm."', 
 						'".$total15cbm."',
+						'".$amount_imo."',
+						'".$total_imo."',
+						'".$amount_refrigerado."',
+						'".$total_refrigerado."',
 						'".$frecuencies."', 
 						'".$ttaprox."', 
 						'".$cooloder."', 

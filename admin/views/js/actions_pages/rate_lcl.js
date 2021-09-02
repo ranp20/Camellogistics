@@ -61,8 +61,7 @@ function listUtilitiesLCL(){
     url: "../admin/controllers/c_list-utilities-rate-lcl.php",
     method: "POST",
     datatype: "JSON",
-    contentType: 'application/x-www-form-urlencoded;charset=UTF-8',
-    //data: {searchList : searchVal},
+    contentType: 'application/x-www-form-urlencoded;charset=UTF-8'
   }).done((e) => {
 
     var response = JSON.parse(e);
