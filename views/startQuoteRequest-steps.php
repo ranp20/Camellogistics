@@ -76,6 +76,7 @@
           <div class="cont-MainCamelLog--c--contResumeCalc--item" data-advlevel="d-typetransportnumb"></div>
           <div class="cont-MainCamelLog--c--contResumeCalc--item" data-advlevel="d-firstChargeLoad"></div>
           <div class="cont-MainCamelLog--c--contResumeCalc--item" data-advlevel="d-chargeload"></div>
+          <div class="cont-MainCamelLog--c--contResumeCalc--item" data-advlevel="d-typetransportcharge"></div>
           <div class="cont-MainCamelLog--c--contResumeCalc--item" data-advlevel="d-typecontainer">
             <div class="cont-MainCamelLog--c--contResumeCalc--item--cardStep">
               <div class="cont-MainCamelLog--c--contResumeCalc--item--cardStep--cNameFlag">
@@ -147,7 +148,7 @@
                 <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem">
                   <li class="cont-MainCamelLog--c--contSteps--item--cStep--m--item">
                     <div class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem--cImg">
-                      <img src="<?= $url ?>assets/img/steps/export.png" alt="">
+                      <img src="<?= $url ?>assets/img/steps/export.png" alt="" loading="lazy" width="100" height="100">
                     </div>
                     <p>Exportación</p>
                   </li>
@@ -155,7 +156,7 @@
                 <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem">
                   <li class="cont-MainCamelLog--c--contSteps--item--cStep--m--item">
                     <div class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem--cImg">
-                      <img src="<?= $url ?>assets/img/steps/import.png" alt="">
+                      <img src="<?= $url ?>assets/img/steps/import.png" alt="" loading="lazy" width="100" height="100">
                     </div>
                     <p>Importación</p>
                   </li>
@@ -163,6 +164,8 @@
               </ul>
             </div>
           </div>
+          <!-- PASO #1.5 -->
+          <div class="cont-MainCamelLog--c--contSteps--item section" data-anchor="step-typetransport" data-transportquote></div>
           <!-- PASO #2 -->
           <div class="cont-MainCamelLog--c--contSteps--item section" data-anchor="step-chargeload" data-transportquote></div>
           <!-- PASO #3 -->

@@ -23,7 +23,8 @@
 
 		&--item{
 
-			/************************** TIPO DE CARGA **************************/
+			/************************** TIPO DE TRANSPORTE Y TIPO DE CARGA **************************/
+			&[data-advlevel="d-typetransportcharge"],
 			&[data-advlevel="d-chargeload"]{
 				.cont-MainCamelLog--c--contResumeCalc--item--cardStep{
 					text-align: center;
@@ -141,6 +142,17 @@
 			    
 					svg{
 
+					}
+				}
+
+				/* ÍCONO DEL TIPO DE TRANSPORTE */
+				&--cImgIcon{
+					max-width: 35px;
+			    width: 95%;
+			    height: auto;
+			    display: inline-block;
+			    margin-right: 0.5rem;
+					&--icon{
 					}
 				}
 			}

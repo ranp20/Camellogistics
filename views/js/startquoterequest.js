@@ -53,6 +53,7 @@ function twodecimals(n) {
 /************************** PLUGIN - FULLPAGE.JS **************************/
 const sectionsSteps = new fullpage('#fullpage', {
   anchors:['step-typeoperation',
+           'step-typetransport',
   				 'step-chargeload', 
   				 'step-qcontainers',
   				 'step-chargedata',
@@ -131,27 +132,25 @@ function listPortOriginandDestiny(){
     });
 	});
 }
-/*=======================================================================================
-=            									2. ELEGIR EL TIPO DE OPERACIÓN            									=
-=========================================================================================*/
+/*====================================================================================
+=                         2. ELEGIR EL TIPO DE OPERACIÓN                             =
+====================================================================================*/
 $(document).on("click", "#list-typeOperationItems a", function(){
-	$(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-chargeload]").addClass("show");
-	var tTypeOperation = $(this).index();
-	if(tTypeOperation == 0){
-    //localStorage.setItem("key_typeOp", $(this).find("li").find("p").text());
+  $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-chargeload]").addClass("show");
+  var tTypeOperation = $(this).index();
+  if(tTypeOperation == 0){
     localStorage.setItem("key_v-totalflette", 0);
-
     $(this).removeClass("active");
     $(this).css({
       "opacity" : "0.5",
       "border" : "unset"
     });
-		alert("Esta opción aún no está disponible. Por favor, pase a elegir IMPORTACIÓN");
+    alert("Esta opción aún no está disponible. Por favor, pase a elegir IMPORTACIÓN");
     /************************** OCULTAR AL LISTADO DE RESUMEN - ELIGE UN OPCIÓN **************************/
     $(".cont-MainCamelLog--c--contResumeCalc--item[data-advlevel=d-reqspeacialservs]").removeClass("show");
     $(".cont-MainCamelLog--c--contResumeCalc--item[data-advlevel=d-reqspeacialservs]").find("span").text("");
     /************************** OCULTAR TODOS LOS PASOS ABIERTOS EN CASO SE VUELVA HASTA ESTE PASO **************************/
-	}else{
+  }else{
     localStorage.setItem("key_v-totalflette", 0);
     localStorage.setItem("key_typeOp", $(this).find("li").find("p").text());
     /************************** ASIGNAR A LA VARIABLE BLOBAL **************************/
@@ -162,9 +161,79 @@ $(document).on("click", "#list-typeOperationItems a", function(){
     $(".cont-MainCamelLog--c--contResumeCalc--item[data-advlevel=d-reqspeacialservs]").removeClass("show");
     $(".cont-MainCamelLog--c--contResumeCalc--item[data-advlevel=d-reqspeacialservs]").find("span").text("");
     /************************** MOSTRAR EL SIGUIENTE PASO **************************/
-		sectionsSteps.moveTo('step-chargeload', 1);
-		$(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-chargeload]").html(`
-			<div class="cont-MainCamelLog--c--contSteps--item--cTitle">
+    sectionsSteps.moveTo('step-typetransport', 1);
+    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-typetransport]").html(`
+      <div class="cont-MainCamelLog--c--contSteps--item--cTitle">
+        <h3 class="cont-MainCamelLog--c--contSteps--item--cTitle--title">Tipo de Transporte</h3>
+        <span>
+          <input type="hidden" value="" id="loadTypeTranport" name="loadTypeTranport">
+        </span>
+      </div>
+      <div class="cont-MainCamelLog--c--contSteps--item--cStep">
+        <ul class="cont-MainCamelLog--c--contSteps--item--cStep--m" id="list-typeTransporteSelectItems">
+          <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem">
+            <li class="cont-MainCamelLog--c--contSteps--item--cStep--m--item">
+              <div class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem--cImg">
+                <img src="views/assets/img/steps/type_transport_06.png" alt="" loading="lazy" width="100" height="100">
+              </div>
+              <p>GENERAL</p>
+            </li>
+          </a>
+          <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem">
+            <li class="cont-MainCamelLog--c--contSteps--item--cStep--m--item">
+              <div class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem--cImg">
+                <img src="views/assets/img/steps/type_transport_03.png" alt="" loading="lazy" width="100" height="100">
+              </div>
+              <p>IMO</p>
+            </li>
+          </a>
+          <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem">
+            <li class="cont-MainCamelLog--c--contSteps--item--cStep--m--item">
+              <div class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem--cImg">
+                <img src="views/assets/img/steps/type_transport_05.png" alt="" loading="lazy" width="100" height="100">
+              </div>
+              <p>REFRIGERADO</p>
+            </li>
+          </a>
+        </ul>
+      </div>
+    `);
+    /************************** MOSTRAR EN EL RESUMEN - LADO IZQUIERDO **************************/
+    $(".cont-MainCamelLog--c--contResumeCalc--item[data-advlevel=d-chargeload]").html(`
+      <div class="cont-MainCamelLog--c--contResumeCalc--item--cardStep">
+        <div class="cont-MainCamelLog--c--contResumeCalc--item--cardStep--cIcon">
+           <svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="anchor" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" class="svg-inline--fa fa-anchor fa-w-18 fa-3x"><path fill="currentColor" d="M571.515 331.515l-67.029-67.029c-4.686-4.686-12.284-4.686-16.971 0l-67.029 67.029c-7.56 7.56-2.206 20.485 8.485 20.485h44.268C453.531 417.326 380.693 456.315 312 462.865V216h60c6.627 0 12-5.373 12-12v-24c0-6.627-5.373-12-12-12h-60v-11.668c32.456-10.195 56-40.512 56-76.332 0-44.183-35.817-80-80-80s-80 35.817-80 80c0 35.82 23.544 66.138 56 76.332V168h-60c-6.627 0-12 5.373-12 12v24c0 6.627 5.373 12 12 12h60v246.865C195.192 456.304 122.424 417.176 102.762 352h44.268c10.691 0 16.045-12.926 8.485-20.485l-67.029-67.029c-4.686-4.686-12.284-4.686-16.971 0l-67.03 67.029C-3.074 339.074 2.28 352 12.971 352h40.284C73.657 451.556 181.238 512 288 512c113.135 0 215.338-65.3 234.745-160h40.284c10.691 0 16.045-12.926 8.486-20.485zM288 48c17.645 0 32 14.355 32 32s-14.355 32-32 32-32-14.355-32-32 14.355-32 32-32z" class=""></path></svg>
+         </div>
+        <span>`+v_TypeOp+`</span>
+      </div>
+    `);
+  }
+});
+/*==============================================================================================
+=            2.5. ELEGIR EL TIPO DE TRANSPORTE DE CARGA: GENERAL, IMO O REGRIGERADO            =
+==============================================================================================*/
+$(document).on("click","#list-typeTransporteSelectItems a",function(){
+  var ttypeTransport = $(this).index();
+  if(ttypeTransport == 0){
+    /************************** RESETEAR EL VALOR FINAL DEL FLETE, SI SE REGRESA HASTA ESTE PUNTO **************************/
+    localStorage.setItem("key_v-totalflette", 0);
+    /************************** AGREGAR A LA VARIABLE LOCAL **************************/
+    localStorage.setItem("key_typeTransp", "General");
+    /************************** ASIGNAR AL VALOR DEL INPUT DE ENVÍO POST **************************/
+    $("#loadTypeTranport").val("general");
+    /************************** MOSTRAR EN EL RESUMEN - LADO IZQUIERDO **************************/
+    $(".cont-MainCamelLog--c--contResumeCalc--item[data-advlevel=d-typetransportcharge]").html(`
+      <div class="cont-MainCamelLog--c--contResumeCalc--item--cardStep">
+        <div class="cont-MainCamelLog--c--contResumeCalc--item--cardStep--cImgIcon">
+           <img class="cont-MainCamelLog--c--contResumeCalc--item--cardStep--cImgIcon--icon" loading="lazy" src="views/assets/img/steps/type_transport_06.png">
+         </div>
+        <span>T. GENERAL</span>
+      </div>
+    `);
+    /************************** MOSTRAR EL SIGUIENTE PASO **************************/
+    sectionsSteps.moveTo('step-chargeload', 1);
+    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-chargeload]").html(`
+     <div class="cont-MainCamelLog--c--contSteps--item--cTitle">
         <h3 class="cont-MainCamelLog--c--contSteps--item--cTitle--title">Tipo de carga</h3>
         <span>
           <input type="hidden" value="" id="loadTypeCharge" name="loadTypeCharge">
@@ -190,16 +259,100 @@ $(document).on("click", "#list-typeOperationItems a", function(){
           </a>
         </ul>
       </div>
-		`);
-		$(".cont-MainCamelLog--c--contResumeCalc--item[data-advlevel=d-chargeload]").html(`
-			<div class="cont-MainCamelLog--c--contResumeCalc--item--cardStep">
-				<div class="cont-MainCamelLog--c--contResumeCalc--item--cardStep--cIcon">
-          <svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="anchor" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" class="svg-inline--fa fa-anchor fa-w-18 fa-3x"><path fill="currentColor" d="M571.515 331.515l-67.029-67.029c-4.686-4.686-12.284-4.686-16.971 0l-67.029 67.029c-7.56 7.56-2.206 20.485 8.485 20.485h44.268C453.531 417.326 380.693 456.315 312 462.865V216h60c6.627 0 12-5.373 12-12v-24c0-6.627-5.373-12-12-12h-60v-11.668c32.456-10.195 56-40.512 56-76.332 0-44.183-35.817-80-80-80s-80 35.817-80 80c0 35.82 23.544 66.138 56 76.332V168h-60c-6.627 0-12 5.373-12 12v24c0 6.627 5.373 12 12 12h60v246.865C195.192 456.304 122.424 417.176 102.762 352h44.268c10.691 0 16.045-12.926 8.485-20.485l-67.029-67.029c-4.686-4.686-12.284-4.686-16.971 0l-67.03 67.029C-3.074 339.074 2.28 352 12.971 352h40.284C73.657 451.556 181.238 512 288 512c113.135 0 215.338-65.3 234.745-160h40.284c10.691 0 16.045-12.926 8.486-20.485zM288 48c17.645 0 32 14.355 32 32s-14.355 32-32 32-32-14.355-32-32 14.355-32 32-32z" class=""></path></svg>
-        </div>
-				<span>`+v_TypeOp+`</span>
-			</div>
-		`);
-	}
+    `);
+  }else if(ttypeTransport == 1){
+    /************************** RESETEAR EL VALOR FINAL DEL FLETE, SI SE REGRESA HASTA ESTE PUNTO **************************/
+    localStorage.setItem("key_v-totalflette", 0);
+    /************************** AGREGAR A LA VARIABLE LOCAL **************************/
+    localStorage.setItem("key_typeTransp", "Imo");
+    /************************** ASIGNAR AL VALOR DEL INPUT DE ENVÍO POST **************************/
+    $("#loadTypeTranport").val("imo");
+    /************************** MOSTRAR EN EL RESUMEN - LADO IZQUIERDO **************************/
+    $(".cont-MainCamelLog--c--contResumeCalc--item[data-advlevel=d-typetransportcharge]").html(`
+      <div class="cont-MainCamelLog--c--contResumeCalc--item--cardStep">
+        <div class="cont-MainCamelLog--c--contResumeCalc--item--cardStep--cImgIcon">
+           <img class="cont-MainCamelLog--c--contResumeCalc--item--cardStep--cImgIcon--icon" loading="lazy" src="views/assets/img/steps/type_transport_03.png">
+         </div>
+        <span>T. IMO</span>
+      </div>
+    `);
+    /************************** MOSTRAR EL SIGUIENTE PASO **************************/
+    sectionsSteps.moveTo('step-chargeload', 1);
+    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-chargeload]").html(`
+     <div class="cont-MainCamelLog--c--contSteps--item--cTitle">
+        <h3 class="cont-MainCamelLog--c--contSteps--item--cTitle--title">Tipo de carga</h3>
+        <span>
+          <input type="hidden" value="" id="loadTypeCharge" name="loadTypeCharge">
+        </span>
+      </div>
+      <div class="cont-MainCamelLog--c--contSteps--item--cStep">
+        <ul class="cont-MainCamelLog--c--contSteps--item--cStep--m" id="list-typeChargeLoadItems">
+          <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem">
+            <li class="cont-MainCamelLog--c--contSteps--item--cStep--m--item">
+              <div class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem--cImg">
+                <img src="views/assets/img/steps/fcl.png" alt="" loading="lazy">
+              </div>
+              <p>FCL</p>
+            </li>
+          </a>
+          <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem">
+            <li class="cont-MainCamelLog--c--contSteps--item--cStep--m--item">
+              <div class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem--cImg">
+                <img src="views/assets/img/steps/lcl.png" alt="" loading="lazy">
+              </div>
+              <p>LCL</p>
+            </li>
+          </a>
+        </ul>
+      </div>
+    `);
+  }else{
+    /************************** RESETEAR EL VALOR FINAL DEL FLETE, SI SE REGRESA HASTA ESTE PUNTO **************************/
+    localStorage.setItem("key_v-totalflette", 0);
+    /************************** AGREGAR A LA VARIABLE LOCAL **************************/
+    localStorage.setItem("key_typeTransp", "Refrigerado");
+    /************************** ASIGNAR AL VALOR DEL INPUT DE ENVÍO POST **************************/
+    $("#loadTypeTranport").val("refrigerado");
+    /************************** MOSTRAR EN EL RESUMEN - LADO IZQUIERDO **************************/
+    $(".cont-MainCamelLog--c--contResumeCalc--item[data-advlevel=d-typetransportcharge]").html(`
+      <div class="cont-MainCamelLog--c--contResumeCalc--item--cardStep">
+        <div class="cont-MainCamelLog--c--contResumeCalc--item--cardStep--cImgIcon">
+           <img class="cont-MainCamelLog--c--contResumeCalc--item--cardStep--cImgIcon--icon" loading="lazy" src="views/assets/img/steps/type_transport_05.png">
+         </div>
+        <span>T. REFRIGERADO</span>
+      </div>
+    `);
+    /************************** MOSTRAR EL SIGUIENTE PASO **************************/
+    sectionsSteps.moveTo('step-chargeload', 1);
+    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-chargeload]").html(`
+     <div class="cont-MainCamelLog--c--contSteps--item--cTitle">
+        <h3 class="cont-MainCamelLog--c--contSteps--item--cTitle--title">Tipo de carga</h3>
+        <span>
+          <input type="hidden" value="" id="loadTypeCharge" name="loadTypeCharge">
+        </span>
+      </div>
+      <div class="cont-MainCamelLog--c--contSteps--item--cStep">
+        <ul class="cont-MainCamelLog--c--contSteps--item--cStep--m" id="list-typeChargeLoadItems">
+          <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem">
+            <li class="cont-MainCamelLog--c--contSteps--item--cStep--m--item">
+              <div class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem--cImg">
+                <img src="views/assets/img/steps/fcl.png" alt="" loading="lazy">
+              </div>
+              <p>FCL</p>
+            </li>
+          </a>
+          <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem">
+            <li class="cont-MainCamelLog--c--contSteps--item--cStep--m--item">
+              <div class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem--cImg">
+                <img src="views/assets/img/steps/lcl.png" alt="" loading="lazy">
+              </div>
+              <p>LCL</p>
+            </li>
+          </a>
+        </ul>
+      </div>
+    `);
+  }
 });
 /*=======================================================================================
 =            									3. ELEGIR EL TIPO DE CARGA            									  =
@@ -573,25 +726,6 @@ $(document).on("click", "#list-typeChargeLoadItems a", function(){
 /*========================================================================================
 =                          4. AÑADIR LA CANTIDAD DE CONTENEDORES                         =
 =========================================================================================*/
-/************************** VALIDAR SI OTRO CONTROL TIENE ALGÚN VALOR **************************/
-// $(document).on("click", "#btn-NextStepToSelOptResultExp",function(){
-//   var arrContainersSel = [];
-//   var arrCountContainers = $(".cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cC--control .cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cC--control--btn:last-child").map(function(){
-    
-//     $(this).click(function(){
-//       if($(this).index() == 2){
-//         arrContainersSel.push($(this));
-//         return arrContainersSel;
-//       }
-
-//     });
-//   }).get();
-//   console.log(arrContainersSel.length);
-// });
-// $(document).on("click","#list-mIptsItemsContainers .cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item .cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cC .cont-MainCamelLog--c--contSteps--item--cStep--mIptsItems--item--cC--control button", function(e){
-//   //console.log($(this).text());
-// });
-
 /************************** INCREMENTAR/DECREMENTAR INPUTS **************************/
 /************************** PRIMER INPUT **************************/
 $(document).on("click", "#c-incdecBtns20 button", function(){
@@ -606,7 +740,7 @@ $(document).on("click", "#c-incdecBtns20 button", function(){
     method: "POST",
     datatype: "JSON",
     contentType: 'application/x-www-form-urlencoded;charset=UTF-8',
-    data: {nameportOrigin : arrPortOrigin[0], container : "20ST"},
+    data: {nameportOrigin : arrPortOrigin[0], typetransport: $("#loadTypeTranport").val(), container : "20ST"},
   }).done((e) => {
     var totalFCL = JSON.parse(e);
     var totalSend20ST = 0;
@@ -719,7 +853,7 @@ $(document).on("click", "#c-incdecBtns40 button", function(){
     method: "POST",
     datatype: "JSON",
     contentType: 'application/x-www-form-urlencoded;charset=UTF-8',
-    data: {nameportOrigin : arrPortOrigin[0], container : "40ST"},
+    data: {nameportOrigin : arrPortOrigin[0], typetransport: $("#loadTypeTranport").val(), container : "40ST"},
   }).done((e) => {
     var totalFCL = JSON.parse(e);
     var totalSend40ST = 0;
@@ -830,7 +964,7 @@ $(document).on("click", "#c-incdecBtns40-hc button", function(){
     method: "POST",
     datatype: "JSON",
     contentType: 'application/x-www-form-urlencoded;charset=UTF-8',
-    data: {nameportOrigin : arrPortOrigin[0], container : "40HQ"},
+    data: {nameportOrigin : arrPortOrigin[0], typetransport: $("#loadTypeTranport").val(), container : "40HQ"},
   }).done((e) => {
     var totalFCL = JSON.parse(e);
     var totalSend40HQ = 0;
@@ -943,7 +1077,7 @@ $(document).on("click", "#c-incdecBtns40-nor button", function(){
     method: "POST",
     datatype: "JSON",
     contentType: 'application/x-www-form-urlencoded;charset=UTF-8',
-    data: {nameportOrigin : arrPortOrigin[0], container : "NOR"},
+    data: {nameportOrigin : arrPortOrigin[0], typetransport: $("#loadTypeTranport").val(), container : "NOR"},
   }).done((e) => {
     var totalFCL = JSON.parse(e);
     var totalSend40NOR = 0;

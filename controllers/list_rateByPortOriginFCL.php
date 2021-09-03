@@ -4,12 +4,14 @@ class list_rateByPortOriginFCL extends Connection{
 	function list(){
 
 		$portOrigin = $_POST['nameportOrigin'];
+		$typetransport = $_POST['typetransport'];
 		$container = $_POST['container'];
 
 		try{
-			$sql = "CALL sp_list_rateByPortOriginFCL(:namePortOrigin,:container)";
+			$sql = "CALL sp_list_rateByPortOriginFCL(:namePortOrigin,:typetransport,:container)";
 			$stm = $this->con->prepare($sql);
 			$stm->bindValue(":namePortOrigin", $portOrigin);
+			$stm->bindValue(":typetransport", $typetransport);
 			$stm->bindValue(":container", $container);
 			$stm->execute();
 			
