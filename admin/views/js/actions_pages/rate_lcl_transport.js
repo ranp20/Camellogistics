@@ -10,20 +10,18 @@ $(document).on('submit', '#form-add-spreadsheetlcltransport', function(e){
   $(".cont-modalbootstrap__footer--btncancel").attr("disabled", true);
   $(".cont-modalbootstrap__footer--btncancel").addClass("not-cancel");
 
-	var spreadsheet = ($("#spreadsheetlcl"))[0].files[0];
+	var spreadsheet = ($("#spreadsheetlcltransport"))[0].files[0];
 	var yy = spreadsheet.size > 4000000;
 	if (yy) {
 	  alert("Imagen a subir maximo 4mb");
 	  return;
 	}
 	var data = new FormData();
-	data.append("spreadsheetlcl", spreadsheet);
-	data.append("utilitylcl", $("#utilitylcl").val());
-	data.append("validdesdelcl", $("#validdesdelcl").val());
-	data.append("validhastalcl", $("#validhastalcl").val());
+	data.append("spreadsheetlcltransport", spreadsheet);
+	data.append("utilitylcltransport", $("#utilitylcltransport").val());
 
 	$.ajax({
-	  url: "../admin/controllers/prcss_add-spreadsheet_lcl.php",
+	  url: "../admin/controllers/prcss_add-spreadsheet_lcl_transport.php",
 	  type: "POST",
 	  data: data,
 	  processData: false,
@@ -38,7 +36,7 @@ $(document).on('submit', '#form-add-spreadsheetlcltransport', function(e){
 			$("#btnadd-spreadsheetlcltransport").removeClass("showloader");
 			$(".cont-modalbootstrap__footer--btncancel").attr("disabled", false);
   		$(".cont-modalbootstrap__footer--btncancel").removeClass("not-cancel");
-      $('#addspreadsheetlclModal').modal("hide");
+      $('#addspreadsheetlcltransportModal').modal("hide");
 			$('#form-add-spreadsheetlcltransport')[0].reset();
 		}else if(result.response == "updated"){
 			alert("Se ha actuaizado con éxito el Excel");
@@ -48,7 +46,7 @@ $(document).on('submit', '#form-add-spreadsheetlcltransport', function(e){
 			$("#btnadd-spreadsheetlcltransport").removeClass("showloader");
 			$(".cont-modalbootstrap__footer--btncancel").attr("disabled", false);
   		$(".cont-modalbootstrap__footer--btncancel").removeClass("not-cancel");
-      $('#addspreadsheetlclModal').modal("hide");
+      $('#addspreadsheetlcltransportModal').modal("hide");
 			$('#form-add-spreadsheetlcltransport')[0].reset();
 		}else{
 			console.log('Lo sentimos ocurrió un error al insertar el registro');
@@ -58,7 +56,7 @@ $(document).on('submit', '#form-add-spreadsheetlcltransport', function(e){
 /************************** LISTAR - UTILIDADES **************************/
 function listUtilitiesLCLTransport(){ 
   $.ajax({
-    url: "../admin/controllers/c_list-utilities-rate-lcl.php",
+    url: "../admin/controllers/c_list-utilities-rate-lcl-transport.php",
     method: "POST",
     datatype: "JSON",
     contentType: 'application/x-www-form-urlencoded;charset=UTF-8'
@@ -78,7 +76,7 @@ function listUtilitiesLCLTransport(){
         </tr>
       `;
 
-      $("#tbl_utilities_rate_lcl").html(template);
+      $("#tbl_utilities_rate_lcl_transport").html(template);
     }else{
       response.forEach(e => {
       
@@ -86,14 +84,10 @@ function listUtilitiesLCLTransport(){
         <tr id="item-${e.id}">
           <td class='center'>${e.id}</td>
           <td class='center'>${e.utility}</td>
-          <td class='center'>${e.val_desde}</td>
-          <td class='center'>${e.val_hasta}</td>
           <!--<td class="cont-btn-update">
             <a class="btn-update-rateutilitylcl" data-toggle="modal" data-target="#updateModal"  href="#" 
               data-id="${e.id}"
               data-utility="${e.utility}"
-              data-valdesde="${e.val_desde}"
-              data-valhasta="${e.val_hasta}"
               >Editar</a>
           </td>
           <td class="cont-btn-delete" id="cont-btn-delete">
@@ -105,7 +99,7 @@ function listUtilitiesLCLTransport(){
         `;
       });
       
-      $("#tbl_utilities_rate_lcl").html(template);
+      $("#tbl_utilities_rate_lcl_transport").html(template);
     }
 
   });

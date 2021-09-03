@@ -38,8 +38,6 @@
 								<tr>
 									<th>Item</th>
 									<th>Utilidad</th>
-									<th>Vigencia desde</th>
-									<th>Vigencia Hasta</th>
 									<th></th>
 								</tr>
 							</thead>
@@ -75,10 +73,10 @@
 						        		<input id="spreadsheetlcltransport" name="spreadsheetlcltransport" class="cont-modalbootstrap__form--control__input-photo spreadsheetlcltransport" type="file" accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" required/>
 						        	</div>
 						        	<div class="cont-modalbootstrap__form--control">
-						        		<label for="utilityfcl" class="cont-modalbootstrap__form--control__label">Utilidad</label>
-						        		<input id="utilityfcl" class="cont-modalbootstrap__form--control__input" name="utilityfcl" type="number" maxlength="200" required placeholder="Ingrese un valor de utilidad">
+						        		<label for="utilitylcltransport" class="cont-modalbootstrap__form--control__label">Utilidad</label>
+						        		<input id="utilitylcltransport" class="cont-modalbootstrap__form--control__input" name="utilitylcltransport" type="number" maxlength="200" required placeholder="Ingrese un valor de utilidad">
 						        	</div>
-						        	<div class="cont-group-form-controls">
+						        	<!--<div class="cont-group-form-controls">
 							        	<div class="cont-modalbootstrap__form--control cont-group-form-controls__control">
 							        		<label for="validdesdefcl" class="cont-modalbootstrap__form--control__label">Válido Desde</label>
 							        		<input id="validdesdefcl" class="cont-modalbootstrap__form--control__input" name="validdesdefcl" type="date" required placeholder="Selecciona una fecha">
@@ -87,7 +85,7 @@
 							        		<label for="validhastafcl" class="cont-modalbootstrap__form--control__label">Válido Hasta</label>
 							        		<input id="validhastafcl" class="cont-modalbootstrap__form--control__input" name="validhastafcl" type="date" required placeholder="Selecciona una fecha">
 							        	</div>
-						        	</div>
+						        	</div>-->
 								      <div class="cont-modalbootstrap__footer">
 								        <button type="button" class="cont-modalbootstrap__footer--btncancel" data-dismiss="modal">CANCELAR</button>
 								        <button type="submit" class="cont-modalbootstrap__footer--btnadd" id="btnadd-spreadsheetlcltransport">
@@ -165,6 +163,6 @@
 		</main>
 	</div>
 	<script src="<?= $url ?>js/main.js"></script>
-	<script src="<?= $url ?>js/actions_pages/rate_fcl_transport.js"></script>
+	<script src="<?= $url ?>js/actions_pages/rate_lcl_transport.js"></script>
 </body>
 </html>
