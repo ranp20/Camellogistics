@@ -58,6 +58,12 @@
                   </li>
                   <li class="c-FinalQuotation--contStep--cQuotation--cTop--c--cDetailsQuotation--m--item">
                     <div class="c-FinalQuotation--contStep--cQuotation--cTop--c--cDetailsQuotation--m--item--info">
+                      <span>Tipo de Transporte</span>
+                      <span><?= (isset($_POST['loadTypeTranport'])) ? strtoupper($_POST['loadTypeTranport']) : "No especificado"; ?></span>
+                    </div>
+                  </li>
+                  <li class="c-FinalQuotation--contStep--cQuotation--cTop--c--cDetailsQuotation--m--item">
+                    <div class="c-FinalQuotation--contStep--cQuotation--cTop--c--cDetailsQuotation--m--item--info">
                       <span>Tipo</span>
                       <span><?= ($_POST['loadTypeCharge'] == "FCL") ? "CONTENEDOR COMPLETO": "CONTENEDOR COMPARTIDO"; ?></span>
                     </div>

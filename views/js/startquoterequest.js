@@ -166,7 +166,9 @@ $(document).on("click", "#list-typeOperationItems a", function(){
       <div class="cont-MainCamelLog--c--contSteps--item--cTitle">
         <h3 class="cont-MainCamelLog--c--contSteps--item--cTitle--title">Tipo de Transporte</h3>
         <span>
-          <input type="hidden" value="" id="loadTypeTranport" name="loadTypeTranport">
+          <span>
+            <input type="hidden" value="" id="loadTypeTranport" name="loadTypeTranport">
+          </span>
         </span>
       </div>
       <div class="cont-MainCamelLog--c--contSteps--item--cStep">
@@ -1784,147 +1786,251 @@ $(document).on("click", "#btn-NextStepTochargedata", function(){
       method: "POST",
       datatype: "JSON",
       contentType: 'application/x-www-form-urlencoded;charset=UTF-8',
-      data: {nameportOrigin : arrPortOrigin[0]},
+      data: {nameportOrigin : arrPortOrigin[0], typetransport: $("#loadTypeTranport").val()},
     }).done((e) => {
       var ratesorigin = JSON.parse(e);
 
-      rate_5cbm = parseFloat(ratesorigin[0].total5cbm); //EN CASO DE NO SUPERAR LOS 5CBM
-      rate_15cbm = parseFloat(ratesorigin[0].total15cbm); //EN CASO DE SUPERAR LOS 15CBM
-      twodecimal_rate_5cbm = roundToTwo(rate_5cbm);
-      twodecimal_rate_15cbm = roundToTwo(rate_15cbm);
-
       /************************** DEVOLVER EL RESULTADO MAYOR - VOLUMEN O PESO **************************/
-      v_ValDividedTotalWeight = v_ValTotalWeight / 1000;
+      var v_ValDividedTotalWeight = v_ValTotalWeight / 1000;
 
-      if(v_ValTotalVolume <= 5){
-
-        if(v_ValTotalVolume > v_ValDividedTotalWeight){
-
-          totwithoutvalues = roundToTwo(twodecimal_rate_5cbm * v_ValTotalVolume);
-          localStorage.setItem("key_v-totalflette", totwithoutvalues);
-        }else{
-
-          totwithoutvalues = roundToTwo(twodecimal_rate_5cbm * v_ValDividedTotalWeight);
-          localStorage.setItem("key_v-totalflette", totwithoutvalues);
-        }
-
-        /************************** MOSTRAR EL RESUMEN HASTA ESTE PASO **************************/
-        $(".cont-MainCamelLog--c--contResumeCalc--item[data-advlevel=d-typecontainer]").addClass("show");
-
-        /************************** MOSTRAR EL PASO DE - ELIGE UNA OPCIÓN **************************/
-        $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-integservorfleteinte]").addClass("show");
-        sectionsSteps.moveTo('step-integservorfleteinte', 1);
-        $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-integservorfleteinte]").html(`
-          <div class="cont-MainCamelLog--c--contSteps--item--cTitle">
-            <h3 class="cont-MainCamelLog--c--contSteps--item--cTitle--title">Eliga una opción</h3>
-            <span>
-              <input type="hidden" value="" id="opt-genfquotation" name="opt-genfquotation">
-            </span>
-          </div>
-          <div class="cont-MainCamelLog--c--contSteps--item--cStep">
-            <ul class="cont-MainCamelLog--c--contSteps--item--cStep--m" id="list-SelOptionResultExp">
-              <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem">
-                <li class="cont-MainCamelLog--c--contSteps--item--cStep--m--item">
-                  <h3>Opción 1</h3>
-                  <div class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem--cImg">
-                    <img src="views/assets/img/steps/customs-clearance.png" alt="" loading="lazy">
-                  </div>
-                  <p>AGREGAR SERVICIOS DE ADUANA EN DESTINO</p>
-                </li>
-              </a>
-              <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem">
-                <li class="cont-MainCamelLog--c--contSteps--item--cStep--m--item">
-                  <h3>Opción 2</h3>
-                  <div class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem--cImg">
-                    <img src="views/assets/img/steps/no-customs-clearance.png" alt="" loading="lazy">
-                  </div>
-                  <p>NO AGREGAR SERVICIOS "SOLO DESEO FLETE"</p>
-                </li>
-              </a>
-            </ul>
-          </div>
-          <div class="cont-MainCamelLog--c--contSteps--item--cBtnNextStep"></div>
-        `);
+      if($("#loadTypeTranport").val() == "general"){
+        rate_5cbm = parseFloat(ratesorigin[0].total5cbm); //EN CASO DE NO SUPERAR LOS 5CBM
+        rate_15cbm = parseFloat(ratesorigin[0].total15cbm); //EN CASO DE SUPERAR LOS 15CBM
+        twodecimal_rate_5cbm = roundToTwo(rate_5cbm);
+        twodecimal_rate_15cbm = roundToTwo(rate_15cbm);
 
 
-      }else if(v_ValTotalVolume > 5 && v_ValTotalVolume <= 15){
+        if(v_ValTotalVolume <= 5){
 
-        if(v_ValTotalVolume > v_ValDividedTotalWeight){
+          if(v_ValTotalVolume > v_ValDividedTotalWeight){
 
-          totwithoutvalues = roundToTwo(twodecimal_rate_15cbm * v_ValTotalVolume);
-          localStorage.setItem("key_v-totalflette", totwithoutvalues);
-        }else{
+            totwithoutvalues = roundToTwo(twodecimal_rate_5cbm * v_ValTotalVolume);
+            localStorage.setItem("key_v-totalflette", totwithoutvalues);
+          }else{
 
-          totwithoutvalues = roundToTwo(twodecimal_rate_15cbm * v_ValDividedTotalWeight);
-          localStorage.setItem("key_v-totalflette", totwithoutvalues);
-        }
+            totwithoutvalues = roundToTwo(twodecimal_rate_5cbm * v_ValDividedTotalWeight);
+            localStorage.setItem("key_v-totalflette", totwithoutvalues);
+          }
 
-        /************************** MOSTRAR EL RESUMEN HASTA ESTE PASO **************************/
-        $(".cont-MainCamelLog--c--contResumeCalc--item[data-advlevel=d-typecontainer]").addClass("show");
-
-        /************************** MOSTRAR EL PASO DE - ELIGE UNA OPCIÓN **************************/
-        $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-integservorfleteinte]").addClass("show");
-        sectionsSteps.moveTo('step-integservorfleteinte', 1);
-        $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-integservorfleteinte]").html(`
-          <div class="cont-MainCamelLog--c--contSteps--item--cTitle">
-            <h3 class="cont-MainCamelLog--c--contSteps--item--cTitle--title">Eliga una opción</h3>
-            <span>
-              <input type="hidden" value="" id="opt-genfquotation" name="opt-genfquotation">
-            </span>
-          </div>
-          <div class="cont-MainCamelLog--c--contSteps--item--cStep">
-            <ul class="cont-MainCamelLog--c--contSteps--item--cStep--m" id="list-SelOptionResultExp">
-              <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem">
-                <li class="cont-MainCamelLog--c--contSteps--item--cStep--m--item">
-                  <h3>Opción 1</h3>
-                  <div class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem--cImg">
-                    <img src="views/assets/img/steps/customs-clearance.png" alt="" loading="lazy">
-                  </div>
-                  <p>AGREGAR SERVICIOS DE ADUANA EN DESTINO</p>
-                </li>
-              </a>
-              <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem">
-                <li class="cont-MainCamelLog--c--contSteps--item--cStep--m--item">
-                  <h3>Opción 2</h3>
-                  <div class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem--cImg">
-                    <img src="views/assets/img/steps/no-customs-clearance.png" alt="" loading="lazy">
-                  </div>
-                  <p>NO AGREGAR SERVICIOS "SOLO DESEO FLETE"</p>
-                </li>
-              </a>
-            </ul>
-          </div>
-          <div class="cont-MainCamelLog--c--contSteps--item--cBtnNextStep"></div>
-        `);
-
-      }else if(v_ValTotalVolume > 15){
-
-        /************************** OCULTAR EL RESUMEN HASTA ESTE PASO **************************/
-        $(".cont-MainCamelLog--c--contResumeCalc--item[data-advlevel=d-typecontainer]").removeClass("show");
-        /************************** OCULTAR EL PASO DE - ELIGE UNA OPCIÓN **************************/
-        $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-integservorfleteinte]").removeClass("show");
-        $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-integservorfleteinte]").html("");
-
-        /************************** MOSTRAR EL MENSAJE DE ALERTA PERSONALIZADO **************************/
-        $("#idMessageSteps-prcss").html(`
-          <div class="cntMessageSteps-prcss--cont">
-            <div class="cntMessageSteps-prcss--cont--c">
-              <span class="cntMessageSteps-prcss--cont--c--btnclose" id="btnclose-modalMessage"></span>
-              <h3 class="cntMessageSteps-prcss--cont--c--title">Carga excedida</h3>
-              <p class="cntMessageSteps-prcss--cont--c--text">El <b>VOLUMEN</b> registrado no debe exceder los 15 M³, seleccione <b>CONTENEDOR COMPLETO o contacte a un ASESOR +51 990 234 625.</b></p>
+          /************************** MOSTRAR EL RESUMEN HASTA ESTE PASO **************************/
+          $(".cont-MainCamelLog--c--contResumeCalc--item[data-advlevel=d-typecontainer]").addClass("show");
+          /************************** MOSTRAR EL PASO DE - ELIGE UNA OPCIÓN **************************/
+          $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-integservorfleteinte]").addClass("show");
+          sectionsSteps.moveTo('step-integservorfleteinte', 1);
+          $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-integservorfleteinte]").html(`
+            <div class="cont-MainCamelLog--c--contSteps--item--cTitle">
+              <h3 class="cont-MainCamelLog--c--contSteps--item--cTitle--title">Eliga una opción</h3>
+              <span>
+                <input type="hidden" value="" id="opt-genfquotation" name="opt-genfquotation">
+              </span>
             </div>
-          </div>
-        `)
-        /************************** CERRAR EL MODAL **************************/
-        setTimeout(function(){
-          $("#idMessageSteps-prcss .cntMessageSteps-prcss--cont").remove();
-        }, 6500)
-        $("#btnclose-modalMessage").on("click", function(){
-          $(this).parent().parent().remove();
-        });
+            <div class="cont-MainCamelLog--c--contSteps--item--cStep">
+              <ul class="cont-MainCamelLog--c--contSteps--item--cStep--m" id="list-SelOptionResultExp">
+                <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem">
+                  <li class="cont-MainCamelLog--c--contSteps--item--cStep--m--item">
+                    <h3>Opción 1</h3>
+                    <div class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem--cImg">
+                      <img src="views/assets/img/steps/customs-clearance.png" alt="" loading="lazy">
+                    </div>
+                    <p>AGREGAR SERVICIOS DE ADUANA EN DESTINO</p>
+                  </li>
+                </a>
+                <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem">
+                  <li class="cont-MainCamelLog--c--contSteps--item--cStep--m--item">
+                    <h3>Opción 2</h3>
+                    <div class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem--cImg">
+                      <img src="views/assets/img/steps/no-customs-clearance.png" alt="" loading="lazy">
+                    </div>
+                    <p>NO AGREGAR SERVICIOS "SOLO DESEO FLETE"</p>
+                  </li>
+                </a>
+              </ul>
+            </div>
+            <div class="cont-MainCamelLog--c--contSteps--item--cBtnNextStep"></div>
+          `);
+
+
+        }else if(v_ValTotalVolume > 5 && v_ValTotalVolume <= 15){
+
+          if(v_ValTotalVolume > v_ValDividedTotalWeight){
+
+            totwithoutvalues = roundToTwo(twodecimal_rate_15cbm * v_ValTotalVolume);
+            localStorage.setItem("key_v-totalflette", totwithoutvalues);
+          }else{
+
+            totwithoutvalues = roundToTwo(twodecimal_rate_15cbm * v_ValDividedTotalWeight);
+            localStorage.setItem("key_v-totalflette", totwithoutvalues);
+          }
+
+          /************************** MOSTRAR EL RESUMEN HASTA ESTE PASO **************************/
+          $(".cont-MainCamelLog--c--contResumeCalc--item[data-advlevel=d-typecontainer]").addClass("show");
+
+          /************************** MOSTRAR EL PASO DE - ELIGE UNA OPCIÓN **************************/
+          $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-integservorfleteinte]").addClass("show");
+          sectionsSteps.moveTo('step-integservorfleteinte', 1);
+          $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-integservorfleteinte]").html(`
+            <div class="cont-MainCamelLog--c--contSteps--item--cTitle">
+              <h3 class="cont-MainCamelLog--c--contSteps--item--cTitle--title">Eliga una opción</h3>
+              <span>
+                <input type="hidden" value="" id="opt-genfquotation" name="opt-genfquotation">
+              </span>
+            </div>
+            <div class="cont-MainCamelLog--c--contSteps--item--cStep">
+              <ul class="cont-MainCamelLog--c--contSteps--item--cStep--m" id="list-SelOptionResultExp">
+                <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem">
+                  <li class="cont-MainCamelLog--c--contSteps--item--cStep--m--item">
+                    <h3>Opción 1</h3>
+                    <div class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem--cImg">
+                      <img src="views/assets/img/steps/customs-clearance.png" alt="" loading="lazy">
+                    </div>
+                    <p>AGREGAR SERVICIOS DE ADUANA EN DESTINO</p>
+                  </li>
+                </a>
+                <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem">
+                  <li class="cont-MainCamelLog--c--contSteps--item--cStep--m--item">
+                    <h3>Opción 2</h3>
+                    <div class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem--cImg">
+                      <img src="views/assets/img/steps/no-customs-clearance.png" alt="" loading="lazy">
+                    </div>
+                    <p>NO AGREGAR SERVICIOS "SOLO DESEO FLETE"</p>
+                  </li>
+                </a>
+              </ul>
+            </div>
+            <div class="cont-MainCamelLog--c--contSteps--item--cBtnNextStep"></div>
+          `);
+
+        }else if(v_ValTotalVolume > 15){
+
+          /************************** OCULTAR EL RESUMEN HASTA ESTE PASO **************************/
+          $(".cont-MainCamelLog--c--contResumeCalc--item[data-advlevel=d-typecontainer]").removeClass("show");
+          /************************** OCULTAR EL PASO DE - ELIGE UNA OPCIÓN **************************/
+          $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-integservorfleteinte]").removeClass("show");
+          $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-integservorfleteinte]").html("");
+
+          /************************** MOSTRAR EL MENSAJE DE ALERTA PERSONALIZADO **************************/
+          $("#idMessageSteps-prcss").html(`
+            <div class="cntMessageSteps-prcss--cont">
+              <div class="cntMessageSteps-prcss--cont--c">
+                <span class="cntMessageSteps-prcss--cont--c--btnclose" id="btnclose-modalMessage"></span>
+                <h3 class="cntMessageSteps-prcss--cont--c--title">Carga excedida</h3>
+                <p class="cntMessageSteps-prcss--cont--c--text">El <b>VOLUMEN</b> registrado no debe exceder los 15 M³, seleccione <b>CONTENEDOR COMPLETO o contacte a un ASESOR +51 990 234 625.</b></p>
+              </div>
+            </div>
+          `)
+          /************************** CERRAR EL MODAL **************************/
+          setTimeout(function(){
+            $("#idMessageSteps-prcss .cntMessageSteps-prcss--cont").remove();
+          }, 6500)
+          $("#btnclose-modalMessage").on("click", function(){
+            $(this).parent().parent().remove();
+          });
+
+        }else{
+          console.log('Error de cálculo');
+        }
+
+      }else if($("#loadTypeTranport").val() == "imo"){
+        twodecimal_total_imo = roundToTwo(ratesorigin[0].total_imo);
+        //console.log(twodecimal_total_imo);
+
+        /************************** VALIDAR EL VALOR MÁXIMO ENTRE PESO Y VOLUMEN **************************/
+        if(v_ValTotalVolume > v_ValDividedTotalWeight){
+          totwithoutvalues = roundToTwo(twodecimal_total_imo * v_ValTotalVolume);
+          localStorage.setItem("key_v-totalflette", totwithoutvalues);
+          //console.log(totwithoutvalues);
+        }else{
+          totwithoutvalues = roundToTwo(twodecimal_total_imo * v_ValDividedTotalWeight);
+          localStorage.setItem("key_v-totalflette", totwithoutvalues);
+          //console.log(totwithoutvalues);
+        }
+        /************************** MOSTRAR EL RESUMEN HASTA ESTE PASO **************************/
+          $(".cont-MainCamelLog--c--contResumeCalc--item[data-advlevel=d-typecontainer]").addClass("show");
+          /************************** MOSTRAR EL PASO DE - ELIGE UNA OPCIÓN **************************/
+          $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-integservorfleteinte]").addClass("show");
+          sectionsSteps.moveTo('step-integservorfleteinte', 1);
+          $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-integservorfleteinte]").html(`
+            <div class="cont-MainCamelLog--c--contSteps--item--cTitle">
+              <h3 class="cont-MainCamelLog--c--contSteps--item--cTitle--title">Eliga una opción</h3>
+              <span>
+                <input type="hidden" value="" id="opt-genfquotation" name="opt-genfquotation">
+              </span>
+            </div>
+            <div class="cont-MainCamelLog--c--contSteps--item--cStep">
+              <ul class="cont-MainCamelLog--c--contSteps--item--cStep--m" id="list-SelOptionResultExp">
+                <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem">
+                  <li class="cont-MainCamelLog--c--contSteps--item--cStep--m--item">
+                    <h3>Opción 1</h3>
+                    <div class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem--cImg">
+                      <img src="views/assets/img/steps/customs-clearance.png" alt="" loading="lazy">
+                    </div>
+                    <p>AGREGAR SERVICIOS DE ADUANA EN DESTINO</p>
+                  </li>
+                </a>
+                <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem">
+                  <li class="cont-MainCamelLog--c--contSteps--item--cStep--m--item">
+                    <h3>Opción 2</h3>
+                    <div class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem--cImg">
+                      <img src="views/assets/img/steps/no-customs-clearance.png" alt="" loading="lazy">
+                    </div>
+                    <p>NO AGREGAR SERVICIOS "SOLO DESEO FLETE"</p>
+                  </li>
+                </a>
+              </ul>
+            </div>
+            <div class="cont-MainCamelLog--c--contSteps--item--cBtnNextStep"></div>
+          `);
 
       }else{
-        console.log('Error de cálculo');
+        twodecimal_total_refrigerado = roundToTwo(ratesorigin[0].total_refrigerado);
+        //console.log(twodecimal_total_refrigerado);
+
+        /************************** VALIDAR EL VALOR MÁXIMO ENTRE PESO Y VOLUMEN **************************/
+        if(v_ValTotalVolume > v_ValDividedTotalWeight){
+          totwithoutvalues = roundToTwo(twodecimal_total_refrigerado * v_ValTotalVolume);
+          localStorage.setItem("key_v-totalflette", totwithoutvalues);
+          //console.log(totwithoutvalues);
+        }else{
+          totwithoutvalues = roundToTwo(twodecimal_total_refrigerado * v_ValDividedTotalWeight);
+          localStorage.setItem("key_v-totalflette", totwithoutvalues);
+          //console.log(totwithoutvalues);
+        }
+        /************************** MOSTRAR EL RESUMEN HASTA ESTE PASO **************************/
+          $(".cont-MainCamelLog--c--contResumeCalc--item[data-advlevel=d-typecontainer]").addClass("show");
+          /************************** MOSTRAR EL PASO DE - ELIGE UNA OPCIÓN **************************/
+          $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-integservorfleteinte]").addClass("show");
+          sectionsSteps.moveTo('step-integservorfleteinte', 1);
+          $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-integservorfleteinte]").html(`
+            <div class="cont-MainCamelLog--c--contSteps--item--cTitle">
+              <h3 class="cont-MainCamelLog--c--contSteps--item--cTitle--title">Eliga una opción</h3>
+              <span>
+                <input type="hidden" value="" id="opt-genfquotation" name="opt-genfquotation">
+              </span>
+            </div>
+            <div class="cont-MainCamelLog--c--contSteps--item--cStep">
+              <ul class="cont-MainCamelLog--c--contSteps--item--cStep--m" id="list-SelOptionResultExp">
+                <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem">
+                  <li class="cont-MainCamelLog--c--contSteps--item--cStep--m--item">
+                    <h3>Opción 1</h3>
+                    <div class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem--cImg">
+                      <img src="views/assets/img/steps/customs-clearance.png" alt="" loading="lazy">
+                    </div>
+                    <p>AGREGAR SERVICIOS DE ADUANA EN DESTINO</p>
+                  </li>
+                </a>
+                <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem">
+                  <li class="cont-MainCamelLog--c--contSteps--item--cStep--m--item">
+                    <h3>Opción 2</h3>
+                    <div class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem--cImg">
+                      <img src="views/assets/img/steps/no-customs-clearance.png" alt="" loading="lazy">
+                    </div>
+                    <p>NO AGREGAR SERVICIOS "SOLO DESEO FLETE"</p>
+                  </li>
+                </a>
+              </ul>
+            </div>
+            <div class="cont-MainCamelLog--c--contSteps--item--cBtnNextStep"></div>
+          `);
       }
     });
 
