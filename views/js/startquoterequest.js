@@ -1994,7 +1994,7 @@ $(document).on("click", "#btn-NextStepTochargedata", function(){
               <div class="cntMessageSteps-prcss--cont--c">
                 <span class="cntMessageSteps-prcss--cont--c--btnclose" id="btnclose-modalMessage"></span>
                 <h3 class="cntMessageSteps-prcss--cont--c--title">Carga excedida</h3>
-                <p class="cntMessageSteps-prcss--cont--c--text">El <b>VOLUMEN</b> registrado no debe exceder los 15 M³, seleccione <b>CONTENEDOR COMPLETO o contacte a un ASESOR +51 990 234 625.</b></p>
+                <p class="cntMessageSteps-prcss--cont--c--text">El <b>VOLUMEN</b> registrado no debe exceder los <b>15 M³</b>, seleccione <b>CONTENEDOR COMPLETO o contacte a un ASESOR +51 990 234 625.</b></p>
               </div>
             </div>
           `)
@@ -2013,18 +2013,43 @@ $(document).on("click", "#btn-NextStepTochargedata", function(){
       }else if($("#loadTypeTranport").val() == "imo"){
         twodecimal_total_imo = roundToTwo(ratesorigin[0].total_imo);
         //console.log(twodecimal_total_imo);
+        if(v_ValTotalVolume > 15){
 
-        /************************** VALIDAR EL VALOR MÁXIMO ENTRE PESO Y VOLUMEN **************************/
-        if(v_ValTotalVolume > v_ValDividedTotalWeight){
-          totwithoutvalues = roundToTwo(twodecimal_total_imo * v_ValTotalVolume);
-          localStorage.setItem("key_v-totalflette", totwithoutvalues);
-          //console.log(totwithoutvalues);
+          /************************** OCULTAR EL RESUMEN HASTA ESTE PASO **************************/
+          $(".cont-MainCamelLog--c--contResumeCalc--item[data-advlevel=d-typecontainer]").removeClass("show");
+          /************************** OCULTAR EL PASO DE - ELIGE UNA OPCIÓN **************************/
+          $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-integservorfleteinte]").removeClass("show");
+          $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-integservorfleteinte]").html("");
+
+          /************************** MOSTRAR EL MENSAJE DE ALERTA PERSONALIZADO **************************/
+          $("#idMessageSteps-prcss").html(`
+            <div class="cntMessageSteps-prcss--cont">
+              <div class="cntMessageSteps-prcss--cont--c">
+                <span class="cntMessageSteps-prcss--cont--c--btnclose" id="btnclose-modalMessage"></span>
+                <h3 class="cntMessageSteps-prcss--cont--c--title">Carga excedida</h3>
+                <p class="cntMessageSteps-prcss--cont--c--text">El <b>VOLUMEN</b> registrado no debe exceder los <b>15 M³</b>, seleccione <b>CONTENEDOR COMPLETO o contacte a un ASESOR +51 990 234 625.</b></p>
+              </div>
+            </div>
+          `)
+          /************************** CERRAR EL MODAL **************************/
+          setTimeout(function(){
+            $("#idMessageSteps-prcss .cntMessageSteps-prcss--cont").remove();
+          }, 6500)
+          $("#btnclose-modalMessage").on("click", function(){
+            $(this).parent().parent().remove();
+          });
         }else{
-          totwithoutvalues = roundToTwo(twodecimal_total_imo * v_ValDividedTotalWeight);
-          localStorage.setItem("key_v-totalflette", totwithoutvalues);
-          //console.log(totwithoutvalues);
-        }
-        /************************** MOSTRAR EL RESUMEN HASTA ESTE PASO **************************/
+          /************************** VALIDAR EL VALOR MÁXIMO ENTRE PESO Y VOLUMEN **************************/
+          if(v_ValTotalVolume > v_ValDividedTotalWeight){
+            totwithoutvalues = roundToTwo(twodecimal_total_imo * v_ValTotalVolume);
+            localStorage.setItem("key_v-totalflette", totwithoutvalues);
+            //console.log(totwithoutvalues);
+          }else{
+            totwithoutvalues = roundToTwo(twodecimal_total_imo * v_ValDividedTotalWeight);
+            localStorage.setItem("key_v-totalflette", totwithoutvalues);
+            //console.log(totwithoutvalues);
+          }
+          /************************** MOSTRAR EL RESUMEN HASTA ESTE PASO **************************/
           $(".cont-MainCamelLog--c--contResumeCalc--item[data-advlevel=d-typecontainer]").addClass("show");
           /************************** MOSTRAR EL PASO DE - ELIGE UNA OPCIÓN **************************/
           $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-integservorfleteinte]").addClass("show");
@@ -2060,57 +2085,84 @@ $(document).on("click", "#btn-NextStepTochargedata", function(){
             </div>
             <div class="cont-MainCamelLog--c--contSteps--item--cBtnNextStep"></div>
           `);
+        }
 
       }else{
         twodecimal_total_refrigerado = roundToTwo(ratesorigin[0].total_refrigerado);
         //console.log(twodecimal_total_refrigerado);
+        if(v_ValTotalVolume > 15){
 
-        /************************** VALIDAR EL VALOR MÁXIMO ENTRE PESO Y VOLUMEN **************************/
-        if(v_ValTotalVolume > v_ValDividedTotalWeight){
-          totwithoutvalues = roundToTwo(twodecimal_total_refrigerado * v_ValTotalVolume);
-          localStorage.setItem("key_v-totalflette", totwithoutvalues);
-          //console.log(totwithoutvalues);
+          /************************** OCULTAR EL RESUMEN HASTA ESTE PASO **************************/
+          $(".cont-MainCamelLog--c--contResumeCalc--item[data-advlevel=d-typecontainer]").removeClass("show");
+          /************************** OCULTAR EL PASO DE - ELIGE UNA OPCIÓN **************************/
+          $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-integservorfleteinte]").removeClass("show");
+          $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-integservorfleteinte]").html("");
+
+          /************************** MOSTRAR EL MENSAJE DE ALERTA PERSONALIZADO **************************/
+          $("#idMessageSteps-prcss").html(`
+            <div class="cntMessageSteps-prcss--cont">
+              <div class="cntMessageSteps-prcss--cont--c">
+                <span class="cntMessageSteps-prcss--cont--c--btnclose" id="btnclose-modalMessage"></span>
+                <h3 class="cntMessageSteps-prcss--cont--c--title">Carga excedida</h3>
+                <p class="cntMessageSteps-prcss--cont--c--text">El <b>VOLUMEN</b> registrado no debe exceder los <b>15 M³</b>, seleccione <b>CONTENEDOR COMPLETO o contacte a un ASESOR +51 990 234 625.</b></p>
+              </div>
+            </div>
+          `)
+          /************************** CERRAR EL MODAL **************************/
+          setTimeout(function(){
+            $("#idMessageSteps-prcss .cntMessageSteps-prcss--cont").remove();
+          }, 6500)
+          $("#btnclose-modalMessage").on("click", function(){
+            $(this).parent().parent().remove();
+          });
         }else{
-          totwithoutvalues = roundToTwo(twodecimal_total_refrigerado * v_ValDividedTotalWeight);
-          localStorage.setItem("key_v-totalflette", totwithoutvalues);
-          //console.log(totwithoutvalues);
+          /************************** VALIDAR EL VALOR MÁXIMO ENTRE PESO Y VOLUMEN **************************/
+          if(v_ValTotalVolume > v_ValDividedTotalWeight){
+            totwithoutvalues = roundToTwo(twodecimal_total_refrigerado * v_ValTotalVolume);
+            localStorage.setItem("key_v-totalflette", totwithoutvalues);
+            //console.log(totwithoutvalues);
+          }else{
+            totwithoutvalues = roundToTwo(twodecimal_total_refrigerado * v_ValDividedTotalWeight);
+            localStorage.setItem("key_v-totalflette", totwithoutvalues);
+            //console.log(totwithoutvalues);
+          }
+          /************************** MOSTRAR EL RESUMEN HASTA ESTE PASO **************************/
+            $(".cont-MainCamelLog--c--contResumeCalc--item[data-advlevel=d-typecontainer]").addClass("show");
+            /************************** MOSTRAR EL PASO DE - ELIGE UNA OPCIÓN **************************/
+            $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-integservorfleteinte]").addClass("show");
+            sectionsSteps.moveTo('step-integservorfleteinte', 1);
+            $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-integservorfleteinte]").html(`
+              <div class="cont-MainCamelLog--c--contSteps--item--cTitle">
+                <h3 class="cont-MainCamelLog--c--contSteps--item--cTitle--title">Eliga una opción</h3>
+                <span>
+                  <input type="hidden" value="" id="opt-genfquotation" name="opt-genfquotation">
+                </span>
+              </div>
+              <div class="cont-MainCamelLog--c--contSteps--item--cStep">
+                <ul class="cont-MainCamelLog--c--contSteps--item--cStep--m" id="list-SelOptionResultExp">
+                  <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem">
+                    <li class="cont-MainCamelLog--c--contSteps--item--cStep--m--item">
+                      <h3>Opción 1</h3>
+                      <div class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem--cImg">
+                        <img src="views/assets/img/steps/customs-clearance.png" alt="" loading="lazy">
+                      </div>
+                      <p>AGREGAR SERVICIOS DE ADUANA EN DESTINO</p>
+                    </li>
+                  </a>
+                  <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem">
+                    <li class="cont-MainCamelLog--c--contSteps--item--cStep--m--item">
+                      <h3>Opción 2</h3>
+                      <div class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem--cImg">
+                        <img src="views/assets/img/steps/no-customs-clearance.png" alt="" loading="lazy">
+                      </div>
+                      <p>NO AGREGAR SERVICIOS "SOLO DESEO FLETE"</p>
+                    </li>
+                  </a>
+                </ul>
+              </div>
+              <div class="cont-MainCamelLog--c--contSteps--item--cBtnNextStep"></div>
+            `);
         }
-        /************************** MOSTRAR EL RESUMEN HASTA ESTE PASO **************************/
-          $(".cont-MainCamelLog--c--contResumeCalc--item[data-advlevel=d-typecontainer]").addClass("show");
-          /************************** MOSTRAR EL PASO DE - ELIGE UNA OPCIÓN **************************/
-          $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-integservorfleteinte]").addClass("show");
-          sectionsSteps.moveTo('step-integservorfleteinte', 1);
-          $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-integservorfleteinte]").html(`
-            <div class="cont-MainCamelLog--c--contSteps--item--cTitle">
-              <h3 class="cont-MainCamelLog--c--contSteps--item--cTitle--title">Eliga una opción</h3>
-              <span>
-                <input type="hidden" value="" id="opt-genfquotation" name="opt-genfquotation">
-              </span>
-            </div>
-            <div class="cont-MainCamelLog--c--contSteps--item--cStep">
-              <ul class="cont-MainCamelLog--c--contSteps--item--cStep--m" id="list-SelOptionResultExp">
-                <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem">
-                  <li class="cont-MainCamelLog--c--contSteps--item--cStep--m--item">
-                    <h3>Opción 1</h3>
-                    <div class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem--cImg">
-                      <img src="views/assets/img/steps/customs-clearance.png" alt="" loading="lazy">
-                    </div>
-                    <p>AGREGAR SERVICIOS DE ADUANA EN DESTINO</p>
-                  </li>
-                </a>
-                <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem">
-                  <li class="cont-MainCamelLog--c--contSteps--item--cStep--m--item">
-                    <h3>Opción 2</h3>
-                    <div class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem--cImg">
-                      <img src="views/assets/img/steps/no-customs-clearance.png" alt="" loading="lazy">
-                    </div>
-                    <p>NO AGREGAR SERVICIOS "SOLO DESEO FLETE"</p>
-                  </li>
-                </a>
-              </ul>
-            </div>
-            <div class="cont-MainCamelLog--c--contSteps--item--cBtnNextStep"></div>
-          `);
       }
     });
 
@@ -2700,7 +2752,7 @@ function listrateLCLTransport(searchVal){
       method: "POST",
       datatype: "JSON",
       contentType: 'application/x-www-form-urlencoded;charset=UTF-8',
-      data: {searchList : searchVal},
+      data: {searchList : searchVal, idpaisdestiny : ipt_idPortcountryDestiny},
     }).done( function (res) {
       var response = JSON.parse(res);
       var template = "";
@@ -2718,7 +2770,7 @@ function listrateLCLTransport(searchVal){
         response.forEach(e => {
         var zonaUppercase = e.zona;
         template += `
-          <li class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation--cC--cControl--cListChange--m--item" id="${e.id}" idprovince="${e.zona}">
+          <li class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation--cC--cControl--cListChange--m--item" id="${e.id}" idprovince="${e.zona}" namprovince="${e.province}">
              <span>${zonaUppercase.toUpperCase()}</span>
            </li>
         `;
@@ -2734,7 +2786,7 @@ function listrateLCLTransport(searchVal){
       method: "POST",
       datatype: "JSON",
       contentType: 'application/x-www-form-urlencoded;charset=UTF-8',
-      data: {searchList : searchVal},
+      data: {searchList : searchVal, idpaisdestiny : ipt_idPortcountryDestiny},
     }).done( function (res) {
       var response = JSON.parse(res);
       var template = "";
@@ -2752,7 +2804,7 @@ function listrateLCLTransport(searchVal){
         response.forEach(e => {
         var zonaUppercase = e.zona;
         template += `
-          <li class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation--cC--cControl--cListChange--m--item" id="${e.id}" idprovince="${e.zona}">
+          <li class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation--cC--cControl--cListChange--m--item" id="${e.id}" idprovince="${e.zona}" namprovince="${e.province}">
              <span>${zonaUppercase.toUpperCase()}</span>
            </li>
         `;
@@ -2768,7 +2820,7 @@ function listrateLCLTransport(searchVal){
       method: "POST",
       datatype: "JSON",
       contentType: 'application/x-www-form-urlencoded;charset=UTF-8',
-      data: {searchList : searchVal},
+      data: {searchList : searchVal, idpaisdestiny : ipt_idPortcountryDestiny},
     }).done( function (res) {
       var response = JSON.parse(res);
       var template = "";
@@ -2786,7 +2838,7 @@ function listrateLCLTransport(searchVal){
         response.forEach(e => {
         var zonaUppercase = e.zona;
         template += `
-          <li class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation--cC--cControl--cListChange--m--item" id="${e.id}" idprovince="${e.zona}">
+          <li class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation--cC--cControl--cListChange--m--item" id="${e.id}" idprovince="${e.zona}" namprovince="${e.province}">
              <span>${zonaUppercase.toUpperCase()}</span>
            </li>
         `;
