@@ -42,6 +42,8 @@ $(document).ready(() => {
 		
 	});
 
+	/************************** LISTAR LAS FECHAS DE LA VALIDEZ DE LA TARIFA **************************/
+	$("#v_validratedate").text(localStorage.getItem("key_validaterate"));
 
 	/************************** LISTAR LOS VALORES DEL FLETE REAL **************************/
 	var totflete = parseFloat(localStorage.getItem("key_v-totalflette"));

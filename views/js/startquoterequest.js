@@ -1879,6 +1879,24 @@ $(document).on("click", "#btn-NextStepTochargedata", function(){
         twodecimal_rate_5cbm = roundToTwo(rate_5cbm);
         twodecimal_rate_15cbm = roundToTwo(rate_15cbm);
 
+        /************************** DEVOLVER LA FECHA DE VALIDEZ DE LA TARIFA A LA VARIABLE LOCAL **************************/
+        var validdesde_final = ratesorigin[0].validdesde;
+        var validhasta_final = ratesorigin[0].validhasta;
+        var convertOneDATE =  new Date(Date.parse(validdesde_final.replace(/-/g, '/')));
+        var convertTwoDATE =  new Date(Date.parse(validhasta_final.replace(/[-]/g,'/')));
+        //var options = { year: 'numeric', month: '2-digit', day: 'numeric' };
+        var options = { year: 'numeric', month: 'long', day: 'numeric' };
+        var convertDateValidDesde = convertOneDATE.toLocaleDateString("es-ES", options);
+        var convertDateValidHasta = convertTwoDATE.toLocaleDateString("es-ES", options);
+        var separateDateValidDesde = convertDateValidDesde.split(" ");
+        var separateDateValidHasta = convertDateValidHasta.split(" ");
+        var monthSeparatetoArrayDesde = separateDateValidDesde[2].slice(0, 3);
+        var monthSeparatetoArrayHasta = separateDateValidHasta[2].slice(0, 3);
+
+        var val_dateValidDesde = separateDateValidDesde[0]+" "+"de"+" "+firstToUppercase(monthSeparatetoArrayDesde);
+        var val_dateValidHasta = separateDateValidHasta[0]+" "+"de"+" "+firstToUppercase(monthSeparatetoArrayHasta);
+        /************************** ASIGNAR A LAS VARIABLES LOCALES **************************/
+        localStorage.setItem("key_validaterate", val_dateValidDesde+" - "+val_dateValidHasta);
 
         if(v_ValTotalVolume <= 5){
 
@@ -2039,6 +2057,25 @@ $(document).on("click", "#btn-NextStepTochargedata", function(){
             $(this).parent().parent().remove();
           });
         }else{
+          /************************** DEVOLVER LA FECHA DE VALIDEZ DE LA TARIFA A LA VARIABLE LOCAL **************************/
+          var validdesde_final = ratesorigin[0].validdesde;
+          var validhasta_final = ratesorigin[0].validhasta;
+          var convertOneDATE =  new Date(Date.parse(validdesde_final.replace(/-/g, '/')));
+          var convertTwoDATE =  new Date(Date.parse(validhasta_final.replace(/[-]/g,'/')));
+          //var options = { year: 'numeric', month: '2-digit', day: 'numeric' };
+          var options = { year: 'numeric', month: 'long', day: 'numeric' };
+          var convertDateValidDesde = convertOneDATE.toLocaleDateString("es-ES", options);
+          var convertDateValidHasta = convertTwoDATE.toLocaleDateString("es-ES", options);
+          var separateDateValidDesde = convertDateValidDesde.split(" ");
+          var separateDateValidHasta = convertDateValidHasta.split(" ");
+          var monthSeparatetoArrayDesde = separateDateValidDesde[2].slice(0, 3);
+          var monthSeparatetoArrayHasta = separateDateValidHasta[2].slice(0, 3);
+
+          var val_dateValidDesde = separateDateValidDesde[0]+" "+"de"+" "+firstToUppercase(monthSeparatetoArrayDesde);
+          var val_dateValidHasta = separateDateValidHasta[0]+" "+"de"+" "+firstToUppercase(monthSeparatetoArrayHasta);
+          /************************** ASIGNAR A LAS VARIABLES LOCALES **************************/
+          localStorage.setItem("key_validaterate", val_dateValidDesde+" - "+val_dateValidHasta);
+          
           /************************** VALIDAR EL VALOR MÁXIMO ENTRE PESO Y VOLUMEN **************************/
           if(v_ValTotalVolume > v_ValDividedTotalWeight){
             totwithoutvalues = roundToTwo(twodecimal_total_imo * v_ValTotalVolume);
@@ -2116,6 +2153,26 @@ $(document).on("click", "#btn-NextStepTochargedata", function(){
             $(this).parent().parent().remove();
           });
         }else{
+
+          /************************** DEVOLVER LA FECHA DE VALIDEZ DE LA TARIFA A LA VARIABLE LOCAL **************************/
+          var validdesde_final = ratesorigin[0].validdesde;
+          var validhasta_final = ratesorigin[0].validhasta;
+          var convertOneDATE =  new Date(Date.parse(validdesde_final.replace(/-/g, '/')));
+          var convertTwoDATE =  new Date(Date.parse(validhasta_final.replace(/[-]/g,'/')));
+          //var options = { year: 'numeric', month: '2-digit', day: 'numeric' };
+          var options = { year: 'numeric', month: 'long', day: 'numeric' };
+          var convertDateValidDesde = convertOneDATE.toLocaleDateString("es-ES", options);
+          var convertDateValidHasta = convertTwoDATE.toLocaleDateString("es-ES", options);
+          var separateDateValidDesde = convertDateValidDesde.split(" ");
+          var separateDateValidHasta = convertDateValidHasta.split(" ");
+          var monthSeparatetoArrayDesde = separateDateValidDesde[2].slice(0, 3);
+          var monthSeparatetoArrayHasta = separateDateValidHasta[2].slice(0, 3);
+
+          var val_dateValidDesde = separateDateValidDesde[0]+" "+"de"+" "+firstToUppercase(monthSeparatetoArrayDesde);
+          var val_dateValidHasta = separateDateValidHasta[0]+" "+"de"+" "+firstToUppercase(monthSeparatetoArrayHasta);
+          /************************** ASIGNAR A LAS VARIABLES LOCALES **************************/
+          localStorage.setItem("key_validaterate", val_dateValidDesde+" - "+val_dateValidHasta);
+
           /************************** VALIDAR EL VALOR MÁXIMO ENTRE PESO Y VOLUMEN **************************/
           if(v_ValTotalVolume > v_ValDividedTotalWeight){
             totwithoutvalues = roundToTwo(twodecimal_total_refrigerado * v_ValTotalVolume);
