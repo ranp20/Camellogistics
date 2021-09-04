@@ -3383,14 +3383,22 @@ img {
   z-index: 999;
 }
 .cont-MainCamelLog--c--contResumeCalc--item {
-  /************************** TIPO DE TRANSPORTE Y TIPO DE CARGA **************************/
+  /************************** TIPO DE TRANSPORTE **************************/
+  /************************** TIPO DE CARGA **************************/
   /************************** CONTENEDORES **************************/
   /************************** ELIGE UNA OPCIÓN **************************/
 }
-.cont-MainCamelLog--c--contResumeCalc--item[data-advlevel=d-typetransportcharge] .cont-MainCamelLog--c--contResumeCalc--item--cardStep, .cont-MainCamelLog--c--contResumeCalc--item[data-advlevel=d-chargeload] .cont-MainCamelLog--c--contResumeCalc--item--cardStep {
+.cont-MainCamelLog--c--contResumeCalc--item[data-advlevel=d-typetransportcharge] .cont-MainCamelLog--c--contResumeCalc--item--cardStep {
+  text-align: center;
+  padding: 0.2rem 0.65rem;
+}
+.cont-MainCamelLog--c--contResumeCalc--item[data-advlevel=d-typetransportcharge] .cont-MainCamelLog--c--contResumeCalc--item--cardStep span {
+  font-weight: 600;
+}
+.cont-MainCamelLog--c--contResumeCalc--item[data-advlevel=d-chargeload] .cont-MainCamelLog--c--contResumeCalc--item--cardStep {
   text-align: center;
 }
-.cont-MainCamelLog--c--contResumeCalc--item[data-advlevel=d-typetransportcharge] .cont-MainCamelLog--c--contResumeCalc--item--cardStep span, .cont-MainCamelLog--c--contResumeCalc--item[data-advlevel=d-chargeload] .cont-MainCamelLog--c--contResumeCalc--item--cardStep span {
+.cont-MainCamelLog--c--contResumeCalc--item[data-advlevel=d-chargeload] .cont-MainCamelLog--c--contResumeCalc--item--cardStep span {
   font-weight: 600;
 }
 .cont-MainCamelLog--c--contResumeCalc--item[data-advlevel=d-typecontainer] {
@@ -3489,7 +3497,7 @@ img {
   margin-right: 0.5rem;
 }
 .cont-MainCamelLog--c--contResumeCalc--item--cardStep--cImgIcon {
-  max-width: 35px;
+  max-width: 40px;
   width: 95%;
   height: auto;
   display: inline-block;

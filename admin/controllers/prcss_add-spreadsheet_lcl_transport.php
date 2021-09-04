@@ -39,7 +39,7 @@ if(isset($_FILES) && isset($_POST)){
 				$arrupdated_refrigerado = [];
 
 				/************************** RECORRER - VALORES DE CARGA GENERAL **************************/
-				for ($i = 6; $i < $numberrows; $i++){
+				for ($i = 3; $i < $numberrows; $i++){
 					$zona = $archivoExcel->getActiveSheet()->getCell('B'.$i)->getCalculatedValue();
 					$de_1_a_1000 = $archivoExcel->getActiveSheet()->getCell('C'.$i)->getCalculatedValue();
 					$total_1_a_1000 = $archivoExcel->getActiveSheet()->getCell('D'.$i)->getCalculatedValue();
@@ -115,7 +115,7 @@ if(isset($_FILES) && isset($_POST)){
 				}
 
 				/************************** RECORRER - VALORES DE CARGA IMO **************************/
-				for ($i = 6; $i < $numberrows; $i++){
+				for ($i = 3; $i < $numberrows; $i++){
 					$imo_zona = $archivoExcel->getActiveSheet()->getCell('B'.$i)->getCalculatedValue();
 					$imo_de_1_a_1000 = $archivoExcel->getActiveSheet()->getCell('R'.$i)->getCalculatedValue();
 					$imo_total_1_a_1000 = $archivoExcel->getActiveSheet()->getCell('S'.$i)->getCalculatedValue();
@@ -191,7 +191,7 @@ if(isset($_FILES) && isset($_POST)){
 				}
 
 				/************************** RECORRER - VALORES DE CARGA REFRIGERADO **************************/
-				for ($i = 6; $i < $numberrows; $i++){
+				for ($i = 3; $i < $numberrows; $i++){
 					$refr_zona = $archivoExcel->getActiveSheet()->getCell('B'.$i)->getCalculatedValue();
 					$refr_de_1_a_1000 = $archivoExcel->getActiveSheet()->getCell('AG'.$i)->getCalculatedValue();
 					$refr_total_1_a_1000 = $archivoExcel->getActiveSheet()->getCell('AH'.$i)->getCalculatedValue();
@@ -379,7 +379,7 @@ if(isset($_FILES) && isset($_POST)){
 				}
 
 				for ($i = 3; $i < $numberrows; $i++){
-					$zona = $archivoExcel->getActiveSheet()->getCell('B'.$i)->getCalculatedValue();
+					$imo_zona = $archivoExcel->getActiveSheet()->getCell('B'.$i)->getCalculatedValue();
 					$imo_de_1_a_1000 = $archivoExcel->getActiveSheet()->getCell('R'.$i)->getCalculatedValue();
 					$imo_total_1_a_1000 = $archivoExcel->getActiveSheet()->getCell('S'.$i)->getCalculatedValue();
 					$imo_de_1001_a_2000 = $archivoExcel->getActiveSheet()->getCell('T'.$i)->getCalculatedValue();
@@ -415,7 +415,7 @@ if(isset($_FILES) && isset($_POST)){
 						total_20st_40nor,
 						utility) 
 						VALUES 
-						('".$zona."', 
+						('".$imo_zona."', 
 						'".$imo_de_1_a_1000."', 
 						'".$imo_total_1_a_1000."',
 						'".$imo_de_1001_a_2000."', 
@@ -447,7 +447,7 @@ if(isset($_FILES) && isset($_POST)){
 				}
 
 				for ($i = 3; $i < $numberrows; $i++){
-					$zona = $archivoExcel->getActiveSheet()->getCell('B'.$i)->getCalculatedValue();
+					$refr_zona = $archivoExcel->getActiveSheet()->getCell('B'.$i)->getCalculatedValue();
 					$refr_de_1_a_1000 = $archivoExcel->getActiveSheet()->getCell('AG'.$i)->getCalculatedValue();
 					$refr_total_1_a_1000 = $archivoExcel->getActiveSheet()->getCell('AH'.$i)->getCalculatedValue();
 					$refr_de_1001_a_2000 = $archivoExcel->getActiveSheet()->getCell('AI'.$i)->getCalculatedValue();
@@ -483,7 +483,7 @@ if(isset($_FILES) && isset($_POST)){
 						total_20st_40nor,
 						utility) 
 						VALUES 
-						('".$zona."', 
+						('".$refr_zona."', 
 						'".$refr_de_1_a_1000."', 
 						'".$refr_total_1_a_1000."',
 						'".$refr_de_1001_a_2000."', 

@@ -9,7 +9,7 @@ $(() => {
 	/************************** LISTAR LOS TIPOS DE PRODUCTOS **************************/
 	listProductsUser();
 	/************************** LISTAR LOS DISTRITOS DE ACUERDO AL PAÍS DE DESTINO **************************/
-	listDistricsByCountry();
+	listrateLCLTransport();
 });
 ////OTRAS TAREAS - MEJORA DE UI Y UX
 /* - Mostrar al inicio solo los pasos a usar antes de cada elección, luego ir añadiendo o quitando de acuerdo a los elementos seleccionados
@@ -2691,41 +2691,118 @@ $(document).on("click", "#list-requirespickup a", function(){
   }
 });
 /************************** LISTAR LOS DISTRITOS POR ID DE PAÍS **************************/
-function listDistricsByCountry(searchVal){
-  $.ajax({
-    url: "controllers/list_districs.php",
-    method: "POST",
-    datatype: "JSON",
-    contentType: 'application/x-www-form-urlencoded;charset=UTF-8',
-    data: {searchList : searchVal, idpaisdestiny : ipt_idPortcountryDestiny},
-  }).done( function (res) {
-    var response = JSON.parse(res);
-    var template = "";
-    if(response.length == 0){
-      template = `
-        <li class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation--cC--cControl--cListChange--m--anyresult">
-          <p>No encontado</p>
-        </li>
-      `;
-      $("#m-listAllDistricsByCountry").html(template);
-      setTimeout(function(){
-        $("#m-listAllDistricsByCountry").removeClass("show");
-      }, 4500);
-    }else{
-      response.forEach(e => {
-      template += `
-        <li class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation--cC--cControl--cListChange--m--item" id="${e.id}" idprovince="${e.id_province}" namprovince="${e.province}">
-           <span>${e.distric}</span>
-         </li>
-      `;
-      });
-      $("#m-listAllDistricsByCountry").html(template);
-    }
-  });
+function listrateLCLTransport(searchVal){
+
+  if($("#loadTypeTranport").val() == "general")  {
+    
+    $.ajax({
+      url: "controllers/list_zonasratelcltransport_general.php",
+      method: "POST",
+      datatype: "JSON",
+      contentType: 'application/x-www-form-urlencoded;charset=UTF-8',
+      data: {searchList : searchVal},
+    }).done( function (res) {
+      var response = JSON.parse(res);
+      var template = "";
+      if(response.length == 0){
+        template = `
+          <li class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation--cC--cControl--cListChange--m--anyresult">
+            <p>No encontado</p>
+          </li>
+        `;
+        $("#m-listAllDistricsByCountry").html(template);
+        setTimeout(function(){
+          $("#m-listAllDistricsByCountry").removeClass("show");
+        }, 4500);
+      }else{
+        response.forEach(e => {
+        var zonaUppercase = e.zona;
+        template += `
+          <li class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation--cC--cControl--cListChange--m--item" id="${e.id}" idprovince="${e.zona}">
+             <span>${zonaUppercase.toUpperCase()}</span>
+           </li>
+        `;
+        });
+        $("#m-listAllDistricsByCountry").html(template);
+      }
+    });
+
+  }else if($("#loadTypeTranport").val() == "imo"){
+
+    $.ajax({
+      url: "controllers/list_zonasratelcltransport_imo.php",
+      method: "POST",
+      datatype: "JSON",
+      contentType: 'application/x-www-form-urlencoded;charset=UTF-8',
+      data: {searchList : searchVal},
+    }).done( function (res) {
+      var response = JSON.parse(res);
+      var template = "";
+      if(response.length == 0){
+        template = `
+          <li class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation--cC--cControl--cListChange--m--anyresult">
+            <p>No encontado</p>
+          </li>
+        `;
+        $("#m-listAllDistricsByCountry").html(template);
+        setTimeout(function(){
+          $("#m-listAllDistricsByCountry").removeClass("show");
+        }, 4500);
+      }else{
+        response.forEach(e => {
+        var zonaUppercase = e.zona;
+        template += `
+          <li class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation--cC--cControl--cListChange--m--item" id="${e.id}" idprovince="${e.zona}">
+             <span>${zonaUppercase.toUpperCase()}</span>
+           </li>
+        `;
+        });
+        $("#m-listAllDistricsByCountry").html(template);
+      }
+    });
+
+  }else if($("#loadTypeTranport").val() == "refrigerado"){
+
+    $.ajax({
+      url: "controllers/list_zonasratelcltransport_refrigerado.php",
+      method: "POST",
+      datatype: "JSON",
+      contentType: 'application/x-www-form-urlencoded;charset=UTF-8',
+      data: {searchList : searchVal},
+    }).done( function (res) {
+      var response = JSON.parse(res);
+      var template = "";
+      if(response.length == 0){
+        template = `
+          <li class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation--cC--cControl--cListChange--m--anyresult">
+            <p>No encontado</p>
+          </li>
+        `;
+        $("#m-listAllDistricsByCountry").html(template);
+        setTimeout(function(){
+          $("#m-listAllDistricsByCountry").removeClass("show");
+        }, 4500);
+      }else{
+        response.forEach(e => {
+        var zonaUppercase = e.zona;
+        template += `
+          <li class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation--cC--cControl--cListChange--m--item" id="${e.id}" idprovince="${e.zona}">
+             <span>${zonaUppercase.toUpperCase()}</span>
+           </li>
+        `;
+        });
+        $("#m-listAllDistricsByCountry").html(template);
+      }
+    });
+    
+  }else{
+    console.log("Por favor, elige un tipo de transporte para continuar");
+  }
+
 }
 /************************** MOSTRAR EL LISTADO DE DISTRITO POR PAÍS DE DESTINO **************************/
 $(document).on("focus", "#ipt-valDistricByCountryNInterface", function(){
-	$("#m-listAllDistricsByCountry").addClass("show");listDistricsByCountry();
+	$("#m-listAllDistricsByCountry").addClass("show");listrateLCLTransport();
 	sectionsSteps.setAutoScrolling(false);
 });
 $(document).on("blur", "#ipt-valDistricByCountryNInterface", function(){
@@ -2736,10 +2813,10 @@ $(document).on("keyup", "#ipt-valDistricByCountryNInterface", function(){
   var searchVal = $(this).val();
   if(searchVal != ""){
    	$("#ipt-valDistricByCountryNInterface").attr("iddistrict", ""); 
-    listDistricsByCountry(searchVal);
+    listrateLCLTransport(searchVal);
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-pickuplocation] .cont-MainCamelLog--c--contSteps--item--cBtnNextStep").html("");
   }else{
-    listDistricsByCountry();
+    listrateLCLTransport();
   }
 });
 /************************** FIJAR EL VALOR DE ITEM EN EL INPUT - DISTRITO POR PAÍS DE DESTINO **************************/

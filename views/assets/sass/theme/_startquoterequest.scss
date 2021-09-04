@@ -23,8 +23,19 @@
 
 		&--item{
 
-			/************************** TIPO DE TRANSPORTE Y TIPO DE CARGA **************************/
-			&[data-advlevel="d-typetransportcharge"],
+
+			/************************** TIPO DE TRANSPORTE **************************/
+			&[data-advlevel="d-typetransportcharge"]{
+				.cont-MainCamelLog--c--contResumeCalc--item--cardStep{
+					text-align: center;
+					padding: 0.2rem 0.65rem;
+					span{
+						font-weight: 600;
+					}
+				}
+			}
+
+			/************************** TIPO DE CARGA **************************/
 			&[data-advlevel="d-chargeload"]{
 				.cont-MainCamelLog--c--contResumeCalc--item--cardStep{
 					text-align: center;
@@ -147,7 +158,7 @@
 
 				/* ÍCONO DEL TIPO DE TRANSPORTE */
 				&--cImgIcon{
-					max-width: 35px;
+					max-width: 40px;
 			    width: 95%;
 			    height: auto;
 			    display: inline-block;

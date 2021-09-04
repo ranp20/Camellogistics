@@ -195,7 +195,7 @@
                 </a>
               </div>
               <div class="c-FinalQuotation--contStep--cQuotation--cTop--c--cValidTimeQuotation">
-                <p><?php //print_r($_POST); ?>Validez de tarifa: 12 Jul - 31 Jul</p>
+                <p><?php print_r($_POST); ?>Validez de tarifa: 12 Jul - 31 Jul</p>
               </div>
             </div>
           </div>
