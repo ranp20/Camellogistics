@@ -50,6 +50,10 @@ function twodecimals(n) {
   let regex = /(\d*.\d{0,2})/;
   return t.match(regex)[0];
 }
+/************************** RETORNAR - PRIMERA LETRA EN MAYÚSCULA **************************/
+function firstToUppercase(e) {
+  return e.charAt(0).toUpperCase() + e.slice(1);
+}
 /************************** PLUGIN - FULLPAGE.JS **************************/
 const sectionsSteps = new fullpage('#fullpage', {
   anchors:['step-typeoperation',
@@ -748,6 +752,25 @@ $(document).on("click", "#c-incdecBtns20 button", function(){
     var totalSend20ST = 0;
     var total20ST = 0;
 
+    /************************** DEVOLVER LA FECHA DE VALIDEZ DE LA TARIFA A LA VARIABLE LOCAL **************************/
+    var validdesde_final = totalFCL[0].validdesde;
+    var validhasta_final = totalFCL[0].validhasta;
+    var convertOneDATE =  new Date(Date.parse(validdesde_final.replace(/-/g, '/')));
+    var convertTwoDATE =  new Date(Date.parse(validhasta_final.replace(/[-]/g,'/')));
+    //var options = { year: 'numeric', month: '2-digit', day: 'numeric' };
+    var options = { year: 'numeric', month: 'long', day: 'numeric' };
+    var convertDateValidDesde = convertOneDATE.toLocaleDateString("es-ES", options);
+    var convertDateValidHasta = convertTwoDATE.toLocaleDateString("es-ES", options);
+    var separateDateValidDesde = convertDateValidDesde.split(" ");
+    var separateDateValidHasta = convertDateValidHasta.split(" ");
+    var monthSeparatetoArrayDesde = separateDateValidDesde[2].slice(0, 3);
+    var monthSeparatetoArrayHasta = separateDateValidHasta[2].slice(0, 3);
+
+    var val_dateValidDesde = separateDateValidDesde[0]+" "+"de"+" "+firstToUppercase(monthSeparatetoArrayDesde);
+    var val_dateValidHasta = separateDateValidHasta[0]+" "+"de"+" "+firstToUppercase(monthSeparatetoArrayHasta);
+    /************************** ASIGNAR A LAS VARIABLES LOCALES **************************/
+    localStorage.setItem("key_validaterate", val_dateValidDesde+" - "+val_dateValidHasta);
+
     /************************** VALIDAR SI OTRO CONTROL TIENE ALGÚN VALOR **************************/
     if($("#ipt-qvalContainer40ST").val() > 0 || $("#ipt-qvalContainer40HQ").val() > 0 || $("#ipt-qvalContainer40NOR").val() > 0){
       /************************** MOSTRAR EL MENSAJE DE ALERTA PERSONALIZADO **************************/
@@ -861,6 +884,25 @@ $(document).on("click", "#c-incdecBtns40 button", function(){
     var totalSend40ST = 0;
     var total40ST = 0;
 
+    /************************** DEVOLVER LA FECHA DE VALIDEZ DE LA TARIFA A LA VARIABLE LOCAL **************************/
+    var validdesde_final = totalFCL[0].validdesde;
+    var validhasta_final = totalFCL[0].validhasta;
+    var convertOneDATE =  new Date(Date.parse(validdesde_final.replace(/-/g, '/')));
+    var convertTwoDATE =  new Date(Date.parse(validhasta_final.replace(/[-]/g,'/')));
+    //var options = { year: 'numeric', month: '2-digit', day: 'numeric' };
+    var options = { year: 'numeric', month: 'long', day: 'numeric' };
+    var convertDateValidDesde = convertOneDATE.toLocaleDateString("es-ES", options);
+    var convertDateValidHasta = convertTwoDATE.toLocaleDateString("es-ES", options);
+    var separateDateValidDesde = convertDateValidDesde.split(" ");
+    var separateDateValidHasta = convertDateValidHasta.split(" ");
+    var monthSeparatetoArrayDesde = separateDateValidDesde[2].slice(0, 3);
+    var monthSeparatetoArrayHasta = separateDateValidHasta[2].slice(0, 3);
+
+    var val_dateValidDesde = separateDateValidDesde[0]+" "+"de"+" "+firstToUppercase(monthSeparatetoArrayDesde);
+    var val_dateValidHasta = separateDateValidHasta[0]+" "+"de"+" "+firstToUppercase(monthSeparatetoArrayHasta);
+    /************************** ASIGNAR A LAS VARIABLES LOCALES **************************/
+    localStorage.setItem("key_validaterate", val_dateValidDesde+" - "+val_dateValidHasta);
+
     /************************** VALIDAR SI OTRO CONTROL TIENE ALGÚN VALOR **************************/
     if($("#ipt-qvalContainer20ST").val() > 0 || $("#ipt-qvalContainer40HQ").val() > 0 || $("#ipt-qvalContainer40NOR").val() > 0){
       /************************** MOSTRAR EL MENSAJE DE ALERTA PERSONALIZADO **************************/
@@ -971,6 +1013,25 @@ $(document).on("click", "#c-incdecBtns40-hc button", function(){
     var totalFCL = JSON.parse(e);
     var totalSend40HQ = 0;
     var total40HQ = 0;
+
+    /************************** DEVOLVER LA FECHA DE VALIDEZ DE LA TARIFA A LA VARIABLE LOCAL **************************/
+    var validdesde_final = totalFCL[0].validdesde;
+    var validhasta_final = totalFCL[0].validhasta;
+    var convertOneDATE =  new Date(Date.parse(validdesde_final.replace(/-/g, '/')));
+    var convertTwoDATE =  new Date(Date.parse(validhasta_final.replace(/[-]/g,'/')));
+    //var options = { year: 'numeric', month: '2-digit', day: 'numeric' };
+    var options = { year: 'numeric', month: 'long', day: 'numeric' };
+    var convertDateValidDesde = convertOneDATE.toLocaleDateString("es-ES", options);
+    var convertDateValidHasta = convertTwoDATE.toLocaleDateString("es-ES", options);
+    var separateDateValidDesde = convertDateValidDesde.split(" ");
+    var separateDateValidHasta = convertDateValidHasta.split(" ");
+    var monthSeparatetoArrayDesde = separateDateValidDesde[2].slice(0, 3);
+    var monthSeparatetoArrayHasta = separateDateValidHasta[2].slice(0, 3);
+
+    var val_dateValidDesde = separateDateValidDesde[0]+" "+"de"+" "+firstToUppercase(monthSeparatetoArrayDesde);
+    var val_dateValidHasta = separateDateValidHasta[0]+" "+"de"+" "+firstToUppercase(monthSeparatetoArrayHasta);
+    /************************** ASIGNAR A LAS VARIABLES LOCALES **************************/
+    localStorage.setItem("key_validaterate", val_dateValidDesde+" - "+val_dateValidHasta);
 
     /************************** VALIDAR SI OTRO CONTROL TIENE ALGÚN VALOR **************************/
     if($("#ipt-qvalContainer20ST").val() > 0 || $("#ipt-qvalContainer40ST").val() > 0 || $("#ipt-qvalContainer40NOR").val() > 0){
@@ -1084,6 +1145,25 @@ $(document).on("click", "#c-incdecBtns40-nor button", function(){
     var totalFCL = JSON.parse(e);
     var totalSend40NOR = 0;
     var total40NOR = 0;
+
+    /************************** DEVOLVER LA FECHA DE VALIDEZ DE LA TARIFA A LA VARIABLE LOCAL **************************/
+    var validdesde_final = totalFCL[0].validdesde;
+    var validhasta_final = totalFCL[0].validhasta;
+    var convertOneDATE =  new Date(Date.parse(validdesde_final.replace(/-/g, '/')));
+    var convertTwoDATE =  new Date(Date.parse(validhasta_final.replace(/[-]/g,'/')));
+    //var options = { year: 'numeric', month: '2-digit', day: 'numeric' };
+    var options = { year: 'numeric', month: 'long', day: 'numeric' };
+    var convertDateValidDesde = convertOneDATE.toLocaleDateString("es-ES", options);
+    var convertDateValidHasta = convertTwoDATE.toLocaleDateString("es-ES", options);
+    var separateDateValidDesde = convertDateValidDesde.split(" ");
+    var separateDateValidHasta = convertDateValidHasta.split(" ");
+    var monthSeparatetoArrayDesde = separateDateValidDesde[2].slice(0, 3);
+    var monthSeparatetoArrayHasta = separateDateValidHasta[2].slice(0, 3);
+
+    var val_dateValidDesde = separateDateValidDesde[0]+" "+"de"+" "+firstToUppercase(monthSeparatetoArrayDesde);
+    var val_dateValidHasta = separateDateValidHasta[0]+" "+"de"+" "+firstToUppercase(monthSeparatetoArrayHasta);
+    /************************** ASIGNAR A LAS VARIABLES LOCALES **************************/
+    localStorage.setItem("key_validaterate", val_dateValidDesde+" - "+val_dateValidHasta);
 
     /************************** VALIDAR SI OTRO CONTROL TIENE ALGÚN VALOR **************************/
     if($("#ipt-qvalContainer20ST").val() > 0 || $("#ipt-qvalContainer40ST").val() > 0 || $("#ipt-qvalContainer40HQ").val() > 0){
@@ -2679,6 +2759,3 @@ $(document).on("click", ".cont-MainCamelLog--c--contSteps--item--cStep--mFrmIpts
     </button>
   `);
 });
-/*============================================================================================================
-=            CALCULAR Y MOSTRAR EL RESUMEN DE COTIZACIÓN - INTERFAZ DE PRESENTACIÓN DE COTIZACIÓN            =
-============================================================================================================*/
