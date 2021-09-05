@@ -3365,6 +3365,14 @@ img {
   min-height: 100vh;
   height: auto;
 }
+#cont-MainCamelLog--cStartQuoteRequest .n-val-sd {
+  border: none;
+  background-color: unset;
+  display: none;
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
+}
 
 .cont-MainCamelLog--c {
   /* RESUMEN DEL PROCESO DE COTIZACIÓN - NUEVA INTERFAZ */

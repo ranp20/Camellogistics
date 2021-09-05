@@ -104,7 +104,7 @@ function listPortOriginandDestiny(){
           </div>
           <div class="cont-MainCamelLog--c--contResumeCalc--item--cardStep--cDescMap">
             <span>${e.nom_puerto} - ${e.nom_pais}</span>
-            <input type="hidden" id="val-originPortSend" name="val-originPortSend" value="${e.nom_puerto} - ${e.nom_pais}">
+            <input type="hidden" id="val-originPortSend" name="val-originPortSend" value="${e.nom_puerto} - ${e.nom_pais}" class="n-val-sd">
           </div>
         </div>
       `;
@@ -127,7 +127,7 @@ function listPortOriginandDestiny(){
             </div>
             <div class="cont-MainCamelLog--c--contResumeCalc--item--cardStep--cDescMap">
               <span>${e.nom_puerto} - ${e.nom_pais}</span>
-              <input type="hidden" id="val-destinyPortSend" name="val-destinyPortSend" value="${e.nom_puerto} - ${e.nom_pais}">
+              <input type="hidden" id="val-destinyPortSend" name="val-destinyPortSend" value="${e.nom_puerto} - ${e.nom_pais}" class="n-val-sd">
             </div>
           </div>
         `;
@@ -171,7 +171,7 @@ $(document).on("click", "#list-typeOperationItems a", function(){
         <h3 class="cont-MainCamelLog--c--contSteps--item--cTitle--title">Tipo de Transporte</h3>
         <span>
           <span>
-            <input type="hidden" value="" id="loadTypeTranport" name="loadTypeTranport">
+            <input type="hidden" id="loadTypeTranport" name="loadTypeTranport" class="n-val-sd">
           </span>
         </span>
       </div>
@@ -242,7 +242,9 @@ $(document).on("click","#list-typeTransporteSelectItems a",function(){
      <div class="cont-MainCamelLog--c--contSteps--item--cTitle">
         <h3 class="cont-MainCamelLog--c--contSteps--item--cTitle--title">Tipo de carga</h3>
         <span>
-          <input type="hidden" value="" id="loadTypeCharge" name="loadTypeCharge">
+          <span>
+            <input type="hidden" id="loadTypeCharge" name="loadTypeCharge" class="n-val-sd">
+          </span>
         </span>
       </div>
       <div class="cont-MainCamelLog--c--contSteps--item--cStep">
@@ -288,7 +290,9 @@ $(document).on("click","#list-typeTransporteSelectItems a",function(){
      <div class="cont-MainCamelLog--c--contSteps--item--cTitle">
         <h3 class="cont-MainCamelLog--c--contSteps--item--cTitle--title">Tipo de carga</h3>
         <span>
-          <input type="hidden" value="" id="loadTypeCharge" name="loadTypeCharge">
+          <span>
+            <input type="hidden" id="loadTypeCharge" name="loadTypeCharge" class="n-val-sd">
+          </span>
         </span>
       </div>
       <div class="cont-MainCamelLog--c--contSteps--item--cStep">
@@ -334,7 +338,9 @@ $(document).on("click","#list-typeTransporteSelectItems a",function(){
      <div class="cont-MainCamelLog--c--contSteps--item--cTitle">
         <h3 class="cont-MainCamelLog--c--contSteps--item--cTitle--title">Tipo de carga</h3>
         <span>
-          <input type="hidden" value="" id="loadTypeCharge" name="loadTypeCharge">
+          <span>
+            <input type="hidden" id="loadTypeCharge" name="loadTypeCharge" class="n-val-sd">
+          </span>
         </span>
       </div>
       <div class="cont-MainCamelLog--c--contSteps--item--cStep">
@@ -408,14 +414,16 @@ $(document).on("click", "#list-typeChargeLoadItems a", function(){
 			<div class="cont-MainCamelLog--c--contSteps--item--cTitle">
         <h3 class="cont-MainCamelLog--c--contSteps--item--cTitle--title">Contenedores</h3>
         <span>
-          <input type="hidden" value="" id="loadTypeContainer20" name="loadTypeContainer20">
-          <input type="hidden" value="0" id="loadQContainer20" name="loadQContainer20">
-          <input type="hidden" value="" id="loadTypeContainer40" name="loadTypeContainer40">
-          <input type="hidden" value="0" id="loadQContainer40" name="loadQContainer40">
-          <input type="hidden" value="" id="loadTypeContainer40hq" name="loadTypeContainer40hq">
-          <input type="hidden" value="0" id="loadQContainer40hq" name="loadQContainer40hq">
-          <input type="hidden" value="" id="loadTypeContainer40nor" name="loadTypeContainer40nor">
-          <input type="hidden" value="0" id="loadQContainer40nor" name="loadQContainer40nor">
+          <span>
+            <input type="hidden" value="" id="loadTypeContainer20" name="loadTypeContainer20" class="n-val-sd">
+            <input type="hidden" value="0" id="loadQContainer20" name="loadQContainer20" class="n-val-sd">
+            <input type="hidden" value="" id="loadTypeContainer40" name="loadTypeContainer40" class="n-val-sd">
+            <input type="hidden" value="0" id="loadQContainer40" name="loadQContainer40" class="n-val-sd">
+            <input type="hidden" value="" id="loadTypeContainer40hq" name="loadTypeContainer40hq" class="n-val-sd">
+            <input type="hidden" value="0" id="loadQContainer40hq" name="loadQContainer40hq" class="n-val-sd">
+            <input type="hidden" value="" id="loadTypeContainer40nor" name="loadTypeContainer40nor" class="n-val-sd">
+            <input type="hidden" value="0" id="loadQContainer40nor" name="loadQContainer40nor" class="n-val-sd">
+          </span>
         </span>
       </div>
       <div class="cont-MainCamelLog--c--contSteps--item--cStep">
@@ -699,6 +707,11 @@ $(document).on("click", "#list-typeChargeLoadItems a", function(){
       <div class="cont-MainCamelLog--c--contSteps--item--cTitle">
         <h3 class="cont-MainCamelLog--c--contSteps--item--cTitle--title">Dimensiones de carga</h3>
         <span>
+          <span>
+            <input type="text" id="n_packscompare_ultstep" class="n-val-sd" disabled>
+            <input type="text" id="n_weightcompare_ultstep" class="n-val-sd" disabled>
+            <input type="text" id="n_volumecompare_ultstep" class="n-val-sd" disabled>
+          </span>
         </span>
       </div>
       <div class="cont-MainCamelLog--c--contSteps--item--cStep">
@@ -749,6 +762,7 @@ $(document).on("click", "#c-incdecBtns20 button", function(){
     data: {nameportOrigin : arrPortOrigin[0], typetransport: $("#loadTypeTranport").val(), container : "20ST"},
   }).done((e) => {
     var totalFCL = JSON.parse(e);
+    //console.log(totalFCL);
     var totalSend20ST = 0;
     var total20ST = 0;
 
@@ -1259,6 +1273,8 @@ $(document).on("click", "#c-incdecBtns40-nor button", function(){
 $(document).on("change input keyup", "#val-iptPackagesNInterface", function(e){
   $(".cont-MainCamelLog--c--contResumeCalc--item--cardStep--cIconStepLeft[data-merchandise=rsm-totpackages]").find("span:first-child").text("Bultos");
   $(".cont-MainCamelLog--c--contResumeCalc--item--cardStep--cIconStepLeft[data-merchandise=rsm-totpackages]").find("span:nth-child(2)").text($(this).val());
+  /************************** ASIGNAR AL INPUT DE COMPARACIÓN **************************/
+  $("#n_packscompare_ultstep").val($(this).val());
   if(e.target.value == "" || e.target.value == 0){
     /************************** OCULTAR EL PASO DE - ELIGE UNA OPCIÓN **************************/
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-integservorfleteinte]").removeClass("show");
@@ -1270,6 +1286,8 @@ $(document).on("change input keyup", "#val-iptPackagesNInterface", function(e){
 $(document).on("change input keyup", "#val-iptWeightNInterface", function(e){
   $(".cont-MainCamelLog--c--contResumeCalc--item--cardStep--cIconStepLeft[data-merchandise=rsm-totweight]").find("span:first-child").text("Peso(Kg)");
   $(".cont-MainCamelLog--c--contResumeCalc--item--cardStep--cIconStepLeft[data-merchandise=rsm-totweight]").find("span:nth-child(2)").text($(this).val());
+  /************************** ASIGNAR AL INPUT DE COMPARACIÓN **************************/
+  $("#n_weightcompare_ultstep").val($(this).val());
   if(e.target.value == "" || e.target.value == 0){
     /************************** OCULTAR EL PASO DE - ELIGE UNA OPCIÓN **************************/
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-integservorfleteinte]").removeClass("show");
@@ -1281,6 +1299,8 @@ $(document).on("change input keyup", "#val-iptWeightNInterface", function(e){
 $(document).on("change input keyup", "#val-iptVolumeNInterface", function(e){
   $(".cont-MainCamelLog--c--contResumeCalc--item--cardStep--cIconStepLeft[data-merchandise=rsm-totvolume]").find("span:first-child").text("Volumen(M³)");
   $(".cont-MainCamelLog--c--contResumeCalc--item--cardStep--cIconStepLeft[data-merchandise=rsm-totvolume]").find("span:nth-child(2)").text($(this).val());
+  /************************** ASIGNAR AL INPUT DE COMPARACIÓN **************************/
+  $("#n_volumecompare_ultstep").val($(this).val());
   if(e.target.value == "" || e.target.value == 0){
     /************************** OCULTAR EL PASO DE - ELIGE UNA OPCIÓN **************************/
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-integservorfleteinte]").removeClass("show");
@@ -1316,7 +1336,9 @@ $(document).on("click", "#btn-NextStepToSelOptResultExp", function(){
       <div class="cont-MainCamelLog--c--contSteps--item--cTitle">
         <h3 class="cont-MainCamelLog--c--contSteps--item--cTitle--title">Eliga una opción</h3>
         <span>
-          <input type="hidden" value="" id="opt-genfquotation" name="opt-genfquotation">
+          <span>
+            <input type="hidden" id="opt-genfquotation" name="opt-genfquotation" class="n-val-sd">
+          </span>
         </span>
       </div>
       <div class="cont-MainCamelLog--c--contSteps--item--cStep">
@@ -1383,11 +1405,13 @@ $(document).on("click", "#list-SelOptionResultExp a", function(){
       <div class="cont-MainCamelLog--c--contSteps--item--cTitle">
         <h3 class="cont-MainCamelLog--c--contSteps--item--cTitle--title">Mercancía</h3>
         <span>
-          <input type="hidden" value="" id="val-categProdquot" name="val-categProdquot">
-          <input type="hidden" value="" id="val-reqPermisoProdquot" name="val-reqPermisoProdquot">
-          <input type="hidden" value="" id="val-valProdquot" name="val-valProdquot">
-          <input type="hidden" value="NO" id="val-prevImports" name="val-prevImports">
-          <input type="hidden" value="" id="val-quantityProdsAmmAdd" name="val-quantityProdsAmmAdd">
+          <span>
+            <input type="hidden" value="" id="val-categProdquot" name="val-categProdquot" class="n-val-sd">
+            <input type="hidden" value="" id="val-reqPermisoProdquot" name="val-reqPermisoProdquot" class="n-val-sd">
+            <input type="hidden" value="" id="val-valProdquot" name="val-valProdquot" class="n-val-sd">
+            <input type="hidden" value="NO" id="val-prevImports" name="val-prevImports" class="n-val-sd">
+            <input type="hidden" value="" id="val-quantityProdsAmmAdd" name="val-quantityProdsAmmAdd" class="n-val-sd">
+          </span>
         </span>
       </div>
       <div class="cont-MainCamelLog--c--contSteps--item--cStep">
@@ -1919,7 +1943,9 @@ $(document).on("click", "#btn-NextStepTochargedata", function(){
             <div class="cont-MainCamelLog--c--contSteps--item--cTitle">
               <h3 class="cont-MainCamelLog--c--contSteps--item--cTitle--title">Eliga una opción</h3>
               <span>
-                <input type="hidden" value="" id="opt-genfquotation" name="opt-genfquotation">
+                <span>
+                  <input type="hidden" id="opt-genfquotation" name="opt-genfquotation" class="n-val-sd">
+                </span>
               </span>
             </div>
             <div class="cont-MainCamelLog--c--contSteps--item--cStep">
@@ -1970,7 +1996,9 @@ $(document).on("click", "#btn-NextStepTochargedata", function(){
             <div class="cont-MainCamelLog--c--contSteps--item--cTitle">
               <h3 class="cont-MainCamelLog--c--contSteps--item--cTitle--title">Eliga una opción</h3>
               <span>
-                <input type="hidden" value="" id="opt-genfquotation" name="opt-genfquotation">
+                <span>
+                  <input type="hidden" value="" id="opt-genfquotation" name="opt-genfquotation" class="n-val-sd">
+                </span>
               </span>
             </div>
             <div class="cont-MainCamelLog--c--contSteps--item--cStep">
@@ -2095,7 +2123,9 @@ $(document).on("click", "#btn-NextStepTochargedata", function(){
             <div class="cont-MainCamelLog--c--contSteps--item--cTitle">
               <h3 class="cont-MainCamelLog--c--contSteps--item--cTitle--title">Eliga una opción</h3>
               <span>
-                <input type="hidden" value="" id="opt-genfquotation" name="opt-genfquotation">
+                <span>
+                  <input type="hidden" value="" id="opt-genfquotation" name="opt-genfquotation" class="n-val-sd">
+                </span>
               </span>
             </div>
             <div class="cont-MainCamelLog--c--contSteps--item--cStep">
@@ -2192,7 +2222,9 @@ $(document).on("click", "#btn-NextStepTochargedata", function(){
               <div class="cont-MainCamelLog--c--contSteps--item--cTitle">
                 <h3 class="cont-MainCamelLog--c--contSteps--item--cTitle--title">Eliga una opción</h3>
                 <span>
-                  <input type="hidden" value="" id="opt-genfquotation" name="opt-genfquotation">
+                  <span>
+                    <input type="hidden" value="" id="opt-genfquotation" name="opt-genfquotation" class="n-val-sd">
+                  </span>
                 </span>
               </div>
               <div class="cont-MainCamelLog--c--contSteps--item--cStep">
@@ -2512,8 +2544,10 @@ $(document).on("click", "#btn-NextStepTomerchandisedata", function(){
         <div class="cont-MainCamelLog--c--contSteps--item--cTitle">
           <h3 class="cont-MainCamelLog--c--contSteps--item--cTitle--title">¿Quieres asegurar la mercancía?</h3>
           <span>
-            <input type="hidden" value="" id="res-insuremerch" name="res-insuremerch">
-            <input type="hidden" value="" id="res-insurancevaluet" name="res-insurancevaluet">
+            <span>
+              <input type="hidden" id="res-insuremerch" name="res-insuremerch" class="n-val-sd">
+              <input type="hidden" id="res-insurancevaluet" name="res-insurancevaluet" class="n-val-sd">
+            </span>
           </span>
         </div>
         <div class="cont-MainCamelLog--c--contSteps--item--cStep">
@@ -2579,8 +2613,10 @@ $(document).on("click", "#btn-NextStepTomerchandisedata", function(){
         <div class="cont-MainCamelLog--c--contSteps--item--cTitle">
           <h3 class="cont-MainCamelLog--c--contSteps--item--cTitle--title">¿Quieres asegurar la mercancía?</h3>
           <span>
-            <input type="hidden" value="" id="res-insuremerch" name="res-insuremerch">
-            <input type="hidden" value="" id="res-insurancevaluet" name="res-insurancevaluet">
+            <span>
+              <input type="hidden" id="res-insuremerch" name="res-insuremerch" class="n-val-sd">
+              <input type="hidden" id="res-insurancevaluet" name="res-insurancevaluet" class="n-val-sd">
+            </span>
           </span>
         </div>
         <div class="cont-MainCamelLog--c--contSteps--item--cStep">
@@ -2671,7 +2707,9 @@ $(document).on("click", "#list-insuremerchandise a", function(){
         <div class="cont-MainCamelLog--c--contSteps--item--cTitle">
           <h3 class="cont-MainCamelLog--c--contSteps--item--cTitle--title">¿Necesitas Transporte?</h3>
           <span>
-            <input type="hidden" value="" id="opt-reqtransport" name="opt-reqtransport">
+            <span>
+              <input type="hidden" value="" id="opt-reqtransport" name="opt-reqtransport" class="n-val-sd">
+            </span>
           </span>
         </div>
         <div class="cont-MainCamelLog--c--contSteps--item--cStep">
@@ -2715,7 +2753,9 @@ $(document).on("click", "#list-insuremerchandise a", function(){
         <div class="cont-MainCamelLog--c--contSteps--item--cTitle">
           <h3 class="cont-MainCamelLog--c--contSteps--item--cTitle--title">¿Necesitas Transporte?</h3>
           <span>
-            <input type="hidden" value="" id="opt-reqtransport" name="opt-reqtransport">
+            <span>
+              <input type="hidden" value="" id="opt-reqtransport" name="opt-reqtransport" class="n-val-sd">
+            </span>
           </span>
         </div>
         <div class="cont-MainCamelLog--c--contSteps--item--cStep">
@@ -2759,7 +2799,9 @@ $(document).on("click", "#list-requirespickup a", function(){
       <div class="cont-MainCamelLog--c--contSteps--item--cTitle">
         <h3 class="cont-MainCamelLog--c--contSteps--item--cTitle--title">Recogida - Ubicación</h3>
         <span>
-          <input type="hidden" value="" id="plc-pickuploc" name="plc-pickuploc">
+          <span>
+            <input type="hidden" value="" id="plc-pickuploc" name="plc-pickuploc" class="n-val-sd">
+          </span>
         </span>
       </div>
       <div class="cont-MainCamelLog--c--contSteps--item--cStep">
@@ -2803,7 +2845,8 @@ $(document).on("click", "#list-requirespickup a", function(){
 function listrateLCLTransport(searchVal){
 
   if($("#loadTypeTranport").val() == "general")  {
-    
+
+    /************************** LISTADO DE TARIFAS PARA TRANSPORTE INTERNO - TIPO GENERAL **************************/
     $.ajax({
       url: "controllers/list_zonasratelcltransport_general.php",
       method: "POST",
@@ -2824,13 +2867,73 @@ function listrateLCLTransport(searchVal){
           $("#m-listAllDistricsByCountry").removeClass("show");
         }, 4500);
       }else{
+
         response.forEach(e => {
         var zonaUppercase = e.zona;
-        template += `
-          <li class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation--cC--cControl--cListChange--m--item" id="${e.id}" idprovince="${e.zona}" namprovince="${e.province}">
-             <span>${zonaUppercase.toUpperCase()}</span>
-           </li>
-        `;
+
+        var g_1_1000 = parseFloat(e.g_1_1000);
+        var g_1001_2000 = parseFloat(e.g_1001_2000);
+        var g_2001_3000 = parseFloat(e.g_2001_3000);
+        var g_3001_4000 = parseFloat(e.g_3001_4000);
+        var g_4001_5000 = parseFloat(e.g_4001_5000);
+        var g_5001_7000 = parseFloat(e.g_5001_7000);
+        var g_20st_40nor = parseFloat(e.g_20st_40nor);
+
+        if($("#loadTypeCharge").val() == "LCL"){
+          /************************** QUITAR LOS PUNTOS A EL VALOR DEL PESO **************************/
+          var val_weighttotalstep = $("#n_weightcompare_ultstep").val();
+          var val_finalweighttotalstep = val_weighttotalstep.replace(/\./g, '');
+
+          if($("#n_weightcompare_ultstep").val() != 0 && $("#n_weightcompare_ultstep").val() != ""){
+            if(val_finalweighttotalstep > 0 && val_finalweighttotalstep <= 1000){
+              template += `
+                <li class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation--cC--cControl--cListChange--m--item" id="${e.id}" idprovince="${e.zona}" namprovince="${e.province}" rateprice="${g_1_1000.toFixed(2)}">
+                  <span>${zonaUppercase.toUpperCase()}</span>
+                </li>
+              `;
+            }else if(val_finalweighttotalstep > 1001 && val_finalweighttotalstep <= 2000){
+              template += `
+                <li class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation--cC--cControl--cListChange--m--item" id="${e.id}" idprovince="${e.zona}" namprovince="${e.province}" rateprice="${g_1001_2000.toFixed(2)}">
+                  <span>${zonaUppercase.toUpperCase()}</span>
+                </li>
+              `;
+            }else if(val_finalweighttotalstep > 2001 && val_finalweighttotalstep <= 3000){
+              template += `
+                <li class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation--cC--cControl--cListChange--m--item" id="${e.id}" idprovince="${e.zona}" namprovince="${e.province}" rateprice="${g_2001_3000.toFixed(2)}">
+                  <span>${zonaUppercase.toUpperCase()}</span>
+                </li>
+              `;
+            }else if(val_finalweighttotalstep > 3001 && val_finalweighttotalstep <= 4000){
+              template += `
+                <li class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation--cC--cControl--cListChange--m--item" id="${e.id}" idprovince="${e.zona}" namprovince="${e.province}" rateprice="${g_3001_4000.toFixed(2)}">
+                  <span>${zonaUppercase.toUpperCase()}</span>
+                </li>
+              `;
+            }else if(val_finalweighttotalstep > 4001 && val_finalweighttotalstep <= 5000){
+              template += `
+                <li class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation--cC--cControl--cListChange--m--item" id="${e.id}" idprovince="${e.zona}" namprovince="${e.province}" rateprice="${g_4001_5000.toFixed(2)}">
+                  <span>${zonaUppercase.toUpperCase()}</span>
+                </li>
+              `;
+            }else if(val_finalweighttotalstep > 5001 && val_finalweighttotalstep <= 7000){
+              template += `
+                <li class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation--cC--cControl--cListChange--m--item" id="${e.id}" idprovince="${e.zona}" namprovince="${e.province}" rateprice="${g_5001_7000.toFixed(2)}">
+                  <span>${zonaUppercase.toUpperCase()}</span>
+                </li>
+              `;
+            }else{
+              console.log('El peso excede las tarifas del sistema');
+            }
+          }
+        }else{
+          //console.log('Se seleccionó FCL');
+          template += `
+            <li class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation--cC--cControl--cListChange--m--item" id="${e.id}" idprovince="${e.zona}" namprovince="${e.province}" rateprice="${g_20st_40nor.toFixed(2)}">
+              <span>${zonaUppercase.toUpperCase()}</span>
+            </li>
+          `;
+        }
+
         });
         $("#m-listAllDistricsByCountry").html(template);
       }
@@ -2838,6 +2941,7 @@ function listrateLCLTransport(searchVal){
 
   }else if($("#loadTypeTranport").val() == "imo"){
 
+    /************************** LISTADO DE TARIFAS PARA TRANSPORTE INTERNO - TIPO IMO **************************/
     $.ajax({
       url: "controllers/list_zonasratelcltransport_imo.php",
       method: "POST",
@@ -2858,13 +2962,73 @@ function listrateLCLTransport(searchVal){
           $("#m-listAllDistricsByCountry").removeClass("show");
         }, 4500);
       }else{
+        
         response.forEach(e => {
         var zonaUppercase = e.zona;
-        template += `
-          <li class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation--cC--cControl--cListChange--m--item" id="${e.id}" idprovince="${e.zona}" namprovince="${e.province}">
-             <span>${zonaUppercase.toUpperCase()}</span>
-           </li>
-        `;
+
+        var imo_1_1000 = parseFloat(e.imo_1_1000);
+        var imo_1001_2000 = parseFloat(e.imo_1001_2000);
+        var imo_2001_3000 = parseFloat(e.imo_2001_3000);
+        var imo_3001_4000 = parseFloat(e.imo_3001_4000);
+        var imo_4001_5000 = parseFloat(e.imo_4001_5000);
+        var imo_5001_7000 = parseFloat(e.imo_5001_7000);
+        var imo_20st_40nor = parseFloat(e.imo_20st_40nor);
+
+        if($("#loadTypeCharge").val() == "LCL"){
+          /************************** QUITAR LOS PUNTOS A EL VALOR DEL PESO **************************/
+          var val_weighttotalstep = $("#n_weightcompare_ultstep").val();
+          var val_finalweighttotalstep = val_weighttotalstep.replace(/\./g, '');
+
+          if($("#n_weightcompare_ultstep").val() != 0 && $("#n_weightcompare_ultstep").val() != ""){
+            if(val_finalweighttotalstep > 0 && val_finalweighttotalstep <= 1000){
+              template += `
+                <li class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation--cC--cControl--cListChange--m--item" id="${e.id}" idprovince="${e.zona}" namprovince="${e.province}" rateprice="${imo_1_1000.toFixed(2)}">
+                  <span>${zonaUppercase.toUpperCase()}</span>
+                </li>
+              `;
+            }else if(val_finalweighttotalstep > 1001 && val_finalweighttotalstep <= 2000){
+              template += `
+                <li class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation--cC--cControl--cListChange--m--item" id="${e.id}" idprovince="${e.zona}" namprovince="${e.province}" rateprice="${imo_1001_2000.toFixed(2)}">
+                  <span>${zonaUppercase.toUpperCase()}</span>
+                </li>
+              `;
+            }else if(val_finalweighttotalstep > 2001 && val_finalweighttotalstep <= 3000){
+              template += `
+                <li class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation--cC--cControl--cListChange--m--item" id="${e.id}" idprovince="${e.zona}" namprovince="${e.province}" rateprice="${imo_2001_3000.toFixed(2)}">
+                  <span>${zonaUppercase.toUpperCase()}</span>
+                </li>
+              `;
+            }else if(val_finalweighttotalstep > 3001 && val_finalweighttotalstep <= 4000){
+              template += `
+                <li class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation--cC--cControl--cListChange--m--item" id="${e.id}" idprovince="${e.zona}" namprovince="${e.province}" rateprice="${imo_3001_4000.toFixed(2)}">
+                  <span>${zonaUppercase.toUpperCase()}</span>
+                </li>
+              `;
+            }else if(val_finalweighttotalstep > 4001 && val_finalweighttotalstep <= 5000){
+              template += `
+                <li class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation--cC--cControl--cListChange--m--item" id="${e.id}" idprovince="${e.zona}" namprovince="${e.province}" rateprice="${imo_4001_5000.toFixed(2)}">
+                  <span>${zonaUppercase.toUpperCase()}</span>
+                </li>
+              `;
+            }else if(val_finalweighttotalstep > 5001 && val_finalweighttotalstep <= 7000){
+              template += `
+                <li class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation--cC--cControl--cListChange--m--item" id="${e.id}" idprovince="${e.zona}" namprovince="${e.province}" rateprice="${imo_5001_7000.toFixed(2)}">
+                  <span>${zonaUppercase.toUpperCase()}</span>
+                </li>
+              `;
+            }else{
+              console.log('El peso excede las tarifas del sistema');
+            }
+          }
+        }else{
+          //console.log('Se seleccionó FCL');
+          template += `
+            <li class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation--cC--cControl--cListChange--m--item" id="${e.id}" idprovince="${e.zona}" namprovince="${e.province}" rateprice="${imo_20st_40nor.toFixed(2)}">
+              <span>${zonaUppercase.toUpperCase()}</span>
+            </li>
+          `;
+        }
+
         });
         $("#m-listAllDistricsByCountry").html(template);
       }
@@ -2872,6 +3036,7 @@ function listrateLCLTransport(searchVal){
 
   }else if($("#loadTypeTranport").val() == "refrigerado"){
 
+    /************************** LISTADO DE TARIFAS PARA TRANSPORTE INTERNO - TIPO REFRIGERADO **************************/
     $.ajax({
       url: "controllers/list_zonasratelcltransport_refrigerado.php",
       method: "POST",
@@ -2892,13 +3057,73 @@ function listrateLCLTransport(searchVal){
           $("#m-listAllDistricsByCountry").removeClass("show");
         }, 4500);
       }else{
+        
         response.forEach(e => {
         var zonaUppercase = e.zona;
-        template += `
-          <li class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation--cC--cControl--cListChange--m--item" id="${e.id}" idprovince="${e.zona}" namprovince="${e.province}">
-             <span>${zonaUppercase.toUpperCase()}</span>
-           </li>
-        `;
+
+        var refr_1_1000 = parseFloat(e.refr_1_1000);
+        var refr_1001_2000 = parseFloat(e.refr_1001_2000);
+        var refr_2001_3000 = parseFloat(e.refr_2001_3000);
+        var refr_3001_4000 = parseFloat(e.refr_3001_4000);
+        var refr_4001_5000 = parseFloat(e.refr_4001_5000);
+        var refr_5001_7000 = parseFloat(e.refr_5001_7000);
+        var refr_20st_40nor = parseFloat(e.refr_20st_40nor);
+
+        if($("#loadTypeCharge").val() == "LCL"){
+          /************************** QUITAR LOS PUNTOS A EL VALOR DEL PESO **************************/
+          var val_weighttotalstep = $("#n_weightcompare_ultstep").val();
+          var val_finalweighttotalstep = val_weighttotalstep.replace(/\./g, '');
+
+          if($("#n_weightcompare_ultstep").val() != 0 && $("#n_weightcompare_ultstep").val() != ""){
+            if(val_finalweighttotalstep > 0 && val_finalweighttotalstep <= 1000){
+              template += `
+                <li class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation--cC--cControl--cListChange--m--item" id="${e.id}" idprovince="${e.zona}" namprovince="${e.province}" rateprice="${refr_1_1000.toFixed(2)}">
+                  <span>${zonaUppercase.toUpperCase()}</span>
+                </li>
+              `;
+            }else if(val_finalweighttotalstep > 1001 && val_finalweighttotalstep <= 2000){
+              template += `
+                <li class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation--cC--cControl--cListChange--m--item" id="${e.id}" idprovince="${e.zona}" namprovince="${e.province}" rateprice="${refr_1001_2000.toFixed(2)}">
+                  <span>${zonaUppercase.toUpperCase()}</span>
+                </li>
+              `;
+            }else if(val_finalweighttotalstep > 2001 && val_finalweighttotalstep <= 3000){
+              template += `
+                <li class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation--cC--cControl--cListChange--m--item" id="${e.id}" idprovince="${e.zona}" namprovince="${e.province}" rateprice="${refr_2001_3000.toFixed(2)}">
+                  <span>${zonaUppercase.toUpperCase()}</span>
+                </li>
+              `;
+            }else if(val_finalweighttotalstep > 3001 && val_finalweighttotalstep <= 4000){
+              template += `
+                <li class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation--cC--cControl--cListChange--m--item" id="${e.id}" idprovince="${e.zona}" namprovince="${e.province}" rateprice="${refr_3001_4000.toFixed(2)}">
+                  <span>${zonaUppercase.toUpperCase()}</span>
+                </li>
+              `;
+            }else if(val_finalweighttotalstep > 4001 && val_finalweighttotalstep <= 5000){
+              template += `
+                <li class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation--cC--cControl--cListChange--m--item" id="${e.id}" idprovince="${e.zona}" namprovince="${e.province}" rateprice="${refr_4001_5000.toFixed(2)}">
+                  <span>${zonaUppercase.toUpperCase()}</span>
+                </li>
+              `;
+            }else if(val_finalweighttotalstep > 5001 && val_finalweighttotalstep <= 7000){
+              template += `
+                <li class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation--cC--cControl--cListChange--m--item" id="${e.id}" idprovince="${e.zona}" namprovince="${e.province}" rateprice="${refr_5001_7000.toFixed(2)}">
+                  <span>${zonaUppercase.toUpperCase()}</span>
+                </li>
+              `;
+            }else{
+              console.log('El peso excede las tarifas del sistema');
+            }
+          }
+        }else{
+          //console.log('Se seleccionó FCL');
+          template += `
+            <li class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation--cC--cControl--cListChange--m--item" id="${e.id}" idprovince="${e.zona}" namprovince="${e.province}" rateprice="${refr_20st_40nor.toFixed(2)}">
+              <span>${zonaUppercase.toUpperCase()}</span>
+            </li>
+          `;
+        }
+
         });
         $("#m-listAllDistricsByCountry").html(template);
       }
@@ -2936,6 +3161,34 @@ $(document).on("click", ".cont-MainCamelLog--c--contSteps--item--cStep--mFrmIpts
 
   /************************** ASIGNAR VALORES DE LOS INPUTS HIDDEN - RECOGIDA UBICACIÓN **************************/
   $("#plc-pickuploc").val($(this).attr("namprovince")+" - "+$(this).find("span").text());
+
+  /************************** VARIABLE PARA CONTENEDORES - 20ST,40ST,40HQ Y 40NOR **************************/
+  var q_containerType = 0;
+
+  if($("#ipt-qvalContainer20ST").val() != 0 && $("#ipt-qvalContainer20ST").val() != ""){
+    q_containerType = $("#ipt-qvalContainer20ST").val();
+    /************************** ASIGNAR A LA VARIABLE LOCAL **************************/
+    localStorage.setItem("key_v-valuetransport", q_containerType * $(this).attr("rateprice"));
+
+  }else if($("#ipt-qvalContainer40ST").val() != 0 && $("#ipt-qvalContainer40ST").val() != ""){
+    q_containerType = $("#ipt-qvalContainer40ST").val();
+    /************************** ASIGNAR A LA VARIABLE LOCAL **************************/
+    localStorage.setItem("key_v-valuetransport", q_containerType * $(this).attr("rateprice"));
+
+  }else if($("#ipt-qvalContainer40HQ").val() != 0 && $("#ipt-qvalContainer40HQ").val() != ""){
+    q_containerType = $("#ipt-qvalContainer40HQ").val();
+    /************************** ASIGNAR A LA VARIABLE LOCAL **************************/
+    localStorage.setItem("key_v-valuetransport", q_containerType * $(this).attr("rateprice"));
+
+  }else if($("#ipt-qvalContainer40NOR").val() != 0 && $("#ipt-qvalContainer40NOR").val() != ""){
+    q_containerType = $("#ipt-qvalContainer40NOR").val();
+    /************************** ASIGNAR A LA VARIABLE LOCAL **************************/
+    localStorage.setItem("key_v-valuetransport", q_containerType * $(this).attr("rateprice"));
+
+  }else{
+    console.log('No se seleccionó ningún contenedor en FCL');
+  }
+  //console.log(q_containerType);
 
   /************************** MOSTRAR EL BOTÓN DE COTIZACIÓN **************************/
   $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-pickuplocation] .cont-MainCamelLog--c--contSteps--item--cBtnNextStep").html(`

@@ -35,6 +35,7 @@ function changesTabsOperation(){
   var key_valammountadditional = localStorage.setItem("key_v-ammountadditional", 0); //MONTO ADICIONAL DE ALGUNOS PRODUCTOS
   var key_valvalueproduct = localStorage.setItem("key_v-valueproduct", 0); //VALOR FOB DE PRODUCTO
   var key_valvalueinsurance = localStorage.setItem("key_v-valueinsurance", 0); //VALOR FINAL DEL SEGURO
+  var key_valvaluetransport = localStorage.setItem("key_v-valuetransport", 0); //VALOR FINAL DE TRANSPORTE
 
   parentLinks = $("#c-cOptionsMarket");
 	links = parentLinks.find("a");

@@ -9,13 +9,13 @@ class list_zonasrateLCLTransport_imo extends Connection{
 	tbrtimo.id,
 	tbprov.`name` as 'province',
 	tbrtimo.zona, 
-	tbrtimo.total_1_a_1000 as '1_1000', 
-	tbrtimo.total_1001_a_2000 as '1001_2000', 
-	tbrtimo.total_2001_a_3000 as '2001_3000', 
-	tbrtimo.total_3001_a_4000 as '3001_4000', 
-	tbrtimo.total_4001_a_5000 as '4001_5000', 
-	tbrtimo.total_5001_a_7000 as '5001_7000',
-	tbrtimo.total_20st_40nor as '20st_40nor'
+	tbrtimo.total_1_a_1000 as 'imo_1_1000', 
+	tbrtimo.total_1001_a_2000 as 'imo_1001_2000', 
+	tbrtimo.total_2001_a_3000 as 'imo_2001_3000', 
+	tbrtimo.total_3001_a_4000 as 'imo_3001_4000', 
+	tbrtimo.total_4001_a_5000 as 'imo_4001_5000', 
+	tbrtimo.total_5001_a_7000 as 'imo_5001_7000',
+	tbrtimo.total_20st_40nor as 'imo_20st_40nor'
 FROM tbl_rate_lcl_transport_imo tbrtimo
 INNER JOIN tbl_distric tbdist ON tbrtimo.zona = tbdist.`name`
 INNER JOIN tbl_province tbprov ON tbdist.id_province = tbprov.id
@@ -29,13 +29,13 @@ WHERE tbaqpai.pais_id = '".$id."'";
 	tbrtimo.id,
 	tbprov.`name` as 'province',
 	tbrtimo.zona, 
-	tbrtimo.total_1_a_1000 as '1_1000', 
-	tbrtimo.total_1001_a_2000 as '1001_2000', 
-	tbrtimo.total_2001_a_3000 as '2001_3000', 
-	tbrtimo.total_3001_a_4000 as '3001_4000', 
-	tbrtimo.total_4001_a_5000 as '4001_5000', 
-	tbrtimo.total_5001_a_7000 as '5001_7000',
-	tbrtimo.total_20st_40nor as '20st_40nor'
+	tbrtimo.total_1_a_1000 as 'imo_1_1000', 
+	tbrtimo.total_1001_a_2000 as 'imo_1001_2000', 
+	tbrtimo.total_2001_a_3000 as 'imo_2001_3000', 
+	tbrtimo.total_3001_a_4000 as 'imo_3001_4000', 
+	tbrtimo.total_4001_a_5000 as 'imo_4001_5000', 
+	tbrtimo.total_5001_a_7000 as 'imo_5001_7000',
+	tbrtimo.total_20st_40nor as 'imo_20st_40nor'
 FROM tbl_rate_lcl_transport_imo tbrtimo
 INNER JOIN tbl_distric tbdist ON tbrtimo.zona = tbdist.`name`
 INNER JOIN tbl_province tbprov ON tbdist.id_province = tbprov.id

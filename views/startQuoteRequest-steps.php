@@ -140,7 +140,9 @@
             <div class="cont-MainCamelLog--c--contSteps--item--cTitle">
               <h3 class="cont-MainCamelLog--c--contSteps--item--cTitle--title">¿Qué tipo de operación vas a realizar?</h3>
               <span>
-                <input type="hidden" value="" id="loadTypeOpe" name="loadTypeOpe">
+                <span>
+                  <input type="hidden" id="loadTypeOpe" name="loadTypeOpe" class="n-val-sd" disabled>
+                </span>
               </span>
             </div>
             <div class="cont-MainCamelLog--c--contSteps--item--cStep">
