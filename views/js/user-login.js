@@ -146,7 +146,8 @@ $(document).on("submit","#c-formLoginU_Camel",function(e){
 });
 /************************** REGISTRO DEL USUARIO **************************/
 $(document).on("submit","#c-formRegisterU_Camel",function(e){
-	e.preventDefault();	
+	e.preventDefault();
+
 	($("#u-username").val() != 0 && $("#u-username").val() != "") ? $("#mssg_alertcontrol_usr").text("") : $("#mssg_alertcontrol_usr").text("Debes ingresar un usuario");
 	($("#u-password").val() != 0 && $("#u-password").val() != "") ? $("#mssg_alertcontrol_pass").text("") : $("#mssg_alertcontrol_pass").text("Debes ingresar una contraseña");
 	($("#u-passwordtwo").val() != 0 && $("#u-passwordtwo").val() != "") ? $("#mssg_alertcontrol_passrepeat").text("") : $("#mssg_alertcontrol_passrepeat").text("Debes repetir la contraseña");
@@ -154,7 +155,29 @@ $(document).on("submit","#c-formRegisterU_Camel",function(e){
 	if($("#u-username").val() != 0 && $("#u-username").val() != "" &&
 		 $("#u-password").val() != 0 && $("#u-password").val() != "" &&
 		 $("#u-passwordtwo").val() != 0 && $("#u-passwordtwo").val() != ""){
-		alert("Datos registrados correctamente");
+
+		var form = $(this).serializeArray();
+
+		$.ajax({
+			url: 'controllers/prcss_add-user.php',
+			method: 'POST',
+			dataType: 'JSON',
+			contentType: 'application/x-www-form-urlencoded;charset=UTF-8',
+			data: form
+		}).done((e) => {
+			//console.log(e.response);
+			if(e.response == "true"){
+				$("#cnt-modalFormSessLoginorRegister").removeClass("show");
+				$('#c-formRegisterU_Camel')[0].reset();
+				alert("Datos insertados correctamente");
+			}else if(e.response == "equals"){
+				alert("Atención! Este usuario ya existe");
+			}else if(e.response == "errinsert"){
+				alert("Hubo un error al insertar el registro");
+			}else{
+				alert("Lo sentimos, hubo un error al procesar los datos");
+			}
+		});
 	}else{
 		alert("Atención! completar los campos requeridos");
 	}
