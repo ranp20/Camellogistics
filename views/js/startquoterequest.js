@@ -140,7 +140,6 @@ function listPortOriginandDestiny(){
 =                         2. ELEGIR EL TIPO DE OPERACIÓN                             =
 ====================================================================================*/
 $(document).on("click", "#list-typeOperationItems a", function(){
-  $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-chargeload]").addClass("show");
   var tTypeOperation = $(this).index();
   if(tTypeOperation == 0){
     localStorage.setItem("key_v-totalflette", 0);
@@ -164,6 +163,8 @@ $(document).on("click", "#list-typeOperationItems a", function(){
     /************************** OCULTAR AL LISTADO DE RESUMEN - ELIGE UN OPCIÓN **************************/
     $(".cont-MainCamelLog--c--contResumeCalc--item[data-advlevel=d-reqspeacialservs]").removeClass("show");
     $(".cont-MainCamelLog--c--contResumeCalc--item[data-advlevel=d-reqspeacialservs]").find("span").text("");
+    
+    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-typetransport]").addClass("show");
     /************************** MOSTRAR EL SIGUIENTE PASO **************************/
     sectionsSteps.moveTo('step-typetransport', 1);
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-typetransport]").html(`
@@ -219,6 +220,7 @@ $(document).on("click", "#list-typeOperationItems a", function(){
 =            2.5. ELEGIR EL TIPO DE TRANSPORTE DE CARGA: GENERAL, IMO O REGRIGERADO            =
 ==============================================================================================*/
 $(document).on("click","#list-typeTransporteSelectItems a",function(){
+  $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-chargeload]").addClass("show");
   var ttypeTransport = $(this).index();
   if(ttypeTransport == 0){
     /************************** RESETEAR EL VALOR FINAL DEL FLETE, SI SE REGRESA HASTA ESTE PUNTO **************************/

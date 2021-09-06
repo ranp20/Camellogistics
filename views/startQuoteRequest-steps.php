@@ -3,6 +3,7 @@
   //COMPRIMIR ARCHIVOS DE TEXTO...
   (substr_count($_SERVER["HTTP_ACCEPT_ENCODING"], "gzip")) ? ob_start("ob_gzhandler") : ob_start();
 
+  session_start();
   //VARIABLES DE USO EN EL PROCESO...
   $portOriginPOST = "";
   $portCountryOriginPOST = "";
@@ -181,16 +182,15 @@
           <!-- PASO #6 -->
           <div class="cont-MainCamelLog--c--contSteps--item section" data-anchor="step-insuremerchandise" data-transportquote></div>
           <!-- PASO #7 -->
-          <!--<div class="cont-MainCamelLog--c--contSteps--item section" data-anchor="step-customsclearance" data-transportquote></div>-->
-          <!-- PASO #8 -->
           <div class="cont-MainCamelLog--c--contSteps--item section" data-anchor="step-requirespickup" data-transportquote></div>
-          <!-- PASO #9 -->
+          <!-- PASO #8 -->
           <div class="cont-MainCamelLog--c--contSteps--item section" data-anchor="step-pickuplocation" data-transportquote></div>
         </section>
       </form>
     </div>
   </main>
   <?php require_once 'includes/form-calculator-flete.php'; ?>
+  <div id="msgLoaderPage_start"></div>
   <script src="<?= $url ?>js/jquery-3.6.0.min.js"></script>
   <script type="text/javascript" src="<?= $url ?>js/fullpage/scrolloverflow.min.js"></script>
   <script type="text/javascript" src="<?= $url ?>js/fullpage/fullpage.min.js"></script>

@@ -3521,6 +3521,12 @@ img {
   /* CONTENIDO DEL PASO */
   /* CONTENIDO - BOTÓN DE PASO SIGUIENTE */
 }
+.cont-MainCamelLog--c--contSteps--item[data-anchor=step-typetransport] {
+  display: none;
+}
+.cont-MainCamelLog--c--contSteps--item[data-anchor=step-typetransport].show {
+  display: block;
+}
 .cont-MainCamelLog--c--contSteps--item[data-anchor=step-chargeload] {
   display: none;
 }
