@@ -22,6 +22,9 @@
         <li class="c-Htopbar--c--cMenu--m--item">
           <a href="marketplace-logistico" class="c-Htopbar--c--cMenu--m--link">Marketplace Logístico</a>
         </li>
+        <li class="c-Htopbar--c--cMenu--m--item">
+          <a href="javascript:void(0);" class="c-Htopbar--c--cMenu--m--link" id="s-formLoginOrRegister">Log in</a>
+        </li>
       </ul>
     </div>
   </div>

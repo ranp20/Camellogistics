@@ -3054,6 +3054,7 @@ img {
   margin-bottom: 1rem;
   /************************** QUITAR LOS BOTONES DE BOOSTRAP POR DEFECTO EN INPUT DE TIPO NÚMERO (INICIO) **************************/
   /************************** QUITAR LOS BOTONES DE BOOSTRAP POR DEFECTO EN INPUT DE TIPO NÚMERO (FIN) **************************/
+  /************************** ALERTAS DE CAMPOS ERRONEOS **************************/
 }
 .cnt-modalFormSessLoginorRegister--c--cForm--cControl.input-group {
   display: none !important;
@@ -3085,6 +3086,18 @@ img {
 }
 .cnt-modalFormSessLoginorRegister--c--cForm--cControl--input[type=number] {
   -moz-appearance: textfield;
+}
+.cnt-modalFormSessLoginorRegister--c--cForm--cControl #mssg_alertcontrol_usr {
+  color: red;
+  font-weight: 600;
+}
+.cnt-modalFormSessLoginorRegister--c--cForm--cControl #mssg_alertcontrol_pass {
+  color: red;
+  font-weight: 600;
+}
+.cnt-modalFormSessLoginorRegister--c--cForm--cControl #mssg_alertcontrol_passrepeat {
+  color: red;
+  font-weight: 600;
 }
 .cnt-modalFormSessLoginorRegister--c--cForm--cBtnsLoginorRegisterOptions {
   padding-bottom: 2rem;

@@ -118,6 +118,20 @@
 				&--input[type=number]{ 
 					-moz-appearance:textfield;
 				}
+
+				/************************** ALERTAS DE CAMPOS ERRONEOS **************************/
+				#mssg_alertcontrol_usr{
+					color: red;
+					font-weight: 600;
+				}
+				#mssg_alertcontrol_pass{
+					color: red;
+					font-weight: 600;
+				}
+				#mssg_alertcontrol_passrepeat{
+					color: red;
+					font-weight: 600;
+				}
 			}
 
 			/************************** BOTONES VÁLIDOS PARA DESCARGAR **************************/
