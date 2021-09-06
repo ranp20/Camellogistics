@@ -258,42 +258,91 @@
                   </div>
                 </div>
                 <div class="c-FinalQuotation--contStep--cQuotation--cBottom--c--moreDetails--cInnotIn">
+<?php
+//VARIABLES DE ITEMS...
+$tipotranporte = "";
+$handling = "HANDLING Y MANEJO DESTINO";
+$vistobueno = "VISTOS BUENOS";
+$descarga = "DESCARGA";
+$almacenaduanero = "ALMACEN ADUANERO";
+//$honorarios = "HONORARIOS DE AGENCIA DE ADUANA";
+$transportefabrica = "TRANSPORTE A FÁBRICA IMPORTADOR";
+$seguromercancia = "SEGURO DE MERCANCÍA";
+//ARRAYS - INCLUYE Y NO INCLUYE...
+$arr_include = [];
+$arr_notinclude = [];
 
+/************************** TIPO DE SERVICIO **************************/
+if($_POST['idtypetransportsendinit'] == 1){$tipotranporte = "FLETE MARÍTIMO";array_push($arr_include, $tipotranporte);
+}else if($_POST['idtypetransportsendinit'] == 2){$tipotranporte = "FLETE AÉREO";array_push($arr_include, $tipotranporte);
+}else{$tipotranporte = "SERVICIO ADUANERO";array_push($arr_include, $tipotranporte);}
 
-                  <div class="c-FinalQuotation--contStep--cQuotation--cBottom--c--moreDetails--cInnotIn--include">
-                    <p class="c-FinalQuotation--contStep--cQuotation--cBottom--c--moreDetails--cInnotIn--include--title">Incluye</p>
-                    <ul class="c-FinalQuotation--contStep--cQuotation--cBottom--c--moreDetails--cInnotIn--include--m">
-                      <li class="c-FinalQuotation--contStep--cQuotation--cBottom--c--moreDetails--cInnotIn--include--m--item">
-                        <span>FLETE MARÍTIMO</span>
-                      </li>
-                      <li class="c-FinalQuotation--contStep--cQuotation--cBottom--c--moreDetails--cInnotIn--include--m--item">
-                        <span>HANDLING Y MANEJO DESTINO</span>
-                      </li>
-                      <li class="c-FinalQuotation--contStep--cQuotation--cBottom--c--moreDetails--cInnotIn--include--m--item">
-                        <span>VISTOS BUENOS</span>
-                      </li>
-                      <li class="c-FinalQuotation--contStep--cQuotation--cBottom--c--moreDetails--cInnotIn--include--m--item">
-                        <span>DESCARGA</span>
-                      </li>
-                    </ul>
-                  </div>
-                  <div class="c-FinalQuotation--contStep--cQuotation--cBottom--c--moreDetails--cInnotIn--notinclude">
-                    <p class="c-FinalQuotation--contStep--cQuotation--cBottom--c--moreDetails--cInnotIn--notinclude--title">No incluye</p>
-                    <ul class="c-FinalQuotation--contStep--cQuotation--cBottom--c--moreDetails--cInnotIn--notinclude--m">
-                      <li class="c-FinalQuotation--contStep--cQuotation--cBottom--c--moreDetails--cInnotIn--notinclude--m--item">
-                        <span>ALMACEN ADUANERO</span>
-                      </li>
-                      <li class="c-FinalQuotation--contStep--cQuotation--cBottom--c--moreDetails--cInnotIn--notinclude--m--item">
-                        <span>HONORARIOS DE AGENCIA DE ADUANA</span>
-                      </li>
-                      <li class="c-FinalQuotation--contStep--cQuotation--cBottom--c--moreDetails--cInnotIn--notinclude--m--item">
-                        <span>TRANSPORTE A FÁBRICA IMPORTADOR</span>
-                      </li>
-                      <li class="c-FinalQuotation--contStep--cQuotation--cBottom--c--moreDetails--cInnotIn--notinclude--m--item">
-                        <span>SEGURO DE MERCANCÍA</span>
-                      </li>
-                    </ul>
-                  </div>
+/************************** HANDLING Y MANEJO DESTINO **************************/
+if($_POST['loadTypeCharge'] == "FCL" || $_POST['loadTypeCharge'] == "LCL"){array_push($arr_include, $handling);
+}else{array_push($arr_include, $handling);}
+
+/************************** VISTOS BUENOS **************************/
+if($_POST['opt-genfquotation'] == "y-moreOpts"){array_push($arr_include, $vistobueno, $descarga);
+}else{array_push($arr_include, $vistobueno, $descarga);}
+
+/************************** ALMACEN ADUANERO **************************/
+if(isset($_POST['val-categProdquot']) && $_POST['val-categProdquot'] != "" && $_POST['val-valProdquot']){array_push($arr_include, $almacenaduanero);
+}else{array_push($arr_notinclude, $almacenaduanero);}
+
+/************************** TRANSPORTE A FÁBRICA IMPORTADOR/TRANSPORTE INTERNO **************************/
+if(isset($_POST['opt-reqtransport']) && $_POST['opt-reqtransport'] != "NO"){array_push($arr_include, $transportefabrica);
+}else{array_push($arr_notinclude, $transportefabrica);}
+
+/************************** SEGURO DE MERCANCÍA **************************/
+if(isset($_POST['res-insuremerch']) && $_POST['res-insuremerch'] != "NO"){array_push($arr_include, $seguromercancia);
+}else{array_push($arr_notinclude, $seguromercancia);}
+
+//print_r($arr_include);
+//print_r($arr_notinclude);
+
+$template_incserv = "";
+$template_notincserv = "";
+
+if(empty($arr_include) || count($arr_include) == 0){
+  $template_incserv = "";
+}else{
+
+  $template_incserv .="
+    <div class='c-FinalQuotation--contStep--cQuotation--cBottom--c--moreDetails--cInnotIn--include'>
+      <p class='c-FinalQuotation--contStep--cQuotation--cBottom--c--moreDetails--cInnotIn--include--title'>Incluye</p>
+      <ul class='c-FinalQuotation--contStep--cQuotation--cBottom--c--moreDetails--cInnotIn--include--m'>";
+  foreach($arr_include as $value){
+    $template_incserv .= "<li class='c-FinalQuotation--contStep--cQuotation--cBottom--c--moreDetails--cInnotIn--include--m--item'>
+            <span>{$value}</span>
+          </li>";
+  }
+  $template_incserv .="
+      </ul>
+    </div>
+  ";
+}
+
+if(empty($arr_notinclude) || count($arr_notinclude) == 0){
+  $template_notincserv = "";
+}else{
+  $template_notincserv .="
+    <div class='c-FinalQuotation--contStep--cQuotation--cBottom--c--moreDetails--cInnotIn--notinclude'>
+      <p class='c-FinalQuotation--contStep--cQuotation--cBottom--c--moreDetails--cInnotIn--notinclude--title'>No incluye</p>
+      <ul class='c-FinalQuotation--contStep--cQuotation--cBottom--c--moreDetails--cInnotIn--notinclude--m'>";
+  foreach($arr_notinclude as $value){
+    $template_notincserv .= "<li class='c-FinalQuotation--contStep--cQuotation--cBottom--c--moreDetails--cInnotIn--notinclude--m--item'>
+            <span>{$value}</span>
+          </li>";
+  }
+  $template_notincserv .="
+      </ul>
+    </div>
+  ";
+}
+
+echo $template_incserv.$template_notincserv;
+?>
+
                 </div>
               </div>
               <div class="c-FinalQuotation--contStep--cQuotation--cBottom--c--QuantityQuotation">
@@ -352,49 +401,6 @@
             </button>
           </div>
         </div>
-<?php
-
-//VARIABLES DE ITEMS...
-$tipotranporte = "";
-$handling = "HANDLING Y MANEJO DESTINO";
-$vistobueno = "VISTOS BUENOS";
-$descarga = "DESCARGA";
-$almacenaduanero = "ALMACEN ADUANERO";
-$honorarios = "HONORARIOS DE AGENCIA DE ADUANA";
-$transportefabrica = "TRANSPORTE A FÁBRICA IMPORTADOR";
-$seguromercancia = "SEGURO DE MERCANCÍA";
-//ARRAYS - INCLUYE Y NO INCLUYE...
-$arr_include = [];
-$arr_notinclude = [];
-
-/************************** TIPO DE SERVICIO **************************/
-if($_POST['idtypetransportsendinit'] == 1){$tipotranporte = "FLETE MARÍTIMO";array_push($arr_include, $tipotranporte);
-}else if($_POST['idtypetransportsendinit'] == 2){$tipotranporte = "FLETE AÉREO";array_push($arr_include, $tipotranporte);
-}else{$tipotranporte = "SERVICIO ADUANERO";array_push($arr_include, $tipotranporte);}
-
-/************************** HANDLING Y MANEJO DESTINO **************************/
-if($_POST['loadTypeCharge'] == "FCL" || $_POST['loadTypeCharge'] == "LCL"){array_push($arr_include, $handling);
-}else{array_push($arr_include, $handling);}
-
-/************************** VISTOS BUENOS **************************/
-if($_POST['opt-genfquotation'] == "y-moreOpts"){array_push($arr_include, $vistobueno, $descarga);
-}else{array_push($arr_include, $vistobueno, $descarga);}
-
-/************************** ALMACEN ADUANERO **************************/
-if($_POST['val-categProdquot'] != "" && $_POST['val-valProdquot']){array_push($arr_include, $almacenaduanero);
-}else{array_push($arr_notinclude, $almacenaduanero);}
-
-/************************** TRANSPORTE A FÁBRICA IMPORTADOR/TRANSPORTE INTERNO **************************/
-if($_POST['opt-reqtransport'] != "NO"){array_push($arr_include, $transportefabrica);
-}else{array_push($arr_notinclude, $transportefabrica);}
-
-/************************** SEGURO DE MERCANCÍA **************************/
-if($_POST['res-insuremerch'] != "NO"){array_push($arr_include, $seguromercancia);
-}else{array_push($arr_notinclude, $seguromercancia);}
-
-// print_r($arr_include);
-// print_r($arr_notinclude)
-?>
       </div>
     </div>
   </main>

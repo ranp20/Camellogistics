@@ -67,7 +67,7 @@ const sectionsSteps = new fullpage('#fullpage', {
   				 'step-requirespickup',
   				 'step-pickuplocation'],
   verticalCentered: false,
-  scrollingSpeed: 400,
+  scrollingSpeed: 500,
   autoScrolling: true,
   keyboardScrolling: false,
   //fixedElements: '#id-resumeLeftQuoteCamel',
