@@ -194,7 +194,6 @@
   <script src="<?= $url ?>js/jquery-3.6.0.min.js"></script>
   <script type="text/javascript" src="<?= $url ?>js/fullpage/scrolloverflow.min.js"></script>
   <script type="text/javascript" src="<?= $url ?>js/fullpage/fullpage.min.js"></script>
-  <script src="<?= $url ?>js/user-login.js"></script>
   <script src="<?= $url ?>js/startquoterequest.js"></script>
 </body>
 </html>

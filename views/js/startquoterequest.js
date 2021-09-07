@@ -3163,30 +3163,35 @@ $(document).on("click", ".cont-MainCamelLog--c--contSteps--item--cStep--mFrmIpts
   /************************** VARIABLE PARA CONTENEDORES - 20ST,40ST,40HQ Y 40NOR **************************/
   var q_containerType = 0;
 
-  if($("#ipt-qvalContainer20ST").val() != 0 && $("#ipt-qvalContainer20ST").val() != ""){
-    q_containerType = $("#ipt-qvalContainer20ST").val();
-    /************************** ASIGNAR A LA VARIABLE LOCAL **************************/
-    localStorage.setItem("key_v-valuetransport", q_containerType * $(this).attr("rateprice"));
+  if($("#loadTypeCharge").val() == "FCL"){
+    if($("#ipt-qvalContainer20ST").val() != 0 && $("#ipt-qvalContainer20ST").val() != ""){
+      q_containerType = $("#ipt-qvalContainer20ST").val();
+      /************************** ASIGNAR A LA VARIABLE LOCAL **************************/
+      localStorage.setItem("key_v-valuetransport", q_containerType * $(this).attr("rateprice"));
 
-  }else if($("#ipt-qvalContainer40ST").val() != 0 && $("#ipt-qvalContainer40ST").val() != ""){
-    q_containerType = $("#ipt-qvalContainer40ST").val();
-    /************************** ASIGNAR A LA VARIABLE LOCAL **************************/
-    localStorage.setItem("key_v-valuetransport", q_containerType * $(this).attr("rateprice"));
+    }else if($("#ipt-qvalContainer40ST").val() != 0 && $("#ipt-qvalContainer40ST").val() != ""){
+      q_containerType = $("#ipt-qvalContainer40ST").val();
+      /************************** ASIGNAR A LA VARIABLE LOCAL **************************/
+      localStorage.setItem("key_v-valuetransport", q_containerType * $(this).attr("rateprice"));
 
-  }else if($("#ipt-qvalContainer40HQ").val() != 0 && $("#ipt-qvalContainer40HQ").val() != ""){
-    q_containerType = $("#ipt-qvalContainer40HQ").val();
-    /************************** ASIGNAR A LA VARIABLE LOCAL **************************/
-    localStorage.setItem("key_v-valuetransport", q_containerType * $(this).attr("rateprice"));
+    }else if($("#ipt-qvalContainer40HQ").val() != 0 && $("#ipt-qvalContainer40HQ").val() != ""){
+      q_containerType = $("#ipt-qvalContainer40HQ").val();
+      /************************** ASIGNAR A LA VARIABLE LOCAL **************************/
+      localStorage.setItem("key_v-valuetransport", q_containerType * $(this).attr("rateprice"));
 
-  }else if($("#ipt-qvalContainer40NOR").val() != 0 && $("#ipt-qvalContainer40NOR").val() != ""){
-    q_containerType = $("#ipt-qvalContainer40NOR").val();
-    /************************** ASIGNAR A LA VARIABLE LOCAL **************************/
-    localStorage.setItem("key_v-valuetransport", q_containerType * $(this).attr("rateprice"));
+    }else if($("#ipt-qvalContainer40NOR").val() != 0 && $("#ipt-qvalContainer40NOR").val() != ""){
+      q_containerType = $("#ipt-qvalContainer40NOR").val();
+      /************************** ASIGNAR A LA VARIABLE LOCAL **************************/
+      localStorage.setItem("key_v-valuetransport", q_containerType * $(this).attr("rateprice"));
+
+    }else{
+      console.log('No se seleccionó ningún contenedor en FCL');
+    }
 
   }else{
-    console.log('No se seleccionó ningún contenedor en FCL');
+
+    localStorage.setItem("key_v-valuetransport", $("#val-iptPackagesNInterface").val() * $(this).attr("rateprice"));
   }
-  //console.log(q_containerType);
 
   /************************** MOSTRAR EL BOTÓN DE COTIZACIÓN **************************/
   $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-pickuplocation] .cont-MainCamelLog--c--contSteps--item--cBtnNextStep").html(`
