@@ -28,7 +28,8 @@ if(isset($_POST) && count($_POST) > 0){
 				$_SESSION['user_camel'] = $getdata[0];
 
 				$res = array(
-					'response' => 'true'
+					'response' => 'true',
+					'received' => $getdata[0]
 				);
 			}else{
 				$res = array(

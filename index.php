@@ -2,7 +2,8 @@
 
   //COMPRIMIR ARCHIVOS DE TEXTO...
   (substr_count($_SERVER["HTTP_ACCEPT_ENCODING"], "gzip")) ? ob_start("ob_gzhandler") : ob_start();
-  
+  session_start();
+
   $actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]";
   $url =  $actual_link . "/Camellogistics/views/";
 

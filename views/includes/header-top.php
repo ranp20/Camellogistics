@@ -23,7 +23,15 @@
           <a href="marketplace-logistico" class="c-Htopbar--c--cMenu--m--link">Marketplace Logístico</a>
         </li>
         <li class="c-Htopbar--c--cMenu--m--item">
-          <a href="javascript:void(0);" class="c-Htopbar--c--cMenu--m--link" id="s-formLoginOrRegister">Log in</a>
+          <a href="javascript:void(0);" class="c-Htopbar--c--cMenu--m--link" id="s-formLoginOrRegister">
+            <?php 
+              if(isset($_SESSION['user_camel'])){
+                echo "<span id='namUser_validSess' class='c-Htopbar--c--cMenu--m--link--sessUser'>{$_SESSION['user_camel']['username']}</span>";
+              }else{
+                echo "<span id='namUser_validSess'>Log in</span>";
+              }
+            ?>
+          </a>
         </li>
       </ul>
     </div>

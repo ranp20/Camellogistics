@@ -168,9 +168,8 @@ $(document).on("submit","#c-formLoginU_Camel",function(e){
 		}).done((e) => {
 			//console.log(e);
 			if(e.response == "true"){
-				console.log(e.received.id);
-				console.log(e.received.username);
-				console.log(e.received.password);
+				/************************** MOSTRAR EL NOMBRE/CORREO DEL USUARIO **************************/
+				$("#namUser_validSess").text(e.received.username);
 				/************************** MOSTRAR EL LOADER PERSONALIZADO **************************/
         $("#s-mssgloadSendAction").html(`
           <div class="c-mssgloadSendAction--cloader">
@@ -251,6 +250,8 @@ $(document).on("submit","#c-formRegisterU_Camel",function(e){
 			data: form
 		}).done((e) => {
 			if(e.response == "true"){
+				/************************** MOSTRAR EL NOMBRE/CORREO DEL USUARIO **************************/
+				$("#namUser_validSess").text(e.received.username);
 				/************************** MOSTRAR EL LOADER PERSONALIZADO **************************/
         $("#s-mssgloadSendAction").html(`
           <div class="c-mssgloadSendAction--cloader">
