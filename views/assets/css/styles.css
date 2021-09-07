@@ -3140,6 +3140,106 @@ img {
   opacity: 0.5;
 }
 
+.c-mssgloadSendAction {
+  /************************** LOADER DE CARGA - DATOS PROCESADOS **************************/
+  /************************** MENSAJE DE ALERTA - MENSAJE PERSONALIZADO **************************/
+}
+.c-mssgloadSendAction--cloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  min-height: 90vh;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.75);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 99999;
+}
+.c-mssgloadSendAction--cloader--loader {
+  border: 4px solid rgba(0, 0, 0, 0.1);
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  border-left-color: #B58440;
+  animation-name: girar;
+  animation-duration: 0.2s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+@keyframes girar {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.c-mssgloadSendAction--contalert {
+  position: fixed;
+  z-index: 99999999;
+  max-width: 850px;
+  width: 92%;
+  min-height: auto;
+  height: auto;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: transparent;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  transition: 0.4s ease-in-out;
+}
+.c-mssgloadSendAction--contalert--c {
+  margin-top: 0.5rem;
+  width: 100%;
+  background-image: repeating-linear-gradient(-45deg, #FFABA2, #FFABA2 35px, #FFC4BE 35px, #FFC4BE 65px);
+  border-radius: 0.3rem;
+  box-shadow: 0 4px 10px 1px rgba(0, 0, 0, 0.15);
+  padding: 1.2rem;
+  position: relative;
+  transition: 0.4s ease-in-out;
+  transform: translateY(-200%);
+  animation-name: showAlertMssgLorR;
+  animation-duration: 0.4s;
+  animation-timing-function: ease-in-out;
+  animation-fill-mode: forwards;
+}
+@keyframes showAlertMssgLorR {
+  0% {
+    transform: translateY(-200%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+.c-mssgloadSendAction--contalert--c--close {
+  width: 15px;
+  height: 15px;
+  background: linear-gradient(44deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 49%, #4F0800 43%, #4F0800 55%, rgba(0, 0, 0, 0) 57%, rgba(0, 0, 0, 0) 100%), linear-gradient(135deg, transparent 0%, transparent 49%, #4F0800 43%, #4F0800 55%, transparent 57%, transparent 100%);
+  border-radius: 50%;
+  position: absolute;
+  top: 0.85rem;
+  right: 0.85rem;
+  cursor: pointer;
+}
+.c-mssgloadSendAction--contalert--c--cmssg--title {
+  font-size: 1.4rem;
+  font-weight: 300;
+  color: #DC3545;
+}
+.c-mssgloadSendAction--contalert--c--cmssg--desc {
+  font-size: 1.15rem;
+  line-height: 1.35;
+  color: #4F0800;
+  margin: 0;
+}
+.c-mssgloadSendAction--contalert--c--cmssg--desc b {
+  font-weight: 600;
+}
+
 #cont-MainCamelLog--cMarketplaceLogistics {
   padding-top: 1rem;
 }

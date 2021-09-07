@@ -26,3 +26,4 @@
 		<a href="javascript:void(0);" class="cnt-modalFormSessLoginorRegister--c--btnReturnorBack" id="btn-closeTwoFormLoginorRegister">Volver</a>
 	</div>
 </section>
+<div id="s-mssgloadSendAction" class="c-mssgloadSendAction"></div>

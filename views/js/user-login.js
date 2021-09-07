@@ -157,7 +157,6 @@ $(document).on("submit","#c-formRegisterU_Camel",function(e){
 		 $("#u-passwordtwo").val() != 0 && $("#u-passwordtwo").val() != ""){
 
 		var form = $(this).serializeArray();
-
 		$.ajax({
 			url: 'controllers/prcss_add-user.php',
 			method: 'POST',
@@ -165,17 +164,82 @@ $(document).on("submit","#c-formRegisterU_Camel",function(e){
 			contentType: 'application/x-www-form-urlencoded;charset=UTF-8',
 			data: form
 		}).done((e) => {
-			//console.log(e.response);
 			if(e.response == "true"){
+				/************************** MOSTRAR EL LOADER PERSONALIZADO **************************/
+        $("#s-mssgloadSendAction").html(`
+          <div class="c-mssgloadSendAction--cloader">
+						<span class="c-mssgloadSendAction--cloader--loader"></span>
+					</div>
+        `)
+        /************************** QUITAR EL LOADER **************************/
+        setTimeout(function(){
+          $("#s-mssgloadSendAction .c-mssgloadSendAction--cloader").remove();
+        }, 1000);
+
 				$("#cnt-modalFormSessLoginorRegister").removeClass("show");
 				$('#c-formRegisterU_Camel')[0].reset();
-				alert("Datos insertados correctamente");
+
 			}else if(e.response == "equals"){
-				alert("Atención! Este usuario ya existe");
+				/************************** MOSTRAR EL MENSAJE DE ALERTA PERSONALIZADO **************************/
+        $("#s-mssgloadSendAction").html(`
+          <div class="c-mssgloadSendAction--contalert">
+						<div class="c-mssgloadSendAction--contalert--c">
+							<span class="c-mssgloadSendAction--contalert--c--close" id="btncloseModalLorR"></span>
+							<div class="c-mssgloadSendAction--contalert--c--cmssg">
+								<h1 class="c-mssgloadSendAction--contalert--c--cmssg--title"><b>Atención!</b></h1>
+								<p class="c-mssgloadSendAction--contalert--c--cmssg--desc">El usuario ingresado ya se encuentra registrado, por favor inicie sesión.</p>
+							</div>
+						</div>
+					</div>
+        `)
+        /************************** CERRAR EL MODAL **************************/
+        setTimeout(function(){
+          $("#s-mssgloadSendAction .c-mssgloadSendAction--contalert").remove();
+        }, 6500);
+        $("#btncloseModalLorR").on("click", function(){
+          $(this).parent().parent().remove();
+        });
+
 			}else if(e.response == "errinsert"){
-				alert("Hubo un error al insertar el registro");
+				/************************** MOSTRAR EL MENSAJE DE ALERTA PERSONALIZADO **************************/
+        $("#s-mssgloadSendAction").html(`
+          <div class="c-mssgloadSendAction--contalert">
+						<div class="c-mssgloadSendAction--contalert--c">
+							<span class="c-mssgloadSendAction--contalert--c--close" id="btncloseModalLorR"></span>
+							<div class="c-mssgloadSendAction--contalert--c--cmssg">
+								<h1 class="c-mssgloadSendAction--contalert--c--cmssg--title">Lo sentimos</h1>
+								<p class="c-mssgloadSendAction--contalert--c--cmssg--desc">Hubo un error al insertar el registro.</p>
+							</div>
+						</div>
+					</div>
+        `)
+        /************************** CERRAR EL MODAL **************************/
+        setTimeout(function(){
+          $("#s-mssgloadSendAction .c-mssgloadSendAction--contalert").remove();
+        }, 6500);
+        $("#btncloseModalLorR").on("click", function(){
+          $(this).parent().parent().remove();
+        });
 			}else{
-				alert("Lo sentimos, hubo un error al procesar los datos");
+				/************************** MOSTRAR EL MENSAJE DE ALERTA PERSONALIZADO **************************/
+        $("#s-mssgloadSendAction").html(`
+          <div class="c-mssgloadSendAction--contalert">
+						<div class="c-mssgloadSendAction--contalert--c">
+							<span class="c-mssgloadSendAction--contalert--c--close" id="btncloseModalLorR"></span>
+							<div class="c-mssgloadSendAction--contalert--c--cmssg">
+								<h1 class="c-mssgloadSendAction--contalert--c--cmssg--title">Error!</h1>
+								<p class="c-mssgloadSendAction--contalert--c--cmssg--desc">Lo sentimos, hubo un error al procesar el formulario.</p>
+							</div>
+						</div>
+					</div>
+        `)
+        /************************** CERRAR EL MODAL **************************/
+        setTimeout(function(){
+          $("#s-mssgloadSendAction .c-mssgloadSendAction--contalert").remove();
+        }, 6500);
+        $("#btncloseModalLorR").on("click", function(){
+          $(this).parent().parent().remove();
+        });
 			}
 		});
 	}else{
