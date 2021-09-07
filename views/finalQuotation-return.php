@@ -356,33 +356,30 @@ echo $template_incserv.$template_notincserv;
       </div>
     </div>
     <?php 
-     function genId() {
-      $format = 'xxxxxxxxxxxxxxxxxy';
+    //  function genId() {
+    //   $format = 'xxxxxxxxxxxxxxxxxy';
 
-      return preg_replace_callback('/[xy]/', function($match) {
-        $pattern = '1234567890';
+    //   return preg_replace_callback('/[xy]/', function($match) {
+    //     $pattern = '1234567890';
      
-        if ($match[0] === 'x') {
-          return substr($pattern, mt_rand(0, strlen($pattern)), 1);
-        } else {
-          return substr(date('y'), -2);
-        }
-      }, "INUCML-".$format);
-    }
+    //     if ($match[0] === 'x') {
+    //       return substr($pattern, mt_rand(0, strlen($pattern)), 1);
+    //     } else {
+    //       return substr(date('y'), -2);
+    //     }
+    //   }, "INUCML-".$format);
+    // }
 
-    echo genId()."</br>";
-
-    if(isset($_SESSION['user_camel'])){
-      echo "Existe el usuario"."</br>";
-    }else{
-      echo "No hay una sesión de usuario"."</br>";
-    }
-
-    echo date('d-m-Y H:i:s')."</br>";
-
-    echo "<pre>";
-    print_r($_POST);
-    echo "</pre>";
+    // echo genId()."</br>";
+    // if(isset($_SESSION['user_camel'])){
+    //   echo "Existe el usuario"."</br>";
+    // }else{
+    //   echo "No hay una sesión de usuario"."</br>";
+    // }
+    // echo date('d-m-Y H:i:s')."</br>";
+    // echo "<pre>";
+    // print_r($_POST);
+    // echo "</pre>";
     ?>
   </main>
   <?php require_once 'includes/form-login-user.php'; ?>

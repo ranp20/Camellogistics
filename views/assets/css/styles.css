@@ -864,7 +864,7 @@ img {
   pointer-events: auto;
 }
 #c-HTop-camel .c-Htopbar--c--cMenu--m--link {
-  color: #888;
+  color: #666;
   text-transform: uppercase;
   font-size: 0.9rem;
   font-weight: 600;
@@ -874,6 +874,7 @@ img {
 #c-HTop-camel .c-Htopbar--c--cMenu--m--link:hover {
   color: #000;
   box-shadow: 0px 2px 0px 0px #000 inset;
+  background-color: #ddd;
 }
 @media (min-width: 991px) {
   #c-HTop-camel .c-Htopbar--c--cMenu--m--link {
