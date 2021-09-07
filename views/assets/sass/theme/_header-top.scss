@@ -17,7 +17,7 @@
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
-		padding: .65rem 0;
+		padding: 0;
 
 		&--cLogo{
 			width: 7rem;
@@ -81,6 +81,7 @@
 				height: auto;
 				z-index: 1;
 				background-color: transparent;
+				line-height: $min-headertop;
 			}
 			
 			&--m{
@@ -107,16 +108,54 @@
 		
 				&--item{
 					width: 100%;
-
-					@media (min-width: 991px){
-						width: auto;
-						padding: 0 1.5rem;
-					}
+					position: relative;
 
 					&:last-child{
 						padding: 0;
 					}
+
+					@media (min-width: 991px){
+						width: auto;
+					}
+
+
+					&--subm{
+						position: absolute;
+				    background-color: #000;
+				    width: 100%;
+				    right: 0;
+				    line-height: 2rem;
+				    display: none;
+						pointer-events: none;
+
+						&--subitem{
+							&:hover{
+								//background-color: #fff;
+								opacity: .5;
+								a{
+									//color: #000;
+								}
+							}
+						}
+
+						&--sublink{
+							display: block;
+							padding: .5rem 1rem;
+							color: #fff;
+							font-weight: 600;
+						}
+					}
+
+
+					&:hover{
+						ul{
+							display: block;
+							pointer-events: auto;
+						}
+					}
+
 				}
+
 				&--link{
 					color: $color-paragraph;
 					text-transform: uppercase;
@@ -127,11 +166,12 @@
 
 					&:hover{
 						color: #000;
+						box-shadow: 0px 2px 0px 0px #000 inset;
 					}
 
 					@media (min-width: 991px){
 						font-size: 1rem;
-						padding: 0;
+						padding: 0 1rem;
 					}
 				}
 			}

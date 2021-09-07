@@ -169,7 +169,17 @@ $(document).on("submit","#c-formLoginU_Camel",function(e){
 			//console.log(e);
 			if(e.response == "true"){
 				/************************** MOSTRAR EL NOMBRE/CORREO DEL USUARIO **************************/
-				$("#namUser_validSess").text(e.received.username);
+				//$("#namUser_validSess").text();
+				$("#s-loginsessuser-active").html(`
+					<a href='javascript:void(0);' class='c-Htopbar--c--cMenu--m--link'>
+            <span id='namUser_validSess' class='c-Htopbar--c--cMenu--m--link--sessUser'>${e.received.username}</span>
+          </a>
+          <ul class='c-Htopbar--c--cMenu--m--item--subm'>
+            <li class='c-Htopbar--c--cMenu--m--item--subm--subitem'>
+              <a href='logout' class='c-Htopbar--c--cMenu--m--item--subm--sublink'>Cerrar sesión</a>
+            </li>
+          </ul>
+				`);
 				/************************** MOSTRAR EL LOADER PERSONALIZADO **************************/
         $("#s-mssgloadSendAction").html(`
           <div class="c-mssgloadSendAction--cloader">
@@ -251,7 +261,16 @@ $(document).on("submit","#c-formRegisterU_Camel",function(e){
 		}).done((e) => {
 			if(e.response == "true"){
 				/************************** MOSTRAR EL NOMBRE/CORREO DEL USUARIO **************************/
-				$("#namUser_validSess").text(e.received.username);
+				$("#s-loginsessuser-active").html(`
+					<a href='javascript:void(0);' class='c-Htopbar--c--cMenu--m--link'>
+            <span id='namUser_validSess' class='c-Htopbar--c--cMenu--m--link--sessUser'>${e.received.username}</span>
+          </a>
+          <ul class='c-Htopbar--c--cMenu--m--item--subm'>
+            <li class='c-Htopbar--c--cMenu--m--item--subm--subitem'>
+              <a href='logout' class='c-Htopbar--c--cMenu--m--item--subm--sublink'>Cerrar sesión</a>
+            </li>
+          </ul>
+				`);
 				/************************** MOSTRAR EL LOADER PERSONALIZADO **************************/
         $("#s-mssgloadSendAction").html(`
           <div class="c-mssgloadSendAction--cloader">

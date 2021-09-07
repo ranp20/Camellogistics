@@ -22,16 +22,25 @@
         <li class="c-Htopbar--c--cMenu--m--item">
           <a href="marketplace-logistico" class="c-Htopbar--c--cMenu--m--link">Marketplace Logístico</a>
         </li>
-        <li class="c-Htopbar--c--cMenu--m--item">
-          <a href="javascript:void(0);" class="c-Htopbar--c--cMenu--m--link" id="s-formLoginOrRegister">
-            <?php 
-              if(isset($_SESSION['user_camel'])){
-                echo "<span id='namUser_validSess' class='c-Htopbar--c--cMenu--m--link--sessUser'>{$_SESSION['user_camel']['username']}</span>";
-              }else{
-                echo "<span id='namUser_validSess'>Log in</span>";
-              }
-            ?>
-          </a>
+        <li class="c-Htopbar--c--cMenu--m--item" id="s-loginsessuser-active">
+          <?php 
+            if(isset($_SESSION['user_camel'])){
+              echo "
+                <a href='javascript:void(0);' class='c-Htopbar--c--cMenu--m--link'>
+                  <span class='c-Htopbar--c--cMenu--m--link--sessUser'>{$_SESSION['user_camel']['username']}</span>
+                </a>
+                <ul class='c-Htopbar--c--cMenu--m--item--subm'>
+                  <li class='c-Htopbar--c--cMenu--m--item--subm--subitem'>
+                    <a href='logout' class='c-Htopbar--c--cMenu--m--item--subm--sublink'>Cerrar sesión</a>
+                  </li>
+                </ul>";
+            }else{
+              echo "
+                <a href='javascript:void(0);' class='c-Htopbar--c--cMenu--m--link' id='s-formLoginOrRegister'>
+                  <span>Log in</span>
+                </a>";
+            }
+          ?>
         </li>
       </ul>
     </div>
