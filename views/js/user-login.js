@@ -81,7 +81,25 @@ $(document).on("input keyup","#u-password",function(e){
 	if(e.target.value != ""){$("#mssg_alertcontrol_pass").text("");}else{$("#mssg_alertcontrol_pass").text("Debes ingresar una contraseña");}
 });
 $(document).on("input keyup","#u-passwordtwo",function(e){
-	if(e.target.value != ""){$("#mssg_alertcontrol_passrepeat").text("");}else{$("#mssg_alertcontrol_passrepeat").text("Debes repetir la contraseña");}
+	if(e.target.value != ""){
+		$("#mssg_alertcontrol_passrepeat").text("");
+
+		if(e.target.value != $("#u-password").val()){
+			$("#mssg_alertcontrol_passrepeat").css({'color':'red'});
+			$("#mssg_alertcontrol_passrepeat").text("Las contraseñas deben coincidir");
+		}else if(e.target.value == $("#u-password").val()){
+			$("#mssg_alertcontrol_passrepeat").css({'color':'green'});
+			$("#mssg_alertcontrol_passrepeat").text("Las contraseñas coinciden");
+		}else{
+			$("#mssg_alertcontrol_passrepeat").css({'color':'red'});
+			$("#mssg_alertcontrol_passrepeat").text("");
+		}
+	}else{
+		$("#mssg_alertcontrol_passrepeat").text("Debes repetir la contraseña");
+	}
+});
+$(document).on("blur","#u-passwordtwo",function(){
+	$("#mssg_alertcontrol_passrepeat").text("");
 });
 /************************** CAMBIAR LOS BOTONES SEGÚN SEA LA OCASIÓN **************************/
 $(document).on("click", "#btn-ChangeR", function(){
@@ -139,9 +157,76 @@ $(document).on("submit","#c-formLoginU_Camel",function(e){
 
 	if($("#u-username").val() != 0 && $("#u-username").val() != "" &&
 		 $("#u-password").val() != 0 && $("#u-password").val() != ""){
-		alert("Inicio de sesión exitoso");
+		
+		var form = $(this).serializeArray();
+		$.ajax({
+			url: 'controllers/prcss_login-user.php',
+			method: 'POST',
+			dataType: 'JSON',
+			contentType: 'application/x-www-form-urlencoded;charset=UTF-8',
+			data: form
+		}).done((e) => {
+			//console.log(e);
+			if(e.response == "true"){
+				console.log(e.received.id);
+				console.log(e.received.username);
+				console.log(e.received.password);
+				/************************** MOSTRAR EL LOADER PERSONALIZADO **************************/
+        $("#s-mssgloadSendAction").html(`
+          <div class="c-mssgloadSendAction--cloader">
+						<span class="c-mssgloadSendAction--cloader--loader"></span>
+					</div>
+        `)
+        /************************** QUITAR EL LOADER **************************/
+        setTimeout(function(){
+          $("#s-mssgloadSendAction .c-mssgloadSendAction--cloader").remove();
+        }, 1000);
+
+				$("#cnt-modalFormSessLoginorRegister").removeClass("show");
+				$('#c-formLoginU_Camel')[0].reset();
+			}else{
+				/************************** MOSTRAR EL MENSAJE DE ALERTA PERSONALIZADO **************************/
+		    $("#s-mssgloadSendAction").html(`
+		      <div class="c-mssgloadSendAction--contalert">
+						<div class="c-mssgloadSendAction--contalert--c">
+							<span class="c-mssgloadSendAction--contalert--c--close" id="btncloseModalLorR"></span>
+							<div class="c-mssgloadSendAction--contalert--c--cmssg">
+								<h1 class="c-mssgloadSendAction--contalert--c--cmssg--title">Atención!</h1>
+								<p class="c-mssgloadSendAction--contalert--c--cmssg--desc">Los datos del usuario no coinciden y/o no existen.</p>
+							</div>
+						</div>
+					</div>
+		    `)
+		    /************************** CERRAR EL MODAL **************************/
+		    setTimeout(function(){
+		      $("#s-mssgloadSendAction .c-mssgloadSendAction--contalert").remove();
+		    }, 6500);
+		    $("#btncloseModalLorR").on("click", function(){
+		      $(this).parent().parent().remove();
+		    });
+			}
+		});
+
 	}else{
-		alert("Atención! completar los campos requeridos");
+		/************************** MOSTRAR EL MENSAJE DE ALERTA PERSONALIZADO **************************/
+    $("#s-mssgloadSendAction").html(`
+      <div class="c-mssgloadSendAction--contalert">
+				<div class="c-mssgloadSendAction--contalert--c">
+					<span class="c-mssgloadSendAction--contalert--c--close" id="btncloseModalLorR"></span>
+					<div class="c-mssgloadSendAction--contalert--c--cmssg">
+						<h1 class="c-mssgloadSendAction--contalert--c--cmssg--title">Atención!</h1>
+						<p class="c-mssgloadSendAction--contalert--c--cmssg--desc">Debes completar los campos requeridos.</p>
+					</div>
+				</div>
+			</div>
+    `)
+    /************************** CERRAR EL MODAL **************************/
+    setTimeout(function(){
+      $("#s-mssgloadSendAction .c-mssgloadSendAction--contalert").remove();
+    }, 6500);
+    $("#btncloseModalLorR").on("click", function(){
+      $(this).parent().parent().remove();
+    });
 	}
 });
 /************************** REGISTRO DEL USUARIO **************************/
@@ -154,7 +239,8 @@ $(document).on("submit","#c-formRegisterU_Camel",function(e){
 
 	if($("#u-username").val() != 0 && $("#u-username").val() != "" &&
 		 $("#u-password").val() != 0 && $("#u-password").val() != "" &&
-		 $("#u-passwordtwo").val() != 0 && $("#u-passwordtwo").val() != ""){
+		 $("#u-passwordtwo").val() != 0 && $("#u-passwordtwo").val() != "" &&
+		 $("#u-passwordtwo").val() == $("#u-password").val()){
 
 		var form = $(this).serializeArray();
 		$.ajax({
@@ -187,7 +273,7 @@ $(document).on("submit","#c-formRegisterU_Camel",function(e){
 							<span class="c-mssgloadSendAction--contalert--c--close" id="btncloseModalLorR"></span>
 							<div class="c-mssgloadSendAction--contalert--c--cmssg">
 								<h1 class="c-mssgloadSendAction--contalert--c--cmssg--title"><b>Atención!</b></h1>
-								<p class="c-mssgloadSendAction--contalert--c--cmssg--desc">El usuario ingresado ya se encuentra registrado, por favor inicie sesión.</p>
+								<p class="c-mssgloadSendAction--contalert--c--cmssg--desc">El usuario ingresado <b>ya se encuentra registrado, por favor inicie sesión.</b></p>
 							</div>
 						</div>
 					</div>
@@ -243,6 +329,24 @@ $(document).on("submit","#c-formRegisterU_Camel",function(e){
 			}
 		});
 	}else{
-		alert("Atención! completar los campos requeridos");
+		/************************** MOSTRAR EL MENSAJE DE ALERTA PERSONALIZADO **************************/
+    $("#s-mssgloadSendAction").html(`
+      <div class="c-mssgloadSendAction--contalert">
+				<div class="c-mssgloadSendAction--contalert--c">
+					<span class="c-mssgloadSendAction--contalert--c--close" id="btncloseModalLorR"></span>
+					<div class="c-mssgloadSendAction--contalert--c--cmssg">
+						<h1 class="c-mssgloadSendAction--contalert--c--cmssg--title">Atención!</h1>
+						<p class="c-mssgloadSendAction--contalert--c--cmssg--desc">Debes completar los campos requeridos.</p>
+					</div>
+				</div>
+			</div>
+    `)
+    /************************** CERRAR EL MODAL **************************/
+    setTimeout(function(){
+      $("#s-mssgloadSendAction .c-mssgloadSendAction--contalert").remove();
+    }, 6500);
+    $("#btncloseModalLorR").on("click", function(){
+      $(this).parent().parent().remove();
+    });
 	}
 });
