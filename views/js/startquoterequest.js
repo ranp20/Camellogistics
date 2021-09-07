@@ -2548,7 +2548,6 @@ $(document).on("click", "#btn-NextStepTomerchandisedata", function(){
           <span>
             <span>
               <input type="hidden" id="res-insuremerch" name="res-insuremerch" class="n-val-sd">
-              <input type="hidden" id="res-insurancevaluet" name="res-insurancevaluet" class="n-val-sd">
             </span>
           </span>
         </div>
@@ -2617,7 +2616,6 @@ $(document).on("click", "#btn-NextStepTomerchandisedata", function(){
           <span>
             <span>
               <input type="hidden" id="res-insuremerch" name="res-insuremerch" class="n-val-sd">
-              <input type="hidden" id="res-insurancevaluet" name="res-insurancevaluet" class="n-val-sd">
             </span>
           </span>
         </div>
@@ -2702,7 +2700,6 @@ $(document).on("click", "#list-insuremerchandise a", function(){
         localStorage.setItem("key_v-valueinsurance", roundToTwo(valorfinalseguro));
       }
 
-      //$("#res-insurancevaluet").val(resutlinsurance[1].data_value);
       /************************** MOSTRAR EL SIGUIENTE PASO - ¿ NECESITAS TRANSPORTE ? **************************/
       sectionsSteps.moveTo('step-requirespickup', 1);
       $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-requirespickup]").html(`
@@ -2739,7 +2736,6 @@ $(document).on("click", "#list-insuremerchandise a", function(){
     }else{
       /************************** ASIGNAR VALORES DE LOS INPUTS HIDDEN - QUIERES ASEGURAR LA MERCANCÍA **************************/
       $("#res-insuremerch").val("NO");
-      //$("#res-insurancevaluet").val(resutlinsurance[0].data_value);
       var valorfinalseguro = 0;
       if(finalvaluefob > 25000){
         /************************** ASIGNAR AL VALOR DE LA VARIABLE LOCAL **************************/

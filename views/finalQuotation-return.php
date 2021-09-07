@@ -2,35 +2,10 @@
   
   //COMPRIMIR ARCHIVOS DE TEXTO...
   (substr_count($_SERVER["HTTP_ACCEPT_ENCODING"], "gzip")) ? ob_start("ob_gzhandler") : ob_start();
-
   session_start();
   if(!isset($_POST) || $_POST == []){
     header("Location: marketplace-logistico");
   }
-
-  function genId() {
-    $format = 'xxxxxxxxxxxxxxxxxy';
-
-    return preg_replace_callback('/[xy]/', function($match) {
-      $pattern = '1234567890';
-   
-      if ($match[0] === 'x') {
-        return substr($pattern, mt_rand(0, strlen($pattern)), 1);
-      } else {
-        return substr(date('y'), -2);
-      }
-    }, "INUCML-".$format);
-  }
-
-  echo genId();
-
-  if(isset($_SESSION['user_clogistics'])){
-    echo "Existe el usuario";
-  }else{
-    echo "No hay una sesión de usuario";
-  }
-
-  echo date('d-m-Y H:i:s');
 
 ?>
 <!DOCTYPE html>
@@ -41,30 +16,7 @@
   <link rel="stylesheet" href="<?= $url ?>js/fullpage/fullpage.min.css">
 </head>
 <body>
-  <nav class="c-Htopbar" id="c-HTop-camel">
-    <div class="c-Htopbar--c">
-      <div class="c-Htopbar--c--cLogo">
-        <a href="./">
-          <img src="<?= $url ?>assets/img/logos/logotipo-camel.png" alt="logo_camel">
-        </a>
-      </div>
-      <button class="c-Htopbar--c--btnMobileNavbar" type="button">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
-      <div class="c-Htopbar--c--cMenu">
-        <ul class="c-Htopbar--c--cMenu--m">
-          <li class="c-Htopbar--c--cMenu--m--item">
-            <a href="./" class="c-Htopbar--c--cMenu--m--link">Inicio</a>
-          </li>
-          <li class="c-Htopbar--c--cMenu--m--item">
-            <a href="marketplace-logistico" class="c-Htopbar--c--cMenu--m--link">Marketplace Logístico</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
+  <?php require_once 'includes/header-top.php'; ?>
   <main class="cont-MainCamelLog" id="cont-MainCamelLog">
     <div class="cont-MainCamelLog--c ptop-headertop" id="cont-MainCamelLog--cFinalDownloadQuoteReturn">
       <div class="box-container">
@@ -403,6 +355,35 @@ echo $template_incserv.$template_notincserv;
         </div>
       </div>
     </div>
+    <?php 
+     function genId() {
+      $format = 'xxxxxxxxxxxxxxxxxy';
+
+      return preg_replace_callback('/[xy]/', function($match) {
+        $pattern = '1234567890';
+     
+        if ($match[0] === 'x') {
+          return substr($pattern, mt_rand(0, strlen($pattern)), 1);
+        } else {
+          return substr(date('y'), -2);
+        }
+      }, "INUCML-".$format);
+    }
+
+    echo genId()."</br>";
+
+    if(isset($_SESSION['user_camel'])){
+      echo "Existe el usuario"."</br>";
+    }else{
+      echo "No hay una sesión de usuario"."</br>";
+    }
+
+    echo date('d-m-Y H:i:s')."</br>";
+
+    echo "<pre>";
+    print_r($_POST);
+    echo "</pre>";
+    ?>
   </main>
   <?php require_once 'includes/form-before-download-pdf.php'; ?>
   <script src="<?= $url ?>js/jquery-3.6.0.min.js"></script>
