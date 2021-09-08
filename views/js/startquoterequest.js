@@ -1392,6 +1392,43 @@ $(document).on("click", "#btn-NextStepToSelOptResultExp", function(){
 $(document).on("click", "#list-SelOptionResultExp a", function(){
   var tItemSelOptExp = $(this).index();
   if(tItemSelOptExp == 0){
+
+    if($("#loadTypeCharge").val() != "LCL"){
+      $.ajax({
+        url: "controllers/list_quotation_values_fcl.php",
+        method: "POST",
+        datatype: "JSON",
+        contentType: 'application/x-www-form-urlencoded;charset=UTF-8',
+        data: {require_servs : 'SI'}
+      }).done((e) => {
+        var res = JSON.parse(e);
+        var unitvaluesQuotes = 0;
+        $.each(res, function(i, e){
+          unitvaluesQuotes+= parseFloat(e.data_value);
+        });
+
+        /************************** ASIGNAR A LA VARIABLE GLOBAL **************************/
+        localStorage.setItem("key_v-valuesquotation", unitvaluesQuotes);
+      });
+    }else{
+      $.ajax({
+        url: "controllers/list_quotation_values_lcl.php",
+        method: "POST",
+        datatype: "JSON",
+        contentType: 'application/x-www-form-urlencoded;charset=UTF-8',
+        data: {require_servs : 'SI'}
+      }).done((e) => {
+        var res = JSON.parse(e);
+        var unitvaluesQuotes = 0;
+        $.each(res, function(i, e){
+          unitvaluesQuotes+= parseFloat(e.data_value);
+        });
+
+        /************************** ASIGNAR A LA VARIABLE GLOBAL **************************/
+        localStorage.setItem("key_v-valuesquotation", unitvaluesQuotes);
+      });
+    }
+
     /************************** ASIGNAR VALORES DE LOS INPUTS HIDDEN - ELIGE UNA OPCIÓN **************************/
     $("#opt-genfquotation").val("y-moreOpts");
     /************************** OCULTAR EL BOTÓN DE ENVIAR **************************/
@@ -1452,6 +1489,43 @@ $(document).on("click", "#list-SelOptionResultExp a", function(){
       </div>
     `);
   }else{
+
+    if($("#loadTypeCharge").val() != "LCL"){
+      $.ajax({
+        url: "controllers/list_quotation_values_fcl.php",
+        method: "POST",
+        datatype: "JSON",
+        contentType: 'application/x-www-form-urlencoded;charset=UTF-8',
+        data: {require_servs : 'NO'}
+      }).done((e) => {
+        var res = JSON.parse(e);
+        var unitvaluesQuotes = 0;
+        $.each(res, function(i, e){
+          unitvaluesQuotes+= parseFloat(e.data_value);
+        });
+
+        /************************** ASIGNAR A LA VARIABLE GLOBAL **************************/
+        localStorage.setItem("key_v-valuesquotation", unitvaluesQuotes);
+      });
+    }else{
+      $.ajax({
+        url: "controllers/list_quotation_values_lcl.php",
+        method: "POST",
+        datatype: "JSON",
+        contentType: 'application/x-www-form-urlencoded;charset=UTF-8',
+        data: {require_servs : 'NO'}
+      }).done((e) => {
+        var res = JSON.parse(e);
+        var unitvaluesQuotes = 0;
+        $.each(res, function(i, e){
+          unitvaluesQuotes+= parseFloat(e.data_value);
+        });
+
+        /************************** ASIGNAR A LA VARIABLE GLOBAL **************************/
+        localStorage.setItem("key_v-valuesquotation", unitvaluesQuotes);
+      });
+    }
+
     /************************** ASIGNAR VALORES DE LOS INPUTS HIDDEN - ELIGE UNA OPCIÓN **************************/
     $("#opt-genfquotation").val("not-moreOpts");
     /************************** AGREGAR AL LISTADO DE RESUMEN - ELIGE UN OPCIÓN **************************/
