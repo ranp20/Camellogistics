@@ -22,6 +22,7 @@ $(document).ready(() => {
 	/************************** LISTAR LOS VALORES DEL FLETE REAL **************************/
 	var partInteger = 0;
 	var partDecimal = 0;
+	var partFinalDecimal = 0;
 	var totflete = parseFloat(localStorage.getItem("key_v-totalflette"));
 	var totalamountadditional = parseFloat(localStorage.getItem("key_v-totalammountadditional"));
 	var totaltransport = parseFloat(localStorage.getItem("key_v-valuetransport"));
@@ -29,12 +30,21 @@ $(document).ready(() => {
 	var totalvaluesquotation =  parseFloat(localStorage.getItem("key_v-valuesquotation"));
 
 	var sumTotalFirstFlete = totflete + totalamountadditional + totaltransport + totalinsurance + totalvaluesquotation;
+	//console.log(sumTotalFirstFlete);
 	var totalNotround = twodecimals(sumTotalFirstFlete);
 	var n = Math.abs(totalNotround);
 	partInteger = Math.trunc(n);
-	partDecimal = totalNotround.toString().substr(-2);
+	//partDecimal = totalNotround.toString().substr(-2);
+	partDecimal = totalNotround.toString().split('.');
+	//console.log(partInteger);
+	//console.log(partDecimal);
+	if(partDecimal[1] > 0 && partDecimal[1] < 10 && partDecimal[1] != '00'){
+		partFinalDecimal = partDecimal[1]+'0';
+	}else{
+		partFinalDecimal = partDecimal[1];
+	}
 	/************************** IMPRIMIR EN EL RESUMEN DE COTIZACIÓN **************************/
-	$("#intdecval-quotefinal").html(`<span>${partInteger},<sup>${partDecimal}</sup> USD</span>`);
+	$("#intdecval-quotefinal").html(`<span>${partInteger},<sup>${partFinalDecimal}</sup> USD</span>`);
 
 	/************************** CARGAR LOS VALORES E INCLUIRLOS EN EL TEXTO PARA EL BOTÓN DE WHATSAPP **************************/
 	var typeFleteService = $("#m-first-listresume").find("li:first-child").find("div").find("span:nth-child(2)").text(),
