@@ -6,49 +6,35 @@ function myRound(num, dec){
   var exp = Math.pow(10, dec || 2); // 2 decimales por defecto
   return parseInt(num * exp, 10) / exp;
 }
+/************************** FUNCIÓN - LIMITAR A DOS DECIMALES SIN REDONDEO **************************/
+function twodecimals(n) {
+  let t = n.toString();
+  let regex = /(\d*.\d{0,2})/;
+  return t.match(regex)[0];
+}
 $(document).ready(() => {
 	/************************** IR HACIA ABAJO **************************/
 	$("#btn-scrollingtTtB").on("click", function(){$("body, html").animate({scrollTop: '500'}, 350);});
-
-	/************************** LISTAR LOS VALORES DE CÁLCULO DESDE EL ADMINISTRADOR **************************/
-	//DE OTRA FORMA, CREAR UN CONTROLADOR EN DONDE SE CALCULEN LOS VALORES, ASÍ PROTEGER LOS DATOS...
-	/************************** LISTAR LOS VALORES DE ACUERDO AL TIPO DE CONTENEDOR - LCL/FCL **************************/
-	$.ajax({
-		url: "controllers/list_quotation-values.php",
-    method: "POST",
-    datatype: "JSON",
-    contentType: 'application/x-www-form-urlencoded;charset=UTF-8'
-	}).done((res) =>{
-		var result = JSON.parse(res);
-		
-		/************************** DATOS PARA CALCULAR **************************/
-		var sumvaluesQuote = 0;
-		var totalquote = 0;
-		var printTotalQuote = 0;
-		var partInteger = 0;
-		var partDecimal = 0;
-
-		$.each(result, function(i, e){
-			sumvaluesQuote+= parseFloat(e.data_value);
-		});
-		totalquote = sumvaluesQuote.toFixed(3);
-		printTotalQuote = myRound(totalquote);
-		//console.log("VALOR SIN EL FLETE: "+printTotalQuote);
-		var n = Math.abs(printTotalQuote);
-		partInteger = Math.trunc(n);
-		partDecimal = printTotalQuote.toString().substr(-2);
-		//console.log(partInteger);
-		//console.log(partDecimal);
-		
-	});
 
 	/************************** LISTAR LAS FECHAS DE LA VALIDEZ DE LA TARIFA **************************/
 	$("#v_validratedate").text(localStorage.getItem("key_validaterate"));
 
 	/************************** LISTAR LOS VALORES DEL FLETE REAL **************************/
+	var partInteger = 0;
+	var partDecimal = 0;
 	var totflete = parseFloat(localStorage.getItem("key_v-totalflette"));
-	var amountadditional = localStorage.getItem("key_v-ammountadditional");
-	console.log(amountadditional);
+	var totalamountadditional = parseFloat(localStorage.getItem("key_v-totalammountadditional"));
+	var totaltransport = parseFloat(localStorage.getItem("key_v-valuetransport"));
+	var totalinsurance = parseFloat(localStorage.getItem("key_v-valueinsurance"));
+	var totalvaluesquotation =  parseFloat(localStorage.getItem("key_v-valuesquotation"));
+
+	var sumTotalFirstFlete = totflete + totalamountadditional + totaltransport + totalinsurance + totalvaluesquotation;
+	var totalNotround = twodecimals(sumTotalFirstFlete);
+	var n = Math.abs(totalNotround);
+	partInteger = Math.trunc(n);
+	partDecimal = totalNotround.toString().substr(-2);
+	/************************** IMPRIMIR EN EL RESUMEN DE COTIZACIÓN **************************/
+	$("#intdecval-quotefinal").html(`<span>${partInteger},<sup>${partDecimal}</sup> USD</span>`);
 
 	/************************** CARGAR LOS VALORES E INCLUIRLOS EN EL TEXTO PARA EL BOTÓN DE WHATSAPP **************************/
 	var typeFleteService = $("#m-first-listresume").find("li:first-child").find("div").find("span:nth-child(2)").text(),

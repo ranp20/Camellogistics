@@ -298,9 +298,7 @@ echo $template_incserv.$template_notincserv;
                 </div>
               </div>
               <div class="c-FinalQuotation--contStep--cQuotation--cBottom--c--QuantityQuotation">
-                <h1>
-                  <span>930,<sup>00</sup> USD</span>
-                </h1>
+                <h1 id="intdecval-quotefinal"></h1>
                 <p>+ IGV 18% 59 USD</p>
               </div>
             </div>
