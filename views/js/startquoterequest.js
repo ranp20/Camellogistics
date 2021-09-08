@@ -2447,6 +2447,8 @@ $(document).on("click", ".cont-MainCamelLog--c--contSteps--item--cStep--mFrmIpts
   $("#m-listAllNamTypeProds").removeClass("show");
   $("#ipt-valNameTypeProdNInterface").attr("idproduct", $(this).attr("id"));
   $("#ipt-valNameTypeProdNInterface").val($(this).find("p").text());
+  /************************** ASIGNAR A LA VARIABLE LOCAL **************************/
+  localStorage.setItem("key_v-dbammountadditional", $(this).attr("data-amountadditional"));
   /************************** MOSTRAR/OCULTAR DE ACUERDO A EL VALOR DEL MONTO ADICIONAL **************************/
   if($(this).attr("data-amountadditional") != 0 || $(this).attr("data-amountadditional") != 0.00){
     $("#ipt-valCantOfAmountAdditional").html(`
@@ -2482,6 +2484,9 @@ $(document).on("keyup keypress blur change", "#ipt-valQuantityAmAddProdNInterfac
   /************************** AGREGAR AL INPUT DE ENVÍO POST Y AGREGAR A LA VARIABLE LOCAL **************************/
   $("#val-quantityProdsAmmAdd").val(e.target.value);
   localStorage.setItem("key_v-ammountadditional", e.target.value);
+  /************************** ASIGNAR A LA VARIABLE LOCAL **************************/
+  localStorage.setItem("key_v-totalammountadditional", localStorage.getItem("key_v-dbammountadditional") * value);
+
 });
 /************************** VALIDAR INPUT - VALOR DE PRODUCTO IMPORTADO **************************/
 $(document).on("input", "#ipt-valPriceProdNInterface", function(e){
