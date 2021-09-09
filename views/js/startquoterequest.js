@@ -148,11 +148,43 @@ $(document).on("click", "#list-typeOperationItems a", function(){
       "opacity" : "0.5",
       "border" : "unset"
     });
-    alert("Esta opción aún no está disponible. Por favor, pase a elegir IMPORTACIÓN");
+    //alert("Esta opción aún no está disponible. Por favor, pase a elegir IMPORTACIÓN");
+    /************************** MOSTRAR EL MENSAJE DE ALERTA PERSONALIZADO **************************/
+    $("#idMessageSteps-prcss").html(`
+      <div class="cntMessageSteps-prcss--cont">
+        <div class="cntMessageSteps-prcss--cont--c">
+          <span class="cntMessageSteps-prcss--cont--c--btnclose" id="btnclose-modalMessage"></span>
+          <h3 class="cntMessageSteps-prcss--cont--c--title">No disponible</h3>
+          <p class="cntMessageSteps-prcss--cont--c--text">Esta opción aún no esta disponible. Por favor, pase a elegir <b>IMPORTACIÓN.</b></p>
+        </div>
+      </div>
+    `)
+    /************************** CERRAR EL MODAL **************************/
+    setTimeout(function(){
+      $("#idMessageSteps-prcss .cntMessageSteps-prcss--cont").remove();
+    }, 6500)
+    $("#btnclose-modalMessage").on("click", function(){
+      $(this).parent().parent().remove();
+    });
     /************************** OCULTAR AL LISTADO DE RESUMEN - ELIGE UN OPCIÓN **************************/
     $(".cont-MainCamelLog--c--contResumeCalc--item[data-advlevel=d-reqspeacialservs]").removeClass("show");
     $(".cont-MainCamelLog--c--contResumeCalc--item[data-advlevel=d-reqspeacialservs]").find("span").text("");
     /************************** OCULTAR TODOS LOS PASOS ABIERTOS EN CASO SE VUELVA HASTA ESTE PASO **************************/
+    /************************** OCULTAR LOS OTROS PASOS AJENOS A ESTA ELECCIÓN **************************/
+    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-typetransport]").removeClass("show");
+    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-typetransport]").html("");
+    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-chargedata]").removeClass("show");
+    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-chargedata]").html("");
+    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-integservorfleteinte]").removeClass("show");
+    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-integservorfleteinte]").html("");
+    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-merchandisedata]").removeClass("show");
+    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-merchandisedata]").html("");
+    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-insuremerchandise]").removeClass("show");
+    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-insuremerchandise]").html("");
+    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-requirespickup]").removeClass("show");
+    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-requirespickup]").html("show");
+    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-pickuplocation]").removeClass("show");
+    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-pickuplocation]").html("");
   }else{
     localStorage.setItem("key_v-totalflette", 0);
     localStorage.setItem("key_typeOp", $(this).find("li").find("p").text());
