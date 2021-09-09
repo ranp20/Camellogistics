@@ -2812,18 +2812,7 @@ img {
   font-weight: bold;
   text-decoration: underline !important;
 }
-.cnt-modalFormLoginyRegister--c--cForm #cont-btnsDownloadOptions.hidden {
-  display: none;
-}
-.cnt-modalFormLoginyRegister--c--cForm #control-inputaddEmail {
-  display: none;
-  align-items: center;
-  justify-content: center;
-}
-.cnt-modalFormLoginyRegister--c--cForm #control-inputaddEmail.show {
-  display: flex;
-}
-.cnt-modalFormLoginyRegister--c--cForm #control-inputaddEmail button {
+.cnt-modalFormLoginyRegister--c--cForm button[type=submit] {
   border: none;
   background-color: #B58440;
   width: auto;
@@ -2836,7 +2825,7 @@ img {
   border-radius: 0.4rem;
   font-weight: 600;
 }
-.cnt-modalFormLoginyRegister--c--cForm #control-inputaddEmail button:hover {
+.cnt-modalFormLoginyRegister--c--cForm button[type=submit]:hover {
   opacity: 0.5;
 }
 

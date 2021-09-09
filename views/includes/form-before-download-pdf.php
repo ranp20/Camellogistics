@@ -20,7 +20,13 @@
 					<label for="telephone_cli" class="cnt-modalFormLoginyRegister--c--cForm--cControl--label">Número de teléfono - (Opcional)</label>
 					<input type="number" id="telephone_cli" name="telephone_cli" class="cnt-modalFormLoginyRegister--c--cForm--cControl--input" placeholder="Ingrese el número de teléfono" maxlength="11">
 				</div>
-				<div class="cnt-modalFormLoginyRegister--c--cForm--cControl" id="control-inputaddEmail">
+				<div class="cnt-modalFormLoginyRegister--c--cForm--cControl">
+					<label for="email_cli" class="cnt-modalFormLoginyRegister--c--cForm--cControl--label">Ingresa tu Email <span class="control-spanrequired">*</span></label>
+					<input type="email" id="email_cli" name="email_cli" class="cnt-modalFormLoginyRegister--c--cForm--cControl--input" placeholder="Ingrese el correo electrónico">
+					<span id="msg-nounValidEmail"></span>
+					<button type="submit" id="btn-reg_AccountbeforeDownload">DESCARGAR COTIZACIÓN</button>
+				</div>
+				<!--<div class="cnt-modalFormLoginyRegister--c--cForm--cControl" id="control-inputaddEmail">
 					<label for="email_cli" class="cnt-modalFormLoginyRegister--c--cForm--cControl--label">Ingresa tu Email <span class="control-spanrequired">*</span></label>
 					<input type="email" id="email_cli" name="email_cli" class="cnt-modalFormLoginyRegister--c--cForm--cControl--input" placeholder="Ingrese el correo electrónico">
 					<span id="msg-nounValidEmail"></span>
@@ -28,12 +34,12 @@
 				</div>
 				<div class="cnt-modalFormLoginyRegister--c--cForm--cBtnsDownloadPdf" id="cont-btnsDownloadOptions">
 					<span>Opciones de descarga:</span>
-					<!--<a href="" class="cnt-modalFormLoginyRegister--c--cForm--cBtnsDownloadPdf--linkGmailAccess">
+					<a href="" class="cnt-modalFormLoginyRegister--c--cForm--cBtnsDownloadPdf--linkGmailAccess">
 						<img src="" alt="">
 						<span>GMAIL, SOLO CON UN CLICK</span>
-					</a>-->
+					</a>
 					<p>o con tu <a href="#" id="link-showaddEmailUser">correo electrónico</a></p>
-				</div>
+				</div>-->
 			</form>
 		</div>
 	</div>

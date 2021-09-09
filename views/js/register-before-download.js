@@ -1,5 +1,6 @@
 /************************** SHOW INPUT EMAIL AND HIDDEN COTENT BUTTONS OPTIONS DOWNLOAD **************************/
-$(document).on("click","#btn-requireDownloadQuotaion",function(){$("#cnt-modalFormLoginyRegister").add($(".cnt-modalFormLoginyRegister--c")).addClass("show");});
+$(document).on("click","#btn-requireDownloadQuotaion_one",function(){$("#cnt-modalFormLoginyRegister").add($(".cnt-modalFormLoginyRegister--c")).addClass("show");});
+$(document).on("click","#btn-requireDownloadQuotaion_two",function(){$("#cnt-modalFormLoginyRegister").add($(".cnt-modalFormLoginyRegister--c")).addClass("show");});
 $(document).on("click", "#btn-closeiconForm", function(){$("#cnt-modalFormLoginyRegister").removeClass("show");});
 /************************** TROZO DE VANILLA JS **************************/
 let containFormDownload = document.querySelector("#cnt-modalFormLoginyRegister");

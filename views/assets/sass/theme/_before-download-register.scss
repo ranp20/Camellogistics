@@ -153,18 +153,18 @@
 			}
 
 			/************************** TOGGLE CONTROL **************************/
-			#cont-btnsDownloadOptions.hidden{
-				display: none;
-			}
-			#control-inputaddEmail{
-				display: none;
-				align-items: center;
-				justify-content: center;
-			}
-			#control-inputaddEmail.show{
-				display: flex;
-			}
-			#control-inputaddEmail button{
+			// #cont-btnsDownloadOptions.hidden{
+			// 	display: none;
+			// }
+			// #control-inputaddEmail{
+			// 	display: none;
+			// 	align-items: center;
+			// 	justify-content: center;
+			// }
+			// #control-inputaddEmail.show{
+			// 	display: flex;
+			// }
+			button[type=submit]{
 				border: none;
 				background-color: $primary-color;
 				width: auto;
@@ -176,9 +176,10 @@
 				color: #fff;
 				border-radius: .4rem;
 				font-weight: 600;
-			}
-			#control-inputaddEmail button:hover{
-				opacity: .5;
+
+				&:hover{
+					opacity: .5;
+				}
 			}
 
 		}

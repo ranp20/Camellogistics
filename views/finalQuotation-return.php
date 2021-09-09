@@ -21,6 +21,14 @@
     <div class="cont-MainCamelLog--c ptop-headertop" id="cont-MainCamelLog--cFinalDownloadQuoteReturn">
       <div class="box-container">
         <div class="c-FinalQuotation--contStep--cQuotation">
+          <div class="c-FinalQuotation--contStep--cQuotation--cBtnDownload">
+            <button type="button" class="c-FinalQuotation--contStep--cQuotation--cBtnDownload--btn" id="btn-requireDownloadQuotaion_one">
+              <span class="c-FinalQuotation--contStep--cQuotation--cBtnDownload--btn--cIcon">
+                <svg class="MuiSvgIcon-root" focusable="false" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"></path></svg>
+              </span>
+              <span class="c-FinalQuotation--contStep--cQuotation--cBtnDownload--btn--text">DESCARGA TU PRESUPUESTO</span>
+            </button>
+          </div>
           <div class="c-FinalQuotation--contStep--cQuotation--cTop">
             <p class="c-FinalQuotation--contStep--cQuotation--cTop--title">Resumen de carga</p>
             <div class="c-FinalQuotation--contStep--cQuotation--cTop--c">
@@ -343,7 +351,7 @@ echo $template_incserv.$template_notincserv;
             </a>
           </div>
           <div class="c-FinalQuotation--contStep--cQuotation--cBtnDownload">
-            <button type="button" class="c-FinalQuotation--contStep--cQuotation--cBtnDownload--btn" id="btn-requireDownloadQuotaion">
+            <button type="button" class="c-FinalQuotation--contStep--cQuotation--cBtnDownload--btn" id="btn-requireDownloadQuotaion_two">
               <span class="c-FinalQuotation--contStep--cQuotation--cBtnDownload--btn--cIcon">
                 <svg class="MuiSvgIcon-root" focusable="false" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"></path></svg>
               </span>
