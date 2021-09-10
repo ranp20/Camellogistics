@@ -1425,7 +1425,26 @@ $(document).on("click", "#list-SelOptionResultExp a", function(){
   var tItemSelOptExp = $(this).index();
   if(tItemSelOptExp == 0){
 
+
+
     if($("#loadTypeCharge").val() != "LCL"){
+      /************************** LISTAR SERVICIOS PARA CALCULO CON IGV - FCL **************************/
+      $.ajax({
+        url: "controllers/list_quotation_values_fcl_by_igv.php",
+        method: "POST",
+        datatype: "JSON",
+        contentType: 'application/x-www-form-urlencoded;charset=UTF-8',
+      }).done((e) => {
+        var resbyigv = JSON.parse(e);
+        var unitvaluesQuotesbyIGV = 0;
+        $.each(resbyigv, function(i, e){
+          unitvaluesQuotesbyIGV+= parseFloat(e.data_value);
+        });
+        /************************** AGREGAR A LA VARIABLE LOCAL **************************/
+        localStorage.setItem("key_v-valuesquotationbyigv", unitvaluesQuotesbyIGV);
+      });
+
+      /************************** LISTAR SERVICIOS DE ACUERDO A LA SELECCIÓN - FCL **************************/
       $.ajax({
         url: "controllers/list_quotation_values_fcl.php",
         method: "POST",
@@ -1443,6 +1462,23 @@ $(document).on("click", "#list-SelOptionResultExp a", function(){
         localStorage.setItem("key_v-valuesquotation", unitvaluesQuotes);
       });
     }else{
+      /************************** LISTAR SERVICIOS PARA CALCULO CON IGV - FCL **************************/
+      $.ajax({
+        url: "controllers/list_quotation_values_lcl_by_igv.php",
+        method: "POST",
+        datatype: "JSON",
+        contentType: 'application/x-www-form-urlencoded;charset=UTF-8',
+      }).done((e) => {
+        var resbyigv = JSON.parse(e);
+        var unitvaluesQuotesbyIGV = 0;
+        $.each(resbyigv, function(i, e){
+          unitvaluesQuotesbyIGV+= parseFloat(e.data_value);
+        });
+        /************************** AGREGAR A LA VARIABLE LOCAL **************************/
+        localStorage.setItem("key_v-valuesquotationbyigv", unitvaluesQuotesbyIGV);
+      });
+
+      /************************** LISTAR SERVICIOS DE ACUERDO A LA SELECCIÓN - LCL **************************/
       $.ajax({
         url: "controllers/list_quotation_values_lcl.php",
         method: "POST",
@@ -1523,6 +1559,23 @@ $(document).on("click", "#list-SelOptionResultExp a", function(){
   }else{
 
     if($("#loadTypeCharge").val() != "LCL"){
+      /************************** LISTAR SERVICIOS PARA CALCULO CON IGV - FCL **************************/
+      $.ajax({
+        url: "controllers/list_quotation_values_fcl_by_igv.php",
+        method: "POST",
+        datatype: "JSON",
+        contentType: 'application/x-www-form-urlencoded;charset=UTF-8',
+      }).done((e) => {
+        var resbyigv = JSON.parse(e);
+        var unitvaluesQuotesbyIGV = 0;
+        $.each(resbyigv, function(i, e){
+          unitvaluesQuotesbyIGV+= parseFloat(e.data_value);
+        });
+        /************************** AGREGAR A LA VARIABLE LOCAL **************************/
+        localStorage.setItem("key_v-valuesquotationbyigv", unitvaluesQuotesbyIGV);
+      });
+
+      /************************** LISTAR SERVICIOS DE ACUERDO A LA SELECCIÓN - FCL **************************/
       $.ajax({
         url: "controllers/list_quotation_values_fcl.php",
         method: "POST",
@@ -1540,6 +1593,23 @@ $(document).on("click", "#list-SelOptionResultExp a", function(){
         localStorage.setItem("key_v-valuesquotation", unitvaluesQuotes);
       });
     }else{
+      /************************** LISTAR SERVICIOS PARA CALCULO CON IGV - FCL **************************/
+      $.ajax({
+        url: "controllers/list_quotation_values_lcl_by_igv.php",
+        method: "POST",
+        datatype: "JSON",
+        contentType: 'application/x-www-form-urlencoded;charset=UTF-8',
+      }).done((e) => {
+        var resbyigv = JSON.parse(e);
+        var unitvaluesQuotesbyIGV = 0;
+        $.each(resbyigv, function(i, e){
+          unitvaluesQuotesbyIGV+= parseFloat(e.data_value);
+        });
+        /************************** AGREGAR A LA VARIABLE LOCAL **************************/
+        localStorage.setItem("key_v-valuesquotationbyigv", unitvaluesQuotesbyIGV);
+      });
+
+      /************************** LISTAR SERVICIOS DE ACUERDO A LA SELECCIÓN - LCL **************************/
       $.ajax({
         url: "controllers/list_quotation_values_lcl.php",
         method: "POST",

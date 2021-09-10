@@ -15,10 +15,12 @@ function twodecimals(n) {
 $(document).ready(() => {
 	/************************** IR HACIA ABAJO **************************/
 	$("#btn-scrollingtTtB").on("click", function(){$("body, html").animate({scrollTop: '500'}, 350);});
-
 	/************************** LISTAR LAS FECHAS DE LA VALIDEZ DE LA TARIFA **************************/
 	$("#v_validratedate").text(localStorage.getItem("key_validaterate"));
 
+	/*=================================================================================================
+	=            													1. VALORES DE COTIZACIÓN            																=
+	==================================================================================================*/
 	/************************** LISTAR LOS VALORES DEL FLETE REAL **************************/
 	var partInteger = 0;
 	var partDecimal = 0;
@@ -28,9 +30,12 @@ $(document).ready(() => {
 	var totaltransport = parseFloat(localStorage.getItem("key_v-valuetransport"));
 	var totalinsurance = parseFloat(localStorage.getItem("key_v-valueinsurance"));
 	var totalvaluesquotation =  parseFloat(localStorage.getItem("key_v-valuesquotation"));
+	var totalvaluesquotationbyIGV =  parseFloat(localStorage.getItem("key_v-valuesquotationbyigv"));
 
-	var sumTotalFirstFlete = totflete + totalamountadditional + totaltransport + totalinsurance + totalvaluesquotation;
+	var sumTotalFirstFlete = totflete + totalamountadditional + totaltransport + totalinsurance + totalvaluesquotation; //FLETE FINAL
+	var sumTotalbyIGV = (totaltransport + totalamountadditional + totalvaluesquotationbyIGV) * (18 / 100);
 	//console.log(sumTotalFirstFlete);
+	//console.log(sumTotalbyIGV);
 	var totalNotround = twodecimals(sumTotalFirstFlete);
 	var n = Math.abs(totalNotround);
 	partInteger = Math.trunc(n);
@@ -38,13 +43,19 @@ $(document).ready(() => {
 	partDecimal = totalNotround.toString().split('.');
 	//console.log(partInteger);
 	//console.log(partDecimal);
-	if(partDecimal[1].length < 2){
+	if(partDecimal[1].length < 1){
+		partFinalDecimal = partDecimal[1]+'00';
+	}else	if(partDecimal[1].length < 2){
 		partFinalDecimal = partDecimal[1]+'0';
 	}else{
 		partFinalDecimal = partDecimal[1];
 	}
-	/************************** IMPRIMIR EN EL RESUMEN DE COTIZACIÓN **************************/
+	// 1. IMPRIMIR VALOR FINAL DEL FLETE...
 	$("#intdecval-quotefinal").html(`<span>${partInteger},<sup>${partFinalDecimal}</sup> USD</span>`);
+	// 2. IMRPIMIR SEGUNDO VALOR - (TRANSPORTE INTERNO, MONTO ADICIONAL DE PRODUCTO , VALORES DESDE ADMINISTRADOR)...
+	var totalNotRountByIGV = twodecimals(sumTotalbyIGV);
+	var separatebyIGV = totalNotRountByIGV.toString().split('.');
+	$("#igvval-quotefinal").html(`<span>+ IGV 18% </span><span>${separatebyIGV.join(',')} USD</span>`);
 
 	/************************** CARGAR LOS VALORES E INCLUIRLOS EN EL TEXTO PARA EL BOTÓN DE WHATSAPP **************************/
 	var typeFleteService = $("#m-first-listresume").find("li:first-child").find("div").find("span:nth-child(2)").text(),
