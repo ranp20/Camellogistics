@@ -8,10 +8,11 @@ function changesTabsOperation(){
   /************************** INFORMARCIÓN DE LA ACCIONES DEL USUARIO - LOCALSTORAGE... **************************/
   //#1. SELECCIONAR EL TIPO DE SERVICIO + PAGES...
   var selService = localStorage.setItem("type_service", ""); //SETEADA EN ESTA FUNCIÓN...
-  var stepOne_LocalStorage = localStorage.setItem("stepOne", true);
-  var stepTwo_LocalStorage = localStorage.setItem("stepTwo", false);
-  var stepThree_LocalStorage = localStorage.setItem("stepThree", false);
-  var stepFour_LocalStorage = localStorage.setItem("stepFour", false);
+  // PASOS DE LA COTIZACIÓN...
+  // var stepOne_LocalStorage = localStorage.setItem("stepOne", true);
+  // var stepTwo_LocalStorage = localStorage.setItem("stepTwo", false);
+  // var stepThree_LocalStorage = localStorage.setItem("stepThree", false);
+  // var stepFour_LocalStorage = localStorage.setItem("stepFour", false);
   //#2. CREAR LOS VALORES PARA LAS TARIFAS...
   // var var_ratesOfOrigin_5cbm = localStorage.setItem("val_rateorigin-5cbm", 0);
   // var var_ratesOfOrigin_15cbm = localStorage.setItem("val_rateorigin-15cbm", 0);

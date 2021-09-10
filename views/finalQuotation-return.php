@@ -314,25 +314,35 @@ echo $template_incserv.$template_notincserv;
               <p>NOTA: Los conceptos están sujetos a IGV, excepto al flete internacional.</p>
             </div>
             <div class="c-FinalQuotation--contStep--cQuotation--cBottom--cAduanaImpst">
-              <div class="c-FinalQuotation--contStep--cQuotation--cBottom--cAduanaImpst--cTop">
-                <ul class="c-FinalQuotation--contStep--cQuotation--cBottom--cAduanaImpst--cTop--m">
-                  <li class="c-FinalQuotation--contStep--cQuotation--cBottom--cAduanaImpst--cTop--m--item">
-                    <div class="c-FinalQuotation--contStep--cQuotation--cBottom--cAduanaImpst--cTop--m--item--cImg">
-                      <img src="views/assets/img/utilities/SUNAT.png" alt="">
+              <?php 
+
+                if(isset($_POST['opt-genfquotation']) && $_POST['opt-genfquotation'] == 'y-moreOpts'){
+                  echo "
+                    <div class='c-FinalQuotation--contStep--cQuotation--cBottom--cAduanaImpst--cTop'>
+                      <ul class='c-FinalQuotation--contStep--cQuotation--cBottom--cAduanaImpst--cTop--m'>
+                        <li class='c-FinalQuotation--contStep--cQuotation--cBottom--cAduanaImpst--cTop--m--item'>
+                          <div class='c-FinalQuotation--contStep--cQuotation--cBottom--cAduanaImpst--cTop--m--item--cImg'>
+                            <img src='views/assets/img/utilities/SUNAT.png' alt=''>
+                          </div>
+                          <div class='c-FinalQuotation--contStep--cQuotation--cBottom--cAduanaImpst--cTop--m--item--cInfo'>
+                            <h3>IMPUESTOS DE ADUANA</h3>
+                            <h4>Valor <b>VARIABLE</b> según descripción de producto</h4>
+                          </div>
+                        </li>
+                        <li class='c-FinalQuotation--contStep--cQuotation--cBottom--cAduanaImpst--cTop--m--item'>
+                          <div class='c-FinalQuotation--contStep--cQuotation--cBottom--cAduanaImpst--cTop--m--item--cInfo'>
+                            <span>APROX.</span>
+                            <p>1.739,<sup>00</sup>USD</p>
+                          </div>
+                        </li>
+                      </ul>
                     </div>
-                    <div class="c-FinalQuotation--contStep--cQuotation--cBottom--cAduanaImpst--cTop--m--item--cInfo">
-                      <h3>IMPUESTOS DE ADUANA</h3>
-                      <h4>Valor <b>VARIABLE</b> según descripción de producto</h4>
-                    </div>
-                  </li>
-                  <li class="c-FinalQuotation--contStep--cQuotation--cBottom--cAduanaImpst--cTop--m--item">
-                    <div class="c-FinalQuotation--contStep--cQuotation--cBottom--cAduanaImpst--cTop--m--item--cInfo">
-                      <span>APROX.</span>
-                      <p>1.739,<sup>00</sup>USD</p>
-                    </div>
-                  </li>
-                </ul>
-              </div>
+                  ";
+                }else{
+                  echo "";
+                }
+
+              ?>
               <div class="c-FinalQuotation--contStep--cQuotation--cBottom--cAduanaImpst--cBottom">
                 <ul class="c-FinalQuotation--contStep--cQuotation--cBottom--cAduanaImpst--cBottom--m">
                   <li class="c-FinalQuotation--contStep--cQuotation--cBottom--cAduanaImpst--cBottom--m--item">
@@ -383,9 +393,9 @@ echo $template_incserv.$template_notincserv;
     //   echo "No hay una sesión de usuario"."</br>";
     // }
     // echo date('d-m-Y H:i:s')."</br>";
-    // echo "<pre>";
-    // print_r($_POST);
-    // echo "</pre>";
+    echo "<pre>";
+    print_r($_POST);
+    echo "</pre>";
     ?>
   </main>
   <?php require_once 'includes/form-login-user.php'; ?>

@@ -50,12 +50,30 @@ $(document).ready(() => {
 	}else{
 		partFinalDecimal = partDecimal[1];
 	}
-	// 1. IMPRIMIR VALOR FINAL DEL FLETE...
+	// 1. IMPRIMIR EL PRIMER VALOR - VALOR FINAL DEL FLETE...
 	$("#intdecval-quotefinal").html(`<span>${partInteger},<sup>${partFinalDecimal}</sup> USD</span>`);
-	// 2. IMRPIMIR SEGUNDO VALOR - (TRANSPORTE INTERNO, MONTO ADICIONAL DE PRODUCTO , VALORES DESDE ADMINISTRADOR)...
+	// 2. IMRPIMIR EL SEGUNDO VALOR - VALOR CALCULADO CON IGV MENOS 2 ITEMS...
 	var totalNotRountByIGV = twodecimals(sumTotalbyIGV);
 	var separatebyIGV = totalNotRountByIGV.toString().split('.');
 	$("#igvval-quotefinal").html(`<span>+ IGV 18% </span><span>${separatebyIGV.join(',')} USD</span>`);
+	// 3. IMRPIMIR EL TERCER VALOR - VALOR TOTAL DE IMPUESTOS...
+	/************************** LISTAR SERVICIOS PARA CALCULO CON IGV - FCL **************************/
+  $.ajax({
+    url: "controllers/list_taxation_values.php",
+    method: "POST",
+    datatype: "JSON",
+    contentType: 'application/x-www-form-urlencoded;charset=UTF-8',
+  }).done((e) => {
+    var restaxvalues = JSON.parse(e);
+    console.log(restaxvalues);
+		
+		
+
+		var totalNotRoundTaxation = 0;
+		var partIntegerTaxation = 0;
+		var separateTaxation = 0;
+  });
+
 
 	/************************** CARGAR LOS VALORES E INCLUIRLOS EN EL TEXTO PARA EL BOTÓN DE WHATSAPP **************************/
 	var typeFleteService = $("#m-first-listresume").find("li:first-child").find("div").find("span:nth-child(2)").text(),
