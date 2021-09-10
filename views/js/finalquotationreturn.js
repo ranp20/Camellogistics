@@ -38,7 +38,7 @@ $(document).ready(() => {
 	partDecimal = totalNotround.toString().split('.');
 	//console.log(partInteger);
 	//console.log(partDecimal);
-	if(partDecimal[1] > 0 && partDecimal[1] < 10 && partDecimal[1] != '00'){
+	if(partDecimal[1].length < 2){
 		partFinalDecimal = partDecimal[1]+'0';
 	}else{
 		partFinalDecimal = partDecimal[1];
