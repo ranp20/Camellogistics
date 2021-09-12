@@ -1494,6 +1494,10 @@ $(document).on("click", "#list-SelOptionResultExp a", function(){
       });
     }
 
+    /************************** OCULTAR LOS DEMÁS PASOS POSTERIORES **************************/
+    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-insuremerchandise]").removeClass("show");
+    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-insuremerchandise]").html("");
+
     /************************** ASIGNAR VALORES DE LOS INPUTS HIDDEN - ELIGE UNA OPCIÓN **************************/
     $("#opt-genfquotation").val("y-moreOpts");
     /************************** OCULTAR EL BOTÓN DE ENVIAR **************************/
@@ -1631,8 +1635,8 @@ $(document).on("click", "#list-SelOptionResultExp a", function(){
     $(".cont-MainCamelLog--c--contResumeCalc--item[data-advlevel=d-reqspeacialservs]").removeClass("show");
     $(".cont-MainCamelLog--c--contResumeCalc--item[data-advlevel=d-reqspeacialservs]").find("span").text("");
     /************************** OCULTAR - DATOS DE MERCANCÍA **************************/
-    // $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-merchandisedata]").removeClass("show");
-    // $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-merchandisedata]").html("");
+    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-merchandisedata]").removeClass("show");
+    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-merchandisedata]").html("");
     /************************** MOSTRAR EL BOTÓN DE CALCULAR COTIZACIÓN **************************/
     // $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-integservorfleteinte] .cont-MainCamelLog--c--contSteps--item--cBtnNextStep").html(`
     //   <button type="submit" class="cont-MainCamelLog--c--contSteps--item--cBtnNextStep--btnR" id="btn-CalcQuoteToChargerdata">
@@ -1642,17 +1646,103 @@ $(document).on("click", "#list-SelOptionResultExp a", function(){
     // `);
 
     /************************** MOSTRAR EL SIGUIENTE PASO **************************/
-    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-merchandisedata]").addClass("show");
-    sectionsSteps.moveTo('step-merchandisedata', 1);
-    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-merchandisedata]").html(`
+    // $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-merchandisedata]").addClass("show");
+    // sectionsSteps.moveTo('step-merchandisedata', 1);
+    // $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-merchandisedata]").html(`
+    //   <div class="cont-MainCamelLog--c--contSteps--item--cTitle">
+    //     <h3 class="cont-MainCamelLog--c--contSteps--item--cTitle--title">Mercancía</h3>
+    //     <span>
+    //       <span>
+    //         <input type="hidden" value="" id="val-categProdquot-noMoreOpts" name="val-categProdquot" class="n-val-sd">
+    //         <input type="hidden" value="" id="val-valProdquot-noMoreOpts" name="val-valProdquot" class="n-val-sd">
+    //         <input type="hidden" value="" id="val-quantityProdsAmmAdd-noMoreOpts" name="val-quantityProdsAmmAdd" class="n-val-sd">
+    //       </span>
+    //     </span>
+    //   </div>
+    //   <div class="cont-MainCamelLog--c--contSteps--item--cStep">
+    //     <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise">
+    //       <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC">
+    //         <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl">
+    //           <label for="" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl--label">CATEGORÍA</label>
+    //           <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl--cListChange">
+    //             <input type="text" id="ipt-valNameTypeProdNInterface-notMoreOpts" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl--cListChange--input" autocomplete="off">
+    //             <ul class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl--cListChange--m" id="m-listAllNamTypeProds"></ul>
+    //           </div>
+    //         </div>
+    //       </div>
+    //       <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC" id="ipt-valCantOfAmountAdditional-notMoreOpts"></div>
+    //       <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC">
+    //         <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl">
+    //           <label for="" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl--label">VALOR</label>
+    //           <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl--cListChange">
+    //             <input type="text" id="ipt-valPriceProdNInterface-notMoreOpts" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl--cListChange--input" maxlength="13" autocomplete="off">
+    //           </div>
+    //         </div>
+    //       </div>
+    //     </div>
+    //   </div>
+    //   <div class="cont-MainCamelLog--c--contSteps--item--cBtnNextStep" id="s-caseNextStepTomerchandisedata">
+    //   </div>
+    // `);
+
+    /************************** MOSTRAR EL SIGUIENTE PASO **************************/
+    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-insuremerchandise]").addClass("show");
+    sectionsSteps.moveTo('step-insuremerchandise', 1);
+    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-insuremerchandise]").html(`
+      <div class="cont-MainCamelLog--c--contSteps--item--cTitle">
+        <h3 class="cont-MainCamelLog--c--contSteps--item--cTitle--title">¿Quieres asegurar la mercancía?</h3>
+        <span>
+          <span>
+            <input type="hidden" id="res-insuremerch" name="res-insuremerch" class="n-val-sd">
+          </span>
+        </span>
+      </div>
+      <div class="cont-MainCamelLog--c--contSteps--item--cStep">
+        <ul class="cont-MainCamelLog--c--contSteps--item--cStep--m" id="list-insuremerchandise-notMoreOpts">
+          <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem">
+            <li class="cont-MainCamelLog--c--contSteps--item--cStep--m--item">
+              <div class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem--cImg">
+                <img src="views/assets/img/steps/insurance.png" alt="" loading="lazy">
+              </div>
+              <p>SÍ</p>
+            </li>
+          </a>
+          <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem">
+            <li class="cont-MainCamelLog--c--contSteps--item--cStep--m--item">
+              <div class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem--cImg">
+                <img src="views/assets/img/steps/no-insurance.png" alt="" loading="lazy">
+              </div>
+              <p>NO</p>
+            </li>
+          </a>
+        </ul>
+      </div>
+      <div class="cont-MainCamelLog--c--contSteps--item--cBtnNextStep" id="s-quotationToNextStep"></div>
+    `);
+
+  }
+});
+/*=========================================================================================
+=            ELEGIR DE ACUERDO A SI ELIGE SI O NO EL SEGURO - SOLO DESEO FLETE            =
+==========================================================================================*/
+$(document).on("click","#list-insuremerchandise-notMoreOpts a",function(){
+  var tinsuremerchandise = $(this).index();
+  if(tinsuremerchandise == 0){
+    /************************** ASIGNAR AL INPUT DE ENVÍO POST **************************/
+    $("#res-insuremerch").val("SI");
+    /************************** REMOVER EL BOTÓN DE CALCULAR COTIZACIÓN **************************/
+    $("#s-quotationToNextStep").html("");
+    /************************** MOSTRAR EL SIGUIENTE PASO - DATOS DE MERCANCÍA DESDE SEGURO **************************/
+    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-requirespickup]").addClass("show");
+    sectionsSteps.moveTo('step-requirespickup', 1);
+    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-requirespickup]").html(`
       <div class="cont-MainCamelLog--c--contSteps--item--cTitle">
         <h3 class="cont-MainCamelLog--c--contSteps--item--cTitle--title">Mercancía</h3>
         <span>
           <span>
-            <input type="hidden" value="" id="val-categProdquot" name="val-categProdquot" class="n-val-sd">
-            <input type="hidden" value="" id="val-reqPermisoProdquot" name="val-reqPermisoProdquot" class="n-val-sd">
-            <input type="hidden" value="" id="val-valProdquot" name="val-valProdquot" class="n-val-sd">
-            <input type="hidden" value="" id="val-quantityProdsAmmAdd" name="val-quantityProdsAmmAdd" class="n-val-sd">
+            <input type="hidden" value="" id="val-categProdquot-noMoreOpts" name="val-categProdquot" class="n-val-sd">
+            <input type="hidden" value="" id="val-valProdquot-noMoreOpts" name="val-valProdquot" class="n-val-sd">
+            <input type="hidden" value="" id="val-quantityProdsAmmAdd-noMoreOpts" name="val-quantityProdsAmmAdd" class="n-val-sd">
           </span>
         </span>
       </div>
@@ -1679,10 +1769,55 @@ $(document).on("click", "#list-SelOptionResultExp a", function(){
         </div>
       </div>
       <div class="cont-MainCamelLog--c--contSteps--item--cBtnNextStep" id="s-caseNextStepTomerchandisedata">
-      </div>
+    </div>
     `);
-
+  }else{
+    /************************** ASIGNAR AL INPUT DE ENVÍO POST **************************/
+    $("#res-insuremerch").val("NO");
+    /************************** OCULTAR LOS PASOS ABIERTOS POSTERIORMENTE **************************/
+    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-requirespickup]").removeClass("show");
+    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-requirespickup]").html("");
+    /************************** MOSTRAR EL BOTÓN DE CALCULAR COTIZACIÓN **************************/
+    $("#s-quotationToNextStep").html(`
+      <button type="submit" class="cont-MainCamelLog--c--contSteps--item--cBtnNextStep--btnR" id="btn-CalcQuoteToMerchandiseData">
+        <span>CALCULAR COTIZACIÓN</span>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 125" x="0px" y="0px"><g data-name="13-Quotation"><path d="M53.47,77.72h.88a1.06,1.06,0,0,0,0-2.12H19.46V7.19H61.17V22.81a1.06,1.06,0,0,0,1.06,1.06H77.1V65.09a1.06,1.06,0,0,0,2.11,0V22.81s0,0,0-.07a2.38,2.38,0,0,0,0-.26l0-.1a1.17,1.17,0,0,0-.19-.3L63,5.41a1,1,0,0,0-.79-.32H18.41a1.05,1.05,0,0,0-1.06,1.06V75.6H6.11a1.06,1.06,0,0,0-1.05,1.06c0,7.43,5.29,13.47,11.79,13.47h37.5a1.06,1.06,0,1,0,0-2.12H16.85c-5,0-9.18-4.53-9.64-10.29H53.47ZM63.28,8.83l12.4,12.92H63.28Z"/><path d="M73.84,64V33.17a1.05,1.05,0,0,0-1.06-1.06h-49a1.05,1.05,0,0,0-1.06,1.06V64a1.05,1.05,0,0,0,1.06,1.06h49A1.05,1.05,0,0,0,73.84,64ZM71.73,38.29H39.25V34.22H71.73Zm-39.4,0V34.22h4.81v4.07Zm4.81,2.11V63H32.33V40.4ZM24.83,34.22h5.38v4.07H24.83Zm0,6.18h5.38V63H24.83ZM39.25,63V40.4H71.73V63Z"/><path d="M60.49,69.27a1.05,1.05,0,0,0-1.06-1.06H55.81a1.06,1.06,0,1,0,0,2.11h3.62A1.05,1.05,0,0,0,60.49,69.27Z"/><path d="M51.57,69.27a.95.95,0,1,0,1-1A.95.95,0,0,0,51.57,69.27Z"/><path d="M23,17.73H34.47a1.06,1.06,0,0,0,0-2.11H23a1.06,1.06,0,1,0,0,2.11Z"/><path d="M23,21.52H38.36a1.06,1.06,0,0,0,0-2.12H23a1.06,1.06,0,0,0,0,2.12Z"/><path d="M42.48,20.46a.95.95,0,1,0-.94.95A.95.95,0,0,0,42.48,20.46Z"/><path d="M71.47,75.84a2,2,0,0,1,2,2,1.06,1.06,0,0,0,1,1.1,1,1,0,0,0,1.09-1,4,4,0,0,0-3-4l0-.75a1.06,1.06,0,0,0-2.11-.08l0,.75a4,4,0,0,0-3.25,3.74,4,4,0,0,0,1.12,2.9,4.21,4.21,0,0,0,2.88,1.27,2.12,2.12,0,0,1,1.44.63,1.82,1.82,0,0,1,.53,1.35,2.05,2.05,0,0,1-4.09-.16,1.07,1.07,0,0,0-1-1.1,1,1,0,0,0-1.1,1,4,4,0,0,0,2.95,4l0,.68a1.05,1.05,0,0,0,1,1.1h0a1.06,1.06,0,0,0,1.05-1l0-.67a4,4,0,0,0,3.25-3.75,4,4,0,0,0-1.12-2.9,4.25,4.25,0,0,0-2.88-1.27A2.12,2.12,0,0,1,69.88,79a1.82,1.82,0,0,1-.53-1.35A2,2,0,0,1,71.47,75.84Z"/><path d="M83.67,92.54a1,1,0,0,0-1-.78,6.53,6.53,0,0,1-3.2-1,13.68,13.68,0,1,0-8.67,3.1A13.48,13.48,0,0,0,74,93.52,8.58,8.58,0,0,0,78.77,95a8.68,8.68,0,0,0,2.31-.31L83,94.15a1,1,0,0,0,.74-1.29Zm-6.67-1a8.39,8.39,0,0,0,1.88,1.32,6.37,6.37,0,0,1-4.07-1.34,1.08,1.08,0,0,0-.64-.22,1.26,1.26,0,0,0-.28,0,11.79,11.79,0,0,1-3.08.43,11.59,11.59,0,1,1,6.32-1.89,1.07,1.07,0,0,0-.47.8A1,1,0,0,0,77,91.56Z"/></g></svg>
+      </button>
+    `);
+    // sectionsSteps.moveTo('step-requirespickup', 1);
+    // $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-requirespickup]").html(`
+    //   <div class="cont-MainCamelLog--c--contSteps--item--cTitle">
+    //     <h3 class="cont-MainCamelLog--c--contSteps--item--cTitle--title">¿Necesitas Transporte?</h3>
+    //     <span>
+    //       <span>
+    //         <input type="hidden" value="" id="opt-reqtransport" name="opt-reqtransport" class="n-val-sd">
+    //       </span>
+    //     </span>
+    //   </div>
+    //   <div class="cont-MainCamelLog--c--contSteps--item--cStep">
+    //     <ul class="cont-MainCamelLog--c--contSteps--item--cStep--m" id="list-requirespickup">
+    //       <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem">
+    //         <li class="cont-MainCamelLog--c--contSteps--item--cStep--m--item">
+    //           <div class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem--cImg">
+    //             <img src="views/assets/img/steps/inland-trans.png" alt="" loading="lazy">
+    //           </div>
+    //           <p>SÍ</p>
+    //         </li>
+    //       </a>
+    //       <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem">
+    //         <li class="cont-MainCamelLog--c--contSteps--item--cStep--m--item">
+    //           <div class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem--cImg">
+    //             <img src="views/assets/img/steps/no-inland-trans.png" alt="" loading="lazy">
+    //           </div>
+    //           <p>NO</p>
+    //         </li>
+    //       </a>
+    //     </ul>
+    //   </div>
+    //   <div class="cont-MainCamelLog--c--contSteps--item--cBtnNextStep"></div>
+    // `);
   }
+
 });
 /************************** VALIDAR EL INPUT DE PRECIO DEL PRODUCTO - OPCIÓN 2 **************************/
 $(document).on("change input keyup", "#ipt-valPriceProdNInterface-notMoreOpts", function(e){
@@ -1701,16 +1836,16 @@ $(document).on("change input keyup", "#ipt-valPriceProdNInterface-notMoreOpts", 
     return v.replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d)\.?)/g, ".") + " USD";
   });
   /************************** ASIGNAR VALORES DE LOS INPUTS HIDDEN - MERCANCÍA **************************/
-  $("#val-valProdquot").val($(this).val());
+  $("#val-valProdquot-noMoreOpts").val($(this).val());
   /************************** ASIGNAR A LA VARIABLE LOCAL **************************/
   localStorage.setItem("key_v-valueproduct", $(this).val());
   if(e.target.value == "" || e.target.value == 0){
     /************************** OCULTAR EL SIGUIENTE PASO **************************/
-    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-insuremerchandise]").removeClass("show");
-    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-insuremerchandise]").html("");
+    // $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-insuremerchandise]").removeClass("show");
+    // $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-insuremerchandise]").html("");
     /************************** OCULTAR EL TRASSIGUIENTE PASO **************************/
-    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-requirespickup]").removeClass("show");
-    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-requirespickup]").html("");
+    // $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-requirespickup]").removeClass("show");
+    // $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-requirespickup]").html("");
 
     $("#s-caseNextStepTomerchandisedata").html("");
   }else{
@@ -1719,6 +1854,33 @@ $(document).on("change input keyup", "#ipt-valPriceProdNInterface-notMoreOpts", 
       if($("#ipt-valNameTypeProdNInterface-notMoreOpts").attr("idproduct") && 
         $("#ipt-valQuantityAmAddProdNInterface-notMoreOpts").val() != "" && 
         $("#ipt-valQuantityAmAddProdNInterface-notMoreOpts").val() != 0){
+
+        /************************** AGREGAR A LA VARIABLE LOCAL **************************/
+        $.ajax({
+          url: "controllers/list_insurancevalues.php",
+          method: "POST",
+          datatype: "JSON",
+          contentType: 'application/x-www-form-urlencoded;charset=UTF-8'
+        }).done((e) => {
+          var resutlinsurance = JSON.parse(e);
+          //localStorage.setItem("key_v-valueproduct", $(this).val());
+          var valfobproduct = $("#val-valProdquot-noMoreOpts").val();
+          var cutefobprice = valfobproduct.split(" USD");
+          var withoutpointsfob = cutefobprice[0].replace(/\./g, '');
+          var finalvaluefob = twodecimals(withoutpointsfob);
+
+          var valorfinalseguro = 0;
+          if(finalvaluefob > 25000){
+            /************************** ASIGNAR AL VALOR DE LA VARIABLE LOCAL **************************/
+            valorfinalseguro = (finalvaluefob * resutlinsurance[1].data_value) / 100; //FOB ES MAYOR A 25000
+            localStorage.setItem("key_v-valueinsurance", roundToTwo(valorfinalseguro));
+          }else{
+            /************************** ASIGNAR AL VALOR DE LA VARIABLE LOCAL **************************/
+            valorfinalseguro = resutlinsurance[0].data_value; //FOB ES MENOR A 25000
+            localStorage.setItem("key_v-valueinsurance", roundToTwo(valorfinalseguro));
+          }          
+          console.log(valorfinalseguro);
+        });
 
         $("#s-caseNextStepTomerchandisedata").html(`
           <button type="submit" class="cont-MainCamelLog--c--contSteps--item--cBtnNextStep--btnR" id="btn-CalcQuoteToMerchandiseData">
@@ -1731,6 +1893,34 @@ $(document).on("change input keyup", "#ipt-valPriceProdNInterface-notMoreOpts", 
       }
     }else{
       if($("#ipt-valNameTypeProdNInterface-notMoreOpts").attr("idproduct")){
+        
+        /************************** AGREGAR A LA VARIABLE LOCAL **************************/
+        $.ajax({
+          url: "controllers/list_insurancevalues.php",
+          method: "POST",
+          datatype: "JSON",
+          contentType: 'application/x-www-form-urlencoded;charset=UTF-8'
+        }).done((e) => {
+          var resutlinsurance = JSON.parse(e);
+          //localStorage.setItem("key_v-valueproduct", $(this).val());
+          var valfobproduct = $("#val-valProdquot-noMoreOpts").val();
+          var cutefobprice = valfobproduct.split(" USD");
+          var withoutpointsfob = cutefobprice[0].replace(/\./g, '');
+          var finalvaluefob = twodecimals(withoutpointsfob);
+
+          var valorfinalseguro = 0;
+          if(finalvaluefob > 25000){
+            /************************** ASIGNAR AL VALOR DE LA VARIABLE LOCAL **************************/
+            valorfinalseguro = (finalvaluefob * resutlinsurance[1].data_value) / 100; //FOB ES MAYOR A 25000
+            localStorage.setItem("key_v-valueinsurance", roundToTwo(valorfinalseguro));
+          }else{
+            /************************** ASIGNAR AL VALOR DE LA VARIABLE LOCAL **************************/
+            valorfinalseguro = resutlinsurance[0].data_value; //FOB ES MENOR A 25000
+            localStorage.setItem("key_v-valueinsurance", roundToTwo(valorfinalseguro));
+          }          
+          console.log(valorfinalseguro);
+        });
+
         $("#s-caseNextStepTomerchandisedata").html(`
           <button type="submit" class="cont-MainCamelLog--c--contSteps--item--cBtnNextStep--btnR" id="btn-CalcQuoteToMerchandiseData">
             <span>CALCULAR COTIZACIÓN</span>
@@ -1749,11 +1939,11 @@ $(document).on("keyup", "#ipt-valPriceProdNInterface-notMoreOpts", function(){
     $("#MsgItemValueProdRequired").text("Ingrese valor exacto, SIN DECIMALES");
     $(this).val("");
     /************************** OCULTAR EL SIGUIENTE PASO **************************/
-    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-insuremerchandise]").removeClass("show");
-    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-insuremerchandise]").html("");
+    // $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-insuremerchandise]").removeClass("show");
+    // $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-insuremerchandise]").html("");
     /************************** OCULTAR EL TRASSIGUIENTE PASO **************************/
-    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-requirespickup]").removeClass("show");
-    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-requirespickup]").html("");
+    // $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-requirespickup]").removeClass("show");
+    // $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-requirespickup]").html("");
 
     $("#s-caseNextStepTomerchandisedata").html("");
   }else{
@@ -1762,6 +1952,33 @@ $(document).on("keyup", "#ipt-valPriceProdNInterface-notMoreOpts", function(){
       if($("#ipt-valNameTypeProdNInterface-notMoreOpts").attr("idproduct") && 
         $("#ipt-valQuantityAmAddProdNInterface-notMoreOpts").val() != "" && 
         $("#ipt-valQuantityAmAddProdNInterface-notMoreOpts").val() != 0){
+
+        /************************** AGREGAR A LA VARIABLE LOCAL **************************/
+        $.ajax({
+          url: "controllers/list_insurancevalues.php",
+          method: "POST",
+          datatype: "JSON",
+          contentType: 'application/x-www-form-urlencoded;charset=UTF-8'
+        }).done((e) => {
+          var resutlinsurance = JSON.parse(e);
+          //localStorage.setItem("key_v-valueproduct", $(this).val());
+          var valfobproduct = $("#val-valProdquot-noMoreOpts").val();
+          var cutefobprice = valfobproduct.split(" USD");
+          var withoutpointsfob = cutefobprice[0].replace(/\./g, '');
+          var finalvaluefob = twodecimals(withoutpointsfob);
+
+          var valorfinalseguro = 0;
+          if(finalvaluefob > 25000){
+            /************************** ASIGNAR AL VALOR DE LA VARIABLE LOCAL **************************/
+            valorfinalseguro = (finalvaluefob * resutlinsurance[1].data_value) / 100; //FOB ES MAYOR A 25000
+            localStorage.setItem("key_v-valueinsurance", roundToTwo(valorfinalseguro));
+          }else{
+            /************************** ASIGNAR AL VALOR DE LA VARIABLE LOCAL **************************/
+            valorfinalseguro = resutlinsurance[0].data_value; //FOB ES MENOR A 25000
+            localStorage.setItem("key_v-valueinsurance", roundToTwo(valorfinalseguro));
+          }          
+          console.log(valorfinalseguro);
+        });
 
         $("#s-caseNextStepTomerchandisedata").html(`
           <button type="submit" class="cont-MainCamelLog--c--contSteps--item--cBtnNextStep--btnR" id="btn-CalcQuoteToMerchandiseData">
@@ -1774,6 +1991,34 @@ $(document).on("keyup", "#ipt-valPriceProdNInterface-notMoreOpts", function(){
       }
     }else{
       if($("#ipt-valNameTypeProdNInterface-notMoreOpts").attr("idproduct")){
+        
+        /************************** AGREGAR A LA VARIABLE LOCAL **************************/
+        $.ajax({
+          url: "controllers/list_insurancevalues.php",
+          method: "POST",
+          datatype: "JSON",
+          contentType: 'application/x-www-form-urlencoded;charset=UTF-8'
+        }).done((e) => {
+          var resutlinsurance = JSON.parse(e);
+          //localStorage.setItem("key_v-valueproduct", $(this).val());
+          var valfobproduct = $("#val-valProdquot-noMoreOpts").val();
+          var cutefobprice = valfobproduct.split(" USD");
+          var withoutpointsfob = cutefobprice[0].replace(/\./g, '');
+          var finalvaluefob = twodecimals(withoutpointsfob);
+
+          var valorfinalseguro = 0;
+          if(finalvaluefob > 25000){
+            /************************** ASIGNAR AL VALOR DE LA VARIABLE LOCAL **************************/
+            valorfinalseguro = (finalvaluefob * resutlinsurance[1].data_value) / 100; //FOB ES MAYOR A 25000
+            localStorage.setItem("key_v-valueinsurance", roundToTwo(valorfinalseguro));
+          }else{
+            /************************** ASIGNAR AL VALOR DE LA VARIABLE LOCAL **************************/
+            valorfinalseguro = resutlinsurance[0].data_value; //FOB ES MENOR A 25000
+            localStorage.setItem("key_v-valueinsurance", roundToTwo(valorfinalseguro));
+          }          
+          console.log(valorfinalseguro);
+        });
+
         $("#s-caseNextStepTomerchandisedata").html(`
           <button type="submit" class="cont-MainCamelLog--c--contSteps--item--cBtnNextStep--btnR" id="btn-CalcQuoteToMerchandiseData">
             <span>CALCULAR COTIZACIÓN</span>
@@ -1806,13 +2051,13 @@ $(document).on("keyup keydown", "#ipt-valNameTypeProdNInterface-notMoreOpts", fu
 
   if(e.which == 8 || event.keyCode == 46){
     /************************** OCULTAR EL SIGUIENTE PASO **************************/
-    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-insuremerchandise]").removeClass("show");
-    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-insuremerchandise]").html("");
+    // $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-insuremerchandise]").removeClass("show");
+    // $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-insuremerchandise]").html("");
     /************************** OCULTAR EL TRASSIGUIENTE PASO **************************/
-    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-requirespickup]").removeClass("show");
-    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-requirespickup]").html("");
+    // $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-requirespickup]").removeClass("show");
+    // $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-requirespickup]").html("");
   }else{
-    console.log('Con contenido');
+    //console.log('Con contenido');
   }
 });
 /************************** FIJAR EL VALOR DE ITEM EN EL INPUT - TIPOS DE PRODUCTOS **************************/
@@ -1836,8 +2081,8 @@ $(document).on("click", ".cont-MainCamelLog--c--contSteps--item--cStep--mFrmIpts
     $("#ipt-valCantOfAmountAdditional-notMoreOpts").html("");
   }
   /************************** ASIGNAR VALORES DE LOS INPUTS HIDDEN - MERCANCÍA **************************/
-  $("#val-categProdquot").val($(this).find("p").text());
-  $("#val-reqPermisoProdquot").val($(this).find("small").find("span:nth-child(2)").text());
+  $("#val-categProdquot-noMoreOpts").val($(this).find("p").text());
+
 });
 /************************** VALIDAR INPUT - CANTIDAD DE PRODUCTOS CON MONTO ADICIONAL **************************/
 $(document).on("keyup keypress blur change", "#ipt-valQuantityAmAddProdNInterface-notMoreOpts", function(e){
@@ -1855,7 +2100,7 @@ $(document).on("keyup keypress blur change", "#ipt-valQuantityAmAddProdNInterfac
     return v.replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d)\.?)/g, ".");
   });
   /************************** AGREGAR AL INPUT DE ENVÍO POST Y AGREGAR A LA VARIABLE LOCAL **************************/
-  $("#val-quantityProdsAmmAdd").val(e.target.value);
+  $("#val-quantityProdsAmmAdd-noMoreOpts").val(e.target.value);
   localStorage.setItem("key_v-ammountadditional", e.target.value);
   /************************** ASIGNAR A LA VARIABLE LOCAL **************************/
   localStorage.setItem("key_v-totalammountadditional", localStorage.getItem("key_v-dbammountadditional") * value);
@@ -1865,6 +2110,33 @@ $(document).on("keyup keypress blur change", "#ipt-valQuantityAmAddProdNInterfac
       if($("#ipt-valNameTypeProdNInterface-notMoreOpts").attr("idproduct") && 
         $("#ipt-valPriceProdNInterface-notMoreOpts").val() != 0 &&
         $("#ipt-valPriceProdNInterface-notMoreOpts").val() != ""){
+
+        /************************** AGREGAR A LA VARIABLE LOCAL **************************/
+        $.ajax({
+          url: "controllers/list_insurancevalues.php",
+          method: "POST",
+          datatype: "JSON",
+          contentType: 'application/x-www-form-urlencoded;charset=UTF-8'
+        }).done((e) => {
+          var resutlinsurance = JSON.parse(e);
+          //localStorage.setItem("key_v-valueproduct", $(this).val());
+          var valfobproduct = $("#val-valProdquot-noMoreOpts").val();
+          var cutefobprice = valfobproduct.split(" USD");
+          var withoutpointsfob = cutefobprice[0].replace(/\./g, '');
+          var finalvaluefob = twodecimals(withoutpointsfob);
+
+          var valorfinalseguro = 0;
+          if(finalvaluefob > 25000){
+            /************************** ASIGNAR AL VALOR DE LA VARIABLE LOCAL **************************/
+            valorfinalseguro = (finalvaluefob * resutlinsurance[1].data_value) / 100; //FOB ES MAYOR A 25000
+            localStorage.setItem("key_v-valueinsurance", roundToTwo(valorfinalseguro));
+          }else{
+            /************************** ASIGNAR AL VALOR DE LA VARIABLE LOCAL **************************/
+            valorfinalseguro = resutlinsurance[0].data_value; //FOB ES MENOR A 25000
+            localStorage.setItem("key_v-valueinsurance", roundToTwo(valorfinalseguro));
+          }          
+          console.log(valorfinalseguro);
+        });
 
         $("#s-caseNextStepTomerchandisedata").html(`
           <button type="submit" class="cont-MainCamelLog--c--contSteps--item--cBtnNextStep--btnR" id="btn-CalcQuoteToMerchandiseData">
@@ -1880,6 +2152,33 @@ $(document).on("keyup keypress blur change", "#ipt-valQuantityAmAddProdNInterfac
     }else{
 
       if($("#ipt-valNameTypeProdNInterface-notMoreOpts").attr("idproduct")){
+
+        /************************** AGREGAR A LA VARIABLE LOCAL **************************/
+        $.ajax({
+          url: "controllers/list_insurancevalues.php",
+          method: "POST",
+          datatype: "JSON",
+          contentType: 'application/x-www-form-urlencoded;charset=UTF-8'
+        }).done((e) => {
+          var resutlinsurance = JSON.parse(e);
+          //localStorage.setItem("key_v-valueproduct", $(this).val());
+          var valfobproduct = $("#val-valProdquot-noMoreOpts").val();
+          var cutefobprice = valfobproduct.split(" USD");
+          var withoutpointsfob = cutefobprice[0].replace(/\./g, '');
+          var finalvaluefob = twodecimals(withoutpointsfob);
+
+          var valorfinalseguro = 0;
+          if(finalvaluefob > 25000){
+            /************************** ASIGNAR AL VALOR DE LA VARIABLE LOCAL **************************/
+            valorfinalseguro = (finalvaluefob * resutlinsurance[1].data_value) / 100; //FOB ES MAYOR A 25000
+            localStorage.setItem("key_v-valueinsurance", roundToTwo(valorfinalseguro));
+          }else{
+            /************************** ASIGNAR AL VALOR DE LA VARIABLE LOCAL **************************/
+            valorfinalseguro = resutlinsurance[0].data_value; //FOB ES MENOR A 25000
+            localStorage.setItem("key_v-valueinsurance", roundToTwo(valorfinalseguro));
+          }          
+          console.log(valorfinalseguro);
+        });
 
         $("#s-caseNextStepTomerchandisedata").html(`
           <button type="submit" class="cont-MainCamelLog--c--contSteps--item--cBtnNextStep--btnR" id="btn-CalcQuoteToMerchandiseData">
@@ -3125,11 +3424,11 @@ $(document).on("click", "#list-insuremerchandise a", function(){
       var valorfinalseguro = 0;
       if(finalvaluefob > 25000){
         /************************** ASIGNAR AL VALOR DE LA VARIABLE LOCAL **************************/
-        valorfinalseguro = (finalvaluefob * resutlinsurance[1].data_value) / 100;
+        valorfinalseguro = (finalvaluefob * resutlinsurance[1].data_value) / 100; //FOB ES MAYOR A 25000
         localStorage.setItem("key_v-valueinsurance", roundToTwo(valorfinalseguro));
       }else{
         /************************** ASIGNAR AL VALOR DE LA VARIABLE LOCAL **************************/
-        valorfinalseguro = (finalvaluefob * resutlinsurance[0].data_value) / 100;
+        valorfinalseguro = resutlinsurance[0].data_value; //FOB ES MENOR A 25000
         localStorage.setItem("key_v-valueinsurance", roundToTwo(valorfinalseguro));
       }
 
@@ -3172,11 +3471,11 @@ $(document).on("click", "#list-insuremerchandise a", function(){
       var valorfinalseguro = 0;
       if(finalvaluefob > 25000){
         /************************** ASIGNAR AL VALOR DE LA VARIABLE LOCAL **************************/
-        valorfinalseguro = (finalvaluefob * resutlinsurance[0].data_value) / 100;
+        valorfinalseguro = (finalvaluefob * resutlinsurance[1].data_value) / 100; //FOB ES MAYOR A 25000
         localStorage.setItem("key_v-valueinsurance", roundToTwo(valorfinalseguro));
       }else{
         /************************** ASIGNAR AL VALOR DE LA VARIABLE LOCAL **************************/
-        valorfinalseguro = (finalvaluefob * resutlinsurance[0].data_value) / 100;
+        valorfinalseguro = resutlinsurance[0].data_value; //FOB ES MENOR A 25000
         localStorage.setItem("key_v-valueinsurance", roundToTwo(valorfinalseguro));
       }
       sectionsSteps.moveTo('step-requirespickup', 1);
@@ -3561,7 +3860,7 @@ function listrateLCLTransport(searchVal){
     });
     
   }else{
-    console.log("Por favor, elige un tipo de transporte para continuar");
+    //console.log("Por favor, elige un tipo de transporte para continuar");
   }
 
 }
