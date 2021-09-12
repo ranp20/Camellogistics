@@ -374,6 +374,8 @@ function listProducts(searchVal){
       var nounRegTwo = "";
       (e.reguladorTwo == null || e.reguladorTwo == "") ? nounRegTwo = "NO REQUIERE" : nounRegTwo = e.reguladorTwo;
       
+      // var longNameProd = e.name_prod;
+      // var longlimitNameProd = (longNameProd.length >= 36) ? longNameProd.substring(36, 0) + '<b>...</b>' : longNameProd;
 
       template += `
         <tr id="item-${e.id_prod}">
@@ -383,6 +385,7 @@ function listProducts(searchVal){
           <td>${nounRegOne}</td>
           <td>${nounRegTwo}</td>
           <td>${e.montoadd}</td>
+          <td></td>
           <td class="cont-btn-update">
             <a class="btn-update-product" data-toggle="modal" data-target="#updateModal"  href="#" 
               data-id="${e.id_prod}"

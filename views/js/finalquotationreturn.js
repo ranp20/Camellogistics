@@ -66,9 +66,7 @@ $(document).ready(() => {
   }).done((e) => {
     var restaxvalues = JSON.parse(e);
     console.log(restaxvalues);
-		
-		
-
+	
 		var totalNotRoundTaxation = 0;
 		var partIntegerTaxation = 0;
 		var separateTaxation = 0;

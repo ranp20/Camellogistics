@@ -38,6 +38,7 @@
 									<th>Regulador 1</th>
 									<th>Regulador 2</th>
 									<th>M. Adicional</th>
+									<th>Impuestos adicionales</th>
 									<th></th>
 									<th></th>
 								</tr>

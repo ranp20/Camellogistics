@@ -5,11 +5,12 @@ class Taxation_values extends Connection{
 		$arr_taxationvalues = [
 			"data_name" => $_POST['data_name'],
 			"data_value" => $_POST['data_value'],
+			"data_valuetwo" => $_POST['data_valuetwo'],
 			"id" => $_POST['id']
 		];
 
 		try{
-			$sql = "CALL sp_update_taxation_values(:data_name, :data_value, :id)";
+			$sql = "CALL sp_update_taxation_values(:data_name, :data_value, :data_valuetwo, :id)";
 			$stm = $this->con->prepare($sql);
 			foreach ($arr_taxationvalues as $key => $value) {
 				$stm->bindValue($key, $value);

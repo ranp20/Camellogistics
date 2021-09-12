@@ -55,8 +55,12 @@
 						        		<input id="dataname-update" class="cont-modalbootstrapupdate__form--control__input" name="dataname-update" type="text" maxlength="300" placeholder="Ingrese el nombre del valor">
 						        	</div>
 						        	<div class="cont-modalbootstrapupdate__form--control">
-						        		<label for="datavalue-update" class="cont-modalbootstrapupdate__form--control__label complete">Valor del Impuesto</label>
+						        		<label for="datavalue-update" class="cont-modalbootstrapupdate__form--control__label complete">Valor del Impuesto 1º</label>
 						        		<input id="datavalue-update" class="cont-modalbootstrapupdate__form--control__input" name="datavalue-update" type="number" maxlength="300" placeholder="Ingrese el precio del valor">
+						        	</div>
+						        	<div class="cont-modalbootstrapupdate__form--control">
+						        		<label for="datavaluetwo-update" class="cont-modalbootstrapupdate__form--control__label complete">Valor del Impuesto 2º</label>
+						        		<input id="datavaluetwo-update" class="cont-modalbootstrapupdate__form--control__input" name="datavaluetwo-update" type="number" maxlength="300" placeholder="Ingrese el precio del valor">
 						        	</div>
 								      <div class="cont-modalbootstrapupdate__footer">
 								        <button type="button" class="cont-modalbootstrapupdate__footer--btncancel" data-dismiss="modal">CANCELAR</button>
