@@ -659,10 +659,43 @@ function listProducts(searchVal){
     }else{
       response.forEach(e => {
       var nounRegOne = "";
-      (e.reguladorOne == null || e.reguladorOne == "") ? nounRegOne = "NO REQUIERE" : nounRegOne = e.reguladorOne;
       var nounRegTwo = "";
+      var nounOneAndTwoRegs = "";
+
+      (e.reguladorOne == null || e.reguladorOne == "") ? nounRegOne = "NO REQUIERE" : nounRegOne = e.reguladorOne;
       (e.reguladorTwo == null || e.reguladorTwo == "") ? nounRegTwo = "NO REQUIERE" : nounRegTwo = e.reguladorTwo;
-      
+
+      if((e.reguladorOne == null || e.reguladorOne == "") && (e.reguladorTwo == null || e.reguladorTwo == "")){
+        nounOneAndTwoRegs = "NO REQUIERE";
+      }else if(e.reguladorOne == null || e.reguladorOne == ""){
+        nounOneAndTwoRegs = e.reguladorTwo;
+      }else if(e.reguladorTwo == null || e.reguladorTwo == ""){
+        nounOneAndTwoRegs = e.reguladorOne;
+      }else{
+        nounOneAndTwoRegs = e.reguladorOne + " / " + e.reguladorTwo;
+      }      
+
+      var nounTaxOne = "";
+      var nounTaxTwo = "";
+      var nounTaxThree = "";
+      var nounOneAndMoreTaxs = "";
+
+      (e.impuestoOne == null || e.impuestoOne == "") ? nounTaxOne = "Ninguno" : nounTaxOne = e.impuestoOne;
+      (e.impuestoTwo == null || e.impuestoTwo == "") ? nounTaxTwo = "Ninguno" : nounTaxTwo = e.impuestoTwo;
+      (e.impuestoThree == null || e.impuestoThree == "") ? nounTaxThree = "Ninguno" : nounTaxThree = e.impuestoThree;
+
+      if((e.impuestoOne == null || e.impuestoOne == "") && (e.impuestoTwo == null || e.impuestoTwo == "") && (e.impuestoThree == null || e.impuestoThree == "")){
+        nounOneAndMoreTaxs = "Ninguno";
+      }else if(e.impuestoOne == null || e.impuestoOne == ""){
+        nounOneAndMoreTaxs = e.impuestoTwo + " / " + e.impuestoThree;
+      }else if(e.impuestoTwo == null || e.impuestoTwo == ""){
+        nounOneAndMoreTaxs = e.impuestoOne + " / " + e.impuestoThree;
+      }else if(e.impuestoThree == null || e.impuestoThree == ""){
+        nounOneAndMoreTaxs = e.impuestoOne + " / " + e.impuestoTwo;
+      }else{
+        nounOneAndMoreTaxs = e.impuestoOne + " / " + e.impuestoTwo + " / " + e.impuestoThree;
+      }
+
       // var longNameProd = e.name_prod;
       // var longlimitNameProd = (longNameProd.length >= 36) ? longNameProd.substring(36, 0) + '<b>...</b>' : longNameProd;
 
@@ -671,10 +704,9 @@ function listProducts(searchVal){
           <td class='center'>${e.id_prod}</td>
           <td>${e.name_prod}</td>
           <td class='center'>${e.regulated}</td>
-          <td>${nounRegOne}</td>
-          <td>${nounRegTwo}</td>
+          <td>${nounOneAndTwoRegs}</td>
           <td>${e.montoadd}</td>
-          <td></td>
+          <td>${nounOneAndMoreTaxs}</td>
           <td class="cont-btn-update">
             <a class="btn-update-product" data-toggle="modal" data-target="#updateModal"  href="#" 
               data-id="${e.id_prod}"

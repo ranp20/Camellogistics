@@ -35,10 +35,9 @@
 									<th>ID</th>
 									<th>Nombre</th>
 									<th>Regula</th>
-									<th>Regulador 1</th>
-									<th>Regulador 2</th>
+									<th>Reguladores</th>
 									<th>M. Adicional</th>
-									<th>Impuestos adicionales</th>
+									<th>I. adicionales</th>
 									<th></th>
 									<th></th>
 								</tr>
