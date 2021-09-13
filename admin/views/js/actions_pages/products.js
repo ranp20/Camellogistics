@@ -89,22 +89,17 @@ $(document).on("click", "#btn-FakeListRegulatorOne", function(){
     datatype: "JSON",
     contentType: 'application/x-www-form-urlencoded;charset=UTF-8',
   }).done((res) => {
-
     var result = JSON.parse(res);
     var template = "";
     if(result.length > 0){
       
       result.forEach( (e) => {
-        template += `
-          <li class="cont-modalbootstrap__form--controlSelect--m--item" id="${e.id}" regularone="${e.name}">${e.name}</li>
-        `;
+        template += `<li class="cont-modalbootstrap__form--controlSelect--m--item" id="${e.id}" regularone="${e.name}">${e.name}</li>`;
       });
 
       $("#c-listitems-regulatorOne").html(template);
     }else{
-      template += `
-        <li class="cont-modalbootstrap__form--controlSelect--m--item">No se encontraron datos</li>
-      `;
+      template += `<li class="cont-modalbootstrap__form--controlSelect--m--item">No se encontraron datos</li>`;
 
       $("#c-listitems-regulatorOne").html(template);
     }
@@ -130,22 +125,17 @@ $(document).on("click", "#btn-FakeListRegulatorTwo", function(){
     datatype: "JSON",
     contentType: 'application/x-www-form-urlencoded;charset=UTF-8',
   }).done((res) => {
-
     var result = JSON.parse(res);
     var template = "";
     if(result.length > 0){
       
       result.forEach( (e) => {
-        template += `
-          <li class="cont-modalbootstrap__form--controlSelect--m--item" id="${e.id}" regulartwo="${e.name}">${e.name}</li>
-        `;
+        template += `<li class="cont-modalbootstrap__form--controlSelect--m--item" id="${e.id}" regulartwo="${e.name}">${e.name}</li>`;
       });
 
       $("#c-listitems-regulatorTwo").html(template);
     }else{
-      template += `
-        <li class="cont-modalbootstrap__form--controlSelect--m--item">No se encontraron datos</li>
-      `;
+      template += `<li class="cont-modalbootstrap__form--controlSelect--m--item">No se encontraron datos</li>`;
 
       $("#c-listitems-regulatorTwo").html(template);
     }
@@ -203,28 +193,194 @@ $(document).on("click", "#required-amountadditional", function(){
 $(document).on("click", "#noun-required-amountadditional", function(){
   ($(this).is(':checked')) ? $("#msgErrNounWithOrNotAmountAdditional").text("") : $("#msgErrNounWithOrNotAmountAdditional").text("Debes marcar una opción");
 });
+/*======================================================================
+=            IMPUESTOS ADICIONALES - LISTADO DE FAKESELECTS            =
+======================================================================*/
+/************************** LISTAR LOS IMPUESTOS ADICIONALES - AGREGAR 1 **************************/
+$(document).on("click", ".cont-modalbootstrap__form--controlRadios--c--control--input[name=sel-taxornottax]", function(){
+  if($(this).attr("id") == "noun-required-taxadditional"){
+    $("#sel-optsTaxationAdditionalsMore").html("");
+  }else{
+    $("#sel-optsTaxationAdditionalsMore").html(`
+      <div class="cont-modalbootstrap__form--controlSelect">
+        <label for="" class="cont-modalbootstrap__form--controlSelect--label">Impuesto 1º</label>
+        <div class="cont-modalbootstrap__form--controlSelect--cFakeSelect" id="btn-FakeListTaxationOne">
+          <span class="cont-modalbootstrap__form--controlSelect--cFakeSelect--txtitemsel" id="selectedItem-fakeSelTaxOne">Selecciona un Impuesto</span>
+          <input type="text" readonly id="SelectedItem-inputfakeselTaxOne">
+          <svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M1 1.08298L5 5L9 1" stroke="#999" stroke-width="1.25727" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <ul class="cont-modalbootstrap__form--controlSelect--m" id="c-listitems-taxationOne"></ul>
+        <span id="msgErrNounTaxationOne"></span>
+      </div>
+      <div class="cont-modalbootstrap__form--controlSelect">
+        <label for="" class="cont-modalbootstrap__form--controlSelect--label">Impuesto 2º</label>
+        <div class="cont-modalbootstrap__form--controlSelect--cFakeSelect" id="btn-FakeListTaxationTwo">
+          <span class="cont-modalbootstrap__form--controlSelect--cFakeSelect--txtitemsel" id="selectedItem-fakeSelTaxTwo">Selecciona un Impuesto</span>
+          <input type="text" readonly id="SelectedItem-inputfakeselTaxTwo">
+          <svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M1 1.08298L5 5L9 1" stroke="#999" stroke-width="1.25727" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <ul class="cont-modalbootstrap__form--controlSelect--m" id="c-listitems-taxationTwo"></ul>
+        <span id="msgErrNounTaxationTwo"></span>
+      </div>
+      <div class="cont-modalbootstrap__form--controlSelect">
+        <label for="" class="cont-modalbootstrap__form--controlSelect--label">Impuesto 3º</label>
+        <div class="cont-modalbootstrap__form--controlSelect--cFakeSelect" id="btn-FakeListTaxationThree">
+          <span class="cont-modalbootstrap__form--controlSelect--cFakeSelect--txtitemsel" id="selectedItem-fakeSelTaxThree">Selecciona un Impuesto</span>
+          <input type="text" readonly id="SelectedItem-inputfakeselTaxThree">
+          <svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M1 1.08298L5 5L9 1" stroke="#999" stroke-width="1.25727" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <ul class="cont-modalbootstrap__form--controlSelect--m" id="c-listitems-taxationThree"></ul>
+        <span id="msgErrNounTaxationThree"></span>
+      </div>
+    `);
+  }
+});
+/************************** ABRIR/CERRAR EL LISTADO DE IMPUESTOS ADICIONALES - AGREGAR 1 **************************/
+$(document).on("click", "#btn-FakeListTaxationOne", function(){
+  $("#c-listitems-taxationOne").toggleClass("show");
+  $(this).toggleClass("showList");
+
+   $.ajax({
+    url: "../admin/controllers/c_list-taxation-values-by-product.php",
+    method: "POST",
+    datatype: "JSON",
+    contentType: 'application/x-www-form-urlencoded;charset=UTF-8',
+  }).done((res) => {
+    var result = JSON.parse(res);
+    var template = "";
+    if(result.length > 0){
+      
+      result.forEach( (e) => {
+        template += `<li class="cont-modalbootstrap__form--controlSelect--m--item" id="${e.id}" taxationone="${e.data_name}">${e.data_name}</li>`;
+      });
+
+      $("#c-listitems-taxationOne").html(template);
+    }else{
+      template += `<li class="cont-modalbootstrap__form--controlSelect--m--item">No se encontraron datos</li>`;
+
+      $("#c-listitems-taxationOne").html(template);
+    }
+  });
+});
+/************************** ABRIR/CERRAR EL LISTADO DE IMPUESTOS ADICIONALES - AGREGAR 2 **************************/
+$(document).on("click", "#btn-FakeListTaxationTwo", function(){
+  $("#c-listitems-taxationTwo").toggleClass("show");
+  $(this).toggleClass("showList");
+
+   $.ajax({
+    url: "../admin/controllers/c_list-taxation-values-by-product.php",
+    method: "POST",
+    datatype: "JSON",
+    contentType: 'application/x-www-form-urlencoded;charset=UTF-8',
+  }).done((res) => {
+    var result = JSON.parse(res);
+    var template = "";
+    if(result.length > 0){
+      
+      result.forEach( (e) => {
+        template += `<li class="cont-modalbootstrap__form--controlSelect--m--item" id="${e.id}" taxationtwo="${e.data_name}">${e.data_name}</li>`;
+      });
+
+      $("#c-listitems-taxationTwo").html(template);
+    }else{
+      template += `<li class="cont-modalbootstrap__form--controlSelect--m--item">No se encontraron datos</li>`;
+
+      $("#c-listitems-taxationTwo").html(template);
+    }
+  });
+});
+/************************** ABRIR/CERRAR EL LISTADO DE IMPUESTOS ADICIONALES - AGREGAR 3 **************************/
+$(document).on("click", "#btn-FakeListTaxationThree", function(){
+  $("#c-listitems-taxationThree").toggleClass("show");
+  $(this).toggleClass("showList");
+
+   $.ajax({
+    url: "../admin/controllers/c_list-taxation-values-by-product.php",
+    method: "POST",
+    datatype: "JSON",
+    contentType: 'application/x-www-form-urlencoded;charset=UTF-8',
+  }).done((res) => {
+    var result = JSON.parse(res);
+    var template = "";
+    if(result.length > 0){
+      
+      result.forEach( (e) => {
+        template += `<li class="cont-modalbootstrap__form--controlSelect--m--item" id="${e.id}" taxationthree="${e.data_name}">${e.data_name}</li>`;
+      });
+
+      $("#c-listitems-taxationThree").html(template);
+    }else{
+      template += `<li class="cont-modalbootstrap__form--controlSelect--m--item">No se encontraron datos</li>`;
+
+      $("#c-listitems-taxationThree").html(template);
+    }
+  });
+});
+/************************** FIJAR EL VALOR DEL ITEM SELECCIONADO - AGREGAR 1 **************************/
+$(document).on("click", "#c-listitems-taxationOne .cont-modalbootstrap__form--controlSelect--m--item", function(){
+  $("#msgErrNounTaxationOne").text("");
+  $("#c-listitems-taxationOne").removeClass("show");
+  $("#btn-FakeListTaxationOne").removeClass("showList");
+  $("#selectedItem-fakeSelTaxOne").text($(this).text());
+  $("#SelectedItem-inputfakeselTaxOne").attr("taxone", $(this).attr("taxationone"));
+  $("#SelectedItem-inputfakeselTaxOne").attr("idtaxationone", $(this).attr("id"));
+});
+/************************** FIJAR EL VALOR DEL ITEM SELECCIONADO - AGREGAR 2 **************************/
+$(document).on("click", "#c-listitems-taxationTwo .cont-modalbootstrap__form--controlSelect--m--item", function(){
+  $("#msgErrNounTaxationTwo").text("");
+  $("#c-listitems-taxationTwo").removeClass("show");
+  $("#btn-FakeListTaxationTwo").removeClass("showList");
+  $("#selectedItem-fakeSelTaxTwo").text($(this).text());
+  $("#SelectedItem-inputfakeselTaxTwo").attr("taxtwo", $(this).attr("taxationtwo"));
+  $("#SelectedItem-inputfakeselTaxTwo").attr("idtaxationtwo", $(this).attr("id"));
+});
+/************************** FIJAR EL VALOR DEL ITEM SELECCIONADO - AGREGAR 3 **************************/
+$(document).on("click", "#c-listitems-taxationThree .cont-modalbootstrap__form--controlSelect--m--item", function(){
+  $("#msgErrNounTaxationThree").text("");
+  $("#c-listitems-taxationThree").removeClass("show");
+  $("#btn-FakeListTaxationThree").removeClass("showList");
+  $("#selectedItem-fakeSelTaxThree").text($(this).text());
+  $("#SelectedItem-inputfakeselTaxThree").attr("taxthree", $(this).attr("taxationthree"));
+  $("#SelectedItem-inputfakeselTaxThree").attr("idtaxationthree", $(this).attr("id"));
+});
+
 /************************** AGREGAR REGULADOR **************************/
 $(document).on('submit', '#form-add-product', function(e){
   e.preventDefault();
 
   ($("#nameProduct").val() != 0) ? $("#msgErrNounNameProduct").text("") : $("#msgErrNounNameProduct").text("Debes ingresar un nombre");
+  ($("#required-reg").is(":checked") || $("#noun-required-reg").is(":checked")) ? $("#msgErrNounWithOrNotRegulator").text("") : $("#msgErrNounWithOrNotRegulator").text("Debe marcar una opción"); 
   ($("#SelectedItem-inputfakeselRegOne").attr("idtregularOne")) ? $("#msgErrNounReguladorOne").text("") : $("#msgErrNounReguladorOne").text("Debe seleccionar un regulador");
   ($("#SelectedItem-inputfakeselRegTwo").attr("idtregulartwo")) ? $("#msgErrNounReguladorTwo").text("") : $("#msgErrNounReguladorTwo").text("Debe seleccionar un regulador");
-  ($("#required-reg").is(":checked") || $("#noun-required-reg").is(":checked")) ? $("#msgErrNounWithOrNotRegulator").text("") : $("#msgErrNounWithOrNotRegulator").text("Debe marcar una opción"); 
   ($("#required-amountadditional").is(":checked") || $("#noun-required-amountadditional").is(":checked")) ? $("#msgErrNounWithOrNotAmountAdditional").text("") : $("#msgErrNounWithOrNotAmountAdditional").text("Debe marcar una opción"); 
+  ($("#required-taxadditional").is(":checked") || $("#noun-required-taxadditional").is(":checked")) ? $("#msgErrNounWithOrNotTaxAdditional").text("") : $("#msgErrNounWithOrNotTaxAdditional").text("Debe marcar una opción"); 
+  ($("#SelectedItem-inputfakeselTaxOne").attr("idtaxationone")) ? $("#msgErrNounTaxationOne").text("") : $("#msgErrNounTaxationOne").text("Debe seleccionar un impuesto");
+  ($("#SelectedItem-inputfakeselTaxTwo").attr("idtaxationtwo")) ? $("#msgErrNounTaxationTwo").text("") : $("#msgErrNounTaxationTwo").text("Debe seleccionar un impuesto");
+  ($("#SelectedItem-inputfakeselTaxThree").attr("idtaxationthree")) ? $("#msgErrNounTaxationThree").text("") : $("#msgErrNounTaxationThree").text("Debe seleccionar un impuesto");
 
-  if($("#nameProduct").val() != 0 && $("#required-reg").is(":checked") && $("#required-amountadditional").is(":checked")){
+  /************************** CONDICIONAL 1 - (SI, SI, SI, SI) **************************/
+  if(($("#nameProduct").val() != 0 || $("#nameProduct").val() != "") && $("#required-reg").is(":checked") && $("#required-amountadditional").is(":checked") && $("#required-taxadditional").is(":checked")){
     ($("#amountadditionalProduct").val() != 0 || $("#amountadditionalProduct").val() != "") ? $("#msgErrNounAmountAdditionalProduct").text("") : $("#msgErrNounAmountAdditionalProduct").text("Debe colocar un monto");
-    if($("#SelectedItem-inputfakeselRegOne").attr("idtregularOne") && 
-      $("#SelectedItem-inputfakeselRegOne").attr("regularone") &&
-      $("#amountadditionalProduct").val() != 0 && $("#amountadditionalProduct").val() != ""){
+
+    if(($("#SelectedItem-inputfakeselRegOne").attr("idtregularOne") || $("#SelectedItem-inputfakeselRegTwo").attr("idtregulartwo")) &&
+      $("#amountadditionalProduct").val() != 0 && $("#amountadditionalProduct").val() != "" &&
+      ($("#SelectedItem-inputfakeselTaxOne").attr("idtaxationone") || $("#SelectedItem-inputfakeselTaxTwo").attr("idtaxationtwo") || $("#SelectedItem-inputfakeselTaxThree").attr("idtaxationthree"))){
       
       var formdata = new FormData();
       formdata.append("name", $("#nameProduct").val());
       formdata.append("regulate", $("#required-reg").parent().find("span").text());
-      formdata.append("id_regulatorone", $("#SelectedItem-inputfakeselRegOne").attr("idtregularOne"));
-      formdata.append("id_regulatortwo", $("#SelectedItem-inputfakeselRegTwo").attr("idtregulartwo"));
+      formdata.append("id_regulatorone", ($("#SelectedItem-inputfakeselRegOne").attr("idtregularOne") || $("#SelectedItem-inputfakeselRegOne").attr("idtregularOne") != undefined) ? $("#SelectedItem-inputfakeselRegOne").attr("idtregularOne") : 0);
+      formdata.append("id_regulatortwo", ($("#SelectedItem-inputfakeselRegTwo").attr("idtregulartwo") || $("#SelectedItem-inputfakeselRegTwo").attr("idtregulartwo") != undefined) ? $("#SelectedItem-inputfakeselRegTwo").attr("idtregulartwo") : 0);
       formdata.append("amount_additional", $("#amountadditionalProduct").val());
+      formdata.append("id_taxation", ($("#SelectedItem-inputfakeselTaxOne").attr("idtaxationone") || $("#SelectedItem-inputfakeselTaxOne").attr("idtaxationone") != undefined) ? $("#SelectedItem-inputfakeselTaxOne").attr("idtaxationone") : 0);
+      formdata.append("id_taxation_two", ($("#SelectedItem-inputfakeselTaxTwo").attr("idtaxationtwo") || $("#SelectedItem-inputfakeselTaxTwo").attr("idtaxationtwo") != undefined) ? $("#SelectedItem-inputfakeselTaxTwo").attr("idtaxationtwo") : 0);
+      formdata.append("id_taxation_three", ($("#SelectedItem-inputfakeselTaxThree").attr("idtaxationthree") || $("#SelectedItem-inputfakeselTaxThree").attr("idtaxationthree") != undefined) ? $("#SelectedItem-inputfakeselTaxThree").attr("idtaxationthree") : 0);
 
       $.ajax({
         url: "../admin/controllers/c_add-products.php",
@@ -244,11 +400,11 @@ $(document).on('submit', '#form-add-product', function(e){
           console.log('Lo sentimos, ocurrió un error al agregar el registro');
         }
       });
-
     }else{
       console.log("Falta rellenar los campos");
     }
-  }else if($("#nameProduct").val() != 0 && $("#required-reg").is(":checked") && $("#noun-required-amountadditional").is(":checked")){
+  /************************** CONDICIONAL 2 - (SI, SI, NO, NO) **************************/
+  }else if(($("#nameProduct").val() != 0 || $("#nameProduct").val() != "") && $("#required-reg").is(":checked") && $("#noun-required-amountadditional").is(":checked") && $("#noun-required-taxadditional").is(":checked")){
 
     if($("#SelectedItem-inputfakeselRegOne").attr("idtregularOne") && 
       $("#SelectedItem-inputfakeselRegOne").attr("regularone")){
@@ -282,8 +438,8 @@ $(document).on('submit', '#form-add-product', function(e){
     }else{
       console.log("Falta rellenar los campos");      
     }
-  }else if($("#nameProduct").val() != 0 && $("#noun-required-reg").is(":checked") && $("#required-amountadditional").is(":checked")){
-      
+  /************************** CONDICIONAL 3 - (SI, NO, SI, NO) **************************/
+  }else if(($("#nameProduct").val() != 0 || $("#nameProduct").val() != "") && $("#noun-required-reg").is(":checked") && $("#required-amountadditional").is(":checked") && $("#noun-required-taxadditional").is(":checked")){      
     if($("#amountadditionalProduct").val() != 0 || $("#amountadditionalProduct").val() != ""){
       $("#msgErrNounAmountAdditionalProduct").text("");
 
@@ -309,12 +465,145 @@ $(document).on('submit', '#form-add-product', function(e){
           console.log('Lo sentimos, ocurrió un error al agregar el registro');
         }
       });
-
     }else{
       $("#msgErrNounAmountAdditionalProduct").text("Debe colocar un monto");
     }
+  /************************** CONDICIONAL 3 - (SI, SI, NO, SI) **************************/
+  }else if(($("#nameProduct").val() != 0 || $("#nameProduct").val() != "") && $("#required-reg").is(":checked") && $("#noun-required-amountadditional").is(":checked") && $("#required-taxadditional").is(":checked")){
+    if(($("#SelectedItem-inputfakeselRegOne").attr("idtregularOne") || $("#SelectedItem-inputfakeselRegTwo").attr("idtregulartwo")) && 
+      ($("#SelectedItem-inputfakeselTaxOne").attr("idtaxationone") || $("#SelectedItem-inputfakeselTaxTwo").attr("idtaxationtwo") || $("#SelectedItem-inputfakeselTaxThree").attr("idtaxationthree"))){
+      
+      var formdata = new FormData();
+      formdata.append("name", $("#nameProduct").val());
+      formdata.append("regulate", $("#required-reg").parent().find("span").text());
+      formdata.append("id_regulatorone", ($("#SelectedItem-inputfakeselRegOne").attr("idtregularOne") || $("#SelectedItem-inputfakeselRegOne").attr("idtregularOne") != undefined) ? $("#SelectedItem-inputfakeselRegOne").attr("idtregularOne") : 0);
+      formdata.append("id_regulatortwo", ($("#SelectedItem-inputfakeselRegTwo").attr("idtregulartwo") || $("#SelectedItem-inputfakeselRegTwo").attr("idtregulartwo") != undefined) ? $("#SelectedItem-inputfakeselRegTwo").attr("idtregulartwo") : 0);
+      formdata.append("amount_additional", 0.00);
+      formdata.append("id_taxation", ($("#SelectedItem-inputfakeselTaxOne").attr("idtaxationone") || $("#SelectedItem-inputfakeselTaxOne").attr("idtaxationone") != undefined) ? $("#SelectedItem-inputfakeselTaxOne").attr("idtaxationone") : 0);
+      formdata.append("id_taxation_two", ($("#SelectedItem-inputfakeselTaxTwo").attr("idtaxationtwo") || $("#SelectedItem-inputfakeselTaxTwo").attr("idtaxationtwo") != undefined) ? $("#SelectedItem-inputfakeselTaxTwo").attr("idtaxationtwo") : 0);
+      formdata.append("id_taxation_three", ($("#SelectedItem-inputfakeselTaxThree").attr("idtaxationthree") || $("#SelectedItem-inputfakeselTaxThree").attr("idtaxationthree") != undefined) ? $("#SelectedItem-inputfakeselTaxThree").attr("idtaxationthree") : 0);
 
-  }else if($("#nameProduct").val() != 0 && $("#noun-required-reg").is(":checked") && $("#noun-required-amountadditional").is(":checked")){
+      $.ajax({
+        url: "../admin/controllers/c_add-products.php",
+        method: "POST",
+        data: formdata,
+        contentType: false,
+        cache: false,
+        processData: false,
+      }).done((res) => {
+        if(res == "true"){
+          $('#form-add-product')[0].reset();
+          $("#sel-optsRegulatorsMore").html("");
+          $("#sel-optsAmountAdditionalMore").html("");
+          listProducts();
+          $('#addproductModal').modal("hide");
+        }else{
+          console.log('Lo sentimos, ocurrió un error al agregar el registro');
+        }
+      });
+    }else{
+      console.log("Falta rellenar los campos");      
+    }
+  /************************** CONDICIONAL 3 - (SI, NO, SI, SI) **************************/
+  }else if(($("#nameProduct").val() != 0 || $("#nameProduct").val() != "") && $("#noun-required-reg").is(":checked") && $("#required-amountadditional").is(":checked") && $("#required-taxadditional").is(":checked")){
+    
+    if(($("#amountadditionalProduct").val() != 0 || $("#amountadditionalProduct").val() != "") &&
+      ($("#SelectedItem-inputfakeselTaxOne").attr("idtaxationone") || $("#SelectedItem-inputfakeselTaxTwo").attr("idtaxationtwo") || $("#SelectedItem-inputfakeselTaxThree").attr("idtaxationthree"))){
+      $("#msgErrNounAmountAdditionalProduct").text("");
+
+      var formdata = new FormData();
+      formdata.append("name", $("#nameProduct").val());
+      formdata.append("regulate", $("#noun-required-reg").parent().find("span").text());
+      formdata.append("amount_additional", $("#amountadditionalProduct").val());
+      formdata.append("id_taxation", ($("#SelectedItem-inputfakeselTaxOne").attr("idtaxationone") || $("#SelectedItem-inputfakeselTaxOne").attr("idtaxationone") != undefined) ? $("#SelectedItem-inputfakeselTaxOne").attr("idtaxationone") : 0);
+      formdata.append("id_taxation_two", ($("#SelectedItem-inputfakeselTaxTwo").attr("idtaxationtwo") || $("#SelectedItem-inputfakeselTaxTwo").attr("idtaxationtwo") != undefined) ? $("#SelectedItem-inputfakeselTaxTwo").attr("idtaxationtwo") : 0);
+      formdata.append("id_taxation_three", ($("#SelectedItem-inputfakeselTaxThree").attr("idtaxationthree") || $("#SelectedItem-inputfakeselTaxThree").attr("idtaxationthree") != undefined) ? $("#SelectedItem-inputfakeselTaxThree").attr("idtaxationthree") : 0);
+
+      $.ajax({
+        url: "../admin/controllers/c_add-products.php",
+        method: "POST",
+        data: formdata,
+        contentType: false,
+        cache: false,
+        processData: false,
+      }).done((res) => {
+        if(res == "true"){
+          $('#form-add-product')[0].reset();
+          $("#sel-optsAmountAdditionalMore").html("");
+          listProducts();
+          $('#addproductModal').modal("hide");
+        }else{
+          console.log('Lo sentimos, ocurrió un error al agregar el registro');
+        }
+      });
+    }else{
+      $("#msgErrNounAmountAdditionalProduct").text("Debe colocar un monto");
+    }
+  /************************** CONDICIONAL 3 - (SI, SI, SI, NO) **************************/
+  }else if(($("#nameProduct").val() != 0 || $("#nameProduct").val() != "") && $("#required-reg").is(":checked") && $("#required-amountadditional").is(":checked") && $("#noun-required-taxadditional").is(":checked")){
+    if(($("#SelectedItem-inputfakeselRegOne").attr("idtregularOne") || $("#SelectedItem-inputfakeselRegTwo").attr("idtregulartwo")) &&
+      $("#amountadditionalProduct").val() != 0 && $("#amountadditionalProduct").val() != ""){
+      
+      var formdata = new FormData();
+      formdata.append("name", $("#nameProduct").val());
+      formdata.append("regulate", $("#required-reg").parent().find("span").text());
+      formdata.append("id_regulatorone", ($("#SelectedItem-inputfakeselRegOne").attr("idtregularOne") || $("#SelectedItem-inputfakeselRegOne").attr("idtregularOne") != undefined) ? $("#SelectedItem-inputfakeselRegOne").attr("idtregularOne") : 0);
+      formdata.append("id_regulatortwo", ($("#SelectedItem-inputfakeselRegTwo").attr("idtregulartwo") || $("#SelectedItem-inputfakeselRegTwo").attr("idtregulartwo") != undefined) ? $("#SelectedItem-inputfakeselRegTwo").attr("idtregulartwo") : 0);
+      formdata.append("amount_additional", $("#amountadditionalProduct").val());
+
+      $.ajax({
+        url: "../admin/controllers/c_add-products.php",
+        method: "POST",
+        data: formdata,
+        contentType: false,
+        cache: false,
+        processData: false,
+      }).done((res) => {
+        if(res == "true"){
+          $('#form-add-product')[0].reset();
+          $("#sel-optsRegulatorsMore").html("");
+          $("#sel-optsAmountAdditionalMore").html("");
+          listProducts();
+          $('#addproductModal').modal("hide");
+        }else{
+          console.log('Lo sentimos, ocurrió un error al agregar el registro');
+        }
+      });
+    }else{
+      console.log("Falta rellenar los campos");
+    }
+  /************************** CONDICIONAL 3 - (SI, NO, NO, SI) **************************/
+  }else if(($("#nameProduct").val() != 0 || $("#nameProduct").val() != "") && $("#noun-required-reg").is(":checked") && $("#noun-required-amountadditional").is(":checked") && $("#required-taxadditional").is(":checked")){
+    if(($("#SelectedItem-inputfakeselTaxOne").attr("idtaxationone") || $("#SelectedItem-inputfakeselTaxTwo").attr("idtaxationtwo") || $("#SelectedItem-inputfakeselTaxThree").attr("idtaxationthree"))){
+      var formdata = new FormData();
+      formdata.append("name", $("#nameProduct").val());
+      formdata.append("regulate", $("#noun-required-reg").parent().find("span").text());
+      formdata.append("amount_additional", 0.00);
+      formdata.append("id_taxation", ($("#SelectedItem-inputfakeselTaxOne").attr("idtaxationone") || $("#SelectedItem-inputfakeselTaxOne").attr("idtaxationone") != undefined) ? $("#SelectedItem-inputfakeselTaxOne").attr("idtaxationone") : 0);
+      formdata.append("id_taxation_two", ($("#SelectedItem-inputfakeselTaxTwo").attr("idtaxationtwo") || $("#SelectedItem-inputfakeselTaxTwo").attr("idtaxationtwo") != undefined) ? $("#SelectedItem-inputfakeselTaxTwo").attr("idtaxationtwo") : 0);
+      formdata.append("id_taxation_three", ($("#SelectedItem-inputfakeselTaxThree").attr("idtaxationthree") || $("#SelectedItem-inputfakeselTaxThree").attr("idtaxationthree") != undefined) ? $("#SelectedItem-inputfakeselTaxThree").attr("idtaxationthree") : 0);
+
+      $.ajax({
+        url: "../admin/controllers/c_add-products.php",
+        method: "POST",
+        data: formdata,
+        contentType: false,
+        cache: false,
+        processData: false,
+      }).done((res) => {
+        if(res == "true"){
+          $('#form-add-product')[0].reset();
+          listProducts();
+          $('#addproductModal').modal("hide");
+        }else{
+          console.log('Lo sentimos, ocurrió un error al agregar el registro');
+        }
+      });
+    }else{
+      console.log("Falta rellenar los campos");
+    }
+  /************************** CONDICIONAL 3 - (SI, NO, NO, NO) **************************/
+  }else if(($("#nameProduct").val() != 0 || $("#nameProduct").val() != "") && $("#noun-required-reg").is(":checked") && $("#noun-required-amountadditional").is(":checked") && $("#noun-required-taxadditional").is(":checked")){
     var formdata = new FormData();
     formdata.append("name", $("#nameProduct").val());
     formdata.append("regulate", $("#noun-required-reg").parent().find("span").text());

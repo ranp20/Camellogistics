@@ -1085,14 +1085,29 @@ img {
 .bootstrapmodal-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrap__form--controlSelect {
   position: relative;
   margin-bottom: 0.5rem;
-  /* MENSAJE DE ALERTA  - REGULADOR ONE*/
-  /* MENSAJE DE ALERTA  - REGULADOR TWO*/
+  /* MENSAJE DE ALERTA - REGULADOR ONE*/
+  /* MENSAJE DE ALERTA - REGULADOR TWO*/
+  /* MENSAJE DE ALERTA - IMPUESTO ONE */
+  /* MENSAJE DE ALERTA - IMPUESTO TWO */
+  /* MENSAJE DE ALERTA - IMPUESTO THREE */
 }
 .bootstrapmodal-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrap__form--controlSelect #msgErrNounReguladorOne {
   color: red;
   padding-left: 0.65rem;
 }
 .bootstrapmodal-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrap__form--controlSelect #msgErrNounReguladorTwo {
+  color: red;
+  padding-left: 0.65rem;
+}
+.bootstrapmodal-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrap__form--controlSelect #msgErrNounTaxationOne {
+  color: red;
+  padding-left: 0.65rem;
+}
+.bootstrapmodal-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrap__form--controlSelect #msgErrNounTaxationTwo {
+  color: red;
+  padding-left: 0.65rem;
+}
+.bootstrapmodal-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrap__form--controlSelect #msgErrNounTaxationThree {
   color: red;
   padding-left: 0.65rem;
 }
@@ -1164,6 +1179,7 @@ img {
   margin-bottom: 1rem;
   /* ALERTA - REGULADORES*/
   /* ALERTA - MONTO ADICIONAL */
+  /* ALERTA - IMPUESTO ADICIONAL */
 }
 .bootstrapmodal-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrap__form--controlRadios #msgErrNounWithOrNotRegulator {
   display: block;
@@ -1172,6 +1188,12 @@ img {
   padding-right: 0.5rem;
 }
 .bootstrapmodal-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrap__form--controlRadios #msgErrNounWithOrNotAmountAdditional {
+  display: block;
+  color: red;
+  text-align: center;
+  padding-right: 0.5rem;
+}
+.bootstrapmodal-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrap__form--controlRadios #msgErrNounWithOrNotTaxAdditional {
   display: block;
   color: red;
   text-align: center;

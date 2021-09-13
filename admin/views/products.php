@@ -105,6 +105,21 @@
 						        		<span id="msgErrNounWithOrNotAmountAdditional"></span>
 						        	</div>
 						        	<div id="sel-optsAmountAdditionalMore"></div>
+						        	<div class="cont-modalbootstrap__form--controlRadios">
+						        		<p class="cont-modalbootstrap__form--controlRadios--title">Impuesto Adicional del Producto</p>
+						        		<div class="cont-modalbootstrap__form--controlRadios--c">
+							        		<label for="required-taxadditional" class="cont-modalbootstrap__form--controlRadios--c--control">
+							        			<input type="radio" id="required-taxadditional" name="sel-taxornottax" class="cont-modalbootstrap__form--controlRadios--c--control--input">
+							        			<span class="cont-modalbootstrap__form--controlRadios--c--control--fakelabel">SI</span>
+							        		</label>
+							        		<label for="noun-required-taxadditional" class="cont-modalbootstrap__form--controlRadios--c--control">
+							        			<input type="radio" id="noun-required-taxadditional" name="sel-taxornottax" class="cont-modalbootstrap__form--controlRadios--c--control--input">
+							        			<span class="cont-modalbootstrap__form--controlRadios--c--control--fakelabel">NO</span>
+							        		</label>
+						        		</div>
+						        		<span id="msgErrNounWithOrNotTaxAdditional"></span>
+						        	</div>
+						        	<div id="sel-optsTaxationAdditionalsMore"></div>
 								      <div class="cont-modalbootstrap__footer">
 								        <button type="button" class="cont-modalbootstrap__footer--btncancel" data-dismiss="modal">CANCELAR</button>
 								        <button type="submit" class="cont-modalbootstrap__footer--btnadd" id="btnadd-product">GUARDAR</button>

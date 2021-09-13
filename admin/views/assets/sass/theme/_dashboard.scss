@@ -662,14 +662,32 @@
 						  position: relative;
 						  margin-bottom: 0.5rem;
 							
-							/* MENSAJE DE ALERTA  - REGULADOR ONE*/
+							/* MENSAJE DE ALERTA - REGULADOR ONE*/
 							#msgErrNounReguladorOne{
 								color: red;
 								padding-left: 0.65rem;
 							}
 
-							/* MENSAJE DE ALERTA  - REGULADOR TWO*/
+							/* MENSAJE DE ALERTA - REGULADOR TWO*/
 							#msgErrNounReguladorTwo{
+								color: red;
+								padding-left: 0.65rem;
+							}
+
+							/* MENSAJE DE ALERTA - IMPUESTO ONE */
+							#msgErrNounTaxationOne{
+								color: red;
+								padding-left: 0.65rem;
+							}
+
+							/* MENSAJE DE ALERTA - IMPUESTO TWO */
+							#msgErrNounTaxationTwo{
+								color: red;
+								padding-left: 0.65rem;
+							}
+
+							/* MENSAJE DE ALERTA - IMPUESTO THREE */
+							#msgErrNounTaxationThree{
 								color: red;
 								padding-left: 0.65rem;
 							}
@@ -764,6 +782,14 @@
 
 							/* ALERTA - MONTO ADICIONAL */
 							#msgErrNounWithOrNotAmountAdditional{
+								display: block;
+								color: red;
+								text-align: center;
+								padding-right: .5rem;
+							}
+
+							/* ALERTA - IMPUESTO ADICIONAL */
+							#msgErrNounWithOrNotTaxAdditional{
 								display: block;
 								color: red;
 								text-align: center;
