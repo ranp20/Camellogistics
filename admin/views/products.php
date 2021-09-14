@@ -37,7 +37,7 @@
 									<th>Regula</th>
 									<th>Reguladores</th>
 									<th>M. Adicional</th>
-									<th>I. adicionales</th>
+									<th>I. Adicionales</th>
 									<th></th>
 									<th></th>
 								</tr>
@@ -206,6 +206,21 @@
 						        		<span id="msgErrNounWithOrNotAmountAdditional"></span>
 						        	</div>
 						        	<div id="sel-optsAmountAdditionalMoreUpdate"></div>
+						        	<div class="cont-modalbootstrapupdate__form--controlRadios">
+						        		<p class="cont-modalbootstrapupdate__form--controlRadios--title">Impuesto adicional del Producto</p>
+						        		<div class="cont-modalbootstrapupdate__form--controlRadios--c">
+							        		<label for="required-taxadditionalupdate" class="cont-modalbootstrapupdate__form--controlRadios--c--control">
+							        			<input type="radio" id="required-taxadditionalupdate" name="sel-taxornottax" class="cont-modalbootstrapupdate__form--controlRadios--c--control--input">
+							        			<span class="cont-modalbootstrapupdate__form--controlRadios--c--control--fakelabel">SI</span>
+							        		</label>
+							        		<label for="noun-required-taxadditionalupdate" class="cont-modalbootstrapupdate__form--controlRadios--c--control">
+							        			<input type="radio" id="noun-required-taxadditionalupdate" name="sel-taxornottax" class="cont-modalbootstrapupdate__form--controlRadios--c--control--input">
+							        			<span class="cont-modalbootstrapupdate__form--controlRadios--c--control--fakelabel">NO</span>
+							        		</label>
+						        		</div>
+						        		<span id="msgErrNounWithOrNotAmountAdditional"></span>
+						        	</div>
+						        	<div id="sel-optsTaxationAdditionalsMoreUpdate"></div>
 								      <div class="cont-modalbootstrapupdate__footer">
 								        <button type="button" class="cont-modalbootstrapupdate__footer--btncancel" data-dismiss="modal">CANCELAR</button>
 								        <button type="submit" class="cont-modalbootstrapupdate__footer--btnupdate" id="btnupdate-product">GUARDAR</button>

@@ -1488,12 +1488,27 @@ img {
   position: relative;
   /* MENSAJE DE ALERTA  - REGULADOR ONE*/
   /* MENSAJE DE ALERTA  - REGULADOR TWO*/
+  /* MENSAJE DE ALERTA - IMPUESTO ADICIONAL ONE */
+  /* MENSAJE DE ALERTA - IMPUESTO ADICIONAL TWO */
+  /* MENSAJE DE ALERTA - IMPUESTO ADICIONAL THREE */
 }
 .bootstrapmodalupdate-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrapupdate__form--controlSelect #msgErrNounReguladorOneUpdate {
   color: red;
   padding-left: 0.65rem;
 }
 .bootstrapmodalupdate-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrapupdate__form--controlSelect #msgErrNounReguladorTwoUpdate {
+  color: red;
+  padding-left: 0.65rem;
+}
+.bootstrapmodalupdate-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrapupdate__form--controlSelect #msgErrNounTaxationOneUpdate {
+  color: red;
+  padding-left: 0.65rem;
+}
+.bootstrapmodalupdate-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrapupdate__form--controlSelect #msgErrNounTaxationTwoUpdate {
+  color: red;
+  padding-left: 0.65rem;
+}
+.bootstrapmodalupdate-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrapupdate__form--controlSelect #msgErrNounTaxationThreeUpdate {
   color: red;
   padding-left: 0.65rem;
 }

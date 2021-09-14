@@ -680,20 +680,22 @@ function listProducts(searchVal){
       var nounTaxThree = "";
       var nounOneAndMoreTaxs = "";
 
-      (e.impuestoOne == null || e.impuestoOne == "") ? nounTaxOne = "Ninguno" : nounTaxOne = e.impuestoOne;
-      (e.impuestoTwo == null || e.impuestoTwo == "") ? nounTaxTwo = "Ninguno" : nounTaxTwo = e.impuestoTwo;
-      (e.impuestoThree == null || e.impuestoThree == "") ? nounTaxThree = "Ninguno" : nounTaxThree = e.impuestoThree;
+      (e.impuestoOne == null || e.impuestoOne == 'null' || e.impuestoOne == "") ? nounTaxOne = "" : nounTaxOne = e.impuestoOne;
+      (e.impuestoTwo == null || e.impuestoTwo == 'null' || e.impuestoTwo == "") ? nounTaxTwo = "" : nounTaxTwo = e.impuestoTwo;
+      (e.impuestoThree == null || e.impuestoThree == 'null' || e.impuestoThree == "") ? nounTaxThree = "" : nounTaxThree = e.impuestoThree;
 
-      if((e.impuestoOne == null || e.impuestoOne == "") && (e.impuestoTwo == null || e.impuestoTwo == "") && (e.impuestoThree == null || e.impuestoThree == "")){
+      if((e.impuestoOne == null || e.impuestoOne == 'null' || e.impuestoOne == "") && 
+        (e.impuestoTwo == null || e.impuestoTwo == 'null' || e.impuestoTwo == "") && 
+        (e.impuestoThree == null || e.impuestoThree == 'null' || e.impuestoThree == "")){
         nounOneAndMoreTaxs = "Ninguno";
-      }else if(e.impuestoOne == null || e.impuestoOne == ""){
-        nounOneAndMoreTaxs = e.impuestoTwo + " / " + e.impuestoThree;
-      }else if(e.impuestoTwo == null || e.impuestoTwo == ""){
-        nounOneAndMoreTaxs = e.impuestoOne + " / " + e.impuestoThree;
-      }else if(e.impuestoThree == null || e.impuestoThree == ""){
-        nounOneAndMoreTaxs = e.impuestoOne + " / " + e.impuestoTwo;
+      }else if((e.impuestoOne == null || e.impuestoOne == 'null' || e.impuestoOne == "") && (e.impuestoTwo == null || e.impuestoTwo == 'null' || e.impuestoTwo == "")){
+        nounOneAndMoreTaxs = nounTaxThree;
+      }else if((e.impuestoTwo == null || e.impuestoTwo == 'null' || e.impuestoTwo == "") && (e.impuestoThree == null || e.impuestoThree == 'null' || e.impuestoThree == "")){
+        nounOneAndMoreTaxs = nounTaxOne;
+      }else if((e.impuestoOne == null || e.impuestoOne == 'null' || e.impuestoOne == "") && (e.impuestoThree == null || e.impuestoThree == 'null' || e.impuestoThree == "")){
+        nounOneAndMoreTaxs = nounTaxTwo;
       }else{
-        nounOneAndMoreTaxs = e.impuestoOne + " / " + e.impuestoTwo + " / " + e.impuestoThree;
+        nounOneAndMoreTaxs = nounTaxOne + " / " + nounTaxTwo + " / " + nounTaxThree;
       }
 
       // var longNameProd = e.name_prod;
@@ -717,6 +719,12 @@ function listProducts(searchVal){
               data-regulatorone="${nounRegOne}"
               data-regulatortwo="${nounRegTwo}"
               data-amountadditional="${e.montoadd}"
+              data-idtadditional_one="${e.id_taxation}"
+              data-idtadditional_two="${e.id_taxation_two}"
+              data-idtadditional_three="${e.id_taxation_three}"
+              data-nametadditional_one="${e.impuestoOne}"
+              data-nametadditional_two="${e.impuestoTwo}"
+              data-nametadditional_three="${e.impuestoThree}"
               >Editar</a>
           </td>
           <td class="cont-btn-delete" id="cont-btn-delete">
@@ -733,7 +741,50 @@ function listProducts(searchVal){
 
   });
 }
-
+$(document).on("click", ".cont-modalbootstrapupdate__form--controlRadios--c--control--input[name=sel-taxornottax]", function(){
+  if($(this).attr("id") == "noun-required-taxadditionalupdate"){
+    $("#sel-optsTaxationAdditionalsMoreUpdate").html("");
+  }else{
+    $("#sel-optsTaxationAdditionalsMoreUpdate").html(`
+      <div class="cont-modalbootstrapupdate__form--controlSelect">
+        <label for="" class="cont-modalbootstrapupdate__form--controlSelect--label">Impuesto 1º</label>
+        <div class="cont-modalbootstrapupdate__form--controlSelect--cFakeSelect" id="btn-FakeListTaxationOneUpdate">
+          <span class="cont-modalbootstrapupdate__form--controlSelect--cFakeSelect--txtitemsel" id="selectedItem-fakeSelTaxOneUpdate">Selecciona un impuesto</span>
+          <input type="text" readonly id="SelectedItem-inputfakeselTaxOneUpdate">
+          <svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M1 1.08298L5 5L9 1" stroke="#999" stroke-width="1.25727" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <ul class="cont-modalbootstrapupdate__form--controlSelect--m" id="c-listitems-taxationOneUpdate"></ul>
+        <span id="msgErrNounTaxationOneUpdate"></span>
+      </div>
+      <div class="cont-modalbootstrapupdate__form--controlSelect">
+        <label for="" class="cont-modalbootstrapupdate__form--controlSelect--label">Impuesto 2º</label>
+        <div class="cont-modalbootstrapupdate__form--controlSelect--cFakeSelect" id="btn-FakeListTaxationTwoUpdate">
+          <span class="cont-modalbootstrapupdate__form--controlSelect--cFakeSelect--txtitemsel" id="selectedItem-fakeSelTaxTwoUpdate">Selecciona un impuesto</span>
+          <input type="text" readonly id="SelectedItem-inputfakeselTaxTwoUpdate">
+          <svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M1 1.08298L5 5L9 1" stroke="#999" stroke-width="1.25727" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <ul class="cont-modalbootstrapupdate__form--controlSelect--m" id="c-listitems-taxationTwoUpdate"></ul>
+        <span id="msgErrNounTaxationTwoUpdate"></span>
+      </div>
+      <div class="cont-modalbootstrapupdate__form--controlSelect">
+        <label for="" class="cont-modalbootstrapupdate__form--controlSelect--label">Impuesto 3º</label>
+        <div class="cont-modalbootstrapupdate__form--controlSelect--cFakeSelect" id="btn-FakeListTaxationThreeUpdate">
+          <span class="cont-modalbootstrapupdate__form--controlSelect--cFakeSelect--txtitemsel" id="selectedItem-fakeSelTaxThreeUpdate">Selecciona un impuesto</span>
+          <input type="text" readonly id="SelectedItem-inputfakeselTaxThreeUpdate">
+          <svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M1 1.08298L5 5L9 1" stroke="#999" stroke-width="1.25727" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <ul class="cont-modalbootstrapupdate__form--controlSelect--m" id="c-listitems-taxationThreeUpdate"></ul>
+        <span id="msgErrNounTaxationThreeUpdate"></span>
+      </div>
+    `);
+  }
+});
 /************************** BUSCADOR EN TIEMPO REAL **************************/
 $(document).on('keyup', '#searchproducts', function() {
   var searchVal = $(this).val();
@@ -755,8 +806,16 @@ $(document).on('click', '.btn-update-product', function(e){
       idregulatortwo: $(this).attr('data-idregulatortwo'),
       regulatorone: $(this).attr('data-regulatorone'),
       regulatortwo: $(this).attr('data-regulatortwo'),
-      amountadditional: $(this).attr('data-amountadditional')
+      amountadditional: $(this).attr('data-amountadditional'),
+      tadditional_one: $(this).attr('data-idtadditional_one'),
+      tadditional_two: $(this).attr('data-idtadditional_two'),
+      tadditional_three: $(this).attr('data-idtadditional_three'),
+      nametadd_one: ($(this).attr('data-nametadditional_one') != 'null') ? $(this).attr('data-nametadditional_one') : 'No seleccionado',
+      nametadd_two: ($(this).attr('data-nametadditional_two') != 'null') ? $(this).attr('data-nametadditional_two') : 'No seleccionado',
+      nametadd_three: ($(this).attr('data-nametadditional_three') != 'null') ? $(this).attr('data-nametadditional_three') : 'No seleccionado'
     };
+
+    /************************** VALIDAR SI EL PRODUCTO CONTIENE REGULADORES - MOSTRAR LOS CONTROLES RESPECTIVOS **************************/
     if(item_data['regulated'] == "NO"){
       $("#sel-optsRegulatorsMoreUpdate").addClass("hidden");
       $("#sel-optsRegulatorsMoreUpdate").attr("aria-expanded", true);
@@ -769,6 +828,7 @@ $(document).on('click', '.btn-update-product', function(e){
       ($("#required-reg").attr("checked")) ? $("#required-reg").attr("checked", true) : $("#noun-required-reg").attr("checked", false);
     }
 
+    /************************** ASIGNAR A LOS CONTROLES DEL MODAL DE ACTUALIZAR **************************/
     $('#idupdate-product').val(item_data['id']);
     $('#name-update').val(item_data['name']);
     $('#SelectedItem-inputfakeselRegOneUpdate').attr("idtregularone", item_data['idregulator']);
@@ -777,9 +837,8 @@ $(document).on('click', '.btn-update-product', function(e){
     $('#SelectedItem-inputfakeselRegTwoUpdate').attr("regulartwo", item_data['regulatortwo']);
     $("#selectedItem-fakeSelRegOneUpdate").text(item_data['regulatorone']);
     $("#selectedItem-fakeSelRegTwoUpdate").text(item_data['regulatortwo']);
-    //$("#idupdate-regulatorone").val(item_data['idregulator']);
-    //$("#idupdate-regulatortwo").val(item_data['idregulatortwo']);
 
+    /************************** MOSTRAR EL CONTROL DE MONTO ADICIONAL **************************/
     if(item_data['amountadditional'] > 0 || item_data['amountadditional'] != 0.00){
       $("#sel-optsAmountAdditionalMoreUpdate").html(`
         <div class="cont-modalbootstrapupdate__form--control">
@@ -790,6 +849,53 @@ $(document).on('click', '.btn-update-product', function(e){
       `);
     }else{
       $("#sel-optsAmountAdditionalMoreUpdate").html("");
+    }
+
+    /************************** MOSTRAR LOS CONTROLES DE LOS IMPUESTOS **************************/
+    if((item_data['tadditional_one'] != 0 && item_data['tadditional_one'] != "" && item_data['tadditional_one'] != null) ||
+      (item_data['tadditional_two'] != 0 && item_data['tadditional_two'] != "" && item_data['tadditional_two'] != null) ||
+      (item_data['tadditional_three'] != 0 && item_data['tadditional_three'] != "" && item_data['tadditional_three'] != null)){
+
+      $("#sel-optsTaxationAdditionalsMoreUpdate").html(`
+        <div class="cont-modalbootstrapupdate__form--controlSelect">
+          <label for="" class="cont-modalbootstrapupdate__form--controlSelect--label">Impuesto 1º</label>
+          <div class="cont-modalbootstrapupdate__form--controlSelect--cFakeSelect" id="btn-FakeListTaxationOneUpdate">
+            <span class="cont-modalbootstrapupdate__form--controlSelect--cFakeSelect--txtitemsel" id="selectedItem-fakeSelTaxOneUpdate">${item_data['nametadd_one']}</span>
+            <input type="text" readonly id="SelectedItem-inputfakeselTaxOneUpdate" taxone="${item_data['nametadd_one']}" idtaxationone="${item_data['tadditional_one']}">
+            <svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M1 1.08298L5 5L9 1" stroke="#999" stroke-width="1.25727" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <ul class="cont-modalbootstrapupdate__form--controlSelect--m" id="c-listitems-taxationOneUpdate"></ul>
+          <span id="msgErrNounTaxationOneUpdate"></span>
+        </div>
+        <div class="cont-modalbootstrapupdate__form--controlSelect">
+          <label for="" class="cont-modalbootstrapupdate__form--controlSelect--label">Impuesto 2º</label>
+          <div class="cont-modalbootstrapupdate__form--controlSelect--cFakeSelect" id="btn-FakeListTaxationTwoUpdate">
+            <span class="cont-modalbootstrapupdate__form--controlSelect--cFakeSelect--txtitemsel" id="selectedItem-fakeSelTaxTwoUpdate">${item_data['nametadd_two']}</span>
+            <input type="text" readonly id="SelectedItem-inputfakeselTaxTwoUpdate" taxtwo="${item_data['nametadd_two']}" idtaxationtwo="${item_data['tadditional_two']}">
+            <svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M1 1.08298L5 5L9 1" stroke="#999" stroke-width="1.25727" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <ul class="cont-modalbootstrapupdate__form--controlSelect--m" id="c-listitems-taxationTwoUpdate"></ul>
+          <span id="msgErrNounTaxationTwoUpdate"></span>
+        </div>
+        <div class="cont-modalbootstrapupdate__form--controlSelect">
+          <label for="" class="cont-modalbootstrapupdate__form--controlSelect--label">Impuesto 3º</label>
+          <div class="cont-modalbootstrapupdate__form--controlSelect--cFakeSelect" id="btn-FakeListTaxationThreeUpdate">
+            <span class="cont-modalbootstrapupdate__form--controlSelect--cFakeSelect--txtitemsel" id="selectedItem-fakeSelTaxThreeUpdate">${item_data['nametadd_three']}</span>
+            <input type="text" readonly id="SelectedItem-inputfakeselTaxThreeUpdate" taxthree="${item_data['nametadd_three']}" idtaxationthree="${item_data['tadditional_three']}">
+            <svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M1 1.08298L5 5L9 1" stroke="#999" stroke-width="1.25727" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <ul class="cont-modalbootstrapupdate__form--controlSelect--m" id="c-listitems-taxationThreeUpdate"></ul>
+          <span id="msgErrNounTaxationThreeUpdate"></span>
+        </div>
+      `);
+    }else{
+      $("#sel-optsTaxationAdditionalsMoreUpdate").html("");
     }
   });
 });
@@ -819,16 +925,12 @@ $(document).on("click", "#btn-FakeListRegulatorOneUpdate", function(){
     var template = "";
     if(result.length > 0){   
       result.forEach( (e) => {
-        template += `
-          <li class="cont-modalbootstrapupdate__form--controlSelect--m--item" id="${e.id}" regularone="${e.name}">${e.name}</li>
-        `;
+        template += `<li class="cont-modalbootstrapupdate__form--controlSelect--m--item" id="${e.id}" regularone="${e.name}">${e.name}</li>`;
       });
 
       $("#c-listitems-regulatorOneUpdate").html(template);
     }else{
-      template += `
-        <li class="cont-modalbootstrapupdate__form--controlSelect--m--item">No se encontraron datos</li>
-      `;
+      template += `<li class="cont-modalbootstrapupdate__form--controlSelect--m--item">No se encontraron datos</li>`;
 
       $("#c-listitems-regulatorOneUpdate").html(template);
     }
@@ -857,16 +959,12 @@ $(document).on("click", "#btn-FakeListRegulatorTwoUpdate", function(){
     var template = "";
     if(result.length > 0){
       result.forEach( (e) => {
-        template += `
-          <li class="cont-modalbootstrapupdate__form--controlSelect--m--item" id="${e.id}" regulartwo="${e.name}">${e.name}</li>
-        `;
+        template += `<li class="cont-modalbootstrapupdate__form--controlSelect--m--item" id="${e.id}" regulartwo="${e.name}">${e.name}</li>`;
       });
 
       $("#c-listitems-regulatorTwoUpdate").html(template);
     }else{
-      template += `
-        <li class="cont-modalbootstrapupdate__form--controlSelect--m--item">No se encontraron datos</li>
-      `;
+      template += `<li class="cont-modalbootstrapupdate__form--controlSelect--m--item">No se encontraron datos</li>`;
 
       $("#c-listitems-regulatorTwoUpdate").html(template);
     }
@@ -881,15 +979,113 @@ $(document).on("click", "#c-listitems-regulatorTwoUpdate .cont-modalbootstrapupd
   $("#SelectedItem-inputfakeselRegTwoUpdate").attr("regulartwo", $(this).attr("regulartwo"));
   $("#SelectedItem-inputfakeselRegTwoUpdate").attr("idtregulartwo", $(this).attr("id"));
 });
+/************************** ABRIR/CERRAR EL LISTADO DE IMPUESTOS - ACTUALIZAR 1 **************************/
+$(document).on("click", "#btn-FakeListTaxationOneUpdate", function(){
+  $("#c-listitems-taxationOneUpdate").toggleClass("show");
+  $(this).toggleClass("showList");
+   $.ajax({
+    url: "../admin/controllers/c_list-taxation-values-by-product.php",
+    method: "POST",
+    datatype: "JSON",
+    contentType: 'application/x-www-form-urlencoded;charset=UTF-8',
+  }).done((res) => {
+    var result = JSON.parse(res);
+    var template = "";
+    if(result.length > 0){
+      result.forEach( (e) => {
+        template += `<li class="cont-modalbootstrapupdate__form--controlSelect--m--item" id="${e.id}" taxationone="${e.data_name}">${e.data_name}</li>`;
+      });
+
+      $("#c-listitems-taxationOneUpdate").html(template);
+    }else{
+      template += `<li class="cont-modalbootstrapupdate__form--controlSelect--m--item">No se encontraron datos</li>`;
+
+      $("#c-listitems-taxationOneUpdate").html(template);
+    }
+  });
+});
+/************************** ABRIR/CERRAR EL LISTADO DE IMPUESTOS - ACTUALIZAR 2 **************************/
+$(document).on("click", "#btn-FakeListTaxationTwoUpdate", function(){
+  $("#c-listitems-taxationTwoUpdate").toggleClass("show");
+  $(this).toggleClass("showList");
+   $.ajax({
+    url: "../admin/controllers/c_list-taxation-values-by-product.php",
+    method: "POST",
+    datatype: "JSON",
+    contentType: 'application/x-www-form-urlencoded;charset=UTF-8',
+  }).done((res) => {
+    var result = JSON.parse(res);
+    var template = "";
+    if(result.length > 0){
+      result.forEach( (e) => {
+        template += `<li class="cont-modalbootstrapupdate__form--controlSelect--m--item" id="${e.id}" taxationtwo="${e.data_name}">${e.data_name}</li>`;
+      });
+
+      $("#c-listitems-taxationTwoUpdate").html(template);
+    }else{
+      template += `<li class="cont-modalbootstrapupdate__form--controlSelect--m--item">No se encontraron datos</li>`;
+
+      $("#c-listitems-taxationTwoUpdate").html(template);
+    }
+  });
+});
+/************************** ABRIR/CERRAR EL LISTADO DE IMPUESTOS - ACTUALIZAR 3 **************************/
+$(document).on("click", "#btn-FakeListTaxationThreeUpdate", function(){
+  $("#c-listitems-taxationThreeUpdate").toggleClass("show");
+  $(this).toggleClass("showList");
+   $.ajax({
+    url: "../admin/controllers/c_list-taxation-values-by-product.php",
+    method: "POST",
+    datatype: "JSON",
+    contentType: 'application/x-www-form-urlencoded;charset=UTF-8',
+  }).done((res) => {
+    var result = JSON.parse(res);
+    var template = "";
+    if(result.length > 0){
+      result.forEach( (e) => {
+        template += `<li class="cont-modalbootstrapupdate__form--controlSelect--m--item" id="${e.id}" taxationthree="${e.data_name}">${e.data_name}</li>`;
+      });
+
+      $("#c-listitems-taxationThreeUpdate").html(template);
+    }else{
+      template += `<li class="cont-modalbootstrapupdate__form--controlSelect--m--item">No se encontraron datos</li>`;
+
+      $("#c-listitems-taxationThreeUpdate").html(template);
+    }
+  });
+});
+/************************** FIJAR EL VALOR DE IMPUESTO - ACTUALIZAR 1 **************************/
+$(document).on("click", "#c-listitems-taxationOneUpdate .cont-modalbootstrapupdate__form--controlSelect--m--item", function(){
+  $("#msgErrNounTaxationOneUpdate").text("");
+  $("#c-listitems-taxationOneUpdate").removeClass("show");
+  $("#btn-FakeListTaxationOneUpdate").removeClass("showList");
+  $("#selectedItem-fakeSelTaxOneUpdate").text($(this).text());
+  $("#SelectedItem-inputfakeselTaxOneUpdate").attr("taxone", $(this).attr("taxationone"));
+  $("#SelectedItem-inputfakeselTaxOneUpdate").attr("idtaxationone", $(this).attr("id"));
+});
+/************************** FIJAR EL VALOR DE IMPUESTO - ACTUALIZAR 2 **************************/
+$(document).on("click", "#c-listitems-taxationTwoUpdate .cont-modalbootstrapupdate__form--controlSelect--m--item", function(){
+  $("#msgErrNounTaxationTwoUpdate").text("");
+  $("#c-listitems-taxationTwoUpdate").removeClass("show");
+  $("#btn-FakeListTaxationTwoUpdate").removeClass("showList");
+  $("#selectedItem-fakeSelTaxTwoUpdate").text($(this).text());
+  $("#SelectedItem-inputfakeselTaxTwoUpdate").attr("taxtwo", $(this).attr("taxationtwo"));
+  $("#SelectedItem-inputfakeselTaxTwoUpdate").attr("idtaxationtwo", $(this).attr("id"));
+});
+/************************** FIJAR EL VALOR DE IMPUESTO - ACTUALIZAR 3 **************************/
+$(document).on("click", "#c-listitems-taxationThreeUpdate .cont-modalbootstrapupdate__form--controlSelect--m--item", function(){
+  $("#msgErrNounTaxationThreeUpdate").text("");
+  $("#c-listitems-taxationThreeUpdate").removeClass("show");
+  $("#btn-FakeListTaxationThreeUpdate").removeClass("showList");
+  $("#selectedItem-fakeSelTaxThreeUpdate").text($(this).text());
+  $("#SelectedItem-inputfakeselTaxThreeUpdate").attr("taxthree", $(this).attr("taxationthree"));
+  $("#SelectedItem-inputfakeselTaxThreeUpdate").attr("idtaxationthree", $(this).attr("id"));
+});
 /************************** ACTUALIZAR PRODUCTO POR ID **************************/
 $(document).on('submit', '#form-update-product', function(e){
   e.preventDefault();
 
   if($('#idupdate-product').val() != 0 || $('#idupdate-product').val() != ""){
-    
-    //var stateRegulated = "";
-    //($("#required-reg").is(":checked")) ? stateRegulated = $("#required-reg").parent().find("span").text() : stateRegulated = $("#noun-required-reg").parent().find("span").text();
-    
     if($("#noun-required-regupdate").is(":checked")){
       
       var formdata = new FormData();
@@ -898,6 +1094,9 @@ $(document).on('submit', '#form-update-product', function(e){
       formdata.append("id_regulator", 0);
       formdata.append("id_regulatortwo", 0);
       formdata.append("amount_additional", $("#amountadditionalProduct-update").val());
+      formdata.append("id_taxation", ($("#SelectedItem-inputfakeselTaxOneUpdate").attr("idtaxationone") || $("#SelectedItem-inputfakeselTaxOneUpdate").attr("idtaxationone") != undefined) ? $("#SelectedItem-inputfakeselTaxOneUpdate").attr("idtaxationone") : 0);
+      formdata.append("id_taxation_two", ($("#SelectedItem-inputfakeselTaxTwoUpdate").attr("idtaxationtwo") || $("#SelectedItem-inputfakeselTaxTwoUpdate").attr("idtaxationtwo") != undefined) ? $("#SelectedItem-inputfakeselTaxTwoUpdate").attr("idtaxationtwo") : 0);
+      formdata.append("id_taxation_three", ($("#SelectedItem-inputfakeselTaxThreeUpdate").attr("idtaxationthree") || $("#SelectedItem-inputfakeselTaxThreeUpdate").attr("idtaxationthree") != undefined) ? $("#SelectedItem-inputfakeselTaxThreeUpdate").attr("idtaxationthree") : 0);
       formdata.append("id", $('#idupdate-product').val());
 
       $.ajax({
@@ -908,7 +1107,7 @@ $(document).on('submit', '#form-update-product', function(e){
         cache: false,
         processData: false
       }).done((res) => {
-        console.log(res);
+        //console.log(res);
         listProducts();
         $('#updateModal').modal("hide");
       });
@@ -918,9 +1117,12 @@ $(document).on('submit', '#form-update-product', function(e){
       var formdata = new FormData();
       formdata.append("name", $('#name-update').val());
       formdata.append("regulated", "SI");
-      formdata.append("id_regulator", $("#SelectedItem-inputfakeselRegOneUpdate").attr("idtregularone"));
-      formdata.append("id_regulatortwo", $("#SelectedItem-inputfakeselRegTwoUpdate").attr("idtregulartwo"));
+      formdata.append("id_regulator", ($("#SelectedItem-inputfakeselRegOneUpdate").attr("idtregularone") || $("#SelectedItem-inputfakeselRegOneUpdate").attr("idtregularone") != null) ? $("#SelectedItem-inputfakeselRegOneUpdate").attr("idtregularone") : 0);
+      formdata.append("id_regulatortwo", ($("#SelectedItem-inputfakeselRegTwoUpdate").attr("idtregulartwo") || $("#SelectedItem-inputfakeselRegTwoUpdate").attr("idtregulartwo") != null) ? $("#SelectedItem-inputfakeselRegTwoUpdate").attr("idtregulartwo") : 0);
       formdata.append("amount_additional", $("#amountadditionalProduct-update").val());
+      formdata.append("id_taxation", ($("#SelectedItem-inputfakeselTaxOneUpdate").attr("idtaxationone") || $("#SelectedItem-inputfakeselTaxOneUpdate").attr("idtaxationone") != undefined) ? $("#SelectedItem-inputfakeselTaxOneUpdate").attr("idtaxationone") : 0);
+      formdata.append("id_taxation_two", ($("#SelectedItem-inputfakeselTaxTwoUpdate").attr("idtaxationtwo") || $("#SelectedItem-inputfakeselTaxTwoUpdate").attr("idtaxationtwo") != undefined) ? $("#SelectedItem-inputfakeselTaxTwoUpdate").attr("idtaxationtwo") : 0);
+      formdata.append("id_taxation_three", ($("#SelectedItem-inputfakeselTaxThreeUpdate").attr("idtaxationthree") || $("#SelectedItem-inputfakeselTaxThreeUpdate").attr("idtaxationthree") != undefined) ? $("#SelectedItem-inputfakeselTaxThreeUpdate").attr("idtaxationthree") : 0);
       formdata.append("id", $('#idupdate-product').val());
 
       $.ajax({
@@ -931,7 +1133,7 @@ $(document).on('submit', '#form-update-product', function(e){
         cache: false,
         processData: false
       }).done((res) => {
-        console.log(res);
+        //console.log(res);
         listProducts();
         $('#updateModal').modal("hide");
       });
