@@ -60,7 +60,7 @@ $(document).ready(() => {
 	// 3. IMRPIMIR EL TERCER VALOR - VALOR TOTAL DE IMPUESTOS...
 	/************************** LISTAR SERVICIOS PARA CALCULO CON IGV - FCL **************************/
   $.ajax({
-    url: "controllers/list_taxation_values.php",
+    url: "controllers/list_taxation_values_byquotation.php",
     method: "POST",
     datatype: "JSON",
     contentType: 'application/x-www-form-urlencoded;charset=UTF-8',
