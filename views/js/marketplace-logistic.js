@@ -40,7 +40,8 @@ function changesTabsOperation(){
   var key_valvaluetransport = localStorage.setItem("key_v-valuetransport", 0); //VALOR FINAL DE TRANSPORTE
   var key_valvaluesquotation = localStorage.setItem("key_v-valuesquotation", 0); //VALOR FINAL/SUMA DE VALORES PARA COTIZACIÓN (FCL/LCL)
   var key_valtotalammountadditional = localStorage.setItem("key_v-totalammountadditional", 0); //TOTAL MONTO ADICIONAL DEL PRODUCTO
-  var key_valvaluesquotationbyigv = localStorage.setItem("key_v-valuesquotationbyigv", 0);
+  var key_valvaluesquotationbyigv = localStorage.setItem("key_v-valuesquotationbyigv", 0); //VALORES DE COTIZACIÓN PARA IGV
+  var key_valvaluestaxationimport = localStorage.setItem("key_v-valuestaxationimport", 0);
 
   parentLinks = $("#c-cOptionsMarket");
 	links = parentLinks.find("a");

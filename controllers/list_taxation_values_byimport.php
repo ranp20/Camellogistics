@@ -4,7 +4,7 @@ class list_Taxation_values extends Connection{
 	function list(){
 
 		try{
-			$sql = "CALL sp_list_taxation_values()";
+			$sql = "CALL sp_list_taxation_values_by_import()";
 			$stm = $this->con->prepare($sql);
 			$stm->execute();
 			

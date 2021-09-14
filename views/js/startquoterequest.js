@@ -1494,6 +1494,18 @@ $(document).on("click", "#list-SelOptionResultExp a", function(){
       });
     }
 
+    /************************** LISTAR EL IMPUESTO DE IMPORTACIÓN PREVIA **************************/
+    $.ajax({
+      url: "controllers/list_taxation_values_byimport.php",
+      method: "POST",
+      datatype: "JSON",
+      contentType: 'application/x-www-form-urlencoded;charset=UTF-8'
+    }).done(function(e){
+      var resultTaximport = JSON.parse(e);
+      /************************** ASIGNAR A LA VARIABLE LOCAL DE PERCEPCIÓN **************************/
+      localStorage.setItem("key_v-valuestaxationimport", resultTaximport[0].data_value_two);
+    });
+
     /************************** OCULTAR LOS DEMÁS PASOS POSTERIORES **************************/
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-insuremerchandise]").removeClass("show");
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-insuremerchandise]").html("");
@@ -1558,6 +1570,9 @@ $(document).on("click", "#list-SelOptionResultExp a", function(){
       </div>
     `);
   }else{
+
+    /************************** ASIGNAR A LA VARIABLE LOCAL DE PERCEPCIÓN **************************/
+    localStorage.setItem("key_v-valuestaxationimport", 0);
 
     if($("#loadTypeCharge").val() != "LCL"){
       /************************** LISTAR SERVICIOS PARA CALCULO CON IGV - FCL **************************/
@@ -3242,19 +3257,34 @@ $(document).on("keyup", "#ipt-valPriceProdNInterface", function(){
 });
 /************************** SWITCH DE IMPORTACIONES PREVIAS **************************/
 $(document).on("click", "#chck-importpreview", function(){
-	if($(this).is(":checked")){
-		$(this).parent().addClass("active");
-		$(this).parent().attr("switch-CFreeze", "SÍ");
-    var yesImportPrev = $(this).parent().attr("switch-CFreeze");
-    /************************** ASIGNAR VALORES DE LOS INPUTS HIDDEN - MERCANCÍA **************************/
-    $("#val-prevImports").val(yesImportPrev);
-	}else{
-		$(this).parent().removeClass("active");
-		$(this).parent().attr("switch-CFreeze", "NO");
-    var notImportPrev = $(this).parent().attr("switch-CFreeze");
-    /************************** ASIGNAR VALORES DE LOS INPUTS HIDDEN - MERCANCÍA **************************/
-    $("#val-prevImports").val(notImportPrev);
-	}
+  $.ajax({
+    url: "controllers/list_taxation_values_byimport.php",
+    method: "POST",
+    datatype: "JSON",
+    contentType: 'application/x-www-form-urlencoded;charset=UTF-8'
+  }).done(function(e){
+    var resultTaximport = JSON.parse(e);
+
+    if($(this).is(":checked")){
+  		$(this).parent().addClass("active");
+  		$(this).parent().attr("switch-CFreeze", "SÍ");
+      var yesImportPrev = $(this).parent().attr("switch-CFreeze");
+      /************************** ASIGNAR VALORES DE LOS INPUTS HIDDEN - MERCANCÍA **************************/
+      $("#val-prevImports").val(yesImportPrev);
+      /************************** ASIGNAR A LA VARIABLE LOCAL **************************/
+      localStorage.setItem("key_v-valuestaxationimport", resultTaximport[0].data_value);
+  	}else{
+  		$(this).parent().removeClass("active");
+  		$(this).parent().attr("switch-CFreeze", "NO");
+      var notImportPrev = $(this).parent().attr("switch-CFreeze");
+      /************************** ASIGNAR VALORES DE LOS INPUTS HIDDEN - MERCANCÍA **************************/
+      $("#val-prevImports").val(notImportPrev);
+      /************************** ASIGNAR A LA VARIABLE LOCAL **************************/
+      localStorage.setItem("key_v-valuestaxationimport", resultTaximport[0].data_value_two);
+  	}
+
+  });
+
 });
 /************************** VALIDAR EL BOTÓN DE PASOS SIGUIENTES DESDE - MERCANCÍA **************************/
 $(document).on("click", "#btn-NextStepTomerchandisedata", function(){
