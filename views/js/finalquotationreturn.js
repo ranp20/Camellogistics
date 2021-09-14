@@ -29,10 +29,11 @@ $(document).ready(() => {
 	var totalamountadditional = parseFloat(localStorage.getItem("key_v-totalammountadditional"));
 	var totaltransport = parseFloat(localStorage.getItem("key_v-valuetransport"));
 	var totalinsurance = parseFloat(localStorage.getItem("key_v-valueinsurance"));
+	var totalimportprev = parseFloat(localStorage.getItem("key_v-valuestaxationimport"));
 	var totalvaluesquotation =  parseFloat(localStorage.getItem("key_v-valuesquotation"));
 	var totalvaluesquotationbyIGV =  parseFloat(localStorage.getItem("key_v-valuesquotationbyigv"));
 
-	var sumTotalFirstFlete = totflete + totalamountadditional + totaltransport + totalinsurance + totalvaluesquotation; //FLETE FINAL
+	var sumTotalFirstFlete = totflete + totalamountadditional + totalimportprev + totaltransport + totalinsurance + totalvaluesquotation; //FLETE FINAL
 	var sumTotalbyIGV = (totaltransport + totalamountadditional + totalvaluesquotationbyIGV) * (18 / 100);
 	//console.log(sumTotalFirstFlete);
 	//console.log(sumTotalbyIGV);

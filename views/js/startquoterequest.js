@@ -3257,33 +3257,45 @@ $(document).on("keyup", "#ipt-valPriceProdNInterface", function(){
 });
 /************************** SWITCH DE IMPORTACIONES PREVIAS **************************/
 $(document).on("click", "#chck-importpreview", function(){
-  $.ajax({
-    url: "controllers/list_taxation_values_byimport.php",
-    method: "POST",
-    datatype: "JSON",
-    contentType: 'application/x-www-form-urlencoded;charset=UTF-8'
-  }).done(function(e){
-    var resultTaximport = JSON.parse(e);
+  
+  if($(this).is(":checked")){
+		$(this).parent().addClass("active");
+		$(this).parent().attr("switch-CFreeze", "SÍ");
+    var yesImportPrev = $(this).parent().attr("switch-CFreeze");
+    /************************** ASIGNAR VALORES DE LOS INPUTS HIDDEN - MERCANCÍA **************************/
+    $("#val-prevImports").val(yesImportPrev);
 
-    if($(this).is(":checked")){
-  		$(this).parent().addClass("active");
-  		$(this).parent().attr("switch-CFreeze", "SÍ");
-      var yesImportPrev = $(this).parent().attr("switch-CFreeze");
-      /************************** ASIGNAR VALORES DE LOS INPUTS HIDDEN - MERCANCÍA **************************/
-      $("#val-prevImports").val(yesImportPrev);
+    $.ajax({
+      url: "controllers/list_taxation_values_byimport.php",
+      method: "POST",
+      datatype: "JSON",
+      contentType: 'application/x-www-form-urlencoded;charset=UTF-8'
+    }).done(function(e){
+      var resultTaximport = JSON.parse(e);
+
       /************************** ASIGNAR A LA VARIABLE LOCAL **************************/
       localStorage.setItem("key_v-valuestaxationimport", resultTaximport[0].data_value);
-  	}else{
-  		$(this).parent().removeClass("active");
-  		$(this).parent().attr("switch-CFreeze", "NO");
-      var notImportPrev = $(this).parent().attr("switch-CFreeze");
-      /************************** ASIGNAR VALORES DE LOS INPUTS HIDDEN - MERCANCÍA **************************/
-      $("#val-prevImports").val(notImportPrev);
+    });
+
+	}else{
+		$(this).parent().removeClass("active");
+		$(this).parent().attr("switch-CFreeze", "NO");
+    var notImportPrev = $(this).parent().attr("switch-CFreeze");
+    /************************** ASIGNAR VALORES DE LOS INPUTS HIDDEN - MERCANCÍA **************************/
+    $("#val-prevImports").val(notImportPrev);
+
+    $.ajax({
+      url: "controllers/list_taxation_values_byimport.php",
+      method: "POST",
+      datatype: "JSON",
+      contentType: 'application/x-www-form-urlencoded;charset=UTF-8'
+    }).done(function(e){
+      var resultTaximport = JSON.parse(e);
+
       /************************** ASIGNAR A LA VARIABLE LOCAL **************************/
       localStorage.setItem("key_v-valuestaxationimport", resultTaximport[0].data_value_two);
-  	}
-
-  });
+    });
+	}
 
 });
 /************************** VALIDAR EL BOTÓN DE PASOS SIGUIENTES DESDE - MERCANCÍA **************************/
