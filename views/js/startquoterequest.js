@@ -796,7 +796,6 @@ $(document).on("click", "#c-incdecBtns20 button", function(){
     data: {nameportOrigin : arrPortOrigin[0], typetransport: $("#loadTypeTranport").val(), container : "20ST"},
   }).done((e) => {
     var totalFCL = JSON.parse(e);
-    //console.log(totalFCL);
     var totalSend20ST = 0;
     var total20ST = 0;
 
@@ -862,7 +861,6 @@ $(document).on("click", "#c-incdecBtns20 button", function(){
         $("#loadQContainer20").val(val20inputhiddenNew);
         /************************** CALCULAR EL VALOR DEL TOTAL - 20ST **************************/
         totalSend20ST = parseFloat(totalFCL[0].total) * $("#ipt-qvalContainer20ST").val();
-        console.log(totalSend20ST);
         /************************** ASIGNAR A LA VARIABLE LOCAL - LOCALSTORAGE **************************/
         localStorage.setItem("key_v-totalflette", totalSend20ST);
 
@@ -881,7 +879,6 @@ $(document).on("click", "#c-incdecBtns20 button", function(){
           $("#loadQContainer20").val(val20inputhiddenNew);
           /************************** CALCULAR EL VALOR DEL TOTAL - 20ST **************************/
           totalSend20ST = parseFloat(totalFCL[0].total) * $("#ipt-qvalContainer20ST").val();
-          console.log(totalSend20ST);
           /************************** ASIGNAR A LA VARIABLE LOCAL - LOCALSTORAGE **************************/
           localStorage.setItem("key_v-totalflette", totalSend20ST);
           /************************** RESUMEN DEL LISTADO - CONTENEDORES 20' **************************/
@@ -898,7 +895,6 @@ $(document).on("click", "#c-incdecBtns20 button", function(){
           $("#loadQContainer20").val(0);
           /************************** CALCULAR EL VALOR DEL TOTAL - 20ST **************************/
           totalSend20ST = 0;
-          console.log(totalSend20ST);
           /************************** ASIGNAR A LA VARIABLE LOCAL - LOCALSTORAGE **************************/
           localStorage.setItem("key_v-totalflette", 0);
           /************************** RESUMEN DEL LISTADO - CONTENEDORES 20' **************************/
@@ -991,7 +987,6 @@ $(document).on("click", "#c-incdecBtns40 button", function(){
         $("#loadQContainer40").val(val40inputhiddenNew);
         /************************** CALCULAR EL VALOR DEL TOTAL - 20ST **************************/
         totalSend40ST = parseFloat(totalFCL[0].total) * $("#ipt-qvalContainer40ST").val();
-        console.log(totalSend40ST);
         /************************** ASIGNAR A LA VARIABLE LOCAL - LOCALSTORAGE **************************/
         localStorage.setItem("key_v-totalflette", totalSend40ST);
         /************************** RESUMEN DEL LISTADO - CONTENEDORES 40' **************************/
@@ -1009,7 +1004,6 @@ $(document).on("click", "#c-incdecBtns40 button", function(){
           $("#loadQContainer40").val(val40inputhiddenNew);
           /************************** CALCULAR EL VALOR DEL TOTAL - 20ST **************************/
           totalSend40ST = parseFloat(totalFCL[0].total) * $("#ipt-qvalContainer40ST").val();
-          console.log(totalSend40ST);
           /************************** ASIGNAR A LA VARIABLE LOCAL - LOCALSTORAGE **************************/
           localStorage.setItem("key_v-totalflette", totalSend40ST);
           /************************** RESUMEN DEL LISTADO - CONTENEDORES 40' **************************/
@@ -1026,7 +1020,6 @@ $(document).on("click", "#c-incdecBtns40 button", function(){
           $("#loadQContainer40").val(0);
           /************************** CALCULAR EL VALOR DEL TOTAL - 20ST **************************/
           totalSend40ST = 0;
-          console.log(totalSend40ST);
           /************************** ASIGNAR A LA VARIABLE LOCAL - LOCALSTORAGE **************************/
           localStorage.setItem("key_v-totalflette", 0);
           /************************** RESUMEN DEL LISTADO - CONTENEDORES 40' **************************/
@@ -1120,7 +1113,6 @@ $(document).on("click", "#c-incdecBtns40-hc button", function(){
         $("#loadQContainer40hq").val(val40hqinputhiddenNew);
         /************************** CALCULAR EL VALOR DEL TOTAL - 20ST **************************/
         totalSend40HQ = parseFloat(totalFCL[0].total) * $("#ipt-qvalContainer40HQ").val();
-        console.log(totalSend40HQ);
         /************************** ASIGNAR A LA VARIABLE LOCAL - LOCALSTORAGE **************************/
         localStorage.setItem("key_v-totalflette", totalSend40HQ);
         /************************** RESUMEN DEL LISTADO - CONTENEDORES 40hq' **************************/
@@ -1138,7 +1130,6 @@ $(document).on("click", "#c-incdecBtns40-hc button", function(){
           $("#loadQContainer40hq").val(val40hqinputhiddenNew);
           /************************** CALCULAR EL VALOR DEL TOTAL - 20ST **************************/
           totalSend40HQ = parseFloat(totalFCL[0].total) * $("#ipt-qvalContainer40HQ").val();
-          console.log(totalSend40HQ);
           /************************** ASIGNAR A LA VARIABLE LOCAL - LOCALSTORAGE **************************/
           localStorage.setItem("key_v-totalflette", totalSend40HQ);
           /************************** RESUMEN DEL LISTADO - CONTENEDORES 40hq' **************************/
@@ -1155,7 +1146,6 @@ $(document).on("click", "#c-incdecBtns40-hc button", function(){
           $("#loadQContainer40hq").val(0);
           /************************** CALCULAR EL VALOR DEL TOTAL - 20ST **************************/
           totalSend40HQ = 0;
-          console.log(totalSend40HQ);
           /************************** ASIGNAR A LA VARIABLE LOCAL - LOCALSTORAGE **************************/
           localStorage.setItem("key_v-totalflette", 0);
           /************************** RESUMEN DEL LISTADO - CONTENEDORES 40hq' **************************/
@@ -1252,7 +1242,6 @@ $(document).on("click", "#c-incdecBtns40-nor button", function(){
         $("#loadQContainer40nor").val(val40norinputhiddenNew);
         /************************** CALCULAR EL VALOR DEL TOTAL - 20ST **************************/
         totalSend40NOR = parseFloat(totalFCL[0].total) * $("#ipt-qvalContainer40NOR").val();
-        console.log(totalSend40NOR);
         /************************** ASIGNAR A LA VARIABLE LOCAL - LOCALSTORAGE **************************/
         localStorage.setItem("key_v-totalflette", totalSend40NOR);
         /************************** RESUMEN DEL LISTADO - CONTENEDORES 40nor' **************************/
@@ -1270,7 +1259,6 @@ $(document).on("click", "#c-incdecBtns40-nor button", function(){
           $("#loadQContainer40nor").val(val40norinputhiddenNew);
           /************************** CALCULAR EL VALOR DEL TOTAL - 20ST **************************/
           totalSend40NOR = parseFloat(totalFCL[0].total) * $("#ipt-qvalContainer40NOR").val();
-          console.log(totalSend40NOR);
           /************************** ASIGNAR A LA VARIABLE LOCAL - LOCALSTORAGE **************************/
           localStorage.setItem("key_v-totalflette", totalSend40NOR);
           /************************** RESUMEN DEL LISTADO - CONTENEDORES 40nor' **************************/
@@ -1287,7 +1275,6 @@ $(document).on("click", "#c-incdecBtns40-nor button", function(){
           $("#loadQContainer40nor").val(0);
           /************************** CALCULAR EL VALOR DEL TOTAL - 20ST **************************/
           totalSend40NOR = 0;
-          console.log(totalSend40NOR);
           /************************** ASIGNAR A LA VARIABLE LOCAL - LOCALSTORAGE **************************/
           localStorage.setItem("key_v-totalflette", 0);
           /************************** RESUMEN DEL LISTADO - CONTENEDORES 40nor' **************************/
@@ -1343,16 +1330,6 @@ $(document).on("change input keyup", "#val-iptVolumeNInterface", function(e){
     //console.log("Campo completado");
   }
 });
-/************************** SWITCH DE CONTENEDORES REFRIGERADOS **************************/
-// $(document).on("click", "#chck-containerfreeze", function(){
-//   if($(this).is(":checked")){
-//     $(this).parent().addClass("active");
-//     $(this).parent().attr("switch-CFreeze", "SÍ");
-//   }else{
-//     $(this).parent().removeClass("active");
-//     $(this).parent().attr("switch-CFreeze", "NO");
-//   }
-// });
 /************************** VALIDAR EL BOTÓN DE PASO SIGUIENTE - DESDE CONTENEDORES **************************/
 $(document).on("click", "#btn-NextStepToSelOptResultExp", function(){
   if($("#c-incdecBtns20").find("input").val() != 0 && $("#c-incdecBtns20").find("input").val() != "" || 
@@ -1855,16 +1832,8 @@ $(document).on("change input keyup", "#ipt-valPriceProdNInterface-notMoreOpts", 
   /************************** ASIGNAR A LA VARIABLE LOCAL **************************/
   localStorage.setItem("key_v-valueproduct", $(this).val());
   if(e.target.value == "" || e.target.value == 0){
-    /************************** OCULTAR EL SIGUIENTE PASO **************************/
-    // $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-insuremerchandise]").removeClass("show");
-    // $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-insuremerchandise]").html("");
-    /************************** OCULTAR EL TRASSIGUIENTE PASO **************************/
-    // $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-requirespickup]").removeClass("show");
-    // $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-requirespickup]").html("");
-
     $("#s-caseNextStepTomerchandisedata").html("");
   }else{
-    //console.log("Campo completado");
     if(document.querySelector("#ipt-valCantOfAmountAdditional-notMoreOpts").contains(document.querySelector("#ipt-valQuantityAmAddProdNInterface-notMoreOpts"))){
       if($("#ipt-valNameTypeProdNInterface-notMoreOpts").attr("idproduct") && 
         $("#ipt-valQuantityAmAddProdNInterface-notMoreOpts").val() != "" && 
@@ -1894,7 +1863,7 @@ $(document).on("change input keyup", "#ipt-valPriceProdNInterface-notMoreOpts", 
             valorfinalseguro = resutlinsurance[0].data_value; //FOB ES MENOR A 25000
             localStorage.setItem("key_v-valueinsurance", roundToTwo(valorfinalseguro));
           }          
-          console.log(valorfinalseguro);
+
         });
 
         $("#s-caseNextStepTomerchandisedata").html(`
@@ -1933,7 +1902,7 @@ $(document).on("change input keyup", "#ipt-valPriceProdNInterface-notMoreOpts", 
             valorfinalseguro = resutlinsurance[0].data_value; //FOB ES MENOR A 25000
             localStorage.setItem("key_v-valueinsurance", roundToTwo(valorfinalseguro));
           }          
-          console.log(valorfinalseguro);
+
         });
 
         $("#s-caseNextStepTomerchandisedata").html(`
@@ -1992,7 +1961,7 @@ $(document).on("keyup", "#ipt-valPriceProdNInterface-notMoreOpts", function(){
             valorfinalseguro = resutlinsurance[0].data_value; //FOB ES MENOR A 25000
             localStorage.setItem("key_v-valueinsurance", roundToTwo(valorfinalseguro));
           }          
-          console.log(valorfinalseguro);
+
         });
 
         $("#s-caseNextStepTomerchandisedata").html(`
@@ -2031,7 +2000,7 @@ $(document).on("keyup", "#ipt-valPriceProdNInterface-notMoreOpts", function(){
             valorfinalseguro = resutlinsurance[0].data_value; //FOB ES MENOR A 25000
             localStorage.setItem("key_v-valueinsurance", roundToTwo(valorfinalseguro));
           }          
-          console.log(valorfinalseguro);
+
         });
 
         $("#s-caseNextStepTomerchandisedata").html(`
@@ -2062,17 +2031,6 @@ $(document).on("keyup keydown", "#ipt-valNameTypeProdNInterface-notMoreOpts", fu
       $("#m-listAllNamTypeProds").removeClass("show");
     }, 4500);
     listProductsUser();
-  }
-
-  if(e.which == 8 || event.keyCode == 46){
-    /************************** OCULTAR EL SIGUIENTE PASO **************************/
-    // $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-insuremerchandise]").removeClass("show");
-    // $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-insuremerchandise]").html("");
-    /************************** OCULTAR EL TRASSIGUIENTE PASO **************************/
-    // $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-requirespickup]").removeClass("show");
-    // $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-requirespickup]").html("");
-  }else{
-    //console.log('Con contenido');
   }
 });
 /************************** FIJAR EL VALOR DE ITEM EN EL INPUT - TIPOS DE PRODUCTOS **************************/
@@ -2150,7 +2108,7 @@ $(document).on("keyup keypress blur change", "#ipt-valQuantityAmAddProdNInterfac
             valorfinalseguro = resutlinsurance[0].data_value; //FOB ES MENOR A 25000
             localStorage.setItem("key_v-valueinsurance", roundToTwo(valorfinalseguro));
           }          
-          console.log(valorfinalseguro);
+
         });
 
         $("#s-caseNextStepTomerchandisedata").html(`
@@ -2192,7 +2150,7 @@ $(document).on("keyup keypress blur change", "#ipt-valQuantityAmAddProdNInterfac
             valorfinalseguro = resutlinsurance[0].data_value; //FOB ES MENOR A 25000
             localStorage.setItem("key_v-valueinsurance", roundToTwo(valorfinalseguro));
           }          
-          console.log(valorfinalseguro);
+
         });
 
         $("#s-caseNextStepTomerchandisedata").html(`
@@ -2802,7 +2760,6 @@ $(document).on("click", "#btn-NextStepTochargedata", function(){
 
       }else if($("#loadTypeTranport").val() == "imo"){
         twodecimal_total_imo = roundToTwo(ratesorigin[0].total_imo);
-        //console.log(twodecimal_total_imo);
         if(v_ValTotalVolume > 15){
 
           /************************** OCULTAR EL RESUMEN HASTA ESTE PASO **************************/
@@ -2852,11 +2809,10 @@ $(document).on("click", "#btn-NextStepTochargedata", function(){
           if(v_ValTotalVolume > v_ValDividedTotalWeight){
             totwithoutvalues = roundToTwo(twodecimal_total_imo * v_ValTotalVolume);
             localStorage.setItem("key_v-totalflette", totwithoutvalues);
-            //console.log(totwithoutvalues);
+
           }else{
             totwithoutvalues = roundToTwo(twodecimal_total_imo * v_ValDividedTotalWeight);
             localStorage.setItem("key_v-totalflette", totwithoutvalues);
-            //console.log(totwithoutvalues);
           }
           /************************** MOSTRAR EL RESUMEN HASTA ESTE PASO **************************/
           $(".cont-MainCamelLog--c--contResumeCalc--item[data-advlevel=d-typecontainer]").addClass("show");
@@ -2900,7 +2856,6 @@ $(document).on("click", "#btn-NextStepTochargedata", function(){
 
       }else{
         twodecimal_total_refrigerado = roundToTwo(ratesorigin[0].total_refrigerado);
-        //console.log(twodecimal_total_refrigerado);
         if(v_ValTotalVolume > 15){
 
           /************************** OCULTAR EL RESUMEN HASTA ESTE PASO **************************/
@@ -2951,11 +2906,9 @@ $(document).on("click", "#btn-NextStepTochargedata", function(){
           if(v_ValTotalVolume > v_ValDividedTotalWeight){
             totwithoutvalues = roundToTwo(twodecimal_total_refrigerado * v_ValTotalVolume);
             localStorage.setItem("key_v-totalflette", totwithoutvalues);
-            //console.log(totwithoutvalues);
           }else{
             totwithoutvalues = roundToTwo(twodecimal_total_refrigerado * v_ValDividedTotalWeight);
             localStorage.setItem("key_v-totalflette", totwithoutvalues);
-            //console.log(totwithoutvalues);
           }
           /************************** MOSTRAR EL RESUMEN HASTA ESTE PASO **************************/
             $(".cont-MainCamelLog--c--contResumeCalc--item[data-advlevel=d-typecontainer]").addClass("show");
@@ -3037,7 +2990,6 @@ function listProductsUser(searchVal){
     data: {searchList : searchVal},
   }).done( function (res) {
     var response = JSON.parse(res);
-    console.log(response);
     var template = "";
     if(response.length == 0){
       template = `
@@ -3120,6 +3072,13 @@ $(document).on("click", ".cont-MainCamelLog--c--contSteps--item--cStep--mFrmIpts
   $("#m-listAllNamTypeProds").removeClass("show");
   $("#ipt-valNameTypeProdNInterface").attr("idproduct", $(this).attr("id"));
   $("#ipt-valNameTypeProdNInterface").val($(this).find("p").text());
+  var taxationOneVal = parseFloat($(this).attr("data-taxone"));
+  var taxationTwoVal = parseFloat($(this).attr("data-taxtwo"));
+  var taxationThreeVal = parseFloat($(this).attr("data-taxthree"));
+  /************************** ASIGNAR A LA VARIABLE LOCAL DE IMPUESTOS DE PRODUCTO PARA IGV **************************/
+  localStorage.setItem("key_v-valuestaxOnebyigv", taxationOneVal); //VALOR DE AD-VALOREN
+  localStorage.setItem("key_v-valuestaxTwobyigv", taxationTwoVal); //VALOR DE IMPUESTO SELECCTIVO
+  localStorage.setItem("key_v-valuestaxThreebyigv", taxationThreeVal); //VALOR DE ANTIDUMPING
   /************************** ASIGNAR A LA VARIABLE LOCAL **************************/
   localStorage.setItem("key_v-dbammountadditional", $(this).attr("data-amountadditional"));
   /************************** MOSTRAR/OCULTAR DE ACUERDO A EL VALOR DEL MONTO ADICIONAL **************************/
@@ -3191,46 +3150,6 @@ $(document).on("input", "#ipt-valPriceProdNInterface", function(e){
   }else{
     //console.log("Campo completado");
   }
-
-  /************************** CALCULAR DE ACUERDO A SI SELECCIONÓ SEGURO O NO **************************/
-  // $.ajax({
-  //   url: "controllers/list_insurancevalues.php",
-  //   method: "POST",
-  //   datatype: "JSON",
-  //   contentType: 'application/x-www-form-urlencoded;charset=UTF-8'
-  // }).done((e) => {
-  //   var thisresutlinsurance = JSON.parse(e);
-  //   var thisvalfobproduct = $(this).val();
-  //   var thiscutefobprice = thisvalfobproduct.split(" USD");
-  //   var thiswithoutpointsfob = thiscutefobprice[0].replace(/\./g, '');
-  //   var thisfinalvaluefob = twodecimals(thiswithoutpointsfob);
-    
-  //   var thisvalorfinalseguro = 0;
-  //   if($("#res-insuremerch").val() != "NO"){
-  //     //console.log(thisfinalvaluefob);
-  //     if(thisfinalvaluefob > 25000){
-  //       /************************** ASIGNAR AL VALOR DE LA VARIABLE LOCAL **************************/
-  //       thisvalorfinalseguro = (thisfinalvaluefob * thisresutlinsurance[1].data_value) / 100;
-  //       localStorage.setItem("key_v-valueinsurance", roundToTwo(thisvalorfinalseguro));
-  //     }else{
-  //       ************************* ASIGNAR AL VALOR DE LA VARIABLE LOCAL *************************
-  //       thisvalorfinalseguro = (thisfinalvaluefob * thisresutlinsurance[0].data_value) / 100;
-  //       localStorage.setItem("key_v-valueinsurance", roundToTwo(thisvalorfinalseguro));
-  //     }
-
-  //   }else{
-  //     //sasdsa
-  //     if(thisfinalvaluefob > 25000){
-  //       /************************** ASIGNAR AL VALOR DE LA VARIABLE LOCAL **************************/
-  //       thisvalorfinalseguro = (thisfinalvaluefob * thisresutlinsurance[0].data_value) / 100;
-  //       localStorage.setItem("key_v-valueinsurance", roundToTwo(thisvalorfinalseguro));
-  //     }else{
-  //       /************************** ASIGNAR AL VALOR DE LA VARIABLE LOCAL **************************/
-  //       thisvalorfinalseguro = (thisfinalvaluefob * thisresutlinsurance[0].data_value) / 100;
-  //       localStorage.setItem("key_v-valueinsurance", roundToTwo(thisvalorfinalseguro));
-  //     }
-  //   }
-  // });
 });
 /************************** VALIDAR SI HAY ALGÚN VALOR EN EL CONTROL - VALOR DE PRODUCTO IMPORTADO **************************/
 $(document).on("change input keyup", "#ipt-valPriceProdNInterface", function(e){
@@ -3307,7 +3226,6 @@ $(document).on("click", "#chck-importpreview", function(){
 $(document).on("click", "#btn-NextStepTomerchandisedata", function(){
   
   if(document.querySelector("#ipt-valCantOfAmountAdditional").contains(document.querySelector("#ipt-valQuantityAmAddProdNInterface"))){
-    //console.log('Existe input');
     if($("#ipt-valNameTypeProdNInterface").val() != "" && $("#ipt-valNameTypeProdNInterface").val() != 0 &&
        $("#ipt-valNameTypeProdNInterface").attr("idproduct") &&
        $("#ipt-valQuantityAmAddProdNInterface").val() != 0 && $("#ipt-valQuantityAmAddProdNInterface").val() != "" &&
@@ -3376,7 +3294,6 @@ $(document).on("click", "#btn-NextStepTomerchandisedata", function(){
     }
 
   }else{
-    //console.log('No existe input');
     if($("#ipt-valNameTypeProdNInterface").val() != "" && $("#ipt-valNameTypeProdNInterface").val() != 0 &&
        $("#ipt-valNameTypeProdNInterface").attr("idproduct") &&
        $("#ipt-valPriceProdNInterface").val() != "" && $("#ipt-valPriceProdNInterface").val() != 0){
@@ -3703,7 +3620,6 @@ function listrateLCLTransport(searchVal){
             }
           }
         }else{
-          //console.log('Se seleccionó FCL');
           template += `
             <li class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation--cC--cControl--cListChange--m--item" id="${e.id}" idprovince="${e.zona}" namprovince="${e.province}" rateprice="${g_20st_40nor.toFixed(2)}">
               <span>${zonaUppercase.toUpperCase()}</span>
@@ -3798,7 +3714,6 @@ function listrateLCLTransport(searchVal){
             }
           }
         }else{
-          //console.log('Se seleccionó FCL');
           template += `
             <li class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation--cC--cControl--cListChange--m--item" id="${e.id}" idprovince="${e.zona}" namprovince="${e.province}" rateprice="${imo_20st_40nor.toFixed(2)}">
               <span>${zonaUppercase.toUpperCase()}</span>
@@ -3893,7 +3808,6 @@ function listrateLCLTransport(searchVal){
             }
           }
         }else{
-          //console.log('Se seleccionó FCL');
           template += `
             <li class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation--cC--cControl--cListChange--m--item" id="${e.id}" idprovince="${e.zona}" namprovince="${e.province}" rateprice="${refr_20st_40nor.toFixed(2)}">
               <span>${zonaUppercase.toUpperCase()}</span>

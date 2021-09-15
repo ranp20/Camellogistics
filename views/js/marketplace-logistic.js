@@ -41,7 +41,10 @@ function changesTabsOperation(){
   var key_valvaluesquotation = localStorage.setItem("key_v-valuesquotation", 0); //VALOR FINAL/SUMA DE VALORES PARA COTIZACIÓN (FCL/LCL)
   var key_valtotalammountadditional = localStorage.setItem("key_v-totalammountadditional", 0); //TOTAL MONTO ADICIONAL DEL PRODUCTO
   var key_valvaluesquotationbyigv = localStorage.setItem("key_v-valuesquotationbyigv", 0); //VALORES DE COTIZACIÓN PARA IGV
-  var key_valvaluestaxationimport = localStorage.setItem("key_v-valuestaxationimport", 0);
+  var key_valvaluestaxationimport = localStorage.setItem("key_v-valuestaxationimport", 0); //VALOR DE IMPORTACIÓN PREVIA
+  var key_valvaluestaxOnebyigv = localStorage.setItem("key_v-valuestaxOnebyigv", 0); //VALOR DE AD-VALOREN
+  var key_valvaluestaxTwobyigv = localStorage.setItem("key_v-valuestaxTwobyigv", 0); //VALOR DE IMPUESTO SELECCTIVO
+  var key_valvaluestaxThreebyigv = localStorage.setItem("key_v-valuestaxThreebyigv", 0); //VALOR DE ANTIDUMPING
 
   parentLinks = $("#c-cOptionsMarket");
 	links = parentLinks.find("a");
