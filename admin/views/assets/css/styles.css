@@ -924,12 +924,27 @@ img {
   position: relative;
   /* MENSAJE DE ALERTA  - REGULADOR TWO*/
   /* MENSAJE DE ALERTA - MONTO ADICIONAL */
+  /* MENSAJE DE ALERTA - AD-VALOREN */
+  /* MENSAJE DE ALERTA - IMPUESTO SELECCTIVO */
+  /* MENSAJE DE ALERTA - ANTIDUMPING */
 }
 .bootstrapmodal-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrap__form--control #msgErrNounNameProduct {
   color: red;
   padding-left: 0.65rem;
 }
 .bootstrapmodal-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrap__form--control #msgErrNounAmountAdditionalProduct {
+  color: red;
+  padding-left: 0.65rem;
+}
+.bootstrapmodal-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrap__form--control #msgErrNounTaxOneAdditionalProduct {
+  color: red;
+  padding-left: 0.65rem;
+}
+.bootstrapmodal-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrap__form--control #msgErrNounTaxTwoAdditionalProduct {
+  color: red;
+  padding-left: 0.65rem;
+}
+.bootstrapmodal-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrap__form--control #msgErrNounTaxThreeAdditionalProduct {
   color: red;
   padding-left: 0.65rem;
 }
@@ -1345,12 +1360,17 @@ img {
   position: relative;
   /* MENSAJE DE ALERTA  - NOMBRE DE REGULADOR */
   /* MENSAJE DE ALERTA - MONTO DE PRODUCTO */
+  /* MENSAJE DE ALERTA - NOMBRE DEL PRODUCTO */
 }
 .bootstrapmodalupdate-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrapupdate__form--control #msgErrNounNombBank-update {
   color: red;
   padding-left: 0.65rem;
 }
 .bootstrapmodalupdate-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrapupdate__form--control #msgErrNounAmountAdditionalProductUpdate {
+  color: red;
+  padding-left: 0.65rem;
+}
+.bootstrapmodalupdate-custom .modal-dialog .modal-content .modal-body .cont-modalbootstrapupdate__form--control #msgErrNounNameProductUpdate {
   color: red;
   padding-left: 0.65rem;
 }

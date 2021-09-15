@@ -54,8 +54,8 @@ function listQuotationValues(){
                 <span>*</span>
               </label>
               <div class="cont-dashCamel__cControlsList--cC--cTable--cControl--cInputs">
-                <input type="number" id="" name="" placeholder="0.00" class="cont-dashCamel__cControlsList--cC--cTable--cControl--cInputs--input" value="${e.data_value}">
-                <input type="number" id="" name="" placeholder="0.00" class="cont-dashCamel__cControlsList--cC--cTable--cControl--cInputs--input" value="${e.data_value_prov}">
+                <input type="number" id="" name="" placeholder="0.00" class="cont-dashCamel__cControlsList--cC--cTable--cControl--cInputs--input" value="${e.data_value}" step="0.01">
+                <input type="number" id="" name="" placeholder="0.00" class="cont-dashCamel__cControlsList--cC--cTable--cControl--cInputs--input" value="${e.data_value_prov}" step="0.01">
               </div>
             </div>
           </td>

@@ -489,6 +489,24 @@
 								padding-left: 0.65rem;	
 							}
 
+							/* MENSAJE DE ALERTA - AD-VALOREN */
+							#msgErrNounTaxOneAdditionalProduct{
+								color: red;
+								padding-left: 0.65rem;	
+							}
+
+							/* MENSAJE DE ALERTA - IMPUESTO SELECCTIVO */
+							#msgErrNounTaxTwoAdditionalProduct{
+								color: red;
+								padding-left: 0.65rem;	
+							}
+
+							/* MENSAJE DE ALERTA - ANTIDUMPING */
+							#msgErrNounTaxThreeAdditionalProduct{
+								color: red;
+								padding-left: 0.65rem;	
+							}
+
 							&__contIconLeft{
 								position: relative;
 						    display: flex;
@@ -968,6 +986,12 @@
 
 							/* MENSAJE DE ALERTA - MONTO DE PRODUCTO */
 							#msgErrNounAmountAdditionalProductUpdate{
+								color: red;
+								padding-left: 0.65rem;
+							}
+
+							/* MENSAJE DE ALERTA - NOMBRE DEL PRODUCTO */
+							#msgErrNounNameProductUpdate{
 								color: red;
 								padding-left: 0.65rem;
 							}

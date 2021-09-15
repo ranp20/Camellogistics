@@ -161,7 +161,7 @@ $(document).on("click", ".cont-modalbootstrap__form--controlRadios--c--control--
     $("#sel-optsAmountAdditionalMore").html(`
       <div class="cont-modalbootstrap__form--control">
         <label for="amountadditionalProduct" class="cont-modalbootstrap__form--control__label">Precio adicional</label>
-        <input id="amountadditionalProduct" class="cont-modalbootstrap__form--control__input" name="amountadditionalProduct" type="number" maxlength="300" placeholder="Ingrese el monto del producto">
+        <input id="amountadditionalProduct" class="cont-modalbootstrap__form--control__input" name="amountadditionalProduct" type="number" maxlength="300" placeholder="Ingrese el monto del producto" step="0.01">
         <span id="msgErrNounAmountAdditionalProduct"></span>
       </div>
     `);
@@ -175,7 +175,7 @@ $(document).on("click", ".cont-modalbootstrapupdate__form--controlRadios--c--con
     $("#sel-optsAmountAdditionalMoreUpdate").html(`
       <div class="cont-modalbootstrapupdate__form--control">
         <label for="amountadditionalProduct-update" class="cont-modalbootstrapupdate__form--control__label">Precio adicional</label>
-        <input id="amountadditionalProduct-update" class="cont-modalbootstrapupdate__form--control__input" name="amountadditionalProduct-update" type="number" maxlength="300" placeholder="Ingrese el monto del producto">
+        <input id="amountadditionalProduct-update" class="cont-modalbootstrapupdate__form--control__input" name="amountadditionalProduct-update" type="number" maxlength="300" placeholder="Ingrese el monto del producto" step="0.01">
         <span id="msgErrNounAmountAdditionalProductUpdate"></span>
       </div>
     `);
@@ -202,155 +202,30 @@ $(document).on("click", ".cont-modalbootstrap__form--controlRadios--c--control--
     $("#sel-optsTaxationAdditionalsMore").html("");
   }else{
     $("#sel-optsTaxationAdditionalsMore").html(`
-      <div class="cont-modalbootstrap__form--controlSelect">
-        <label for="" class="cont-modalbootstrap__form--controlSelect--label">Impuesto 1º</label>
-        <div class="cont-modalbootstrap__form--controlSelect--cFakeSelect" id="btn-FakeListTaxationOne">
-          <span class="cont-modalbootstrap__form--controlSelect--cFakeSelect--txtitemsel" id="selectedItem-fakeSelTaxOne">Selecciona un Impuesto</span>
-          <input type="text" readonly id="SelectedItem-inputfakeselTaxOne">
-          <svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M1 1.08298L5 5L9 1" stroke="#999" stroke-width="1.25727" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </div>
-        <ul class="cont-modalbootstrap__form--controlSelect--m" id="c-listitems-taxationOne"></ul>
-        <span id="msgErrNounTaxationOne"></span>
+      <div class="cont-modalbootstrap__form--control">
+        <label for="taxoneadditional" class="cont-modalbootstrap__form--control__label">Ad-Valoren</label>
+        <input id="taxoneadditional" class="cont-modalbootstrap__form--control__input" name="taxoneadditional" type="number" maxlength="300" placeholder="Ingrese el monto del impuesto" step="0.01">
+        <span id="msgErrNounTaxOneAdditionalProduct"></span>
       </div>
-      <div class="cont-modalbootstrap__form--controlSelect">
-        <label for="" class="cont-modalbootstrap__form--controlSelect--label">Impuesto 2º</label>
-        <div class="cont-modalbootstrap__form--controlSelect--cFakeSelect" id="btn-FakeListTaxationTwo">
-          <span class="cont-modalbootstrap__form--controlSelect--cFakeSelect--txtitemsel" id="selectedItem-fakeSelTaxTwo">Selecciona un Impuesto</span>
-          <input type="text" readonly id="SelectedItem-inputfakeselTaxTwo">
-          <svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M1 1.08298L5 5L9 1" stroke="#999" stroke-width="1.25727" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </div>
-        <ul class="cont-modalbootstrap__form--controlSelect--m" id="c-listitems-taxationTwo"></ul>
-        <span id="msgErrNounTaxationTwo"></span>
+      <div class="cont-modalbootstrap__form--control">
+        <label for="taxtwoadditional" class="cont-modalbootstrap__form--control__label">Impuesto Selecctivo</label>
+        <input id="taxtwoadditional" class="cont-modalbootstrap__form--control__input" name="taxtwoadditional" type="number" maxlength="300" placeholder="Ingrese el monto del impuesto" step="0.01">
+        <span id="msgErrNounTaxTwoAdditionalProduct"></span>
       </div>
-      <div class="cont-modalbootstrap__form--controlSelect">
-        <label for="" class="cont-modalbootstrap__form--controlSelect--label">Impuesto 3º</label>
-        <div class="cont-modalbootstrap__form--controlSelect--cFakeSelect" id="btn-FakeListTaxationThree">
-          <span class="cont-modalbootstrap__form--controlSelect--cFakeSelect--txtitemsel" id="selectedItem-fakeSelTaxThree">Selecciona un Impuesto</span>
-          <input type="text" readonly id="SelectedItem-inputfakeselTaxThree">
-          <svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M1 1.08298L5 5L9 1" stroke="#999" stroke-width="1.25727" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </div>
-        <ul class="cont-modalbootstrap__form--controlSelect--m" id="c-listitems-taxationThree"></ul>
-        <span id="msgErrNounTaxationThree"></span>
+      <div class="cont-modalbootstrap__form--control">
+        <label for="taxthreeadditional" class="cont-modalbootstrap__form--control__label">ANTIDUMPING</label>
+        <input id="taxthreeadditional" class="cont-modalbootstrap__form--control__input" name="taxthreeadditional" type="number" maxlength="300" placeholder="Ingrese el monto del impuesto" step="0.01">
+        <span id="msgErrNounTaxThreeAdditionalProduct"></span>
       </div>
     `);
   }
 });
-/************************** ABRIR/CERRAR EL LISTADO DE IMPUESTOS ADICIONALES - AGREGAR 1 **************************/
-$(document).on("click", "#btn-FakeListTaxationOne", function(){
-  $("#c-listitems-taxationOne").toggleClass("show");
-  $(this).toggleClass("showList");
+/************************** VALIDAR LOS CONTROLES DE IMPUESTOS (SI) **************************/
+$(document).on("input keyup","#taxoneadditional",function(e){(e.target.value == 0 || e.target.value == "") ? $("#msgErrNounTaxOneAdditionalProduct").text("Debe colocar un monto") : $("#msgErrNounTaxOneAdditionalProduct").text("");});
+$(document).on("input keyup","#taxtwoadditional",function(e){(e.target.value == 0 || e.target.value == "") ? $("#msgErrNounTaxTwoAdditionalProduct").text("Debe colocar un monto") : $("#msgErrNounTaxTwoAdditionalProduct").text("");});
+$(document).on("input keyup","#taxthreeadditional",function(e){(e.target.value == 0 || e.target.value == "") ? $("#msgErrNounTaxThreeAdditionalProduct").text("Debe colocar un monto") : $("#msgErrNounTaxThreeAdditionalProduct").text("");});
 
-   $.ajax({
-    url: "../admin/controllers/c_list-taxation-values-by-product.php",
-    method: "POST",
-    datatype: "JSON",
-    contentType: 'application/x-www-form-urlencoded;charset=UTF-8',
-  }).done((res) => {
-    var result = JSON.parse(res);
-    var template = "";
-    if(result.length > 0){
-      
-      result.forEach( (e) => {
-        template += `<li class="cont-modalbootstrap__form--controlSelect--m--item" id="${e.id}" taxationone="${e.data_name}">${e.data_name}</li>`;
-      });
-
-      $("#c-listitems-taxationOne").html(template);
-    }else{
-      template += `<li class="cont-modalbootstrap__form--controlSelect--m--item">No se encontraron datos</li>`;
-
-      $("#c-listitems-taxationOne").html(template);
-    }
-  });
-});
-/************************** ABRIR/CERRAR EL LISTADO DE IMPUESTOS ADICIONALES - AGREGAR 2 **************************/
-$(document).on("click", "#btn-FakeListTaxationTwo", function(){
-  $("#c-listitems-taxationTwo").toggleClass("show");
-  $(this).toggleClass("showList");
-
-   $.ajax({
-    url: "../admin/controllers/c_list-taxation-values-by-product.php",
-    method: "POST",
-    datatype: "JSON",
-    contentType: 'application/x-www-form-urlencoded;charset=UTF-8',
-  }).done((res) => {
-    var result = JSON.parse(res);
-    var template = "";
-    if(result.length > 0){
-      
-      result.forEach( (e) => {
-        template += `<li class="cont-modalbootstrap__form--controlSelect--m--item" id="${e.id}" taxationtwo="${e.data_name}">${e.data_name}</li>`;
-      });
-
-      $("#c-listitems-taxationTwo").html(template);
-    }else{
-      template += `<li class="cont-modalbootstrap__form--controlSelect--m--item">No se encontraron datos</li>`;
-
-      $("#c-listitems-taxationTwo").html(template);
-    }
-  });
-});
-/************************** ABRIR/CERRAR EL LISTADO DE IMPUESTOS ADICIONALES - AGREGAR 3 **************************/
-$(document).on("click", "#btn-FakeListTaxationThree", function(){
-  $("#c-listitems-taxationThree").toggleClass("show");
-  $(this).toggleClass("showList");
-
-   $.ajax({
-    url: "../admin/controllers/c_list-taxation-values-by-product.php",
-    method: "POST",
-    datatype: "JSON",
-    contentType: 'application/x-www-form-urlencoded;charset=UTF-8',
-  }).done((res) => {
-    var result = JSON.parse(res);
-    var template = "";
-    if(result.length > 0){
-      
-      result.forEach( (e) => {
-        template += `<li class="cont-modalbootstrap__form--controlSelect--m--item" id="${e.id}" taxationthree="${e.data_name}">${e.data_name}</li>`;
-      });
-
-      $("#c-listitems-taxationThree").html(template);
-    }else{
-      template += `<li class="cont-modalbootstrap__form--controlSelect--m--item">No se encontraron datos</li>`;
-
-      $("#c-listitems-taxationThree").html(template);
-    }
-  });
-});
-/************************** FIJAR EL VALOR DEL ITEM SELECCIONADO - AGREGAR 1 **************************/
-$(document).on("click", "#c-listitems-taxationOne .cont-modalbootstrap__form--controlSelect--m--item", function(){
-  $("#msgErrNounTaxationOne").text("");
-  $("#c-listitems-taxationOne").removeClass("show");
-  $("#btn-FakeListTaxationOne").removeClass("showList");
-  $("#selectedItem-fakeSelTaxOne").text($(this).text());
-  $("#SelectedItem-inputfakeselTaxOne").attr("taxone", $(this).attr("taxationone"));
-  $("#SelectedItem-inputfakeselTaxOne").attr("idtaxationone", $(this).attr("id"));
-});
-/************************** FIJAR EL VALOR DEL ITEM SELECCIONADO - AGREGAR 2 **************************/
-$(document).on("click", "#c-listitems-taxationTwo .cont-modalbootstrap__form--controlSelect--m--item", function(){
-  $("#msgErrNounTaxationTwo").text("");
-  $("#c-listitems-taxationTwo").removeClass("show");
-  $("#btn-FakeListTaxationTwo").removeClass("showList");
-  $("#selectedItem-fakeSelTaxTwo").text($(this).text());
-  $("#SelectedItem-inputfakeselTaxTwo").attr("taxtwo", $(this).attr("taxationtwo"));
-  $("#SelectedItem-inputfakeselTaxTwo").attr("idtaxationtwo", $(this).attr("id"));
-});
-/************************** FIJAR EL VALOR DEL ITEM SELECCIONADO - AGREGAR 3 **************************/
-$(document).on("click", "#c-listitems-taxationThree .cont-modalbootstrap__form--controlSelect--m--item", function(){
-  $("#msgErrNounTaxationThree").text("");
-  $("#c-listitems-taxationThree").removeClass("show");
-  $("#btn-FakeListTaxationThree").removeClass("showList");
-  $("#selectedItem-fakeSelTaxThree").text($(this).text());
-  $("#SelectedItem-inputfakeselTaxThree").attr("taxthree", $(this).attr("taxationthree"));
-  $("#SelectedItem-inputfakeselTaxThree").attr("idtaxationthree", $(this).attr("id"));
-});
-
-/************************** AGREGAR REGULADOR **************************/
+/************************** AGREGAR PRODUCTO **************************/
 $(document).on('submit', '#form-add-product', function(e){
   e.preventDefault();
 
@@ -360,17 +235,23 @@ $(document).on('submit', '#form-add-product', function(e){
   ($("#SelectedItem-inputfakeselRegTwo").attr("idtregulartwo")) ? $("#msgErrNounReguladorTwo").text("") : $("#msgErrNounReguladorTwo").text("Debe seleccionar un regulador");
   ($("#required-amountadditional").is(":checked") || $("#noun-required-amountadditional").is(":checked")) ? $("#msgErrNounWithOrNotAmountAdditional").text("") : $("#msgErrNounWithOrNotAmountAdditional").text("Debe marcar una opción"); 
   ($("#required-taxadditional").is(":checked") || $("#noun-required-taxadditional").is(":checked")) ? $("#msgErrNounWithOrNotTaxAdditional").text("") : $("#msgErrNounWithOrNotTaxAdditional").text("Debe marcar una opción"); 
-  ($("#SelectedItem-inputfakeselTaxOne").attr("idtaxationone")) ? $("#msgErrNounTaxationOne").text("") : $("#msgErrNounTaxationOne").text("Debe seleccionar un impuesto");
-  ($("#SelectedItem-inputfakeselTaxTwo").attr("idtaxationtwo")) ? $("#msgErrNounTaxationTwo").text("") : $("#msgErrNounTaxationTwo").text("Debe seleccionar un impuesto");
-  ($("#SelectedItem-inputfakeselTaxThree").attr("idtaxationthree")) ? $("#msgErrNounTaxationThree").text("") : $("#msgErrNounTaxationThree").text("Debe seleccionar un impuesto");
 
   /************************** CONDICIONAL 1 - (SI, SI, SI, SI) **************************/
-  if(($("#nameProduct").val() != 0 || $("#nameProduct").val() != "") && $("#required-reg").is(":checked") && $("#required-amountadditional").is(":checked") && $("#required-taxadditional").is(":checked")){
+  if(($("#nameProduct").val() != 0 || $("#nameProduct").val() != "") && 
+      $("#required-reg").is(":checked") && 
+      $("#required-amountadditional").is(":checked") && 
+      $("#required-taxadditional").is(":checked")){
+    
     ($("#amountadditionalProduct").val() != 0 || $("#amountadditionalProduct").val() != "") ? $("#msgErrNounAmountAdditionalProduct").text("") : $("#msgErrNounAmountAdditionalProduct").text("Debe colocar un monto");
+    ($("#taxoneadditional").val() == 0 || $("#taxoneadditional").val() == "") ? $("#msgErrNounTaxOneAdditionalProduct").text("Debe colocar un monto") : $("#msgErrNounTaxOneAdditionalProduct").text("");
+    ($("#taxtwoadditional").val() == 0 || $("#taxtwoadditional").val() == "") ? $("#msgErrNounTaxTwoAdditionalProduct").text("Debe colocar un monto") : $("#msgErrNounTaxTwoAdditionalProduct").text("");
+    ($("#taxthreeadditional").val() == 0 || $("#taxthreeadditional").val() == "") ? $("#msgErrNounTaxThreeAdditionalProduct").text("Debe colocar un monto") : $("#msgErrNounTaxThreeAdditionalProduct").text("");
 
     if(($("#SelectedItem-inputfakeselRegOne").attr("idtregularOne") || $("#SelectedItem-inputfakeselRegTwo").attr("idtregulartwo")) &&
-      $("#amountadditionalProduct").val() != 0 && $("#amountadditionalProduct").val() != "" &&
-      ($("#SelectedItem-inputfakeselTaxOne").attr("idtaxationone") || $("#SelectedItem-inputfakeselTaxTwo").attr("idtaxationtwo") || $("#SelectedItem-inputfakeselTaxThree").attr("idtaxationthree"))){
+      ($("#amountadditionalProduct").val() != 0 && $("#amountadditionalProduct").val() != "") &&
+      (($("#taxoneadditional").val() != 0 || $("#taxoneadditional").val() != "") || 
+       ($("#taxtwoadditional").val() != 0 || $("#taxtwoadditional").val() != "") ||
+       ($("#taxthreeadditional").val() != 0 || $("#taxthreeadditional").val() != ""))){
       
       var formdata = new FormData();
       formdata.append("name", $("#nameProduct").val());
@@ -378,9 +259,9 @@ $(document).on('submit', '#form-add-product', function(e){
       formdata.append("id_regulatorone", ($("#SelectedItem-inputfakeselRegOne").attr("idtregularOne") || $("#SelectedItem-inputfakeselRegOne").attr("idtregularOne") != undefined) ? $("#SelectedItem-inputfakeselRegOne").attr("idtregularOne") : 0);
       formdata.append("id_regulatortwo", ($("#SelectedItem-inputfakeselRegTwo").attr("idtregulartwo") || $("#SelectedItem-inputfakeselRegTwo").attr("idtregulartwo") != undefined) ? $("#SelectedItem-inputfakeselRegTwo").attr("idtregulartwo") : 0);
       formdata.append("amount_additional", $("#amountadditionalProduct").val());
-      formdata.append("id_taxation", ($("#SelectedItem-inputfakeselTaxOne").attr("idtaxationone") || $("#SelectedItem-inputfakeselTaxOne").attr("idtaxationone") != undefined) ? $("#SelectedItem-inputfakeselTaxOne").attr("idtaxationone") : 0);
-      formdata.append("id_taxation_two", ($("#SelectedItem-inputfakeselTaxTwo").attr("idtaxationtwo") || $("#SelectedItem-inputfakeselTaxTwo").attr("idtaxationtwo") != undefined) ? $("#SelectedItem-inputfakeselTaxTwo").attr("idtaxationtwo") : 0);
-      formdata.append("id_taxation_three", ($("#SelectedItem-inputfakeselTaxThree").attr("idtaxationthree") || $("#SelectedItem-inputfakeselTaxThree").attr("idtaxationthree") != undefined) ? $("#SelectedItem-inputfakeselTaxThree").attr("idtaxationthree") : 0);
+      formdata.append("ad_valoren", $("#taxoneadditional").val());
+      formdata.append("impuesto_selectivo", $("#taxtwoadditional").val());
+      formdata.append("antidumping", $("#taxthreeadditional").val());
 
       $.ajax({
         url: "../admin/controllers/c_add-products.php",
@@ -404,17 +285,22 @@ $(document).on('submit', '#form-add-product', function(e){
       console.log("Falta rellenar los campos");
     }
   /************************** CONDICIONAL 2 - (SI, SI, NO, NO) **************************/
-  }else if(($("#nameProduct").val() != 0 || $("#nameProduct").val() != "") && $("#required-reg").is(":checked") && $("#noun-required-amountadditional").is(":checked") && $("#noun-required-taxadditional").is(":checked")){
+  }else if(($("#nameProduct").val() != 0 || $("#nameProduct").val() != "") &&
+            $("#required-reg").is(":checked") &&
+            $("#noun-required-amountadditional").is(":checked") &&
+            $("#noun-required-taxadditional").is(":checked")){
 
-    if($("#SelectedItem-inputfakeselRegOne").attr("idtregularOne") && 
-      $("#SelectedItem-inputfakeselRegOne").attr("regularone")){
+    if($("#SelectedItem-inputfakeselRegOne").attr("idtregularOne") || $("#SelectedItem-inputfakeselRegTwo").attr("idtregulartwo")){
       
       var formdata = new FormData();
       formdata.append("name", $("#nameProduct").val());
       formdata.append("regulate", $("#required-reg").parent().find("span").text());
       formdata.append("id_regulatorone", $("#SelectedItem-inputfakeselRegOne").attr("idtregularOne"));
       formdata.append("id_regulatortwo", $("#SelectedItem-inputfakeselRegTwo").attr("idtregulartwo"));
-      formdata.append("amount_additional", 0.00);
+      formdata.append("amount_additional", 0);
+      formdata.append("ad_valoren", 0);
+      formdata.append("impuesto_selectivo", 0);
+      formdata.append("antidumping", 0);
 
       $.ajax({
         url: "../admin/controllers/c_add-products.php",
@@ -439,14 +325,23 @@ $(document).on('submit', '#form-add-product', function(e){
       console.log("Falta rellenar los campos");      
     }
   /************************** CONDICIONAL 3 - (SI, NO, SI, NO) **************************/
-  }else if(($("#nameProduct").val() != 0 || $("#nameProduct").val() != "") && $("#noun-required-reg").is(":checked") && $("#required-amountadditional").is(":checked") && $("#noun-required-taxadditional").is(":checked")){      
+  }else if(($("#nameProduct").val() != 0 || $("#nameProduct").val() != "") &&
+           $("#noun-required-reg").is(":checked") &&
+           $("#required-amountadditional").is(":checked") &&
+           $("#noun-required-taxadditional").is(":checked")){
+
     if($("#amountadditionalProduct").val() != 0 || $("#amountadditionalProduct").val() != ""){
       $("#msgErrNounAmountAdditionalProduct").text("");
 
       var formdata = new FormData();
       formdata.append("name", $("#nameProduct").val());
       formdata.append("regulate", $("#noun-required-reg").parent().find("span").text());
+      formdata.append("id_regulatorone", 0);
+      formdata.append("id_regulatortwo", 0);
       formdata.append("amount_additional", $("#amountadditionalProduct").val());
+      formdata.append("ad_valoren", 0);
+      formdata.append("impuesto_selectivo", 0);
+      formdata.append("antidumping", 0);
 
       $.ajax({
         url: "../admin/controllers/c_add-products.php",
@@ -468,20 +363,26 @@ $(document).on('submit', '#form-add-product', function(e){
     }else{
       $("#msgErrNounAmountAdditionalProduct").text("Debe colocar un monto");
     }
-  /************************** CONDICIONAL 3 - (SI, SI, NO, SI) **************************/
-  }else if(($("#nameProduct").val() != 0 || $("#nameProduct").val() != "") && $("#required-reg").is(":checked") && $("#noun-required-amountadditional").is(":checked") && $("#required-taxadditional").is(":checked")){
-    if(($("#SelectedItem-inputfakeselRegOne").attr("idtregularOne") || $("#SelectedItem-inputfakeselRegTwo").attr("idtregulartwo")) && 
-      ($("#SelectedItem-inputfakeselTaxOne").attr("idtaxationone") || $("#SelectedItem-inputfakeselTaxTwo").attr("idtaxationtwo") || $("#SelectedItem-inputfakeselTaxThree").attr("idtaxationthree"))){
+  /************************** CONDICIONAL 4 - (SI, SI, NO, SI) **************************/
+  }else if(($("#nameProduct").val() != 0 || $("#nameProduct").val() != "") && 
+           $("#required-reg").is(":checked") && 
+           $("#noun-required-amountadditional").is(":checked") && 
+           $("#required-taxadditional").is(":checked")){
+
+    if(($("#SelectedItem-inputfakeselRegOne").attr("idtregularOne") || $("#SelectedItem-inputfakeselRegTwo").attr("idtregulartwo")) &&
+      (($("#taxoneadditional").val() != 0 || $("#taxoneadditional").val() != "") || 
+       ($("#taxtwoadditional").val() != 0 || $("#taxtwoadditional").val() != "") ||
+       ($("#taxthreeadditional").val() != 0 || $("#taxthreeadditional").val() != ""))){
       
       var formdata = new FormData();
       formdata.append("name", $("#nameProduct").val());
       formdata.append("regulate", $("#required-reg").parent().find("span").text());
       formdata.append("id_regulatorone", ($("#SelectedItem-inputfakeselRegOne").attr("idtregularOne") || $("#SelectedItem-inputfakeselRegOne").attr("idtregularOne") != undefined) ? $("#SelectedItem-inputfakeselRegOne").attr("idtregularOne") : 0);
       formdata.append("id_regulatortwo", ($("#SelectedItem-inputfakeselRegTwo").attr("idtregulartwo") || $("#SelectedItem-inputfakeselRegTwo").attr("idtregulartwo") != undefined) ? $("#SelectedItem-inputfakeselRegTwo").attr("idtregulartwo") : 0);
-      formdata.append("amount_additional", 0.00);
-      formdata.append("id_taxation", ($("#SelectedItem-inputfakeselTaxOne").attr("idtaxationone") || $("#SelectedItem-inputfakeselTaxOne").attr("idtaxationone") != undefined) ? $("#SelectedItem-inputfakeselTaxOne").attr("idtaxationone") : 0);
-      formdata.append("id_taxation_two", ($("#SelectedItem-inputfakeselTaxTwo").attr("idtaxationtwo") || $("#SelectedItem-inputfakeselTaxTwo").attr("idtaxationtwo") != undefined) ? $("#SelectedItem-inputfakeselTaxTwo").attr("idtaxationtwo") : 0);
-      formdata.append("id_taxation_three", ($("#SelectedItem-inputfakeselTaxThree").attr("idtaxationthree") || $("#SelectedItem-inputfakeselTaxThree").attr("idtaxationthree") != undefined) ? $("#SelectedItem-inputfakeselTaxThree").attr("idtaxationthree") : 0);
+      formdata.append("amount_additional", 0);
+      formdata.append("ad_valoren", $("#taxoneadditional").val());
+      formdata.append("impuesto_selectivo", $("#taxtwoadditional").val());
+      formdata.append("antidumping", $("#taxthreeadditional").val());
 
       $.ajax({
         url: "../admin/controllers/c_add-products.php",
@@ -504,20 +405,27 @@ $(document).on('submit', '#form-add-product', function(e){
     }else{
       console.log("Falta rellenar los campos");      
     }
-  /************************** CONDICIONAL 3 - (SI, NO, SI, SI) **************************/
-  }else if(($("#nameProduct").val() != 0 || $("#nameProduct").val() != "") && $("#noun-required-reg").is(":checked") && $("#required-amountadditional").is(":checked") && $("#required-taxadditional").is(":checked")){
+  /************************** CONDICIONAL 5 - (SI, NO, SI, SI) **************************/
+  }else if(($("#nameProduct").val() != 0 || $("#nameProduct").val() != "") && 
+           $("#noun-required-reg").is(":checked") && 
+           $("#required-amountadditional").is(":checked") && 
+           $("#required-taxadditional").is(":checked")){
     
     if(($("#amountadditionalProduct").val() != 0 || $("#amountadditionalProduct").val() != "") &&
-      ($("#SelectedItem-inputfakeselTaxOne").attr("idtaxationone") || $("#SelectedItem-inputfakeselTaxTwo").attr("idtaxationtwo") || $("#SelectedItem-inputfakeselTaxThree").attr("idtaxationthree"))){
+      (($("#taxoneadditional").val() != 0 || $("#taxoneadditional").val() != "") || 
+       ($("#taxtwoadditional").val() != 0 || $("#taxtwoadditional").val() != "") ||
+       ($("#taxthreeadditional").val() != 0 || $("#taxthreeadditional").val() != ""))){
       $("#msgErrNounAmountAdditionalProduct").text("");
 
       var formdata = new FormData();
       formdata.append("name", $("#nameProduct").val());
       formdata.append("regulate", $("#noun-required-reg").parent().find("span").text());
+      formdata.append("id_regulatorone", 0);
+      formdata.append("id_regulatortwo", 0);
       formdata.append("amount_additional", $("#amountadditionalProduct").val());
-      formdata.append("id_taxation", ($("#SelectedItem-inputfakeselTaxOne").attr("idtaxationone") || $("#SelectedItem-inputfakeselTaxOne").attr("idtaxationone") != undefined) ? $("#SelectedItem-inputfakeselTaxOne").attr("idtaxationone") : 0);
-      formdata.append("id_taxation_two", ($("#SelectedItem-inputfakeselTaxTwo").attr("idtaxationtwo") || $("#SelectedItem-inputfakeselTaxTwo").attr("idtaxationtwo") != undefined) ? $("#SelectedItem-inputfakeselTaxTwo").attr("idtaxationtwo") : 0);
-      formdata.append("id_taxation_three", ($("#SelectedItem-inputfakeselTaxThree").attr("idtaxationthree") || $("#SelectedItem-inputfakeselTaxThree").attr("idtaxationthree") != undefined) ? $("#SelectedItem-inputfakeselTaxThree").attr("idtaxationthree") : 0);
+      formdata.append("ad_valoren", $("#taxoneadditional").val());
+      formdata.append("impuesto_selectivo", $("#taxtwoadditional").val());
+      formdata.append("antidumping", $("#taxthreeadditional").val());
 
       $.ajax({
         url: "../admin/controllers/c_add-products.php",
@@ -539,8 +447,12 @@ $(document).on('submit', '#form-add-product', function(e){
     }else{
       $("#msgErrNounAmountAdditionalProduct").text("Debe colocar un monto");
     }
-  /************************** CONDICIONAL 3 - (SI, SI, SI, NO) **************************/
-  }else if(($("#nameProduct").val() != 0 || $("#nameProduct").val() != "") && $("#required-reg").is(":checked") && $("#required-amountadditional").is(":checked") && $("#noun-required-taxadditional").is(":checked")){
+  /************************** CONDICIONAL 6 - (SI, SI, SI, NO) **************************/
+  }else if(($("#nameProduct").val() != 0 || $("#nameProduct").val() != "") && 
+          $("#required-reg").is(":checked") && 
+          $("#required-amountadditional").is(":checked") && 
+          $("#noun-required-taxadditional").is(":checked")){
+
     if(($("#SelectedItem-inputfakeselRegOne").attr("idtregularOne") || $("#SelectedItem-inputfakeselRegTwo").attr("idtregulartwo")) &&
       $("#amountadditionalProduct").val() != 0 && $("#amountadditionalProduct").val() != ""){
       
@@ -550,6 +462,9 @@ $(document).on('submit', '#form-add-product', function(e){
       formdata.append("id_regulatorone", ($("#SelectedItem-inputfakeselRegOne").attr("idtregularOne") || $("#SelectedItem-inputfakeselRegOne").attr("idtregularOne") != undefined) ? $("#SelectedItem-inputfakeselRegOne").attr("idtregularOne") : 0);
       formdata.append("id_regulatortwo", ($("#SelectedItem-inputfakeselRegTwo").attr("idtregulartwo") || $("#SelectedItem-inputfakeselRegTwo").attr("idtregulartwo") != undefined) ? $("#SelectedItem-inputfakeselRegTwo").attr("idtregulartwo") : 0);
       formdata.append("amount_additional", $("#amountadditionalProduct").val());
+      formdata.append("ad_valoren", 0);
+      formdata.append("impuesto_selectivo", 0);
+      formdata.append("antidumping", 0);
 
       $.ajax({
         url: "../admin/controllers/c_add-products.php",
@@ -572,16 +487,25 @@ $(document).on('submit', '#form-add-product', function(e){
     }else{
       console.log("Falta rellenar los campos");
     }
-  /************************** CONDICIONAL 3 - (SI, NO, NO, SI) **************************/
-  }else if(($("#nameProduct").val() != 0 || $("#nameProduct").val() != "") && $("#noun-required-reg").is(":checked") && $("#noun-required-amountadditional").is(":checked") && $("#required-taxadditional").is(":checked")){
-    if(($("#SelectedItem-inputfakeselTaxOne").attr("idtaxationone") || $("#SelectedItem-inputfakeselTaxTwo").attr("idtaxationtwo") || $("#SelectedItem-inputfakeselTaxThree").attr("idtaxationthree"))){
+  /************************** CONDICIONAL 7 - (SI, NO, NO, SI) **************************/
+  }else if(($("#nameProduct").val() != 0 || $("#nameProduct").val() != "") && 
+          $("#noun-required-reg").is(":checked") && 
+          $("#noun-required-amountadditional").is(":checked") && 
+          $("#required-taxadditional").is(":checked")){
+
+    if(($("#taxoneadditional").val() != 0 || $("#taxoneadditional").val() != "") || 
+       ($("#taxtwoadditional").val() != 0 || $("#taxtwoadditional").val() != "") ||
+       ($("#taxthreeadditional").val() != 0 || $("#taxthreeadditional").val() != "")){
+
       var formdata = new FormData();
       formdata.append("name", $("#nameProduct").val());
       formdata.append("regulate", $("#noun-required-reg").parent().find("span").text());
-      formdata.append("amount_additional", 0.00);
-      formdata.append("id_taxation", ($("#SelectedItem-inputfakeselTaxOne").attr("idtaxationone") || $("#SelectedItem-inputfakeselTaxOne").attr("idtaxationone") != undefined) ? $("#SelectedItem-inputfakeselTaxOne").attr("idtaxationone") : 0);
-      formdata.append("id_taxation_two", ($("#SelectedItem-inputfakeselTaxTwo").attr("idtaxationtwo") || $("#SelectedItem-inputfakeselTaxTwo").attr("idtaxationtwo") != undefined) ? $("#SelectedItem-inputfakeselTaxTwo").attr("idtaxationtwo") : 0);
-      formdata.append("id_taxation_three", ($("#SelectedItem-inputfakeselTaxThree").attr("idtaxationthree") || $("#SelectedItem-inputfakeselTaxThree").attr("idtaxationthree") != undefined) ? $("#SelectedItem-inputfakeselTaxThree").attr("idtaxationthree") : 0);
+      formdata.append("id_regulatorone", 0);
+      formdata.append("id_regulatortwo", 0);
+      formdata.append("amount_additional", 0);
+      formdata.append("ad_valoren", $("#taxoneadditional").val());
+      formdata.append("impuesto_selectivo", $("#taxtwoadditional").val());
+      formdata.append("antidumping", $("#taxthreeadditional").val());
 
       $.ajax({
         url: "../admin/controllers/c_add-products.php",
@@ -602,12 +526,21 @@ $(document).on('submit', '#form-add-product', function(e){
     }else{
       console.log("Falta rellenar los campos");
     }
-  /************************** CONDICIONAL 3 - (SI, NO, NO, NO) **************************/
-  }else if(($("#nameProduct").val() != 0 || $("#nameProduct").val() != "") && $("#noun-required-reg").is(":checked") && $("#noun-required-amountadditional").is(":checked") && $("#noun-required-taxadditional").is(":checked")){
+  /************************** CONDICIONAL 8 - (SI, NO, NO, NO) **************************/
+  }else if(($("#nameProduct").val() != 0 || $("#nameProduct").val() != "") && 
+            $("#noun-required-reg").is(":checked") && 
+            $("#noun-required-amountadditional").is(":checked") && 
+            $("#noun-required-taxadditional").is(":checked")){
+
     var formdata = new FormData();
     formdata.append("name", $("#nameProduct").val());
     formdata.append("regulate", $("#noun-required-reg").parent().find("span").text());
-    formdata.append("amount_additional", 0.00);
+    formdata.append("id_regulatorone", 0);
+    formdata.append("id_regulatortwo", 0);
+    formdata.append("amount_additional", 0);
+    formdata.append("ad_valoren", 0);
+    formdata.append("impuesto_selectivo", 0);
+    formdata.append("antidumping", 0);
 
     $.ajax({
       url: "../admin/controllers/c_add-products.php",
@@ -675,28 +608,28 @@ function listProducts(searchVal){
         nounOneAndTwoRegs = e.reguladorOne + " / " + e.reguladorTwo;
       }      
 
-      var nounTaxOne = "";
-      var nounTaxTwo = "";
-      var nounTaxThree = "";
-      var nounOneAndMoreTaxs = "";
+      // var nounTaxOne = "";
+      // var nounTaxTwo = "";
+      // var nounTaxThree = "";
+      // var nounOneAndMoreTaxs = "";
 
-      (e.impuestoOne == null || e.impuestoOne == 'null' || e.impuestoOne == "") ? nounTaxOne = "" : nounTaxOne = e.impuestoOne;
-      (e.impuestoTwo == null || e.impuestoTwo == 'null' || e.impuestoTwo == "") ? nounTaxTwo = "" : nounTaxTwo = e.impuestoTwo;
-      (e.impuestoThree == null || e.impuestoThree == 'null' || e.impuestoThree == "") ? nounTaxThree = "" : nounTaxThree = e.impuestoThree;
+      // (e.impuestoOne == null || e.impuestoOne == 'null' || e.impuestoOne == "") ? nounTaxOne = "" : nounTaxOne = e.impuestoOne;
+      // (e.impuestoTwo == null || e.impuestoTwo == 'null' || e.impuestoTwo == "") ? nounTaxTwo = "" : nounTaxTwo = e.impuestoTwo;
+      // (e.impuestoThree == null || e.impuestoThree == 'null' || e.impuestoThree == "") ? nounTaxThree = "" : nounTaxThree = e.impuestoThree;
 
-      if((e.impuestoOne == null || e.impuestoOne == 'null' || e.impuestoOne == "") && 
-        (e.impuestoTwo == null || e.impuestoTwo == 'null' || e.impuestoTwo == "") && 
-        (e.impuestoThree == null || e.impuestoThree == 'null' || e.impuestoThree == "")){
-        nounOneAndMoreTaxs = "Ninguno";
-      }else if((e.impuestoOne == null || e.impuestoOne == 'null' || e.impuestoOne == "") && (e.impuestoTwo == null || e.impuestoTwo == 'null' || e.impuestoTwo == "")){
-        nounOneAndMoreTaxs = nounTaxThree;
-      }else if((e.impuestoTwo == null || e.impuestoTwo == 'null' || e.impuestoTwo == "") && (e.impuestoThree == null || e.impuestoThree == 'null' || e.impuestoThree == "")){
-        nounOneAndMoreTaxs = nounTaxOne;
-      }else if((e.impuestoOne == null || e.impuestoOne == 'null' || e.impuestoOne == "") && (e.impuestoThree == null || e.impuestoThree == 'null' || e.impuestoThree == "")){
-        nounOneAndMoreTaxs = nounTaxTwo;
-      }else{
-        nounOneAndMoreTaxs = nounTaxOne + " / " + nounTaxTwo + " / " + nounTaxThree;
-      }
+      // if((e.impuestoOne == null || e.impuestoOne == 'null' || e.impuestoOne == "") && 
+      //   (e.impuestoTwo == null || e.impuestoTwo == 'null' || e.impuestoTwo == "") && 
+      //   (e.impuestoThree == null || e.impuestoThree == 'null' || e.impuestoThree == "")){
+      //   nounOneAndMoreTaxs = "Ninguno";
+      // }else if((e.impuestoOne == null || e.impuestoOne == 'null' || e.impuestoOne == "") && (e.impuestoTwo == null || e.impuestoTwo == 'null' || e.impuestoTwo == "")){
+      //   nounOneAndMoreTaxs = nounTaxThree;
+      // }else if((e.impuestoTwo == null || e.impuestoTwo == 'null' || e.impuestoTwo == "") && (e.impuestoThree == null || e.impuestoThree == 'null' || e.impuestoThree == "")){
+      //   nounOneAndMoreTaxs = nounTaxOne;
+      // }else if((e.impuestoOne == null || e.impuestoOne == 'null' || e.impuestoOne == "") && (e.impuestoThree == null || e.impuestoThree == 'null' || e.impuestoThree == "")){
+      //   nounOneAndMoreTaxs = nounTaxTwo;
+      // }else{
+      //   nounOneAndMoreTaxs = nounTaxOne + " / " + nounTaxTwo + " / " + nounTaxThree;
+      // }
 
       // var longNameProd = e.name_prod;
       // var longlimitNameProd = (longNameProd.length >= 36) ? longNameProd.substring(36, 0) + '<b>...</b>' : longNameProd;
@@ -708,7 +641,9 @@ function listProducts(searchVal){
           <td class='center'>${e.regulated}</td>
           <td>${nounOneAndTwoRegs}</td>
           <td>${e.montoadd}</td>
-          <td>${nounOneAndMoreTaxs}</td>
+          <td>${e.ad_valoren}</td>
+          <td>${e.impuesto_selectivo}</td>
+          <td>${e.antidumping}</td>
           <td class="cont-btn-update">
             <a class="btn-update-product" data-toggle="modal" data-target="#updateModal"  href="#" 
               data-id="${e.id_prod}"
@@ -719,12 +654,9 @@ function listProducts(searchVal){
               data-regulatorone="${nounRegOne}"
               data-regulatortwo="${nounRegTwo}"
               data-amountadditional="${e.montoadd}"
-              data-idtadditional_one="${e.id_taxation}"
-              data-idtadditional_two="${e.id_taxation_two}"
-              data-idtadditional_three="${e.id_taxation_three}"
-              data-nametadditional_one="${e.impuestoOne}"
-              data-nametadditional_two="${e.impuestoTwo}"
-              data-nametadditional_three="${e.impuestoThree}"
+              data-pricetadditional_one="${e.ad_valoren}"
+              data-pricetadditional_two="${e.impuesto_selectivo}"
+              data-pricetadditional_three="${e.antidumping}"
               >Editar</a>
           </td>
           <td class="cont-btn-delete" id="cont-btn-delete">
@@ -741,46 +673,26 @@ function listProducts(searchVal){
 
   });
 }
+/************************** MOSTRAR EL CONTENIDO DENTRO DEL FORMULARIO DE ACTUALIZAR - IMPUESTOS ADICIONALES **************************/
 $(document).on("click", ".cont-modalbootstrapupdate__form--controlRadios--c--control--input[name=sel-taxornottax]", function(){
   if($(this).attr("id") == "noun-required-taxadditionalupdate"){
     $("#sel-optsTaxationAdditionalsMoreUpdate").html("");
   }else{
     $("#sel-optsTaxationAdditionalsMoreUpdate").html(`
-      <div class="cont-modalbootstrapupdate__form--controlSelect">
-        <label for="" class="cont-modalbootstrapupdate__form--controlSelect--label">Impuesto 1º</label>
-        <div class="cont-modalbootstrapupdate__form--controlSelect--cFakeSelect" id="btn-FakeListTaxationOneUpdate">
-          <span class="cont-modalbootstrapupdate__form--controlSelect--cFakeSelect--txtitemsel" id="selectedItem-fakeSelTaxOneUpdate">Selecciona un impuesto</span>
-          <input type="text" readonly id="SelectedItem-inputfakeselTaxOneUpdate">
-          <svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M1 1.08298L5 5L9 1" stroke="#999" stroke-width="1.25727" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </div>
-        <ul class="cont-modalbootstrapupdate__form--controlSelect--m" id="c-listitems-taxationOneUpdate"></ul>
-        <span id="msgErrNounTaxationOneUpdate"></span>
+      <div class="cont-modalbootstrapupdate__form--control">
+        <label for="taxoneadditional-update" class="cont-modalbootstrapupdate__form--control__label">Ad-Valoren</label>
+        <input id="taxoneadditional-update" class="cont-modalbootstrapupdate__form--control__input" name="taxoneadditional-update" type="number" maxlength="300" placeholder="Ingrese el monto del impuesto" step="0.01">
+        <span id="msgErrNounTaxOneAdditionalProductUpdate"></span>
       </div>
-      <div class="cont-modalbootstrapupdate__form--controlSelect">
-        <label for="" class="cont-modalbootstrapupdate__form--controlSelect--label">Impuesto 2º</label>
-        <div class="cont-modalbootstrapupdate__form--controlSelect--cFakeSelect" id="btn-FakeListTaxationTwoUpdate">
-          <span class="cont-modalbootstrapupdate__form--controlSelect--cFakeSelect--txtitemsel" id="selectedItem-fakeSelTaxTwoUpdate">Selecciona un impuesto</span>
-          <input type="text" readonly id="SelectedItem-inputfakeselTaxTwoUpdate">
-          <svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M1 1.08298L5 5L9 1" stroke="#999" stroke-width="1.25727" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </div>
-        <ul class="cont-modalbootstrapupdate__form--controlSelect--m" id="c-listitems-taxationTwoUpdate"></ul>
-        <span id="msgErrNounTaxationTwoUpdate"></span>
+      <div class="cont-modalbootstrapupdate__form--control">
+        <label for="taxtwoadditional-update" class="cont-modalbootstrapupdate__form--control__label">Impuesto Selecctivo</label>
+        <input id="taxtwoadditional-update" class="cont-modalbootstrapupdate__form--control__input" name="taxtwoadditional-update" type="number" maxlength="300" placeholder="Ingrese el monto del impuesto" step="0.01">
+        <span id="msgErrNounTaxTwoAdditionalProductUpdate"></span>
       </div>
-      <div class="cont-modalbootstrapupdate__form--controlSelect">
-        <label for="" class="cont-modalbootstrapupdate__form--controlSelect--label">Impuesto 3º</label>
-        <div class="cont-modalbootstrapupdate__form--controlSelect--cFakeSelect" id="btn-FakeListTaxationThreeUpdate">
-          <span class="cont-modalbootstrapupdate__form--controlSelect--cFakeSelect--txtitemsel" id="selectedItem-fakeSelTaxThreeUpdate">Selecciona un impuesto</span>
-          <input type="text" readonly id="SelectedItem-inputfakeselTaxThreeUpdate">
-          <svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M1 1.08298L5 5L9 1" stroke="#999" stroke-width="1.25727" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </div>
-        <ul class="cont-modalbootstrapupdate__form--controlSelect--m" id="c-listitems-taxationThreeUpdate"></ul>
-        <span id="msgErrNounTaxationThreeUpdate"></span>
+      <div class="cont-modalbootstrapupdate__form--control">
+        <label for="taxthreeadditional-update" class="cont-modalbootstrapupdate__form--control__label">ANTIDUMPING</label>
+        <input id="taxthreeadditional-update" class="cont-modalbootstrapupdate__form--control__input" name="taxthreeadditional-update" type="number" maxlength="300" placeholder="Ingrese el monto del impuesto" step="0.01">
+        <span id="msgErrNounTaxThreeAdditionalProductUpdate"></span>
       </div>
     `);
   }
@@ -807,13 +719,12 @@ $(document).on('click', '.btn-update-product', function(e){
       regulatorone: $(this).attr('data-regulatorone'),
       regulatortwo: $(this).attr('data-regulatortwo'),
       amountadditional: $(this).attr('data-amountadditional'),
-      tadditional_one: $(this).attr('data-idtadditional_one'),
-      tadditional_two: $(this).attr('data-idtadditional_two'),
-      tadditional_three: $(this).attr('data-idtadditional_three'),
-      nametadd_one: ($(this).attr('data-nametadditional_one') != 'null') ? $(this).attr('data-nametadditional_one') : 'No seleccionado',
-      nametadd_two: ($(this).attr('data-nametadditional_two') != 'null') ? $(this).attr('data-nametadditional_two') : 'No seleccionado',
-      nametadd_three: ($(this).attr('data-nametadditional_three') != 'null') ? $(this).attr('data-nametadditional_three') : 'No seleccionado'
+      pricetadditional_one: $(this).attr('data-pricetadditional_one'),
+      pricetadditional_two: $(this).attr('data-pricetadditional_two'),
+      pricetadditional_three: $(this).attr('data-pricetadditional_three')
     };
+
+    console.log(item_data);
 
     /************************** VALIDAR SI EL PRODUCTO CONTIENE REGULADORES - MOSTRAR LOS CONTROLES RESPECTIVOS **************************/
     if(item_data['regulated'] == "NO"){
@@ -831,6 +742,7 @@ $(document).on('click', '.btn-update-product', function(e){
     /************************** ASIGNAR A LOS CONTROLES DEL MODAL DE ACTUALIZAR **************************/
     $('#idupdate-product').val(item_data['id']);
     $('#name-update').val(item_data['name']);
+    $('#required_regsoptupdate').val(item_data['regulated']);
     $('#SelectedItem-inputfakeselRegOneUpdate').attr("idtregularone", item_data['idregulator']);
     $('#SelectedItem-inputfakeselRegOneUpdate').attr("regularone", item_data['regulatorone']);
     $('#SelectedItem-inputfakeselRegTwoUpdate').attr("idtregulartwo", item_data['idregulatortwo']);
@@ -852,46 +764,25 @@ $(document).on('click', '.btn-update-product', function(e){
     }
 
     /************************** MOSTRAR LOS CONTROLES DE LOS IMPUESTOS **************************/
-    if((item_data['tadditional_one'] != 0 && item_data['tadditional_one'] != "" && item_data['tadditional_one'] != null) ||
-      (item_data['tadditional_two'] != 0 && item_data['tadditional_two'] != "" && item_data['tadditional_two'] != null) ||
-      (item_data['tadditional_three'] != 0 && item_data['tadditional_three'] != "" && item_data['tadditional_three'] != null)){
+    if((item_data['pricetadditional_one'] != 0 && item_data['pricetadditional_one'] != "" && item_data['pricetadditional_one'] != null) ||
+      (item_data['pricetadditional_two'] != 0 && item_data['pricetadditional_two'] != "" && item_data['pricetadditional_two'] != null) ||
+      (item_data['pricetadditional_three'] != 0 && item_data['pricetadditional_three'] != "" && item_data['pricetadditional_three'] != null)){
 
       $("#sel-optsTaxationAdditionalsMoreUpdate").html(`
-        <div class="cont-modalbootstrapupdate__form--controlSelect">
-          <label for="" class="cont-modalbootstrapupdate__form--controlSelect--label">Impuesto 1º</label>
-          <div class="cont-modalbootstrapupdate__form--controlSelect--cFakeSelect" id="btn-FakeListTaxationOneUpdate">
-            <span class="cont-modalbootstrapupdate__form--controlSelect--cFakeSelect--txtitemsel" id="selectedItem-fakeSelTaxOneUpdate">${item_data['nametadd_one']}</span>
-            <input type="text" readonly id="SelectedItem-inputfakeselTaxOneUpdate" taxone="${item_data['nametadd_one']}" idtaxationone="${item_data['tadditional_one']}">
-            <svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M1 1.08298L5 5L9 1" stroke="#999" stroke-width="1.25727" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </div>
-          <ul class="cont-modalbootstrapupdate__form--controlSelect--m" id="c-listitems-taxationOneUpdate"></ul>
-          <span id="msgErrNounTaxationOneUpdate"></span>
+        <div class="cont-modalbootstrapupdate__form--control">
+          <label for="taxoneadditional-update" class="cont-modalbootstrapupdate__form--control__label">Ad-Valoren</label>
+          <input id="taxoneadditional-update" class="cont-modalbootstrapupdate__form--control__input" name="taxoneadditional-update" type="number" value="${item_data['pricetadditional_one']}" maxlength="300" placeholder="Ingrese el monto del impuesto" step="0.01">
+          <span id="msgErrNounTaxOneAdditionalProductUpdate"></span>
         </div>
-        <div class="cont-modalbootstrapupdate__form--controlSelect">
-          <label for="" class="cont-modalbootstrapupdate__form--controlSelect--label">Impuesto 2º</label>
-          <div class="cont-modalbootstrapupdate__form--controlSelect--cFakeSelect" id="btn-FakeListTaxationTwoUpdate">
-            <span class="cont-modalbootstrapupdate__form--controlSelect--cFakeSelect--txtitemsel" id="selectedItem-fakeSelTaxTwoUpdate">${item_data['nametadd_two']}</span>
-            <input type="text" readonly id="SelectedItem-inputfakeselTaxTwoUpdate" taxtwo="${item_data['nametadd_two']}" idtaxationtwo="${item_data['tadditional_two']}">
-            <svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M1 1.08298L5 5L9 1" stroke="#999" stroke-width="1.25727" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </div>
-          <ul class="cont-modalbootstrapupdate__form--controlSelect--m" id="c-listitems-taxationTwoUpdate"></ul>
-          <span id="msgErrNounTaxationTwoUpdate"></span>
+        <div class="cont-modalbootstrapupdate__form--control">
+          <label for="taxtwoadditional-update" class="cont-modalbootstrapupdate__form--control__label">Impuesto Selecctivo</label>
+          <input id="taxtwoadditional-update" class="cont-modalbootstrapupdate__form--control__input" name="taxtwoadditional-update" type="number" value="${item_data['pricetadditional_two']}" maxlength="300" placeholder="Ingrese el monto del impuesto" step="0.01">
+          <span id="msgErrNounTaxTwoAdditionalProductUpdate"></span>
         </div>
-        <div class="cont-modalbootstrapupdate__form--controlSelect">
-          <label for="" class="cont-modalbootstrapupdate__form--controlSelect--label">Impuesto 3º</label>
-          <div class="cont-modalbootstrapupdate__form--controlSelect--cFakeSelect" id="btn-FakeListTaxationThreeUpdate">
-            <span class="cont-modalbootstrapupdate__form--controlSelect--cFakeSelect--txtitemsel" id="selectedItem-fakeSelTaxThreeUpdate">${item_data['nametadd_three']}</span>
-            <input type="text" readonly id="SelectedItem-inputfakeselTaxThreeUpdate" taxthree="${item_data['nametadd_three']}" idtaxationthree="${item_data['tadditional_three']}">
-            <svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M1 1.08298L5 5L9 1" stroke="#999" stroke-width="1.25727" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </div>
-          <ul class="cont-modalbootstrapupdate__form--controlSelect--m" id="c-listitems-taxationThreeUpdate"></ul>
-          <span id="msgErrNounTaxationThreeUpdate"></span>
+        <div class="cont-modalbootstrapupdate__form--control">
+          <label for="taxthreeadditional-update" class="cont-modalbootstrapupdate__form--control__label">ANTIDUMPING</label>
+          <input id="taxthreeadditional-update" class="cont-modalbootstrapupdate__form--control__input" name="taxthreeadditional-update" type="number" value="${item_data['pricetadditional_three']}" maxlength="300" placeholder="Ingrese el monto del impuesto" step="0.01">
+          <span id="msgErrNounTaxThreeAdditionalProductUpdate"></span>
         </div>
       `);
     }else{
@@ -980,164 +871,142 @@ $(document).on("click", "#c-listitems-regulatorTwoUpdate .cont-modalbootstrapupd
   $("#SelectedItem-inputfakeselRegTwoUpdate").attr("idtregulartwo", $(this).attr("id"));
 });
 /************************** ABRIR/CERRAR EL LISTADO DE IMPUESTOS - ACTUALIZAR 1 **************************/
-$(document).on("click", "#btn-FakeListTaxationOneUpdate", function(){
-  $("#c-listitems-taxationOneUpdate").toggleClass("show");
-  $(this).toggleClass("showList");
-   $.ajax({
-    url: "../admin/controllers/c_list-taxation-values-by-product.php",
-    method: "POST",
-    datatype: "JSON",
-    contentType: 'application/x-www-form-urlencoded;charset=UTF-8',
-  }).done((res) => {
-    var result = JSON.parse(res);
-    var template = "";
-    if(result.length > 0){
-      result.forEach( (e) => {
-        template += `<li class="cont-modalbootstrapupdate__form--controlSelect--m--item" id="${e.id}" taxationone="${e.data_name}">${e.data_name}</li>`;
-      });
+// $(document).on("click", "#btn-FakeListTaxationOneUpdate", function(){
+//   $("#c-listitems-taxationOneUpdate").toggleClass("show");
+//   $(this).toggleClass("showList");
+//    $.ajax({
+//     url: "../admin/controllers/c_list-taxation-values-by-product.php",
+//     method: "POST",
+//     datatype: "JSON",
+//     contentType: 'application/x-www-form-urlencoded;charset=UTF-8',
+//   }).done((res) => {
+//     var result = JSON.parse(res);
+//     var template = "";
+//     if(result.length > 0){
+//       result.forEach( (e) => {
+//         template += `<li class="cont-modalbootstrapupdate__form--controlSelect--m--item" id="${e.id}" taxationone="${e.data_name}">${e.data_name}</li>`;
+//       });
 
-      $("#c-listitems-taxationOneUpdate").html(template);
-    }else{
-      template += `<li class="cont-modalbootstrapupdate__form--controlSelect--m--item">No se encontraron datos</li>`;
+//       $("#c-listitems-taxationOneUpdate").html(template);
+//     }else{
+//       template += `<li class="cont-modalbootstrapupdate__form--controlSelect--m--item">No se encontraron datos</li>`;
 
-      $("#c-listitems-taxationOneUpdate").html(template);
-    }
-  });
-});
-/************************** ABRIR/CERRAR EL LISTADO DE IMPUESTOS - ACTUALIZAR 2 **************************/
-$(document).on("click", "#btn-FakeListTaxationTwoUpdate", function(){
-  $("#c-listitems-taxationTwoUpdate").toggleClass("show");
-  $(this).toggleClass("showList");
-   $.ajax({
-    url: "../admin/controllers/c_list-taxation-values-by-product.php",
-    method: "POST",
-    datatype: "JSON",
-    contentType: 'application/x-www-form-urlencoded;charset=UTF-8',
-  }).done((res) => {
-    var result = JSON.parse(res);
-    var template = "";
-    if(result.length > 0){
-      result.forEach( (e) => {
-        template += `<li class="cont-modalbootstrapupdate__form--controlSelect--m--item" id="${e.id}" taxationtwo="${e.data_name}">${e.data_name}</li>`;
-      });
+//       $("#c-listitems-taxationOneUpdate").html(template);
+//     }
+//   });
+// });
+// /************************** ABRIR/CERRAR EL LISTADO DE IMPUESTOS - ACTUALIZAR 2 **************************/
+// $(document).on("click", "#btn-FakeListTaxationTwoUpdate", function(){
+//   $("#c-listitems-taxationTwoUpdate").toggleClass("show");
+//   $(this).toggleClass("showList");
+//    $.ajax({
+//     url: "../admin/controllers/c_list-taxation-values-by-product.php",
+//     method: "POST",
+//     datatype: "JSON",
+//     contentType: 'application/x-www-form-urlencoded;charset=UTF-8',
+//   }).done((res) => {
+//     var result = JSON.parse(res);
+//     var template = "";
+//     if(result.length > 0){
+//       result.forEach( (e) => {
+//         template += `<li class="cont-modalbootstrapupdate__form--controlSelect--m--item" id="${e.id}" taxationtwo="${e.data_name}">${e.data_name}</li>`;
+//       });
 
-      $("#c-listitems-taxationTwoUpdate").html(template);
-    }else{
-      template += `<li class="cont-modalbootstrapupdate__form--controlSelect--m--item">No se encontraron datos</li>`;
+//       $("#c-listitems-taxationTwoUpdate").html(template);
+//     }else{
+//       template += `<li class="cont-modalbootstrapupdate__form--controlSelect--m--item">No se encontraron datos</li>`;
 
-      $("#c-listitems-taxationTwoUpdate").html(template);
-    }
-  });
-});
-/************************** ABRIR/CERRAR EL LISTADO DE IMPUESTOS - ACTUALIZAR 3 **************************/
-$(document).on("click", "#btn-FakeListTaxationThreeUpdate", function(){
-  $("#c-listitems-taxationThreeUpdate").toggleClass("show");
-  $(this).toggleClass("showList");
-   $.ajax({
-    url: "../admin/controllers/c_list-taxation-values-by-product.php",
-    method: "POST",
-    datatype: "JSON",
-    contentType: 'application/x-www-form-urlencoded;charset=UTF-8',
-  }).done((res) => {
-    var result = JSON.parse(res);
-    var template = "";
-    if(result.length > 0){
-      result.forEach( (e) => {
-        template += `<li class="cont-modalbootstrapupdate__form--controlSelect--m--item" id="${e.id}" taxationthree="${e.data_name}">${e.data_name}</li>`;
-      });
+//       $("#c-listitems-taxationTwoUpdate").html(template);
+//     }
+//   });
+// });
+// /************************** ABRIR/CERRAR EL LISTADO DE IMPUESTOS - ACTUALIZAR 3 **************************/
+// $(document).on("click", "#btn-FakeListTaxationThreeUpdate", function(){
+//   $("#c-listitems-taxationThreeUpdate").toggleClass("show");
+//   $(this).toggleClass("showList");
+//    $.ajax({
+//     url: "../admin/controllers/c_list-taxation-values-by-product.php",
+//     method: "POST",
+//     datatype: "JSON",
+//     contentType: 'application/x-www-form-urlencoded;charset=UTF-8',
+//   }).done((res) => {
+//     var result = JSON.parse(res);
+//     var template = "";
+//     if(result.length > 0){
+//       result.forEach( (e) => {
+//         template += `<li class="cont-modalbootstrapupdate__form--controlSelect--m--item" id="${e.id}" taxationthree="${e.data_name}">${e.data_name}</li>`;
+//       });
 
-      $("#c-listitems-taxationThreeUpdate").html(template);
-    }else{
-      template += `<li class="cont-modalbootstrapupdate__form--controlSelect--m--item">No se encontraron datos</li>`;
+//       $("#c-listitems-taxationThreeUpdate").html(template);
+//     }else{
+//       template += `<li class="cont-modalbootstrapupdate__form--controlSelect--m--item">No se encontraron datos</li>`;
 
-      $("#c-listitems-taxationThreeUpdate").html(template);
-    }
-  });
-});
-/************************** FIJAR EL VALOR DE IMPUESTO - ACTUALIZAR 1 **************************/
-$(document).on("click", "#c-listitems-taxationOneUpdate .cont-modalbootstrapupdate__form--controlSelect--m--item", function(){
-  $("#msgErrNounTaxationOneUpdate").text("");
-  $("#c-listitems-taxationOneUpdate").removeClass("show");
-  $("#btn-FakeListTaxationOneUpdate").removeClass("showList");
-  $("#selectedItem-fakeSelTaxOneUpdate").text($(this).text());
-  $("#SelectedItem-inputfakeselTaxOneUpdate").attr("taxone", $(this).attr("taxationone"));
-  $("#SelectedItem-inputfakeselTaxOneUpdate").attr("idtaxationone", $(this).attr("id"));
-});
-/************************** FIJAR EL VALOR DE IMPUESTO - ACTUALIZAR 2 **************************/
-$(document).on("click", "#c-listitems-taxationTwoUpdate .cont-modalbootstrapupdate__form--controlSelect--m--item", function(){
-  $("#msgErrNounTaxationTwoUpdate").text("");
-  $("#c-listitems-taxationTwoUpdate").removeClass("show");
-  $("#btn-FakeListTaxationTwoUpdate").removeClass("showList");
-  $("#selectedItem-fakeSelTaxTwoUpdate").text($(this).text());
-  $("#SelectedItem-inputfakeselTaxTwoUpdate").attr("taxtwo", $(this).attr("taxationtwo"));
-  $("#SelectedItem-inputfakeselTaxTwoUpdate").attr("idtaxationtwo", $(this).attr("id"));
-});
-/************************** FIJAR EL VALOR DE IMPUESTO - ACTUALIZAR 3 **************************/
-$(document).on("click", "#c-listitems-taxationThreeUpdate .cont-modalbootstrapupdate__form--controlSelect--m--item", function(){
-  $("#msgErrNounTaxationThreeUpdate").text("");
-  $("#c-listitems-taxationThreeUpdate").removeClass("show");
-  $("#btn-FakeListTaxationThreeUpdate").removeClass("showList");
-  $("#selectedItem-fakeSelTaxThreeUpdate").text($(this).text());
-  $("#SelectedItem-inputfakeselTaxThreeUpdate").attr("taxthree", $(this).attr("taxationthree"));
-  $("#SelectedItem-inputfakeselTaxThreeUpdate").attr("idtaxationthree", $(this).attr("id"));
+//       $("#c-listitems-taxationThreeUpdate").html(template);
+//     }
+//   });
+// });
+// /************************** FIJAR EL VALOR DE IMPUESTO - ACTUALIZAR 1 **************************/
+// $(document).on("click", "#c-listitems-taxationOneUpdate .cont-modalbootstrapupdate__form--controlSelect--m--item", function(){
+//   $("#msgErrNounTaxationOneUpdate").text("");
+//   $("#c-listitems-taxationOneUpdate").removeClass("show");
+//   $("#btn-FakeListTaxationOneUpdate").removeClass("showList");
+//   $("#selectedItem-fakeSelTaxOneUpdate").text($(this).text());
+//   $("#SelectedItem-inputfakeselTaxOneUpdate").attr("taxone", $(this).attr("taxationone"));
+//   $("#SelectedItem-inputfakeselTaxOneUpdate").attr("idtaxationone", $(this).attr("id"));
+// });
+// /************************** FIJAR EL VALOR DE IMPUESTO - ACTUALIZAR 2 **************************/
+// $(document).on("click", "#c-listitems-taxationTwoUpdate .cont-modalbootstrapupdate__form--controlSelect--m--item", function(){
+//   $("#msgErrNounTaxationTwoUpdate").text("");
+//   $("#c-listitems-taxationTwoUpdate").removeClass("show");
+//   $("#btn-FakeListTaxationTwoUpdate").removeClass("showList");
+//   $("#selectedItem-fakeSelTaxTwoUpdate").text($(this).text());
+//   $("#SelectedItem-inputfakeselTaxTwoUpdate").attr("taxtwo", $(this).attr("taxationtwo"));
+//   $("#SelectedItem-inputfakeselTaxTwoUpdate").attr("idtaxationtwo", $(this).attr("id"));
+// });
+// /************************** FIJAR EL VALOR DE IMPUESTO - ACTUALIZAR 3 **************************/
+// $(document).on("click", "#c-listitems-taxationThreeUpdate .cont-modalbootstrapupdate__form--controlSelect--m--item", function(){
+//   $("#msgErrNounTaxationThreeUpdate").text("");
+//   $("#c-listitems-taxationThreeUpdate").removeClass("show");
+//   $("#btn-FakeListTaxationThreeUpdate").removeClass("showList");
+//   $("#selectedItem-fakeSelTaxThreeUpdate").text($(this).text());
+//   $("#SelectedItem-inputfakeselTaxThreeUpdate").attr("taxthree", $(this).attr("taxationthree"));
+//   $("#SelectedItem-inputfakeselTaxThreeUpdate").attr("idtaxationthree", $(this).attr("id"));
+// });
+/************************** VALIDAR SI EL NOMBRE DEL PRODUCTO ESTÁ VACÍO - ACTUALIZAR **************************/
+$(document).on("keyup", "#name-update", function(){
+  ($(this).val() != 0 || $(this).val() != "") ? $("#msgErrNounNameProductUpdate").text("") : $("#msgErrNounNameProductUpdate").text("Debes ingresar un nombre");
 });
 /************************** ACTUALIZAR PRODUCTO POR ID **************************/
 $(document).on('submit', '#form-update-product', function(e){
   e.preventDefault();
 
+  ($('#name-update').val() != 0 || $('#name-update').val() != "") ? $("#msgErrNounNameProductUpdate").text("") : $("#msgErrNounNameProductUpdate").text("Debes ingresar un nombre");
+
   if($('#idupdate-product').val() != 0 || $('#idupdate-product').val() != ""){
-    if($("#noun-required-regupdate").is(":checked")){
-      
-      var formdata = new FormData();
-      formdata.append("name", $('#name-update').val());
-      formdata.append("regulated", "NO");
-      formdata.append("id_regulator", 0);
-      formdata.append("id_regulatortwo", 0);
-      formdata.append("amount_additional", $("#amountadditionalProduct-update").val());
-      formdata.append("id_taxation", ($("#SelectedItem-inputfakeselTaxOneUpdate").attr("idtaxationone") || $("#SelectedItem-inputfakeselTaxOneUpdate").attr("idtaxationone") != undefined) ? $("#SelectedItem-inputfakeselTaxOneUpdate").attr("idtaxationone") : 0);
-      formdata.append("id_taxation_two", ($("#SelectedItem-inputfakeselTaxTwoUpdate").attr("idtaxationtwo") || $("#SelectedItem-inputfakeselTaxTwoUpdate").attr("idtaxationtwo") != undefined) ? $("#SelectedItem-inputfakeselTaxTwoUpdate").attr("idtaxationtwo") : 0);
-      formdata.append("id_taxation_three", ($("#SelectedItem-inputfakeselTaxThreeUpdate").attr("idtaxationthree") || $("#SelectedItem-inputfakeselTaxThreeUpdate").attr("idtaxationthree") != undefined) ? $("#SelectedItem-inputfakeselTaxThreeUpdate").attr("idtaxationthree") : 0);
-      formdata.append("id", $('#idupdate-product').val());
+    
+    var formdata = new FormData();
+    formdata.append("name", $('#name-update').val());
+    formdata.append("regulated", $('#required_regsoptupdate').val());
+    formdata.append("id_regulator", ($("#SelectedItem-inputfakeselRegOneUpdate").attr("idtregularone") || $("#SelectedItem-inputfakeselRegOneUpdate").attr("idtregularone") != null) ? $("#SelectedItem-inputfakeselRegOneUpdate").attr("idtregularone") : 0);
+    formdata.append("id_regulatortwo", ($("#SelectedItem-inputfakeselRegTwoUpdate").attr("idtregulartwo") || $("#SelectedItem-inputfakeselRegTwoUpdate").attr("idtregulartwo") != null) ? $("#SelectedItem-inputfakeselRegTwoUpdate").attr("idtregulartwo") : 0);
+    formdata.append("amount_additional", ($("#amountadditionalProduct-update").val() != undefined && $("#amountadditionalProduct-update").val() != 0 && $("#amountadditionalProduct-update").val() != "") ? $("#amountadditionalProduct-update").val() : 0);
+    formdata.append("ad_valoren", ($("#taxoneadditional-update").val() != undefined && $("#taxoneadditional-update").val() != 0 && $("#taxoneadditional-update").val() != "") ? $("#taxoneadditional-update").val() : 0);
+    formdata.append("impuesto_selectivo", ($("#taxtwoadditional-update").val() != undefined && $("#taxtwoadditional-update").val() != 0 && $("#taxtwoadditional-update").val() != "") ? $("#taxtwoadditional-update").val() : 0);
+    formdata.append("antidumping", ($("#taxthreeadditional-update").val() != undefined && $("#taxthreeadditional-update").val() != 0 && $("#taxthreeadditional-update").val() != "") ? $("#taxthreeadditional-update").val() : 0);
+    formdata.append("id", $('#idupdate-product').val());
 
-      $.ajax({
-        url: "../admin/controllers/c_update-product.php",
-        method: "POST",
-        data: formdata,
-        contentType: false,
-        cache: false,
-        processData: false
-      }).done((res) => {
-        //console.log(res);
-        listProducts();
-        $('#updateModal').modal("hide");
-      });
-
-    }else{
-
-      var formdata = new FormData();
-      formdata.append("name", $('#name-update').val());
-      formdata.append("regulated", "SI");
-      formdata.append("id_regulator", ($("#SelectedItem-inputfakeselRegOneUpdate").attr("idtregularone") || $("#SelectedItem-inputfakeselRegOneUpdate").attr("idtregularone") != null) ? $("#SelectedItem-inputfakeselRegOneUpdate").attr("idtregularone") : 0);
-      formdata.append("id_regulatortwo", ($("#SelectedItem-inputfakeselRegTwoUpdate").attr("idtregulartwo") || $("#SelectedItem-inputfakeselRegTwoUpdate").attr("idtregulartwo") != null) ? $("#SelectedItem-inputfakeselRegTwoUpdate").attr("idtregulartwo") : 0);
-      formdata.append("amount_additional", $("#amountadditionalProduct-update").val());
-      formdata.append("id_taxation", ($("#SelectedItem-inputfakeselTaxOneUpdate").attr("idtaxationone") || $("#SelectedItem-inputfakeselTaxOneUpdate").attr("idtaxationone") != undefined) ? $("#SelectedItem-inputfakeselTaxOneUpdate").attr("idtaxationone") : 0);
-      formdata.append("id_taxation_two", ($("#SelectedItem-inputfakeselTaxTwoUpdate").attr("idtaxationtwo") || $("#SelectedItem-inputfakeselTaxTwoUpdate").attr("idtaxationtwo") != undefined) ? $("#SelectedItem-inputfakeselTaxTwoUpdate").attr("idtaxationtwo") : 0);
-      formdata.append("id_taxation_three", ($("#SelectedItem-inputfakeselTaxThreeUpdate").attr("idtaxationthree") || $("#SelectedItem-inputfakeselTaxThreeUpdate").attr("idtaxationthree") != undefined) ? $("#SelectedItem-inputfakeselTaxThreeUpdate").attr("idtaxationthree") : 0);
-      formdata.append("id", $('#idupdate-product').val());
-
-      $.ajax({
-        url: "../admin/controllers/c_update-product.php",
-        method: "POST",
-        data: formdata,
-        contentType: false,
-        cache: false,
-        processData: false
-      }).done((res) => {
-        //console.log(res);
-        listProducts();
-        $('#updateModal').modal("hide");
-      });
-    }
+    $.ajax({
+      url: "../admin/controllers/c_update-product.php",
+      method: "POST",
+      data: formdata,
+      contentType: false,
+      cache: false,
+      processData: false
+    }).done((res) => {
+      //console.log(res);
+      listProducts();
+      $('#updateModal').modal("hide");
+    });
   }else{
     console.log('Falta rellenar los campos');
   }

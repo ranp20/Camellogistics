@@ -37,7 +37,9 @@
 									<th>Regula</th>
 									<th>Reguladores</th>
 									<th>M. Adicional</th>
-									<th>I. Adicionales</th>
+									<th>Ad-valoren</th>
+									<th>Impuesto Selecctivo</th>
+									<th>ANTIDUMPING</th>
 									<th></th>
 									<th></th>
 								</tr>
@@ -142,12 +144,20 @@
 					      <div class="modal-body cont-total-update-items">
 					      	<div class="cont-modalbootstrapupdate">
 						        <form id="form-update-product" method="POST" class="cont-modalbootstrapupdate__form" autocomplete="false">
-						        	<input type="hidden" id="idupdate-product">
+						        	<span>
+						        		<span>
+						        			<span>
+									        	<input type="hidden" id="idupdate-product">
+									        	<input type="hidden" id="required_regsoptupdate">
+						        			</span>
+						        		</span>
+						        	</span>
 						        	<!--<input type="hidden" id="idupdate-regulatorone" name="idupdate-regulatorone">
 						        	<input type="hidden" id="idupdate-regulatortwo" name="idupdate-regulatortwo">-->
 						        	<div class="cont-modalbootstrapupdate__form--control">
 						        		<label for="name-update" class="cont-modalbootstrapupdate__form--control__label complete">Nombre del producto</label>
 						        		<input id="name-update" class="cont-modalbootstrapupdate__form--control__input" name="name-update" type="text" maxlength="300" placeholder="Ingrese el nombre del producto">
+						        		<span id="msgErrNounNameProductUpdate"></span>
 						        	</div>
 						        	<div class="cont-modalbootstrapupdate__form--controlRadios">
 						        		<p class="cont-modalbootstrapupdate__form--controlRadios--title">Reguladores</p>
