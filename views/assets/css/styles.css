@@ -95,6 +95,14 @@ img {
   margin-right: auto;
 }
 
+.not-padd {
+  padding: 0.5rem !important;
+}
+
+.p-05 {
+  padding: 0.5rem !important;
+}
+
 /************************** API WHATSAPP **************************/
 #chat_wstp-icon {
   display: flex;

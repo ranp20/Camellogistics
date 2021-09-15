@@ -3037,7 +3037,6 @@ function listProductsUser(searchVal){
     data: {searchList : searchVal},
   }).done( function (res) {
     var response = JSON.parse(res);
-    console.log(response);
     var template = "";
     if(response.length == 0){
       template = `
@@ -3195,7 +3194,7 @@ $(document).on("keyup keydown", "#ipt-valNameTypeProdNInterface", function(e){
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-requirespickup]").removeClass("show");
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-requirespickup]").html("");
   }else{
-    console.log('Con contenido');
+    //console.log('Con contenido');
   }
 });
 /************************** FIJAR EL VALOR DE ITEM EN EL INPUT - TIPOS DE PRODUCTOS **************************/
