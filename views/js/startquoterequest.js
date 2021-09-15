@@ -3037,6 +3037,7 @@ function listProductsUser(searchVal){
     data: {searchList : searchVal},
   }).done( function (res) {
     var response = JSON.parse(res);
+    console.log(response);
     var template = "";
     if(response.length == 0){
       template = `
@@ -3066,32 +3067,13 @@ function listProductsUser(searchVal){
       }else{
         nounOneAndTwoRegs = e.reguladorOne + " / " + e.reguladorTwo;
       }
-
-      if((e.valtaxOne == null || e.valtaxOne == 'null' || e.valtaxOne == 0) && 
-        (e.valtaxTwo == null || e.valtaxTwo == 'null' || e.valtaxTwo == 0) && 
-        (e.valtaxThree == null || e.valtaxThree == 'null' || e.valtaxThree == 0)){
-        template += `
+      
+      template += `
         <li class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl--cListChange--m--item" id="${e.id_prod}" 
           data-amountadditional="${e.montoadd}"
-          data-taxone="0"
-          data-taxtwo="0"
-          data-taxthree="0">
-          <p>${e.name_prod}</p>
-          <small>
-            <span>Regulador: </span>
-            <span>${nounOneAndTwoRegs}</span>
-          </small>
-        </li>
-      `;        
-      }else if((e.valtaxOne != null || e.valtaxOne != 'null' || e.valtaxOne != 0) &&
-        (e.valtaxTwo == null || e.valtaxTwo == 'null' || e.valtaxTwo == 0) &&
-        (e.valtaxThree == null || e.valtaxThree == 'null' || e.valtaxThree == 0)){
-        template += `
-        <li class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl--cListChange--m--item" id="${e.id_prod}" 
-          data-amountadditional="${e.montoadd}"
-          data-taxone="${e.valtaxOne}"
-          data-taxtwo="0"
-          data-taxthree="0">
+          data-taxone="${e.ad_valoren}"
+          data-taxtwo="${e.impuesto_selectivo}"
+          data-taxthree="${e.antidumping}">
           <p>${e.name_prod}</p>
           <small>
             <span>Regulador: </span>
@@ -3099,70 +3081,6 @@ function listProductsUser(searchVal){
           </small>
         </li>
       `;
-      }else if((e.valtaxOne != null || e.valtaxOne != 'null' || e.valtaxOne != 0) &&
-        (e.valtaxTwo != null || e.valtaxTwo != 'null' || e.valtaxTwo != 0) &&
-        (e.valtaxThree == null || e.valtaxThree == 'null' || e.valtaxThree == 0)){
-        template += `
-        <li class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl--cListChange--m--item" id="${e.id_prod}" 
-          data-amountadditional="${e.montoadd}"
-          data-taxone="${e.valtaxOne}"
-          data-taxtwo="${e.valtaxTwo}"
-          data-taxthree="0">
-          <p>${e.name_prod}</p>
-          <small>
-            <span>Regulador: </span>
-            <span>${nounOneAndTwoRegs}</span>
-          </small>
-        </li>
-      `;
-      }else if((e.valtaxOne == null || e.valtaxOne == 'null' || e.valtaxOne == 0) &&
-        (e.valtaxTwo != null || e.valtaxTwo != 'null' || e.valtaxTwo != 0) &&
-        (e.valtaxThree != null || e.valtaxThree != 'null' || e.valtaxThree != 0)){
-        template += `
-        <li class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl--cListChange--m--item" id="${e.id_prod}" 
-          data-amountadditional="${e.montoadd}"
-          data-taxone="0"
-          data-taxtwo="${e.valtaxTwo}"
-          data-taxthree="${e.valtaxThree}">
-          <p>${e.name_prod}</p>
-          <small>
-            <span>Regulador: </span>
-            <span>${nounOneAndTwoRegs}</span>
-          </small>
-        </li>
-      `;
-      }else if((e.valtaxOne == null || e.valtaxOne == 'null' || e.valtaxOne == 0) &&
-        (e.valtaxTwo == null || e.valtaxTwo == 'null' || e.valtaxTwo == 0) &&
-        (e.valtaxThree != null || e.valtaxThree != 'null' || e.valtaxThree != 0)){
-        template += `
-        <li class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl--cListChange--m--item" id="${e.id_prod}" 
-          data-amountadditional="${e.montoadd}"
-          data-taxone="0"
-          data-taxtwo="0"
-          data-taxthree="${e.valtaxThree}">
-          <p>${e.name_prod}</p>
-          <small>
-            <span>Regulador: </span>
-            <span>${nounOneAndTwoRegs}</span>
-          </small>
-        </li>
-      `;
-      }else{
-        template += `
-          <li class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl--cListChange--m--item" id="${e.id_prod}" 
-            data-amountadditional="${e.montoadd}"
-            data-taxone="${e.valtaxOne}"
-            data-taxtwo="${e.valtaxTwo}"
-            data-taxthree="${e.valtaxThree}">
-            <p>${e.name_prod}</p>
-            <small>
-              <span>Regulador: </span>
-              <span>${nounOneAndTwoRegs}</span>
-            </small>
-          </li>
-        `;
-      }
-
       });
       $("#m-listAllNamTypeProds").html(template);
     }
