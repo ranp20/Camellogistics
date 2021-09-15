@@ -2184,6 +2184,8 @@ $(document).on("keyup keypress blur change", "#val-iptWeightNInterface", functio
   });
 });
 $(document).on("keyup keypress blur change", "#val-iptVolumeNInterface", function(e){
+  ($(this).val() == "") ? $(this).val() : $(this).val(twodecimals(e.target.value));
+
   if($(this).val().length >= parseInt($(this).attr('maxlength'))){
     return false;
   }
