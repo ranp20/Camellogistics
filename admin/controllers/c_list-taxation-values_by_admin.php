@@ -4,7 +4,7 @@ class Taxation_values extends Connection{
 	function list(){
 
 		try{
-			$sql = "CALL sp_list_taxation_values_by_product()";
+			$sql = "CALL sp_list_taxation_values_by_admin()";
 			$stm = $this->con->prepare($sql);
 			$stm->execute();
 			

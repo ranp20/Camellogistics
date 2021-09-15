@@ -14,7 +14,7 @@ $(document).on("input","input[type=number]",function(e){
 /************************** LISTAR LOS DATOS **************************/
 function listTaxationValues(){ 
   $.ajax({
-    url: "../admin/controllers/c_list-taxation-values.php",
+    url: "../admin/controllers/c_list-taxation-values_by_admin.php",
     method: "POST",
     datatype: "JSON",
     contentType: 'application/x-www-form-urlencoded;charset=UTF-8',
