@@ -1,6 +1,4 @@
-/*============================================================================================================
-=            CALCULAR Y MOSTRAR EL RESUMEN DE COTIZACIÓN - INTERFAZ DE PRESENTACIÓN DE COTIZACIÓN            =
-============================================================================================================*/
+/************************** CALCULAR Y MOSTRAR EL RESUMEN DE COTIZACIÓN - INTERFAZ DE PRESENTACIÓN DE COTIZACIÓN **************************/
 /************************** DEJAR EN 2 DECIMALES POR DEFECTO **************************/
 function myRound(num, dec){
   var exp = Math.pow(10, dec || 2); // 2 decimales por defecto
@@ -12,15 +10,11 @@ function twodecimals(n) {
   let regex = /(\d*.\d{0,2})/;
   return t.match(regex)[0];
 }
-$(document).ready(() => {
+$(document).ready(function(){
 	/************************** IR HACIA ABAJO **************************/
 	$("#btn-scrollingtTtB").on("click", function(){$("body, html").animate({scrollTop: '500'}, 350);});
 	/************************** LISTAR LAS FECHAS DE LA VALIDEZ DE LA TARIFA **************************/
 	$("#v_validratedate").text(localStorage.getItem("key_validaterate"));
-
-	/*=================================================================================================
-	=            													1. VALORES DE COTIZACIÓN            																=
-	==================================================================================================*/
 	/************************** LISTAR LOS VALORES DEL FLETE REAL **************************/
 	var partInteger = 0;
 	var partDecimal = 0;
