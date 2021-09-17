@@ -1852,15 +1852,17 @@ $(document).on("change input keyup", "#ipt-valPriceProdNInterface-notMoreOpts", 
           var cutefobprice = valfobproduct.split(" USD");
           var withoutpointsfob = cutefobprice[0].replace(/\./g, '');
           var finalvaluefob = twodecimals(withoutpointsfob);
+          var c_InsuranceMenor = parseFloat(resutlinsurance[0].data_value);
+          var c_InsuranceMayor = parseFloat(resutlinsurance[1].data_value) / 100;
 
           var valorfinalseguro = 0;
           if(finalvaluefob > 25000){
             /************************** ASIGNAR AL VALOR DE LA VARIABLE LOCAL **************************/
-            valorfinalseguro = (finalvaluefob * resutlinsurance[1].data_value) / 100; //FOB ES MAYOR A 25000
+            valorfinalseguro = finalvaluefob * c_InsuranceMayor; //FOB ES MAYOR A 25000
             localStorage.setItem("key_v-valueinsurance", roundToTwo(valorfinalseguro));
           }else{
             /************************** ASIGNAR AL VALOR DE LA VARIABLE LOCAL **************************/
-            valorfinalseguro = resutlinsurance[0].data_value; //FOB ES MENOR A 25000
+            valorfinalseguro = c_InsuranceMenor; //FOB ES MENOR A 25000
             localStorage.setItem("key_v-valueinsurance", roundToTwo(valorfinalseguro));
           }          
 
@@ -1891,15 +1893,17 @@ $(document).on("change input keyup", "#ipt-valPriceProdNInterface-notMoreOpts", 
           var cutefobprice = valfobproduct.split(" USD");
           var withoutpointsfob = cutefobprice[0].replace(/\./g, '');
           var finalvaluefob = twodecimals(withoutpointsfob);
+          var c_InsuranceMenor = parseFloat(resutlinsurance[0].data_value);
+          var c_InsuranceMayor = parseFloat(resutlinsurance[1].data_value) / 100;
 
           var valorfinalseguro = 0;
           if(finalvaluefob > 25000){
             /************************** ASIGNAR AL VALOR DE LA VARIABLE LOCAL **************************/
-            valorfinalseguro = (finalvaluefob * resutlinsurance[1].data_value) / 100; //FOB ES MAYOR A 25000
+            valorfinalseguro = finalvaluefob * c_InsuranceMayor; //FOB ES MAYOR A 25000
             localStorage.setItem("key_v-valueinsurance", roundToTwo(valorfinalseguro));
           }else{
             /************************** ASIGNAR AL VALOR DE LA VARIABLE LOCAL **************************/
-            valorfinalseguro = resutlinsurance[0].data_value; //FOB ES MENOR A 25000
+            valorfinalseguro = c_InsuranceMenor; //FOB ES MENOR A 25000
             localStorage.setItem("key_v-valueinsurance", roundToTwo(valorfinalseguro));
           }          
 
@@ -1950,15 +1954,17 @@ $(document).on("keyup", "#ipt-valPriceProdNInterface-notMoreOpts", function(){
           var cutefobprice = valfobproduct.split(" USD");
           var withoutpointsfob = cutefobprice[0].replace(/\./g, '');
           var finalvaluefob = twodecimals(withoutpointsfob);
+          var c_InsuranceMenor = parseFloat(resutlinsurance[0].data_value);
+          var c_InsuranceMayor = parseFloat(resutlinsurance[1].data_value) / 100;
 
           var valorfinalseguro = 0;
           if(finalvaluefob > 25000){
             /************************** ASIGNAR AL VALOR DE LA VARIABLE LOCAL **************************/
-            valorfinalseguro = (finalvaluefob * resutlinsurance[1].data_value) / 100; //FOB ES MAYOR A 25000
+            valorfinalseguro = finalvaluefob * c_InsuranceMayor; //FOB ES MAYOR A 25000
             localStorage.setItem("key_v-valueinsurance", roundToTwo(valorfinalseguro));
           }else{
             /************************** ASIGNAR AL VALOR DE LA VARIABLE LOCAL **************************/
-            valorfinalseguro = resutlinsurance[0].data_value; //FOB ES MENOR A 25000
+            valorfinalseguro = c_InsuranceMenor; //FOB ES MENOR A 25000
             localStorage.setItem("key_v-valueinsurance", roundToTwo(valorfinalseguro));
           }          
 
@@ -1989,15 +1995,17 @@ $(document).on("keyup", "#ipt-valPriceProdNInterface-notMoreOpts", function(){
           var cutefobprice = valfobproduct.split(" USD");
           var withoutpointsfob = cutefobprice[0].replace(/\./g, '');
           var finalvaluefob = twodecimals(withoutpointsfob);
+          var c_InsuranceMenor = parseFloat(resutlinsurance[0].data_value);
+          var c_InsuranceMayor = parseFloat(resutlinsurance[1].data_value) / 100;
 
           var valorfinalseguro = 0;
           if(finalvaluefob > 25000){
             /************************** ASIGNAR AL VALOR DE LA VARIABLE LOCAL **************************/
-            valorfinalseguro = (finalvaluefob * resutlinsurance[1].data_value) / 100; //FOB ES MAYOR A 25000
+            valorfinalseguro = finalvaluefob * c_InsuranceMayor; //FOB ES MAYOR A 25000
             localStorage.setItem("key_v-valueinsurance", roundToTwo(valorfinalseguro));
           }else{
             /************************** ASIGNAR AL VALOR DE LA VARIABLE LOCAL **************************/
-            valorfinalseguro = resutlinsurance[0].data_value; //FOB ES MENOR A 25000
+            valorfinalseguro = c_InsuranceMenor; //FOB ES MENOR A 25000
             localStorage.setItem("key_v-valueinsurance", roundToTwo(valorfinalseguro));
           }          
 
@@ -2097,15 +2105,17 @@ $(document).on("keyup keypress blur change", "#ipt-valQuantityAmAddProdNInterfac
           var cutefobprice = valfobproduct.split(" USD");
           var withoutpointsfob = cutefobprice[0].replace(/\./g, '');
           var finalvaluefob = twodecimals(withoutpointsfob);
+          var c_InsuranceMenor = parseFloat(resutlinsurance[0].data_value);
+          var c_InsuranceMayor = parseFloat(resutlinsurance[1].data_value) / 100;
 
           var valorfinalseguro = 0;
           if(finalvaluefob > 25000){
             /************************** ASIGNAR AL VALOR DE LA VARIABLE LOCAL **************************/
-            valorfinalseguro = (finalvaluefob * resutlinsurance[1].data_value) / 100; //FOB ES MAYOR A 25000
+            valorfinalseguro = finalvaluefob * c_InsuranceMayor; //FOB ES MAYOR A 25000
             localStorage.setItem("key_v-valueinsurance", roundToTwo(valorfinalseguro));
           }else{
             /************************** ASIGNAR AL VALOR DE LA VARIABLE LOCAL **************************/
-            valorfinalseguro = resutlinsurance[0].data_value; //FOB ES MENOR A 25000
+            valorfinalseguro = c_InsuranceMenor; //FOB ES MENOR A 25000
             localStorage.setItem("key_v-valueinsurance", roundToTwo(valorfinalseguro));
           }          
 
@@ -2139,15 +2149,17 @@ $(document).on("keyup keypress blur change", "#ipt-valQuantityAmAddProdNInterfac
           var cutefobprice = valfobproduct.split(" USD");
           var withoutpointsfob = cutefobprice[0].replace(/\./g, '');
           var finalvaluefob = twodecimals(withoutpointsfob);
+          var c_InsuranceMenor = parseFloat(resutlinsurance[0].data_value);
+          var c_InsuranceMayor = parseFloat(resutlinsurance[1].data_value) / 100;
 
           var valorfinalseguro = 0;
           if(finalvaluefob > 25000){
             /************************** ASIGNAR AL VALOR DE LA VARIABLE LOCAL **************************/
-            valorfinalseguro = (finalvaluefob * resutlinsurance[1].data_value) / 100; //FOB ES MAYOR A 25000
+            valorfinalseguro = finalvaluefob * c_InsuranceMayor; //FOB ES MAYOR A 25000
             localStorage.setItem("key_v-valueinsurance", roundToTwo(valorfinalseguro));
           }else{
             /************************** ASIGNAR AL VALOR DE LA VARIABLE LOCAL **************************/
-            valorfinalseguro = resutlinsurance[0].data_value; //FOB ES MENOR A 25000
+            valorfinalseguro = c_InsuranceMenor; //FOB ES MENOR A 25000
             localStorage.setItem("key_v-valueinsurance", roundToTwo(valorfinalseguro));
           }          
 
@@ -3383,6 +3395,8 @@ $(document).on("click", "#list-insuremerchandise a", function(){
     var cutefobprice = valfobproduct.split(" USD");
     var withoutpointsfob = cutefobprice[0].replace(/\./g, '');
     var finalvaluefob = twodecimals(withoutpointsfob);
+    var c_InsuranceMenor = parseFloat(resutlinsurance[0].data_value);
+    var c_InsuranceMayor = parseFloat(resutlinsurance[1].data_value) / 100;
 
     if(tinsuremerchandise == 0){
       /************************** ASIGNAR VALORES DE LOS INPUTS HIDDEN - QUIERES ASEGURAR LA MERCANCÍA **************************/
@@ -3390,11 +3404,11 @@ $(document).on("click", "#list-insuremerchandise a", function(){
       var valorfinalseguro = 0;
       if(finalvaluefob > 25000){
         /************************** ASIGNAR AL VALOR DE LA VARIABLE LOCAL **************************/
-        valorfinalseguro = (finalvaluefob * resutlinsurance[1].data_value) / 100; //FOB ES MAYOR A 25000
+        valorfinalseguro = finalvaluefob * c_InsuranceMayor; //FOB ES MAYOR A 25000
         localStorage.setItem("key_v-valueinsurance", roundToTwo(valorfinalseguro));
       }else{
         /************************** ASIGNAR AL VALOR DE LA VARIABLE LOCAL **************************/
-        valorfinalseguro = resutlinsurance[0].data_value; //FOB ES MENOR A 25000
+        valorfinalseguro = c_InsuranceMenor; //FOB ES MENOR A 25000
         localStorage.setItem("key_v-valueinsurance", roundToTwo(valorfinalseguro));
       }
 
@@ -3437,11 +3451,11 @@ $(document).on("click", "#list-insuremerchandise a", function(){
       var valorfinalseguro = 0;
       if(finalvaluefob > 25000){
         /************************** ASIGNAR AL VALOR DE LA VARIABLE LOCAL **************************/
-        valorfinalseguro = (finalvaluefob * resutlinsurance[1].data_value) / 100; //FOB ES MAYOR A 25000
+        valorfinalseguro = finalvaluefob * c_InsuranceMayor; //FOB ES MAYOR A 25000
         localStorage.setItem("key_v-valueinsurance", roundToTwo(valorfinalseguro));
       }else{
         /************************** ASIGNAR AL VALOR DE LA VARIABLE LOCAL **************************/
-        valorfinalseguro = resutlinsurance[0].data_value; //FOB ES MENOR A 25000
+        valorfinalseguro = c_InsuranceMenor; //FOB ES MENOR A 25000
         localStorage.setItem("key_v-valueinsurance", roundToTwo(valorfinalseguro));
       }
       sectionsSteps.moveTo('step-requirespickup', 1);

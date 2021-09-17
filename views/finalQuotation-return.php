@@ -332,7 +332,7 @@ echo $template_incserv.$template_notincserv;
                         <li class='c-FinalQuotation--contStep--cQuotation--cBottom--cAduanaImpst--cTop--m--item'>
                           <div class='c-FinalQuotation--contStep--cQuotation--cBottom--cAduanaImpst--cTop--m--item--cInfo'>
                             <span>APROX.</span>
-                            <p>1.739,<sup>00</sup>USD</p>
+                            <p id='taxval_quotefinal'></p>
                           </div>
                         </li>
                       </ul>
@@ -349,7 +349,7 @@ echo $template_incserv.$template_notincserv;
                     <h3>TOTALES (incluye IGV)</h3>
                   </li>
                   <li class="c-FinalQuotation--contStep--cQuotation--cBottom--cAduanaImpst--cBottom--m--item">
-                    <p>3.580,<sup>00</sup>USD</p>
+                    <p id="totalval_quoteFinal"></p>
                   </li>
                 </ul>
               </div>

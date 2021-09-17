@@ -11,33 +11,37 @@ function twodecimals(n) {
   return t.match(regex)[0];
 }
 $(document).ready(function(){
-	/************************** IR HACIA ABAJO **************************/
-	$("#btn-scrollingtTtB").on("click", function(){$("body, html").animate({scrollTop: '500'}, 350);});
-	/************************** LISTAR LAS FECHAS DE LA VALIDEZ DE LA TARIFA **************************/
-	$("#v_validratedate").text(localStorage.getItem("key_validaterate"));
-	/************************** LISTAR LOS VALORES DEL FLETE REAL **************************/
+	$("#btn-scrollingtTtB").on("click", function(){$("body, html").animate({scrollTop: '500'}, 350);}); //BOTÓN DE IR HACIA ABAJO
+	$("#v_validratedate").text(localStorage.getItem("key_validaterate")); //LISTAR LA FECHA DE VALIDEZ DE LA TARIFA SELECCIONADA
+	/************************** LISTAR LOS VALORES PARA LOS CÁLCULOS **************************/
 	var partInteger = 0;
 	var partDecimal = 0;
 	var partFinalDecimal = 0;
-	var totflete = parseFloat(localStorage.getItem("key_v-totalflette"));
-	var totalamountadditional = parseFloat(localStorage.getItem("key_v-totalammountadditional"));
-	var totaltransport = parseFloat(localStorage.getItem("key_v-valuetransport"));
-	var totalinsurance = parseFloat(localStorage.getItem("key_v-valueinsurance"));
-	var totalimportprev = parseFloat(localStorage.getItem("key_v-valuestaxationimport"));
-	var totalvaluesquotation =  parseFloat(localStorage.getItem("key_v-valuesquotation"));
-	var totalvaluesquotationbyIGV =  parseFloat(localStorage.getItem("key_v-valuesquotationbyigv"));
+	var receivedAd_valoren = parseFloat(localStorage.getItem("key_v-valuestaxOnebyigv")); //AD-VALOREN
+	var receivedI_selectivo = parseFloat(localStorage.getItem("key_v-valuestaxTwobyigv")); //IMPUESTO SELECTIVO
+	var receivedfob = localStorage.getItem("key_v-valueproduct"); //VALOR FOB DESDE LOCALSTORAGE
+	var cutefobofpriceusd = receivedfob.split(" USD");
+  var cutewithoutofpricefob = cutefobofpriceusd[0].replace(/\./g, '');
+	var totflete = parseFloat(localStorage.getItem("key_v-totalflette")); //TOTAL - SOLO FLETE
+	var totalamountadditional = parseFloat(localStorage.getItem("key_v-totalammountadditional")); //MONTO ADICIONAL
+	var totaltransport = parseFloat(localStorage.getItem("key_v-valuetransport")); //TOTAL TRANSPORTE
+	var totalinsurance = parseFloat(localStorage.getItem("key_v-valueinsurance")); //TOTAL SEGURO
+	var totalimportprev = parseFloat(localStorage.getItem("key_v-valuestaxationimport")); //TOTAL IMPORTACIÓN PREVIA
+	var totalvaluesquotation =  parseFloat(localStorage.getItem("key_v-valuesquotation")); //TOTAL SUMA DE VALORES DE COTIZACIÓN
+	var totalvaluesquotationbyIGV =  parseFloat(localStorage.getItem("key_v-valuesquotationbyigv")); //TOTAL SUMA DE VALORES DE COTIZACIÓN IGV
+  var totalfinalvaluefob = parseFloat(twodecimals(cutewithoutofpricefob)); //TOTAL DE VALOR FOB
 
+	/************************** TOTALES PARA LA COTIZACIÓN **************************/
 	var sumTotalFirstFlete = totflete + totalamountadditional + totalimportprev + totaltransport + totalinsurance + totalvaluesquotation; //FLETE FINAL
-	var sumTotalbyIGV = (totaltransport + totalamountadditional + totalvaluesquotationbyIGV) * (18 / 100);
-	//console.log(sumTotalFirstFlete);
-	//console.log(sumTotalbyIGV);
+	var sumTotalbyIGV = (totaltransport + totalamountadditional + totalvaluesquotationbyIGV) * (18 / 100); //IGV (DEBAJO DEL FLETE FINAL)
+	var sumTotalFinalFleteandIGV = sumTotalFirstFlete + sumTotalbyIGV;
+	var sumbyCIF = totalfinalvaluefob + totflete + totalinsurance; //CIF FINAL
+
 	var totalNotround = twodecimals(sumTotalFirstFlete);
 	var n = Math.abs(totalNotround);
 	partInteger = Math.trunc(n);
-	//partDecimal = totalNotround.toString().substr(-2);
 	partDecimal = totalNotround.toString().split('.');
-	//console.log(partInteger);
-	//console.log(partDecimal);
+
 	if(partDecimal[1].length < 1){
 		partFinalDecimal = partDecimal[1]+'00';
 	}else	if(partDecimal[1].length < 2){
@@ -45,13 +49,35 @@ $(document).ready(function(){
 	}else{
 		partFinalDecimal = partDecimal[1];
 	}
-	// 1. IMPRIMIR EL PRIMER VALOR - VALOR FINAL DEL FLETE...
+	
+	/************************** IMPRIMIR EL TOTAL DEL FLETE **************************/
 	$("#intdecval-quotefinal").html(`<span>${partInteger},<sup>${partFinalDecimal}</sup> USD</span>`);
-	// 2. IMRPIMIR EL SEGUNDO VALOR - VALOR CALCULADO CON IGV MENOS 2 ITEMS...
+	/************************** IMPRIMIR EL TOTAL ENTRE EL IGV **************************/
 	var totalNotRountByIGV = twodecimals(sumTotalbyIGV);
 	var separatebyIGV = totalNotRountByIGV.toString().split('.');
 	$("#igvval-quotefinal").html(`<span>+ IGV 18% </span><span>${separatebyIGV.join(',')} USD</span>`);
-	// 3. IMRPIMIR EL TERCER VALOR - VALOR TOTAL DE IMPUESTOS...
+	/************************** IMPRIMIR EL ÚLTIMO VALOR - SUMA DEL TOTAL DE FLETE Y EL TOTAL ENTRE EL IGV **************************/
+	var partInteger_FTotal = 0;
+	var partDecimal_FTotal = 0;
+	var partFinalDecimal_FTotal = 0;
+	var totalNotRoundFinal = twodecimals(sumTotalFinalFleteandIGV);
+	var n_ftotal = Math.abs(totalNotRoundFinal);
+	partInteger_FTotal = Math.trunc(n_ftotal);
+	partDecimal_FTotal = totalNotRoundFinal.toString().split('.');
+
+	if(partDecimal_FTotal[1].length < 1){
+		partFinalDecimal_FTotal = partDecimal_FTotal[1]+'00';
+	}else	if(partDecimal_FTotal[1].length < 2){
+		partFinalDecimal_FTotal = partDecimal_FTotal[1]+'0';
+	}else{
+		partFinalDecimal_FTotal = partDecimal_FTotal[1];
+	}
+	$("#totalval_quoteFinal").html(`<span>${partInteger_FTotal},<sup>${partFinalDecimal_FTotal}</sup> USD</span>`);
+
+	/************************** CÁLCULO DE IMPUESTOS **************************/
+	var partInteger_Tax = 0;
+	var partDecimal_Tax = 0;
+	var partFinalDecimal_Tax = 0;
 	/************************** LISTAR SERVICIOS PARA CALCULO CON IGV - FCL **************************/
   $.ajax({
     url: "controllers/list_taxation_values_byquotation.php",
@@ -60,13 +86,66 @@ $(document).ready(function(){
     contentType: 'application/x-www-form-urlencoded;charset=UTF-8',
   }).done((e) => {
     var restaxvalues = JSON.parse(e);
-    console.log(restaxvalues);
-	
-		var totalNotRoundTaxation = 0;
-		var partIntegerTaxation = 0;
-		var separateTaxation = 0;
-  });
+    var res_IGV = parseFloat(restaxvalues[0].data_value);
+    var res_IPM = parseFloat(restaxvalues[1].data_value);
 
+    /************************** VALORES - DE PORCENTAJES A DECIMALES **************************/
+    var convert_IGV = res_IGV / 100; //VALOR I.G.V.
+    var convert_IPM = res_IPM / 100; //VALOR I.P.M.
+    var convert_Percepcion = totalimportprev / 100; //VALOR PERCEPCIÓN
+    var convert_Ad_Valoren = receivedAd_valoren / 100; //VALOR AD-VALOREN
+    var convert_I_selectivo = receivedI_selectivo / 100; //VALOR IMPUESTO SELECTIVO
+    console.log(convert_IGV);
+    console.log(convert_IPM);
+    console.log(convert_Percepcion);
+    console.log(convert_Ad_Valoren);
+    console.log(convert_I_selectivo);
+
+    /************************** CALCULAR AD-VALOREN **************************/
+    var val_Ad_valoren = sumbyCIF * convert_Ad_Valoren;
+    var twodecimal_Ad_valoren = twodecimals(val_Ad_valoren);
+    var finalval_Ad_valoren = parseFloat(twodecimal_Ad_valoren);
+    /************************** CALCULAR IGV **************************/
+		var val_IGV = sumbyCIF * ( convert_IGV + finalval_Ad_valoren );
+		var twodecimal_IGV = twodecimals(val_IGV);
+		var finalval_IGV = parseFloat(twodecimal_IGV);
+		/************************** CALCULAR IPM **************************/
+		var val_IPM = sumbyCIF * ( convert_IPM + finalval_Ad_valoren);
+		var twodecimal_IPM = twodecimals(val_IPM);
+		var finalval_IPM = parseFloat(twodecimal_IPM);
+		/************************** CALCULAR PERCEPCIÓN **************************/
+		var val_Percepcion = ( sumbyCIF + convert_IPM + convert_IGV + finalval_Ad_valoren ) * convert_Percepcion;
+		var twodecimal_percepcion = twodecimals(val_Percepcion);
+		var finalval_percepcion = parseFloat(twodecimal_percepcion);
+		/************************** CALCULAR IMPUESTO SELECTIVO **************************/
+		var val_i_selectivo = sumbyCIF * convert_I_selectivo;
+		var twodecimal_i_selectivo = twodecimals(val_i_selectivo);
+		var finalval_i_selectivo = parseFloat(twodecimal_i_selectivo);
+
+		/************************** CALCULO FINAL DE IMPUESTOS **************************/
+		var val_FinalTax = finalval_IGV + finalval_IPM + finalval_percepcion + finalval_Ad_valoren + finalval_i_selectivo;
+		var twodecimals_FinalTax = twodecimals(val_FinalTax);
+		var finalval_FinalTax = parseFloat(twodecimals_FinalTax);
+		var n_tax = Math.abs(finalval_FinalTax);
+		partInteger_Tax = Math.trunc(n_tax);
+		partDecimal_Tax = finalval_FinalTax.toString().split('.');
+		if(partDecimal_Tax[1].length < 1){
+			partFinalDecimal_Tax = partDecimal_Tax[1]+'00';
+		}else	if(partDecimal_Tax[1].length < 2){
+			partFinalDecimal_Tax = partDecimal_Tax[1]+'0';
+		}else{
+			partFinalDecimal_Tax = partDecimal_Tax[1];
+		}
+
+		/************************** IMPRESIÓN DE LOS VALORES **************************/
+		if(document.querySelector(".c-FinalQuotation--contStep--cQuotation--cBottom--cAduanaImpst").contains(document.querySelector("#taxval_quotefinal"))){			
+			$("#taxval_quotefinal").html(`<span>${partInteger_Tax},<sup>${partFinalDecimal_Tax}</sup> USD</span>`);
+		}else{
+			//console.log("No existe el elemento");
+		}
+    /************************** ENVIAR UN AJAX PARA ALMACENAR LA COTIZACIÓN **************************/
+
+  });
 
 	/************************** CARGAR LOS VALORES E INCLUIRLOS EN EL TEXTO PARA EL BOTÓN DE WHATSAPP **************************/
 	var typeFleteService = $("#m-first-listresume").find("li:first-child").find("div").find("span:nth-child(2)").text(),
@@ -131,5 +210,4 @@ $(document).ready(function(){
 			console.log('Debes completar los campos requeridos');
 		}
 	});
-
 });
