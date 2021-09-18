@@ -2613,7 +2613,31 @@ $(document).on("click", "#btn-NextStepTochargedata", function(){
       var ratesorigin = JSON.parse(e);
 
       /************************** DEVOLVER EL RESULTADO MAYOR - VOLUMEN O PESO **************************/
-      var v_ValDividedTotalWeight = v_ValTotalWeight / 1000;
+      var v_convert = v_ValTotalWeight.replace(/\./g, '');
+      var v_floatweightconvert = parseFloat(v_convert); //VALOR REAL DEL PESO
+      var v_ValDividedTotalWeight = v_floatweightconvert / 1000;
+
+      /************************** DEVOLVER EL CÁLCULO DE LA DESCARGA **************************/
+      $.ajax({
+        url: "controllers/list_quotation_values_lcl_by_download.php",
+        method: "POST",
+        datatype: "JSON",
+        contentType: 'application/x-www-form-urlencoded;charset=UTF-8'
+      }).done((e) => {
+        var res = JSON.parse(e);
+        var valdownload_convert = parseFloat(res[0].data_value);
+        var val_totaldownload = 0;
+
+        if(v_ValDividedTotalWeight < 1){
+          val_totaldownload = valdownload_convert;
+          /************************** ASIGNAR A LA VARIABLE LOCAL **************************/
+          localStorage.setItem("key_v-valbytotaldownload", val_totaldownload);
+        }else{
+          val_totaldownload = valdownload_convert * v_ValDividedTotalWeight;
+          /************************** ASIGNAR A LA VARIABLE LOCAL **************************/
+          localStorage.setItem("key_v-valbytotaldownload", val_totaldownload);
+        }
+      });
 
       if($("#loadTypeTranport").val() == "general"){
         rate_5cbm = parseFloat(ratesorigin[0].total5cbm); //EN CASO DE NO SUPERAR LOS 5CBM
@@ -2646,6 +2670,8 @@ $(document).on("click", "#btn-NextStepTochargedata", function(){
 
             totwithoutvalues = roundToTwo(twodecimal_rate_5cbm * v_ValTotalVolume);
             localStorage.setItem("key_v-totalflette", totwithoutvalues);
+            console.log(v_ValTotalVolume);
+            console.log(v_ValDividedTotalWeight);
           }else{
 
             totwithoutvalues = roundToTwo(twodecimal_rate_5cbm * v_ValDividedTotalWeight);

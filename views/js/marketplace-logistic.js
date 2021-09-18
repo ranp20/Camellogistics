@@ -45,6 +45,7 @@ function changesTabsOperation(){
   var key_valvaluestaxOnebyigv = localStorage.setItem("key_v-valuestaxOnebyigv", 0); //VALOR DE AD-VALOREN
   var key_valvaluestaxTwobyigv = localStorage.setItem("key_v-valuestaxTwobyigv", 0); //VALOR DE IMPUESTO SELECCTIVO
   var key_valvaluestaxThreebyigv = localStorage.setItem("key_v-valuestaxThreebyigv", 0); //VALOR DE ANTIDUMPING
+  var key_valbytotaldownload = localStorage.setItem("key_v-valbytotaldownload", 0); //VALOR DE DESCARGA
 
   parentLinks = $("#c-cOptionsMarket");
 	links = parentLinks.find("a");

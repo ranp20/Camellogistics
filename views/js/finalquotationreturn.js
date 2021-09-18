@@ -19,8 +19,9 @@ $(document).ready(function(){
 	var partFinalDecimal = 0;
 	var receivedAd_valoren = parseFloat(localStorage.getItem("key_v-valuestaxOnebyigv")); //AD-VALOREN
 	var receivedI_selectivo = parseFloat(localStorage.getItem("key_v-valuestaxTwobyigv")); //IMPUESTO SELECTIVO
-	var received_antidumping = parseFloat(localStorage.getItem("key_v-valuestaxThreebyigv"));
+	var received_antidumping = parseFloat(localStorage.getItem("key_v-valuestaxThreebyigv")); //ANTIDUMPING
 	var receivedfob = localStorage.getItem("key_v-valueproduct"); //VALOR FOB DESDE LOCALSTORAGE
+	var receiveddownload = localStorage.getItem("key_v-valbytotaldownload"); //VALOR DE DESCARGA DESDE LOCALSTORAGE
 	var cutefobofpriceusd = receivedfob.split(" USD");
   var cutewithoutofpricefob = cutefobofpriceusd[0].replace(/\./g, '');
 	var totflete = parseFloat(localStorage.getItem("key_v-totalflette")); //TOTAL - SOLO FLETE
@@ -31,14 +32,15 @@ $(document).ready(function(){
 	var totalvaluesquotation =  parseFloat(localStorage.getItem("key_v-valuesquotation")); //TOTAL SUMA DE VALORES DE COTIZACIÓN
 	var totalvaluesquotationbyIGV =  parseFloat(localStorage.getItem("key_v-valuesquotationbyigv")); //TOTAL SUMA DE VALORES DE COTIZACIÓN IGV
   var totalfinalvaluefob = parseFloat(twodecimals(cutewithoutofpricefob)); //TOTAL DE VALOR FOB
+  var totalfinalvaluedownload = parseFloat(twodecimals(receiveddownload)); //TOTAL DE VALOR DE DESCARGA
 
   console.log('FOB: '+totalfinalvaluefob);
   console.log('FLETE: '+totflete);
   console.log('SEGURO: '+totalinsurance);
 	/************************** TOTALES PARA LA COTIZACIÓN **************************/
-	var sumTotalFirstFlete = totflete + totalamountadditional + totalimportprev + totaltransport + totalinsurance + totalvaluesquotation; //FLETE FINAL
+	var sumTotalFirstFlete = totflete + totalamountadditional + totalimportprev + totaltransport + totalinsurance + totalvaluesquotation + totalfinalvaluedownload; //FLETE FINAL
 	var sumTotalbyIGV = (totaltransport + totalamountadditional + totalvaluesquotationbyIGV) * (18 / 100); //IGV (DEBAJO DEL FLETE FINAL)
-	var sumTotalFinalFleteandIGV = sumTotalFirstFlete + sumTotalbyIGV;
+	var sumTotalFinalFleteandIGV = sumTotalFirstFlete + sumTotalbyIGV; //VALOR TOTAL FINAL DE LA COTIZACIÓN
 	var sumbyCIF = totalfinalvaluefob + totflete + totalinsurance; //CIF FINAL
 
 	var totalNotround = twodecimals(sumTotalFirstFlete);
@@ -106,7 +108,7 @@ $(document).ready(function(){
     console.log('Percepción: '+convert_Percepcion);
     console.log('Ad-Valoren: '+convert_Ad_Valoren);
     console.log('Impuesto selectivo: '+convert_I_selectivo);
-    console.log('Impuesto selectivo: '+convert_antidumping);
+    console.log('ANTIDUMPING: '+convert_antidumping);
 
     /************************** CALCULAR AD-VALOREN **************************/
     var val_Ad_valoren = sumbyCIF * convert_Ad_Valoren;
