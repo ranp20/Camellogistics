@@ -149,7 +149,7 @@
                           if(!isset($_POST['val-prevImports'])){
                             echo "No especificado";
                           }else if($_POST['val-prevImports'] == "NO"){
-                            echo "Primer importación";
+                            echo "Primera importación";
                           }else{
                             echo "Importado previamente";
                           }

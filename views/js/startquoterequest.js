@@ -1966,7 +1966,7 @@ $(document).on("keyup", "#ipt-valPriceProdNInterface-notMoreOpts", function(){
             /************************** ASIGNAR AL VALOR DE LA VARIABLE LOCAL **************************/
             valorfinalseguro = c_InsuranceMenor; //FOB ES MENOR A 25000
             localStorage.setItem("key_v-valueinsurance", roundToTwo(valorfinalseguro));
-          }          
+          }
 
         });
 
@@ -2600,6 +2600,8 @@ $(document).on("click", "#btn-NextStepTochargedata", function(){
     v_ValTotalVolume = $("#val-iptVolumeNInterface").val();
 
     var totwithoutvalues = 0;
+    var twodecimal_total_imo = 0;
+    var twodecimal_total_refrigerado = 0;
     /************************** LISTAR LA TARIFA DEL PUERTO DE ORIGEN **************************/
     $.ajax({
       url: "controllers/list_rateByPortOriginLCL.php",
@@ -2971,7 +2973,6 @@ $(document).on("click", "#btn-NextStepTochargedata", function(){
     /************************** OCULTAR EL PASO DE - ELIGE UNA OPCIÓN **************************/
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-integservorfleteinte]").removeClass("show");
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-integservorfleteinte]").html("");
-
     /************************** MOSTRAR EL MENSAJE DE ALERTA PERSONALIZADO **************************/
     $("#idMessageSteps-prcss").html(`
       <div class="cntMessageSteps-prcss--cont">
@@ -3210,7 +3211,6 @@ $(document).on("click", "#chck-importpreview", function(){
       contentType: 'application/x-www-form-urlencoded;charset=UTF-8'
     }).done(function(e){
       var resultTaximport = JSON.parse(e);
-
       /************************** ASIGNAR A LA VARIABLE LOCAL **************************/
       localStorage.setItem("key_v-valuestaxationimport", resultTaximport[0].data_value);
     });
@@ -3229,7 +3229,6 @@ $(document).on("click", "#chck-importpreview", function(){
       contentType: 'application/x-www-form-urlencoded;charset=UTF-8'
     }).done(function(e){
       var resultTaximport = JSON.parse(e);
-
       /************************** ASIGNAR A LA VARIABLE LOCAL **************************/
       localStorage.setItem("key_v-valuestaxationimport", resultTaximport[0].data_value_two);
     });
@@ -3553,9 +3552,7 @@ $(document).on("click", "#list-requirespickup a", function(){
 });
 /************************** LISTAR LOS DISTRITOS POR ID DE PAÍS **************************/
 function listrateLCLTransport(searchVal){
-
   if($("#loadTypeTranport").val() == "general")  {
-
     /************************** LISTADO DE TARIFAS PARA TRANSPORTE INTERNO - TIPO GENERAL **************************/
     $.ajax({
       url: "controllers/list_zonasratelcltransport_general.php",

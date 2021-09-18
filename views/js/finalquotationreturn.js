@@ -19,6 +19,7 @@ $(document).ready(function(){
 	var partFinalDecimal = 0;
 	var receivedAd_valoren = parseFloat(localStorage.getItem("key_v-valuestaxOnebyigv")); //AD-VALOREN
 	var receivedI_selectivo = parseFloat(localStorage.getItem("key_v-valuestaxTwobyigv")); //IMPUESTO SELECTIVO
+	var received_antidumping = parseFloat(localStorage.getItem("key_v-valuestaxThreebyigv"));
 	var receivedfob = localStorage.getItem("key_v-valueproduct"); //VALOR FOB DESDE LOCALSTORAGE
 	var cutefobofpriceusd = receivedfob.split(" USD");
   var cutewithoutofpricefob = cutefobofpriceusd[0].replace(/\./g, '');
@@ -31,6 +32,9 @@ $(document).ready(function(){
 	var totalvaluesquotationbyIGV =  parseFloat(localStorage.getItem("key_v-valuesquotationbyigv")); //TOTAL SUMA DE VALORES DE COTIZACIÓN IGV
   var totalfinalvaluefob = parseFloat(twodecimals(cutewithoutofpricefob)); //TOTAL DE VALOR FOB
 
+  console.log('FOB: '+totalfinalvaluefob);
+  console.log('FLETE: '+totflete);
+  console.log('SEGURO: '+totalinsurance);
 	/************************** TOTALES PARA LA COTIZACIÓN **************************/
 	var sumTotalFirstFlete = totflete + totalamountadditional + totalimportprev + totaltransport + totalinsurance + totalvaluesquotation; //FLETE FINAL
 	var sumTotalbyIGV = (totaltransport + totalamountadditional + totalvaluesquotationbyIGV) * (18 / 100); //IGV (DEBAJO DEL FLETE FINAL)
@@ -93,37 +97,45 @@ $(document).ready(function(){
     var convert_IGV = res_IGV / 100; //VALOR I.G.V.
     var convert_IPM = res_IPM / 100; //VALOR I.P.M.
     var convert_Percepcion = totalimportprev / 100; //VALOR PERCEPCIÓN
-    var convert_Ad_Valoren = receivedAd_valoren / 100; //VALOR AD-VALOREN
-    var convert_I_selectivo = receivedI_selectivo / 100; //VALOR IMPUESTO SELECTIVO
-    console.log(convert_IGV);
-    console.log(convert_IPM);
-    console.log(convert_Percepcion);
-    console.log(convert_Ad_Valoren);
-    console.log(convert_I_selectivo);
+    var convert_Ad_Valoren = receivedAd_valoren / 100; //VALOR AD-VALOREN DE PRODUCTO
+    var convert_I_selectivo = receivedI_selectivo / 100; //VALOR IMPUESTO SELECTIVO DE PROUCTO
+    var convert_antidumping = received_antidumping / 100;
+
+    console.log('IGV: '+convert_IGV);
+    console.log('IPM: '+convert_IPM);
+    console.log('Percepción: '+convert_Percepcion);
+    console.log('Ad-Valoren: '+convert_Ad_Valoren);
+    console.log('Impuesto selectivo: '+convert_I_selectivo);
+    console.log('Impuesto selectivo: '+convert_antidumping);
 
     /************************** CALCULAR AD-VALOREN **************************/
     var val_Ad_valoren = sumbyCIF * convert_Ad_Valoren;
     var twodecimal_Ad_valoren = twodecimals(val_Ad_valoren);
     var finalval_Ad_valoren = parseFloat(twodecimal_Ad_valoren);
-    /************************** CALCULAR IGV **************************/
-		var val_IGV = sumbyCIF * ( convert_IGV + finalval_Ad_valoren );
-		var twodecimal_IGV = twodecimals(val_IGV);
-		var finalval_IGV = parseFloat(twodecimal_IGV);
-		/************************** CALCULAR IPM **************************/
-		var val_IPM = sumbyCIF * ( convert_IPM + finalval_Ad_valoren);
-		var twodecimal_IPM = twodecimals(val_IPM);
-		var finalval_IPM = parseFloat(twodecimal_IPM);
-		/************************** CALCULAR PERCEPCIÓN **************************/
-		var val_Percepcion = ( sumbyCIF + convert_IPM + convert_IGV + finalval_Ad_valoren ) * convert_Percepcion;
-		var twodecimal_percepcion = twodecimals(val_Percepcion);
-		var finalval_percepcion = parseFloat(twodecimal_percepcion);
 		/************************** CALCULAR IMPUESTO SELECTIVO **************************/
 		var val_i_selectivo = sumbyCIF * convert_I_selectivo;
 		var twodecimal_i_selectivo = twodecimals(val_i_selectivo);
 		var finalval_i_selectivo = parseFloat(twodecimal_i_selectivo);
+		/************************** CALCULAR ANTIDUMPING **************************/
+		var val_antidumping = sumbyCIF * convert_antidumping;
+		var twodecimal_antidumping = twodecimals(val_antidumping);
+		var finalval_antidumping = parseFloat(twodecimal_antidumping);
+    /************************** CALCULAR IGV **************************/
+		var val_IGV = ( sumbyCIF + finalval_Ad_valoren ) * convert_IGV;
+		var twodecimal_IGV = twodecimals(val_IGV);
+		var finalval_IGV = parseFloat(twodecimal_IGV);
+		/************************** CALCULAR IPM **************************/
+		var val_IPM = ( sumbyCIF + finalval_Ad_valoren) * convert_IPM;
+		var twodecimal_IPM = twodecimals(val_IPM);
+		var finalval_IPM = parseFloat(twodecimal_IPM);
+		/************************** CALCULAR PERCEPCIÓN **************************/
+		var val_Percepcion = ( sumbyCIF + finalval_Ad_valoren + finalval_IGV + finalval_IPM ) * convert_Percepcion;
+		var twodecimal_percepcion = twodecimals(val_Percepcion);
+		var finalval_percepcion = parseFloat(twodecimal_percepcion);
 
 		/************************** CALCULO FINAL DE IMPUESTOS **************************/
-		var val_FinalTax = finalval_IGV + finalval_IPM + finalval_percepcion + finalval_Ad_valoren + finalval_i_selectivo;
+		var val_FinalTax = finalval_IGV + finalval_IPM + finalval_percepcion + finalval_Ad_valoren + finalval_i_selectivo + finalval_antidumping;
+
 		var twodecimals_FinalTax = twodecimals(val_FinalTax);
 		var finalval_FinalTax = parseFloat(twodecimals_FinalTax);
 		var n_tax = Math.abs(finalval_FinalTax);
@@ -205,7 +217,6 @@ $(document).ready(function(){
 			}).done((res) =>{
 				console.log(res);
 			});
-
 		}else{
 			console.log('Debes completar los campos requeridos');
 		}
