@@ -48,8 +48,8 @@ $(document).ready(function(){
 	partInteger = Math.trunc(n);
 	partDecimal = totalNotround.toString().split('.');
 
-	if(partDecimal[1].length < 1){
-		partFinalDecimal = partDecimal[1]+'00';
+	if(partDecimal[1] == undefined || partDecimal[1] == 'undefined' || partDecimal[1] == ""){
+		partFinalDecimal = '00';
 	}else	if(partDecimal[1].length < 2){
 		partFinalDecimal = partDecimal[1]+'0';
 	}else{
@@ -71,7 +71,7 @@ $(document).ready(function(){
 	partInteger_FTotal = Math.trunc(n_ftotal);
 	partDecimal_FTotal = totalNotRoundFinal.toString().split('.');
 
-	if(partDecimal_FTotal[1].length < 1){
+	if(partDecimal_FTotal[1] == undefined || partDecimal_FTotal[1] == 'undefined' || partDecimal_FTotal[1] == ""){
 		partFinalDecimal_FTotal = partDecimal_FTotal[1]+'00';
 	}else	if(partDecimal_FTotal[1].length < 2){
 		partFinalDecimal_FTotal = partDecimal_FTotal[1]+'0';
@@ -143,7 +143,7 @@ $(document).ready(function(){
 		var n_tax = Math.abs(finalval_FinalTax);
 		partInteger_Tax = Math.trunc(n_tax);
 		partDecimal_Tax = finalval_FinalTax.toString().split('.');
-		if(partDecimal_Tax[1].length < 1){
+		if(partDecimal_Tax[1] == undefined || partDecimal_Tax[1] == 'undefined' || partDecimal_Tax[1] == ""){
 			partFinalDecimal_Tax = partDecimal_Tax[1]+'00';
 		}else	if(partDecimal_Tax[1].length < 2){
 			partFinalDecimal_Tax = partDecimal_Tax[1]+'0';
