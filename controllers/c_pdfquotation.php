@@ -15,8 +15,13 @@
 		background-color: #ddd;
 	}
 	/************************** STYLES BY PDF - COPY **************************/
-	#title_quoteservices{
-		margin: 20px 0 0 0;
+	#two_sectionlist{
+    
+  }
+  #title_quoteservices{
+		margin: 5px 0 10px 0;
+    border: 0px red dashed;
+    height: 15px;
 	}
   #title_code_cot{
     height: 45px;
@@ -86,7 +91,7 @@
     font-family: Sans-serif;
     font-weight: bold;
     font-size: 14pt;
-    width: 170px;
+    width: 155px;
     height: 70px;
     border: 1px #fff dashed;
     color: #404040;
@@ -99,7 +104,7 @@
     font-family: Sans-serif;
     font-weight: bold;
     font-size: 14pt;
-    width: 170px;
+    width: 186px;
     height: 70px;
     border: 1px #fff dashed;
     color: #404040;
@@ -113,7 +118,7 @@
     font-family: Sans-serif;
     font-weight: bold;
     font-size: 19pt;
-    width: 170px;
+    width: auto;
     height: 45px;
     line-height: 1.2;
     border: 0px #FF0000 dashed;
@@ -300,132 +305,149 @@
     margin: 0;
 	}
 	#marc_dat3{
-    font-family:Sans-serif;
+    font-family: Sans-serif;
     font-weight: bold;
     font-size: 9pt;
-    width:720px;
-    height:80px;
+    width: 695px;
+    height: 80px;
     border: 1px #07376E solid;
-    border-radius:10px;
-    display:inline-block;
+    border-radius: 10px;
+    display: inline-block;
     position: relative;
-    margin: 0px 0px 0px 0px;
+    margin: 0;
+    padding: 1px 14px;
 	}
 	#marc_dat3_izq{
     width:125px;
-    height:42px;
-    border: 0px #FF0000 dashed;
+    height:auto;
+    border: 0px red dashed;
     color:#757171;
     display:inline-block;
     position: relative;
-    margin: 5px 0px 0px 0px;
+    margin: 0;
+    vertical-align: top;
 	}
 	.item_marc3_dat1{
-    width:110px;
-    height:10px;
+    width:auto;
+    height:15px;
     border: 0px #FF0000 dashed;
     color:#757171;
     display:block;
     position: relative;
-    margin: 4px 0px 0px 20px;
+    margin: 0;
 	}
 	#marc_dat3_cent{
-    width:10px;
-    height:42px;
-    border: 0px #FF0000 dashed;
+    width:5px;
+    height:auto;
+    border: 0px red dashed;
     color:#757171;
     display:inline-block;
     position: relative;
-    margin: 5px 0px 0px 0px;
+    margin: 0;
+    vertical-align: top;
 	}
 	.item_dpt3_dat1{
-    width:5px;
-    height:10px;
+    width:auto;
+    height:15px;
     border: 0px #FF0000 dashed;
     color:#757171;
     display:block;
     position: relative;
-    margin: 4px 0px 0px 0px;
+    margin: 0;
 	}
 	.item_demp3_dat1{
-    width:250px;
-    height:10px;
+    width:auto;
+    height:15px;
     font-weight: normal;
     border: 0px #FF0000 dashed;
     color:#757171;
     display:block;
     position: relative;
-    margin: 4px 0px 0px 0px;
+    margin: 0;
 	}
 	.item_marc3_dat2{
     width:53px;
-    height:10px;
+    height:15px;
     border: 0px #FF0000 dashed;
     color:#757171;
     display:block;
     position: relative;
-    margin: 4px 0px 0px 0px;
+    margin: 0;
 	}
 	#marc_dat3_der{
-    width:250px;
-    height:42px;
-    border: 0px #FF0000 dashed;
+    width:262px;
+    height:auto;
+    border: 0px red dashed;
     color:#757171;
     display:inline-block;
     position: relative;
-    margin: 5px 0px 0px 0px;
+    margin: 0;
+    vertical-align: top;
 	}
 	#marc_dat3_derr1{
     width:55px;
-    height:42px;
-    border: 0px #FF0000 dashed;
+    height:auto;
+    border: 0px red dashed;
     color:#757171;
     display:inline-block;
     position: relative;
-    margin: 5px 0px 0px 0px;
+    margin: 0;
+    vertical-align: top;
 	}
 	#marc_dat3_cent1{
     width:45px;
-    height:42px;
-    border: 0px #FF0000 dashed;
+    height:auto;
+    border: 0px red dashed;
     color:#757171;
     display:inline-block;
     position: relative;
-    margin: 5px 0px 0px 0px;
+    margin: 0;
+    vertical-align: top;
 	}
 	.item_por3_dat1{
     width:45px;
-    height:10px;
+    height:15px;
     font-weight: normal;
     border: 0px #FF0000 dashed;
     color:#757171;
     display:block;
     position: relative;
-    margin: 4px 0px 0px 0px;
+    margin: 0;
 	}
 	#marc_dat3_derr11{
     width:145px;
-    height:42px;
-    border: 0px #FF0000 dashed;
+    height:auto;
+    border: 0px red dashed;
     color:#757171;
     display:inline-block;
     position: relative;
-    margin: -5px 0px 0px 10px;
+    margin: 0;
+    vertical-align: top;
 	}
 	.item_tpor3_dat1{
-    width:145px;
-    height:10px;
+    width:auto;
+    height:15px;
     font-weight: normal;
     text-align:right;
     border: 0px #FF0000 dashed;
     color:#757171;
     display:block;
     position: relative;
-    margin: -4px 0px 7px 0px;
+    margin: 0;
 	}
+  #marc_dat3_dollar{
+    width: 10px;
+    height: auto;
+    border: 0px red dashed;
+    color: #757171;
+    display: inline-block;
+    position: relative;
+    margin: 0;
+    vertical-align: top;
+  }
 	#marc_imp{
     width:360px;
-    height:15px;
+    height:auto;
     font-family:Sans-serif;
     font-weight: normal;
     text-align:center;
@@ -433,11 +455,12 @@
     color:#07376E;
     display:inline-block;
     position: relative;
-    margin: -10px 0px 0px 0px;
+    margin: 0;
+    vertical-align: top;
 	}
 	#marc_ser_log{
     width:360px;
-    height:15px;
+    height:auto;
     font-family:Sans-serif;
     font-weight: normal;
     text-align:center;
@@ -445,7 +468,8 @@
     color:#07376E;
     display:inline-block;
     position: relative;
-    margin: -10px 0px 0px 0px;
+    margin: 0;
+    vertical-align: top;
 	}
 	#marc_det_imp{
     width:360px;
@@ -806,14 +830,14 @@
 	    	</div>
 	  	</div>
 		</div>
-	  <div class="marc_fill">
+	  <div class="marc_fill" id="two_sectionlist">
 	    <div id="marc_dat3">
 	      <div id="marc_dat3_izq">
 	        <div class="item_marc3_dat1">Servicio</div>
 	        <div class="item_marc3_dat1">Contenido</div>
 	        <div class="item_marc3_dat1">Origen</div>
 	        <div class="item_marc3_dat1">Peso/Volumen</div>
-	        <div class="item_marc3_dat1">Tiempo de Transit</div>
+	        <div class="item_marc3_dat1">Tiempo de Transito</div>
 	      </div>
 	      <div id="marc_dat3_cent">
 	        <div class="item_dpt3_dat1">:</div>
@@ -840,23 +864,20 @@
 	        <div class="item_dpt3_dat1">:</div>
 	        <div class="item_dpt3_dat1">:</div>
 	        <div class="item_dpt3_dat1">:</div>
-	        <div class="item_dpt3_dat1"></div>
 	      </div>
 	      <div id="marc_dat3_cent1">
 	        <div class="item_por3_dat1"></div>
 	        <div class="item_por3_dat1"></div>
 	        <div class="item_por3_dat1">1.00 %</div>
 	        <div class="item_por3_dat1"></div>
-	        <div class="item_por3_dat1"></div>
 	      </div>
-	      <div id="marc_dat3_cent">
-	        <div class="item_dpt3_dat1">$
-	        	<div class="item_dpt3_dat1">$</div>
-		        <div class="item_dpt3_dat1">$</div>
-		        <div class="item_dpt3_dat1">$</div>
-		        <div class="item_dpt3_dat1"></div>
-	      	</div>
-	      <div id="marc_dat3_derr11">
+	      <div id="marc_dat3_dollar">
+	        <div class="item_dpt3_dat1">$</div>
+        	<div class="item_dpt3_dat1">$</div>
+	        <div class="item_dpt3_dat1">$</div>
+	        <div class="item_dpt3_dat1">$</div>
+	      </div>
+        <div id="marc_dat3_derr11">
 	        <div class="item_tpor3_dat1">45000</div>
 	        <div class="item_tpor3_dat1">180</div>
 	        <div class="item_tpor3_dat1">112.03</div>
