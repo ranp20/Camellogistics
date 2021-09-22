@@ -168,8 +168,9 @@ $(document).on("submit","#c-formLoginU_Camel",function(e){
 		}).done((e) => {
 			//console.log(e);
 			if(e.response == "true"){
+				/************************** AGREGAR AL CONTROL DE VALIDACIÓN **************************/
+				$("#s_useregin-sistem").val(e.received.username);
 				/************************** MOSTRAR EL NOMBRE/CORREO DEL USUARIO **************************/
-				//$("#namUser_validSess").text();
 				$("#s-loginsessuser-active").html(`
 					<a href='javascript:void(0);' class='c-Htopbar--c--cMenu--m--link'>
             <span id='namUser_validSess' class='c-Htopbar--c--cMenu--m--link--sessUser'>${e.received.username}</span>
@@ -194,6 +195,8 @@ $(document).on("submit","#c-formLoginU_Camel",function(e){
 				$("#cnt-modalFormSessLoginorRegister").removeClass("show");
 				$('#c-formLoginU_Camel')[0].reset();
 			}else{
+				/************************** AGREGAR AL CONTROL DE VALIDACIÓN **************************/
+				$("#s_useregin-sistem").val("");
 				/************************** MOSTRAR EL MENSAJE DE ALERTA PERSONALIZADO **************************/
 		    $("#s-mssgloadSendAction").html(`
 		      <div class="c-mssgloadSendAction--contalert">
@@ -260,6 +263,8 @@ $(document).on("submit","#c-formRegisterU_Camel",function(e){
 			data: form
 		}).done((e) => {
 			if(e.response == "true"){
+				/************************** AGREGAR AL CONTROL DE VALIDACIÓN **************************/
+				$("#s_useregin-sistem").val(e.received.username);
 				/************************** MOSTRAR EL NOMBRE/CORREO DEL USUARIO **************************/
 				$("#s-loginsessuser-active").html(`
 					<a href='javascript:void(0);' class='c-Htopbar--c--cMenu--m--link'>
@@ -286,6 +291,8 @@ $(document).on("submit","#c-formRegisterU_Camel",function(e){
 				$('#c-formRegisterU_Camel')[0].reset();
 
 			}else if(e.response == "equals"){
+				/************************** AGREGAR AL CONTROL DE VALIDACIÓN **************************/
+				$("#s_useregin-sistem").val("");
 				/************************** MOSTRAR EL MENSAJE DE ALERTA PERSONALIZADO **************************/
         $("#s-mssgloadSendAction").html(`
           <div class="c-mssgloadSendAction--contalert">
@@ -307,6 +314,8 @@ $(document).on("submit","#c-formRegisterU_Camel",function(e){
         });
 
 			}else if(e.response == "errinsert"){
+				/************************** AGREGAR AL CONTROL DE VALIDACIÓN **************************/
+				$("#s_useregin-sistem").val("");
 				/************************** MOSTRAR EL MENSAJE DE ALERTA PERSONALIZADO **************************/
         $("#s-mssgloadSendAction").html(`
           <div class="c-mssgloadSendAction--contalert">
@@ -327,6 +336,8 @@ $(document).on("submit","#c-formRegisterU_Camel",function(e){
           $(this).parent().parent().remove();
         });
 			}else{
+				/************************** AGREGAR AL CONTROL DE VALIDACIÓN **************************/
+				$("#s_useregin-sistem").val("");
 				/************************** MOSTRAR EL MENSAJE DE ALERTA PERSONALIZADO **************************/
         $("#s-mssgloadSendAction").html(`
           <div class="c-mssgloadSendAction--contalert">

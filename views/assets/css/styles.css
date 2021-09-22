@@ -2656,6 +2656,7 @@ img {
 }
 .c-FinalQuotation--contStep--cQuotation--cBtnDownload--btn:hover {
   opacity: 0.6;
+  color: #fff;
 }
 .c-FinalQuotation--contStep--cQuotation--cBtnDownload--btn--cIcon {
   color: #fff;
