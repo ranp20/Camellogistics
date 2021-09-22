@@ -1,7 +1,3 @@
-<?php 
-	$actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]";
-  $url =  $actual_link . "/Camellogistics/views/";
-?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -11,91 +7,41 @@
 </head>
 <style>
 	#cont_quotationpdf{
-		max-width: 794px;
+		max-width: 726px;
 		width: auto;
 		max-height: 1123px;
 		margin-left: auto;
 		margin-right: auto;
 		background-color: #ddd;
 	}
-	.c_quotationpdf__cTop--cLogo{
-		display: inline-block;
-		max-width: 13.5rem;
-	}
-	/*.reset_st_p{
-		margin: 0;
-		padding: 0;
-	}
-	.reset_st_hs{
-		margin: 0;
-		padding: 0;
-	}
-	.c-grey{
-		color: #777;
-	}
-	.remove_space-thead{
-		padding: 0;
-		margin: 0;
-		line-height: 0;
-	}
-	.c_quotationpdf__cTop{
-		width: 100%;
-	}
-	.c_quotationpdf__cTop--cLogo{
-		max-width: 13.5rem;
-	}
-	.c_quotationpdf__cTop--cLogo--img{
-		max-width: 11rem;
-		width: auto;
-		height: auto;
-	}
-	.c_quotationpdf__cTop--cCodeDate--secL p{
-		font-weight: 600;
-	}
-	.c_quotationpdf__cTop--cCodeDate--secR{
-		text-align: center;
-	}
-	.c_quotationpdf__contwogroup{
-		width: 100%;
-		margin-top: 0.5rem;
-		position: relative;
-	}
-	.c_quotationpdf__contwogroup--sec{
-		display: inline-block;
-		border: thin solid red;
-		border-radius: .4rem;
-		vertical-align: top;
-	}
-	.c_quotationpdf__contwogroup--sec:first-child{
-		width: 68%;
-	}
-	.c_quotationpdf__contwogroup--sec:nth-child(2){
-		width: 30%;
-	}
-	.c_quotationpdf__contwogroup--sec:first-child table{
-		width: 100%;
-	}
-	.c_quotationpdf__contwogroup--sec:nth-child(2) table{
-		width: 100%;
-	}*/
 	/************************** STYLES BY PDF - COPY **************************/
 	#title_quoteservices{
 		margin: 20px 0 0 0;
 	}
+  #title_code_cot{
+    height: 45px;
+    line-height: 1.5;
+  }
+  #title_fech_cot{
+
+  }
 	#marc_fill1{
     display: block;
     max-width: 794px;
     width: 100%;
     height: auto;
     position: relative;
+    border: 1px #fff dashed;
+    margin: 0 0 5px 0;
 	}
 	.marc_fill{
     display: block;
     max-width: 794px;
     width: 100%;
     height: auto;
-    border: 1px #FFFFFF dashed;
+    border: 1px #fff dashed;
     position: relative;
+    margin: 5px 0 0 0;
 	}
 	#marc_fill2{
     font-family:Sans-serif;
@@ -105,60 +51,74 @@
     max-width: 794px;
     width: auto;
     height: auto;
-    border: 1px #FFFFFF dashed;
     position: relative;
+	}
+	.c_quotationpdf__cTop--cLogo{
+		display: inline-block;
+		max-width: 200px;
+    border: 1px #fff dashed;
+    max-height: 85px;
+    height: 85px;
+    vertical-align: top;
 	}
 	#logo{
 		max-width: 11rem;
     width:auto;
     height:auto;
-    border:0px #FF0000 dashed;
     display:inline-block;
     position: relative;
-    margin: 20px 0px 0px 0px;
+    margin: 0;
 	}
 	#marc_cab{
     max-width: 350px;
     width: 100%;
-    height: auto;
-    border: 0px #FF0000 dashed;
+    max-height: 85px;
+    height: 85px;
+    font-family: Sans-serif;
     display: inline-block;
     position: relative;
-    margin: 0 0px 0px 100px;
+    vertical-align: top;
+    margin: 0 0px 0px 192px;
+    padding: 5px 0 0 0;
+
 	}
 	#marc_cab_izq{
     font-family: Sans-serif;
     font-weight: bold;
     font-size: 14pt;
     width: 170px;
-    height: auto;
-    border: 0px #FF0000 dashed;
+    height: 70px;
+    border: 1px #fff dashed;
     color: #404040;
     display: inline-block;
     position: relative;
     margin: 0;
+    vertical-align: top;
 	}
 	#marc_cab_der{
     font-family: Sans-serif;
     font-weight: bold;
     font-size: 14pt;
     width: 170px;
-    height: auto;
-    border: 0px #FF0000 dashed;
+    height: 70px;
+    border: 1px #fff dashed;
     color: #404040;
     display: inline-block;
     position: relative;
     margin: 0;
+    vertical-align: top;
+    text-align: center;
 	}
 	#corr_cot{
     font-family: Sans-serif;
     font-weight: bold;
     font-size: 19pt;
     width: 170px;
-    height: auto;
+    height: 45px;
+    line-height: 1.2;
     border: 0px #FF0000 dashed;
     color: #07376E;
-    display: inline-block;
+    display: block;
     position: relative;
     margin: 0;
 	}
@@ -166,168 +126,178 @@
     font-family: Sans-serif;
     font-weight: bold;
     font-size: 11pt;
-    width: 90px;
+    width: auto;
     height: auto;
     border: 0px #FF0000 dashed;
     color: #757171;
-    display: inline-block;
+    display: block;
     position: relative;
     margin: 0;
 	}
 	#marc_dat1{
-    font-family:Sans-serif;
+    font-family: Sans-serif;
     font-weight: bold;
     font-size: 9pt;
-    width:490px;
+    width:429px;
     height:50px;
     border: 1px #07376E solid;
     border-radius:8px;
     color:#757171;
     display:inline-block;
     position: relative;
-    margin: 5px 0px 0px 0px;  
+    margin: 0;
+    vertical-align: top;
+    padding: 1px 14px;
 	}
 	#marc_dat2{
     font-family:Sans-serif;
     font-weight: bold;
     font-size: 9pt;
-    width:225px;
+    width:250px;
     height:50px;
     border: 1px #07376E solid;
     border-radius:8px;
     display:inline-block;
     position: relative;
-    margin: 5px 0px 0px 0px;
+    margin: 0;
+    vertical-align: top;
+    padding: 1px 5px;
 	}
 	#marc_dat1_izq{
-    width:125px;
-    height:42px;
-    border: 0px #FF0000 dashed;
+    width:105px;
+    height:auto;
+    border: 0px red dashed;
     color:#757171;
     display:inline-block;
     position: relative;
     margin: 0px 0px 0px 0px;
+    vertical-align: top;
 	}
 	#marc_dat11_izq{
-    width:80px;
+    width:70px;
     height:30px;
-    border: 0px #FF0000 dashed;
+    border: 0px red dashed;
     color:#757171;
     display:inline-block;
     position: relative;
-    margin: -20px 0px 0px 0px;
+    margin: 0;
+    vertical-align: top;
 	}
-	.item_marc_dat1{
-    width:100px;
-    height:10px;
-    border: 0px #FF0000 dashed;
-    color:#757171;
-    display:block;
+  #marc_dat2_cent{
+    width: 5px;
+    height: auto;
+    border: 0px red dashed;
+    color: #757171;
+    display: inline-block;
     position: relative;
-    margin: 4px 0px 0px 20px;
-	}
-	#marc_dat1_cent{
-    width:10px;
-    height:42px;
-    border: 0px #FF0000 dashed;
-    color:#757171;
-    display:inline-block;
+    margin: 0;
+    vertical-align: top;
+  }
+	#marc_dat1_der1{
+    width: 161px;
+    height: auto;
+    border: 0px red dashed;
+    color: #757171;
+    display: inline-block;
     position: relative;
-    margin: 0px 0px 0px 0px;
-	}
-
-	.item_dpt_dat1{
-    width:5px;
-    height:10px;
-    border: 0px #FF0000 dashed;
-    color:#757171;
-    display:block;
-    position: relative;
-    margin: 4px 0px 0px 0px;
-	}
-	.item_dpt1_dat1{
-    width:5px;
-    height:5px;
-    border: 0px #FF0000 dashed;
-    color:#757171;
-    display:block;
-    position: relative;
-    margin: -24px 0px 0px 40px;
+    margin: 0;
+    vertical-align: top;
 	}
 	#marc_dat1_der{
-    width:200px;
-    height:42px;
-    border: 0px #FF0000 dashed;
+    width: 190px;
+    height: auto;
+    border: 0px red dashed;
+    color: #757171;
+    display: inline-block;
+    position: relative;
+    margin: 0;
+    vertical-align: top;
+	}
+	#marc_dat1_cent{
+    width:5px;
+    height:auto;
+    border: 0px red dashed;
     color:#757171;
     display:inline-block;
     position: relative;
     margin: 0px 0px 0px 0px;
+    vertical-align: top;
 	}
-	#marc_dat1_der1{
-    width:100px;
-    height:30px;
-    border: 0px #FF0000 dashed;
-    color:#757171;
-    display:inline-block;
-    position: relative;
-    margin: -20px 0px 0px 30px;
-	}
-	.item_demp_dat1{
-    width:200px;
-    height:10px;
-    font-weight: normal;
-    border: 0px #FF0000 dashed;
+	.item_marc_dat1{
+    width:auto;
+    height:15px;
+    border: 0px red dashed;
     color:#757171;
     display:block;
     position: relative;
-    margin: 4px 0px 0px 0px;
+    margin: 0;
 	}
-	#marc_dat1_derr1{
-    width:120px;
-    height:42px;
-    border: 0px #FF0000 dashed;
-    color:#757171;
-    display:inline-block;
-    position: relative;
-    margin: 7px 0px 0px 0px;
-	}
-	.item_demp_datt1{
-    width:100px;
-    height:10px;
-    font-weight: normal;
-    border: 0px #FF0000 dashed;
-    color:#757171;
-    display:block;
-    position: relative;
-    margin: 4px 0px 0px 0px;
-	}
-	.item_marc2_dat1{
-    width:85px;
+	.item_dpt_dat1{
+    width:auto;
     height:15px;
     border: 0px #FF0000 dashed;
     color:#757171;
     display:block;
     position: relative;
-    margin: 0px 0px 0px 10px;
+    margin: 0;
 	}
-	#marc_dat2_cent{
-    width:15px;
-    height:50px;
+	.item_dpt1_dat1{
+    width: auto;
+    height: 15px;
     border: 0px #FF0000 dashed;
+    color: #757171;
+    display: block;
+    position: relative;
+    margin: 0;
+	}
+	.item_demp_dat1{
+    width: auto;
+    height: 15px;
+    font-weight: normal;
+    border: 0px #FF0000 dashed;
+    color: #757171;
+    display: block;
+    position: relative;
+    margin: 0;
+	}
+	#marc_dat1_derr1{
+    width:105px;
+    height:auto;
+    border: 0px red dashed;
     color:#757171;
     display:inline-block;
     position: relative;
-    margin: 20px 0px 0px -35px;
+    margin: 0;
+    vertical-align: top;
 	}
-	.item_demp2_dat1{
-    width:100px;
-    height:10px;
+	.item_demp_datt1{
+    width: auto;
+    height: 15px;
     font-weight: normal;
     border: 0px #FF0000 dashed;
-    color:#757171;
-    display:block;
+    color: #757171;
+    display: block;
     position: relative;
-    margin: 4px 0px 0px 0px;
+    margin: 0;
+	}
+	.item_marc2_dat1{
+    width: auto;
+    height: 15px;
+    border: 0px #FF0000 dashed;
+    color: #757171;
+    display: block;
+    position: relative;
+    margin: 0;
+	}
+	.item_demp2_dat1{
+    width: auto;
+    height: 15px;
+    font-weight: normal;
+    border: 0px #FF0000 dashed;
+    color: #757171;
+    display: block;
+    position: relative;
+    margin: 0;
 	}
 	#marc_dat3{
     font-family:Sans-serif;
@@ -783,94 +753,6 @@
 	}
 </style>
 <body>
-	<!-- <div id="cont_quotationpdf" class="c_quotationpdf">
-		<table class="c_quotationpdf__cTop" border="1">
-			<thead>
-				<tr class="remove_space-thead">
-					<th>&nbsp;</th>
-					<th colspan="2">&nbsp;</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<td rowspan="2">
-						<div class="c_quotationpdf__cTop--cLogo">
-							<img src="../vendor/dompdf/logotipo-camel.png" alt="" class="c_quotationpdf__cTop--cLogo--img" width="100" height="100">
-						</div>
-					</td>
-					<td>
-						<div class="c_quotationpdf__cTop--cCodeDate--secL">
-							<h3 class="reset_st_hs">COTIZACIÓN</h3>
-						</div>
-					</td>
-					<td>
-						<div class="c_quotationpdf__cTop--cCodeDate--secR">
-							<h2 class="reset_st_hs">A000905</h2>
-						</div>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<div class="c_quotationpdf__cTop--cCodeDate--secL">
-							<h3 class="reset_st_hs">FECHA</h3>
-						</div>
-					</td>
-					<td>
-						<div class="c_quotationpdf__cTop--cCodeDate--secR">
-							<p class="reset_st_p c-grey">21/09/2021</p>
-						</div>
-					</td>
-				</tr>
-			</tbody>
-		</table>
-		<div class="c_quotationpdf__contwogroup">
-			<div class="c_quotationpdf__contwogroup--sec">
-				<table border="1">
-					<thead>
-						<tr class="remove_space-thead">
-							<th colspan="6">&nbsp;</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td>Empresa</td>
-							<td>:</td>
-							<td class="c-grey">-</td>
-							<td>Ruc/DNI</td>
-							<td>:</td>
-							<td class="c-grey">0</td>
-						</tr>
-						<tr>
-							<td>Atención</td>
-							<td>:</td>
-							<td class="c-grey" colspan="4">-</td>
-						</tr>
-						<tr>
-							<td>Dirección</td>
-							<td>:</td>
-							<td class="c-grey" colspan="4">-</td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
-			<div class="c_quotationpdf__contwogroup--sec">
-				<table border="1">
-					<thead>
-						<tr class="remove_space-thead">
-							<th colspan="3">&nbsp;</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td>Teléfono</td>	
-							<td>:</td>
-							<td class="c-grey">0</td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
-		</div>
-	</div> -->
 	<div id="cont_quotationpdf">
 		<div id="marc_fill1">
 			<div class="c_quotationpdf__cTop--cLogo">
@@ -878,7 +760,8 @@
 			</div>
 	    <div id="marc_cab">
 	      <div id="marc_cab_izq">
-	      	<br>COTIZACION<br><br>FECHA
+          <div id="title_code_cot">COTIZACIÓN</div>
+          <div id="title_fech_cot">FECHA</div>
 	      </div>
 	      <div id="marc_cab_der">
 	        <div id="corr_cot">CT 000000</div>
@@ -899,13 +782,13 @@
 	        <div class="item_dpt_dat1">:</div>
 	      </div>
 	      <div id="marc_dat1_der">
-	        <div class="item_demp_dat1">'.$ruc.'</div>
-	        <div class="item_demp_dat1"></div>
-	        <div class="item_demp_dat1">'.$correo.'</div>
+	        <div class="item_demp_dat1">1070346201</div>
+	        <div class="item_demp_dat1">SERVICIO MARÍTIMO</div>
+	        <div class="item_demp_dat1">polancoranp2019@gmail.com</div>
 	      </div>
 	      <div id="marc_dat1_derr1">
 	        <div class="item_demp_datt1">Ruc / DNI</div>
-	        <div class="item_demp_datt1">'.$ruc.'</div>
+	        <div class="item_demp_datt1">10702366301</div>
 	      </div>
 	    </div>
 	    <div id="marc_dat2">
@@ -918,8 +801,8 @@
 		      <div class="item_dpt1_dat1">:</div>
 	    	</div>
 	    	<div id="marc_dat1_der1">
-		      <div class="item_demp2_dat1">'.$celular.'</div>
-		      <div class="item_demp2_dat1">'.$correo.'</div>
+		      <div class="item_demp2_dat1">990256235</div>
+		      <div class="item_demp2_dat1">polancoranp2019@gmail.com</div>
 	    	</div>
 	  	</div>
 		</div>
@@ -940,11 +823,11 @@
 	        <div class="item_dpt3_dat1">:</div>
 	      </div>
 	      <div id="marc_dat3_der">
-	        <div class="item_demp3_dat1">'.$tipo_flete.'</div>
-	        <div class="item_demp3_dat1">'.$tipo_producto_id.'</div>
-	        <div class="item_demp3_dat1">'.$puerto_origen.'</div>
-	        <div class="item_demp3_dat1"></div>
-	        <div class="item_demp3_dat1">'.$correo.'</div>
+	        <div class="item_demp3_dat1">ADUANAS</div>
+	        <div class="item_demp3_dat1">CARGA GENERAL</div>
+	        <div class="item_demp3_dat1">FOB - QINGDAO - CHINA</div>
+	        <div class="item_demp3_dat1">3000kg/1.08CBM</div>
+	        <div class="item_demp3_dat1">polancoranp2019@gmail.com</div>
 	      </div>
 	      <div id="marc_dat3_derr1">
 	        <div class="item_marc3_dat2">FOB</div>
@@ -974,10 +857,10 @@
 		        <div class="item_dpt3_dat1"></div>
 	      	</div>
 	      <div id="marc_dat3_derr11">
-	        <div class="item_tpor3_dat1">100</div>
-	        <div class="item_tpor3_dat1">100</div>
-	        <div class="item_tpor3_dat1">100</div>
-	        <div class="item_tpor3_dat1">100</div>
+	        <div class="item_tpor3_dat1">45000</div>
+	        <div class="item_tpor3_dat1">180</div>
+	        <div class="item_tpor3_dat1">112.03</div>
+	        <div class="item_tpor3_dat1">45292.03</div>
 	      </div>
 	    </div>
 	  </div>
@@ -993,6 +876,7 @@
 	        <div class="item_marc_det_imp1">Percepción</div>
 	        <div class="item_marc_det_imp1">Ad-Valoren</div>
 	        <div class="item_marc_det_imp1">Impuesto selectivo</div>
+          <div class="item_marc_det_imp1">ANTIDUMPING</div>
 	      </div>
 	      <div id="marc_porc_det_imp1">
 	        <div class="item_marc_porc_det_imp1">16%</div>
@@ -1000,6 +884,7 @@
 	        <div class="item_marc_porc_det_imp1">3.5%    </div>
 	        <div class="item_marc_porc_det_imp1">0.0%</div>
 	        <div class="item_marc_porc_det_imp1">0%</div>
+          <div class="item_marc_porc_det_imp1">0%</div>
 	      </div>
 	      <div id="marc_porc_det_imp1">
 	        <div class="item_marc_usd_det_imp1">$</div>
@@ -1007,13 +892,15 @@
 	        <div class="item_marc_usd_det_imp1">$</div>
 	        <div class="item_marc_usd_det_imp1">$</div>
 	        <div class="item_marc_usd_det_imp1">$</div>
+          <div class="item_marc_usd_det_imp1">$</div>
 	      </div>
 	      <div id="marc_det_tot_imp1">
-	        <div class="item_usd_tot_imp1">100</div>
-	        <div class="item_usd_tot_imp1">100</div>
-	        <div class="item_usd_tot_imp1">100</div>
-	        <div class="item_usd_tot_imp1"></div>
-	        <div class="item_usd_tot_imp1"></div>
+	        <div class="item_usd_tot_imp1">133.05</div>
+	        <div class="item_usd_tot_imp1">16.66</div>
+	        <div class="item_usd_tot_imp1">34.40</div>
+	        <div class="item_usd_tot_imp1">93.50</div>
+	        <div class="item_usd_tot_imp1">23.20</div>
+          <div class="item_usd_tot_imp1">17.40</div>
 	      </div>
 	    </div>
 	    <div id="marc_det_er_log">
@@ -1142,8 +1029,7 @@
 	    </div>
 	  </div>
 	  <div id="marc_fill2">
-	    <center>
-	      Av. Dos de Mayo 1545 Of. 318 San Isidro - Lima<br>
+	    <center>Av. Dos de Mayo 1545 Of. 318 San Isidro - Lima<br>
 	      Email. info@camel.com.pe / Telf. 989 874 368<br>
 	      www.camel.com.pe
 	    </center>
