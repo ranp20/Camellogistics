@@ -39,9 +39,9 @@ $(document).ready(function(){
   var totalfinalvaluefob = parseFloat(twodecimals(cutewithoutofpricefob)); //TOTAL DE VALOR FOB
   var totalfinalvaluedownload = parseFloat(twodecimals(receiveddownload)); //TOTAL DE VALOR DE DESCARGA
 
-  console.log('FOB: '+totalfinalvaluefob);
-  console.log('FLETE: '+totflete);
-  console.log('SEGURO: '+totalinsurance);
+  // console.log('FOB: '+totalfinalvaluefob);
+  // console.log('FLETE: '+totflete);
+  // console.log('SEGURO: '+totalinsurance);
 	/************************** TOTALES PARA LA COTIZACIÓN **************************/
 	var sumTotalFirstFlete = totflete + totalamountadditional + totalimportprev + totaltransport + totalinsurance + totalvaluesquotation + totalfinalvaluedownload; //FLETE FINAL
 	var sumTotalbyIGV = (totaltransport + totalamountadditional + totalvaluesquotationbyIGV) * (18 / 100); //IGV (DEBAJO DEL FLETE FINAL)
@@ -66,8 +66,21 @@ $(document).ready(function(){
 	$("#intdecval-quotefinal").html(`<span>${separate_point},<sup>${partFinalDecimal}</sup> USD</span>`);
 	/************************** IMPRIMIR EL TOTAL ENTRE EL IGV **************************/
 	var totalNotRountByIGV = twodecimals(sumTotalbyIGV);
-	var separatebyIGV = totalNotRountByIGV.toString().split('.');
-	$("#igvval-quotefinal").html(`<span>+ IGV 18% </span><span>${separatebyIGV.join(',')} USD</span>`);
+	var n_byIGV = Math.abs(totalNotRountByIGV);
+	var partInteger_byIGV = Math.trunc(n_byIGV);
+	var separate_point_byIGV = partInteger_byIGV.toString().replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d)\.?)/g, ".");
+	var part_decimalbyIGV = totalNotRountByIGV.toString().split('.');
+	var partFinal_decimal_byIGV = 0;
+
+	if(part_decimalbyIGV[1] == undefined || part_decimalbyIGV[1] == 'undefined' || part_decimalbyIGV[1] == ""){
+		partFinal_decimal_byIGV = '00';
+	}else	if(part_decimalbyIGV[1].length < 2){
+		partFinal_decimal_byIGV = part_decimalbyIGV[1]+'0';
+	}else{
+		partFinal_decimal_byIGV = part_decimalbyIGV[1];
+	}
+
+	$("#igvval-quotefinal").html(`<span>+ IGV 18% </span><span>${separate_point_byIGV},${partFinal_decimal_byIGV} USD</span>`);
 	/************************** IMPRIMIR EL ÚLTIMO VALOR - SUMA DEL TOTAL DE FLETE Y EL TOTAL ENTRE EL IGV **************************/
 	var partInteger_FTotal = 0;
 	var partDecimal_FTotal = 0;
@@ -110,12 +123,12 @@ $(document).ready(function(){
     var convert_I_selectivo = receivedI_selectivo / 100; //VALOR IMPUESTO SELECTIVO DE PROUCTO
     var convert_antidumping = received_antidumping / 100;
 
-    console.log('IGV: '+convert_IGV);
-    console.log('IPM: '+convert_IPM);
-    console.log('Percepción: '+convert_Percepcion);
-    console.log('Ad-Valoren: '+convert_Ad_Valoren);
-    console.log('Impuesto selectivo: '+convert_I_selectivo);
-    console.log('ANTIDUMPING: '+convert_antidumping);
+    // console.log('IGV: '+convert_IGV);
+    // console.log('IPM: '+convert_IPM);
+    // console.log('Percepción: '+convert_Percepcion);
+    // console.log('Ad-Valoren: '+convert_Ad_Valoren);
+    // console.log('Impuesto selectivo: '+convert_I_selectivo);
+    // console.log('ANTIDUMPING: '+convert_antidumping);
 
     /************************** CALCULAR AD-VALOREN **************************/
     var val_Ad_valoren = sumbyCIF * convert_Ad_Valoren;
