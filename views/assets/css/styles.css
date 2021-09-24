@@ -2798,6 +2798,8 @@ img {
   -moz-appearance: textfield;
 }
 .cnt-modalFormLoginyRegister--c--cForm--cControl #msg-nounNumberDoc,
+.cnt-modalFormLoginyRegister--c--cForm--cControl #msg-nounNameEnterpriseReg,
+.cnt-modalFormLoginyRegister--c--cForm--cControl #msg-nounNumberorTelephoneNumb,
 .cnt-modalFormLoginyRegister--c--cForm--cControl #msg-nounValidEmail {
   color: red;
   font-size: 0.9rem;

@@ -9,20 +9,22 @@
 			<form method="POST" id="btn-gen_formDataUserQuotation">
 				<div class="cnt-modalFormLoginyRegister--c--cForm--cControl">
 					<label for="n_document_cli" class="cnt-modalFormLoginyRegister--c--cForm--cControl--label">Ingresa tu DNI / RUC 10 / RUC 20 <span class="control-spanrequired">*</span></label>
-					<input type="number" id="n_document_cli" name="n_document_cli" class="cnt-modalFormLoginyRegister--c--cForm--cControl--input" placeholder="Ingrese el número de documento" maxlength="21">
+					<input type="text" id="n_document_cli" name="n_document_cli" class="cnt-modalFormLoginyRegister--c--cForm--cControl--input" placeholder="Ingrese el número de documento" maxlength="11">
 					<span id="msg-nounNumberDoc"></span>
 				</div>
 				<div class="cnt-modalFormLoginyRegister--c--cForm--cControl">
 					<label for="name_enterprise_cli" class="cnt-modalFormLoginyRegister--c--cForm--cControl--label">Nombre de la empresa - (Opcional)</label>
-					<input type="text" id="name_enterprise_cli" name="name_enterprise_cli" class="cnt-modalFormLoginyRegister--c--cForm--cControl--input" placeholder="Ingrese el nombre de la empresa">
+					<input type="text" id="name_enterprise_cli" name="name_enterprise_cli" class="cnt-modalFormLoginyRegister--c--cForm--cControl--input" placeholder="Ingrese el nombre de la empresa" maxlength="50">
+					<span id="msg-nounNameEnterpriseReg"></span>
 				</div>
 				<div class="cnt-modalFormLoginyRegister--c--cForm--cControl">
 					<label for="telephone_cli" class="cnt-modalFormLoginyRegister--c--cForm--cControl--label">Número de teléfono - (Opcional)</label>
 					<input type="number" id="telephone_cli" name="telephone_cli" class="cnt-modalFormLoginyRegister--c--cForm--cControl--input" placeholder="Ingrese el número de teléfono" maxlength="11">
+					<span id="msg-nounNumberorTelephoneNumb"></span>
 				</div>
 				<div class="cnt-modalFormLoginyRegister--c--cForm--cControl">
 					<label for="email_cli" class="cnt-modalFormLoginyRegister--c--cForm--cControl--label">Ingresa tu Email <span class="control-spanrequired">*</span></label>
-					<input type="email" id="email_cli" name="email_cli" class="cnt-modalFormLoginyRegister--c--cForm--cControl--input" placeholder="Ingrese el correo electrónico">
+					<input type="email" id="email_cli" name="email_cli" class="cnt-modalFormLoginyRegister--c--cForm--cControl--input" placeholder="Ingrese el correo electrónico" maxlength="50">
 					<span id="msg-nounValidEmail"></span>
 					<button type="submit" id="btn-reg_AccountbeforeDownload">DESCARGAR COTIZACIÓN</button>
 				</div>

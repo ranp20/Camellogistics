@@ -303,6 +303,71 @@ $(document).ready(function(){
 	Seguro:%20${objDataTxtWhatsapp.seguroflete},%20
 	ImpuestoAprox:%2010.279`);
 	
+	/************************** VALIDAR CUADRO DE TEXTO DE DOCUMENTO DE IDENTIDAD **************************/
+	$(document).on("input keyup keypress blur change","#n_document_cli",function(e){
+    if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+	    return false;
+	  }else{
+	    if( $(this).val().length >= parseInt($(this).attr('maxlength')) && (e.which != 8 && e.which != 0)){
+	      return false;
+	    }else{
+				if(e.target.value != 0 || e.target.value != ""){
+					console.log('Contiene información');
+					$("#msg-nounNumberDoc").text("");
+				}else{
+					console.log('NO contiene información');
+					$("#msg-nounNumberDoc").text("Debes completar este campo");
+				}
+	    }
+	  }
+	});
+	/************************** VALIDAR NOMBRE DE LA EMPRESA **************************/
+	$(document).on("input keyup keypress blur change","#name_enterprise_cli",function(e){
+    if( $(this).val().length >= parseInt($(this).attr('maxlength')) && (e.which != 8 && e.which != 0)){
+      return false;
+    }else{
+			if(e.target.value != 0 || e.target.value != ""){
+				console.log('Contiene información');
+				$("#msg-nounNameEnterpriseReg").text("");
+			}else{
+				console.log('NO contiene información');
+				$("#msg-nounNameEnterpriseReg").text("Debes completar este campo");
+			}
+    }
+	});
+	/************************** VALIDAR NÚMERO DE TELÉFONO **************************/
+	$(document).on("input keyup keypress blur change","#telephone_cli",function(e){
+    if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+	    return false;
+	  }else{
+	    if( $(this).val().length >= parseInt($(this).attr('maxlength')) && (e.which != 8 && e.which != 0)){
+	      return false;
+	    }else{
+				if(e.target.value != 0 || e.target.value != ""){
+					console.log('Contiene información');
+					$("#msg-nounNumberorTelephoneNumb").text("");
+				}else{
+					console.log('NO contiene información');
+					$("#msg-nounNumberorTelephoneNumb").text("Debes completar este campo");
+				}
+	    }
+	  }
+	});
+	/************************** VALIDAR EMAIL DEL USUARIO **************************/
+	$(document).on("input keyup keypress blur change","#email_cli",function(e){
+    if( $(this).val().length >= parseInt($(this).attr('maxlength')) && (e.which != 8 && e.which != 0)){
+      return false;
+    }else{
+			if(e.target.value != 0 || e.target.value != ""){
+				console.log('Contiene información');
+				$("#msg-nounValidEmail").text("");
+			}else{
+				console.log('NO contiene información');
+				$("#msg-nounValidEmail").text("Debes completar este campo");
+			}
+    }
+	});
+
 	/************************** FORMULARIO DE DATOS DEL USUARIO - ANTES DE DESCARGAR SU COTIZACIÓN **************************/
 	$(document).on("submit","#btn-gen_formDataUserQuotation",function(e){
 		e.preventDefault();
