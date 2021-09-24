@@ -3655,7 +3655,23 @@ function listrateLCLTransport(searchVal){
                 </li>
               `;
             }else{
-              console.log('El peso excede las tarifas del sistema');
+              /************************** MOSTRAR EL MENSAJE DE ALERTA PERSONALIZADO **************************/
+              $("#idMessageSteps-prcss").html(`
+                <div class="cntMessageSteps-prcss--cont">
+                  <div class="cntMessageSteps-prcss--cont--c">
+                    <span class="cntMessageSteps-prcss--cont--c--btnclose" id="btnclose-modalMessage"></span>
+                    <h3 class="cntMessageSteps-prcss--cont--c--title">El peso excede las tarifas del sistema.</h3>
+                    <p class="cntMessageSteps-prcss--cont--c--text">Por favor, <b>contacte con el administrador para más información.</b></p>
+                  </div>
+                </div>
+              `)
+              /************************** CERRAR EL MODAL **************************/
+              setTimeout(function(){
+                $("#idMessageSteps-prcss .cntMessageSteps-prcss--cont").remove();
+              }, 8500)
+              $("#btnclose-modalMessage").on("click", function(){
+                $(this).parent().parent().remove();
+              });
             }
           }
         }else{
@@ -3749,7 +3765,23 @@ function listrateLCLTransport(searchVal){
                 </li>
               `;
             }else{
-              console.log('El peso excede las tarifas del sistema');
+              /************************** MOSTRAR EL MENSAJE DE ALERTA PERSONALIZADO **************************/
+              $("#idMessageSteps-prcss").html(`
+                <div class="cntMessageSteps-prcss--cont">
+                  <div class="cntMessageSteps-prcss--cont--c">
+                    <span class="cntMessageSteps-prcss--cont--c--btnclose" id="btnclose-modalMessage"></span>
+                    <h3 class="cntMessageSteps-prcss--cont--c--title">El peso excede las tarifas del sistema.</h3>
+                    <p class="cntMessageSteps-prcss--cont--c--text">Por favor, <b>contacte con el administrador para más información.</b></p>
+                  </div>
+                </div>
+              `)
+              /************************** CERRAR EL MODAL **************************/
+              setTimeout(function(){
+                $("#idMessageSteps-prcss .cntMessageSteps-prcss--cont").remove();
+              }, 8500)
+              $("#btnclose-modalMessage").on("click", function(){
+                $(this).parent().parent().remove();
+              });
             }
           }
         }else{
@@ -3843,7 +3875,23 @@ function listrateLCLTransport(searchVal){
                 </li>
               `;
             }else{
-              console.log('El peso excede las tarifas del sistema');
+              /************************** MOSTRAR EL MENSAJE DE ALERTA PERSONALIZADO **************************/
+              $("#idMessageSteps-prcss").html(`
+                <div class="cntMessageSteps-prcss--cont">
+                  <div class="cntMessageSteps-prcss--cont--c">
+                    <span class="cntMessageSteps-prcss--cont--c--btnclose" id="btnclose-modalMessage"></span>
+                    <h3 class="cntMessageSteps-prcss--cont--c--title">El peso excede las tarifas del sistema.</h3>
+                    <p class="cntMessageSteps-prcss--cont--c--text">Por favor, <b>contacte con el administrador para más información.</b></p>
+                  </div>
+                </div>
+              `)
+              /************************** CERRAR EL MODAL **************************/
+              setTimeout(function(){
+                $("#idMessageSteps-prcss .cntMessageSteps-prcss--cont").remove();
+              }, 8500)
+              $("#btnclose-modalMessage").on("click", function(){
+                $(this).parent().parent().remove();
+              });
             }
           }
         }else{
