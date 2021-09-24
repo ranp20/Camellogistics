@@ -1,3 +1,8 @@
+/************************** GENERAR EL PDF **************************/
+function generatePDF(nameuser){
+	$url = "controllers/c_generate-pdf.php?user="+nameuser;
+	window.open($url, "cotizacion_pdf");
+}
 /************************** CALCULAR Y MOSTRAR EL RESUMEN DE COTIZACIÓN - INTERFAZ DE PRESENTACIÓN DE COTIZACIÓN **************************/
 /************************** DEJAR EN 2 DECIMALES POR DEFECTO **************************/
 function myRound(num, dec){
@@ -46,6 +51,7 @@ $(document).ready(function(){
 	var totalNotround = twodecimals(sumTotalFirstFlete);
 	var n = Math.abs(totalNotround);
 	partInteger = Math.trunc(n);
+	var separate_point = partInteger.toString().replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d)\.?)/g, ".");
 	partDecimal = totalNotround.toString().split('.');
 
 	if(partDecimal[1] == undefined || partDecimal[1] == 'undefined' || partDecimal[1] == ""){
@@ -57,7 +63,7 @@ $(document).ready(function(){
 	}
 	
 	/************************** IMPRIMIR EL TOTAL DEL FLETE **************************/
-	$("#intdecval-quotefinal").html(`<span>${partInteger},<sup>${partFinalDecimal}</sup> USD</span>`);
+	$("#intdecval-quotefinal").html(`<span>${separate_point},<sup>${partFinalDecimal}</sup> USD</span>`);
 	/************************** IMPRIMIR EL TOTAL ENTRE EL IGV **************************/
 	var totalNotRountByIGV = twodecimals(sumTotalbyIGV);
 	var separatebyIGV = totalNotRountByIGV.toString().split('.');
@@ -69,6 +75,7 @@ $(document).ready(function(){
 	var totalNotRoundFinal = twodecimals(sumTotalFinalFleteandIGV);
 	var n_ftotal = Math.abs(totalNotRoundFinal);
 	partInteger_FTotal = Math.trunc(n_ftotal);
+	var separate_point_FTotal = partInteger_FTotal.toString().replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d)\.?)/g, ".");
 	partDecimal_FTotal = totalNotRoundFinal.toString().split('.');
 
 	if(partDecimal_FTotal[1] == undefined || partDecimal_FTotal[1] == 'undefined' || partDecimal_FTotal[1] == ""){
@@ -78,7 +85,7 @@ $(document).ready(function(){
 	}else{
 		partFinalDecimal_FTotal = partDecimal_FTotal[1];
 	}
-	$("#totalval_quoteFinal").html(`<span>${partInteger_FTotal},<sup>${partFinalDecimal_FTotal}</sup> USD</span>`);
+	$("#totalval_quoteFinal").html(`<span>${separate_point_FTotal},<sup>${partFinalDecimal_FTotal}</sup> USD</span>`);
 
 	/************************** CÁLCULO DE IMPUESTOS **************************/
 	var partInteger_Tax = 0;
@@ -142,6 +149,7 @@ $(document).ready(function(){
 		var finalval_FinalTax = parseFloat(twodecimals_FinalTax);
 		var n_tax = Math.abs(finalval_FinalTax);
 		partInteger_Tax = Math.trunc(n_tax);
+		var separate_point_Tax = partInteger_Tax.toString().replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d)\.?)/g, ".");
 		partDecimal_Tax = finalval_FinalTax.toString().split('.');
 		if(partDecimal_Tax[1] == undefined || partDecimal_Tax[1] == 'undefined' || partDecimal_Tax[1] == ""){
 			partFinalDecimal_Tax = partDecimal_Tax[1]+'00';
@@ -153,12 +161,94 @@ $(document).ready(function(){
 
 		/************************** IMPRESIÓN DE LOS VALORES **************************/
 		if(document.querySelector(".c-FinalQuotation--contStep--cQuotation--cBottom--cAduanaImpst").contains(document.querySelector("#taxval_quotefinal"))){			
-			$("#taxval_quotefinal").html(`<span>${partInteger_Tax},<sup>${partFinalDecimal_Tax}</sup> USD</span>`);
+			$("#taxval_quotefinal").html(`<span>${separate_point_Tax},<sup>${partFinalDecimal_Tax}</sup> USD</span>`);
 		}else{
 			//console.log("No existe el elemento");
 		}
-    /************************** ENVIAR UN AJAX PARA ALMACENAR LA COTIZACIÓN **************************/
+    /************************** VALIDAR SI EXISTE UN USUARIO AL ABRIR EL MODAL - PRIMER BOTÓN **************************/
+    $(document).on("click","#btn-requireDownloadQuotaion_one",function(e){
+			e.preventDefault();	
+			/************************** VALIDAR SI YA EXISTE UN USUARIO O REGISTRAR **************************/
+			if($("#s_useregin-sistem").val() == "" || 
+				 $("#s_useregin-sistem").val() == undefined || 
+				 $("#s_useregin-sistem").val() == 'undefined' || 
+				 $("#s_useregin-sistem").val() == null ||
+				 $("#s_useregin-sistem").val() == 'null'){
 
+			$("#cnt-modalFormLoginyRegister").add($(".cnt-modalFormLoginyRegister--c")).addClass("show");
+			console.log('Por favor, rellene sus datos.');
+
+			}else if($("#s_useregin-sistem").val() != "" || 
+							 $("#s_useregin-sistem").val() != undefined || 
+							 $("#s_useregin-sistem").val() != 'undefined' || 
+							 $("#s_useregin-sistem").val() != null ||
+							 $("#s_useregin-sistem").val() != 'null'){
+				
+    		/************************** ENVIAR UN AJAX PARA ALMACENAR LA COTIZACIÓN **************************/
+				var userNameReg = $("#s_useregin-sistem").val();
+				$.ajax({
+					url: 'controllers/c_finalvalidateuser.php',
+					method: 'POST',
+					datatype: "JSON",
+		    	contentType: 'application/x-www-form-urlencoded;charset=UTF-8',
+					async: true,
+					data: {userName: userNameReg}
+				}).done( function(e){
+					var queryresult = JSON.parse(e);
+					if(queryresult.response == "true"){
+						console.log("El usuario existe");
+						generatePDF(queryresult.username);
+					}else{
+						console.log("El usuario NO existe");
+					}
+				});
+			}else{
+				$("#cnt-modalFormLoginyRegister").add($(".cnt-modalFormLoginyRegister--c")).addClass("show");
+				console.log('Hubo un error al generar el PDF');
+			}
+		});
+		/************************** VALIDAR SI EXISTE UN USUARIO AL ABRIR EL MODAL - SEGUNDO BOTÓN **************************/
+		$(document).on("click","#btn-requireDownloadQuotaion_two",function(e){
+			e.preventDefault();
+			/************************** VALIDAR SI YA EXISTE UN USUARIO O REGISTRAR **************************/
+			if($("#s_useregin-sistem").val() == "" || 
+				 $("#s_useregin-sistem").val() == undefined || 
+				 $("#s_useregin-sistem").val() == 'undefined' || 
+				 $("#s_useregin-sistem").val() == null ||
+				 $("#s_useregin-sistem").val() == 'null'){
+
+			$("#cnt-modalFormLoginyRegister").add($(".cnt-modalFormLoginyRegister--c")).addClass("show");
+			console.log('Por favor, rellene sus datos.');
+
+			}else if($("#s_useregin-sistem").val() != "" || 
+							 $("#s_useregin-sistem").val() != undefined || 
+							 $("#s_useregin-sistem").val() != 'undefined' || 
+							 $("#s_useregin-sistem").val() != null ||
+							 $("#s_useregin-sistem").val() != 'null'){
+				
+				/************************** ENVIAR UN AJAX PARA ALMACENAR LA COTIZACIÓN **************************/
+				var userNameReg = $("#s_useregin-sistem").val();
+				$.ajax({
+					url: 'controllers/c_finalvalidateuser.php',
+					method: 'POST',
+					datatype: "JSON",
+		    	contentType: 'application/x-www-form-urlencoded;charset=UTF-8',
+					async: true,
+					data: {userName: userNameReg}
+				}).done( function(e){
+					var queryresult = JSON.parse(e);
+					if(queryresult.response == "true"){
+						console.log("El usuario existe");
+						generatePDF(queryresult.username);
+					}else{
+						console.log("El usuario NO existe");
+					}
+				});
+			}else{
+				$("#cnt-modalFormLoginyRegister").add($(".cnt-modalFormLoginyRegister--c")).addClass("show");
+				console.log('Hubo un error al generar el PDF');
+			}
+		});
   });
 
 	/************************** CARGAR LOS VALORES E INCLUIRLOS EN EL TEXTO PARA EL BOTÓN DE WHATSAPP **************************/
