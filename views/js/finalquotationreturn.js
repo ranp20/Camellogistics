@@ -199,13 +199,18 @@ $(document).ready(function(){
 				
     		/************************** ENVIAR UN AJAX PARA ALMACENAR LA COTIZACIÓN **************************/
 				var userNameReg = $("#s_useregin-sistem").val();
+
+				var formdata = new FormData();
+				formdata.append("username_cli", userNameReg);
+
 				$.ajax({
 					url: 'controllers/c_finalvalidateuser.php',
 					method: 'POST',
 					datatype: "JSON",
-		    	contentType: 'application/x-www-form-urlencoded;charset=UTF-8',
-					async: true,
-					data: {userName: userNameReg}
+					data: formdata,
+					contentType: false,
+	        cache: false,
+	        processData: false
 				}).done( function(e){
 					var queryresult = JSON.parse(e);
 					if(queryresult.response == "true"){
@@ -241,13 +246,18 @@ $(document).ready(function(){
 				
 				/************************** ENVIAR UN AJAX PARA ALMACENAR LA COTIZACIÓN **************************/
 				var userNameReg = $("#s_useregin-sistem").val();
+
+				var formdata = new FormData();
+				formdata.append("username_cli", userNameReg);
+
 				$.ajax({
 					url: 'controllers/c_finalvalidateuser.php',
 					method: 'POST',
 					datatype: "JSON",
-		    	contentType: 'application/x-www-form-urlencoded;charset=UTF-8',
-					async: true,
-					data: {userName: userNameReg}
+					data: formdata,
+					contentType: false,
+	        cache: false,
+	        processData: false
 				}).done( function(e){
 					var queryresult = JSON.parse(e);
 					if(queryresult.response == "true"){
@@ -312,11 +322,9 @@ $(document).ready(function(){
 	      return false;
 	    }else{
 				if(e.target.value != 0 || e.target.value != ""){
-					console.log('Contiene información');
 					$("#msg-nounNumberDoc").text("");
 				}else{
-					console.log('NO contiene información');
-					$("#msg-nounNumberDoc").text("Debes completar este campo");
+					$("#msg-nounNumberDoc").text("Ingrese un número de documento");
 				}
 	    }
 	  }
@@ -327,10 +335,8 @@ $(document).ready(function(){
       return false;
     }else{
 			if(e.target.value != 0 || e.target.value != ""){
-				console.log('Contiene información');
 				$("#msg-nounNameEnterpriseReg").text("");
 			}else{
-				console.log('NO contiene información');
 				$("#msg-nounNameEnterpriseReg").text("Debes completar este campo");
 			}
     }
@@ -344,10 +350,8 @@ $(document).ready(function(){
 	      return false;
 	    }else{
 				if(e.target.value != 0 || e.target.value != ""){
-					console.log('Contiene información');
 					$("#msg-nounNumberorTelephoneNumb").text("");
 				}else{
-					console.log('NO contiene información');
 					$("#msg-nounNumberorTelephoneNumb").text("Debes completar este campo");
 				}
 	    }
@@ -359,34 +363,83 @@ $(document).ready(function(){
       return false;
     }else{
 			if(e.target.value != 0 || e.target.value != ""){
-				console.log('Contiene información');
 				$("#msg-nounValidEmail").text("");
 			}else{
-				console.log('NO contiene información');
-				$("#msg-nounValidEmail").text("Debes completar este campo");
+				$("#msg-nounValidEmail").text("Ingrese un correo electrónico");
 			}
     }
 	});
-
 	/************************** FORMULARIO DE DATOS DEL USUARIO - ANTES DE DESCARGAR SU COTIZACIÓN **************************/
-	$(document).on("submit","#btn-gen_formDataUserQuotation",function(e){
+	$(document).on("submit","#btngen_formDataUserQuotation",function(e){
 		e.preventDefault();
 
 		($("#n_document_cli").val() != "" || $("#n_document_cli").val() != 0) ? $("#msg-nounNumberDoc").text("") : $("#msg-nounNumberDoc").text("Ingrese un número de documento");
 		($("#msg-nounValidEmail").val() != "" || $("#msg-nounValidEmail").val() != 0) ? $("#msg-nounValidEmail").text("") : $("#msg-nounValidEmail").text("Ingrese un correo electrónico");
 
 		if($("#n_document_cli").val() != "" || $("#n_document_cli").val() != 0 &&
+			 $("#name_enterprise_cli").val() != "" || $("#name_enterprise_cli").val() != 0 &&
+			 $("#telephone_cli").val() != "" || $("#telephone_cli").val() != 0 &&
 			 $("#msg-nounValidEmail").val() != "" || $("#msg-nounValidEmail").val() != 0){
 
+			/************************** ENVIAR UN AJAX PARA ALMACENAR LA COTIZACIÓN **************************/
+			var formdata = new FormData();
+			formdata.append("ndoc_cli", $("#n_document_cli").val());
+			formdata.append("name_enterprise_cli", $("#name_enterprise_cli").val());
+			formdata.append("telephone_cli", $("#telephone_cli").val());
+			formdata.append("username_cli", $("#email_cli").val());
+
 			$.ajax({
-				url: "controllers/c_generate-pdf.php",
-		    method: "POST",
-		    datatype: "JSON",
-		    contentType: 'application/x-www-form-urlencoded;charset=UTF-8',
-		    data: objDataTxtWhatsapp,
-			}).done((res) =>{
-				console.log(res);
+				url: 'controllers/c_finalvalidateuser.php',
+				method: 'POST',
+				datatype: 'JSON',
+				data: formdata,
+				contentType: false,
+        cache: false,
+        processData: false
+			}).done( function(e){
+				var queryresult = JSON.parse(e);
+				console.log(queryresult);
+
+				// if(queryresult.response == "true"){
+				// 	console.log("El usuario existe");
+				// 	generatePDF(queryresult.username);
+				// }else{
+				// 	console.log("El usuario NO existe");
+				// }
 			});
+
+		}else if($("#n_document_cli").val() != "" || $("#n_document_cli").val() != 0 &&
+						 $("#name_enterprise_cli").val() == "" || $("#name_enterprise_cli").val() == 0 &&
+			 			 $("#telephone_cli").val() == "" || $("#telephone_cli").val() == 0 &&
+						 $("#msg-nounValidEmail").val() != "" || $("#msg-nounValidEmail").val() != 0){
+
+			/************************** ENVIAR UN AJAX PARA ALMACENAR LA COTIZACIÓN **************************/
+			var formdata = new FormData();
+			formdata.append("ndoc_cli", $("#n_document_cli").val());
+			formdata.append("name_enterprise_cli", "No especificado");
+			formdata.append("telephone_cli", "No especificado");
+			formdata.append("username_cli", $("#email_cli").val());
+
+			$.ajax({
+				url: 'controllers/c_finalvalidateuser.php',
+				method: 'POST',
+				datatype: 'JSON',
+				data: formdata,
+				contentType: false,
+        cache: false,
+        processData: false
+			}).done( function(e){
+				var queryresult = JSON.parse(e);
+				console.log(queryresult);
+
+				// if(queryresult.response == "true"){
+				// 	console.log("El usuario existe");
+				// 	generatePDF(queryresult.username);
+				// }else{
+				// 	console.log("El usuario NO existe");
+				// }
+			});
+
 		}else{
 			console.log('Debes completar los campos requeridos');
 		}

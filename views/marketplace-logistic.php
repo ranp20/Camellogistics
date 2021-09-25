@@ -98,7 +98,6 @@
     </div>
   </main>
   <?php require_once 'includes/form-login-user.php'; ?>
-  <script src="<?= $url ?>js/jquery-3.6.0.min.js"></script>
   <script src="<?= $url ?>js/user-login.js"></script>
   <script src="<?= $url ?>js/marketplace-logistic.js"></script>
 </body>

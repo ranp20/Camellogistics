@@ -259,7 +259,6 @@
   </main>
   <?php require_once 'includes/form-calculator-flete.php'; ?>
   <div id="msgLoaderPage_start"></div>
-  <script src="<?= $url ?>js/jquery-3.6.0.min.js"></script>
   <script type="text/javascript" src="<?= $url ?>js/fullpage/scrolloverflow.min.js"></script>
   <script type="text/javascript" src="<?= $url ?>js/fullpage/fullpage.min.js"></script>
   <?php echo $script_qbysteps; ?>
