@@ -2052,7 +2052,8 @@ $(document).on("click", ".cont-MainCamelLog--c--contSteps--item--cStep--mFrmIpts
   $("#ipt-valNameTypeProdNInterface-notMoreOpts").attr("idproduct", $(this).attr("id"));
   $("#ipt-valNameTypeProdNInterface-notMoreOpts").val($(this).find("p").text());
   /************************** ASIGNAR A LA VARIABLE LOCAL **************************/
-  localStorage.setItem("key_v-dbammountadditional", $(this).attr("data-amountadditional"));
+  localStorage.setItem("key_v-nametypeproduct", $(this).find("p").text()); //NOMBRE DEL TIPO DE PRODUCTO
+  localStorage.setItem("key_v-dbammountadditional", $(this).attr("data-amountadditional")); //VALOR ADICIONAL DEL PRODUCTO
   /************************** MOSTRAR/OCULTAR DE ACUERDO A EL VALOR DEL MONTO ADICIONAL **************************/
   if($(this).attr("data-amountadditional") != 0 || $(this).attr("data-amountadditional") != 0.00){
     $("#ipt-valCantOfAmountAdditional-notMoreOpts").html(`
@@ -3122,6 +3123,7 @@ $(document).on("click", ".cont-MainCamelLog--c--contSteps--item--cStep--mFrmIpts
   var taxationTwoVal = parseFloat($(this).attr("data-taxtwo"));
   var taxationThreeVal = parseFloat($(this).attr("data-taxthree"));
   /************************** ASIGNAR A LA VARIABLE LOCAL DE IMPUESTOS DE PRODUCTO PARA IGV **************************/
+  localStorage.setItem("key_v-nametypeproduct", $(this).find("p").text()); //NOMBRE DEL TIPO DE PRODUCTO
   localStorage.setItem("key_v-valuestaxOnebyigv", taxationOneVal); //VALOR DE AD-VALOREN
   localStorage.setItem("key_v-valuestaxTwobyigv", taxationTwoVal); //VALOR DE IMPUESTO SELECCTIVO
   localStorage.setItem("key_v-valuestaxThreebyigv", taxationThreeVal); //VALOR DE ANTIDUMPING

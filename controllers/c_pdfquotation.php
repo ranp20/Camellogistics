@@ -5,6 +5,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
 	<title>Cotizacion de cliente</title>
 </head>
+<?php print_r($_POST); ?>
 <style>
 	#cont_quotationpdf{
 		max-width: 726px;

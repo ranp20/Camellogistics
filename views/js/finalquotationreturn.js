@@ -215,6 +215,28 @@ $(document).ready(function(){
 					var queryresult = JSON.parse(e);
 					if(queryresult.response == "true"){
 						console.log("El usuario existe");
+
+						// var formdata2 = new FormData();
+
+						// formdata2.append("u_login", queryresult.username);
+						// formdata2.append("f_type_op", localStorage.getItem("type_service"));
+						// formdata2.append("f_type_transp", localStorage.getItem("type_service"));
+						// formdata2.append("f_type_cont", queryresult.username);
+						// formdata2.append("u_entreprise", queryresult.username);
+
+
+						// $.ajax({
+						// 	url: 'controllers/c_generate-pdf.php',
+						// 	method: 'POST',
+						// 	datatype: "JSON",
+						// 	data: formdata2,
+						// 	contentType: false,
+			   //      cache: false,
+			   //      processData: false
+						// }).done( function(e){
+						// 	console.log(e);
+						// });
+
 						generatePDF(queryresult.username);
 					}else{
 						console.log("El usuario NO existe");
