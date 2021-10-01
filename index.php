@@ -1,5 +1,4 @@
 <?php 
-
   //COMPRIMIR ARCHIVOS DE TEXTO...
   (substr_count($_SERVER["HTTP_ACCEPT_ENCODING"], "gzip")) ? ob_start("ob_gzhandler") : ob_start();
   session_start();
@@ -21,6 +20,5 @@
   <?php require_once 'views/includes/form-login-user.php'; ?>
   <script src="<?= $url ?>js/jquery-3.6.0.min.js"></script>
   <script src="<?= $url ?>js/user-login.js"></script>
-  <script type="text/javascript" src="views/js/input-spinner.js"></script>
 </body>
 </html>

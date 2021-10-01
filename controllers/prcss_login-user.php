@@ -1,7 +1,7 @@
 <?php
 if(isset($_POST) && count($_POST) > 0){
 
-	if($_POST['u-username'] != "Invitado" && $_POST['u-typeorder'] != 0){
+	if($_POST['u-username'] != "Invitado"){
 
 		$arr_userdatalogin = [
 			'username' => $_POST['u-username'],

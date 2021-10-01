@@ -1,5 +1,4 @@
-<?php 
-  
+<?php   
   //COMPRIMIR ARCHIVOS DE TEXTO...
   (substr_count($_SERVER["HTTP_ACCEPT_ENCODING"], "gzip")) ? ob_start("ob_gzhandler") : ob_start();
 
@@ -16,10 +15,8 @@
   $script_qbysteps = "";
 
   if(isset($_POST) || $_POST != []){
-    
     if($_POST['v_typetranspinit'] == 0){
-      //echo "Solo calcular el flete sin valores desde administrador";
-      //print_r($_POST);
+
       $portOriginPOST = "";
       $portCountryOriginPOST = "";
       $portDestinyPOST = "";
@@ -93,14 +90,13 @@
         $portCountryDestinyPOST = $_POST['v_iptcountryportdestinypost'];
 
         echo "<input type='hidden' name='port-norigin' id='val-port-norigin' value='".$_POST['ipt-valNamePortOrigin']."'>";
-        //print_r($_POST);
 
         $sections_qresumeandsteps = "
-          <input type='hidden' id='ipt-vtypetranspinit' value='{$_POST['v_typetranspinit']}'>
-          <input type='hidden' id='ipt-vportidOrigin' value='{$portOriginPOST}'>
-          <input type='hidden' id='ipt-vportidcountryOrigin' value='{$portCountryOriginPOST}'>
-          <input type='hidden' id='ipt-vportidDestiny' value='{$portDestinyPOST}'>
-          <input type='hidden' id='ipt-vportidcountryDestiny' value='{$portCountryDestinyPOST}'>
+          <input type='hidden' class='cont-MainCamelLog--c--ctrbysend' id='ipt-vtypetranspinit' value='{$_POST['v_typetranspinit']}'>
+          <input type='hidden' class='cont-MainCamelLog--c--ctrbysend' id='ipt-vportidOrigin' value='{$portOriginPOST}'>
+          <input type='hidden' class='cont-MainCamelLog--c--ctrbysend' id='ipt-vportidcountryOrigin' value='{$portCountryOriginPOST}'>
+          <input type='hidden' class='cont-MainCamelLog--c--ctrbysend' id='ipt-vportidDestiny' value='{$portDestinyPOST}'>
+          <input type='hidden' class='cont-MainCamelLog--c--ctrbysend' id='ipt-vportidcountryDestiny' value='{$portCountryDestinyPOST}'>
           <section class='cont-MainCamelLog--c--contResumeCalc' id='id-resumeLeftQuoteCamel'>
             <div class='cont-MainCamelLog--c--contResumeCalc--item' data-advlevel='d-typetransportnumb'></div>
             <div class='cont-MainCamelLog--c--contResumeCalc--item' data-advlevel='d-firstChargeLoad'></div>
@@ -228,9 +224,7 @@
     }
   }else{
     header("Location: marketplace-logistico");
-  }
-
-  
+  }  
 ?>
 <!DOCTYPE html>
 <html lang="es">
