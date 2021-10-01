@@ -6,21 +6,6 @@
 
   $actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]";
   $url =  $actual_link . "/Camellogistics/views/";
-
-  // function setInterval($f, $milliseconds)
-  // {
-  //   $seconds=(int)$milliseconds/1000;
-  //   while(true)
-  //   {
-  //     $f();
-  //     sleep($seconds);
-  //   }
-  // }
-  // setInterval(function(){
-  //   echo "hi!\n";
-  // }, 1000);
-    
-  //echo date('d-m-Y H:i:s');
 ?>
 <!DOCTYPE html>
 <html lang="es">

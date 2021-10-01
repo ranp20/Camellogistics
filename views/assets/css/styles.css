@@ -852,6 +852,7 @@ img {
 #c-HTop-camel .c-Htopbar--c--cMenu--m--item--subm {
   position: absolute;
   background-color: #000;
+  min-width: 11rem;
   width: 100%;
   right: 0;
   line-height: 2rem;
@@ -866,6 +867,12 @@ img {
   padding: 0.5rem 1rem;
   color: #fff;
   font-weight: 600;
+}
+#c-HTop-camel .c-Htopbar--c--cMenu--m--item--subm--sublink svg {
+  fill: #fff;
+  width: 20px;
+  height: 20px;
+  margin-right: 0.5rem;
 }
 #c-HTop-camel .c-Htopbar--c--cMenu--m--item:hover ul {
   display: block;

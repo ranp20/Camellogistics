@@ -16,6 +16,113 @@ function twodecimals(n) {
   return t.match(regex)[0];
 }
 $(document).ready(function(){
+	/************************** VALIDAR Y GUARDAR EN MEMORIA EL USUARIO **************************/
+	// var sesstorage_user = sessionStorage.getItem("sess_usercli");
+	// var final_valsessuser = () ? $("#s_useregin-sistem").val() : "Invitado";
+	// 	if(sesstorage_user != "any" && sesstorage_user != "" && sesstorage_user != 0){
+
+	// 	}else{
+
+	// 	}
+	/************************** VALIDAR SI EXISTE UN USUARIO, DE LO CONTRARIO ASIGNAR EL USUARIO POR DEFECTO **************************/
+	if($("#s_useregin-sistem").val() == "" || 
+							 $("#s_useregin-sistem").val() == undefined || 
+							 $("#s_useregin-sistem").val() == 'undefined' || 
+							 $("#s_useregin-sistem").val() == null ||
+							 $("#s_useregin-sistem").val() == 'null'){
+
+		sessval_loginuser = { username: 'Invitado' }
+    sessionStorage.setItem("sess_usercli", JSON.stringify(sessval_loginuser));
+    sessionStorage.setItem("sess_valuser", 0);
+    var s_username_local = JSON.parse(sessionStorage.getItem("sess_usercli"));
+		/************************** ACTUALIZAR EL HEADER TOP **************************/
+		$("#s-loginsessuser-active").html(`
+			<a href='javascript:void(0);' class='c-Htopbar--c--cMenu--m--link'>
+	      <span id='namUser_validSess' class='c-Htopbar--c--cMenu--m--link--sessUser'>${s_username_local.username}</span>
+	    </a>
+	    <ul class='c-Htopbar--c--cMenu--m--item--subm'>
+	      <li class='c-Htopbar--c--cMenu--m--item--subm--subitem'>
+	        <a href='logout' class='c-Htopbar--c--cMenu--m--item--subm--sublink'>
+	      		<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#fff" viewBox="0 0 24 24"><path d="M8 9v-4l8 7-8 7v-4h-8v-6h8zm2-7v2h12v16h-12v2h14v-20h-14z"/></svg>
+	        	<span>Cerrar sesión</span>
+	        </a>
+	      </li>
+	    </ul>
+		`);
+			
+		$.ajax({
+			url: 'controllers/prcss_login-user.php',
+			method: 'POST',
+			dataType: 'JSON',
+			contentType: 'application/x-www-form-urlencoded;charset=UTF-8',
+			data: { 'u-username' : s_username_local.username, 'u-typeorder' : sessionStorage.getItem("sess_valuser")}
+		}).done(function(e){
+			/************************** MOSTRAR EL NOMBRE/CORREO DEL USUARIO **************************/
+			$("#s-loginsessuser-active").html(`
+				<a href='javascript:void(0);' class='c-Htopbar--c--cMenu--m--link'>
+          <span id='namUser_validSess' class='c-Htopbar--c--cMenu--m--link--sessUser'>${e.received.username}</span>
+        </a>
+        <ul class='c-Htopbar--c--cMenu--m--item--subm'>
+          <li class='c-Htopbar--c--cMenu--m--item--subm--subitem'>
+            <a href='logout' class='c-Htopbar--c--cMenu--m--item--subm--sublink'>
+            	<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#fff" viewBox="0 0 24 24"><path d="M8 9v-4l8 7-8 7v-4h-8v-6h8zm2-7v2h12v16h-12v2h14v-20h-14z"/></svg>
+      				<span>Cerrar sesión</span>
+            </a>
+          </li>
+        </ul>
+			`);
+		});
+
+	}else{
+		sessval_loginuser = { username: $("#s_useregin-sistem").val() }
+    sessionStorage.setItem("sess_usercli", JSON.stringify(sessval_loginuser));
+    sessionStorage.setItem("sess_valuser", 1);
+    var s_username_local = JSON.parse(sessionStorage.getItem("sess_usercli"));
+		/************************** ACTUALIZAR EL HEADER TOP **************************/
+		$("#s-loginsessuser-active").html(`
+			<a href='javascript:void(0);' class='c-Htopbar--c--cMenu--m--link'>
+	      <span id='namUser_validSess' class='c-Htopbar--c--cMenu--m--link--sessUser'>${s_username_local.username}</span>
+	    </a>
+	    <ul class='c-Htopbar--c--cMenu--m--item--subm'>
+	      <li class='c-Htopbar--c--cMenu--m--item--subm--subitem'>
+	        <a href='logout' class='c-Htopbar--c--cMenu--m--item--subm--sublink'>
+	      		<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#fff" viewBox="0 0 24 24"><path d="M8 9v-4l8 7-8 7v-4h-8v-6h8zm2-7v2h12v16h-12v2h14v-20h-14z"/></svg>
+	        	<span>Cerrar sesión</span>
+	        </a>
+	      </li>
+	    </ul>
+		`);
+	}
+	
+	// 	/************************** ENVIAR UN AJAX PARA ALMACENAR LA COTIZACIÓN **************************/
+	// 	var userNameReg = $("#s_useregin-sistem").val();
+
+	// 	var formdata = new FormData();
+	// 	formdata.append("username_cli", userNameReg);
+
+	// 	$.ajax({
+	// 		url: 'controllers/c_finalvalidateuser.php',
+	// 		method: 'POST',
+	// 		datatype: "JSON",
+	// 		data: formdata,
+	// 		contentType: false,
+	//     cache: false,
+	//     processData: false
+	// 	}).done( function(e){
+	// 		var queryresult = JSON.parse(e);
+	// 		if(queryresult.response == "true"){
+	// 			console.log("El usuario existe");
+	// 			generatePDF(queryresult.username);
+	// 		}else{
+	// 			sessionStorage.setItem("sess_usercli", "Invitado");
+	// 		}
+	// 	});
+	// }else{
+	// 	console.log('No existe ningun usuario');
+	// 	sessionStorage.setItem("sess_usercli", "Invitado");
+	// }
+
+
 	$("#btn-scrollingtTtB").on("click", function(){$("body, html").animate({scrollTop: '500'}, 350);}); //BOTÓN DE IR HACIA ABAJO
 	$("#v_validratedate").text(localStorage.getItem("key_validaterate")); //LISTAR LA FECHA DE VALIDEZ DE LA TARIFA SELECCIONADA
 	/************************** LISTAR LOS VALORES PARA LOS CÁLCULOS **************************/
@@ -197,11 +304,24 @@ $(document).ready(function(){
 							 $("#s_useregin-sistem").val() != null ||
 							 $("#s_useregin-sistem").val() != 'null'){
 				
-    		/************************** ENVIAR UN AJAX PARA ALMACENAR LA COTIZACIÓN **************************/
-				var userNameReg = $("#s_useregin-sistem").val();
-
+				
+				//AGREGAR IGUALMENTE A LA BASE DE DATOS LA COTIZACIÓN ACTUAL...
 				var formdata = new FormData();
-				formdata.append("username_cli", userNameReg);
+				formdata.append("u_login", "Invitado");
+				formdata.append("f_type_op", localStorage.getItem("type_service"));
+				formdata.append("f_type_transp", localStorage.getItem("type_service"));
+				formdata.append("f_type_cont", localStorage.getItem("key_typeChrg"));
+				formdata.append("u_entreprise", "No especificado");
+				formdata.append("u_telephone", "No especificado");
+				formdata.append("u_service", "No especificado");
+				formdata.append("u_cont", localStorage.getItem("key_v-nametypeproduct"));
+				formdata.append("f_origen", localStorage.getItem("port_OName"));
+				formdata.append("f_weight_v", "No especificado");
+				formdata.append("f_time_trans", "No especificado");
+				formdata.append("f_fob", totalfinalvaluefob);
+				formdata.append("f_flete", totflete);
+				formdata.append("f_insurance", totalinsurance);
+				formdata.append("f_cif", sumbyCIF);
 
 				$.ajax({
 					url: 'controllers/c_finalvalidateuser.php',
@@ -209,42 +329,17 @@ $(document).ready(function(){
 					datatype: "JSON",
 					data: formdata,
 					contentType: false,
-	        cache: false,
-	        processData: false
+		      cache: false,
+		      processData: false
 				}).done( function(e){
-					var queryresult = JSON.parse(e);
-					if(queryresult.response == "true"){
-						console.log("El usuario existe");
-
-						// var formdata2 = new FormData();
-
-						// formdata2.append("u_login", queryresult.username);
-						// formdata2.append("f_type_op", localStorage.getItem("type_service"));
-						// formdata2.append("f_type_transp", localStorage.getItem("type_service"));
-						// formdata2.append("f_type_cont", queryresult.username);
-						// formdata2.append("u_entreprise", queryresult.username);
-
-
-						// $.ajax({
-						// 	url: 'controllers/c_generate-pdf.php',
-						// 	method: 'POST',
-						// 	datatype: "JSON",
-						// 	data: formdata2,
-						// 	contentType: false,
-			   //      cache: false,
-			   //      processData: false
-						// }).done( function(e){
-						// 	console.log(e);
-						// });
-
-						generatePDF(queryresult.username);
-					}else{
-						console.log("El usuario NO existe");
-					}
+					//generatePDF(queryresult.username);//ENVIAR EL USUARIO PARA DEVOLVER LOS DATOS EN EL PDF
+					console.log(e);
 				});
+
 			}else{
 				$("#cnt-modalFormLoginyRegister").add($(".cnt-modalFormLoginyRegister--c")).addClass("show");
 				console.log('Hubo un error al generar el PDF');
+
 			}
 		});
 		/************************** VALIDAR SI EXISTE UN USUARIO AL ABRIR EL MODAL - SEGUNDO BOTÓN **************************/

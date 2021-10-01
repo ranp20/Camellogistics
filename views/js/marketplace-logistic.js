@@ -5,18 +5,10 @@ $(function(){
 });
 /************************** CAMBIAR DE CONTROLES SEGÚN LA OPCIÓN SELECCIONADA **************************/
 function changesTabsOperation(){
-  /************************** INFORMARCIÓN DE LA ACCIONES DEL USUARIO - LOCALSTORAGE... **************************/
+  /************************** VARIABLES LOCALSTORAGE **************************/
   //#1. SELECCIONAR EL TIPO DE SERVICIO + PAGES...
   var selService = localStorage.setItem("type_service", ""); //SETEADA EN ESTA FUNCIÓN...
-  // PASOS DE LA COTIZACIÓN...
-  // var stepOne_LocalStorage = localStorage.setItem("stepOne", true);
-  // var stepTwo_LocalStorage = localStorage.setItem("stepTwo", false);
-  // var stepThree_LocalStorage = localStorage.setItem("stepThree", false);
-  // var stepFour_LocalStorage = localStorage.setItem("stepFour", false);
-  //#2. CREAR LOS VALORES PARA LAS TARIFAS...
-  // var var_ratesOfOrigin_5cbm = localStorage.setItem("val_rateorigin-5cbm", 0);
-  // var var_ratesOfOrigin_15cbm = localStorage.setItem("val_rateorigin-15cbm", 0);
-  //#2.1 CREAR LOS VALORES DE CÁLCULO...
+  //#2. CREAR LOS VALORES DE CÁLCULO...
   var TotalPackages = localStorage.setItem("tot_packages", 0);
   var TotalWeight = localStorage.setItem("tot_weight", 0);
   var TotalVolume = localStorage.setItem("tot_volume", 0);
@@ -47,6 +39,26 @@ function changesTabsOperation(){
   var key_valvaluestaxTwobyigv = localStorage.setItem("key_v-valuestaxTwobyigv", 0); //VALOR DE IMPUESTO SELECCTIVO
   var key_valvaluestaxThreebyigv = localStorage.setItem("key_v-valuestaxThreebyigv", 0); //VALOR DE ANTIDUMPING
   var key_valbytotaldownload = localStorage.setItem("key_v-valbytotaldownload", 0); //VALOR DE DESCARGA
+
+  /************************** VARIABLES SESSIONSTORAGE **************************/
+  var sess_usercli = sessionStorage.setItem("sess_usercli", 0); //SESSION DE VARIABLE LOCAL PARA EL USUARIO
+  var sess_valuser = sessionStorage.setItem("sess_valuser", 0); //VALOR DEL TIPO DE USUARIO: 0 = NINGUNO Y 1 = INVITADO O REGISTRADO
+  var sessval_loginuser = "";
+
+  if($("#s_useregin-sistem").val() == "" || 
+     $("#s_useregin-sistem").val() == undefined || 
+     $("#s_useregin-sistem").val() == 'undefined' || 
+     $("#s_useregin-sistem").val() == null ||
+     $("#s_useregin-sistem").val() == 'null'){
+
+    sessval_loginuser = { username: 'any' }
+    sessionStorage.setItem("sess_usercli", JSON.stringify(sessval_loginuser));
+    sessionStorage.setItem("sess_valuser", 0);
+  }else{
+    sessval_loginuser = { username: $("#s_useregin-sistem").val() }
+    sessionStorage.setItem("sess_usercli", JSON.stringify(sessval_loginuser));
+    sessionStorage.setItem("sess_valuser", 1);
+  }
 
   parentLinks = $("#c-cOptionsMarket");
 	links = parentLinks.find("a");

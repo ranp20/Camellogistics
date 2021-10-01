@@ -170,6 +170,12 @@ $(document).on("submit","#c-formLoginU_Camel",function(e){
 			if(e.response == "true"){
 				/************************** AGREGAR AL CONTROL DE VALIDACIÓN **************************/
 				$("#s_useregin-sistem").val(e.received.username);
+				/************************** ASIGNAR A LA VARIABLE DE SESIÓN LOCAL **************************/
+				var sessstorage_loguser = {
+					'username':e.received.username
+				}
+				sessionStorage.setItem("sess_usercli", JSON.stringify(sessstorage_loguser));
+				sessionStorage.setItem("sess_valuser", 1);
 				/************************** MOSTRAR EL NOMBRE/CORREO DEL USUARIO **************************/
 				$("#s-loginsessuser-active").html(`
 					<a href='javascript:void(0);' class='c-Htopbar--c--cMenu--m--link'>
@@ -177,7 +183,10 @@ $(document).on("submit","#c-formLoginU_Camel",function(e){
           </a>
           <ul class='c-Htopbar--c--cMenu--m--item--subm'>
             <li class='c-Htopbar--c--cMenu--m--item--subm--subitem'>
-              <a href='logout' class='c-Htopbar--c--cMenu--m--item--subm--sublink'>Cerrar sesión</a>
+              <a href='logout' class='c-Htopbar--c--cMenu--m--item--subm--sublink'>
+              	<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#fff" viewBox="0 0 24 24"><path d="M8 9v-4l8 7-8 7v-4h-8v-6h8zm2-7v2h12v16h-12v2h14v-20h-14z"/></svg>
+        				<span>Cerrar sesión</span>
+              </a>
             </li>
           </ul>
 				`);
@@ -265,6 +274,12 @@ $(document).on("submit","#c-formRegisterU_Camel",function(e){
 			if(e.response == "true"){
 				/************************** AGREGAR AL CONTROL DE VALIDACIÓN **************************/
 				$("#s_useregin-sistem").val(e.received.username);
+				/************************** ASIGNAR A LA VARIABLE DE SESIÓN LOCAL **************************/
+				var sessstorage_loguser = {
+					'username':e.received.username
+				}
+				sessionStorage.setItem("sess_usercli", JSON.stringify(sessstorage_loguser));
+				sessionStorage.setItem("sess_valuser", 1);
 				/************************** MOSTRAR EL NOMBRE/CORREO DEL USUARIO **************************/
 				$("#s-loginsessuser-active").html(`
 					<a href='javascript:void(0);' class='c-Htopbar--c--cMenu--m--link'>
@@ -272,7 +287,10 @@ $(document).on("submit","#c-formRegisterU_Camel",function(e){
           </a>
           <ul class='c-Htopbar--c--cMenu--m--item--subm'>
             <li class='c-Htopbar--c--cMenu--m--item--subm--subitem'>
-              <a href='logout' class='c-Htopbar--c--cMenu--m--item--subm--sublink'>Cerrar sesión</a>
+              <a href='logout' class='c-Htopbar--c--cMenu--m--item--subm--sublink'>
+              	<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#fff" viewBox="0 0 24 24"><path d="M8 9v-4l8 7-8 7v-4h-8v-6h8zm2-7v2h12v16h-12v2h14v-20h-14z"/></svg>
+        				<span>Cerrar sesión</span>
+              </a>
             </li>
           </ul>
 				`);

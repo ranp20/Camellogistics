@@ -1,3 +1,9 @@
+<?php 
+
+  //DEVOLVER LOS VALORES DE LA COTIZACIÓN DEL CLIENTE DESDE LA BD POR EMAIL DEL USUARO DESDE GET
+
+
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -5,7 +11,9 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
 	<title>Cotizacion de cliente</title>
 </head>
-<?php print_r($_POST); ?>
+<?php print_r($_POST); 
+      print_r($_GET);
+?>
 <style>
 	#cont_quotationpdf{
 		max-width: 726px;
@@ -1007,7 +1015,7 @@
 		      <div class="item_dpt1_dat1">:</div>
 	    	</div>
 	    	<div id="marc_dat1_der1">
-		      <div class="item_demp2_dat1">990256235</div>
+		      <div class="item_demp2_dat1"><?php print_r($_GET['user']); ?></div>
 		      <div class="item_demp2_dat1">polancoranp2019@gmail.com</div>
 	    	</div>
 	  	</div>
