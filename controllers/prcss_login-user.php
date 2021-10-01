@@ -1,6 +1,5 @@
 <?php
 if(isset($_POST) && count($_POST) > 0){
-
 	if($_POST['u-username'] != "Invitado"){
 
 		$arr_userdatalogin = [
