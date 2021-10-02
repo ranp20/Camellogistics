@@ -191,7 +191,7 @@ $(document).ready(function(){
 	partDecimal_FTotal = totalNotRoundFinal.toString().split('.');
 
 	if(partDecimal_FTotal[1] == undefined || partDecimal_FTotal[1] == 'undefined' || partDecimal_FTotal[1] == ""){
-		partFinalDecimal_FTotal = partDecimal_FTotal[1]+'00';
+		partFinalDecimal_FTotal = '00';
 	}else	if(partDecimal_FTotal[1].length < 2){
 		partFinalDecimal_FTotal = partDecimal_FTotal[1]+'0';
 	}else{
@@ -264,7 +264,7 @@ $(document).ready(function(){
 		var separate_point_Tax = partInteger_Tax.toString().replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d)\.?)/g, ".");
 		partDecimal_Tax = finalval_FinalTax.toString().split('.');
 		if(partDecimal_Tax[1] == undefined || partDecimal_Tax[1] == 'undefined' || partDecimal_Tax[1] == ""){
-			partFinalDecimal_Tax = partDecimal_Tax[1]+'00';
+			partFinalDecimal_Tax = '00';
 		}else	if(partDecimal_Tax[1].length < 2){
 			partFinalDecimal_Tax = partDecimal_Tax[1]+'0';
 		}else{

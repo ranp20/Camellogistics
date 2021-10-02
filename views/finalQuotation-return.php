@@ -392,9 +392,9 @@ echo $template_incserv.$template_notincserv;
     //   echo "No hay una sesión de usuario"."</br>";
     // }
     // echo date('d-m-Y H:i:s')."</br>";
-    echo "<pre>";
-    print_r($_POST);
-    echo "</pre>";
+    // echo "<pre>";
+    // print_r($_POST);
+    // echo "</pre>";
     ?>
   </main>
   <?php require_once 'includes/form-login-user.php'; ?>
