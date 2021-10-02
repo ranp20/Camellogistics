@@ -16,14 +16,6 @@ function twodecimals(n) {
   return t.match(regex)[0];
 }
 $(document).ready(function(){
-	/************************** VALIDAR Y GUARDAR EN MEMORIA EL USUARIO **************************/
-	// var sesstorage_user = sessionStorage.getItem("sess_usercli");
-	// var final_valsessuser = () ? $("#s_useregin-sistem").val() : "Invitado";
-	// 	if(sesstorage_user != "any" && sesstorage_user != "" && sesstorage_user != 0){
-
-	// 	}else{
-
-	// 	}
 	/************************** VALIDAR SI EXISTE UN USUARIO, DE LO CONTRARIO ASIGNAR EL USUARIO POR DEFECTO **************************/
 	if($("#s_useregin-sistem").val() == "" || 
 							 $("#s_useregin-sistem").val() == undefined || 

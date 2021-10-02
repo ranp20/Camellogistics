@@ -25,6 +25,7 @@ function changesTabsOperation(){
   var key_qContainers = localStorage.setItem("key_qContainers", 0); //CONTENEDORES...
   //# VALORES PARA EL CÁLCULO DEL FLETE...
   var key_valflete = localStorage.setItem("key_v-totalflette", 0); //FCL Y LCL
+  var key_valttaproxbycont = localStorage.setItem("key_v-valttaproxbycontain", ""); //TIEMPO DE TRANSPORTE POR TIPO DE CONTENEDOR(LCL O FCL)
   var key_valdbammountadditional = localStorage.setItem("key_v-dbammountadditional", 0); //VALOR DE MONTO ADICIONAL (DB)
   var key_valnametypeproduct = localStorage.setItem("key_v-nametypeproduct", ""); //TIPO DE PRODUCTO
   var key_valammountadditional = localStorage.setItem("key_v-ammountadditional", 0); //MONTO ADICIONAL DE ALGUNOS PRODUCTOS

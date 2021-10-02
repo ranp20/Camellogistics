@@ -2617,7 +2617,6 @@ $(document).on("click", "#btn-NextStepTochargedata", function(){
       data: {nameportOrigin : arrPortOrigin[0], typetransport: $("#loadTypeTranport").val()},
     }).done((e) => {
       var ratesorigin = JSON.parse(e);
-
       /************************** DEVOLVER EL RESULTADO MAYOR - VOLUMEN O PESO **************************/
       var v_convert = v_ValTotalWeight.replace(/\./g, '');
       var v_floatweightconvert = parseFloat(v_convert); //VALOR REAL DEL PESO
@@ -2669,6 +2668,7 @@ $(document).on("click", "#btn-NextStepTochargedata", function(){
         var val_dateValidHasta = separateDateValidHasta[0]+" "+"de"+" "+firstToUppercase(monthSeparatetoArrayHasta);
         /************************** ASIGNAR A LAS VARIABLES LOCALES **************************/
         localStorage.setItem("key_validaterate", val_dateValidDesde+" - "+val_dateValidHasta);
+        localStorage.setItem("key_v-valttaproxbycontain", ratesorigin[0].tt_aprox);
 
         if(v_ValTotalVolume <= 5){
 
@@ -2808,6 +2808,8 @@ $(document).on("click", "#btn-NextStepTochargedata", function(){
 
       }else if($("#loadTypeTranport").val() == "imo"){
         twodecimal_total_imo = roundToTwo(ratesorigin[0].total_imo);
+        /************************** ASIGNAR A LA VARIABLE LOCAL **************************/
+        localStorage.setItem("key_v-valttaproxbycontain", ratesorigin[0].tt_aprox);
         if(v_ValTotalVolume > 15){
 
           /************************** OCULTAR EL RESUMEN HASTA ESTE PASO **************************/
@@ -2904,6 +2906,8 @@ $(document).on("click", "#btn-NextStepTochargedata", function(){
 
       }else{
         twodecimal_total_refrigerado = roundToTwo(ratesorigin[0].total_refrigerado);
+        /************************** ASIGNAR A LA VARIABLE LOCAL **************************/
+        localStorage.setItem("key_v-valttaproxbycontain", ratesorigin[0].tt_aprox);
         if(v_ValTotalVolume > 15){
 
           /************************** OCULTAR EL RESUMEN HASTA ESTE PASO **************************/
