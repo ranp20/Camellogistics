@@ -3,14 +3,13 @@ function generatePDF(nameuser){
 	$url = "controllers/c_generate-pdf.php?user="+nameuser;
 	window.open($url, "cotizacion_pdf");
 }
-/************************** CALCULAR Y MOSTRAR EL RESUMEN DE COTIZACIÓN - INTERFAZ DE PRESENTACIÓN DE COTIZACIÓN **************************/
 /************************** DEJAR EN 2 DECIMALES POR DEFECTO **************************/
 function myRound(num, dec){
   var exp = Math.pow(10, dec || 2); // 2 decimales por defecto
   return parseInt(num * exp, 10) / exp;
 }
 /************************** FUNCIÓN - LIMITAR A DOS DECIMALES SIN REDONDEO **************************/
-function twodecimals(n) {
+function twodecimals(n){
   let t = n.toString();
   let regex = /(\d*.\d{0,2})/;
   return t.match(regex)[0];
@@ -85,35 +84,6 @@ $(document).ready(function(){
 	    </ul>
 		`);
 	}
-	
-	// 	/************************** ENVIAR UN AJAX PARA ALMACENAR LA COTIZACIÓN **************************/
-	// 	var userNameReg = $("#s_useregin-sistem").val();
-
-	// 	var formdata = new FormData();
-	// 	formdata.append("username_cli", userNameReg);
-
-	// 	$.ajax({
-	// 		url: 'controllers/c_finalvalidateuser.php',
-	// 		method: 'POST',
-	// 		datatype: "JSON",
-	// 		data: formdata,
-	// 		contentType: false,
-	//     cache: false,
-	//     processData: false
-	// 	}).done( function(e){
-	// 		var queryresult = JSON.parse(e);
-	// 		if(queryresult.response == "true"){
-	// 			console.log("El usuario existe");
-	// 			generatePDF(queryresult.username);
-	// 		}else{
-	// 			sessionStorage.setItem("sess_usercli", "Invitado");
-	// 		}
-	// 	});
-	// }else{
-	// 	console.log('No existe ningun usuario');
-	// 	sessionStorage.setItem("sess_usercli", "Invitado");
-	// }
-
 
 	$("#btn-scrollingtTtB").on("click", function(){$("body, html").animate({scrollTop: '500'}, 350);}); //BOTÓN DE IR HACIA ABAJO
 	$("#v_validratedate").text(localStorage.getItem("key_validaterate")); //LISTAR LA FECHA DE VALIDEZ DE LA TARIFA SELECCIONADA
@@ -138,9 +108,6 @@ $(document).ready(function(){
   var totalfinalvaluefob = parseFloat(twodecimals(cutewithoutofpricefob)); //TOTAL DE VALOR FOB
   var totalfinalvaluedownload = parseFloat(twodecimals(receiveddownload)); //TOTAL DE VALOR DE DESCARGA
 
-  // console.log('FOB: '+totalfinalvaluefob);
-  // console.log('FLETE: '+totflete);
-  // console.log('SEGURO: '+totalinsurance);
 	/************************** TOTALES PARA LA COTIZACIÓN **************************/
 	var sumTotalFirstFlete = totflete + totalamountadditional + totalimportprev + totaltransport + totalinsurance + totalvaluesquotation + totalfinalvaluedownload; //FLETE FINAL
 	var sumTotalbyIGV = (totaltransport + totalamountadditional + totalvaluesquotationbyIGV) * (18 / 100); //IGV (DEBAJO DEL FLETE FINAL)
@@ -221,13 +188,6 @@ $(document).ready(function(){
     var convert_Ad_Valoren = receivedAd_valoren / 100; //VALOR AD-VALOREN DE PRODUCTO
     var convert_I_selectivo = receivedI_selectivo / 100; //VALOR IMPUESTO SELECTIVO DE PROUCTO
     var convert_antidumping = received_antidumping / 100;
-
-    // console.log('IGV: '+convert_IGV);
-    // console.log('IPM: '+convert_IPM);
-    // console.log('Percepción: '+convert_Percepcion);
-    // console.log('Ad-Valoren: '+convert_Ad_Valoren);
-    // console.log('Impuesto selectivo: '+convert_I_selectivo);
-    // console.log('ANTIDUMPING: '+convert_antidumping);
 
     /************************** CALCULAR AD-VALOREN **************************/
     var val_Ad_valoren = sumbyCIF * convert_Ad_Valoren;
