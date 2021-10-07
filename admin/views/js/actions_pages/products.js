@@ -1028,6 +1028,7 @@ $(document).on('click', '#btndelete-product', function(e){
     data: {id : id},
   }).done((e) => {
     $("#item-" + id).remove();
-    $('#deleteModal').modal("hide");
+    $("#deleteModal").modal('hide');//PRIMERA SOLUCIÓN...
+    //$("#deleteModal .close").click();//SEGUNDA SOLUCIÓN...
   });
 });

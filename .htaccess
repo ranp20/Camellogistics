@@ -11,6 +11,7 @@ RewriteRule marketplace-logistico?$ views/marketplace-logistic.php
 RewriteRule startQuoteRequest?$ views/startQuoteRequest-steps.php
 RewriteRule fquotationgenerate?$ views/finalQuotation-return.php
 RewriteRule logout?$ controllers/prcss_logout-user.php
+RewriteRule cfinalvalidation?$ controllers/c_finalvalidateuser.php
 
 ############ANTIGUO PROCEDIMIENTO
 RewriteRule calculadora?$ views/calculadora.php
