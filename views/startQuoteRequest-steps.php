@@ -23,6 +23,7 @@
       $portCountryDestinyPOST = "";
 
       $sections_qresumeandsteps = "
+        <input type='hidden' class='cont-MainCamelLog--c--ctrbysend' id='ipt-vtypetranspinit' value='{$_POST['v_typetranspinit']}'>
         <section class='cont-MainCamelLog--c--contSteps not-padd p-05' id='fullpage'>
             <!-- PASO #1 -->
             <div class='cont-MainCamelLog--c--contSteps--item active section' data-anchor='step-typeoperation' data-transportquote>
@@ -77,7 +78,6 @@
       ";
 
       $script_qbysteps = "";
-
     }else if($_POST['v_typetranspinit'] == 1){
       if(isset($_POST['v_iptportoriginpost']) && is_numeric($_POST['v_iptportoriginpost']) && 
          isset($_POST['v_iptcountryportoriginpost']) && is_numeric($_POST['v_iptcountryportoriginpost']) &&
