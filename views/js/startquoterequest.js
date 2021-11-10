@@ -24,7 +24,7 @@ function refreshCodeGen(){
       var rcodegen = JSON.parse(e);
       $("#ipt-vcodgeneratex").val(rcodegen[0].res);
     });
-  }, 500);
+  }, 250);
 }
 ////OTRAS TAREAS - MEJORA DE UI Y UX
 /*- Mostrar al inicio solo los pasos a usar antes de cada elección, luego ir añadiendo o quitando de acuerdo a los elementos seleccionados*/

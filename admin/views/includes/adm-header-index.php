@@ -14,7 +14,7 @@
 <meta property="og:description" content="¡Calcula el costo de tu importación en 4 simples pasos!" />
 <meta property="og:site_name" content="Camel" />
 <link rel="icon" type="image/x-icon" href="<?= $url ?>assets/img/utilities/favicon-camel.png" />
-<link rel="stylesheet" href="<?= $url ?>assets/css/styles.css">
+<link rel="stylesheet" href="<?= $url ?>assets/css/styles.min.css">
 <!-- JQUERY -->
 <script src="<?= $url ?>js/jquery-3.6.0.min.js"></script>
 <!-- BOOTSTRAP UNCOMPRESSED -->
