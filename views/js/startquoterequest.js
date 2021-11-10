@@ -1541,8 +1541,12 @@ $(document).on("click", "#list-SelOptionResultExp a", function(){
           <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC">
             <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl">
               <label for="" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl--label">VALOR</label>
-              <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl--cListChange">
-                <input type="text" id="ipt-valPriceProdNInterface" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl--cListChange--input" maxlength="13" autocomplete="off">
+              <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl--cListChangeWIcon">
+                <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl--cListChangeWIcon--cIcon">
+                  <svg xmlns="http://www.w3.org/2000/svg" data-name="Layer 1" viewBox="0 0 100 125" x="0px" y="0px"><title>dollar</title><path d="M44.38354,5V15.697c-10.549,2.19025-18.11077,10.34265-18.11077,19.681,0,10.004,7.56927,16.77643,22.49676,20.1286C62.49225,58.587,62.49225,63.167,62.49225,64.67181c0,4.88868-5.7204,9.019-12.49115,9.019-6.77191,0-12.49335-4.13031-12.49335-9.019V63.57428h-11.235v1.09753c0,9.33838,7.56176,17.48975,18.11077,19.67951V95h11.235V84.35132C66.1665,82.161,73.72723,74.0097,73.72723,64.67181c0-10.004-7.56823-16.77636-22.49566-20.12854-13.72382-3.08044-13.72382-7.6604-13.72382-9.16528,0-4.88971,5.72144-9.02057,12.49335-9.02057,6.77075,0,12.49115,4.13086,12.49115,9.02057v1.0976h11.235V35.378c0-9.33838-7.56073-17.49078-18.10864-19.681V5Z"/>
+                  </svg>
+                </div>
+                <input type="text" id="ipt-valPriceProdNInterface" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl--cListChangeWIcon--input" maxlength="13" autocomplete="off">
               </div>
             </div>
           </div>
@@ -1718,8 +1722,12 @@ $(document).on("click","#list-insuremerchandise-notMoreOpts a",function(){
           <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC">
             <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl">
               <label for="" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl--label">VALOR</label>
-              <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl--cListChange">
-                <input type="text" id="ipt-valPriceProdNInterface-notMoreOpts" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl--cListChange--input" maxlength="13" autocomplete="off">
+              <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl--cListChangeWIcon">
+                <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl--cListChangeWIcon--cIcon">
+                  <svg xmlns="http://www.w3.org/2000/svg" data-name="Layer 1" viewBox="0 0 100 125" x="0px" y="0px"><title>dollar</title><path d="M44.38354,5V15.697c-10.549,2.19025-18.11077,10.34265-18.11077,19.681,0,10.004,7.56927,16.77643,22.49676,20.1286C62.49225,58.587,62.49225,63.167,62.49225,64.67181c0,4.88868-5.7204,9.019-12.49115,9.019-6.77191,0-12.49335-4.13031-12.49335-9.019V63.57428h-11.235v1.09753c0,9.33838,7.56176,17.48975,18.11077,19.67951V95h11.235V84.35132C66.1665,82.161,73.72723,74.0097,73.72723,64.67181c0-10.004-7.56823-16.77636-22.49566-20.12854-13.72382-3.08044-13.72382-7.6604-13.72382-9.16528,0-4.88971,5.72144-9.02057,12.49335-9.02057,6.77075,0,12.49115,4.13086,12.49115,9.02057v1.0976h11.235V35.378c0-9.33838-7.56073-17.49078-18.10864-19.681V5Z"/>
+                  </svg>
+                </div>
+                <input type="text" id="ipt-valPriceProdNInterface-notMoreOpts" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl--cListChangeWIcon--input" maxlength="13" autocomplete="off">
               </div>
             </div>
           </div>
@@ -1827,7 +1835,7 @@ $(document).on("change input keyup", "#ipt-valPriceProdNInterface-notMoreOpts", 
   let value = e.target.value;
   e.target.value = value.replace(/[^A-Z\d-]/g, "");
   $(this).val(function(i, v){
-    return v.replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d)\.?)/g, ".") + " USD";
+    return v.replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d)\.?)/g, ".");
   });
   /************************** ASIGNAR VALORES DE LOS INPUTS HIDDEN - MERCANCÍA **************************/
   $("#val-valProdquot-noMoreOpts").val($(this).val());
@@ -1986,8 +1994,9 @@ $(document).on("keyup keypress blur change", "#ipt-valQuantityAmAddProdNInterfac
         }).done((e) => {
           var resutlinsurance = JSON.parse(e);
           var valfobproduct = $("#val-valProdquot-noMoreOpts").val();
-          var cutefobprice = valfobproduct.split(" USD");
-          var withoutpointsfob = cutefobprice[0].replace(/\./g, '');
+          //var cutefobprice = valfobproduct.split(" USD");
+          var withoutpointsfob = valfobproduct[0].replace(/\./g, '');
+          console.log(withoutpointsfob);
           var finalvaluefob = twodecimals(withoutpointsfob);
           var c_InsuranceMenor = parseFloat(resutlinsurance[0].data_value);
           var c_InsuranceMayor = parseFloat(resutlinsurance[1].data_value) / 100;
@@ -3055,7 +3064,7 @@ $(document).on("input", "#ipt-valPriceProdNInterface", function(e){
   let value = e.target.value;
   e.target.value = value.replace(/[^A-Z\d-]/g, "");
   $(this).val(function(i, v) {
-    return v.replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d)\.?)/g, ".") + " USD";
+    return v.replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d)\.?)/g, ".");
   });
   /************************** ASIGNAR VALORES DE LOS INPUTS HIDDEN - MERCANCÍA **************************/
   $("#val-valProdquot").val($(this).val());
@@ -3152,7 +3161,7 @@ $(document).on("click", "#btn-NextStepTomerchandisedata", function(){
 
       /************************** ASIGNAR VALORES DE LOS INPUTS HIDDEN - MERCANCÍA **************************/
       $("#val-categProdquot").val($("#ipt-valNameTypeProdNInterface").val());
-      $("#val-valProdquot").val($("#ipt-valPriceProdNInterface").val());
+      $("#val-valProdquot").val($("#ipt-valPriceProdNInterface").val() + " USD");
       $("#val-prevImports").val($("#chck-importpreview").parent().attr("switch-CFreeze"));
 
       /************************** MOSTRAR EL SIGUIENTE PASO **************************/
@@ -3219,7 +3228,7 @@ $(document).on("click", "#btn-NextStepTomerchandisedata", function(){
 
       /************************** ASIGNAR VALORES DE LOS INPUTS HIDDEN - MERCANCÍA **************************/
       $("#val-categProdquot").val($("#ipt-valNameTypeProdNInterface").val());
-      $("#val-valProdquot").val($("#ipt-valPriceProdNInterface").val());
+      $("#val-valProdquot").val($("#ipt-valPriceProdNInterface").val() + " USD");
       $("#val-prevImports").val($("#chck-importpreview").parent().attr("switch-CFreeze"));
 
       /************************** MOSTRAR EL SIGUIENTE PASO **************************/

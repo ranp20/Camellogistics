@@ -15,6 +15,6 @@
 <meta property="og:site_name" content="Camel Logistics"/>
 <link rel="icon" type="image/x-icon" href="views/img/favicon-camel.png"/>
 <link rel="stylesheet" href="<?= $url ?>css/styles.css">
-<link rel="stylesheet" href="<?= $url ?>assets/css/styles.css">
+<link rel="stylesheet" href="<?= $url ?>assets/css/styles.min.css">
 <link rel="stylesheet" href="<?= $url ?>css/camel.css">
 <script src="<?= $url ?>js/jquery-3.6.0.min.js"></script>

@@ -770,14 +770,116 @@
 								letter-spacing: .2rem;
 							}
 
+							/* CONTENIDO DE CONTROL SIN ÍCONO */
 							&--cListChange{
 								width: 100%;
 								position: relative;
+
+								&--cIcon{
+									position: absolute;
+									width: 2.5rem;
+									height: 100%;
+									left: 0;
+									padding: 0 .45rem;
+									border-right: thin solid $primary-color;
+									svg{
+										width: 86%;
+								    height: 86%;
+								    position: relative;
+								    top: 5px;
+								    fill: $primary-color;
+									}
+								}
+
 								&--input{
 									width: 100%;
 									border: thin solid $primary-color;
 									font-size: 1rem;
 									padding: 0.5rem;
+									line-height: 1.5;
+
+									&[type=number]::-webkit-inner-spin-button, 
+									&[type=number]::-webkit-outer-spin-button { 
+										-webkit-appearance: none;
+										margin: 0;
+									}
+									&[type=number]{ 
+										-moz-appearance:textfield;
+									}
+								}
+
+								&--m{
+									position: absolute;
+							    left: 0;
+							    width: 100%;
+							    text-align: left;
+							    background-color: #fff;
+							    z-index: 99;
+						    	max-height: 330px;
+						    	height: auto;
+    							overflow-x: hidden;
+    							overflow-y: auto;
+    							display: none;
+    							opacity: 0;
+    							pointer-events: none;
+
+							    &.show{	    	
+							    	border-right: thin solid #ccc;
+							    	border-left: thin solid #ccc;
+							    	border-bottom: thin solid #ccc;
+							    	display: block;
+	    							opacity: 1;
+	    							pointer-events: auto;
+							    }
+
+									&--item{
+										cursor: pointer;
+										padding: 0.5rem 1rem;
+										font-size: 0.9rem;
+										line-height: 1;
+
+										&:hover{
+											background-color: #000;
+											color: #fff;
+										}
+
+										p{
+											margin: 0;
+										}
+
+										small{
+
+										}
+									}
+								}
+							}
+
+							/* CONTENIDO DE CONTROL CON ÍCONO */
+							&--cListChangeWIcon{
+								width: 100%;
+								position: relative;
+
+								&--cIcon{
+									position: absolute;
+									width: 2.5rem;
+									height: 100%;
+									left: 0;
+									padding: 0 .45rem;
+									border-right: thin solid $primary-color;
+									svg{
+										width: 86%;
+								    height: 86%;
+								    position: relative;
+								    top: 5px;
+								    fill: $primary-color;
+									}
+								}
+
+								&--input{
+									width: 100%;
+									border: thin solid $primary-color;
+									font-size: 1rem;
+									padding: 0.5rem 0.5rem 0.5rem 3rem;
 									line-height: 1.5;
 
 									&[type=number]::-webkit-inner-spin-button, 
