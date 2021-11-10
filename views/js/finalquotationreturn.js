@@ -244,10 +244,8 @@ $(document).ready(function(){
 			 $("#s_useregin-sistem").val() == 'undefined' || 
 			 $("#s_useregin-sistem").val() == null ||
 			 $("#s_useregin-sistem").val() == 'null'){
-
-		console.log('Sin usuario, se redirigirá al inicio');
+		//console.log('Sin usuario, se redirigirá al inicio');
 		//window.location.href = "marketplace-logistico";
-
 		}else if($("#s_useregin-sistem").val() != "" || 
 						 $("#s_useregin-sistem").val() != undefined || 
 						 $("#s_useregin-sistem").val() != 'undefined' || 
@@ -295,13 +293,12 @@ $(document).ready(function(){
 			});
 
 		}else{
-			console.log('Sin usuario, se redirigirá al inicio');
+			//console.log('Sin usuario, se redirigirá al inicio');
 			//window.location.href = "marketplace-logistico";
 		}
 
-
     /************************** VALIDAR SI EXISTE UN USUARIO AL ABRIR EL MODAL - PRIMER BOTÓN **************************/
-    /*$(document).on("click","#btn-requireDownloadQuotaion_one",function(e){
+    $(document).on("click","#btn-requireDownloadQuotaion_one",function(e){
 			e.preventDefault();	
 
 			if($("#s_useregin-sistem").val() == "" || 
@@ -310,8 +307,13 @@ $(document).ready(function(){
 				 $("#s_useregin-sistem").val() == null ||
 				 $("#s_useregin-sistem").val() == 'null'){
 
-			$("#cnt-modalFormLoginyRegister").add($(".cnt-modalFormLoginyRegister--c")).addClass("show");
-			console.log('Por favor, rellene sus datos.');
+				$("#cnt-modalFormLoginyRegister").add($(".cnt-modalFormLoginyRegister--c")).addClass("show");
+				console.log('Por favor, rellene sus datos.');
+
+			}else if($("#s_useregin-sistem").val() == "Invitado" || $("#s_useregin-sistem").val() == 'Invitado'){
+
+				$("#cnt-modalFormLoginyRegister").add($(".cnt-modalFormLoginyRegister--c")).addClass("show");
+				console.log('Por favor, rellene sus datos.');
 
 			}else if($("#s_useregin-sistem").val() != "" || 
 							 $("#s_useregin-sistem").val() != undefined || 
@@ -319,7 +321,7 @@ $(document).ready(function(){
 							 $("#s_useregin-sistem").val() != null ||
 							 $("#s_useregin-sistem").val() != 'null'){
 				
-				
+				/*
 				//AGREGAR IGUALMENTE A LA BASE DE DATOS LA COTIZACIÓN ACTUAL...
 				var formdata = new FormData();
 				formdata.append("codegenerate", $("#v_gencodexxx").text());
@@ -350,16 +352,16 @@ $(document).ready(function(){
 				}).done(function(e){
 					//generatePDF(queryresult.username);//ENVIAR EL USUARIO PARA DEVOLVER LOS DATOS EN EL PDF
 					console.log(e);
-				});
+				});*/
 
 			}else{
 				$("#cnt-modalFormLoginyRegister").add($(".cnt-modalFormLoginyRegister--c")).addClass("show");
 				console.log('Hubo un error al generar el PDF');
 
 			}
-		});*/
+		});
 		/************************** VALIDAR SI EXISTE UN USUARIO AL ABRIR EL MODAL - SEGUNDO BOTÓN **************************/
-		/*$(document).on("click","#btn-requireDownloadQuotaion_two",function(e){
+		$(document).on("click","#btn-requireDownloadQuotaion_two",function(e){
 			e.preventDefault();
 
 			if($("#s_useregin-sistem").val() == "" || 
@@ -371,13 +373,18 @@ $(document).ready(function(){
 			$("#cnt-modalFormLoginyRegister").add($(".cnt-modalFormLoginyRegister--c")).addClass("show");
 			console.log('Por favor, rellene sus datos.');
 
+			}else if($("#s_useregin-sistem").val() == "Invitado" || $("#s_useregin-sistem").val() == 'Invitado'){
+
+				$("#cnt-modalFormLoginyRegister").add($(".cnt-modalFormLoginyRegister--c")).addClass("show");
+				console.log('Por favor, rellene sus datos.');
+
 			}else if($("#s_useregin-sistem").val() != "" || 
 							 $("#s_useregin-sistem").val() != undefined || 
 							 $("#s_useregin-sistem").val() != 'undefined' || 
 							 $("#s_useregin-sistem").val() != null ||
 							 $("#s_useregin-sistem").val() != 'null'){
 				
-
+				/*
 				var userNameReg = $("#s_useregin-sistem").val();
 
 				var formdata = new FormData();
@@ -400,12 +407,12 @@ $(document).ready(function(){
 					}else{
 						console.log("El usuario NO existe");
 					}
-				});
+				});*/
 			}else{
 				$("#cnt-modalFormLoginyRegister").add($(".cnt-modalFormLoginyRegister--c")).addClass("show");
 				console.log('Hubo un error al generar el PDF');
 			}
-		});*/
+		});
   });
 
 	/************************** CARGAR LOS VALORES E INCLUIRLOS EN EL TEXTO PARA EL BOTÓN DE WHATSAPP **************************/

@@ -1,8 +1,9 @@
 $(() => {
-  ChangesSibblingsLinks();
-  hiddenAllNextSteps();
   /************************** REFRESCAR EL CÓDIGO AUTOGENERADO DESDE LA BASE DE DATOS **************************/
   refreshCodeGen();
+  /************************** CAMBIAR ENTRE ENLACES HERMANOS Y OCULTAR LOS PASOS SIGUIENTES **************************/
+  ChangesSibblingsLinks();
+  hiddenAllNextSteps();
   /************************** LISTAR LOS PUERTOS DE ORIGEN Y DE DESTINO DE ACUERDO AL ID RECIBIDO POR POST **************************/
 	listPortOriginandDestiny();
 	/************************** LISTAR LAS UNIDADES DE MEDIDA EN EL MODAL **************************/
@@ -24,7 +25,7 @@ function refreshCodeGen(){
       var rcodegen = JSON.parse(e);
       $("#ipt-vcodgeneratex").val(rcodegen[0].res);
     });
-  }, 250);
+  }, 100);
 }
 ////OTRAS TAREAS - MEJORA DE UI Y UX
 /*- Mostrar al inicio solo los pasos a usar antes de cada elección, luego ir añadiendo o quitando de acuerdo a los elementos seleccionados*/

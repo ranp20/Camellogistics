@@ -20,7 +20,11 @@
             <span>
               <span>
                 <span>
-                  <input type="hidden" id="s_useregin-sistem" value="<?php echo $sess_user;?>">
+                  <span>
+                    <span>
+                      <input type="hidden" id="s_useregin-sistem" value="<?php echo $sess_user;?>">
+                    </span>
+                  </span>
                 </span>
               </span>
             </span>
