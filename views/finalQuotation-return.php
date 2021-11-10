@@ -1,18 +1,17 @@
 <?php
-  
   //COMPRIMIR ARCHIVOS DE TEXTO...
   (substr_count($_SERVER["HTTP_ACCEPT_ENCODING"], "gzip")) ? ob_start("ob_gzhandler") : ob_start();
   session_start();
   if(!isset($_POST) || $_POST == []){
     header("Location: marketplace-logistico");
   }
-
 ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
   <title>Camel Logistics | Descarga tu Cotización</title>
   <?php require_once 'includes/header-links.php'; ?>
+  <script src="<?= $url ?>js/finalquotationreturn.js"></script>
 </head>
 <body>
   <?php require_once 'includes/header-top.php'; ?>
@@ -374,37 +373,10 @@ echo $template_incserv.$template_notincserv;
         </div>
       </div>
     </div>
-    <?php 
-    //  function genId() {
-    //   $format = 'xxxxxxxxxxxxxxxxxy';
-
-    //   return preg_replace_callback('/[xy]/', function($match) {
-    //     $pattern = '1234567890';
-     
-    //     if ($match[0] === 'x') {
-    //       return substr($pattern, mt_rand(0, strlen($pattern)), 1);
-    //     } else {
-    //       return substr(date('y'), -2);
-    //     }
-    //   }, "INUCML-".$format);
-    // }
-
-    // echo genId()."</br>";
-    // if(isset($_SESSION['user_camel'])){
-    //   echo "Existe el usuario"."</br>";
-    // }else{
-    //   echo "No hay una sesión de usuario"."</br>";
-    // }
-    // echo date('d-m-Y H:i:s')."</br>";
-    // echo "<pre>";
-    // print_r($_POST);
-    // echo "</pre>";
-    ?>
   </main>
   <?php require_once 'includes/form-login-user.php'; ?>
   <?php require_once 'includes/form-before-download-pdf.php'; ?>
   <script src="<?= $url ?>js/user-login.js"></script>
-  <script src="<?= $url ?>js/finalquotationreturn.js"></script>
   <script src="<?= $url ?>js/register-before-download.js"></script>
 </body>
 </html>
