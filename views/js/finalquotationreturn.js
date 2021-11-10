@@ -253,21 +253,19 @@ $(document).ready(function(){
 						 $("#s_useregin-sistem").val() != 'null'){
 			
 			var userNameReg = $("#s_useregin-sistem").val();
-			
-			//AGREGAR IGUALMENTE A LA BASE DE DATOS LA COTIZACIÓN ACTUAL...
 			var formdata = new FormData();
 			formdata.append("codegenerate", $("#v_gencodexxx").text());
 			formdata.append("u_login", userNameReg);
 			formdata.append("f_type_op", localStorage.getItem("type_service"));
 			formdata.append("f_type_transp", localStorage.getItem("type_service"));
 			formdata.append("f_type_cont", localStorage.getItem("key_typeChrg"));
-			formdata.append("u_entreprise", "No especificado");
+			formdata.append("u_enterprise", "No especificado");
 			formdata.append("u_telephone", "No especificado");
 			formdata.append("u_service", "No especificado");
 			formdata.append("u_cont", localStorage.getItem("key_v-nametypeproduct"));
 			formdata.append("f_origen", localStorage.getItem("port_OName"));
 			formdata.append("f_weight_v", "No especificado");
-			formdata.append("f_time_trans", "No especificado");
+			formdata.append("f_time_trans", localStorage.getItem("key_v-valttaproxbycontain"));
 			formdata.append("f_fob", totalfinalvaluefob);
 			formdata.append("f_flete", totflete);
 			formdata.append("f_insurance", totalinsurance);
@@ -286,9 +284,9 @@ $(document).ready(function(){
 				if(rquotaiton[0].res == "true"){
 					console.log("Cotización guardada");
 				}else if(rquotaiton[0].res == "exists"){
-					console.log("Esta cotiación ya existe");
+					console.log("Esta cotización ya existe");
 				}else{
-					console.log("Lo sentimos, huo un error al guardar la cotización");
+					console.log("Lo sentimos, hubo un error al guardar la cotización");
 				}
 			});
 
@@ -329,7 +327,7 @@ $(document).ready(function(){
 				formdata.append("f_type_op", localStorage.getItem("type_service"));
 				formdata.append("f_type_transp", localStorage.getItem("type_service"));
 				formdata.append("f_type_cont", localStorage.getItem("key_typeChrg"));
-				formdata.append("u_entreprise", "No especificado");
+				formdata.append("u_enterprise", "No especificado");
 				formdata.append("u_telephone", "No especificado");
 				formdata.append("u_service", "No especificado");
 				formdata.append("u_cont", localStorage.getItem("key_v-nametypeproduct"));
