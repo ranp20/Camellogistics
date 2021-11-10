@@ -1,3 +1,9 @@
+/************************** EVITAR REENVÍO DE FORMULARIO  **************************/
+/*if(window.history.replaceState){ // Comprobar el estado de la información en historial en la página actual...
+	console.log("Probando...");
+	window.history.replaceState(null, null, window.location.href); //Estado de objeto = null, title = null, URL;
+}
+*/
 /************************** GENERAR EL PDF **************************/
 function generatePDF(nameuser){
 	$url = "controllers/c_generate-pdf.php?user="+nameuser;
@@ -237,10 +243,76 @@ $(document).ready(function(){
 		}else{
 			//console.log("No existe el elemento");
 		}
+
+		/************************** INSERTAR EN LA TABLA DE COTIZACIONES **************************/
+		if($("#s_useregin-sistem").val() == "" || 
+			 $("#s_useregin-sistem").val() == undefined || 
+			 $("#s_useregin-sistem").val() == 'undefined' || 
+			 $("#s_useregin-sistem").val() == null ||
+			 $("#s_useregin-sistem").val() == 'null'){
+
+		console.log('Sin usuario, se redirigirá al inicio');
+		//window.location.href = "marketplace-logistico";
+
+		}else if($("#s_useregin-sistem").val() != "" || 
+						 $("#s_useregin-sistem").val() != undefined || 
+						 $("#s_useregin-sistem").val() != 'undefined' || 
+						 $("#s_useregin-sistem").val() != null ||
+						 $("#s_useregin-sistem").val() != 'null'){
+			
+			
+			//AGREGAR IGUALMENTE A LA BASE DE DATOS LA COTIZACIÓN ACTUAL...
+			var formdata = new FormData();
+			formdata.append("codegenerate", $("#v_gencodexxx").text());
+			formdata.append("u_login", "Invitado");
+			formdata.append("f_type_op", localStorage.getItem("type_service"));
+			formdata.append("f_type_transp", localStorage.getItem("type_service"));
+			formdata.append("f_type_cont", localStorage.getItem("key_typeChrg"));
+			formdata.append("u_entreprise", "No especificado");
+			formdata.append("u_telephone", "No especificado");
+			formdata.append("u_service", "No especificado");
+			formdata.append("u_cont", localStorage.getItem("key_v-nametypeproduct"));
+			formdata.append("f_origen", localStorage.getItem("port_OName"));
+			formdata.append("f_weight_v", "No especificado");
+			formdata.append("f_time_trans", "No especificado");
+			formdata.append("f_fob", totalfinalvaluefob);
+			formdata.append("f_flete", totflete);
+			formdata.append("f_insurance", totalinsurance);
+			formdata.append("f_cif", sumbyCIF);
+
+			$.ajax({
+				url: 'controllers/c_add_quotation_user.php',
+				method: 'POST',
+				datatype: "JSON",
+				data: formdata,
+				contentType: false,
+	      cache: false,
+	      processData: false
+			}).done(function(e){
+				//generatePDF(queryresult.username);//ENVIAR EL USUARIO PARA DEVOLVER LOS DATOS EN EL PDF
+				console.log(e);
+				var rquotaiton = JSON.parse(e);
+				console.log(rquotaiton);
+				console.log(rquotaiton[0].res);
+				if(rquotaiton[0].res == "true"){
+					console.log("Cotización guardada");
+				}else if(rquotaiton[0].res == "exists"){
+					console.log("Esta cotiación ya existe");
+				}else{
+					console.log("Lo sentimos, huo un error al guardar la cotización");
+				}
+			});
+
+		}else{
+			console.log('Sin usuario, se redirigirá al inicio');
+			//window.location.href = "marketplace-logistico";
+		}
+
+
     /************************** VALIDAR SI EXISTE UN USUARIO AL ABRIR EL MODAL - PRIMER BOTÓN **************************/
-    $(document).on("click","#btn-requireDownloadQuotaion_one",function(e){
+    /*$(document).on("click","#btn-requireDownloadQuotaion_one",function(e){
 			e.preventDefault();	
-			/************************** VALIDAR SI YA EXISTE UN USUARIO O REGISTRAR **************************/
+
 			if($("#s_useregin-sistem").val() == "" || 
 				 $("#s_useregin-sistem").val() == undefined || 
 				 $("#s_useregin-sistem").val() == 'undefined' || 
@@ -259,6 +331,7 @@ $(document).ready(function(){
 				
 				//AGREGAR IGUALMENTE A LA BASE DE DATOS LA COTIZACIÓN ACTUAL...
 				var formdata = new FormData();
+				formdata.append("codegenerate", $("#v_gencodexxx").text());
 				formdata.append("u_login", "Invitado");
 				formdata.append("f_type_op", localStorage.getItem("type_service"));
 				formdata.append("f_type_transp", localStorage.getItem("type_service"));
@@ -276,14 +349,14 @@ $(document).ready(function(){
 				formdata.append("f_cif", sumbyCIF);
 
 				$.ajax({
-					url: 'controllers/c_finalvalidateuser.php',
+					url: 'controllers/c_add_quotation_user.php',
 					method: 'POST',
 					datatype: "JSON",
 					data: formdata,
 					contentType: false,
 		      cache: false,
 		      processData: false
-				}).done( function(e){
+				}).done(function(e){
 					//generatePDF(queryresult.username);//ENVIAR EL USUARIO PARA DEVOLVER LOS DATOS EN EL PDF
 					console.log(e);
 				});
@@ -293,11 +366,11 @@ $(document).ready(function(){
 				console.log('Hubo un error al generar el PDF');
 
 			}
-		});
+		});*/
 		/************************** VALIDAR SI EXISTE UN USUARIO AL ABRIR EL MODAL - SEGUNDO BOTÓN **************************/
-		$(document).on("click","#btn-requireDownloadQuotaion_two",function(e){
+		/*$(document).on("click","#btn-requireDownloadQuotaion_two",function(e){
 			e.preventDefault();
-			/************************** VALIDAR SI YA EXISTE UN USUARIO O REGISTRAR **************************/
+
 			if($("#s_useregin-sistem").val() == "" || 
 				 $("#s_useregin-sistem").val() == undefined || 
 				 $("#s_useregin-sistem").val() == 'undefined' || 
@@ -313,14 +386,15 @@ $(document).ready(function(){
 							 $("#s_useregin-sistem").val() != null ||
 							 $("#s_useregin-sistem").val() != 'null'){
 				
-				/************************** ENVIAR UN AJAX PARA ALMACENAR LA COTIZACIÓN **************************/
+
 				var userNameReg = $("#s_useregin-sistem").val();
 
 				var formdata = new FormData();
+				formdata.append("u_codegenerate", $("#v_gencodexxx").text());
 				formdata.append("username_cli", userNameReg);
 
 				$.ajax({
-					url: 'controllers/c_finalvalidateuser.php',
+					url: 'controllers/c_add_quotation_user.php',
 					method: 'POST',
 					datatype: "JSON",
 					data: formdata,
@@ -340,7 +414,7 @@ $(document).ready(function(){
 				$("#cnt-modalFormLoginyRegister").add($(".cnt-modalFormLoginyRegister--c")).addClass("show");
 				console.log('Hubo un error al generar el PDF');
 			}
-		});
+		});*/
   });
 
 	/************************** CARGAR LOS VALORES E INCLUIRLOS EN EL TEXTO PARA EL BOTÓN DE WHATSAPP **************************/

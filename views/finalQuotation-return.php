@@ -1,4 +1,4 @@
-<?php 
+<?php
   
   //COMPRIMIR ARCHIVOS DE TEXTO...
   (substr_count($_SERVER["HTTP_ACCEPT_ENCODING"], "gzip")) ? ob_start("ob_gzhandler") : ob_start();
@@ -51,7 +51,11 @@
                 <div class="c-FinalQuotation--contStep--cQuotation--cTop--c--nOriginDestinyInfo--cCodeQuotation">
                   <p>
                     <span>ID:&nbsp;</span>
-                    <span>30201 - <?= $_POST['loadTypeCharge']; ?></span>
+                    <span>
+                      <span id="v_gencodexxx"><?= $_POST['ipt-vcodgeneratex']; ?></span>
+                      <span> - </span>
+                      <span><?= $_POST['loadTypeCharge']; ?></span>
+                    </span>
                   </p>
                 </div>
               </div>

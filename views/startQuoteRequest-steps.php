@@ -1,8 +1,16 @@
 <?php   
   //COMPRIMIR ARCHIVOS DE TEXTO...
   (substr_count($_SERVER["HTTP_ACCEPT_ENCODING"], "gzip")) ? ob_start("ob_gzhandler") : ob_start();
-
   session_start();
+
+  //LLAMAR AL ID AUTOINCREMENTABLE PRÓXIMO...
+  
+  require_once '../controllers/c_list_ultimate_codegen.php';
+
+  $codegen_auto = new list_ultimate_codegen();
+  $list_codegen = $codegen_auto->list();
+  $cod_generate = $list_codegen[0]['res'];
+
   //VARIABLE URL...
   $actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]";
   $url =  $actual_link . "/Camellogistics/views/";
@@ -21,7 +29,6 @@
       $portCountryOriginPOST = "";
       $portDestinyPOST = "";
       $portCountryDestinyPOST = "";
-
       $sections_qresumeandsteps = "
         <input type='hidden' class='cont-MainCamelLog--c--ctrbysend' id='ipt-vtypetranspinit' value='{$_POST['v_typetranspinit']}'>
         <section class='cont-MainCamelLog--c--contSteps not-padd p-05' id='fullpage'>
@@ -89,7 +96,7 @@
         $portDestinyPOST = $_POST['v_iptportdestinypost'];
         $portCountryDestinyPOST = $_POST['v_iptcountryportdestinypost'];
 
-        echo "<input type='hidden' name='port-norigin' id='val-port-norigin' value='".$_POST['ipt-valNamePortOrigin']."'>";
+        echo "<input type='hidden' class='cont-MainCamelLog--c--ctrbysend' id='val-port-norigin' name='port-norigin' value='".$_POST['ipt-valNamePortOrigin']."'>";
 
         $sections_qresumeandsteps = "
           <input type='hidden' class='cont-MainCamelLog--c--ctrbysend' id='ipt-vtypetranspinit' value='{$_POST['v_typetranspinit']}'>
@@ -97,6 +104,7 @@
           <input type='hidden' class='cont-MainCamelLog--c--ctrbysend' id='ipt-vportidcountryOrigin' value='{$portCountryOriginPOST}'>
           <input type='hidden' class='cont-MainCamelLog--c--ctrbysend' id='ipt-vportidDestiny' value='{$portDestinyPOST}'>
           <input type='hidden' class='cont-MainCamelLog--c--ctrbysend' id='ipt-vportidcountryDestiny' value='{$portCountryDestinyPOST}'>
+          <input type='hidden' class='cont-MainCamelLog--c--ctrbysend' id='ipt-vcodgeneratex' name='ipt-vcodgeneratex' value='{$cod_generate}'>
           <section class='cont-MainCamelLog--c--contResumeCalc' id='id-resumeLeftQuoteCamel'>
             <div class='cont-MainCamelLog--c--contResumeCalc--item' data-advlevel='d-typetransportnumb'></div>
             <div class='cont-MainCamelLog--c--contResumeCalc--item' data-advlevel='d-firstChargeLoad'></div>
@@ -246,7 +254,7 @@
   </nav>
   <main class="cont-MainCamelLog" id="cont-MainCamelLog">
     <div class="cont-MainCamelLog--c ptop-headertop" id="cont-MainCamelLog--cStartQuoteRequest">
-      <form action="" method="POST" id="f-expquotationFrmClient">
+      <form action="fquotationgenerate" method="POST" id="f-expquotationFrmClient">
         <?php echo $sections_qresumeandsteps; ?>
       </form>
     </div>
