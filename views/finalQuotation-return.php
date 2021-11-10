@@ -11,7 +11,6 @@
 <head>
   <title>Camel Logistics | Descarga tu Cotización</title>
   <?php require_once 'includes/header-links.php'; ?>
-  <script src="<?= $url ?>js/finalquotationreturn.js"></script>
 </head>
 <body>
   <?php require_once 'includes/header-top.php'; ?>
@@ -376,6 +375,7 @@ echo $template_incserv.$template_notincserv;
   </main>
   <?php require_once 'includes/form-login-user.php'; ?>
   <?php require_once 'includes/form-before-download-pdf.php'; ?>
+  <script src="<?= $url ?>js/finalquotationreturn.js"></script>
   <script src="<?= $url ?>js/user-login.js"></script>
   <script src="<?= $url ?>js/register-before-download.js"></script>
 </body>

@@ -1,13 +1,11 @@
 <?php 
   $actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]";
   $url =  $actual_link . "/Camellogistics/views/";
-
   $sess_user = 0;
-
   if(isset($_SESSION['user_camel'])){
     $sess_user = $_SESSION['user_camel']['username'];
   }else{
-    $sess_user = "";
+    $sess_user = "Invitado";
   }
 ?>
 <nav class="c-Htopbar" id="c-HTop-camel">
@@ -22,7 +20,13 @@
                 <span>
                   <span>
                     <span>
-                      <input type="hidden" id="s_useregin-sistem" value="<?php echo $sess_user;?>">
+                      <span>
+                        <span>
+                          <span>
+                            <input type="hidden" id="s_useregin-sistem" value="<?php echo $sess_user;?>">
+                          </span>
+                        </span>
+                      </span>
                     </span>
                   </span>
                 </span>
