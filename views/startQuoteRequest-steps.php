@@ -5,11 +5,11 @@
 
   //LLAMAR AL ID AUTOINCREMENTABLE PRÓXIMO...
   
-  require_once '../controllers/c_list_ultimate_codegen.php';
+  // require_once '../controllers/c_list_ultimate_codegen.php';
 
-  $codegen_auto = new list_ultimate_codegen();
-  $list_codegen = $codegen_auto->list();
-  $cod_generate = $list_codegen[0]['res'];
+  // $codegen_auto = new list_ultimate_codegen();
+  // $list_codegen = $codegen_auto->list();
+  // $cod_generate = $list_codegen[0]['res'];
 
   //VARIABLE URL...
   $actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]";
@@ -104,7 +104,7 @@
           <input type='hidden' class='cont-MainCamelLog--c--ctrbysend' id='ipt-vportidcountryOrigin' value='{$portCountryOriginPOST}'>
           <input type='hidden' class='cont-MainCamelLog--c--ctrbysend' id='ipt-vportidDestiny' value='{$portDestinyPOST}'>
           <input type='hidden' class='cont-MainCamelLog--c--ctrbysend' id='ipt-vportidcountryDestiny' value='{$portCountryDestinyPOST}'>
-          <input type='hidden' class='cont-MainCamelLog--c--ctrbysend' id='ipt-vcodgeneratex' name='ipt-vcodgeneratex' value='{$cod_generate}'>
+          <input type='hidden' class='cont-MainCamelLog--c--ctrbysend' id='ipt-vcodgeneratex' name='ipt-vcodgeneratex' value=''>
           <section class='cont-MainCamelLog--c--contResumeCalc' id='id-resumeLeftQuoteCamel'>
             <div class='cont-MainCamelLog--c--contResumeCalc--item' data-advlevel='d-typetransportnumb'></div>
             <div class='cont-MainCamelLog--c--contResumeCalc--item' data-advlevel='d-firstChargeLoad'></div>

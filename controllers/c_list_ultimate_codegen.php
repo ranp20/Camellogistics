@@ -1,6 +1,6 @@
 <?php 
 require_once '../models/db/connection.php';
-class list_ultimate_codegen extends Connection{
+class List_ultimate_codegen extends Connection{
 	function list(){
 
 		try{
@@ -9,10 +9,13 @@ class list_ultimate_codegen extends Connection{
 			$stm->execute();
 			
 			$data = $stm->fetchAll(PDO::FETCH_ASSOC); 
-			//$res = json_encode($data);
-			return $data;
+			$res = json_encode($data);
+			//return $data;
+			echo $res;
 		}catch(PDOException $e){
 			return $e->getMessage();
 		}
 	}
 }
+$codegen = new List_ultimate_codegen();
+echo $codegen->list();

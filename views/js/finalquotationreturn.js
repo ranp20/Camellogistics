@@ -1,9 +1,3 @@
-/************************** EVITAR REENVÍO DE FORMULARIO  **************************/
-/*if(window.history.replaceState){ // Comprobar el estado de la información en historial en la página actual...
-	console.log("Probando...");
-	window.history.replaceState(null, null, window.location.href); //Estado de objeto = null, title = null, URL;
-}
-*/
 /************************** GENERAR EL PDF **************************/
 function generatePDF(nameuser){
 	$url = "controllers/c_generate-pdf.php?user="+nameuser;
@@ -260,11 +254,12 @@ $(document).ready(function(){
 						 $("#s_useregin-sistem").val() != null ||
 						 $("#s_useregin-sistem").val() != 'null'){
 			
+			var userNameReg = $("#s_useregin-sistem").val();
 			
 			//AGREGAR IGUALMENTE A LA BASE DE DATOS LA COTIZACIÓN ACTUAL...
 			var formdata = new FormData();
 			formdata.append("codegenerate", $("#v_gencodexxx").text());
-			formdata.append("u_login", "Invitado");
+			formdata.append("u_login", userNameReg);
 			formdata.append("f_type_op", localStorage.getItem("type_service"));
 			formdata.append("f_type_transp", localStorage.getItem("type_service"));
 			formdata.append("f_type_cont", localStorage.getItem("key_typeChrg"));
@@ -289,11 +284,7 @@ $(document).ready(function(){
 	      cache: false,
 	      processData: false
 			}).done(function(e){
-				//generatePDF(queryresult.username);//ENVIAR EL USUARIO PARA DEVOLVER LOS DATOS EN EL PDF
-				console.log(e);
 				var rquotaiton = JSON.parse(e);
-				console.log(rquotaiton);
-				console.log(rquotaiton[0].res);
 				if(rquotaiton[0].res == "true"){
 					console.log("Cotización guardada");
 				}else if(rquotaiton[0].res == "exists"){

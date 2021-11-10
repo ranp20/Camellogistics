@@ -1,6 +1,8 @@
 $(() => {
   ChangesSibblingsLinks();
   hiddenAllNextSteps();
+  /************************** REFRESCAR EL CÓDIGO AUTOGENERADO DESDE LA BASE DE DATOS **************************/
+  refreshCodeGen();
   /************************** LISTAR LOS PUERTOS DE ORIGEN Y DE DESTINO DE ACUERDO AL ID RECIBIDO POR POST **************************/
 	listPortOriginandDestiny();
 	/************************** LISTAR LAS UNIDADES DE MEDIDA EN EL MODAL **************************/
@@ -11,6 +13,19 @@ $(() => {
 	/************************** LISTAR LOS DISTRITOS DE ACUERDO AL PAÍS DE DESTINO **************************/
 	listrateLCLTransport();
 });
+function refreshCodeGen(){
+  setInterval(function(){
+    $.ajax({
+      url: "controllers/c_list_ultimate_codegen.php",
+      method: "POST",
+      datatype: "JSON",
+      contentType: 'application/x-www-form-urlencoded;charset=UTF-8',
+    }).done(function(e){
+      var rcodegen = JSON.parse(e);
+      $("#ipt-vcodgeneratex").val(rcodegen[0].res);
+    });
+  }, 500);
+}
 ////OTRAS TAREAS - MEJORA DE UI Y UX
 /*- Mostrar al inicio solo los pasos a usar antes de cada elección, luego ir añadiendo o quitando de acuerdo a los elementos seleccionados*/
 /************************** RECOGER LAS VARIABLES RECIBIDAS POR POST **************************/
