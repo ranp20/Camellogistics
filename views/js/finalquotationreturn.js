@@ -379,7 +379,6 @@ $(document).ready(function(){
 					console.log("Lo sentimos, hubo un error al guardar la cotización");
 				}
 			});
-
 		}else if($("#s_useregin-sistem").val() != "" || 
 						 $("#s_useregin-sistem").val() != undefined || 
 						 $("#s_useregin-sistem").val() != 'undefined' || 
@@ -501,25 +500,17 @@ $(document).ready(function(){
     $(document).on("click","#btn-requireDownloadQuotaion_one",function(e){
 			e.preventDefault();	
 
-			if($("#s_useregin-sistem").val() == "" || 
-				 $("#s_useregin-sistem").val() == undefined || 
-				 $("#s_useregin-sistem").val() == 'undefined' || 
-				 $("#s_useregin-sistem").val() == null ||
-				 $("#s_useregin-sistem").val() == 'null'){
-
+			if($("#s_useregin-sistem").val() == "" || $("#s_useregin-sistem").val() == undefined || $("#s_useregin-sistem").val() == 'undefined' || $("#s_useregin-sistem").val() == null || $("#s_useregin-sistem").val() == 'null'){
+				
 				$("#cnt-modalFormLoginyRegister").add($(".cnt-modalFormLoginyRegister--c")).addClass("show");
 				console.log('Por favor, rellene sus datos.');
 
-			}else if($("#s_useregin-sistem").val() == "Invitado" || $("#s_useregin-sistem").val() == 'Invitado'){
-
+			}else if($("#s_useregin-sistem").val() == 'Invitado'){
+				
 				$("#cnt-modalFormLoginyRegister").add($(".cnt-modalFormLoginyRegister--c")).addClass("show");
 				console.log('Por favor, rellene sus datos.');
 
-			}else if($("#s_useregin-sistem").val() != "" || 
-							 $("#s_useregin-sistem").val() != undefined || 
-							 $("#s_useregin-sistem").val() != 'undefined' || 
-							 $("#s_useregin-sistem").val() != null ||
-							 $("#s_useregin-sistem").val() != 'null'){
+			}else if($("#s_useregin-sistem").val() != "" || $("#s_useregin-sistem").val() != undefined || $("#s_useregin-sistem").val() != 'undefined' || $("#s_useregin-sistem").val() != null || $("#s_useregin-sistem").val() != 'null' || $("#s_useregin-sistem").val() != 'Invitado'){
 			
 				$("#cUIMessageValid-user").html(`<div id="msgAlertpreloader">
 					<div class="cont-loader--loader">
@@ -532,15 +523,14 @@ $(document).ready(function(){
 				</div>`);
 
 				//VALIDAR LA INFORMACIÓN DEL USUARIO...
+				user_sessquote = s_username_local.username;
 				var formdata = new FormData();
+				formdata.append("id_codegenrand", $("#v_idgencoderand").val());
 				formdata.append("code_quote", $("#v_gencodexxx").text());
-				formdata.append("ndoc_cli", $("#n_document_cli").val());
-				formdata.append("name_enterprise_cli", $("#name_enterprise_cli").val());
-				formdata.append("telephone_cli", $("#telephone_cli").val());
-				formdata.append("username_cli", $("#email_cli").val());
+				formdata.append("u_login", user_sessquote);
 
 				$.ajax({
-					url: 'controllers/c_finalvalidateuser.php',
+					url: 'controllers/c_validation_by_idcodegenrand.php',
 					method: 'POST',
 					datatype: 'JSON',
 					data: formdata,
@@ -548,15 +538,17 @@ $(document).ready(function(){
 	        cache: false,
 	        processData: false
 				}).done(function(e){
-					console.log(e);
-					// if(queryresult.response == "true"){
-					// 	console.log("El usuario SI se registró previamente");
-					// 	generatePDF(queryresult.username);
-					// }else{
-					// 	console.log("El usuario aún NO registró sus datos");
-					// }
-					$("#cnt-modalFormLoginyRegister").add($(".cnt-modalFormLoginyRegister--c")).addClass("show");
-					console.log('Por favor, rellene sus datos.');
+					var rvalidpdf = JSON.parse(e);
+					if(rvalidpdf[0].res != "notexists"){
+						console.log("El usuario SI se registró previamente");
+						//generatePDF(queryresult.username);
+					}else if(rvalidpdf[0].res == "notexists"){
+						$("#cUIMessageValid-user").html("");
+						$("#cnt-modalFormLoginyRegister").add($(".cnt-modalFormLoginyRegister--c")).addClass("show");
+						console.log("El usuario aún NO registró sus datos");
+					}else{
+						console.log('lo sentimos, hubo un error');
+					}
 				});
 			}else{
 				$("#cnt-modalFormLoginyRegister").add($(".cnt-modalFormLoginyRegister--c")).addClass("show");
@@ -581,14 +573,46 @@ $(document).ready(function(){
 				$("#cnt-modalFormLoginyRegister").add($(".cnt-modalFormLoginyRegister--c")).addClass("show");
 				console.log('Por favor, rellene sus datos.');
 
-			}else if($("#s_useregin-sistem").val() != "" || 
-							 $("#s_useregin-sistem").val() != undefined || 
-							 $("#s_useregin-sistem").val() != 'undefined' || 
-							 $("#s_useregin-sistem").val() != null ||
-							 $("#s_useregin-sistem").val() != 'null'){
+			}else if($("#s_useregin-sistem").val() != "" || $("#s_useregin-sistem").val() != undefined || $("#s_useregin-sistem").val() != 'undefined' || $("#s_useregin-sistem").val() != null || $("#s_useregin-sistem").val() != 'null'){
 				
-				$("#cnt-modalFormLoginyRegister").add($(".cnt-modalFormLoginyRegister--c")).addClass("show");
-				console.log('Por favor, rellene sus datos.');
+				$("#cUIMessageValid-user").html(`<div id="msgAlertpreloader">
+					<div class="cont-loader--loader">
+						<span class="cont-loader--loader--circle"></span>
+						<span class="cont-loader--loader--circle"></span>
+						<span class="cont-loader--loader--circle"></span>
+						<span class="cont-loader--loader--circle"></span>
+					</div>
+					<p>Validando la información...</p>
+				</div>`);
+
+				//VALIDAR LA INFORMACIÓN DEL USUARIO...
+				user_sessquote = s_username_local.username;
+				var formdata = new FormData();
+				formdata.append("id_codegenrand", $("#v_idgencoderand").val());
+				formdata.append("code_quote", $("#v_gencodexxx").text());
+				formdata.append("u_login", user_sessquote);
+
+				$.ajax({
+					url: 'controllers/c_validation_by_idcodegenrand.php',
+					method: 'POST',
+					datatype: 'JSON',
+					data: formdata,
+					contentType: false,
+	        cache: false,
+	        processData: false
+				}).done(function(e){
+					var rvalidpdf = JSON.parse(e);
+					if(rvalidpdf[0].res != "notexists"){
+						console.log("El usuario SI se registró previamente");
+						//generatePDF(queryresult.username);
+					}else if(rvalidpdf[0].res == "notexists"){
+						$("#cUIMessageValid-user").html("");
+						$("#cnt-modalFormLoginyRegister").add($(".cnt-modalFormLoginyRegister--c")).addClass("show");
+						console.log("El usuario aún NO registró sus datos");
+					}else{
+						console.log('lo sentimos, hubo un error');
+					}
+				});
 
 			}else{
 				$("#cnt-modalFormLoginyRegister").add($(".cnt-modalFormLoginyRegister--c")).addClass("show");
@@ -693,7 +717,6 @@ $(document).ready(function(){
     }
 	});
 	/************************** FORMULARIO DE DATOS DEL USUARIO - ANTES DE DESCARGAR SU COTIZACIÓN **************************/
-	/*
 	$(document).on("submit","#btngen_formDataUserQuotation",function(e){
 		e.preventDefault();
 
@@ -706,6 +729,7 @@ $(document).ready(function(){
 			$("#msg-nounValidEmail").val() != "" || $("#msg-nounValidEmail").val() != 0){
 
 			var formdata = new FormData();
+			formdata.append("id_codegenrand", $("#v_idgencoderand").val());
 			formdata.append("code_quote", $("#v_gencodexxx").text());
 			formdata.append("ndoc_cli", $("#n_document_cli").val());
 			formdata.append("name_enterprise_cli", $("#name_enterprise_cli").val());
@@ -713,7 +737,7 @@ $(document).ready(function(){
 			formdata.append("username_cli", $("#email_cli").val());
 
 			$.ajax({
-				url: 'controllers/c_finalvalidateuser.php',
+				url: 'controllers/c_update_quotation_user.php',
 				method: 'POST',
 				datatype: 'JSON',
 				data: formdata,
@@ -733,5 +757,5 @@ $(document).ready(function(){
 			console.log('Debes completar los campos requeridos');
 			alert("Debes completar los campos requeridos");
 		}
-	});*/
+	});
 });

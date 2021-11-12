@@ -11,8 +11,11 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
 	<title>Cotizacion de cliente</title>
 </head>
-<?php print_r($_POST); 
-      print_r($_GET);
+<?php 
+  /*
+  print_r($_POST); 
+  print_r($_GET);
+  */
 ?>
 <style>
 	#cont_quotationpdf{
@@ -1015,7 +1018,7 @@
 		      <div class="item_dpt1_dat1">:</div>
 	    	</div>
 	    	<div id="marc_dat1_der1">
-		      <div class="item_demp2_dat1"><?php print_r($_GET['user']); ?></div>
+		      <div class="item_demp2_dat1"><?php //print_r($_GET['user']);?> polancoranp2019@gmail.com</div>
 		      <div class="item_demp2_dat1">polancoranp2019@gmail.com</div>
 	    	</div>
 	  	</div>
