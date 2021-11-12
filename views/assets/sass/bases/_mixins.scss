@@ -11,7 +11,7 @@
 	  justify-content: center;
 	  align-items: center;
 	  box-shadow: 4px 4px 20px rgba(0,0,0,0.3);
-	  z-index: 99999999;
+	  z-index: 9999999999;
 	  top: 0;
 	  left: 0;
 
@@ -86,4 +86,77 @@
       }
     }
   }
+}
+/* MENSAJE DE ERROR */
+@mixin error-message($background, $color){
+	&{
+		display: flex;
+	  align-items: flex-start;
+	  justify-content: center;
+	  position: fixed;
+	  width: 100%;
+	  height: 100%;
+	  background-color: rgba(0,0,0,.3);
+	  z-index: 999;
+	  top: 0;
+	  left: 0;
+
+	  &.disabled{
+			transition: ease .3s;			
+			opacity: 0;			
+			display: none;		
+		}
+
+		.msgAlertLoginErr--c{
+			max-width: 400px;
+	    width: 90%;
+	    background-color: $background;
+	    border-radius: 10px;
+	    position: relative;
+			margin-top: 1rem;
+	    padding: 1rem;
+	    animation-name: alert;			
+			animation-duration: .3s;			
+			animation-timing-function: ease;			
+			animation-iteration-count: inherit;
+
+			&--close{
+				width: 18px;
+				height: 18px;
+				background:
+	    		linear-gradient(45deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 43%, #fff 45%, #fff 55%, rgba(0, 0, 0, 0) 57%, rgba(0, 0, 0, 0) 100%), 
+	    		linear-gradient(135deg, #000 0%, #000 43%, #fff 45%, #fff 55%, #000 57%, #000 100%);
+	    	border-radius: 50%;
+	  		box-shadow: 0 0 0 1px #000, 0 0 0 4px #000, 0 0 0 7px #fff;
+	  		position: absolute;
+	  		top: 0;
+	  		right: -5px;
+	  		cursor: pointer;
+			}
+			&--title{
+				font-size: 1.15rem;
+				font-weight: 600;
+				color: $color;
+				padding: 0;
+				margin: 0;
+			}
+			&--desc{
+				color: $color;	
+				padding: 0;
+				margin: 0;
+				font-size: 0.9rem;
+			}
+
+			@keyframes alert{
+				0%{
+					transform: translateY(-100%);
+					margin-top: 0;
+				}
+				100%{
+					transform: translateY(0);
+					margin-top: 1rem;
+				}
+			}
+		}
+	}
 }

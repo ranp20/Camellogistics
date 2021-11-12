@@ -13,12 +13,12 @@
 					<span id="msg-nounNumberDoc"></span>
 				</div>
 				<div class="cnt-modalFormLoginyRegister--c--cForm--cControl">
-					<label for="name_enterprise_cli" class="cnt-modalFormLoginyRegister--c--cForm--cControl--label">Nombre de la empresa</label>
+					<label for="name_enterprise_cli" class="cnt-modalFormLoginyRegister--c--cForm--cControl--label">Nombre de la empresa <span class="control-spanrequired">*</span></label>
 					<input type="text" id="name_enterprise_cli" name="name_enterprise_cli" class="cnt-modalFormLoginyRegister--c--cForm--cControl--input" placeholder="Ingrese el nombre de la empresa" maxlength="50" required>
 					<span id="msg-nounNameEnterpriseReg"></span>
 				</div>
 				<div class="cnt-modalFormLoginyRegister--c--cForm--cControl">
-					<label for="telephone_cli" class="cnt-modalFormLoginyRegister--c--cForm--cControl--label">Número de teléfono</label>
+					<label for="telephone_cli" class="cnt-modalFormLoginyRegister--c--cForm--cControl--label">Número de teléfono <span class="control-spanrequired">*</span></label>
 					<input type="number" id="telephone_cli" name="telephone_cli" class="cnt-modalFormLoginyRegister--c--cForm--cControl--input" placeholder="Ingrese el número de teléfono" maxlength="11" required>
 					<span id="msg-nounNumberorTelephoneNumb"></span>
 				</div>

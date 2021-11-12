@@ -9,13 +9,13 @@ class List_ultimate_codegen extends Connection{
 			$stm->execute();
 			
 			$data = $stm->fetchAll(PDO::FETCH_ASSOC); 
-			$res = json_encode($data);
-			//return $data;
-			echo $res;
+			//$res = json_encode($data);
+			return $data;
+			//echo $data;
 		}catch(PDOException $e){
 			return $e->getMessage();
 		}
 	}
 }
-$codegen = new List_ultimate_codegen();
-echo $codegen->list();
+/*$codegen = new List_ultimate_codegen();
+echo $codegen->list();*/

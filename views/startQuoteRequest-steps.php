@@ -3,14 +3,6 @@
   (substr_count($_SERVER["HTTP_ACCEPT_ENCODING"], "gzip")) ? ob_start("ob_gzhandler") : ob_start();
   session_start();
 
-  //LLAMAR AL ID AUTOINCREMENTABLE PRÓXIMO...
-  
-  // require_once '../controllers/c_list_ultimate_codegen.php';
-
-  // $codegen_auto = new list_ultimate_codegen();
-  // $list_codegen = $codegen_auto->list();
-  // $cod_generate = $list_codegen[0]['res'];
-
   //VARIABLE URL...
   $actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]";
   $url =  $actual_link . "/Camellogistics/views/";
@@ -105,6 +97,7 @@
           <input type='hidden' class='cont-MainCamelLog--c--ctrbysend' id='ipt-vportidDestiny' value='{$portDestinyPOST}'>
           <input type='hidden' class='cont-MainCamelLog--c--ctrbysend' id='ipt-vportidcountryDestiny' value='{$portCountryDestinyPOST}'>
           <input type='hidden' class='cont-MainCamelLog--c--ctrbysend' id='ipt-vcodgeneratex' name='ipt-vcodgeneratex' value=''>
+          <input type='hidden' class='cont-MainCamelLog--c--ctrbysend' id='ipt-vidcodgenrand' name='ipt-vidcodgenrand' value=''>
           <section class='cont-MainCamelLog--c--contResumeCalc' id='id-resumeLeftQuoteCamel'>
             <div class='cont-MainCamelLog--c--contResumeCalc--item' data-advlevel='d-typetransportnumb'></div>
             <div class='cont-MainCamelLog--c--contResumeCalc--item' data-advlevel='d-firstChargeLoad'></div>

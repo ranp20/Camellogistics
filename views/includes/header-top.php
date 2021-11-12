@@ -5,7 +5,7 @@
   if(isset($_SESSION['user_camel'])){
     $sess_user = $_SESSION['user_camel']['username'];
   }else{
-    $sess_user = "Invitado";
+    $sess_user = "";
   }
 ?>
 <nav class="c-Htopbar" id="c-HTop-camel">

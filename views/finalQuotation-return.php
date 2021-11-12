@@ -4,15 +4,23 @@
   session_start();
   if(!isset($_POST) || $_POST == []){
     header("Location: marketplace-logistico");
+  }else{
+    if(!isset($_SESSION['user_camel'])){
+      $_SESSION['user_camel'] = array('username' => "Invitado");
+    }
   }
 ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
   <title>Camel Logistics | Descarga tu Cotización</title>
-  <?php require_once 'includes/header-links.php'; ?>
+  <?php require_once 'includes/header-links.php';?>
 </head>
 <body>
+  <input type="hidden" id="v_datevaliddesde" value="<?php echo $_POST['val-datevaliddesde'];?>">
+  <input type="hidden" id="v_datevalidhasta" value="<?php echo $_POST['val-datevalidhasta'];?>">
+  <input type="hidden" id="v_idgencoderand" value="<?php echo $_POST['ipt-vidcodgenrand'];?>">
+  <div id="cUIMessageValid-user"></div>
   <?php require_once 'includes/header-top.php'; ?>
   <main class="cont-MainCamelLog" id="cont-MainCamelLog">
     <div class="cont-MainCamelLog--c ptop-headertop" id="cont-MainCamelLog--cFinalDownloadQuoteReturn">
@@ -375,8 +383,8 @@ echo $template_incserv.$template_notincserv;
   </main>
   <?php require_once 'includes/form-login-user.php'; ?>
   <?php require_once 'includes/form-before-download-pdf.php'; ?>
-  <script src="<?= $url ?>js/finalquotationreturn.js"></script>
   <script src="<?= $url ?>js/user-login.js"></script>
+  <script src="<?= $url ?>js/finalquotationreturn.js"></script>
   <script src="<?= $url ?>js/register-before-download.js"></script>
 </body>
 </html>

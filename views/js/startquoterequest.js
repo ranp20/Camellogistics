@@ -1,6 +1,6 @@
 $(() => {
-  /************************** REFRESCAR EL CÓDIGO AUTOGENERADO DESDE LA BASE DE DATOS **************************/
-  refreshCodeGen();
+  /************************** REFRESCAR EL ID DE CÓDIGO RANDOM **************************/
+  refreshIdCodeGenRandom();
   /************************** CAMBIAR ENTRE ENLACES HERMANOS Y OCULTAR LOS PASOS SIGUIENTES **************************/
   ChangesSibblingsLinks();
   hiddenAllNextSteps();
@@ -14,16 +14,16 @@ $(() => {
 	/************************** LISTAR LOS DISTRITOS DE ACUERDO AL PAÍS DE DESTINO **************************/
 	listrateLCLTransport();
 });
-function refreshCodeGen(){
+function refreshIdCodeGenRandom(){
   setInterval(function(){
     $.ajax({
-      url: "controllers/c_list_ultimate_codegen.php",
+      url: "controllers/c_list_id_codegenrandom.php",
       method: "POST",
       datatype: "JSON",
+      cache: false,
       contentType: 'application/x-www-form-urlencoded;charset=UTF-8',
     }).done(function(e){
-      var rcodegen = JSON.parse(e);
-      $("#ipt-vcodgeneratex").val(rcodegen[0].res);
+      $("#ipt-vidcodgenrand").val(e);
     });
   }, 100);
 }
@@ -294,6 +294,8 @@ $(document).on("click","#list-typeTransporteSelectItems a",function(){
         <span>
           <span>
             <input type="hidden" id="loadTypeCharge" name="loadTypeCharge" class="n-val-sd">
+            <input type="hidden" id="val-datevaliddesde" name="val-datevaliddesde" class="n-val-sd">
+            <input type="hidden" id="val-datevalidhasta" name="val-datevalidhasta" class="n-val-sd">
           </span>
         </span>
       </div>
@@ -342,6 +344,8 @@ $(document).on("click","#list-typeTransporteSelectItems a",function(){
         <span>
           <span>
             <input type="hidden" id="loadTypeCharge" name="loadTypeCharge" class="n-val-sd">
+            <input type="hidden" id="val-datevaliddesde" name="val-datevaliddesde" class="n-val-sd">
+            <input type="hidden" id="val-datevalidhasta" name="val-datevalidhasta" class="n-val-sd">
           </span>
         </span>
       </div>
@@ -390,6 +394,8 @@ $(document).on("click","#list-typeTransporteSelectItems a",function(){
         <span>
           <span>
             <input type="hidden" id="loadTypeCharge" name="loadTypeCharge" class="n-val-sd">
+            <input type="hidden" id="val-datevaliddesde" name="val-datevaliddesde" class="n-val-sd">
+            <input type="hidden" id="val-datevalidhasta" name="val-datevalidhasta" class="n-val-sd">
           </span>
         </span>
       </div>
@@ -818,6 +824,9 @@ $(document).on("click", "#c-incdecBtns20 button", function(){
     /************************** DEVOLVER LA FECHA DE VALIDEZ DE LA TARIFA A LA VARIABLE LOCAL **************************/
     var validdesde_final = totalFCL[0].validdesde;
     var validhasta_final = totalFCL[0].validhasta;
+    /************************** ASIGNAR A LOS INPUTS DE ENVÍO **************************/
+    $("#val-datevaliddesde").val(validdesde_final);
+    $("#val-datevalidhasta").val(validhasta_final);
     var convertOneDATE =  new Date(Date.parse(validdesde_final.replace(/-/g, '/')));
     var convertTwoDATE =  new Date(Date.parse(validhasta_final.replace(/[-]/g,'/')));
     //var options = { year: 'numeric', month: '2-digit', day: 'numeric' };
@@ -947,6 +956,9 @@ $(document).on("click", "#c-incdecBtns40 button", function(){
     /************************** DEVOLVER LA FECHA DE VALIDEZ DE LA TARIFA A LA VARIABLE LOCAL **************************/
     var validdesde_final = totalFCL[0].validdesde;
     var validhasta_final = totalFCL[0].validhasta;
+    /************************** ASIGNAR A LOS INPUTS DE ENVÍO **************************/
+    $("#val-datevaliddesde").val(validdesde_final);
+    $("#val-datevalidhasta").val(validhasta_final);
     var convertOneDATE =  new Date(Date.parse(validdesde_final.replace(/-/g, '/')));
     var convertTwoDATE =  new Date(Date.parse(validhasta_final.replace(/[-]/g,'/')));
     //var options = { year: 'numeric', month: '2-digit', day: 'numeric' };
@@ -1074,6 +1086,9 @@ $(document).on("click", "#c-incdecBtns40-hc button", function(){
     /************************** DEVOLVER LA FECHA DE VALIDEZ DE LA TARIFA A LA VARIABLE LOCAL **************************/
     var validdesde_final = totalFCL[0].validdesde;
     var validhasta_final = totalFCL[0].validhasta;
+    /************************** ASIGNAR A LOS INPUTS DE ENVÍO **************************/
+    $("#val-datevaliddesde").val(validdesde_final);
+    $("#val-datevalidhasta").val(validhasta_final);
     var convertOneDATE =  new Date(Date.parse(validdesde_final.replace(/-/g, '/')));
     var convertTwoDATE =  new Date(Date.parse(validhasta_final.replace(/[-]/g,'/')));
     //var options = { year: 'numeric', month: '2-digit', day: 'numeric' };
@@ -1173,11 +1188,8 @@ $(document).on("click", "#c-incdecBtns40-hc button", function(){
       }else{
         console.log('Sin acción');
       }
-
     }
   });
-
-
 });
 /************************** CUARTO INPUT **************************/
 $(document).on("click", "#c-incdecBtns40-nor button", function(){
@@ -1186,7 +1198,6 @@ $(document).on("click", "#c-incdecBtns40-nor button", function(){
   var newValipt40_nor = $(this).parent().find("input").val();
   var val40norinputhidden = $("#loadQContainer40nor").val();
   var val40norinputhiddenNew = $("#loadQContainer40nor").val();
-
 
   /************************** LISTAR LA TARIFA DEL PUERTO DE ORIGEN - FCL **************************/
   $.ajax({
@@ -1203,6 +1214,9 @@ $(document).on("click", "#c-incdecBtns40-nor button", function(){
     /************************** DEVOLVER LA FECHA DE VALIDEZ DE LA TARIFA A LA VARIABLE LOCAL **************************/
     var validdesde_final = totalFCL[0].validdesde;
     var validhasta_final = totalFCL[0].validhasta;
+    /************************** ASIGNAR A LOS INPUTS DE ENVÍO **************************/
+    $("#val-datevaliddesde").val(validdesde_final);
+    $("#val-datevalidhasta").val(validhasta_final);
     var convertOneDATE =  new Date(Date.parse(validdesde_final.replace(/-/g, '/')));
     var convertTwoDATE =  new Date(Date.parse(validhasta_final.replace(/[-]/g,'/')));
     //var options = { year: 'numeric', month: '2-digit', day: 'numeric' };
@@ -1304,7 +1318,6 @@ $(document).on("click", "#c-incdecBtns40-nor button", function(){
       }
     }
   });
-
 });
 /************************** DEVOLVER EL VALOR DE LOS CONTROLES (DIMENSIONES DE CARGA) AL RESUMEN DEL PROCESO **************************/
 $(document).on("change input keyup", "#val-iptPackagesNInterface", function(e){
@@ -2456,6 +2469,9 @@ $(document).on("click", "#btn-NextStepTochargedata", function(){
         /************************** DEVOLVER LA FECHA DE VALIDEZ DE LA TARIFA A LA VARIABLE LOCAL **************************/
         var validdesde_final = ratesorigin[0].validdesde;
         var validhasta_final = ratesorigin[0].validhasta;
+        /************************** ASIGNAR A LOS INPUTS DE ENVÍO **************************/
+        $("#val-datevaliddesde").val(validdesde_final);
+        $("#val-datevalidhasta").val(validhasta_final);
         var convertOneDATE =  new Date(Date.parse(validdesde_final.replace(/-/g, '/')));
         var convertTwoDATE =  new Date(Date.parse(validhasta_final.replace(/[-]/g,'/')));
         //var options = { year: 'numeric', month: '2-digit', day: 'numeric' };
@@ -2642,6 +2658,9 @@ $(document).on("click", "#btn-NextStepTochargedata", function(){
           /************************** DEVOLVER LA FECHA DE VALIDEZ DE LA TARIFA A LA VARIABLE LOCAL **************************/
           var validdesde_final = ratesorigin[0].validdesde;
           var validhasta_final = ratesorigin[0].validhasta;
+          /************************** ASIGNAR A LOS INPUTS DE ENVÍO **************************/
+          $("#val-datevaliddesde").val(validdesde_final);
+          $("#val-datevalidhasta").val(validhasta_final);
           var convertOneDATE =  new Date(Date.parse(validdesde_final.replace(/-/g, '/')));
           var convertTwoDATE =  new Date(Date.parse(validhasta_final.replace(/[-]/g,'/')));
           //var options = { year: 'numeric', month: '2-digit', day: 'numeric' };
@@ -2741,6 +2760,9 @@ $(document).on("click", "#btn-NextStepTochargedata", function(){
           /************************** DEVOLVER LA FECHA DE VALIDEZ DE LA TARIFA A LA VARIABLE LOCAL **************************/
           var validdesde_final = ratesorigin[0].validdesde;
           var validhasta_final = ratesorigin[0].validhasta;
+          /************************** ASIGNAR A LOS INPUTS DE ENVÍO **************************/
+          $("#val-datevaliddesde").val(validdesde_final);
+          $("#val-datevalidhasta").val(validhasta_final);
           var convertOneDATE =  new Date(Date.parse(validdesde_final.replace(/-/g, '/')));
           var convertTwoDATE =  new Date(Date.parse(validhasta_final.replace(/[-]/g,'/')));
           //var options = { year: 'numeric', month: '2-digit', day: 'numeric' };

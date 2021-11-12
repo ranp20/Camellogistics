@@ -17,6 +17,5 @@ class list_Taxation_values extends Connection{
 		}
 	}
 }
-
 $taxation_values = new list_Taxation_values();
 echo $taxation_values->list();
