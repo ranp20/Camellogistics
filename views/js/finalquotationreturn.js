@@ -507,11 +507,6 @@ $(document).ready(function(){
 
 			}else if($("#s_useregin-sistem").val() == 'Invitado'){
 				
-				$("#cnt-modalFormLoginyRegister").add($(".cnt-modalFormLoginyRegister--c")).addClass("show");
-				console.log('Por favor, rellene sus datos.');
-
-			}else if($("#s_useregin-sistem").val() != "" || $("#s_useregin-sistem").val() != undefined || $("#s_useregin-sistem").val() != 'undefined' || $("#s_useregin-sistem").val() != null || $("#s_useregin-sistem").val() != 'null' || $("#s_useregin-sistem").val() != 'Invitado'){
-			
 				$("#cUIMessageValid-user").html(`<div id="msgAlertpreloader">
 					<div class="cont-loader--loader">
 						<span class="cont-loader--loader--circle"></span>
@@ -542,6 +537,66 @@ $(document).ready(function(){
 					if(rvalidpdf[0].res != "notexists"){
 						console.log("El usuario SI se registró previamente");
 						//generatePDF(queryresult.username);
+						$("#cUIMessageValid-user").html(`<div id="msgAlertpreloader">
+							<div class="cont-loader--loader">
+								<span class="cont-loader--loader--circle"></span>
+								<span class="cont-loader--loader--circle"></span>
+								<span class="cont-loader--loader--circle"></span>
+								<span class="cont-loader--loader--circle"></span>
+							</div>
+							<p>Procesando...</p>
+						</div>`);
+
+
+						$.ajax({
+							type: 'POST',
+							url: 'controllers/c_generate-pdf.php',
+							data: {
+								id_codegenrand : $("#v_idgencoderand").val(), 
+								code_quote : $("#v_gencodexxx").text(),
+								u_login : user_sessquote
+							},
+							xhrFields: {
+					      responseType: 'blob' // to avoid binary data being mangled on charset conversion
+					    },
+					    success: function(blob, status, xhr) {
+				        // check for a filename
+				        var filename = "";
+				        var disposition = xhr.getResponseHeader('Content-Disposition');
+				        if (disposition && disposition.indexOf('attachment') !== -1) {
+			            var filenameRegex = /filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/;
+			            var matches = filenameRegex.exec(disposition);
+			            if (matches != null && matches[1]) filename = matches[1].replace(/['"]/g, '');
+				        }
+
+				        if (typeof window.navigator.msSaveBlob !== 'undefined') {
+			            // IE workaround for "HTML7007: One or more blob URLs were revoked by closing the blob for which they were created. These URLs will no longer resolve as the data backing the URL has been freed."
+			            window.navigator.msSaveBlob(blob, filename);
+				        } else {
+			            var URL = window.URL || window.webkitURL;
+			            var downloadUrl = URL.createObjectURL(blob);
+
+			            if (filename) {
+		                // use HTML5 a[download] attribute to specify filename
+		                var a = document.createElement("a");
+		                // safari doesn't support this yet
+		                if (typeof a.download === 'undefined') {
+		                  window.location.href = downloadUrl;
+		                } else {
+	                    a.href = downloadUrl;
+	                    a.download = filename;
+	                    document.body.appendChild(a);
+	                    a.click();
+	                    $("#cUIMessageValid-user").html("");
+		                }
+			            } else {
+			              window.location.href = downloadUrl;
+			            }
+
+			            setTimeout(function () { URL.revokeObjectURL(downloadUrl); }, 100); // cleanup
+				        }
+					    }
+						});
 					}else if(rvalidpdf[0].res == "notexists"){
 						$("#cUIMessageValid-user").html("");
 						$("#cnt-modalFormLoginyRegister").add($(".cnt-modalFormLoginyRegister--c")).addClass("show");
@@ -550,6 +605,9 @@ $(document).ready(function(){
 						console.log('lo sentimos, hubo un error');
 					}
 				});
+
+			}else if($("#s_useregin-sistem").val() != "" || $("#s_useregin-sistem").val() != undefined || $("#s_useregin-sistem").val() != 'undefined' || $("#s_useregin-sistem").val() != null || $("#s_useregin-sistem").val() != 'null' || $("#s_useregin-sistem").val() != 'Invitado'){
+			
 			}else{
 				$("#cnt-modalFormLoginyRegister").add($(".cnt-modalFormLoginyRegister--c")).addClass("show");
 				console.log('Hubo un error al generar el PDF');
@@ -570,11 +628,6 @@ $(document).ready(function(){
 
 			}else if($("#s_useregin-sistem").val() == "Invitado" || $("#s_useregin-sistem").val() == 'Invitado'){
 
-				$("#cnt-modalFormLoginyRegister").add($(".cnt-modalFormLoginyRegister--c")).addClass("show");
-				console.log('Por favor, rellene sus datos.');
-
-			}else if($("#s_useregin-sistem").val() != "" || $("#s_useregin-sistem").val() != undefined || $("#s_useregin-sistem").val() != 'undefined' || $("#s_useregin-sistem").val() != null || $("#s_useregin-sistem").val() != 'null'){
-				
 				$("#cUIMessageValid-user").html(`<div id="msgAlertpreloader">
 					<div class="cont-loader--loader">
 						<span class="cont-loader--loader--circle"></span>
@@ -605,6 +658,20 @@ $(document).ready(function(){
 					if(rvalidpdf[0].res != "notexists"){
 						console.log("El usuario SI se registró previamente");
 						//generatePDF(queryresult.username);
+						// var formdata = new FormData();
+						// formdata.append("id_codegenrand", $("#v_idgencoderand").val());
+
+						// $.ajax({
+						// 	url: 'controllers/c_launchpdfquotation.php',
+						// 	method: 'POST',
+						// 	datatype: 'JSON',
+						// 	data: formdata,
+						// 	contentType: false,
+			   //      cache: false,
+			   //      processData: false
+						// }).done(function(e){
+						// 	console.log(e);
+						// });
 					}else if(rvalidpdf[0].res == "notexists"){
 						$("#cUIMessageValid-user").html("");
 						$("#cnt-modalFormLoginyRegister").add($(".cnt-modalFormLoginyRegister--c")).addClass("show");
@@ -613,6 +680,10 @@ $(document).ready(function(){
 						console.log('lo sentimos, hubo un error');
 					}
 				});
+
+			}else if($("#s_useregin-sistem").val() != "" || $("#s_useregin-sistem").val() != undefined || $("#s_useregin-sistem").val() != 'undefined' || $("#s_useregin-sistem").val() != null || $("#s_useregin-sistem").val() != 'null'){
+				
+				
 
 			}else{
 				$("#cnt-modalFormLoginyRegister").add($(".cnt-modalFormLoginyRegister--c")).addClass("show");
@@ -729,12 +800,12 @@ $(document).ready(function(){
 			$("#msg-nounValidEmail").val() != "" || $("#msg-nounValidEmail").val() != 0){
 
 			var formdata = new FormData();
-			formdata.append("id_codegenrand", $("#v_idgencoderand").val());
+			formdata.append("id_gencoderand", $("#v_idgencoderand").val());
 			formdata.append("code_quote", $("#v_gencodexxx").text());
 			formdata.append("ndoc_cli", $("#n_document_cli").val());
 			formdata.append("name_enterprise_cli", $("#name_enterprise_cli").val());
 			formdata.append("telephone_cli", $("#telephone_cli").val());
-			formdata.append("username_cli", $("#email_cli").val());
+			//formdata.append("username_cli", $("#email_cli").val());
 
 			$.ajax({
 				url: 'controllers/c_update_quotation_user.php',
@@ -746,12 +817,40 @@ $(document).ready(function(){
         processData: false
 			}).done(function(e){
 				console.log(e);
-				// if(queryresult.response == "true"){
-				// 	console.log("El usuario existe");
-				// 	generatePDF(queryresult.username);
-				// }else{
-				// 	console.log("El usuario NO existe");
-				// }
+				var resupdate = JSON.parse(e);
+				console.log(resupdate[0].res);
+				if(resupdate[0].res == "updated"){
+
+					var formdata = new FormData();
+					formdata.append("id_gencoderand", $("#v_idgencoderand").val());
+					formdata.append("code_quote", $("#v_gencodexxx").text());
+					formdata.append("ndoc_cli", $("#n_document_cli").val());
+					formdata.append("name_enterprise_cli", $("#name_enterprise_cli").val());
+					formdata.append("telephone_cli", $("#telephone_cli").val());
+					formdata.append("email", $("#email_cli").val());
+
+					$.ajax({
+						url: 'controllers/c_add_unlogged_user.php',
+						method: 'POST',
+						datatype: 'JSON',
+						data: formdata,
+						contentType: false,
+		        cache: false,
+		        processData: false
+					}).done(function(e){
+						console.log(e);
+						if(e == "true"){
+							$("#cnt-modalFormLoginyRegister").add($(".cnt-modalFormLoginyRegister--c")).removeClass("show");
+							console.log('Cotización guardada en unlogged');
+						}else{
+							console.log("Error al guardar la información");
+						}
+					});
+				}else if(resupdate[0].res == "exists"){
+					console.log("El usuario ya actualizó en cotizaciones");
+				}else{
+					console.log("Lo sentimos, no se pudo procesar la petición.");
+				}
 			});
 		}else{
 			console.log('Debes completar los campos requeridos');

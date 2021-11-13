@@ -10,7 +10,7 @@ class Validate_by_codegenrand extends Connection{
 			$stm->bindValue(':id_codegenrand', $id_codegenrand);
 			$stm->execute();
 			
-			$data = $stm->fetchAll(PDO::FETCH_ASSOC); 
+			$data = $stm->fetchAll(PDO::FETCH_ASSOC);
 			//return $data;
 			$res = json_encode($data);
 			echo $res;
