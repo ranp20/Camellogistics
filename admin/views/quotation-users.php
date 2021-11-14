@@ -5,6 +5,16 @@
 	if(!isset($_SESSION['admin_camel'])){
 		header("Location: ../");
 	}
+
+	require_once '../controllers/c_pagination_quotationusers.php';
+	$pagination_qusers = new Pagination_quotationusers();
+	$quotation_users = $pagination_qusers->buscar();
+
+	require_once '../controllers/c_paginatelinks_function.php';
+	$currpage = 1;
+	$totalpages = $quotation_users['paginas'];
+	$adjacents = 3;
+	
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -12,6 +22,37 @@
 	<?php require_once 'includes/adm-header-index.php'; ?>
 	<title>Admin - Cotización de Usuarios</title>
 </head>
+<style type="text/css">
+	#cont_listpagination{
+		display: table;
+    right: 0;
+    text-align: right;
+    margin-left: auto;
+    margin-top: 0.5rem;
+	}
+	.m-paginator{ 
+		display: flex; 
+		justify-content: center; 
+	}
+	.m-paginator li{ 
+		margin: 2px; 
+	}
+	.m-paginator a{ 
+		display: flex; 
+		width: 4ch; 
+		height: 4ch; 
+		background: #dddfea; 
+		align-items: center; 
+		justify-content: center; 
+		font-family: Monospace; 
+		font-size: 15px; 
+		border-radius: 5px;
+		color: rgba(0,0,0,.7);
+	}
+	.m-paginator a.actual{ background: darkred; color: white; }
+	.prev-disabledlink a,
+	.next-disabledlink a{display: flex; width: 4ch; height: 4ch; background: #dddfea; align-items: center; justify-content: center; font-family: Monospace; font-size: 15px; border-radius: 5px;color: rgba(0,0,0,.7);}
+</style>
 <body>
 	<div id="dash-contT">
 		<?php require_once 'includes/adm-sidebar-left.php'; ?>
@@ -41,8 +82,45 @@
 									<th>T. Servicio</th>
 								</tr>
 							</thead>
-							<tbody id="tbl_quotationusers"></tbody>
+							<tbody id="tbl_quotationusers">
+								<?php
+								$template_qusers = "";
+								if(isset($quotation_users['resultados'])){
+									foreach ($quotation_users['resultados'][0] as $value){
+										$template_qusers .= "
+							        <tr id='{$value['id']}'>
+							          <td class='center'>{$value['id']}</td>
+							          <td>{$value['code_quote']}</td>
+							          <td>{$value['u_login']}</td>
+							          <td>{$value['f_type_operation']}</td>
+							          <td>{$value['f_type_transport']}</td>
+							          <td>{$value['f_type_container']}</td>
+							          <td>{$value['u_n_document']}</td>
+							          <td>{$value['u_enterprise']}</td>
+							          <td>{$value['u_telephone']}</td>
+							          <td>{$value['u_service']}</td>
+							        </tr>
+							        ";
+							      }
+								}else{
+									$template_qusers .= "
+										<tr>
+						          <td colspan='7'>
+						            <div class='msg-non-results-res'>
+						              <img src='../admin/views/assets/img/utilities/icon-sad-face.svg' alt='' class='msg-non-results-res__icon'>
+						              <h3 class='msg-non-results-res__title'>No se encontraron resultados...</h3>
+						            </div>
+						          </td>
+						        </tr>
+									";
+								}
+								echo $template_qusers;
+								?>
+							</tbody>
 						</table>
+					</div>
+					<div id="cont_listpagination">
+						<?php echo paginate($currpage, $totalpages, $adjacents);?>
 					</div>
 				</div>
 			</div>

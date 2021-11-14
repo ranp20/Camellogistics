@@ -19,7 +19,7 @@
 				</div>
 				<div class="cnt-modalFormLoginyRegister--c--cForm--cControl">
 					<label for="telephone_cli" class="cnt-modalFormLoginyRegister--c--cForm--cControl--label">Número de teléfono <span class="control-spanrequired">*</span></label>
-					<input type="number" id="telephone_cli" name="telephone_cli" class="cnt-modalFormLoginyRegister--c--cForm--cControl--input" placeholder="Ingrese el número de teléfono" maxlength="11" required autocomplete="off" spellcheck="false">
+					<input type="number" id="telephone_cli" name="telephone_cli" class="cnt-modalFormLoginyRegister--c--cForm--cControl--input" placeholder="Ingrese el número de teléfono" maxlength="9" required autocomplete="off" spellcheck="false">
 					<span id="msg-nounNumberorTelephoneNumb"></span>
 				</div>
 				<div class="cnt-modalFormLoginyRegister--c--cForm--cControl">
