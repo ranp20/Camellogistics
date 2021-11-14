@@ -22,37 +22,6 @@
 	<?php require_once 'includes/adm-header-index.php'; ?>
 	<title>Admin - Cotización de Usuarios</title>
 </head>
-<style type="text/css">
-	#cont_listpagination{
-		display: table;
-    right: 0;
-    text-align: right;
-    margin-left: auto;
-    margin-top: 0.5rem;
-	}
-	.m-paginator{ 
-		display: flex; 
-		justify-content: center; 
-	}
-	.m-paginator li{ 
-		margin: 2px; 
-	}
-	.m-paginator a{ 
-		display: flex; 
-		width: 4ch; 
-		height: 4ch; 
-		background: #dddfea; 
-		align-items: center; 
-		justify-content: center; 
-		font-family: Monospace; 
-		font-size: 15px; 
-		border-radius: 5px;
-		color: rgba(0,0,0,.7);
-	}
-	.m-paginator a.actual{ background: darkred; color: white; }
-	.prev-disabledlink a,
-	.next-disabledlink a{display: flex; width: 4ch; height: 4ch; background: #dddfea; align-items: center; justify-content: center; font-family: Monospace; font-size: 15px; border-radius: 5px;color: rgba(0,0,0,.7);}
-</style>
 <body>
 	<div id="dash-contT">
 		<?php require_once 'includes/adm-sidebar-left.php'; ?>
@@ -119,7 +88,7 @@
 							</tbody>
 						</table>
 					</div>
-					<div id="cont_listpagination">
+					<div id="cont_listpagination" class="cont_listpagination">
 						<?php echo paginate($currpage, $totalpages, $adjacents);?>
 					</div>
 				</div>

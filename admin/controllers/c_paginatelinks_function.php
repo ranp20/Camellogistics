@@ -2,7 +2,7 @@
 function paginate($currpage, $totalpages, $adjacents){
   $prevlabel = "&lsaquo;";
   $nextlabel = "&rsaquo;";
-  $out = '<ul id="paginador" class="m-paginator">';
+  $out = '<ul id="paginador" class="cont_listpagination--m-paginator">';
   
   /*********************** PÁGINA ANTERIOR ************************/
   if($currpage == 1){
@@ -20,7 +20,7 @@ function paginate($currpage, $totalpages, $adjacents){
 
   /*********************** INTERVALOS ************************/
   if($currpage > ($adjacents + 2)) {
-    $out .= "<li><a>...</a></li>";
+    $out .= "<li class='between-defaultlink'><a>...</a></li>";
   }
 
   /*********************** PÁGINAS ************************/
@@ -38,7 +38,7 @@ function paginate($currpage, $totalpages, $adjacents){
 
   /*********************** INTERVALOS ************************/
   if($currpage < ($totalpages - $adjacents - 1)) {
-    $out .= "<li><a>...</a></li>";
+    $out .= "<li class='between-defaultlink'><a>...</a></li>";
   }
 
   /*********************** ÚLTIMA PÁGINA ************************/

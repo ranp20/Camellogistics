@@ -20,99 +20,117 @@ function scannear_botones(){
 }
 /************************** BUSCADOR EN TIEMPO REAL **************************/
 function buscar(que, num){
-  const fd = new FormData();
-  fd.append('nombre', que);
-  fd.append('numero', num);
+  if(num == undefined || num == 'undefined'){
+    return false;
+  }else{
+    const fd = new FormData();
+    fd.append('nombre', que);
+    fd.append('numero', num);
 
-  fetch('../admin/controllers/c_seach-ajax-quotationusers.php', {method: 'post', body: fd})
-  .then(function(j){ return j.json();})
-  .then(function(d){
-    //console.log(d);
-    const publicaciones = document.getElementById('tbl_quotationusers');
-    const paginador = document.getElementById('paginador');
+    fetch('../admin/controllers/c_seach-ajax-quotationusers.php', {method: 'post', body: fd})
+    .then(function(j){ return j.json();})
+    .then(function(d){
+      //console.log(d);
+      const publicaciones = document.getElementById('tbl_quotationusers');
+      const paginador = document.getElementById('paginador');
 
-    publicaciones.innerHTML = ''; //RESETEA EL LISTADO DE RESULTADOS DE ESTA PAGINA....
-    d.resultados.forEach(function(u, i){
-      for (var i = 0; i < u.length; i++) {
-        publicaciones.innerHTML += `
-          <tr id='${u[i].id}'>
-            <td class='center'>${u[i].id}</td>
-            <td>${u[i].code_quote}</td>
-            <td>${u[i].u_login}</td>
-            <td>${u[i].f_type_operation}</td>
-            <td>${u[i].f_type_transport}</td>
-            <td>${u[i].f_type_container}</td>
-            <td>${u[i].u_n_document}</td>
-            <td>${u[i].u_enterprise}</td>
-            <td>${u[i].u_telephone}</td>
-            <td>${u[i].u_service}</td>
+      publicaciones.innerHTML = ''; //RESETEA EL LISTADO DE RESULTADOS DE ESTA PAGINA....
+      if(d.resultados.length == 0){
+        publicaciones.innerHTML = `
+          <tr>
+            <td colspan="10">
+              <div class="msg-non-results-res">
+                <img src="../admin/views/assets/img/utilities/icon-sad-face.svg" alt="" class="msg-non-results-res__icon">
+                <h3 class="msg-non-results-res__title">No se encontraron resultados...</h3>
+              </div>
+            </td>
           </tr>
         `;
+      }else{
+        d.resultados.forEach(function(u, i){
+          for (var i = 0; i < u.length; i++) {
+            publicaciones.innerHTML += `
+              <tr id='${u[i].id}'>
+                <td class='center'>${u[i].id}</td>
+                <td>${u[i].code_quote}</td>
+                <td>${u[i].u_login}</td>
+                <td>${u[i].f_type_operation}</td>
+                <td>${u[i].f_type_transport}</td>
+                <td>${u[i].f_type_container}</td>
+                <td>${u[i].u_n_document}</td>
+                <td>${u[i].u_enterprise}</td>
+                <td>${u[i].u_telephone}</td>
+                <td>${u[i].u_service}</td>
+              </tr>
+            `;
+          }
+        });
       }
-    });
-    
-    paginador.innerHTML = ''; //RESETEAR LA BOTONERA DEL PAGINADOR...
-    var currpage = parseFloat(d.actual); //PARSEAR LAS VARIABLES RECIBIDAS...
-    var totalpages = parseFloat(d.paginas); //PARSEAR LAS VARIABLES RECIBIDAS...
-    var adjacents = 3;
-    
-    // SE PODRÍA METER TODO ESTE CÓDIGO APARTIR DE ESTE PUNTO, DE TODAS MANERAS ES MERA ELECCIÓN...
-    var prevlabel = "&lsaquo;";
-    var nextlabel = "&rsaquo;";
-    var out = '';
-    
-    /*********************** PÁGINA ANTERIOR ************************/
-    if(currpage == 1){
-      out += `<li class='prev-disabledlink'><span><a>${prevlabel}</a></span></li>`;
-    } else if(currpage == 2) {
-      out += `<li><span><a href='javascript:void(0);' data-pagina='1'>${prevlabel}</a></span></li>`;
-    }else {
-      out += `<li><span><a href='javascript:void(0);' data-pagina='${currpage - 1}'>${prevlabel}</a></span></li>`;
-    }
-    
-    /*********************** PRIMERA PÁGINA ************************/
-    if(currpage > (adjacents + 1)) {
-      out += `<li><a href='javascript:void(0);' data-pagina='1'>1</a></li>`;
-    }
-
-    /*********************** INTERVALOS ************************/
-    if(currpage > (adjacents + 2)) {
-      out += "<li><a>...</a></li>";
-    }
-
-    /*********************** PÁGINAS ************************/
-    pmin = (currpage > adjacents) ? (currpage - adjacents) : 1;
-    pmax = (currpage < (totalpages - adjacents)) ? (currpage + adjacents) : totalpages;
-    for(var i = pmin; i <= pmax; i++) {
-      let actual = d.actual == i ? " class='actual' " : "";
-      if(i == currpage) {
-        out += `<li class='active'><a class='actual'>${i}</a></li>`;
-      }else if(i == 1) {
-        out += `<li><a href='javascript:void(0);' data-pagina='1'>${i}</a></li>`;
+      
+      paginador.innerHTML = ''; //RESETEAR LA BOTONERA DEL PAGINADOR...
+      var currpage = parseFloat(d.actual); //PARSEAR LAS VARIABLES RECIBIDAS...
+      var totalpages = parseFloat(d.paginas); //PARSEAR LAS VARIABLES RECIBIDAS...
+      var adjacents = 3;
+      
+      // SE PODRÍA METER TODO ESTE CÓDIGO APARTIR DE ESTE PUNTO, DE TODAS MANERAS ES MERA ELECCIÓN...
+      var prevlabel = "&lsaquo;";
+      var nextlabel = "&rsaquo;";
+      var out = '';
+      
+      /*********************** PÁGINA ANTERIOR ************************/
+      if(currpage == 1){
+        out += `<li class='prev-disabledlink'><span><a>${prevlabel}</a></span></li>`;
+      } else if(currpage == 2) {
+        out += `<li><span><a href='javascript:void(0);' data-pagina='1'>${prevlabel}</a></span></li>`;
       }else {
-        out += `<li><a href='' ${ actual } data-pagina='${ i }'>${ i }</a></li>`;
+        out += `<li><span><a href='javascript:void(0);' data-pagina='${currpage - 1}'>${prevlabel}</a></span></li>`;
       }
-    }
-    /*********************** INTERVALOS ************************/
-    if(currpage < (totalpages - adjacents - 1)) {
-      out += `<li><a>...</a></li>`;
-    }
+      
+      /*********************** PRIMERA PÁGINA ************************/
+      if(currpage > (adjacents + 1)) {
+        out += `<li><a href='javascript:void(0);' data-pagina='1'>1</a></li>`;
+      }
 
-    /*********************** ÚLTIMA PÁGINA ************************/
-    if(currpage < (totalpages - adjacents)) {
-      out += `<li><a href='javascript:void(0);' data-pagina='${totalpages}'>${totalpages}</a></li>`;
-    }
+      /*********************** INTERVALOS ************************/
+      if(currpage > (adjacents + 2)) {
+        out += "<li class='between-defaultlink'><a>...</a></li>";
+      }
 
-    /*********************** SIGUIENTE PÁGINA ************************/
-    if(currpage < totalpages) {
-      out += `<li><span><a href='javascript:void(0);' data-pagina='${currpage + 1}'>${nextlabel}</a></span></li>`;
-    }else {
-      out += `<li class='next-disabledlink'><span><a>${nextlabel}</a></span></li>`;
-    }
-    
-    out += '';
-    paginador.innerHTML = out;
+      /*********************** PÁGINAS ************************/
+      pmin = (currpage > adjacents) ? (currpage - adjacents) : 1;
+      pmax = (currpage < (totalpages - adjacents)) ? (currpage + adjacents) : totalpages;
+      for(var i = pmin; i <= pmax; i++) {
+        let actual = d.actual == i ? " class='actual' " : "";
+        if(i == currpage) {
+          out += `<li class='active'><a class='actual'>${i}</a></li>`;
+        }else if(i == 1) {
+          out += `<li><a href='javascript:void(0);' data-pagina='1'>${i}</a></li>`;
+        }else {
+          out += `<li><a href='' ${ actual } data-pagina='${ i }'>${ i }</a></li>`;
+        }
+      }
+      /*********************** INTERVALOS ************************/
+      if(currpage < (totalpages - adjacents - 1)) {
+        out += `<li class='between-defaultlink'><a>...</a></li>`;
+      }
 
-    scannear_botones();
-  });
+      /*********************** ÚLTIMA PÁGINA ************************/
+      if(currpage < (totalpages - adjacents)) {
+        out += `<li><a href='javascript:void(0);' data-pagina='${totalpages}'>${totalpages}</a></li>`;
+      }
+
+      /*********************** SIGUIENTE PÁGINA ************************/
+      if(currpage < totalpages) {
+        out += `<li><span><a href='javascript:void(0);' data-pagina='${currpage + 1}'>${nextlabel}</a></span></li>`;
+      }else {
+        out += `<li class='next-disabledlink'><span><a>${nextlabel}</a></span></li>`;
+      }
+      
+      out += '';
+      paginador.innerHTML = out;
+
+      scannear_botones();
+    });
+  }
+
 }
