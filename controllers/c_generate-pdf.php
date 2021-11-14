@@ -1,18 +1,32 @@
 <?php
-
+// OJO: El método con AJAX de Jquery, no funciona y/o no devuelve el PDF si dentro del HTML se pasa un array...
 require_once '../vendor/autoload.php';
 use Dompdf\Dompdf;
 ob_start(); //CARGA EN MEMORIA UN ARCHIVO
 //include(dirname('_FILE_').'/c_pdfquotation.php'); //INCLUIR LA PLANTILLA DE LA COTIZACIÓN, DEVOLVER DE LA RUTA PADRE, PARA COMPARTIR INFO.
+require_once '../models/quotation-user.php';
+$quotebyidcode = new Quotation_user();
+$listbyidcode = $quotebyidcode->get_by_idcodegenrand($_POST['id_codegenrand']);
+//print_r($_POST);
+print_r($listbyidcode);
 
-print_r($_POST);
+
+//VARIABLES A USAR EN EL MOSTRADO DE INFORMACIÓN DENTRO DEL PDF
+$u_nameenterprise = $listbyidcode[0]['u_enterprise'];
+$u_ndocument = $listbyidcode[0]['u_n_document'];
+$u_telephone = $listbyidcode[0]['u_telephone'];
+$f_typecontainer = $listbyidcode[0]['f_type_container'];
+
+//NOMBRE DE LA COTIZACIÓN
+$name_quotation = "Presupuesto-".$_POST['code_quote']."-".$f_typecontainer;
 ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
-	<title>Cotizacion de cliente</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<title><?php echo $name_quotation; ?></title>
 </head>
 <style>
 	#cont_quotationpdf{
@@ -996,13 +1010,13 @@ print_r($_POST);
 	        <div class="item_dpt_dat1">:</div>
 	      </div>
 	      <div id="marc_dat1_der">
-	        <div class="item_demp_dat1">1070346201</div>
+	        <div class="item_demp_dat1"><?php echo $u_nameenterprise; ?></div>
 	        <div class="item_demp_dat1">SERVICIO MARÍTIMO</div>
 	        <div class="item_demp_dat1">polancoranp2019@gmail.com</div>
 	      </div>
 	      <div id="marc_dat1_derr1">
 	        <div class="item_demp_datt1">Ruc / DNI</div>
-	        <div class="item_demp_datt1">10702366301</div>
+	        <div class="item_demp_datt1"><?php echo $u_ndocument; ?></div>
 	      </div>
 	    </div>
 	    <div id="marc_dat2">
@@ -1015,7 +1029,7 @@ print_r($_POST);
 		      <div class="item_dpt1_dat1">:</div>
 	    	</div>
 	    	<div id="marc_dat1_der1">
-		      <div class="item_demp2_dat1"><?php //print_r($_GET['user']);?> polancoranp2019@gmail.com</div>
+		      <div class="item_demp2_dat1"><?php echo $u_telephone; ?></div>
 		      <div class="item_demp2_dat1">polancoranp2019@gmail.com</div>
 	    	</div>
 	  	</div>
@@ -1250,7 +1264,7 @@ print_r($_POST);
 	</div>
 </body>
 </html>
-<?php 
+<?php
 	$html = ob_get_clean(); //CARGAR LO QUE CONTIENE EN ESTE ARCHIVO AL SIGUIENTE
 	$dompdf = new Dompdf();//INSTANCIAR EL OBJETO PARA DOMPDF
 	$options = $dompdf->getOptions(); //INTANCIAR A LAS OPCIONES DE CONFIGURACIÓN
@@ -1258,6 +1272,6 @@ print_r($_POST);
 	$dompdf->loadHtml($html);//CARGA EL CONTENIDO HTML PARA PDF
 	$dompdf->setPaper('letter','portrait'); //TAMAÑO O FORMATO DE HOJA - CARTA VERTICAL
 	$dompdf->render(); //LEER EL HTML Y CONVERTIR A PDF
-	$dompdf->stream('cotizacion_'.$_POST['code_quote'], array('Attachment' => true)); //VISUALIZAR EN EL NAVEGADOR
+	$dompdf->stream($name_quotation, array('Attachment' => true)); //VISUALIZAR EN EL NAVEGADOR
 	exit(0);
 ?>

@@ -547,7 +547,6 @@ $(document).ready(function(){
 							<p>Procesando...</p>
 						</div>`);
 
-
 						$.ajax({
 							type: 'POST',
 							url: 'controllers/c_generate-pdf.php',
