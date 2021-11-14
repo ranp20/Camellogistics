@@ -105,7 +105,34 @@ $(document).ready(function(){
 	var totflete = parseFloat(localStorage.getItem("key_v-totalflette")); //TOTAL - SOLO FLETE
 	var totalamountadditional = parseFloat(localStorage.getItem("key_v-totalammountadditional")); //MONTO ADICIONAL
 	var totaltransport = parseFloat(localStorage.getItem("key_v-valuetransport")); //TOTAL TRANSPORTE
+	
+
+
+	// LLAMAR A LOS VALORES DE ASEGURAMIENTO, METER LOS VALORES DENTRO DEL AJAX DE TAXATION O CREAR VARIABLES GLOBALES Y USARLAS
+
+	// list_insurancevalues.php
+	$.ajax({
+    url: "controllers/list_insurancevalues.php",
+    method: "POST",
+    datatype: "JSON",
+    contentType: 'application/x-www-form-urlencoded;charset=UTF-8',
+  }).done(function(e){
+  	var rinsurance = JSON.parse(e);
+  	console.log(rinsurance[0].data_value); //FOB MENOR A 25000
+  	console.log(rinsurance[1].data_value); //FOB MAYOR A 25000
+  	console.log(rinsurance[2].data_value); //SIN FOB/VALOR POR DEFECTO
+  	var insure_min25000 = parseFloat(rinsurance[0].data_value);
+  	var insure_max25000 = parseFloat(rinsurance[1].data_value);
+  	var insure_default = parseFloat(rinsurance[2].data_value);
+  	console.log(insure_min25000); //FOB MENOR A 25000
+  	console.log(insure_max25000); //FOB MAYOR A 25000
+  	console.log(insure_default); //SIN FOB/VALOR POR DEFECTO
+
+  });
+
 	var totalinsurance = parseFloat(localStorage.getItem("key_v-valueinsurance")); //TOTAL SEGURO
+	
+
 	var totalimportprev = parseFloat(localStorage.getItem("key_v-valuestaxationimport")); //TOTAL IMPORTACIÓN PREVIA
 	var totalvaluesquotation =  parseFloat(localStorage.getItem("key_v-valuesquotation")); //TOTAL SUMA DE VALORES DE COTIZACIÓN
 	var totalvaluesquotationbyIGV =  parseFloat(localStorage.getItem("key_v-valuesquotationbyigv")); //TOTAL SUMA DE VALORES DE COTIZACIÓN IGV
