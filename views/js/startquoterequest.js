@@ -1499,7 +1499,6 @@ $(document).on("click", "#list-SelOptionResultExp a", function(){
         localStorage.setItem("key_v-valuesquotation", unitvaluesQuotes);
       });
     }
-
     /************************** LISTAR EL IMPUESTO DE IMPORTACIÓN PREVIA **************************/
     $.ajax({
       url: "controllers/list_taxation_values_byimport.php",
@@ -1511,11 +1510,9 @@ $(document).on("click", "#list-SelOptionResultExp a", function(){
       /************************** ASIGNAR A LA VARIABLE LOCAL DE PERCEPCIÓN **************************/
       localStorage.setItem("key_v-valuestaxationimport", resultTaximport[0].data_value_two);
     });
-
     /************************** OCULTAR LOS DEMÁS PASOS POSTERIORES **************************/
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-insuremerchandise]").removeClass("show");
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-insuremerchandise]").html("");
-
     /************************** ASIGNAR VALORES DE LOS INPUTS HIDDEN - ELIGE UNA OPCIÓN **************************/
     $("#opt-genfquotation").val("y-moreOpts");
     /************************** OCULTAR EL BOTÓN DE ENVIAR **************************/
@@ -1523,7 +1520,6 @@ $(document).on("click", "#list-SelOptionResultExp a", function(){
     /************************** AGREGAR AL LISTADO DE RESUMEN - ELIGE UN OPCIÓN **************************/
     $(".cont-MainCamelLog--c--contResumeCalc--item[data-advlevel=d-reqspeacialservs]").addClass("show");
     $(".cont-MainCamelLog--c--contResumeCalc--item[data-advlevel=d-reqspeacialservs]").find("span").text("Despacho de aduanas");
-
     /************************** MOSTRAR EL SIGUIENTE PASO **************************/
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-merchandisedata]").addClass("show");
     sectionsSteps.moveTo('step-merchandisedata', 1);
@@ -1580,10 +1576,10 @@ $(document).on("click", "#list-SelOptionResultExp a", function(){
       </div>
     `);
   }else{
-
+    /************************** ASIGNAR A LA VARIABLE LOCAL DE SEGURO **************************/
+    localStorage.setItem("key_v-valueinsurance", 0);
     /************************** ASIGNAR A LA VARIABLE LOCAL DE PERCEPCIÓN **************************/
     localStorage.setItem("key_v-valuestaxationimport", 0);
-
     if($("#loadTypeCharge").val() != "LCL"){
       /************************** LISTAR SERVICIOS PARA CALCULO CON IGV - FCL **************************/
       $.ajax({
@@ -1694,7 +1690,6 @@ $(document).on("click", "#list-SelOptionResultExp a", function(){
       </div>
       <div class="cont-MainCamelLog--c--contSteps--item--cBtnNextStep" id="s-quotationToNextStep"></div>
     `);
-
   }
 });
 /*=========================================================================================
@@ -1751,6 +1746,8 @@ $(document).on("click","#list-insuremerchandise-notMoreOpts a",function(){
     </div>
     `);
   }else{
+    /************************** ASIGNAR A LA VARIABLE LOCAL **************************/
+    localStorage.setItem("key_v-valueinsurance", 0);
     /************************** ASIGNAR AL INPUT DE ENVÍO POST **************************/
     $("#res-insuremerch").val("NO");
     /************************** OCULTAR LOS PASOS ABIERTOS POSTERIORMENTE **************************/
@@ -1797,6 +1794,7 @@ $(document).on("change input keyup", "#ipt-valPriceProdNInterface-notMoreOpts", 
           contentType: 'application/x-www-form-urlencoded;charset=UTF-8'
         }).done((e) => {
           var resutlinsurance = JSON.parse(e);
+          console.log(resutlinsurance);
           var valfobproduct = $("#val-valProdquot-noMoreOpts").val();
           var cutefobprice = valfobproduct.split(" USD");
           var withoutpointsfob = cutefobprice[0].replace(/\./g, '');
@@ -3243,7 +3241,6 @@ $(document).on("click", "#btn-NextStepTomerchandisedata", function(){
 $(document).on("click", "#list-insuremerchandise a", function(){
   $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-requirespickup]").addClass("show");
   var tinsuremerchandise = $(this).index();
-  
   $.ajax({
     url: "controllers/list_insurancevalues.php",
     method: "POST",
@@ -3251,28 +3248,25 @@ $(document).on("click", "#list-insuremerchandise a", function(){
     contentType: 'application/x-www-form-urlencoded;charset=UTF-8'
   }).done((e) => {
     var resutlinsurance = JSON.parse(e);
-    //localStorage.setItem("key_v-valueproduct", $(this).val());
     var valfobproduct = $("#val-valProdquot").val();
     var cutefobprice = valfobproduct.split(" USD");
     var withoutpointsfob = cutefobprice[0].replace(/\./g, '');
     var finalvaluefob = twodecimals(withoutpointsfob);
     var c_InsuranceMenor = parseFloat(resutlinsurance[0].data_value);
     var c_InsuranceMayor = parseFloat(resutlinsurance[1].data_value) / 100;
+    var c_InsuranceDefault = parseFloat(resutlinsurance[2].data_value) / 100;
 
     if(tinsuremerchandise == 0){
       /************************** ASIGNAR VALORES DE LOS INPUTS HIDDEN - QUIERES ASEGURAR LA MERCANCÍA **************************/
       $("#res-insuremerch").val("SI");
       var valorfinalseguro = 0;
       if(finalvaluefob > 25000){
-        /************************** ASIGNAR AL VALOR DE LA VARIABLE LOCAL **************************/
         valorfinalseguro = finalvaluefob * c_InsuranceMayor; //FOB ES MAYOR A 25000
         localStorage.setItem("key_v-valueinsurance", roundToTwo(valorfinalseguro));
       }else{
-        /************************** ASIGNAR AL VALOR DE LA VARIABLE LOCAL **************************/
         valorfinalseguro = c_InsuranceMenor; //FOB ES MENOR A 25000
         localStorage.setItem("key_v-valueinsurance", roundToTwo(valorfinalseguro));
       }
-
       /************************** MOSTRAR EL SIGUIENTE PASO - ¿ NECESITAS TRANSPORTE ? **************************/
       sectionsSteps.moveTo('step-requirespickup', 1);
       $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-requirespickup]").html(`
@@ -3310,15 +3304,18 @@ $(document).on("click", "#list-insuremerchandise a", function(){
       /************************** ASIGNAR VALORES DE LOS INPUTS HIDDEN - QUIERES ASEGURAR LA MERCANCÍA **************************/
       $("#res-insuremerch").val("NO");
       var valorfinalseguro = 0;
+      /************************** ASIGNAR AL VALOR DE LA VARIABLE LOCAL **************************/
+      valorfinalseguro = finalvaluefob * c_InsuranceDefault; //SIN FOB, VALOR POR DEFECTO
+      localStorage.setItem("key_v-valueinsurance", roundToTwo(valorfinalseguro));
+      /*
       if(finalvaluefob > 25000){
-        /************************** ASIGNAR AL VALOR DE LA VARIABLE LOCAL **************************/
         valorfinalseguro = finalvaluefob * c_InsuranceMayor; //FOB ES MAYOR A 25000
         localStorage.setItem("key_v-valueinsurance", roundToTwo(valorfinalseguro));
       }else{
-        /************************** ASIGNAR AL VALOR DE LA VARIABLE LOCAL **************************/
         valorfinalseguro = c_InsuranceMenor; //FOB ES MENOR A 25000
         localStorage.setItem("key_v-valueinsurance", roundToTwo(valorfinalseguro));
       }
+      */
       sectionsSteps.moveTo('step-requirespickup', 1);
       $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-requirespickup]").html(`
         <div class="cont-MainCamelLog--c--contSteps--item--cTitle">
@@ -3353,7 +3350,6 @@ $(document).on("click", "#list-insuremerchandise a", function(){
       `);
     }
   });
-
 });
 /*===================================================================================
 =                     9. AGREGAR - RECOGIDA                                         =

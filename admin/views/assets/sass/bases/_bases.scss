@@ -79,3 +79,13 @@ img{
 #msgAlertLoginErr{
 	@include error-message(#fff, red);
 }
+/************************** LOADER DEL PANEL DE ADMINISTRADOR **************************/
+/* MENSAJE DE ÉXITO O LOADER DE ACCESO */
+#msgAlertpreloader{
+	opacity: .8;
+	@include loaderPoints($primary-color, #fff);	
+}
+/* MENSAJE DE ERROR O ALERTA */
+#msgAlerterr{
+	@include error-message(#fff, red);
+}

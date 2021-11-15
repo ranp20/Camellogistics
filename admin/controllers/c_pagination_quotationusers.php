@@ -1,5 +1,5 @@
 <?php 
-$cant_por_pagina = 2;
+$cant_por_pagina = 10;
 require_once '../../models/db/connection.php';
 class Pagination_quotationusers extends Connection{
 	function buscar( $que = NULL, $pagina = 1 ){

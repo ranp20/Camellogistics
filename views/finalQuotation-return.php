@@ -381,6 +381,11 @@ echo $template_incserv.$template_notincserv;
       </div>
     </div>
   </main>
+  <?php 
+    echo "<pre>";
+    print_r($_POST);
+    echo "</pre>";
+  ?>
   <?php require_once 'includes/form-login-user.php'; ?>
   <?php require_once 'includes/form-before-download-pdf.php'; ?>
   <script src="<?= $url ?>js/user-login.js"></script>

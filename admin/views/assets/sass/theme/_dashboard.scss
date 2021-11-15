@@ -342,6 +342,33 @@
 							background-color: $btn-color-red;
 						}
 					}
+
+					&.cont-btn-generate-pdf{
+						a{
+							background-color: red;
+							width: auto;
+							height: auto;
+							padding: .45rem 0.65rem 0.65rem .65rem;
+							border-radius: .35rem;
+							color: #fff;
+
+							span{
+								margin: 0 .25rem 0 0;
+								padding: 0;
+							}
+
+							svg{
+								fill: #fff;
+								width: 1rem;
+								height: auto;
+								vertical-align: middle;
+							}
+
+							&:hover{
+								opacity: 0.6;
+							}
+						}	
+					}
 				}
 			}
 		}
