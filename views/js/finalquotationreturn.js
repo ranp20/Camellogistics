@@ -562,7 +562,7 @@ $(document).ready(function(){
 									<span class="cont-loader--loader--circle"></span>
 									<span class="cont-loader--loader--circle"></span>
 								</div>
-								<p>Procesando...</p>
+								<p>Preparando cotización...</p>
 							</div>`);
 
 							$.ajax({
@@ -819,6 +819,16 @@ $(document).ready(function(){
 			$("#telephone_cli").val() != "" || $("#telephone_cli").val() != 0 &&
 			$("#msg-nounValidEmail").val() != "" || $("#msg-nounValidEmail").val() != 0){
 
+			$("#cUIMessageValid-user").html(`<div id="msgAlertpreloader">
+				<div class="cont-loader--loader">
+					<span class="cont-loader--loader--circle"></span>
+					<span class="cont-loader--loader--circle"></span>
+					<span class="cont-loader--loader--circle"></span>
+					<span class="cont-loader--loader--circle"></span>
+				</div>
+				<p>Procesando...</p>
+			</div>`);
+
 			var formdata = new FormData();
 			formdata.append("id_gencoderand", $("#v_idgencoderand").val());
 			formdata.append("code_quote", $("#v_gencodexxx").text());
@@ -836,7 +846,6 @@ $(document).ready(function(){
         cache: false,
         processData: false
 			}).done(function(e){
-				console.log(e);
 				var resupdate = JSON.parse(e);
 				console.log(resupdate[0].res);
 				if(resupdate[0].res == "updated"){
@@ -858,9 +867,9 @@ $(document).ready(function(){
 		        cache: false,
 		        processData: false
 					}).done(function(e){
-						console.log(e);
 						if(e == "true"){
 							$("#cnt-modalFormLoginyRegister").add($(".cnt-modalFormLoginyRegister--c")).removeClass("show");
+							$("#cUIMessageValid-user").html("");
 							console.log('Cotización guardada en unlogged');
 						}else{
 							console.log("Error al guardar la información");
