@@ -23,60 +23,51 @@
       $portCountryDestinyPOST = "";
       $sections_qresumeandsteps = "
         <input type='hidden' class='cont-MainCamelLog--c--ctrbysend' id='ipt-vtypetranspinit' value='{$_POST['v_typetranspinit']}'>
+        <section class='cont-MainCamelLog--c--contResumeCalc' id='id-resumeLeftQuoteCamel'>
+          <div class='cont-MainCamelLog--c--contResumeCalc--item' data-advlevel='d-chargeload'></div>
+        </section>
         <section class='cont-MainCamelLog--c--contSteps not-padd p-05' id='fullpage'>
-            <!-- PASO #1 -->
-            <div class='cont-MainCamelLog--c--contSteps--item active section' data-anchor='step-typeoperation' data-transportquote>
-              <div class='cont-MainCamelLog--c--contSteps--item--cTitle'>
-                <h3 class='cont-MainCamelLog--c--contSteps--item--cTitle--title'>¿Qué tipo de operación vas a realizar?</h3>
+          <!-- PASO #1 -->
+          <div class='cont-MainCamelLog--c--contSteps--item active section' data-anchor='step-typeoperation' data-transportquote>
+            <div class='cont-MainCamelLog--c--contSteps--item--cTitle'>
+              <h3 class='cont-MainCamelLog--c--contSteps--item--cTitle--title'>¿Qué tipo de operación vas a realizar?</h3>
+              <span>
                 <span>
-                  <span>
-                    <input type='hidden' id='loadTypeOpe' name='loadTypeOpe' class='n-val-sd' disabled>
-                  </span>
+                  <input type='hidden' id='loadTypeOpe' name='loadTypeOpe' class='n-val-sd' disabled>
                 </span>
-              </div>
-              <div class='cont-MainCamelLog--c--contSteps--item--cStep'>
-                <ul class='cont-MainCamelLog--c--contSteps--item--cStep--m' id='list-typeOperationItems'>
-                  <a href='javascript:void(0);' class='cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem'>
-                    <li class='cont-MainCamelLog--c--contSteps--item--cStep--m--item'>
-                      <div class='cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem--cImg'>
-                        <img src='{$url}assets/img/steps/export.png' alt='' loading='lazy' width='100' height='100'>
-                      </div>
-                      <p>Exportación</p>
-                    </li>
-                  </a>
-                  <a href='javascript:void(0);' class='cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem'>
-                    <li class='cont-MainCamelLog--c--contSteps--item--cStep--m--item'>
-                      <div class='cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem--cImg'>
-                        <img src='{$url}assets/img/steps/import.png' alt='' loading='lazy' width='100' height='100'>
-                      </div>
-                      <p>Importación</p>
-                    </li>
-                  </a>
-                </ul>
-              </div>
+              </span>
             </div>
-            <!-- PASO #1.5 -->
-            <div class='cont-MainCamelLog--c--contSteps--item section' data-anchor='step-typetransport' data-transportquote></div>
-            <!-- PASO #2 -->
-            <div class='cont-MainCamelLog--c--contSteps--item section' data-anchor='step-chargeload' data-transportquote></div>
-            <!-- PASO #3 -->
-            <div class='cont-MainCamelLog--c--contSteps--item section' data-anchor='step-qcontainers' data-transportquote></div>
-            <!-- PASO #3.5 o 4.5 -->
-            <div class='cont-MainCamelLog--c--contSteps--item section' data-anchor='step-integservorfleteinte' data-transportquote></div>
-            <!-- PASO #4 -->
-            <div class='cont-MainCamelLog--c--contSteps--item section' data-anchor='step-chargedata' data-transportquote></div>
-            <!-- PASO #5 -->
-            <div class='cont-MainCamelLog--c--contSteps--item section' data-anchor='step-merchandisedata' data-transportquote></div>
-            <!-- PASO #6 -->
-            <div class='cont-MainCamelLog--c--contSteps--item section' data-anchor='step-insuremerchandise' data-transportquote></div>
-            <!-- PASO #7 -->
-            <div class='cont-MainCamelLog--c--contSteps--item section' data-anchor='step-requirespickup' data-transportquote></div>
-            <!-- PASO #8 -->
-            <div class='cont-MainCamelLog--c--contSteps--item section' data-anchor='step-pickuplocation' data-transportquote></div>
-          </section>
+            <div class='cont-MainCamelLog--c--contSteps--item--cStep'>
+              <ul class='cont-MainCamelLog--c--contSteps--item--cStep--m' id='list-typeOperationItems'>
+                <a href='javascript:void(0);' class='cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem'>
+                  <li class='cont-MainCamelLog--c--contSteps--item--cStep--m--item'>
+                    <div class='cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem--cImg'>
+                      <img src='{$url}assets/img/steps/export.png' alt='' loading='lazy' width='100' height='100'>
+                    </div>
+                    <p>Exportación</p>
+                  </li>
+                </a>
+                <a href='javascript:void(0);' class='cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem'>
+                  <li class='cont-MainCamelLog--c--contSteps--item--cStep--m--item'>
+                    <div class='cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem--cImg'>
+                      <img src='{$url}assets/img/steps/import.png' alt='' loading='lazy' width='100' height='100'>
+                    </div>
+                    <p>Importación</p>
+                  </li>
+                </a>
+              </ul>
+            </div>
+          </div>
+          <!-- PASO #2 -->
+          <div class='cont-MainCamelLog--c--contSteps--item section' data-anchor='step-merchandisedata' data-transportquote></div>
+          <!-- PASO #3 -->
+          <div class='cont-MainCamelLog--c--contSteps--item section' data-anchor='step-requirespickup' data-transportquote></div>
+          <!-- PASO #4 -->
+          <div class='cont-MainCamelLog--c--contSteps--item section' data-anchor='step-pickuplocation' data-transportquote></div>
+        </section>
       ";
 
-      $script_qbysteps = "";
+      $script_qbysteps = "<script src='{$url}js/startquoterequest_aduanas.js'></script>";
     }else if($_POST['v_typetranspinit'] == 1){
       if(isset($_POST['v_iptportoriginpost']) && is_numeric($_POST['v_iptportoriginpost']) && 
          isset($_POST['v_iptcountryportoriginpost']) && is_numeric($_POST['v_iptcountryportoriginpost']) &&
@@ -213,7 +204,7 @@
           </section>
         ";
 
-        $script_qbysteps = "<script src='{$url}js/startquoterequest.js'></script>";
+        $script_qbysteps = "<script src='{$url}js/startquoterequest_maritimo.js'></script>";
 
       }else{
         header("Location: marketplace-logistico");

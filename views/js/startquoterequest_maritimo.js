@@ -1794,7 +1794,6 @@ $(document).on("change input keyup", "#ipt-valPriceProdNInterface-notMoreOpts", 
           contentType: 'application/x-www-form-urlencoded;charset=UTF-8'
         }).done((e) => {
           var resutlinsurance = JSON.parse(e);
-          console.log(resutlinsurance);
           var valfobproduct = $("#val-valProdquot-noMoreOpts").val();
           var cutefobprice = valfobproduct.split(" USD");
           var withoutpointsfob = cutefobprice[0].replace(/\./g, '');
