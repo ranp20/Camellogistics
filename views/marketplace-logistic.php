@@ -58,6 +58,7 @@
             </ul>
             <div class="cont-MainCamelLog--c--cOptionsMarket--f--cont--cTabsItem" id="c-cTabsItem">
               <div class="cont-MainCamelLog--c--cOptionsMarket--f--cont--cTabsItem--item">
+                <input type="hidden" id="v_typeserviceinpinit" name="v_typeserviceinpinit" value="Transporte Marítimo">
                 <input type="hidden" id="v_typetranspinit" name="v_typetranspinit" value="1">
                 <input type="hidden" id="v_iptportoriginpost" name="v_iptportoriginpost">
                 <input type="hidden" id="v_iptcountryportoriginpost" name="v_iptcountryportoriginpost">

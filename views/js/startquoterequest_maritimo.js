@@ -711,8 +711,6 @@ $(document).on("click", "#list-typeChargeLoadItems a", function(){
         </button>
       </div>
 		`);
-    
-
 	}else{
     localStorage.setItem("key_v-totalflette", 0);
     localStorage.setItem("key_typeChrg", $(this).find("li").find("p").text());
@@ -2627,13 +2625,11 @@ $(document).on("click", "#btn-NextStepTochargedata", function(){
         /************************** ASIGNAR A LA VARIABLE LOCAL **************************/
         localStorage.setItem("key_v-valttaproxbycontain", ratesorigin[0].tt_aprox);
         if(v_ValTotalVolume > 15){
-
           /************************** OCULTAR EL RESUMEN HASTA ESTE PASO **************************/
           $(".cont-MainCamelLog--c--contResumeCalc--item[data-advlevel=d-typecontainer]").removeClass("show");
           /************************** OCULTAR EL PASO DE - ELIGE UNA OPCIÓN **************************/
           $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-integservorfleteinte]").removeClass("show");
           $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-integservorfleteinte]").html("");
-
           /************************** MOSTRAR EL MENSAJE DE ALERTA PERSONALIZADO **************************/
           $("#idMessageSteps-prcss").html(`
             <div class="cntMessageSteps-prcss--cont">
@@ -3055,7 +3051,6 @@ $(document).on("keyup", "#ipt-valPriceProdNInterface", function(){
 });
 /************************** SWITCH DE IMPORTACIONES PREVIAS **************************/
 $(document).on("click", "#chck-importpreview", function(){
-  
   if($(this).is(":checked")){
 		$(this).parent().addClass("active");
 		$(this).parent().attr("switch-CFreeze", "SÍ");
@@ -3073,7 +3068,6 @@ $(document).on("click", "#chck-importpreview", function(){
       /************************** ASIGNAR A LA VARIABLE LOCAL **************************/
       localStorage.setItem("key_v-valuestaxationimport", resultTaximport[0].data_value);
     });
-
 	}else{
 		$(this).parent().removeClass("active");
 		$(this).parent().attr("switch-CFreeze", "NO");
@@ -3092,11 +3086,9 @@ $(document).on("click", "#chck-importpreview", function(){
       localStorage.setItem("key_v-valuestaxationimport", resultTaximport[0].data_value_two);
     });
 	}
-
 });
 /************************** VALIDAR EL BOTÓN DE PASOS SIGUIENTES DESDE - MERCANCÍA **************************/
 $(document).on("click", "#btn-NextStepTomerchandisedata", function(){
-  
   if(document.querySelector("#ipt-valCantOfAmountAdditional").contains(document.querySelector("#ipt-valQuantityAmAddProdNInterface"))){
     if($("#ipt-valNameTypeProdNInterface").val() != "" && $("#ipt-valNameTypeProdNInterface").val() != 0 &&
        $("#ipt-valNameTypeProdNInterface").attr("idproduct") &&
@@ -3232,7 +3224,6 @@ $(document).on("click", "#btn-NextStepTomerchandisedata", function(){
       });
     }
   }
-
 });
 /*===================================================================================
 =                     7. AGREGAR O NO SEGURO DE MERCANCÍA                           =

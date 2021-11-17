@@ -21,7 +21,6 @@ function listQuotationValues(){
   }).done( function (res) {
     var response = JSON.parse(res);
     var template = "";
-
     if(response.length == 0){
       template = `
         <tr>
@@ -33,11 +32,9 @@ function listQuotationValues(){
           </td>
         </tr>
       `;
-
       $("#tbl_quotationvalues").html(template);
     }else{
       response.forEach(e => {
-      
       template += `
         <tr id="item-${e.id}">
           <td>
@@ -55,14 +52,13 @@ function listQuotationValues(){
               </label>
               <div class="cont-dashCamel__cControlsList--cC--cTable--cControl--cInputs">
                 <input type="number" id="" name="" placeholder="0.00" class="cont-dashCamel__cControlsList--cC--cTable--cControl--cInputs--input" value="${e.data_value}" step="0.01">
-                <input type="number" id="" name="" placeholder="0.00" class="cont-dashCamel__cControlsList--cC--cTable--cControl--cInputs--input" value="${e.data_value_prov}" step="0.01">
+                <input type="number" id="" name="" placeholder="0.00" class="cont-dashCamel__cControlsList--cC--cTable--cControl--cInputs--input bgc-gray-07" value="${e.data_value_prov}" step="0.01">
               </div>
             </div>
           </td>
         </tr>
         `;
       });
-      
       $("#tbl_quotationvalues").html(template);
     }
   });
@@ -86,13 +82,11 @@ $(document).on('click', '.btn-update-quotationvalue', function(e){
 /************************** ACTUALIZAR RESTAURANTE POR ID **************************/
 $(document).on('click', '#btnupdate-quotationvalues', function(e){
   e.preventDefault();
-  
   var formdata = new FormData();
   formdata.append("data_name", $('#dataname-update').val());
   formdata.append("data_value", $('#datavalue-update').val());
   formdata.append("data_value_prov", $('#datavalueprov-update').val());
   formdata.append("id", $('#idupdate-quotationvalues').val());
-
   $.ajax({
     url: "../admin/controllers/c_update-quotation-values-fcl.php",
     method: "POST",

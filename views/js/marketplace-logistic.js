@@ -7,7 +7,7 @@ $(function(){
 function changesTabsOperation(){
   /************************** VARIABLES LOCALSTORAGE **************************/
   //#1. SELECCIONAR EL TIPO DE SERVICIO + PAGES...
-  var selService = localStorage.setItem("type_service", ""); //SETEADA EN ESTA FUNCIÓN...
+  var selService = localStorage.setItem("key_v-type_service", ""); //TIPO DE SERVICIO...
   //#2. CREAR LOS VALORES DE CÁLCULO...
   var TotalPackages = localStorage.setItem("tot_packages", 0);
   var TotalWeight = localStorage.setItem("tot_weight", 0);
@@ -46,12 +46,7 @@ function changesTabsOperation(){
   var sess_valuser = sessionStorage.setItem("sess_valuser", 0); //VALOR DEL TIPO DE USUARIO: 0 = NINGUNO Y 1 = INVITADO O REGISTRADO
   var sessval_loginuser = "";
 
-  if($("#s_useregin-sistem").val() == "" || 
-     $("#s_useregin-sistem").val() == undefined || 
-     $("#s_useregin-sistem").val() == 'undefined' || 
-     $("#s_useregin-sistem").val() == null ||
-     $("#s_useregin-sistem").val() == 'null'){
-
+  if($("#s_useregin-sistem").val() == "" || $("#s_useregin-sistem").val() == undefined || $("#s_useregin-sistem").val() == 'undefined' || $("#s_useregin-sistem").val() == null ||$("#s_useregin-sistem").val() == 'null'){
     sessval_loginuser = { username: 'any' }
     sessionStorage.setItem("sess_usercli", JSON.stringify(sessval_loginuser));
     sessionStorage.setItem("sess_valuser", 0);
@@ -66,7 +61,7 @@ function changesTabsOperation(){
 	parentItems = $("#c-cTabsItem");
 	items = $(".cont-MainCamelLog--c--cOptionsMarket--f--cont--cTabsItem--item");
 	links.eq(1).add(items.eq(1)).addClass("active");
-  localStorage.setItem("type_service", links.eq(1).find("li").find("span:nth-child(2)").text());
+  localStorage.setItem("key_v-type_service", links.eq(1).find("li").find("span:nth-child(2)").text());
 
   parentLinks.on("click", "a", function(){
 		var t = $(this);
@@ -75,9 +70,10 @@ function changesTabsOperation(){
     var typeService = "";
     if(ind == 1){
       typeService = t.find("li").find("span:nth-child(2)").text();
-      localStorage.setItem("type_service", typeService);
+      localStorage.setItem("key_v-type_service", typeService);
       $("#c-cTabsItem").html(`
         <div class="cont-MainCamelLog--c--cOptionsMarket--f--cont--cTabsItem--item">
+          <input type="hidden" id="v_typeserviceinpinit" name="v_typeserviceinpinit" value="${typeService}">
           <input type="hidden" id="v_typetranspinit" name="v_typetranspinit" value="${ind}">
           <input type="hidden" id="v_iptportoriginpost" name="v_iptportoriginpost">
           <input type="hidden" id="v_iptcountryportoriginpost" name="v_iptcountryportoriginpost">
@@ -112,9 +108,10 @@ function changesTabsOperation(){
       `);
     }else if(ind == 2){
       typeService = t.find("li").find("span:nth-child(2)").text();
-      localStorage.setItem("type_service", typeService);
+      localStorage.setItem("key_v-type_service", typeService);
       $("#c-cTabsItem").html(`
         <div class="cont-MainCamelLog--c--cOptionsMarket--f--cont--cTabsItem--item">
+          <input type="hidden" id="v_typeserviceinpinit" name="v_typeserviceinpinit" value="${typeService}">
           <div class="cont-MainCamelLog--c--cOptionsMarket--f--cont--cTabsItem--item--cControl">
             <div class="cont-MainCamelLog--c--cOptionsMarket--f--cont--cTabsItem--item--cControl--control">
               <div class="cont-MainCamelLog--c--cOptionsMarket--f--cont--cTabsItem--item--cControl--control--cGroupIptsIcon">
@@ -141,10 +138,11 @@ function changesTabsOperation(){
     }else{
       t.find("button").attr("type", "submit");
       typeService = t.eq(0).find("li").find("span:nth-child(2)").text();
-      localStorage.setItem("type_service", typeService);
+      localStorage.setItem("key_v-type_service", typeService);
       $("#c-cTabsItem").html(`
         <div class="cont-MainCamelLog--c--cOptionsMarket--f--cont--cTabsItem--item">
           <input type="hidden" id="v_typetranspinit" name="v_typetranspinit" value="${ind}">
+          <input type="hidden" id="v_typeserviceinpinit" name="v_typeserviceinpinit" value="${typeService}">
           <!--<div class="cont-MainCamelLog--c--cOptionsMarket--f--cont--cTabsItem--item--cControl">
             <div class="cont-MainCamelLog--c--cOptionsMarket--f--cont--cTabsItem--item--cControl--control">
               <div class="cont-MainCamelLog--c--cOptionsMarket--f--cont--cTabsItem--item--cControl--control--cGroupIptsIcon">

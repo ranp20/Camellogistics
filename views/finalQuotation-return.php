@@ -17,9 +17,6 @@
   <?php require_once 'includes/header-links.php';?>
 </head>
 <body>
-  <input type="hidden" id="v_datevaliddesde" value="<?php echo $_POST['val-datevaliddesde'];?>">
-  <input type="hidden" id="v_datevalidhasta" value="<?php echo $_POST['val-datevalidhasta'];?>">
-  <input type="hidden" id="v_idgencoderand" value="<?php echo $_POST['ipt-vidcodgenrand'];?>">
   <div id="cUIMessageValid-user"></div>
   <?php require_once 'includes/header-top.php'; ?>
   <main class="cont-MainCamelLog" id="cont-MainCamelLog">
@@ -382,14 +379,18 @@ echo $template_incserv.$template_notincserv;
     </div>
   </main>
   <?php 
-    /*
+    
     echo "<pre>";
     print_r($_POST);
     echo "</pre>";
-    */
+    
   ?>
   <?php require_once 'includes/form-login-user.php'; ?>
   <?php require_once 'includes/form-before-download-pdf.php'; ?>
+  <input type="hidden" id="v_typeserviceinit" value="<?php echo $_POST['val-typeoptselectininit'];?>">
+  <input type="hidden" id="v_datevaliddesde" value="<?php echo $_POST['val-datevaliddesde'];?>">
+  <input type="hidden" id="v_datevalidhasta" value="<?php echo $_POST['val-datevalidhasta'];?>">
+  <input type="hidden" id="v_idgencoderand" value="<?php echo $_POST['ipt-vidcodgenrand'];?>">
   <script src="<?= $url ?>js/user-login.js"></script>
   <script src="<?= $url ?>js/finalquotationreturn.js"></script>
   <script src="<?= $url ?>js/register-before-download.js"></script>

@@ -115,7 +115,6 @@ $(document).ready(function(){
 	var totalvaluesquotationbyIGV =  parseFloat(localStorage.getItem("key_v-valuesquotationbyigv")); //TOTAL SUMA DE VALORES DE COTIZACIÓN IGV
   var totalfinalvaluefob = parseFloat(twodecimals(cutewithoutofpricefob)); //TOTAL DE VALOR FOB
   var totalfinalvaluedownload = parseFloat(twodecimals(receiveddownload)); //TOTAL DE VALOR DE DESCARGA
-	
 
 	// LLAMAR A LOS VALORES DE ASEGURAMIENTO, METER LOS VALORES DENTRO DEL AJAX DE TAXATION O CREAR VARIABLES GLOBALES Y USARLAS
 	$.ajax({
@@ -293,8 +292,8 @@ $(document).ready(function(){
 				formdata.append("id_codegenrand", $("#v_idgencoderand").val());
 				//formdata.append("codegenerate", $("#v_gencodexxx").text());
 				formdata.append("u_login", user_sessquote);
-				formdata.append("f_type_op", localStorage.getItem("type_service"));
-				formdata.append("f_type_transp", localStorage.getItem("type_service"));
+				formdata.append("f_type_op", $("#v_typeserviceinit").val());
+				formdata.append("f_type_transp", $("#v_typeserviceinit").val());
 				formdata.append("f_type_cont", localStorage.getItem("key_typeChrg"));
 				formdata.append("u_n_document", "No especificado");
 				formdata.append("u_enterprise", "No especificado");
@@ -407,8 +406,8 @@ $(document).ready(function(){
 				formdata.append("id_codegenrand", $("#v_idgencoderand").val());
 				//formdata.append("codegenerate", $("#v_gencodexxx").text());
 				formdata.append("u_login", $("#s_useregin-sistem").val());
-				formdata.append("f_type_op", localStorage.getItem("type_service"));
-				formdata.append("f_type_transp", localStorage.getItem("type_service"));
+				formdata.append("f_type_op", $("#v_typeserviceinit").val());
+				formdata.append("f_type_transp", $("#v_typeserviceinit").val());
 				formdata.append("f_type_cont", localStorage.getItem("key_typeChrg"));
 				formdata.append("u_n_document", "No especificado");
 				formdata.append("u_enterprise", "No especificado");
@@ -745,7 +744,7 @@ $(document).ready(function(){
 			Impuestos:%20${objDataTxtWhatsapp.impuestosflete},%20
 			Transporte:%20${objDataTxtWhatsapp.tranportflete},%20
 			Seguro:%20${objDataTxtWhatsapp.seguroflete},%20
-			ImpuestoAprox:%2010.279`);
+			ImpuestoAprox:%20${twodecimals_FinalTax}`);
 
 	  });
   });
