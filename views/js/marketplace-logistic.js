@@ -295,6 +295,3 @@ $(document).on("click", "#list-itemsNamePortsDestiny .cont-MainCamelLog--c--cOpt
 function is_numeric(value) {
   return !isNaN(parseFloat(value)) && isFinite(value);
 }
-/*==========================================================================================================
-=            PASO 1. AVANZAR AL PASO 2 AL HACER CLICK EN EL BOTÓN DE SOLICITAR COTIZACIÓN                  =
-===========================================================================================================*/

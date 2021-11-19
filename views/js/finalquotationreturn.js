@@ -1,10 +1,3 @@
-/************************** GENERAR EL PDF **************************/
-/*
-function generatePDF(nameuser){
-	$url = "controllers/c_generate-pdf.php?user="+nameuser;
-	window.open($url, "cotizacion_pdf");
-}
-*/
 /************************** DEJAR EN 2 DECIMALES POR DEFECTO **************************/
 function myRound(num, dec){
   var exp = Math.pow(10, dec || 2); // 2 decimales por defecto
@@ -22,11 +15,7 @@ function firstToUppercase(e) {
 }
 $(document).ready(function(){
 	/************************** VALIDAR SI EXISTE UN USUARIO, DE LO CONTRARIO ASIGNAR EL USUARIO POR DEFECTO **************************/
-	if($("#s_useregin-sistem").val() == "" || 
-							 $("#s_useregin-sistem").val() == undefined || 
-							 $("#s_useregin-sistem").val() == 'undefined' || 
-							 $("#s_useregin-sistem").val() == null ||
-							 $("#s_useregin-sistem").val() == 'null'){
+	if($("#s_useregin-sistem").val() == "" || $("#s_useregin-sistem").val() == undefined || $("#s_useregin-sistem").val() == 'undefined' || $("#s_useregin-sistem").val() == null || $("#s_useregin-sistem").val() == 'null'){
 
 		sessval_loginuser = { username: 'Invitado' }
     sessionStorage.setItem("sess_usercli", JSON.stringify(sessval_loginuser));
@@ -92,11 +81,15 @@ $(document).ready(function(){
 	}
 
 	$("#btn-scrollingtTtB").on("click", function(){$("body, html").animate({scrollTop: '500'}, 350);}); //BOTÓN DE IR HACIA ABAJO
-	$("#v_validratedate").text(localStorage.getItem("key_validaterate")); //LISTAR LA FECHA DE VALIDEZ DE LA TARIFA SELECCIONADA
 	/************************** CÁLCULO DE IMPUESTOS **************************/
 	var partInteger_Tax = 0;
 	var partDecimal_Tax = 0;
 	var partFinalDecimal_Tax = 0;
+	/************************** VARIABLES PARA LOS TOTALES A IMPRIMIR **************************/
+	var sumTotalFirstFlete = 0;
+	var sumTotalbyIGV = 0;
+	var sumTotalFinalFleteandIGV = 0;
+	var sumbyCIF = 0;
 	/************************** LISTAR LOS VALORES PARA LOS CÁLCULOS **************************/
 	var partInteger = 0;
 	var partDecimal = 0;
@@ -112,7 +105,7 @@ $(document).ready(function(){
 	var totalamountadditional = parseFloat(localStorage.getItem("key_v-totalammountadditional")); //MONTO ADICIONAL
 	var totaltransport = parseFloat(localStorage.getItem("key_v-valuetransport")); //TOTAL TRANSPORTE
 	var totalinsurance = parseFloat(localStorage.getItem("key_v-valueinsurance")); //TOTAL SEGURO
-	var totalimportprev = parseFloat(localStorage.getItem("key_v-valuestaxationimport")); //TOTAL IMPORTACIÓN PREVIA
+	var totalimportprev = $("#v_previmports").text(); //TOTAL IMPORTACIÓN PREVIA
 	var totalvaluesquotation =  parseFloat(localStorage.getItem("key_v-valuesquotation")); //TOTAL SUMA DE VALORES DE COTIZACIÓN
 	var totalvaluesquotationbyIGV =  parseFloat(localStorage.getItem("key_v-valuesquotationbyigv")); //TOTAL SUMA DE VALORES DE COTIZACIÓN IGV
   var totalfinalvaluefob = parseFloat(twodecimals(cutewithoutofpricefob)); //TOTAL DE VALOR FOB
@@ -130,25 +123,21 @@ $(document).ready(function(){
   	var insure_max25000 = parseFloat(rinsurance[1].data_value); //FOB MAYOR A 25000
   	var insure_default = parseFloat(rinsurance[2].data_value); //SIN FOB/VALOR POR DEFECTO
 
-  	/************************** VARIABLES PARA LOS TOTALES **************************/
-  	var sumTotalFirstFlete = 0;
-  	var sumTotalbyIGV = 0;
-  	var sumTotalFinalFleteandIGV = 0;
-  	var sumbyCIF = 0;
-
   	if($("#v_insurancemerch").text() != "NO"){
 			/************************** TOTALES A IMPRIMIR - CON SEGURO **************************/
-			sumTotalFirstFlete = totflete + totalamountadditional + totalimportprev + totaltransport + totalinsurance + totalvaluesquotation + totalfinalvaluedownload; //FLETE FINAL
-			sumTotalbyIGV = (totaltransport + totalamountadditional + totalvaluesquotationbyIGV) * (18 / 100); //IGV (DEBAJO DEL FLETE FINAL)
+			sumTotalFirstFlete = totflete + totalamountadditional + totaltransport + totalinsurance + totalvaluesquotation + totalfinalvaluedownload; //FLETE FINAL
+			sumTotalbyIGV = (totaltransport + totalamountadditional + totalinsurance + totalvaluesquotationbyIGV) * (18 / 100); //IGV (DEBAJO DEL FLETE FINAL)
 			sumTotalFinalFleteandIGV = sumTotalFirstFlete + sumTotalbyIGV; //VALOR TOTAL FINAL DE LA COTIZACIÓN
 			sumbyCIF = totalfinalvaluefob + totflete + totalinsurance; //CIF FINAL
+
   	}else{
   		/************************** TOTALES A IMPRIMIR - SIN SEGURO **************************/
-			sumTotalFirstFlete = totflete + totalamountadditional + totalimportprev + totaltransport + totalvaluesquotation + totalfinalvaluedownload; //FLETE FINAL
+			sumTotalFirstFlete = totflete + totalamountadditional + totaltransport + totalvaluesquotation + totalfinalvaluedownload; //FLETE FINAL
 			sumTotalbyIGV = (totaltransport + totalamountadditional + totalvaluesquotationbyIGV) * (18 / 100); //IGV (DEBAJO DEL FLETE FINAL)
 			sumTotalFinalFleteandIGV = sumTotalFirstFlete + sumTotalbyIGV; //VALOR TOTAL FINAL DE LA COTIZACIÓN
 			sumbyCIF = totalfinalvaluefob + totflete + totalinsurance; //CIF FINAL
   	}
+
 	
 		/************************** LIMPIAR EL VALOR E IMPRIMIR EN EL TOTAL DEL SERVICIOS **************************/
 		var totalNotround = twodecimals(sumTotalFirstFlete);
@@ -208,14 +197,22 @@ $(document).ready(function(){
 	    var restaxvalues = JSON.parse(e);
 	    var res_IGV = parseFloat(restaxvalues[0].data_value);
 	    var res_IPM = parseFloat(restaxvalues[1].data_value);
+	    var res_Percepcion_YES = parseFloat(restaxvalues[2].data_value);
+	    var res_Percepcion_NO = parseFloat(restaxvalues[2].data_value_two);
 
 	    /************************** VALORES - DE PORCENTAJES A DECIMALES **************************/
 	    var convert_IGV = res_IGV / 100; //VALOR I.G.V.
 	    var convert_IPM = res_IPM / 100; //VALOR I.P.M.
-	    var convert_Percepcion = totalimportprev / 100; //VALOR PERCEPCIÓN
+	    var convert_Percepcion = 0; //VALOR PERCEPCIÓN
 	    var convert_Ad_Valoren = receivedAd_valoren / 100; //VALOR AD-VALOREN DE PRODUCTO
 	    var convert_I_selectivo = receivedI_selectivo / 100; //VALOR IMPUESTO SELECTIVO DE PROUCTO
 	    var convert_antidumping = received_antidumping / 100; //VALOR ANTIDUMPING
+
+	    if(totalimportprev != "NO"){
+		    convert_Percepcion = res_Percepcion_YES / 100;
+	    }else{
+	    	convert_Percepcion = res_Percepcion_NO / 100;
+	    }
 
 	    console.log('Estos son los valores, directamente desde el Administrador');
 	    console.log(convert_IGV);
@@ -893,3 +890,10 @@ $(document).ready(function(){
 		}
 	});
 });
+/************************** GENERAR EL PDF **************************/
+/*
+function generatePDF(nameuser){
+	$url = "controllers/c_generate-pdf.php?user="+nameuser;
+	window.open($url, "cotizacion_pdf");
+}
+*/

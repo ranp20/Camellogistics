@@ -35,10 +35,6 @@
   <link rel="stylesheet" href="<?= $url; ?>css/styles.css">
   <link rel="stylesheet" href="<?= $url; ?>assets/css/styles.min.css">
   <link rel="stylesheet" href="<?= $url; ?>css/camel.css">
-  <input type="hidden" id="v_typeserviceinit" value="<?php echo $_POST['val-typeoptselectininit'];?>">
-  <input type="hidden" id="v_datevaliddesde" value="<?php echo $_POST['val-datevaliddesde'];?>">
-  <input type="hidden" id="v_datevalidhasta" value="<?php echo $_POST['val-datevalidhasta'];?>">
-  <input type="hidden" id="v_idgencoderand" value="<?php echo $_POST['ipt-vidcodgenrand'];?>">
   <script src="<?= $url; ?>js/jquery-3.6.0.min.js"></script>
 </head>
 <body>
@@ -175,16 +171,7 @@
                   <li class="c-FinalQuotation--contStep--cQuotation--cTop--c--cDetailsQuotation--m--item">
                     <div class="c-FinalQuotation--contStep--cQuotation--cTop--c--cDetailsQuotation--m--item--info">
                       <span>Impuestos</span>
-                      <span>
-                        <?php 
-                          if(!isset($_POST['val-prevImports'])){
-                            echo "No especificado";
-                          }else if($_POST['val-prevImports'] == "NO"){
-                            echo "Primera importación";
-                          }else{
-                            echo "Importado previamente";
-                          }
-                        ?>
+                      <span id="v_previmports"><?php if(!isset($_POST['val-prevImports'])){echo "No especificado";}else if($_POST['val-prevImports'] == "NO"){echo "Primera importación";}else{echo "Importado previamente";}?>
                       </span>
                     </div>
                   </li>
@@ -420,10 +407,18 @@ echo $template_incserv.$template_notincserv;
       </div>
     </div>
   </main>
+  <div>
+    <input type="hidden" id="v_typeserviceinit" value="<?php echo $_POST['val-typeoptselectininit'];?>">
+    <input type="hidden" id="v_datevaliddesde" value="<?php echo $_POST['val-datevaliddesde'];?>">
+    <input type="hidden" id="v_datevalidhasta" value="<?php echo $_POST['val-datevalidhasta'];?>">
+    <input type="hidden" id="v_idgencoderand" value="<?php echo $_POST['ipt-vidcodgenrand'];?>">
+  </div>
   <?php
+    
     echo "<pre>";
     print_r($_POST);
     echo "</pre>";
+    
   ?>
   <?php require_once 'includes/form-login-user.php'; ?>
   <?php require_once 'includes/form-before-download-pdf.php'; ?>
