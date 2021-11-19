@@ -126,7 +126,7 @@ $(document).ready(function(){
   	if($("#v_insurancemerch").text() != "NO"){
 			/************************** TOTALES A IMPRIMIR - CON SEGURO **************************/
 			sumTotalFirstFlete = totflete + totalamountadditional + totaltransport + totalinsurance + totalvaluesquotation + totalfinalvaluedownload; //FLETE FINAL
-			sumTotalbyIGV = (totaltransport + totalamountadditional + totalinsurance + totalvaluesquotationbyIGV) * (18 / 100); //IGV (DEBAJO DEL FLETE FINAL)
+			sumTotalbyIGV = (totaltransport + totalamountadditional + totalvaluesquotationbyIGV) * (18 / 100); //IGV (DEBAJO DEL FLETE FINAL)
 			sumTotalFinalFleteandIGV = sumTotalFirstFlete + sumTotalbyIGV; //VALOR TOTAL FINAL DE LA COTIZACIÓN
 			sumbyCIF = totalfinalvaluefob + totflete + totalinsurance; //CIF FINAL
 
@@ -214,14 +214,6 @@ $(document).ready(function(){
 	    	convert_Percepcion = res_Percepcion_NO / 100;
 	    }
 
-	    console.log('Estos son los valores, directamente desde el Administrador');
-	    console.log(convert_IGV);
-	    console.log(convert_IPM);
-	    console.log(convert_Percepcion);
-	    console.log(convert_Ad_Valoren);
-	    console.log(convert_I_selectivo);
-	    console.log(convert_antidumping);
-
 	    /************************** CALCULAR AD-VALOREN **************************/
 	    var val_Ad_valoren = sumbyCIF * convert_Ad_Valoren;
 	    var twodecimal_Ad_valoren = twodecimals(val_Ad_valoren);
@@ -249,16 +241,6 @@ $(document).ready(function(){
 
 			/************************** CALCULO FINAL DE IMPUESTOS **************************/
 			var val_FinalTax = finalval_IGV + finalval_IPM + finalval_percepcion + finalval_Ad_valoren + finalval_i_selectivo + finalval_antidumping + totalinsurance;
-
-			console.log('Estos son los valores calculados con los demás del administrador');
-	    console.log(finalval_Ad_valoren);
-	    console.log(finalval_i_selectivo);
-	    console.log(finalval_antidumping);
-	    console.log(finalval_IGV);
-	    console.log(finalval_IPM);
-	    console.log(finalval_percepcion);
-	    console.log('Cálculo final de impuestos:');
-	    console.log(val_FinalTax);
 
 			var twodecimals_FinalTax = twodecimals(val_FinalTax);
 			var finalval_FinalTax = parseFloat(twodecimals_FinalTax);

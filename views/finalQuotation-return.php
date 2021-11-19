@@ -180,7 +180,7 @@
                   <li class="c-FinalQuotation--contStep--cQuotation--cTop--c--cDetailsQuotation--m--item">
                     <div class="c-FinalQuotation--contStep--cQuotation--cTop--c--cDetailsQuotation--m--item--info">
                       <span>Valor de Mercancía</span>
-                      <span><?= (isset($_POST['val-valProdquot'])) ? $_POST['val-valProdquot'] : "No especificado"; ?></span>
+                      <span><?= (isset($_POST['val-valProdquot']) || $_POST['val-valProdquot'] != 0) ? $_POST['val-valProdquot'] . " USD" : "No especificado"; ?></span>
                     </div>
                   </li>
                   <li class="c-FinalQuotation--contStep--cQuotation--cTop--c--cDetailsQuotation--m--item">

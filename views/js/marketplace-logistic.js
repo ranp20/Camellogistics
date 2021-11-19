@@ -1,7 +1,7 @@
 $(function(){
-	changesTabsOperation();
-	list_puertoOriginLCL();
-  list_puertoDestinyLCL();
+	changesTabsOperation(); // CAMBIAR ENTRE LOS TABS
+	list_puertoOriginLCL(); // LISTAR LOS PUERTOS DE ORIGEN LCL
+  list_puertoDestinyLCL(); // LISTAR LOS PUERTOS DE DESTINO LCL
 });
 /************************** CAMBIAR DE CONTROLES SEGÚN LA OPCIÓN SELECCIONADA **************************/
 function changesTabsOperation(){
@@ -220,10 +220,8 @@ $(document).on("click", "#list-itemsNamePortsOrigin .cont-MainCamelLog--c--cOpti
   localStorage.setItem("port_OId", $(this).attr("id"));
   localStorage.setItem("port_OName", $(this).find("span:nth-child(2)").text());
 });
-
 /************************** VARIABLE DE PAÍS DE ORIGEN **************************/
 var idCountryOrigin = 0;
-
 /************************** OBTENER EL VALOR DEL ID DE ORIGEN **************************/
 $(document).on("click", "#list-itemsNamePortsOrigin .cont-MainCamelLog--c--cOptionsMarket--f--cont--cTabsItem--item--cControl--control--cGroupIptsIcon--cInput--m--item", function(){
   idCountryOrigin = $(this).attr("idpaisattr");
@@ -291,7 +289,3 @@ $(document).on("click", "#list-itemsNamePortsDestiny .cont-MainCamelLog--c--cOpt
   localStorage.setItem("port_DId", $(this).attr("id"));
   localStorage.setItem("port_DName", $(this).find("span:nth-child(2)").text());
 });
-/************************** COMPROBAR SI UN ELEMENTO U OBJETO ES NUMÉRICO **************************/
-function is_numeric(value) {
-  return !isNaN(parseFloat(value)) && isFinite(value);
-}

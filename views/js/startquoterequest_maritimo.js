@@ -1,18 +1,12 @@
 $(() => {
-  /************************** REFRESCAR EL ID DE CÓDIGO RANDOM **************************/
-  refreshIdCodeGenRandom();
-  /************************** CAMBIAR ENTRE ENLACES HERMANOS Y OCULTAR LOS PASOS SIGUIENTES **************************/
-  ChangesSibblingsLinks();
-  hiddenAllNextSteps();
-  /************************** LISTAR LOS PUERTOS DE ORIGEN Y DE DESTINO DE ACUERDO AL ID RECIBIDO POR POST **************************/
-	listPortOriginandDestiny();
-	/************************** LISTAR LAS UNIDADES DE MEDIDA EN EL MODAL **************************/
-	list_measurement_units();
-	list_mass_units();
-	/************************** LISTAR LOS TIPOS DE PRODUCTOS **************************/
-	listProductsUser();
-	/************************** LISTAR LOS DISTRITOS DE ACUERDO AL PAÍS DE DESTINO **************************/
-	listrateLCLTransport();
+  refreshIdCodeGenRandom(); // REFRESCAR EL ID DE CÓDIGO RANDOM
+  ChangesSibblingsLinks(); // CAMBIAR ENTRE ENLACES HERMANOS Y OCULTAR LOS PASOS SIGUIENTES
+  hiddenAllNextSteps(); // OCULTAR LOS PASOS SIGUIENTES
+	listPortOriginandDestiny(); // LISTAR LOS PUERTOS DE ORIGEN Y DE DESTINO DE ACUERDO AL ID RECIBIDO POR POST
+	list_measurement_units(); // LISTAR LAS UNIDADES DE MEDIDAD EN EL MODAL
+	list_mass_units(); // LISTAR LAS UNIDADES DE MASA EN EL MODAL
+	listProductsUser(); // LISTAR LOS TIPOS DE PRODUCTOS
+	listrateLCLTransport(); // LISTAR LOS DISTRITOS DE ACUERDO AL PAÍS DE DESTINO
 });
 function refreshIdCodeGenRandom(){
   setInterval(function(){
@@ -3095,7 +3089,7 @@ $(document).on("click", "#btn-NextStepTomerchandisedata", function(){
 
       /************************** ASIGNAR VALORES DE LOS INPUTS HIDDEN - MERCANCÍA **************************/
       $("#val-categProdquot").val($("#ipt-valNameTypeProdNInterface").val());
-      $("#val-valProdquot").val($("#ipt-valPriceProdNInterface").val() + " USD");
+      $("#val-valProdquot").val($("#ipt-valPriceProdNInterface").val());
       $("#val-prevImports").val($("#chck-importpreview").parent().attr("switch-CFreeze"));
 
       /************************** MOSTRAR EL SIGUIENTE PASO **************************/
@@ -3162,7 +3156,7 @@ $(document).on("click", "#btn-NextStepTomerchandisedata", function(){
 
       /************************** ASIGNAR VALORES DE LOS INPUTS HIDDEN - MERCANCÍA **************************/
       $("#val-categProdquot").val($("#ipt-valNameTypeProdNInterface").val());
-      $("#val-valProdquot").val($("#ipt-valPriceProdNInterface").val() + " USD");
+      $("#val-valProdquot").val($("#ipt-valPriceProdNInterface").val());
       $("#val-prevImports").val($("#chck-importpreview").parent().attr("switch-CFreeze"));
 
       /************************** MOSTRAR EL SIGUIENTE PASO **************************/
