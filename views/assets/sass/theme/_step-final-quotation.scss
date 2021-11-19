@@ -207,6 +207,37 @@
 				justify-content: space-between;
 				flex: 0 0 100%;
 				border-bottom: thin solid #cccc;
+
+				&--cCharactsInfovals{
+					display: none;
+					opacity: 0;
+					visibility: hidden;
+					&--cfgdinv{
+						display: none;
+						opacity: 0;
+						visibility: hidden;
+
+						&--cvpsndcrr{
+							display: none;
+							opacity: 0;
+							visibility: hidden;
+							span{
+								display: none;
+								opacity: 0;
+								visibility: hidden;
+							}
+
+							input{
+								width: 0;
+								height: 0;
+								opacity: 0;
+								visibility: hidden;
+								display: none;
+							}
+						}
+					}
+				}
+
 				&--moreDetails{
 					flex: 48%;
 					border-right: thin solid #cccc;

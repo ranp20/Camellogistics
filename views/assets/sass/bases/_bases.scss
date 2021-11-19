@@ -36,6 +36,17 @@ img{
 	height: auto;
 }
 /* CLASS UTILITIES */
+.non-visvalipt{
+	width: 0;
+	height: 0;
+	display: none;
+	opacity: 0;
+	visibility: hidden;
+	display: none;
+	background-color: #fff;
+	border: none;
+	line-height: unset;
+}
 .control-spanrequired{
 	color: red;
 }

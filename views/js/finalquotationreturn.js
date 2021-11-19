@@ -1,8 +1,10 @@
 /************************** GENERAR EL PDF **************************/
+/*
 function generatePDF(nameuser){
 	$url = "controllers/c_generate-pdf.php?user="+nameuser;
 	window.open($url, "cotizacion_pdf");
 }
+*/
 /************************** DEJAR EN 2 DECIMALES POR DEFECTO **************************/
 function myRound(num, dec){
   var exp = Math.pow(10, dec || 2); // 2 decimales por defecto
@@ -127,22 +129,27 @@ $(document).ready(function(){
   	var insure_min25000 = parseFloat(rinsurance[0].data_value); //FOB MENOR A 25000
   	var insure_max25000 = parseFloat(rinsurance[1].data_value); //FOB MAYOR A 25000
   	var insure_default = parseFloat(rinsurance[2].data_value); //SIN FOB/VALOR POR DEFECTO
-  	console.log(insure_min25000); //FOB MENOR A 25000
-  	console.log(insure_max25000); //FOB MAYOR A 25000
-  	console.log(insure_default); //SIN FOB/VALOR POR DEFECTO
 
-  	if(totalinsurance == 0 || totalinsurance == ""){
-  		console.log("Calcular el valor, si es 0 entonces tomar el valor por defecto del seguro y calcularlo con los demás valores finales");
+  	/************************** VARIABLES PARA LOS TOTALES **************************/
+  	var sumTotalFirstFlete = 0;
+  	var sumTotalbyIGV = 0;
+  	var sumTotalFinalFleteandIGV = 0;
+  	var sumbyCIF = 0;
+
+  	if($("#v_insurancemerch").text() != "NO"){
+			/************************** TOTALES A IMPRIMIR - CON SEGURO **************************/
+			sumTotalFirstFlete = totflete + totalamountadditional + totalimportprev + totaltransport + totalinsurance + totalvaluesquotation + totalfinalvaluedownload; //FLETE FINAL
+			sumTotalbyIGV = (totaltransport + totalamountadditional + totalvaluesquotationbyIGV) * (18 / 100); //IGV (DEBAJO DEL FLETE FINAL)
+			sumTotalFinalFleteandIGV = sumTotalFirstFlete + sumTotalbyIGV; //VALOR TOTAL FINAL DE LA COTIZACIÓN
+			sumbyCIF = totalfinalvaluefob + totflete + totalinsurance; //CIF FINAL
   	}else{
-  		console.log("Valor calculado desde el paso Nº2");
+  		/************************** TOTALES A IMPRIMIR - SIN SEGURO **************************/
+			sumTotalFirstFlete = totflete + totalamountadditional + totalimportprev + totaltransport + totalvaluesquotation + totalfinalvaluedownload; //FLETE FINAL
+			sumTotalbyIGV = (totaltransport + totalamountadditional + totalvaluesquotationbyIGV) * (18 / 100); //IGV (DEBAJO DEL FLETE FINAL)
+			sumTotalFinalFleteandIGV = sumTotalFirstFlete + sumTotalbyIGV; //VALOR TOTAL FINAL DE LA COTIZACIÓN
+			sumbyCIF = totalfinalvaluefob + totflete + totalinsurance; //CIF FINAL
   	}
 	
-		/************************** TOTALES A IMPRIMIR PARA LA COTIZACIÓN **************************/
-		var sumTotalFirstFlete = totflete + totalamountadditional + totalimportprev + totaltransport + totalinsurance + totalvaluesquotation + totalfinalvaluedownload; //FLETE FINAL
-		var sumTotalbyIGV = (totaltransport + totalamountadditional + totalvaluesquotationbyIGV) * (18 / 100); //IGV (DEBAJO DEL FLETE FINAL)
-		var sumTotalFinalFleteandIGV = sumTotalFirstFlete + sumTotalbyIGV; //VALOR TOTAL FINAL DE LA COTIZACIÓN
-		var sumbyCIF = totalfinalvaluefob + totflete + totalinsurance; //CIF FINAL
-		
 		/************************** LIMPIAR EL VALOR E IMPRIMIR EN EL TOTAL DEL SERVICIOS **************************/
 		var totalNotround = twodecimals(sumTotalFirstFlete);
 		var n = Math.abs(totalNotround);
@@ -244,7 +251,7 @@ $(document).ready(function(){
 			var finalval_percepcion = parseFloat(twodecimal_percepcion);
 
 			/************************** CALCULO FINAL DE IMPUESTOS **************************/
-			var val_FinalTax = finalval_IGV + finalval_IPM + finalval_percepcion + finalval_Ad_valoren + finalval_i_selectivo + finalval_antidumping;
+			var val_FinalTax = finalval_IGV + finalval_IPM + finalval_percepcion + finalval_Ad_valoren + finalval_i_selectivo + finalval_antidumping + totalinsurance;
 
 			console.log('Estos son los valores calculados con los demás del administrador');
 	    console.log(finalval_Ad_valoren);

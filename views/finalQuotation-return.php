@@ -2,6 +2,9 @@
   //COMPRIMIR ARCHIVOS DE TEXTO...
   (substr_count($_SERVER["HTTP_ACCEPT_ENCODING"], "gzip")) ? ob_start("ob_gzhandler") : ob_start();
   session_start();
+  $actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]";
+  $url_defaulthome = $actual_link . "/Camellogistics";
+  $url =  $actual_link . "/Camellogistics/views/";
   if(!isset($_POST) || $_POST == []){
     header("Location: marketplace-logistico");
   }else{
@@ -14,7 +17,29 @@
 <html lang="es">
 <head>
   <title>Camel Logistics | Descarga tu Cotización</title>
-  <?php require_once 'includes/header-links.php';?>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+  <link rel="icon" type="image/x-icon" href="views/img/favicon-camel.png"/>
+  <meta name="theme-color" content="#B58440">
+  <meta name="description" content=""/>
+  <meta name="author" content=""/>
+  <meta name="description" content="¡Calcula el costo de tu importación en 4 simples pasos!"/>
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1"/>
+  <meta property="og:url" content="<?= $url_defaulthome; ?>">
+  <meta property="og:title" content="Calculadora de Envíos | Camel Logistics"/>
+  <meta property="og:description" content="¡Calcula el costo de tu importación en 4 simples pasos!"/>
+  <meta property="og:locale" content="es_ES"/>
+  <meta property="og:image" content="<?= $url; ?>assets/img/logos/logotipo-camel.png"/>
+  <meta property="og:type" content="article"/>
+  <meta property="og:site_name" content="Camel Logistics"/>
+  <link rel="stylesheet" href="<?= $url; ?>css/styles.css">
+  <link rel="stylesheet" href="<?= $url; ?>assets/css/styles.min.css">
+  <link rel="stylesheet" href="<?= $url; ?>css/camel.css">
+  <input type="hidden" id="v_typeserviceinit" value="<?php echo $_POST['val-typeoptselectininit'];?>">
+  <input type="hidden" id="v_datevaliddesde" value="<?php echo $_POST['val-datevaliddesde'];?>">
+  <input type="hidden" id="v_datevalidhasta" value="<?php echo $_POST['val-datevalidhasta'];?>">
+  <input type="hidden" id="v_idgencoderand" value="<?php echo $_POST['ipt-vidcodgenrand'];?>">
+  <script src="<?= $url; ?>js/jquery-3.6.0.min.js"></script>
 </head>
 <body>
   <div id="cUIMessageValid-user"></div>
@@ -186,7 +211,7 @@
                   <li class="c-FinalQuotation--contStep--cQuotation--cTop--c--cDetailsQuotation--m--item">
                     <div class="c-FinalQuotation--contStep--cQuotation--cTop--c--cDetailsQuotation--m--item--info">
                       <span>Seguro de Mercancía</span>
-                      <span><?php if(!isset($_POST['res-insuremerch'])){echo "No especificado";}else if($_POST['res-insuremerch'] == "NO"){echo "NO";}else{echo "SÍ";}?></span>
+                      <span id="v_insurancemerch"><?php if(!isset($_POST['res-insuremerch'])){echo "No especificado";}else if($_POST['res-insuremerch'] == "NO"){echo "NO";}else{echo "SÍ";}?></span>
                     </div>
                   </li>
                   <li class="c-FinalQuotation--contStep--cQuotation--cTop--c--cDetailsQuotation--m--item">
@@ -203,19 +228,36 @@
               <div class="c-FinalQuotation--contStep--cQuotation--cTop--c--cWhatsappContact">
                 <a href="#" target="_blank" class="c-FinalQuotation--contStep--cQuotation--cTop--c--cWhatsappContact--link" id="d-link-messagecontact">
                   <span class="c-FinalQuotation--contStep--cQuotation--cTop--c--cWhatsappContact--link--cImg">
-                    <img src="<?= $url ?>assets/img/utilities/whatsapp.svg" alt="">
+                    <img src="<?= $url; ?>assets/img/utilities/whatsapp.svg" alt="">
                   </span>
                   <h3>CONTACTAR A LA AGENCIA DE ADUANA</h3>
                 </a>
               </div>
               <div class="c-FinalQuotation--contStep--cQuotation--cTop--c--cValidTimeQuotation">
-                <p><?php //print_r($_POST); ?>Validez de tarifa: <span id="v_validratedate"></span></p>
+                <p>
+                  <span>Validez de tarifa: </span>
+                  <span id=""><?= (!isset($_POST['val_validateratequote']) || $_POST['val_validateratequote'] == "") ? "No especificado" : $_POST['val_validateratequote'];?></span></p>
               </div>
             </div>
           </div>
           <div class="c-FinalQuotation--contStep--cQuotation--cBottom">
             <div class="c-FinalQuotation--contStep--cQuotation--cBottom--c">
               <div class="c-FinalQuotation--contStep--cQuotation--cBottom--c--moreDetails">
+                <div class="c-FinalQuotation--contStep--cQuotation--cBottom--c--cCharactsInfovals">
+                  <div class="c-FinalQuotation--contStep--cQuotation--cBottom--c--cCharactsInfovals--cfgdinv">
+                    <div class="c-FinalQuotation--contStep--cQuotation--cBottom--c--cCharactsInfovals--cfgdinv--cvpsndcrr">
+                      <span>
+                        <span>
+                          <span>
+                            <span>
+                              <input type="hidden" id="" class="non-visvalipt" value="">
+                            </span>
+                          </span>
+                        </span>
+                      </span>
+                    </div>
+                  </div>
+                </div>
                 <div class="c-FinalQuotation--contStep--cQuotation--cBottom--cImgInfoEnterprise">
                   <img src="views/assets/img/logos/logotipo-camel.png" alt="">
                   <div class="c-FinalQuotation--contStep--cQuotation--cBottom--cImgInfoEnterprise--info">
@@ -378,21 +420,15 @@ echo $template_incserv.$template_notincserv;
       </div>
     </div>
   </main>
-  <?php 
-    
+  <?php
     echo "<pre>";
     print_r($_POST);
     echo "</pre>";
-    
   ?>
   <?php require_once 'includes/form-login-user.php'; ?>
   <?php require_once 'includes/form-before-download-pdf.php'; ?>
-  <input type="hidden" id="v_typeserviceinit" value="<?php echo $_POST['val-typeoptselectininit'];?>">
-  <input type="hidden" id="v_datevaliddesde" value="<?php echo $_POST['val-datevaliddesde'];?>">
-  <input type="hidden" id="v_datevalidhasta" value="<?php echo $_POST['val-datevalidhasta'];?>">
-  <input type="hidden" id="v_idgencoderand" value="<?php echo $_POST['ipt-vidcodgenrand'];?>">
-  <script src="<?= $url ?>js/user-login.js"></script>
-  <script src="<?= $url ?>js/finalquotationreturn.js"></script>
-  <script src="<?= $url ?>js/register-before-download.js"></script>
+  <script src="<?= $url; ?>js/user-login.js"></script>
+  <script src="<?= $url; ?>js/finalquotationreturn.js"></script>
+  <script src="<?= $url; ?>js/register-before-download.js"></script>
 </body>
 </html>

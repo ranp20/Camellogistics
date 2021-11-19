@@ -479,6 +479,7 @@ $(document).on("click", "#list-typeChargeLoadItems a", function(){
             <input type="hidden" value="0" id="loadQContainer40hq" name="loadQContainer40hq" class="n-val-sd">
             <input type="hidden" value="" id="loadTypeContainer40nor" name="loadTypeContainer40nor" class="n-val-sd">
             <input type="hidden" value="0" id="loadQContainer40nor" name="loadQContainer40nor" class="n-val-sd">
+            <input type="hidden" value="" id="val_validateratequote" name="val_validateratequote" class="n-val-sd">
           </span>
         </span>
       </div>
@@ -765,6 +766,7 @@ $(document).on("click", "#list-typeChargeLoadItems a", function(){
             <input type="text" id="n_packscompare_ultstep" class="n-val-sd" disabled>
             <input type="text" id="n_weightcompare_ultstep" class="n-val-sd" disabled>
             <input type="text" id="n_volumecompare_ultstep" class="n-val-sd" disabled>
+            <input type="text" id="val_validateratequote" name="val_validateratequote" class="n-val-sd" value="">
           </span>
         </span>
       </div>
@@ -799,7 +801,6 @@ $(document).on("click", "#list-typeChargeLoadItems a", function(){
 /*========================================================================================
 =                          4. AÑADIR LA CANTIDAD DE CONTENEDORES                         =
 =========================================================================================*/
-/************************** INCREMENTAR/DECREMENTAR INPUTS **************************/
 /************************** PRIMER INPUT **************************/
 $(document).on("click", "#c-incdecBtns20 button", function(){
   var tindBtn = $(this).index();
@@ -827,7 +828,6 @@ $(document).on("click", "#c-incdecBtns20 button", function(){
     $("#val-datevalidhasta").val(validhasta_final);
     var convertOneDATE =  new Date(Date.parse(validdesde_final.replace(/-/g, '/')));
     var convertTwoDATE =  new Date(Date.parse(validhasta_final.replace(/[-]/g,'/')));
-    //var options = { year: 'numeric', month: '2-digit', day: 'numeric' };
     var options = { year: 'numeric', month: 'long', day: 'numeric' };
     var convertDateValidDesde = convertOneDATE.toLocaleDateString("es-ES", options);
     var convertDateValidHasta = convertTwoDATE.toLocaleDateString("es-ES", options);
@@ -840,6 +840,8 @@ $(document).on("click", "#c-incdecBtns20 button", function(){
     var val_dateValidHasta = separateDateValidHasta[0]+" "+"de"+" "+firstToUppercase(monthSeparatetoArrayHasta);
     /************************** ASIGNAR A LAS VARIABLES LOCALES **************************/
     localStorage.setItem("key_validaterate", val_dateValidDesde+" - "+val_dateValidHasta);
+    /************************** ASIGNAR AL VALOR DE ENVÍO **************************/
+    $("#val_validateratequote").val(val_dateValidDesde+" - "+val_dateValidHasta);
 
     /************************** VALIDAR SI OTRO CONTROL TIENE ALGÚN VALOR **************************/
     if($("#ipt-qvalContainer40ST").val() > 0 || $("#ipt-qvalContainer40HQ").val() > 0 || $("#ipt-qvalContainer40NOR").val() > 0){
@@ -959,7 +961,6 @@ $(document).on("click", "#c-incdecBtns40 button", function(){
     $("#val-datevalidhasta").val(validhasta_final);
     var convertOneDATE =  new Date(Date.parse(validdesde_final.replace(/-/g, '/')));
     var convertTwoDATE =  new Date(Date.parse(validhasta_final.replace(/[-]/g,'/')));
-    //var options = { year: 'numeric', month: '2-digit', day: 'numeric' };
     var options = { year: 'numeric', month: 'long', day: 'numeric' };
     var convertDateValidDesde = convertOneDATE.toLocaleDateString("es-ES", options);
     var convertDateValidHasta = convertTwoDATE.toLocaleDateString("es-ES", options);
@@ -972,6 +973,8 @@ $(document).on("click", "#c-incdecBtns40 button", function(){
     var val_dateValidHasta = separateDateValidHasta[0]+" "+"de"+" "+firstToUppercase(monthSeparatetoArrayHasta);
     /************************** ASIGNAR A LAS VARIABLES LOCALES **************************/
     localStorage.setItem("key_validaterate", val_dateValidDesde+" - "+val_dateValidHasta);
+    /************************** ASIGNAR AL VALOR DE ENVÍO **************************/
+    $("#val_validateratequote").val(val_dateValidDesde+" - "+val_dateValidHasta);
 
     /************************** VALIDAR SI OTRO CONTROL TIENE ALGÚN VALOR **************************/
     if($("#ipt-qvalContainer20ST").val() > 0 || $("#ipt-qvalContainer40HQ").val() > 0 || $("#ipt-qvalContainer40NOR").val() > 0){
@@ -1089,7 +1092,6 @@ $(document).on("click", "#c-incdecBtns40-hc button", function(){
     $("#val-datevalidhasta").val(validhasta_final);
     var convertOneDATE =  new Date(Date.parse(validdesde_final.replace(/-/g, '/')));
     var convertTwoDATE =  new Date(Date.parse(validhasta_final.replace(/[-]/g,'/')));
-    //var options = { year: 'numeric', month: '2-digit', day: 'numeric' };
     var options = { year: 'numeric', month: 'long', day: 'numeric' };
     var convertDateValidDesde = convertOneDATE.toLocaleDateString("es-ES", options);
     var convertDateValidHasta = convertTwoDATE.toLocaleDateString("es-ES", options);
@@ -1102,6 +1104,8 @@ $(document).on("click", "#c-incdecBtns40-hc button", function(){
     var val_dateValidHasta = separateDateValidHasta[0]+" "+"de"+" "+firstToUppercase(monthSeparatetoArrayHasta);
     /************************** ASIGNAR A LAS VARIABLES LOCALES **************************/
     localStorage.setItem("key_validaterate", val_dateValidDesde+" - "+val_dateValidHasta);
+    /************************** ASIGNAR AL VALOR DE ENVÍO **************************/
+    $("#val_validateratequote").val(val_dateValidDesde+" - "+val_dateValidHasta);
 
     /************************** VALIDAR SI OTRO CONTROL TIENE ALGÚN VALOR **************************/
     if($("#ipt-qvalContainer20ST").val() > 0 || $("#ipt-qvalContainer40ST").val() > 0 || $("#ipt-qvalContainer40NOR").val() > 0){
@@ -1217,7 +1221,6 @@ $(document).on("click", "#c-incdecBtns40-nor button", function(){
     $("#val-datevalidhasta").val(validhasta_final);
     var convertOneDATE =  new Date(Date.parse(validdesde_final.replace(/-/g, '/')));
     var convertTwoDATE =  new Date(Date.parse(validhasta_final.replace(/[-]/g,'/')));
-    //var options = { year: 'numeric', month: '2-digit', day: 'numeric' };
     var options = { year: 'numeric', month: 'long', day: 'numeric' };
     var convertDateValidDesde = convertOneDATE.toLocaleDateString("es-ES", options);
     var convertDateValidHasta = convertTwoDATE.toLocaleDateString("es-ES", options);
@@ -1230,6 +1233,8 @@ $(document).on("click", "#c-incdecBtns40-nor button", function(){
     var val_dateValidHasta = separateDateValidHasta[0]+" "+"de"+" "+firstToUppercase(monthSeparatetoArrayHasta);
     /************************** ASIGNAR A LAS VARIABLES LOCALES **************************/
     localStorage.setItem("key_validaterate", val_dateValidDesde+" - "+val_dateValidHasta);
+    /************************** ASIGNAR AL VALOR DE ENVÍO **************************/
+    $("#val_validateratequote").val(val_dateValidDesde+" - "+val_dateValidHasta);
 
     /************************** VALIDAR SI OTRO CONTROL TIENE ALGÚN VALOR **************************/
     if($("#ipt-qvalContainer20ST").val() > 0 || $("#ipt-qvalContainer40ST").val() > 0 || $("#ipt-qvalContainer40HQ").val() > 0){
@@ -1801,11 +1806,9 @@ $(document).on("change input keyup", "#ipt-valPriceProdNInterface-notMoreOpts", 
 
           var valorfinalseguro = 0;
           if(finalvaluefob > 25000){
-            /************************** ASIGNAR AL VALOR DE LA VARIABLE LOCAL **************************/
             valorfinalseguro = finalvaluefob * c_InsuranceMayor; //FOB ES MAYOR A 25000
             localStorage.setItem("key_v-valueinsurance", roundToTwo(valorfinalseguro));
           }else{
-            /************************** ASIGNAR AL VALOR DE LA VARIABLE LOCAL **************************/
             valorfinalseguro = c_InsuranceMenor; //FOB ES MENOR A 25000
             localStorage.setItem("key_v-valueinsurance", roundToTwo(valorfinalseguro));
           }
@@ -1832,11 +1835,9 @@ $(document).on("change input keyup", "#ipt-valPriceProdNInterface-notMoreOpts", 
 
           var valorfinalseguro = 0;
           if(finalvaluefob > 25000){
-            /************************** ASIGNAR AL VALOR DE LA VARIABLE LOCAL **************************/
             valorfinalseguro = finalvaluefob * c_InsuranceMayor; //FOB ES MAYOR A 25000
             localStorage.setItem("key_v-valueinsurance", roundToTwo(valorfinalseguro));
           }else{
-            /************************** ASIGNAR AL VALOR DE LA VARIABLE LOCAL **************************/
             valorfinalseguro = c_InsuranceMenor; //FOB ES MENOR A 25000
             localStorage.setItem("key_v-valueinsurance", roundToTwo(valorfinalseguro));
           }
@@ -1936,11 +1937,9 @@ $(document).on("keyup keypress blur change", "#ipt-valQuantityAmAddProdNInterfac
 
           var valorfinalseguro = 0;
           if(finalvaluefob > 25000){
-            /************************** ASIGNAR AL VALOR DE LA VARIABLE LOCAL **************************/
             valorfinalseguro = finalvaluefob * c_InsuranceMayor; //FOB ES MAYOR A 25000
             localStorage.setItem("key_v-valueinsurance", roundToTwo(valorfinalseguro));
           }else{
-            /************************** ASIGNAR AL VALOR DE LA VARIABLE LOCAL **************************/
             valorfinalseguro = c_InsuranceMenor; //FOB ES MENOR A 25000
             localStorage.setItem("key_v-valueinsurance", roundToTwo(valorfinalseguro));
           }
@@ -1976,11 +1975,9 @@ $(document).on("keyup keypress blur change", "#ipt-valQuantityAmAddProdNInterfac
 
           var valorfinalseguro = 0;
           if(finalvaluefob > 25000){
-            /************************** ASIGNAR AL VALOR DE LA VARIABLE LOCAL **************************/
             valorfinalseguro = finalvaluefob * c_InsuranceMayor; //FOB ES MAYOR A 25000
             localStorage.setItem("key_v-valueinsurance", roundToTwo(valorfinalseguro));
           }else{
-            /************************** ASIGNAR AL VALOR DE LA VARIABLE LOCAL **************************/
             valorfinalseguro = c_InsuranceMenor; //FOB ES MENOR A 25000
             localStorage.setItem("key_v-valueinsurance", roundToTwo(valorfinalseguro));
           }
@@ -2469,7 +2466,6 @@ $(document).on("click", "#btn-NextStepTochargedata", function(){
         $("#val-datevalidhasta").val(validhasta_final);
         var convertOneDATE =  new Date(Date.parse(validdesde_final.replace(/-/g, '/')));
         var convertTwoDATE =  new Date(Date.parse(validhasta_final.replace(/[-]/g,'/')));
-        //var options = { year: 'numeric', month: '2-digit', day: 'numeric' };
         var options = { year: 'numeric', month: 'long', day: 'numeric' };
         var convertDateValidDesde = convertOneDATE.toLocaleDateString("es-ES", options);
         var convertDateValidHasta = convertTwoDATE.toLocaleDateString("es-ES", options);
@@ -2483,6 +2479,8 @@ $(document).on("click", "#btn-NextStepTochargedata", function(){
         /************************** ASIGNAR A LAS VARIABLES LOCALES **************************/
         localStorage.setItem("key_validaterate", val_dateValidDesde+" - "+val_dateValidHasta);
         localStorage.setItem("key_v-valttaproxbycontain", ratesorigin[0].tt_aprox);
+        /************************** ASIGNAR AL VALOR DE ENVÍO **************************/
+        $("#val_validateratequote").val(val_dateValidDesde+" - "+val_dateValidHasta);
 
         if(v_ValTotalVolume <= 5){
 
@@ -2490,8 +2488,7 @@ $(document).on("click", "#btn-NextStepTochargedata", function(){
 
             totwithoutvalues = roundToTwo(twodecimal_rate_5cbm * v_ValTotalVolume);
             localStorage.setItem("key_v-totalflette", totwithoutvalues);
-            console.log(v_ValTotalVolume);
-            console.log(v_ValDividedTotalWeight);
+
           }else{
 
             totwithoutvalues = roundToTwo(twodecimal_rate_5cbm * v_ValDividedTotalWeight);
@@ -2656,7 +2653,6 @@ $(document).on("click", "#btn-NextStepTochargedata", function(){
           $("#val-datevalidhasta").val(validhasta_final);
           var convertOneDATE =  new Date(Date.parse(validdesde_final.replace(/-/g, '/')));
           var convertTwoDATE =  new Date(Date.parse(validhasta_final.replace(/[-]/g,'/')));
-          //var options = { year: 'numeric', month: '2-digit', day: 'numeric' };
           var options = { year: 'numeric', month: 'long', day: 'numeric' };
           var convertDateValidDesde = convertOneDATE.toLocaleDateString("es-ES", options);
           var convertDateValidHasta = convertTwoDATE.toLocaleDateString("es-ES", options);
@@ -2669,6 +2665,8 @@ $(document).on("click", "#btn-NextStepTochargedata", function(){
           var val_dateValidHasta = separateDateValidHasta[0]+" "+"de"+" "+firstToUppercase(monthSeparatetoArrayHasta);
           /************************** ASIGNAR A LAS VARIABLES LOCALES **************************/
           localStorage.setItem("key_validaterate", val_dateValidDesde+" - "+val_dateValidHasta);
+          /************************** ASIGNAR AL VALOR DE ENVÍO **************************/
+          $("#val_validateratequote").val(val_dateValidDesde+" - "+val_dateValidHasta);
           
           /************************** VALIDAR EL VALOR MÁXIMO ENTRE PESO Y VOLUMEN **************************/
           if(v_ValTotalVolume > v_ValDividedTotalWeight){
@@ -2758,7 +2756,6 @@ $(document).on("click", "#btn-NextStepTochargedata", function(){
           $("#val-datevalidhasta").val(validhasta_final);
           var convertOneDATE =  new Date(Date.parse(validdesde_final.replace(/-/g, '/')));
           var convertTwoDATE =  new Date(Date.parse(validhasta_final.replace(/[-]/g,'/')));
-          //var options = { year: 'numeric', month: '2-digit', day: 'numeric' };
           var options = { year: 'numeric', month: 'long', day: 'numeric' };
           var convertDateValidDesde = convertOneDATE.toLocaleDateString("es-ES", options);
           var convertDateValidHasta = convertTwoDATE.toLocaleDateString("es-ES", options);
@@ -2771,7 +2768,8 @@ $(document).on("click", "#btn-NextStepTochargedata", function(){
           var val_dateValidHasta = separateDateValidHasta[0]+" "+"de"+" "+firstToUppercase(monthSeparatetoArrayHasta);
           /************************** ASIGNAR A LAS VARIABLES LOCALES **************************/
           localStorage.setItem("key_validaterate", val_dateValidDesde+" - "+val_dateValidHasta);
-
+          /************************** ASIGNAR AL VALOR DE ENVÍO **************************/
+          $("#val_validateratequote").val(val_dateValidDesde+" - "+val_dateValidHasta);
           /************************** VALIDAR EL VALOR MÁXIMO ENTRE PESO Y VOLUMEN **************************/
           if(v_ValTotalVolume > v_ValDividedTotalWeight){
             totwithoutvalues = roundToTwo(twodecimal_total_refrigerado * v_ValTotalVolume);
@@ -3053,7 +3051,7 @@ $(document).on("keyup", "#ipt-valPriceProdNInterface", function(){
 $(document).on("click", "#chck-importpreview", function(){
   if($(this).is(":checked")){
 		$(this).parent().addClass("active");
-		$(this).parent().attr("switch-CFreeze", "SÍ");
+		$(this).parent().attr("switch-CFreeze", "SI");
     var yesImportPrev = $(this).parent().attr("switch-CFreeze");
     /************************** ASIGNAR VALORES DE LOS INPUTS HIDDEN - MERCANCÍA **************************/
     $("#val-prevImports").val(yesImportPrev);
