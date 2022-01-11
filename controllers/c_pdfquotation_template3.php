@@ -1,9 +1,3 @@
-<?php 
-
-  //DEVOLVER LOS VALORES DE LA COTIZACIÓN DEL CLIENTE DESDE LA BD POR EMAIL DEL USUARO DESDE GET
-  print_r($_POST);
-
-?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -11,13 +5,20 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
 	<title>Cotizacion de cliente</title>
 </head>
-<?php 
-  /*
-  print_r($_POST); 
-  print_r($_GET);
-  */
-?>
 <style>
+  /* UTILITY CLASS  */
+  .pt-02{padding-top: .2rem !important;}
+  .pt-05{padding-top: .5rem !important;}
+  .pt-06{padding-top: .6rem !important;}
+  .pt-07{padding-top: .7rem !important;}
+  .h-15{height: 15px !important;}
+  .h-18{height: 18px !important;}
+  .h-28{height: 28px !important;}
+  .h-25{height: 25px !important;}
+  .h-32{height: 32px !important;}
+  .text-red{color: red !important;}
+  .text-fw-bold{font-weight: bold;}
+	/************************** STYLES BY PDF - COPY **************************/
 	#cont_quotationpdf{
 		max-width: 726px;
 		width: auto;
@@ -26,7 +27,11 @@
 		margin-right: auto;
 		background-color: #fff;
 	}
-	/************************** STYLES BY PDF - COPY **************************/
+  #marc_det_fillcomplete{
+    width: auto;
+    padding: 0;
+    margin: 0;
+  }
 	#two_sectionlist{ 
   }
   #three_sectionlist{
@@ -141,25 +146,11 @@
     max-width: 22px;
     height: 22px;
   }
-  #title_serv_first_camel1{
+  #title_serv_first_uniquecamel{
     font-family: Sans-serif;
     font-weight: normal;
     font-size: 9pt;
-    width: 210px;
-    height: auto;
-    border: 0px red dashed;
-    color: #757171;
-    display: inline-block;
-    position: relative;
-    margin: 0;
-    vertical-align: top;
-    padding: 2px 0 0 0;
-  }
-  #title_serv_first_camel2{
-    font-family: Sans-serif;
-    font-weight: normal;
-    font-size: 9pt;
-    width: 210px;
+    width: 500px;
     height: auto;
     border: 0px red dashed;
     color: #757171;
@@ -173,7 +164,7 @@
     font-family: Sans-serif;
     font-weight: normal;
     font-size: 9pt;
-    width: 102px;
+    width: 140px;
     height: auto;
     border: 0px red dashed;
     color: #757171;
@@ -182,20 +173,7 @@
     margin: 0;
     vertical-align: top;
     padding: 2px 0 0 0;
-  }
-  #ammount_serv_first_camel2{
-    font-family: Sans-serif;
-    font-weight: normal;
-    font-size: 9pt;
-    width: 102px;
-    height: auto;
-    border: 0px red dashed;
-    color: #757171;
-    display: inline-block;
-    position: relative;
-    margin: 0;
-    vertical-align: top;
-    padding: 2px 0 0 0;
+    text-align: right;
   }
 	#marc_fill1{
     display: block;
@@ -616,21 +594,8 @@
     margin: 0;
     vertical-align: top;
   }
-	#marc_imp{
-    width:360px;
-    height:auto;
-    font-family:Sans-serif;
-    font-weight: normal;
-    text-align:center;
-    border: 0px #FF0000 dashed;
-    color:#07376E;
-    display:inline-block;
-    position: relative;
-    margin: 0;
-    vertical-align: top;
-	}
-	#marc_ser_log{
-    width:360px;
+	#marc_fillcomplete{
+    width:100%;
     height:auto;
     font-family:Sans-serif;
     font-weight: normal;
@@ -653,9 +618,9 @@
     padding: 14px;
     vertical-align: top;
 	}
-	#marc_det_er_log{
-    width:360px;
-    height:460px;
+	#marc_det_er_log_unique{
+    width:auto;
+    height:72px;
     font-family:Sans-serif;
     font-weight: normal;
     border: 0px #FF0000 dashed;
@@ -665,8 +630,8 @@
     margin: 0;
     vertical-align: top;
 	}
-	#marc_det_1er_log{
-    width:340px;
+	#marc_det_unique_log{
+    width:703px;
     height:362px;
     font-family:Sans-serif;
     font-weight: normal;
@@ -677,30 +642,32 @@
     margin: 0;
     padding: 14px 5px 14px 14px;
 	}
-	#marc_det_inf1_log{
-    width:340px;
-    height:22px;
+	#marc_det_inf1_log_unique{
+    width:703px;
+    height:40px;
     font-family:Sans-serif;
     font-weight: normal;
-    text-align:center;
     border: 1px #07376E solid;
     border-radius:9px;
-    display:block;
+    display:inline-block;
     position: relative;
     margin: 4px 0px 0px 0px;
     padding: 8px 5px 8px 14px;
 	}
-	#marc_det_inf2_log{
-    width: 340px;
-    height: 22px;
-    text-align: center;
-    border: 1px #07376E solid;
-    border-radius: 9px;
-    display: block;
-    position: relative;
-    margin: 4px 0px 0px 0px;
-    padding: 8px 5px 8px 14px;
-	}
+  #cnt_img_money_uniquecamel{
+    max-width: 28px;
+    width: 28px;
+    height: 28px;    
+    display: inline-block;
+    border: 0px red dashed;
+    vertical-align: top;
+    padding: 5px 0 0 0;
+    margin: 0 .5rem 0 0;
+  }
+  #cnt_img_money_uniquecamel img{
+    max-width: 28px;
+    height: 28px;
+  }
 	#marc_det_imp1{
     font-family:Sans-serif;
     font-weight: normal;
@@ -778,11 +745,11 @@
     margin: 0;
     vertical-align: top;
 	}
-	#marc_det_serv1{
+	#marc_det_uniqueserv{
     font-family:Sans-serif;
     font-weight: normal;
     font-size: 9pt;
-    width:227px;
+    width:542px;
     height:auto;
     border: 0px red dashed;
     color:#757171;
@@ -791,8 +758,8 @@
     margin: 0;
     vertical-align: top;
 	}
-	.item_marc_det_serv1{
-    width:227px;
+	.item_marc_det_uniqueserv{
+    width:490px;
     height:15px;
     border: 0px #FF0000 dashed;
     color:#757171;
@@ -800,7 +767,7 @@
     position: relative;
     margin: 0;
 	}
-	#marc_usd_det_ser1{
+	#marc_usd_det_uniqueser{
     width:10px;
     height:auto;
     border: 0px red dashed;
@@ -810,21 +777,22 @@
     margin: 0;
     vertical-align: top;
 	}
-	.item_marc_usd_det_ser1{
-    width:10px;
-    height:auto;
-    text-align:right;
+	.item_marc_usd_det_uniqueseronly{
+    width: auto;
+    height: auto;
+    font-size: 15pt;
+    text-align: right;
     border: 0px #FF0000 dashed;
-    color:#757171;
-    display:block;
+    color: #757171;
+    display: block;
     position: relative;
     margin: 0;
 	}
-	#marc_tot_ser{
+	#marc_tot_uniqueser{
     font-family:Sans-serif;
     font-weight: normal;
     font-size: 9pt;
-    width:85px;
+    width:138px;
     height:auto;
     border: 0px red dashed;
     color:#757171;
@@ -833,7 +801,7 @@
     margin: 0;
     vertical-align: top;
 	}
-	.item_marc_tot_ser{
+	.item_marc_tot_uniqueser{
     width:auto;
     height:15px;
     text-align:right;
@@ -876,6 +844,16 @@
     margin: 0;
     vertical-align: top;
 	}
+  #marc_usd_detinf1_uniqueser{
+    width:10px;
+    height:auto;
+    border: 0px red dashed;
+    color:#757171;
+    display:inline-block;
+    position: relative;
+    margin: 0;
+    vertical-align: top;
+  }
 	#marc_totinf1_ser{
     font-family:Sans-serif;
     font-weight: normal;
@@ -919,7 +897,7 @@
     padding: 8px 5px 8px 5px;
     vertical-align: top;
 	}
-	.item_marc_tot_ser11{
+	.item_marc_tot_ser1{
     width:auto;
     height:auto;
     font-size: 15pt;
@@ -930,10 +908,9 @@
     position: relative;
     margin: 0;
 	}
-	.item_marc_usd_det_ser11{
+	.item_marc_usd_det_uniqueser{
     width:auto;
     height:auto;
-    font-size: 15pt;
     text-align:right;
     border: 0px #FF0000 dashed;
     color:#757171;
@@ -941,7 +918,7 @@
     position: relative;
     margin:0;
 	}
-	.marc_num_cuentas{
+	.marc_num_cuentas1{
     font-family: Sans-serif;
     font-weight: normal;
     font-size: 9pt;
@@ -956,6 +933,21 @@
     padding: 5px 14px 5px 14px;
     vertical-align: top;
 	}
+  .marc_num_cuentas2{
+    font-family: Sans-serif;
+    font-weight: normal;
+    font-size: 9pt;
+    width: 330px;
+    height: 87px;
+    text-align: center;
+    border: 1px #07376E solid;
+    border-radius: 9px;
+    display: inline-block;
+    position: relative;
+    margin: 0;
+    padding: 5px 14px 5px 14px;
+    vertical-align: top;
+  }
 	.cuad_tit_cuent1{
     font-family:Sans-serif;
     font-size: 9pt;
@@ -1011,14 +1003,11 @@
 	    <div id="marc_dat2">
 	    	<div id="marc_dat11_izq">
 	    		<div class="item_marc2_dat1">Telefono</div>
-	      	<div class="item_marc2_dat1">P. Arancela</div>
 	    	</div>
 	    	<div id="marc_dat2_cent">
 		      <div class="item_dpt1_dat1">:</div>
-		      <div class="item_dpt1_dat1">:</div>
 	    	</div>
 	    	<div id="marc_dat1_der1">
-		      <div class="item_demp2_dat1"><?php //print_r($_GET['user']);?> polancoranp2019@gmail.com</div>
 		      <div class="item_demp2_dat1">polancoranp2019@gmail.com</div>
 	    	</div>
 	  	</div>
@@ -1044,7 +1033,7 @@
 	        <div class="item_demp3_dat1">CARGA GENERAL</div>
 	        <div class="item_demp3_dat1">FOB - QINGDAO - CHINA</div>
 	        <div class="item_demp3_dat1">3000kg/1.08CBM</div>
-	        <div class="item_demp3_dat1">polancoranp2019@gmail.com</div>
+	        <div class="item_demp3_dat1">32 días</div>
 	      </div>
 	      <div id="marc_dat3_derr1">
 	        <div class="item_marc3_dat2">FOB</div>
@@ -1079,129 +1068,56 @@
 	    </div>
 	  </div>
 	  <div class="marc_fill" id="title_quoteservices">
-	    <div id="marc_imp">IMPUESTOS</div>
-	    <div id="marc_ser_log">SERVICIOS CAMEL LOGISTICS</div>
+      <div id="marc_fillcomplete">FLETE CAMEL LOGISTICS</div>
 	  </div>
 	  <div class="marc_fill" id="three_sectionlist">
-	    <div id="marc_det_imp">
-	      <div id="marc_det_imp1">
-	        <div class="item_marc_det_imp1">I.G.V</div>
-	        <div class="item_marc_det_imp1">I.P.M.</div>
-	        <div class="item_marc_det_imp1">Percepción</div>
-	        <div class="item_marc_det_imp1">Ad-Valoren</div>
-	        <div class="item_marc_det_imp1">Impuesto selectivo</div>
-          <div class="item_marc_det_imp1">ANTIDUMPING</div>
-	      </div>
-	      <div id="marc_porc_det_imp1">
-	        <div class="item_marc_porc_det_imp1">16%</div>
-	        <div class="item_marc_porc_det_imp1">2.00%</div>
-	        <div class="item_marc_porc_det_imp1">3.5%    </div>
-	        <div class="item_marc_porc_det_imp1">0.0%</div>
-	        <div class="item_marc_porc_det_imp1">0%</div>
-          <div class="item_marc_porc_det_imp1">0%</div>
-	      </div>
-	      <div id="marc_porc_det_imp1">
-	        <div class="item_marc_usd_det_imp1">$</div>
-	        <div class="item_marc_usd_det_imp1">$</div>
-	        <div class="item_marc_usd_det_imp1">$</div>
-	        <div class="item_marc_usd_det_imp1">$</div>
-	        <div class="item_marc_usd_det_imp1">$</div>
-          <div class="item_marc_usd_det_imp1">$</div>
-	      </div>
-	      <div id="marc_det_tot_imp1">
-	        <div class="item_usd_tot_imp1">133.05</div>
-	        <div class="item_usd_tot_imp1">16.66</div>
-	        <div class="item_usd_tot_imp1">34.40</div>
-	        <div class="item_usd_tot_imp1">93.50</div>
-	        <div class="item_usd_tot_imp1">23.20</div>
-          <div class="item_usd_tot_imp1">17.40</div>
-	      </div>
-	    </div>
-	    <div id="marc_det_er_log">
-	      <div id="marc_det_1er_log">
-	        <div id="marc_det_serv1">
-	          <div class="item_marc_det_serv1">Flete Internacional (no esta afecto a IGV)</div>
-	          <div class="item_marc_det_serv1">Pickup , ADUANAS ORIGEN</div>
-	          <div class="item_marc_det_serv1">Emision de BL / EWB</div>
-	          <div class="item_marc_det_serv1">Handling</div>
-	          <div class="item_marc_det_serv1">visto bueno</div>
-	          <div class="item_marc_det_serv1">Descarga</div>
-	          <div class="item_marc_det_serv1">* Almacen Referencial</div>
-	          <div class="item_marc_det_serv1">Transporte interno</div>
-	          <div class="item_marc_det_serv1">Previo</div>
-	          <div class="item_marc_det_serv1">Gremios maritimos</div>
-	          <div class="item_marc_det_serv1">THC</div>
-	          <div class="item_marc_det_serv1">* Devolucion de contenedores</div>
-	          <div class="item_marc_det_serv1">CERTIFICADO DE INSPECCION Y</div>
-	          <div class="item_marc_det_serv1">FICHA TECNICA</div>
-	          <div class="item_marc_det_serv1">Consolidación</div>
-	           <div class="item_marc_det_serv1">Aforo fisico</div>
-	          <div class="item_marc_det_serv1">Comision de Agencia </div>
-	          <div class="item_marc_det_serv1">Gastos Operativos</div>
-	        </div>
-	        <div id="marc_usd_det_ser1">
-	          <div class="item_marc_usd_det_ser1">$</div>
-	          <div class="item_marc_usd_det_ser1">$</div>
-	          <div class="item_marc_usd_det_ser1">$</div>
-	          <div class="item_marc_usd_det_ser1">$</div>
-	          <div class="item_marc_usd_det_ser1">$</div>
-	          <div class="item_marc_usd_det_ser1">$</div>
-	          <div class="item_marc_usd_det_ser1">$</div>
-	          <div class="item_marc_usd_det_ser1">$</div>
-	          <div class="item_marc_usd_det_ser1">$</div>
-	          <div class="item_marc_usd_det_ser1">$</div>
-	          <div class="item_marc_usd_det_ser1">$</div>
-	          <div class="item_marc_usd_det_ser1">$</div>
-	          <div class="item_marc_usd_det_ser1">$</div>
-	          <div class="item_marc_usd_det_ser1">$</div>
-	        </div>
-	        <div id="marc_tot_ser">
-	          <div class="item_marc_tot_ser">100</div>
-	          <div class="item_marc_tot_ser">-</div>
-	          <div class="item_marc_tot_ser">100</div>
-	          <div class="item_marc_tot_ser">100</div>
-	          <div class="item_marc_tot_ser">100</div>
-	          <div class="item_marc_tot_ser">100</div>
-	          <div class="item_marc_tot_ser">100</div>
-	          <div class="item_marc_tot_ser">-</div>
-	          <div class="item_marc_tot_ser"> -</div>
-	          <div class="item_marc_tot_ser">100</div>
-	          <div class="item_marc_tot_ser">100</div>
-	          <div class="item_marc_tot_ser">100</div>
-	          <div class="item_marc_tot_ser">-</div>
-	          <div class="item_marc_tot_ser">-</div>
-	          <div class="item_marc_tot_ser">-</div>
-	          <div class="item_marc_tot_ser">-</div>
-	          <div class="item_marc_tot_ser">100</div>
-	          <div class="item_marc_tot_ser">100</div>
-	        </div>
-	      </div>
-	      <div id="marc_det_inf1_log">
-	        <div id="title_serv_first_camel1">
+      <div id="marc_det_fillcomplete">
+        <div id="marc_det_unique_log">
+          <div id="marc_det_uniqueserv">
+            <div class="item_marc_det_uniqueserv h-18 text-fw-bold">Flete Internacional (no esta efecto a IGV)</div>
+            <div class="item_marc_det_uniqueserv h-18 text-fw-bold">EXW PICKUP Y ADUANAS ORIGEN (no esta efecto a IGV)</div>
+            <div class="item_marc_det_uniqueserv h-18">Emisión de BL</div>
+            <div class="item_marc_det_uniqueserv h-18">Handling</div>
+            <div class="item_marc_det_uniqueserv h-18">Visto Bueno</div>
+            <div class="item_marc_det_uniqueserv h-18">Desconsolidación</div>
+          </div>
+          <div id="marc_usd_det_uniqueser">
+            <div class="item_marc_usd_det_uniqueser h-15 pt-02 text-fw-bold">$</div>
+            <div class="item_marc_usd_det_uniqueser h-15 pt-02 text-fw-bold">$</div>
+            <div class="item_marc_usd_det_uniqueser h-15 pt-02">$</div>
+            <div class="item_marc_usd_det_uniqueser h-15 pt-02">$</div>
+            <div class="item_marc_usd_det_uniqueser h-15 pt-02">$</div>
+            <div class="item_marc_usd_det_uniqueser h-15 pt-02">$</div>
+          </div>
+          <div id="marc_tot_uniqueser">
+            <div class="item_marc_tot_uniqueser pt-02 text-fw-bold">100</div>
+            <div class="item_marc_tot_uniqueser pt-02 text-fw-bold">-</div>
+            <div class="item_marc_tot_uniqueser pt-02">100</div>
+            <div class="item_marc_tot_uniqueser pt-02">100</div>
+            <div class="item_marc_tot_uniqueser pt-02">100</div>
+            <div class="item_marc_tot_uniqueser pt-02">100</div>
+          </div>
+        </div>
+      </div>
+	    <div id="marc_det_er_log_unique">
+	      <div id="marc_det_inf1_log_unique">
+	        <div id="cnt_img_money_uniquecamel">
+            <img src="../vendor/dompdf/Imagen1.png" alt="" width="100" height="100">
+          </div>
+          <div id="title_serv_first_uniquecamel" class="pt-07">
 	          <div class="item_marc_det_serinf_serv1">Total Servicios Camel Logistics</div>
 	        </div>
-	        <div id="marc_usd_detinf1_ser1">
-	          <div class="item_marc_usd_det_ser1">$</div>
+	        <div id="marc_usd_detinf1_uniqueser" class="pt-06">
+	          <div class="item_marc_usd_det_uniqueser">$</div>
 	        </div>
-	        <div id="ammount_serv_first_camel1">
+	        <div id="ammount_serv_first_camel1" class="pt-07">
 	          <div class="item_marc_tot_ser">100</div>
 	        </div>
-	      </div>
-	      <div id="marc_det_inf2_log">
-	        <div id="title_serv_first_camel2">
-	          <div class="item_marc_det_serinf_serv1">I.G.V Servicios Camel Logistics</div>
-	        </div>
-	        <div id="marc_usd_detinf1_ser1">
-	          <div class="item_marc_usd_det_ser1">$</div>
-	        </div>
-	        <div id="ammount_serv_first_camel2">
-	          <div class="item_marc_tot_ser">100</div>
-	        </div>     
 	      </div>
 	    </div>
 	  </div>
 	  <div class="marc_fill" id="four_sectionlist">
-	    <div id="marc_det_cuentas">
+	     <div id="marc_det_cuentas">
         <div id="cnt_img_money_camel1">
           <img src="../vendor/dompdf/Imagen1.png" alt="" width="100" height="100">
         </div>
@@ -1209,10 +1125,10 @@
 	        <div class="item_marc_det_serinf_serv1">Total Impuestos a Pagar</div>
 	      </div>
 	      <div id="prefix_money_serv_camel2">
-		      <div class="item_marc_usd_det_ser11"><strong>$</strong></div>
+		      <div class="item_marc_usd_det_uniqueseronly"><strong>$</strong></div>
 	      </div>
 	      <div id="ammount_serv_ulti_camel1">
-	        <div class="item_marc_tot_ser11"><strong>1,563.27</strong></div>
+	        <div class="item_marc_tot_ser1"><strong>1,563.27</strong></div>
 	      </div>        
 	    </div>
 	    <div id="marc_des_monto">
@@ -1223,21 +1139,21 @@
 	        <div class="item_marc_det_serinf_serv1">Total Proforma Camel Logistics</div>
 	      </div>
 	      <div id="marc_usd_detinf1_ser1">
-	        <div class="item_marc_usd_det_ser11"><strong>$</strong></div>
+	        <div class="item_marc_usd_det_uniqueseronly"><strong>$</strong></div>
 	      </div>
 	      <div id="ammount_serv_ulti_camel2">
-	        <div class="item_marc_tot_ser11"><strong>1,125.72</strong></div>
+	        <div class="item_marc_tot_ser1"><strong>1,125.72</strong></div>
 	      </div>     
 	    </div>
 	  </div>
 	  <div class="marc_fill" id="five_sectionlist">
-	    <div class="marc_num_cuentas">
+	    <div class="marc_num_cuentas1">
 	      <div class="cuad_tit_cuent1"><strong>CUENTAS CORRIENTES BCP SOLES</strong></div>
 	      <div class="cuad_tit_cuent1">191-2412689-0-94</div>
 	      <div class="cuad_tit_cuent1"><strong>CUENTAS CORRIENTES BCP DOLARES</strong></div>
 	      <div class="cuad_tit_cuent1">191-2403408-1-57</div>
 	    </div>
-	    <div class="marc_num_cuentas">
+	    <div class="marc_num_cuentas2">
         </br>
 	      <div class="cuad_tit_cuent1">Son:</div>
 	      <div class="cuad_tit_cuent1"><!--DOS MIL SETECIENTOS SETENTA Y NUEVE--></div>

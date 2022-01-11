@@ -2118,7 +2118,6 @@ $(document).on("keyup", "#val-Widthinputitem", function(){	($(this).val() != "")
 $(document).on("keyup", "#val-Heightinputitem", function(){	($(this).val() != "") ? $("#msgNounHeightvalue").text("") : $("#msgNounHeightvalue").text("Campo requerido");});
 /************************** VALIDAR SI CONTIENE UN VALOR - PESO **************************/
 $(document).on("keyup", "#val-Weightinputitem", function(){	($(this).val() != "") ? $("#msgNounWeightvalue").text("") : $("#msgNounWeightvalue").text("Campo requerido");});
-
 /************************** CREAR OBJETO PARA ALMACENAR LOS CÁLCULOS EN LA TABLA DEL MODAL **************************/
 var calculateDataUser = [];
 var calculateTotal = [];
@@ -2281,7 +2280,6 @@ function list_Calculation_data(){
 /************************** ELIMINAR UN CÁLCULO **************************/
 $(document).on("click", ".del-calculation-item", function(e){
 	e.preventDefault();
-
  	var delListCalc = calculateDataUser;
  	var delListCalcTotal = calculateTotal;
 	var thisid = $(this).parent().parent();
@@ -2980,7 +2978,6 @@ $(document).on("keyup keypress blur change", "#ipt-valQuantityAmAddProdNInterfac
   localStorage.setItem("key_v-ammountadditional", e.target.value);
   /************************** ASIGNAR A LA VARIABLE LOCAL **************************/
   localStorage.setItem("key_v-totalammountadditional", localStorage.getItem("key_v-dbammountadditional") * value);
-
 });
 /************************** VALIDAR INPUT - VALOR DE PRODUCTO IMPORTADO **************************/
 $(document).on("input", "#ipt-valPriceProdNInterface", function(e){
@@ -3500,9 +3497,7 @@ function listrateLCLTransport(searchVal){
         $("#m-listAllDistricsByCountry").html(template);
       }
     });
-
   }else if($("#loadTypeTranport").val() == "imo"){
-
     /************************** LISTADO DE TARIFAS PARA TRANSPORTE INTERNO - TIPO IMO **************************/
     $.ajax({
       url: "controllers/list_zonasratelcltransport_imo.php",
@@ -3605,14 +3600,11 @@ function listrateLCLTransport(searchVal){
             </li>
           `;
         }
-
         });
         $("#m-listAllDistricsByCountry").html(template);
       }
     });
-
   }else if($("#loadTypeTranport").val() == "refrigerado"){
-
     /************************** LISTADO DE TARIFAS PARA TRANSPORTE INTERNO - TIPO REFRIGERADO **************************/
     $.ajax({
       url: "controllers/list_zonasratelcltransport_refrigerado.php",
@@ -3715,16 +3707,13 @@ function listrateLCLTransport(searchVal){
             </li>
           `;
         }
-
         });
         $("#m-listAllDistricsByCountry").html(template);
       }
     });
-    
   }else{
     //console.log("Por favor, elige un tipo de transporte para continuar");
   }
-
 }
 /************************** MOSTRAR EL LISTADO DE DISTRITO POR PAÍS DE DESTINO **************************/
 $(document).on("focus", "#ipt-valDistricByCountryNInterface", function(){
@@ -3750,43 +3739,33 @@ $(document).on("click", ".cont-MainCamelLog--c--contSteps--item--cStep--mFrmIpts
   $("#m-listAllDistricsByCountry").removeClass("show");
   $("#ipt-valDistricByCountryNInterface").attr("iddistrict", $(this).attr("id"));
   $("#ipt-valDistricByCountryNInterface").val($(this).find("span").text());
-
   /************************** ASIGNAR VALORES DE LOS INPUTS HIDDEN - RECOGIDA UBICACIÓN **************************/
   $("#plc-pickuploc").val($(this).attr("namprovince")+" - "+$(this).find("span").text());
-
   /************************** VARIABLE PARA CONTENEDORES - 20ST,40ST,40HQ Y 40NOR **************************/
   var q_containerType = 0;
-
   if($("#loadTypeCharge").val() == "FCL"){
     if($("#ipt-qvalContainer20ST").val() != 0 && $("#ipt-qvalContainer20ST").val() != ""){
       q_containerType = $("#ipt-qvalContainer20ST").val();
       /************************** ASIGNAR A LA VARIABLE LOCAL **************************/
       localStorage.setItem("key_v-valuetransport", q_containerType * $(this).attr("rateprice"));
-
     }else if($("#ipt-qvalContainer40ST").val() != 0 && $("#ipt-qvalContainer40ST").val() != ""){
       q_containerType = $("#ipt-qvalContainer40ST").val();
       /************************** ASIGNAR A LA VARIABLE LOCAL **************************/
       localStorage.setItem("key_v-valuetransport", q_containerType * $(this).attr("rateprice"));
-
     }else if($("#ipt-qvalContainer40HQ").val() != 0 && $("#ipt-qvalContainer40HQ").val() != ""){
       q_containerType = $("#ipt-qvalContainer40HQ").val();
       /************************** ASIGNAR A LA VARIABLE LOCAL **************************/
       localStorage.setItem("key_v-valuetransport", q_containerType * $(this).attr("rateprice"));
-
     }else if($("#ipt-qvalContainer40NOR").val() != 0 && $("#ipt-qvalContainer40NOR").val() != ""){
       q_containerType = $("#ipt-qvalContainer40NOR").val();
       /************************** ASIGNAR A LA VARIABLE LOCAL **************************/
       localStorage.setItem("key_v-valuetransport", q_containerType * $(this).attr("rateprice"));
-
     }else{
       console.log('No se seleccionó ningún contenedor en FCL');
     }
-
   }else{
-
     localStorage.setItem("key_v-valuetransport", $("#val-iptPackagesNInterface").val() * $(this).attr("rateprice"));
   }
-
   /************************** MOSTRAR EL BOTÓN DE COTIZACIÓN **************************/
   $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-pickuplocation] .cont-MainCamelLog--c--contSteps--item--cBtnNextStep").html(`
     <button type="submit" class="cont-MainCamelLog--c--contSteps--item--cBtnNextStep--btnR" id="btn-NextStepTopickuplocation">

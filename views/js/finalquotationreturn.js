@@ -81,6 +81,8 @@ $(document).ready(function(){
 	}
 
 	$("#btn-scrollingtTtB").on("click", function(){$("body, html").animate({scrollTop: '500'}, 350);}); //BOTÓN DE IR HACIA ABAJO
+	/************************** VALORES PARA LAS VALIDACIONES **************************/
+	var v_loadtypecharge = $("#v_loadtypecharge").val();
 	/************************** CÁLCULO DE IMPUESTOS **************************/
 	var partInteger_Tax = 0;
 	var partDecimal_Tax = 0;
@@ -137,7 +139,6 @@ $(document).ready(function(){
 			sumTotalFinalFleteandIGV = sumTotalFirstFlete + sumTotalbyIGV; //VALOR TOTAL FINAL DE LA COTIZACIÓN
 			sumbyCIF = totalfinalvaluefob + totflete + totalinsurance; //CIF FINAL
   	}
-
 	
 		/************************** LIMPIAR EL VALOR E IMPRIMIR EN EL TOTAL DEL SERVICIOS **************************/
 		var totalNotround = twodecimals(sumTotalFirstFlete);

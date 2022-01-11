@@ -237,7 +237,7 @@
                         <span>
                           <span>
                             <span>
-                              <input type="hidden" id="" class="non-visvalipt" value="">
+                              <input type="hidden" autocomplete="off" placeholder="" spellcheck="false" class="non-visvalipt h-alternative-shwnon s-fkeynone-step" id="" class="non-visvalipt h-alternative-shwnon" value="">
                             </span>
                           </span>
                         </span>
@@ -408,10 +408,11 @@ echo $template_incserv.$template_notincserv;
     </div>
   </main>
   <div>
-    <input type="hidden" id="v_typeserviceinit" value="<?php echo $_POST['val-typeoptselectininit'];?>">
-    <input type="hidden" id="v_datevaliddesde" value="<?php echo $_POST['val-datevaliddesde'];?>">
-    <input type="hidden" id="v_datevalidhasta" value="<?php echo $_POST['val-datevalidhasta'];?>">
-    <input type="hidden" id="v_idgencoderand" value="<?php echo $_POST['ipt-vidcodgenrand'];?>">
+    <input type="hidden" autocomplete="off" placeholder="" spellcheck="false" class="non-visvalipt h-alternative-shwnon s-fkeynone-step" id="v_typeserviceinit" value="<?php echo $_POST['val-typeoptselectininit'];?>">
+    <input type="hidden" autocomplete="off" placeholder="" spellcheck="false" class="non-visvalipt h-alternative-shwnon s-fkeynone-step" id="v_datevaliddesde" value="<?php echo $_POST['val-datevaliddesde'];?>">
+    <input type="hidden" autocomplete="off" placeholder="" spellcheck="false" class="non-visvalipt h-alternative-shwnon s-fkeynone-step" id="v_datevalidhasta" value="<?php echo $_POST['val-datevalidhasta'];?>">
+    <input type="hidden" autocomplete="off" placeholder="" spellcheck="false" class="non-visvalipt h-alternative-shwnon s-fkeynone-step" id="v_idgencoderand" value="<?php echo $_POST['ipt-vidcodgenrand'];?>">
+    <input type="hidden" autocomplete="off" placeholder="" spellcheck="false" class="non-visvalipt h-alternative-shwnon s-fkeynone-step" id="v_loadtypecharge" value="<?php echo $_POST['loadTypeCharge'];?>">
   </div>
   <?php
     
