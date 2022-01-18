@@ -196,6 +196,13 @@ $(document).ready(function(){
 	    contentType: 'application/x-www-form-urlencoded;charset=UTF-8',
 	  }).done((e) => {
 	    var restaxvalues = JSON.parse(e);
+	  	/*
+	  	console.log(e);
+	    console.log(restaxvalues);
+	    console.log(restaxvalues[0]);
+	    console.log(restaxvalues[1]);
+	    console.log(restaxvalues[2]);
+	    */
 	    var res_IGV = parseFloat(restaxvalues[0].data_value);
 	    var res_IPM = parseFloat(restaxvalues[1].data_value);
 	    var res_Percepcion_YES = parseFloat(restaxvalues[2].data_value);
@@ -424,6 +431,7 @@ $(document).ready(function(){
 		      cache: false,
 		      processData: false
 				}).done(function(e){
+					console.log(e);
 					var rquotaiton = JSON.parse(e);
 					if(rquotaiton[0].res != "exists"){
 						console.log("Cotización guardada");
