@@ -6,8 +6,7 @@ class Add_Quotation_User extends Connection{
 
 		$codegen_auto = new List_ultimate_codegen();
 		$ulti_codegenauto = $codegen_auto->list();
-		print_r($_POST);
-		exit();
+		
 
 		$arr_userquotation = [
 			'id_codegenrand' => $_POST['id_codegenrand'],
