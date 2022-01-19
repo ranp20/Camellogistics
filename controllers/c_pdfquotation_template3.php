@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
-	<title>Cotizacion de cliente</title>
+	<title>Cotizacion de cliente - Plantilla 3</title>
 </head>
 <style>
   /* UTILITY CLASS  */
@@ -1035,6 +1035,7 @@
 	        <div class="item_demp3_dat1">3000kg/1.08CBM</div>
 	        <div class="item_demp3_dat1">32 días</div>
 	      </div>
+        <!--
 	      <div id="marc_dat3_derr1">
 	        <div class="item_marc3_dat2">FOB</div>
 	        <div class="item_marc3_dat2">FLETE</div>
@@ -1065,6 +1066,7 @@
 	        <div class="item_tpor3_dat1">112.03</div>
 	        <div class="item_tpor3_dat1">45292.03</div>
 	      </div>
+      -->
 	    </div>
 	  </div>
 	  <div class="marc_fill" id="title_quoteservices">
