@@ -9,17 +9,19 @@ $(() => {
 	listrateLCLTransport(); // LISTAR LOS DISTRITOS DE ACUERDO AL PAÍS DE DESTINO
 });
 function refreshIdCodeGenRandom(){
+  $.ajax({
+    url: "controllers/c_list_id_codegenrandom.php",
+    method: "POST",
+    datatype: "JSON",
+    cache: false,
+    contentType: 'application/x-www-form-urlencoded;charset=UTF-8',
+  }).done(function(e){
+    $("#ipt-vidcodgenrand").val(e);
+  });
+  /*
   setInterval(function(){
-    $.ajax({
-      url: "controllers/c_list_id_codegenrandom.php",
-      method: "POST",
-      datatype: "JSON",
-      cache: false,
-      contentType: 'application/x-www-form-urlencoded;charset=UTF-8',
-    }).done(function(e){
-      $("#ipt-vidcodgenrand").val(e);
-    });
   }, 100);
+  */
 }
 ////OTRAS TAREAS - MEJORA DE UI Y UX
 /*- Mostrar al inicio solo los pasos a usar antes de cada elección, luego ir añadiendo o quitando de acuerdo a los elementos seleccionados*/

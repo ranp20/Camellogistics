@@ -15,7 +15,7 @@
   $script_qbysteps = "";
   $val_name_service = (!isset($_POST['v_typeserviceinpinit'])) ? 'No especificado' : $_POST['v_typeserviceinpinit'];
 
-  if(isset($_POST) || $_POST != []){
+  if(isset($_POST) && $_POST != [] && isset($_POST['v_typetranspinit'])){
     if($_POST['v_typetranspinit'] == 0){
 
       $portOriginPOST = "";
@@ -282,10 +282,10 @@
     }else if($_POST['v_typetranspinit'] == 2){
       echo "Transporte aéreo";
     }else{
-      header("Location: marketplace-logistico");
+      header("Location: ./marketplace-logistico");
     }
   }else{
-    header("Location: marketplace-logistico");
+    header("Location: ./marketplace-logistico");
   }  
 ?>
 <!DOCTYPE html>
