@@ -55,7 +55,7 @@
 							<tbody id="tbl_quotationusers">
 								<?php
 								$template_qusers = "";
-								if(isset($quotation_users['resultados'])){
+								if(isset($quotation_users['resultados']) && $quotation_users['paginas'] > 0){
 									foreach ($quotation_users['resultados'][0] as $value){
 										$template_qusers .= "
 							        <tr id='{$value['id']}'>
@@ -81,7 +81,7 @@
 								}else{
 									$template_qusers .= "
 										<tr>
-						          <td colspan='7'>
+						          <td colspan='10'>
 						            <div class='msg-non-results-res'>
 						              <img src='../admin/views/assets/img/utilities/icon-sad-face.svg' alt='' class='msg-non-results-res__icon'>
 						              <h3 class='msg-non-results-res__title'>No se encontraron resultados...</h3>
