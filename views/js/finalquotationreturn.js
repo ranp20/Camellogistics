@@ -544,6 +544,7 @@ $(document).ready(function(){
 		        cache: false,
 		        processData: false
 					}).done(function(e){
+						console.log(e);
 						var rvalidpdf = JSON.parse(e);
 						if(rvalidpdf[0].res != "notexists"){
 							console.log("El usuario SI se registró previamente");

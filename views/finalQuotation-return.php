@@ -54,6 +54,7 @@
           </div>
           <div class="c-FinalQuotation--contStep--cQuotation--cTop">
             <p class="c-FinalQuotation--contStep--cQuotation--cTop--title">Resumen de carga</p>
+            
             <div class="c-FinalQuotation--contStep--cQuotation--cTop--c">
               <div class="c-FinalQuotation--contStep--cQuotation--cTop--c--nOriginDestinyInfo">
                 <div class="c-FinalQuotation--contStep--cQuotation--cTop--c--nOriginDestinyInfo--cImgInfo">
@@ -180,7 +181,7 @@
                   <li class="c-FinalQuotation--contStep--cQuotation--cTop--c--cDetailsQuotation--m--item">
                     <div class="c-FinalQuotation--contStep--cQuotation--cTop--c--cDetailsQuotation--m--item--info">
                       <span>Valor de Mercancía</span>
-                      <span><?= (isset($_POST['val-valProdquot']) || $_POST['val-valProdquot'] != 0) ? $_POST['val-valProdquot'] . " USD" : "No especificado"; ?></span>
+                      <span><?= (isset($_POST['val-valProdquot']) && $_POST['val-valProdquot'] != 0 && $_POST['val-valProdquot'] != null) ? $_POST['val-valProdquot'] . " USD" : "No especificado"; ?></span>
                     </div>
                   </li>
                   <li class="c-FinalQuotation--contStep--cQuotation--cTop--c--cDetailsQuotation--m--item">

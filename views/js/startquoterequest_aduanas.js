@@ -1,15 +1,15 @@
 $(() => {
-  /************************** REFRESCAR EL ID DE CÓDIGO RANDOM **************************/
+  // REFRESCAR EL ID DE CÓDIGO RANDOM
   refreshIdCodeGenRandom();
-  /************************** CAMBIAR ENTRE ENLACES HERMANOS Y OCULTAR LOS PASOS SIGUIENTES **************************/
+  // CAMBIAR ENTRE ENLACES HERMANOS Y OCULTAR LOS PASOS SIGUIENTES
   ChangesSibblingsLinks();
   hiddenAllNextSteps();
-  /************************** LISTAR LAS UNIDADES DE MEDIDA EN EL MODAL **************************/
+  // LISTAR LAS UNIDADES DE MEDIDA EN EL MODAL
   list_measurement_units();
   list_mass_units();
-	/************************** LISTAR LOS TIPOS DE PRODUCTOS **************************/
+	// LISTAR LOS TIPOS DE PRODUCTOS
 	listProductsUser();
-  /************************** LISTAR LOS DISTRITOS DE ACUERDO AL PAÍS DE DESTINO **************************/
+  // LISTAR LOS DISTRITOS DE ACUERDO AL PAÍS DE DESTINO
   //listrateLCLTransport();
 });
 function refreshIdCodeGenRandom(){
@@ -27,29 +27,29 @@ function refreshIdCodeGenRandom(){
 }
 ////OTRAS TAREAS - MEJORA DE UI Y UX
 /*- Mostrar al inicio solo los pasos a usar antes de cada elección, luego ir añadiendo o quitando de acuerdo a los elementos seleccionados*/
-/************************** RECOGER LAS VARIABLES RECIBIDAS POR POST **************************/
+// RECOGER LAS VARIABLES RECIBIDAS POR POST
 var ipt_idTypeTransport = $("#ipt-vtypetranspinit").val();
-/************************** CAMBIAR/REMOVER EL ESTADO ENTRE OPCIONES **************************/
+// ============== CAMBIAR/REMOVER EL ESTADO ENTRE OPCIONES ============== //
 function ChangesSibblingsLinks(){
   $(document).on("click", ".cont-MainCamelLog--c--contSteps--item--cStep--m a", function(){
     $(this).addClass("active").siblings().removeClass("active");
   });
 }
-/************************** REDONDEAR A 2 DECIMALES - ALTERNATIVA .toFixed(2) **************************/
+// ============== REDONDEAR A 2 DECIMALES - ALTERNATIVA .toFixed(2) ============== //
 function roundToTwo(num){
   return +(Math.round(num + "e+2")  + "e-2");
 }
-/************************** FUNCIÓN - LIMITAR A DOS DECIMALES SIN REDONDEO **************************/
+// ============== FUNCIÓN - LIMITAR A DOS DECIMALES SIN REDONDEO =============== //
 function twodecimals(n) {
   let t = n.toString();
   let regex = /(\d*.\d{0,2})/;
   return t.match(regex)[0];
 }
-/************************** RETORNAR - PRIMERA LETRA EN MAYÚSCULA **************************/
+// ============== RETORNAR - PRIMERA LETRA EN MAYÚSCULA ================ //
 function firstToUppercase(e) {
   return e.charAt(0).toUpperCase() + e.slice(1);
 }
-/************************** PLUGIN - FULLPAGE.JS **************************/
+// ============== PLUGIN - FULLPAGE.JS ================= //
 const sectionsSteps = new fullpage('#fullpage', {
   anchors:['step-typeoperation',
            'step-typetransport',
@@ -68,11 +68,11 @@ const sectionsSteps = new fullpage('#fullpage', {
   loopTop: false,
   loopBottom: false,
 });
-/************************** OCULTAR LOS DEMÁS PASOS **************************/
+// =============== OCULTAR LOS DEMÁS PASOS ================= //
 function hiddenAllNextSteps(){
   sectionsSteps.setKeyboardScrolling(false);
 }
-/************************** ASIGNAR EL ID DEL TIPO DE TRANSPORTE **************************/
+// =============== ASIGNAR EL ID DEL TIPO DE TRANSPORTE ================== //
 $(".cont-MainCamelLog--c--contResumeCalc--item[data-advlevel=d-typetransportnumb]").html(`
   <input type="hidden" id="idtypetransportsendinit" name="idtypetransportsendinit" value="${ipt_idTypeTransport}">
 `);
@@ -639,7 +639,8 @@ $(document).on("keyup keypress blur change", "#ipt-valQuantityAmAddProdNInterfac
 /*========================================================================================
 =                         5. AGREGAR LAS DIMENSIONES DE LA CARGA                         =
 =========================================================================================*/
-/************************** RESPETAR EL MAX-LENGHT DEL INPUT **************************/
+/*
+// =================== RESPETAR EL MAX-LENGHT DEL INPUT ==================== //
 $(document).on("keyup keypress blur change", "#val-iptWeightNInterface", function(e){
   if ($(this).val().length >= parseInt($(this).attr('maxlength')) && e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
     return false;
@@ -656,14 +657,14 @@ $(document).on("keyup keypress blur change", "#val-iptVolumeNInterface", functio
     return false;
   }
 });
-/************************** MOSTRAR EL MODAL DE LA CALCULADORA VOLUMÉTRICA **************************/
+// ===================== MOSTRAR EL MODAL DE LA CALCULADORA VOLUMÉTRICA =================== //
 $(document).on("click","#link-showModalCalcVolum",function(){$("#cnt-modalFormCalculator").add($(".cnt-modalFormCalculator--c")).addClass("show");});
-/************************** CERRAR EL MODAL DE LA CALCULADORA VOLUMÉTRICA **************************/
+// ===================== CERRAR EL MODAL DE LA CALCULADORA VOLUMÉTRICA ================ //
 $(document).on("click","#btn-closeiconFormCalculator",function(){$("#cnt-modalFormCalculator").removeClass("show");});
 $(document).on("click","#btn-CancelCalcValueToCalculator",function(){$("#cnt-modalFormCalculator").removeClass("show");});
 let contModalCalcVolum = document.querySelector("#cnt-modalFormCalculator");
 contModalCalcVolum.addEventListener("click", e => { if(e.target === contModalCalcVolum) contModalCalcVolum.classList.remove("show");});
-/************************** CARGAR - UNIDADES DE MEDIDA **************************/
+// ===================== CARGAR - UNIDADES DE MEDIDA ===============0 //
 function list_measurement_units(){
   $.ajax({
     url: "controllers/list_measurement_units.php",
@@ -694,7 +695,7 @@ function list_measurement_units(){
     }
   });
 }
-/************************** VALIDAR SI SE SELECCIONÓ UN DATO VÁLIDO - UNIDAD DE LONGITUD **************************/
+// ==================== VALIDAR SI SE SELECCIONÓ UN DATO VÁLIDO - UNIDAD DE LONGITUD ========== //
 $("#val-Lengthselitem").on("change", function(){
   if($("#val-Lengthselitem").val() != 0){
     $("#msgNounLengthvalue").css({"display":"none"});
@@ -705,11 +706,11 @@ $("#val-Lengthselitem").on("change", function(){
     $(".cnt-modalFormCalculator--c--cForm--cBottom--cControls--control--c--cPrefixLong").find("span").text("");
   }
 
-  /************************** FIJAR EL PREFIJO PARA LAS UNIDADES DE MEDIDA **************************/
+  // ================= FIJAR EL PREFIJO PARA LAS UNIDADES DE MEDIDA ============= //
   var prefixunit = $("#val-Lengthselitem option:selected").attr("prefixunit");
   $(".cnt-modalFormCalculator--c--cForm--cBottom--cControls--control--c--cPrefixLong").find("span").text(prefixunit);
 });
-/************************** CARGAR - UNIDADES DE MEDIDA **************************/
+// =================== CARGAR - UNIDADES DE MEDIDA ============= //
 function list_mass_units(){
   $.ajax({
     url: "controllers/list_mass_units.php",
@@ -739,7 +740,7 @@ function list_mass_units(){
     }
   });
 }
-/************************** VALIDAR SI SE SELECCIONÓ UN DATO VÁLIDO - UNIDAD DE PESO **************************/
+// ===================== VALIDAR SI SE SELECCIONÓ UN DATO VÁLIDO - UNIDAD DE PESO ============== //
 $("#val-UnitWeightselitem").on("change", function(){
   if($(this).val() != 0){
     $("#msgNounUnitWeightvalue").css({"display":"none"});
@@ -749,26 +750,26 @@ $("#val-UnitWeightselitem").on("change", function(){
     $("#msgNounUnitWeightvalue").text("Campo requerido");
     $(".cnt-modalFormCalculator--c--cForm--cBottom--cControls--control--c--cPrefixWeight").find("span").text("");
   }
-  /************************** FIJAR EL PREFIJO PARA LAS UNIDADES DE PESO **************************/
+  // ================= FIJAR EL PREFIJO PARA LAS UNIDADES DE PESO ================== //
   var prefixunitWeight = $("#val-UnitWeightselitem option:selected").attr("prefixunitWeight");
   $(".cnt-modalFormCalculator--c--cForm--cBottom--cControls--control--c--cPrefixWeight").find("span").text(prefixunitWeight);
   $(".cnt-modalFormCalculator--c--cForm--cBottom--cControls--control--c--cPrefixWeight").find("span").attr("id-UnitWeight", $("#val-UnitWeightselitem option:selected").val());
 });
-/************************** VALIDAR SI CONTIENE UN VALOR - NRO DE BULTOS **************************/
+// ==================== VALIDAR SI CONTIENE UN VALOR - NRO DE BULTOS ================= //
 $(document).on("keyup", "#val-NroPackagestselitem", function(){ ($(this).val() != "") ? $("#msgNounNroPackagesvalue").text("") : $("#msgNounNroPackagesvalue").text("Campo requerido");});
-/************************** VALIDAR SI CONTIENE UN VALOR - LARGO **************************/
+// ==================== VALIDAR SI CONTIENE UN VALOR - LARGO =================== //
 $(document).on("keyup", "#val-Longinputitem", function(){ ($(this).val() != "") ? $("#msgNounLongvalue").text("") : $("#msgNounLongvalue").text("Campo requerido");});
-/************************** VALIDAR SI CONTIENE UN VALOR - ANCHO **************************/
+// ==================== VALIDAR SI CONTIENE UN VALOR - ANCHO =================== //
 $(document).on("keyup", "#val-Widthinputitem", function(){  ($(this).val() != "") ? $("#msgNounWidthvalue").text("") : $("#msgNounWidthvalue").text("Campo requerido");});
-/************************** VALIDAR SI CONTIENE UN VALOR - ALTO **************************/
+// ==================== VALIDAR SI CONTIENE UN VALOR - ALTO ================= //
 $(document).on("keyup", "#val-Heightinputitem", function(){ ($(this).val() != "") ? $("#msgNounHeightvalue").text("") : $("#msgNounHeightvalue").text("Campo requerido");});
-/************************** VALIDAR SI CONTIENE UN VALOR - PESO **************************/
+// ==================== VALIDAR SI CONTIENE UN VALOR - PESO ================= //
 $(document).on("keyup", "#val-Weightinputitem", function(){ ($(this).val() != "") ? $("#msgNounWeightvalue").text("") : $("#msgNounWeightvalue").text("Campo requerido");});
 
-/************************** CREAR OBJETO PARA ALMACENAR LOS CÁLCULOS EN LA TABLA DEL MODAL **************************/
+// ==================== CREAR OBJETO PARA ALMACENAR LOS CÁLCULOS EN LA TABLA DEL MODAL ================ //
 var calculateDataUser = [];
 var calculateTotal = [];
-/************************** FUNCIÓN PARA AGREGAR DATOS AL OBJETO DE CÁLCULO **************************/
+// ==================== FUNCIÓN PARA AGREGAR DATOS AL OBJETO DE CÁLCULO =============== //
 function addCalculationData(cpackages, cweight, ctotal, cprefix){
   var listobjCalcData = {
     packages: cpackages,
@@ -778,7 +779,7 @@ function addCalculationData(cpackages, cweight, ctotal, cprefix){
   };
   calculateDataUser.push(listobjCalcData);
 }
-/************************** CALCULAR Y AGREGAR EL VALOR DEBAJO DEL BOTÓN CALCULAR **************************/
+// ==================== CALCULAR Y AGREGAR EL VALOR DEBAJO DEL BOTÓN CALCULAR =============== //
 $(document).on("click", "#btn-addCalculateFleteModal", function(e){
   e.preventDefault();
   ($("#val-Lengthselitem").val() != 0) ? $("#msgNounLengthvalue").text("") : $("#msgNounLengthvalue").text("Campo requerido");
@@ -830,7 +831,7 @@ $(document).on("click", "#btn-addCalculateFleteModal", function(e){
     //  placeDestiny: $("#input-vallistdestiny").val()
     // };
 
-    /************************** AGREGAR Y SUMAR A LOS TOTALES **************************/
+    // ===================== AGREGAR Y SUMAR A LOS TOTALES =================== //
     var ObjDataAddTable = {
       nroPackagesResult: $("#val-NroPackagestselitem").val(),
       valWeightResult: $("#val-Weightinputitem").val(),
@@ -854,14 +855,14 @@ $(document).on("click", "#btn-addCalculateFleteModal", function(e){
       list_Calculation_Total();
     }
 
-    /************************** LIMPIAR LOS CONTROLES **************************/
+    // ====================== LIMPIAR LOS CONTROLES ================ //
     $("#f-formCalcModalSendInfo")[0].reset();
 
   }else{
     console.log('Información incompleta');
   }
 });
-/************************** REUNIR TODOS LOS TOTALES **************************/
+// ====================== REUNIR TODOS LOS TOTALES =================== //
 function Add_Calculation_Total(totalPacks, totalWeight, totalVolume){
   listObjCalcTotal = {
     packagesTotal: totalPacks,
@@ -870,7 +871,7 @@ function Add_Calculation_Total(totalPacks, totalWeight, totalVolume){
   };
   calculateTotal.push(listObjCalcTotal);
 }
-/************************** SUMAR TODOS LOS TOTALES Y MOSTRARLOS **************************/
+// ======================= SUMAR TODOS LOS TOTALES Y MOSTRARLOS ================== //
 function list_Calculation_Total(){
   listCalcTotal = calculateTotal;
   for (var i = 0; i < listCalcTotal.length; i++) {
@@ -879,7 +880,7 @@ function list_Calculation_Total(){
     $("#b-valTotalVolume").val(listCalcTotal[i].volumeTotal++);
   }
 }
-/************************** LISTAR TODOS LOS CALCULOS PREVIOS **************************/
+// ======================== LISTAR TODOS LOS CALCULOS PREVIOS ==================== //
 function list_Calculation_data(){
   
   var listCalc = calculateDataUser;
@@ -924,7 +925,7 @@ function list_Calculation_data(){
     }
   }
 }
-/************************** ELIMINAR UN CÁLCULO **************************/
+// ======================= ELIMINAR UN CÁLCULO =================== //
 $(document).on("click", ".del-calculation-item", function(e){
   e.preventDefault();
 
@@ -933,22 +934,22 @@ $(document).on("click", ".del-calculation-item", function(e){
   var thisid = $(this).parent().parent();
   
   $.each(thisid, function(i, v){
-    /************************** OBTENER VALORES DE LAS COLUMNAS *************************/
+    // ===================== OBTENER VALORES DE LAS COLUMNAS ================= //
     var restPackages = $(this).find("td").eq(2).text();
     var restWeight = $(this).find("td").eq(3).find("span:first-child").text();
     var restVolume = $(this).find("td").eq(4).find("span:first-child").text();
 
-    /************************** OBTENER EL VALOR DE LOS CONTROLES *************************/
+    // ===================== OBTENER EL VALOR DE LOS CONTROLES ==================== //
     var valTotalResultPackages = $("#b-valTotalPackages").val();
     var valTotalResultWeight = $("#b-valTotalWeight").val();
     var valTotalResultVolume = $("#b-valTotalVolume").val();
 
-    /************************** RESTAR A LOS TOTALES *************************/
+    // ===================== RESTAR A LOS TOTALES ================== //
     valTotalResultPackages = valTotalResultPackages - parseFloat(restPackages);
     valTotalResultWeight = valTotalResultWeight - parseFloat(restWeight);
     valTotalResultVolume = valTotalResultVolume - parseFloat(restVolume);
 
-    /************************** VALIDACIÓN DE DECIMALES ANTES DE FIJAR EL VALOR **************************/
+    // ===================== VALIDACIÓN DE DECIMALES ANTES DE FIJAR EL VALOR ============== //
     var valdecimalTwoFinal  = valTotalResultVolume - Math.trunc(valTotalResultVolume);
     var valdecimalvalidationFinal = valdecimalTwoFinal.toFixed(2);
     var valTotalvolumenfinal = 0;
@@ -958,22 +959,22 @@ $(document).on("click", ".del-calculation-item", function(e){
       valTotalvolumenfinal = parseFloat(valTotalResultVolume).toFixed(2);
     }
 
-    /************************** DEVOLVER LA RESTA A LOS INPUTS DE TOTALES **************************/
+    // ====================== DEVOLVER LA RESTA A LOS INPUTS DE TOTALES ==================== //
     $("#b-valTotalPackages").val(valTotalResultPackages);
     $("#b-valTotalWeight").val(valTotalResultWeight);
     $("#b-valTotalVolume").val(valTotalvolumenfinal);
 
-    /************************** AÑADIR LOS TOTALES AL LISTADO DE RESUMEN **************************/
+    // ====================== AÑADIR LOS TOTALES AL LISTADO DE RESUMEN =================== //
     
     
-    /************************** ELIMINAR FILA **************************/
+    // ====================== ELIMINAR FILA =================== //
     $(this).remove();
     delListCalc.splice($(this), 1);
   });
 
   if(delListCalc.length == 0){
     list_Calculation_data();
-    /************************** RELLENAR LOS INPUT DE TOTALES CON 0 **************************/
+    // ====================== RELLENAR LOS INPUT DE TOTALES CON 0 ================= //
     $("#b-valTotalPackages").val(0);
     $("#b-valTotalWeight").val(0);
     $("#b-valTotalVolume").val(0);
@@ -981,13 +982,13 @@ $(document).on("click", ".del-calculation-item", function(e){
     list_Calculation_data();
   }
 });
-/************************** CERRAR EL MODAL SIN GUARDAR LOS CAMBIOS **************************/
+// ================== CERRAR EL MODAL SIN GUARDAR LOS CAMBIOS ================ //
 $(document).on("click", "#btn-CancelCalcValueToCalculator", function(e){
   e.preventDefault();
   $("#cnt-modalFormCalculator").removeClass("show");
   $(".cnt-modalFormCalculator--c").removeClass("show");
 });
-/************************** AGREGAR LOS VALORES AL PRIMER MODAL **************************/
+// ================== AGREGAR LOS VALORES AL PRIMER MODAL ==================== //
 $(document).on("click", "#btn-addCalcValueToCalculator", function(e){
   e.preventDefault();
 
@@ -1003,23 +1004,23 @@ $(document).on("click", "#btn-addCalcValueToCalculator", function(e){
      $("#b-valTotalWeight").val() != "" && $("#b-valTotalWeight").val() != 0 &&
      $("#b-valTotalVolume").val() != "" && $("#b-valTotalVolume").val() != 0){
 
-    /************************** OBTENER LOS VALORES DE LOS TOTALES **************************/
+    // ==================== OBTENER LOS VALORES DE LOS TOTALES =============== //
     var valCalculadoPackages = $("#b-valTotalPackages").val();
     var valCalculadoWeight = $("#b-valTotalWeight").val();
     var valCalculadoVolume = $("#b-valTotalVolume").val();
     var valCalculadoWeightPrefix = $("#b-valTotalWeight").parent().find("div").find("span").text();
     var valCalculadoVolumePrefix = $("#b-valTotalVolume").parent().find("div").find("span").text();
-    /************************** DEVOLVER LOS VALORES A LAS CAJAS DE TEXTO ANTERIOR **************************/
+    // ==================== DEVOLVER LOS VALORES A LAS CAJAS DE TEXTO ANTERIOR ================= //
     $("#val-iptPackagesNInterface").val(valCalculadoPackages);
     $("#val-iptWeightNInterface").val(valCalculadoWeight);
     $("#val-iptVolumeNInterface").val(valCalculadoVolume);
     
-    /************************** SOBREESCRIBIR VALORES DEL LOCALSTORAGE **************************/
+    // ===================== SOBREESCRIBIR VALORES DEL LOCALSTORAGE ============== //
     localStorage.setItem("tot_packages", valCalculadoPackages);
     localStorage.setItem("tot_weight", valCalculadoWeight);
     localStorage.setItem("tot_volume", valCalculadoVolume);
 
-    /************************** AÑADIR LOS TOTALES AL LISTADO DE RESUMEN **************************/
+    // ===================== AÑADIR LOS TOTALES AL LISTADO DE RESUMEN =================== //
     $(".cont-MainCamelLog--c--contResumeCalc--item--cardStep--cIconStepLeft[data-merchandise=rsm-totpackages]").find("span:first-child").text("Bultos");
     $(".cont-MainCamelLog--c--contResumeCalc--item--cardStep--cIconStepLeft[data-merchandise=rsm-totpackages]").find("span:nth-child(2)").text(valCalculadoPackages);
     $(".cont-MainCamelLog--c--contResumeCalc--item--cardStep--cIconStepLeft[data-merchandise=rsm-totweight]").find("span:first-child").text("Peso(Kg)");
@@ -1027,7 +1028,7 @@ $(document).on("click", "#btn-addCalcValueToCalculator", function(e){
     $(".cont-MainCamelLog--c--contResumeCalc--item--cardStep--cIconStepLeft[data-merchandise=rsm-totvolume]").find("span:first-child").text("Volumen(M³)");
     $(".cont-MainCamelLog--c--contResumeCalc--item--cardStep--cIconStepLeft[data-merchandise=rsm-totvolume]").find("span:nth-child(2)").text(valCalculadoVolume);
 
-    /************************** OCULTAR Y LIMPIAR EL MODAL **************************/
+    // ===================== OCULTAR Y LIMPIAR EL MODAL ================== //
     $("#cnt-modalFormCalculator").removeClass("show");
     $(".cnt-modalFormCalculator--c").removeClass("show");
     $("#detail-CalcToModalAssoc").addClass("show");
@@ -1042,13 +1043,13 @@ $(document).on("click", "#btn-addCalcValueToCalculator", function(e){
     console.log('No hay registros a fijar');
   }
 });
-/************************** VALIDAR EL BOTÓN DE PASO SIGUIENTE DESDE - DIMENSIONES DE CARGA **************************/
+// =================== VALIDAR EL BOTÓN DE PASO SIGUIENTE DESDE - DIMENSIONES DE CARGA ================= //
 $(document).on("click", "#btn-NextStepTochargedata", function(){
   if($("#val-iptPackagesNInterface").val() != 0 && $("#val-iptPackagesNInterface").val() != "" &&
      $("#val-iptWeightNInterface").val() != 0 && $("#val-iptWeightNInterface").val() != "" &&
      $("#val-iptVolumeNInterface").val() != 0 && $("#val-iptVolumeNInterface").val() != ""){
 
-    /************************** ASIGNAR A LAS VARIABLES GLOBALES **************************/
+    // ================ ASIGNAR A LAS VARIABLES GLOBALES ================== //
     v_ValQuantityPackages = $("#val-iptPackagesNInterface").val();
     v_ValTotalWeight = $("#val-iptWeightNInterface").val();
     v_ValTotalVolume = $("#val-iptVolumeNInterface").val();
@@ -1061,10 +1062,10 @@ $(document).on("click", "#btn-NextStepTochargedata", function(){
 
   }else{
 
-    /************************** OCULTAR EL PASO DE - ELIGE UNA OPCIÓN **************************/
+    // ===================== OCULTAR EL PASO DE - ELIGE UNA OPCIÓN =================== //
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-integservorfleteinte]").removeClass("show");
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-integservorfleteinte]").html("");
-    /************************** MOSTRAR EL MENSAJE DE ALERTA PERSONALIZADO **************************/
+    // ===================== MOSTRAR EL MENSAJE DE ALERTA PERSONALIZADO ================== //
     $("#idMessageSteps-prcss").html(`
       <div class="cntMessageSteps-prcss--cont">
         <div class="cntMessageSteps-prcss--cont--c">
@@ -1074,7 +1075,7 @@ $(document).on("click", "#btn-NextStepTochargedata", function(){
         </div>
       </div>
     `)
-    /************************** CERRAR EL MODAL **************************/
+    // ==================== CERRAR EL MODAL ================ //
     setTimeout(function(){
       $("#idMessageSteps-prcss .cntMessageSteps-prcss--cont").remove();
     }, 6500)
@@ -1083,10 +1084,12 @@ $(document).on("click", "#btn-NextStepTochargedata", function(){
     });
   }
 });
+*/
 /*=====================================================================================
 =                         6. AGREGAR LOS DATOS DE MERCANCÍA                           =
 ======================================================================================*/
-/************************** LISTAR LOS TIPOS DE PRODUCTOS **************************/
+/*
+// ======================= LISTAR LOS TIPOS DE PRODUCTOS ================= //
 function listProductsUser(searchVal){
   $.ajax({
     url: "controllers/list_products.php",
@@ -1144,7 +1147,7 @@ function listProductsUser(searchVal){
     }
   });
 }
-/************************** MOSTRAR EL LISTADO DE TIPOS DE PRODUCTOS **************************/
+// ===================== MOSTRAR EL LISTADO DE TIPOS DE PRODUCTOS =================== //
 $(document).on("focus", "#ipt-valNameTypeProdNInterface", function(){
   $("#m-listAllNamTypeProds").addClass("show");
   listProductsUser();
@@ -1163,17 +1166,17 @@ $(document).on("keyup keydown", "#ipt-valNameTypeProdNInterface", function(e){
   }
 
   if(e.which == 8 || event.keyCode == 46){
-    /************************** OCULTAR EL SIGUIENTE PASO **************************/
+    // =================== OCULTAR EL SIGUIENTE PASO =================== //
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-insuremerchandise]").removeClass("show");
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-insuremerchandise]").html("");
-    /************************** OCULTAR EL TRASSIGUIENTE PASO **************************/
+    // =================== OCULTAR EL TRASSIGUIENTE PASO ================= //
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-requirespickup]").removeClass("show");
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-requirespickup]").html("");
   }else{
     //console.log('Con contenido');
   }
 });
-/************************** FIJAR EL VALOR DE ITEM EN EL INPUT - TIPOS DE PRODUCTOS **************************/
+// ==================== FIJAR EL VALOR DE ITEM EN EL INPUT - TIPOS DE PRODUCTOS ================= //
 $(document).on("click", ".cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl--cListChange--m--item", function(){
   $("#m-listAllNamTypeProds").removeClass("show");
   $("#ipt-valNameTypeProdNInterface").attr("idproduct", $(this).attr("id"));
@@ -1181,14 +1184,14 @@ $(document).on("click", ".cont-MainCamelLog--c--contSteps--item--cStep--mFrmIpts
   var taxationOneVal = parseFloat($(this).attr("data-taxone"));
   var taxationTwoVal = parseFloat($(this).attr("data-taxtwo"));
   var taxationThreeVal = parseFloat($(this).attr("data-taxthree"));
-  /************************** ASIGNAR A LA VARIABLE LOCAL DE IMPUESTOS DE PRODUCTO PARA IGV **************************/
+  // ====================== ASIGNAR A LA VARIABLE LOCAL DE IMPUESTOS DE PRODUCTO PARA IGV ================= //
   localStorage.setItem("key_v-nametypeproduct", $(this).find("p").text()); //NOMBRE DEL TIPO DE PRODUCTO
   localStorage.setItem("key_v-valuestaxOnebyigv", taxationOneVal); //VALOR DE AD-VALOREN
   localStorage.setItem("key_v-valuestaxTwobyigv", taxationTwoVal); //VALOR DE IMPUESTO SELECCTIVO
   localStorage.setItem("key_v-valuestaxThreebyigv", taxationThreeVal); //VALOR DE ANTIDUMPING
-  /************************** ASIGNAR A LA VARIABLE LOCAL **************************/
+  // ===================== ASIGNAR A LA VARIABLE LOCAL ===================== //
   localStorage.setItem("key_v-dbammountadditional", $(this).attr("data-amountadditional"));
-  /************************** MOSTRAR/OCULTAR DE ACUERDO A EL VALOR DEL MONTO ADICIONAL **************************/
+  // ===================== MOSTRAR/OCULTAR DE ACUERDO A EL VALOR DEL MONTO ADICIONAL =================== //
   if($(this).attr("data-amountadditional") != 0 || $(this).attr("data-amountadditional") != 0.00){
     $("#ipt-valCantOfAmountAdditional").html(`
       <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl">
@@ -1201,16 +1204,16 @@ $(document).on("click", ".cont-MainCamelLog--c--contSteps--item--cStep--mFrmIpts
   }else{
     $("#ipt-valCantOfAmountAdditional").html("");
   }
-  /************************** ASIGNAR VALORES DE LOS INPUTS HIDDEN - MERCANCÍA **************************/
+  // =================== ASIGNAR VALORES DE LOS INPUTS HIDDEN - MERCANCÍA =================== //
   $("#val-categProdquot").val($(this).find("p").text());
   $("#val-reqPermisoProdquot").val($(this).find("small").find("span:nth-child(2)").text());
 });
-/************************** VALIDAR INPUT - CANTIDAD DE PRODUCTOS CON MONTO ADICIONAL **************************/
+// ===================== VALIDAR INPUT - CANTIDAD DE PRODUCTOS CON MONTO ADICIONAL ================== //
 $(document).on("keyup keypress blur change", "#ipt-valQuantityAmAddProdNInterface", function(e){
   if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
     return false;
   }else{
-    /************************** LIMITAR EL MÁXMIMO DE CARACTERES **************************/
+    // ================= LIMITAR EL MÁXMIMO DE CARACTERES ================ //
     if( $(this).val().length >= parseInt($(this).attr('maxlength')) && (e.which != 8 && e.which != 0)){
       return false;
     }
@@ -1220,19 +1223,19 @@ $(document).on("keyup keypress blur change", "#ipt-valQuantityAmAddProdNInterfac
   $(this).val(function(i, v) {
     return v.replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d)\.?)/g, ".");
   });
-  /************************** AGREGAR AL INPUT DE ENVÍO POST Y AGREGAR A LA VARIABLE LOCAL **************************/
+  // ================== AGREGAR AL INPUT DE ENVÍO POST Y AGREGAR A LA VARIABLE LOCAL =============== //
   $("#val-quantityProdsAmmAdd").val(e.target.value);
   localStorage.setItem("key_v-ammountadditional", e.target.value);
-  /************************** ASIGNAR A LA VARIABLE LOCAL **************************/
+  // ================== ASIGNAR A LA VARIABLE LOCAL ================= //
   localStorage.setItem("key_v-totalammountadditional", localStorage.getItem("key_v-dbammountadditional") * value);
 
 });
-/************************** VALIDAR INPUT - VALOR DE PRODUCTO IMPORTADO **************************/
+// ==================== VALIDAR INPUT - VALOR DE PRODUCTO IMPORTADO ================ //
 $(document).on("input", "#ipt-valPriceProdNInterface", function(e){
   if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
     return false;
   }else{
-    /************************** LIMITAR EL MÁXMIMO DE CARACTERES **************************/
+    // ================= LIMITAR EL MÁXMIMO DE CARACTERES =================== //
     if( $(this).val().length >= parseInt($(this).attr('maxlength')) && (e.which != 8 && e.which != 0)){
       return false;
     }
@@ -1243,56 +1246,56 @@ $(document).on("input", "#ipt-valPriceProdNInterface", function(e){
   $(this).val(function(i, v) {
     return v.replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d)\.?)/g, ".");
   });
-  /************************** ASIGNAR VALORES DE LOS INPUTS HIDDEN - MERCANCÍA **************************/
+  // ================= ASIGNAR VALORES DE LOS INPUTS HIDDEN - MERCANCÍA ================== //
   $("#val-valProdquot").val($(this).val());
-  /************************** ASIGNAR A LA VARIABLE LOCAL **************************/
+  // ================= ASIGNAR A LA VARIABLE LOCAL ==================== //
   localStorage.setItem("key_v-valueproduct", $(this).val());
   if(e.target.value == "" || e.target.value == 0){
-    /************************** OCULTAR EL SIGUIENTE PASO **************************/
+    // ================== OCULTAR EL SIGUIENTE PASO ================== //
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-insuremerchandise]").removeClass("show");
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-insuremerchandise]").html("");
-    /************************** OCULTAR EL TRASSIGUIENTE PASO **************************/
+    // ================== OCULTAR EL TRASSIGUIENTE PASO ================== //
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-requirespickup]").removeClass("show");
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-requirespickup]").html("");
   }else{
     //console.log("Campo completado");
   }
 });
-/************************** VALIDAR SI HAY ALGÚN VALOR EN EL CONTROL - VALOR DE PRODUCTO IMPORTADO **************************/
+// ===================== VALIDAR SI HAY ALGÚN VALOR EN EL CONTROL - VALOR DE PRODUCTO IMPORTADO ================= //
 $(document).on("change input keyup", "#ipt-valPriceProdNInterface", function(e){
   if(e.target.value == "" || e.target.value == 0){
-    /************************** OCULTAR EL SIGUIENTE PASO **************************/
+    // ================= OCULTAR EL SIGUIENTE PASO ================ //
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-insuremerchandise]").removeClass("show");
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-insuremerchandise]").html("");
-    /************************** OCULTAR EL TRASSIGUIENTE PASO **************************/
+    // ================= OCULTAR EL TRASSIGUIENTE PASO ================= //
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-requirespickup]").removeClass("show");
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-requirespickup]").html("");
   }else{
     //console.log("Campo completado");
   }
 });
-/************************** VALIDAR SI CONTIENE ALGÚN VALOR NULO O 0 **************************/
+// ==================== VALIDAR SI CONTIENE ALGÚN VALOR NULO O 0 =================== //
 $(document).on("keyup", "#ipt-valPriceProdNInterface", function(){
   if($(this).val() == "" || $(this).val() == 0 || $(this).val() == " USD" || $(this).val() == ".00" || $(this).val() == 0.00){
     $("#MsgItemValueProdRequired").text("Ingrese valor exacto, SIN DECIMALES");
     $(this).val("");
-    /************************** OCULTAR EL SIGUIENTE PASO **************************/
+    // ================= OCULTAR EL SIGUIENTE PASO ================= //
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-insuremerchandise]").removeClass("show");
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-insuremerchandise]").html("");
-    /************************** OCULTAR EL TRASSIGUIENTE PASO **************************/
+    // ================= OCULTAR EL TRASSIGUIENTE PASO ================ //
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-requirespickup]").removeClass("show");
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-requirespickup]").html("");
   }else{
     $("#MsgItemValueProdRequired").text("");
   }
 });
-/************************** SWITCH DE IMPORTACIONES PREVIAS **************************/
+// =============== SWITCH DE IMPORTACIONES PREVIAS ============== //
 $(document).on("click", "#chck-importpreview", function(){
   if($(this).is(":checked")){
     $(this).parent().addClass("active");
     $(this).parent().attr("switch-CFreeze", "SÍ");
     var yesImportPrev = $(this).parent().attr("switch-CFreeze");
-    /************************** ASIGNAR VALORES DE LOS INPUTS HIDDEN - MERCANCÍA **************************/
+    // ===================== ASIGNAR VALORES DE LOS INPUTS HIDDEN - MERCANCÍA =============== //
     $("#val-prevImports").val(yesImportPrev);
 
     $.ajax({
@@ -1302,14 +1305,14 @@ $(document).on("click", "#chck-importpreview", function(){
       contentType: 'application/x-www-form-urlencoded;charset=UTF-8'
     }).done(function(e){
       var resultTaximport = JSON.parse(e);
-      /************************** ASIGNAR A LA VARIABLE LOCAL **************************/
+      // ================= ASIGNAR A LA VARIABLE LOCAL ================== //
       localStorage.setItem("key_v-valuestaxationimport", resultTaximport[0].data_value);
     });
   }else{
     $(this).parent().removeClass("active");
     $(this).parent().attr("switch-CFreeze", "NO");
     var notImportPrev = $(this).parent().attr("switch-CFreeze");
-    /************************** ASIGNAR VALORES DE LOS INPUTS HIDDEN - MERCANCÍA **************************/
+    // ================ ASIGNAR VALORES DE LOS INPUTS HIDDEN - MERCANCÍA ============= //
     $("#val-prevImports").val(notImportPrev);
 
     $.ajax({
@@ -1319,8 +1322,9 @@ $(document).on("click", "#chck-importpreview", function(){
       contentType: 'application/x-www-form-urlencoded;charset=UTF-8'
     }).done(function(e){
       var resultTaximport = JSON.parse(e);
-      /************************** ASIGNAR A LA VARIABLE LOCAL **************************/
+      // ==================== ASIGNAR A LA VARIABLE LOCAL ================ //
       localStorage.setItem("key_v-valuestaxationimport", resultTaximport[0].data_value_two);
     });
   }
 });
+*/
