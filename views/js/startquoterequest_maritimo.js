@@ -3,7 +3,7 @@ $(() => {
   ChangesSibblingsLinks(); // CAMBIAR ENTRE ENLACES HERMANOS Y OCULTAR LOS PASOS SIGUIENTES
   hiddenAllNextSteps(); // OCULTAR LOS PASOS SIGUIENTES
 	listPortOriginandDestiny(); // LISTAR LOS PUERTOS DE ORIGEN Y DE DESTINO DE ACUERDO AL ID RECIBIDO POR POST
-	list_measurement_units(); // LISTAR LAS UNIDADES DE MEDIDAD EN EL MODAL
+	list_measurement_units(); // LISTAR LAS UNIDADES DE MEDIDA EN EL MODAL
 	list_mass_units(); // LISTAR LAS UNIDADES DE MASA EN EL MODAL
 	listProductsUser(); // LISTAR LOS TIPOS DE PRODUCTOS
 	listrateLCLTransport(); // LISTAR LOS DISTRITOS DE ACUERDO AL PAÍS DE DESTINO
@@ -2630,7 +2630,7 @@ $(document).on("click", "#btn-NextStepTochargedata", function(){
                 <p class="cntMessageSteps-prcss--cont--c--text">El <b>VOLUMEN</b> registrado no debe exceder los <b>15 M³</b>, seleccione <b>CONTENEDOR COMPLETO o contacte a un ASESOR +51 990 234 625.</b></p>
               </div>
             </div>
-          `)
+          `);
           /************************** CERRAR EL MODAL **************************/
           setTimeout(function(){
             $("#idMessageSteps-prcss .cntMessageSteps-prcss--cont").remove();
