@@ -17,10 +17,6 @@ function refreshIdCodeGenRandom(){
   }).done(function(e){
     $("#ipt-vidcodgenrand").val(e);
   });
-  /*
-  setInterval(function(){
-  }, 100);
-  */
 }
 ////OTRAS TAREAS - MEJORA DE UI Y UX
 /*- Mostrar al inicio solo los pasos a usar antes de cada elección, luego ir añadiendo o quitando de acuerdo a los elementos seleccionados*/
@@ -53,8 +49,9 @@ const sectionsSteps = new fullpage('#fullpage', {
            'step-qcontainers',
            'step-chargedata',
   				 'step-merchandisedata',
-           'step-typetransport',
   				 'step-requirespickup',
+           'step-fletevaldata',
+           'step-typetransport',
   				 'step-pickuplocation'],
   verticalCentered: false,
   scrollingSpeed: 500,
@@ -74,9 +71,14 @@ function hiddenAllNextSteps(){
 $(".cont-MainCamelLog--c--contResumeCalc--item[data-advlevel=d-typetransportnumb]").html(`
   <input type="hidden" id="idtypetransportsendinit" name="idtypetransportsendinit" value="${ipt_idTypeTransport}">
 `);
-/*====================================================================================
-=                         2. ELEGIR EL TIPO DE OPERACIÓN                             =
-====================================================================================*/
+
+
+
+
+
+// ================================================================================== //
+//                        1. ELEGIR EL TIPO DE OPERACIÓN                             
+// ================================================================================== //
 $(document).on("click", "#list-typeOperationItems a", function(){
   var tTypeOperation = $(this).index();
   if(tTypeOperation == 0){
@@ -187,9 +189,11 @@ $(document).on("click", "#list-typeOperationItems a", function(){
 
 
 
-/*=======================================================================================
-=                             3. ELEGIR EL TIPO DE CARGA                                =
-=========================================================================================*/
+
+
+// ================================================================================== //
+//                         2. ELEGIR EL TIPO DE CARGA                                
+// ================================================================================== //
 $(document).on("click", "#list-typeChargeLoadItems a", function(){
   var tTypeChargeLoad = $(this).index();
   if(tTypeChargeLoad == 0){
@@ -569,10 +573,9 @@ $(document).on("click", "#list-typeChargeLoadItems a", function(){
 
 
 
-/*========================================================================================
-=                         5. AGREGAR LAS DIMENSIONES DE LA CARGA                         =
-=========================================================================================*/
-
+// ================================================================================== //
+//                         3. AGREGAR LAS DIMENSIONES DE LA CARGA                        
+// ================================================================================== //
 // =================== RESPETAR EL MAX-LENGHT DEL INPUT ==================== //
 $(document).on("keyup keypress blur change", "#val-iptWeightNInterface", function(e){
   if ($(this).val().length >= parseInt($(this).attr('maxlength')) && e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
@@ -1087,10 +1090,6 @@ $(document).on("click", "#btn-NextStepTochargedata", function(){
     });
   }
 });
-
-
-
-
 // =============== DEVOLVER EL VALOR DE LOS CONTROLES (DIMENSIONES DE CARGA) AL RESUMEN DEL PROCESO ================ //
 $(document).on("change input keyup", "#val-iptPackagesNInterface", function(e){
   $(".cont-MainCamelLog--c--contResumeCalc--item--cardStep--cIconStepLeft[data-merchandise=rsm-totpackages]").find("span:first-child").text("Bultos");
@@ -1135,9 +1134,10 @@ $(document).on("change input keyup", "#val-iptVolumeNInterface", function(e){
 
 
 
-// ===================================================================================== //
-//                       6. AGREGAR LOS DATOS DE MERCANCÍA                           
-// ===================================================================================== //
+
+// =================================================================================== //
+//                       4. AGREGAR LOS DATOS DE MERCANCÍA                           
+// =================================================================================== //
 // ======================= LISTAR LOS TIPOS DE PRODUCTOS ================= //
 function listProductsUser(searchVal){
   $.ajax({
@@ -1351,9 +1351,9 @@ $(document).on("change input keyup", "#ipt-valPriceProdNInterface", function(e){
     }
 
     $("#s-caseNextStepTomerchandisedata").html(`
-      <button type="submit" class="cont-MainCamelLog--c--contSteps--item--cBtnNextStep--btnR" id="btn-CalcQuoteToMerchandiseData-2">
-        <span>CALCULAR COTIZACIÓN</span>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 125" x="0px" y="0px"><g data-name="13-Quotation"><path d="M53.47,77.72h.88a1.06,1.06,0,0,0,0-2.12H19.46V7.19H61.17V22.81a1.06,1.06,0,0,0,1.06,1.06H77.1V65.09a1.06,1.06,0,0,0,2.11,0V22.81s0,0,0-.07a2.38,2.38,0,0,0,0-.26l0-.1a1.17,1.17,0,0,0-.19-.3L63,5.41a1,1,0,0,0-.79-.32H18.41a1.05,1.05,0,0,0-1.06,1.06V75.6H6.11a1.06,1.06,0,0,0-1.05,1.06c0,7.43,5.29,13.47,11.79,13.47h37.5a1.06,1.06,0,1,0,0-2.12H16.85c-5,0-9.18-4.53-9.64-10.29H53.47ZM63.28,8.83l12.4,12.92H63.28Z"/><path d="M73.84,64V33.17a1.05,1.05,0,0,0-1.06-1.06h-49a1.05,1.05,0,0,0-1.06,1.06V64a1.05,1.05,0,0,0,1.06,1.06h49A1.05,1.05,0,0,0,73.84,64ZM71.73,38.29H39.25V34.22H71.73Zm-39.4,0V34.22h4.81v4.07Zm4.81,2.11V63H32.33V40.4ZM24.83,34.22h5.38v4.07H24.83Zm0,6.18h5.38V63H24.83ZM39.25,63V40.4H71.73V63Z"/><path d="M60.49,69.27a1.05,1.05,0,0,0-1.06-1.06H55.81a1.06,1.06,0,1,0,0,2.11h3.62A1.05,1.05,0,0,0,60.49,69.27Z"/><path d="M51.57,69.27a.95.95,0,1,0,1-1A.95.95,0,0,0,51.57,69.27Z"/><path d="M23,17.73H34.47a1.06,1.06,0,0,0,0-2.11H23a1.06,1.06,0,1,0,0,2.11Z"/><path d="M23,21.52H38.36a1.06,1.06,0,0,0,0-2.12H23a1.06,1.06,0,0,0,0,2.12Z"/><path d="M42.48,20.46a.95.95,0,1,0-.94.95A.95.95,0,0,0,42.48,20.46Z"/><path d="M71.47,75.84a2,2,0,0,1,2,2,1.06,1.06,0,0,0,1,1.1,1,1,0,0,0,1.09-1,4,4,0,0,0-3-4l0-.75a1.06,1.06,0,0,0-2.11-.08l0,.75a4,4,0,0,0-3.25,3.74,4,4,0,0,0,1.12,2.9,4.21,4.21,0,0,0,2.88,1.27,2.12,2.12,0,0,1,1.44.63,1.82,1.82,0,0,1,.53,1.35,2.05,2.05,0,0,1-4.09-.16,1.07,1.07,0,0,0-1-1.1,1,1,0,0,0-1.1,1,4,4,0,0,0,2.95,4l0,.68a1.05,1.05,0,0,0,1,1.1h0a1.06,1.06,0,0,0,1.05-1l0-.67a4,4,0,0,0,3.25-3.75,4,4,0,0,0-1.12-2.9,4.25,4.25,0,0,0-2.88-1.27A2.12,2.12,0,0,1,69.88,79a1.82,1.82,0,0,1-.53-1.35A2,2,0,0,1,71.47,75.84Z"/><path d="M83.67,92.54a1,1,0,0,0-1-.78,6.53,6.53,0,0,1-3.2-1,13.68,13.68,0,1,0-8.67,3.1A13.48,13.48,0,0,0,74,93.52,8.58,8.58,0,0,0,78.77,95a8.68,8.68,0,0,0,2.31-.31L83,94.15a1,1,0,0,0,.74-1.29Zm-6.67-1a8.39,8.39,0,0,0,1.88,1.32,6.37,6.37,0,0,1-4.07-1.34,1.08,1.08,0,0,0-.64-.22,1.26,1.26,0,0,0-.28,0,11.79,11.79,0,0,1-3.08.43,11.59,11.59,0,1,1,6.32-1.89,1.07,1.07,0,0,0-.47.8A1,1,0,0,0,77,91.56Z"/></g></svg>
+      <button type="button" class="cont-MainCamelLog--c--contSteps--item--cBtnNextStep--btn" id="btn-NextStepTomerchandisedata">
+        <span>Seguir</span>
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 100 125" enable-background="new 0 0 100 100" xml:space="preserve"><g><g><polygon points="19.318,43.363 19.318,61.189 49.497,95 79.675,61.189 79.675,43.363 49.497,77.174   "/><polygon points="50.504,38.811 20.326,5 20.326,24.872 49.497,60.537 79.675,24.872 80.682,5   "/></g></g></svg>
       </button>
     `);
   }
@@ -1432,9 +1432,9 @@ $(document).on("keyup keypress blur change", "#ipt-valQuantityAmAddProdNInterfac
         });
 
         $("#s-caseNextStepTomerchandisedata").html(`
-          <button type="submit" class="cont-MainCamelLog--c--contSteps--item--cBtnNextStep--btnR" id="btn-CalcQuoteToMerchandiseData-3">
-            <span>CALCULAR COTIZACIÓN</span>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 125" x="0px" y="0px"><g data-name="13-Quotation"><path d="M53.47,77.72h.88a1.06,1.06,0,0,0,0-2.12H19.46V7.19H61.17V22.81a1.06,1.06,0,0,0,1.06,1.06H77.1V65.09a1.06,1.06,0,0,0,2.11,0V22.81s0,0,0-.07a2.38,2.38,0,0,0,0-.26l0-.1a1.17,1.17,0,0,0-.19-.3L63,5.41a1,1,0,0,0-.79-.32H18.41a1.05,1.05,0,0,0-1.06,1.06V75.6H6.11a1.06,1.06,0,0,0-1.05,1.06c0,7.43,5.29,13.47,11.79,13.47h37.5a1.06,1.06,0,1,0,0-2.12H16.85c-5,0-9.18-4.53-9.64-10.29H53.47ZM63.28,8.83l12.4,12.92H63.28Z"/><path d="M73.84,64V33.17a1.05,1.05,0,0,0-1.06-1.06h-49a1.05,1.05,0,0,0-1.06,1.06V64a1.05,1.05,0,0,0,1.06,1.06h49A1.05,1.05,0,0,0,73.84,64ZM71.73,38.29H39.25V34.22H71.73Zm-39.4,0V34.22h4.81v4.07Zm4.81,2.11V63H32.33V40.4ZM24.83,34.22h5.38v4.07H24.83Zm0,6.18h5.38V63H24.83ZM39.25,63V40.4H71.73V63Z"/><path d="M60.49,69.27a1.05,1.05,0,0,0-1.06-1.06H55.81a1.06,1.06,0,1,0,0,2.11h3.62A1.05,1.05,0,0,0,60.49,69.27Z"/><path d="M51.57,69.27a.95.95,0,1,0,1-1A.95.95,0,0,0,51.57,69.27Z"/><path d="M23,17.73H34.47a1.06,1.06,0,0,0,0-2.11H23a1.06,1.06,0,1,0,0,2.11Z"/><path d="M23,21.52H38.36a1.06,1.06,0,0,0,0-2.12H23a1.06,1.06,0,0,0,0,2.12Z"/><path d="M42.48,20.46a.95.95,0,1,0-.94.95A.95.95,0,0,0,42.48,20.46Z"/><path d="M71.47,75.84a2,2,0,0,1,2,2,1.06,1.06,0,0,0,1,1.1,1,1,0,0,0,1.09-1,4,4,0,0,0-3-4l0-.75a1.06,1.06,0,0,0-2.11-.08l0,.75a4,4,0,0,0-3.25,3.74,4,4,0,0,0,1.12,2.9,4.21,4.21,0,0,0,2.88,1.27,2.12,2.12,0,0,1,1.44.63,1.82,1.82,0,0,1,.53,1.35,2.05,2.05,0,0,1-4.09-.16,1.07,1.07,0,0,0-1-1.1,1,1,0,0,0-1.1,1,4,4,0,0,0,2.95,4l0,.68a1.05,1.05,0,0,0,1,1.1h0a1.06,1.06,0,0,0,1.05-1l0-.67a4,4,0,0,0,3.25-3.75,4,4,0,0,0-1.12-2.9,4.25,4.25,0,0,0-2.88-1.27A2.12,2.12,0,0,1,69.88,79a1.82,1.82,0,0,1-.53-1.35A2,2,0,0,1,71.47,75.84Z"/><path d="M83.67,92.54a1,1,0,0,0-1-.78,6.53,6.53,0,0,1-3.2-1,13.68,13.68,0,1,0-8.67,3.1A13.48,13.48,0,0,0,74,93.52,8.58,8.58,0,0,0,78.77,95a8.68,8.68,0,0,0,2.31-.31L83,94.15a1,1,0,0,0,.74-1.29Zm-6.67-1a8.39,8.39,0,0,0,1.88,1.32,6.37,6.37,0,0,1-4.07-1.34,1.08,1.08,0,0,0-.64-.22,1.26,1.26,0,0,0-.28,0,11.79,11.79,0,0,1-3.08.43,11.59,11.59,0,1,1,6.32-1.89,1.07,1.07,0,0,0-.47.8A1,1,0,0,0,77,91.56Z"/></g></svg>
+          <button type="button" class="cont-MainCamelLog--c--contSteps--item--cBtnNextStep--btn" id="btn-NextStepTomerchandisedata">
+            <span>Seguir</span>
+            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 100 125" enable-background="new 0 0 100 100" xml:space="preserve"><g><g><polygon points="19.318,43.363 19.318,61.189 49.497,95 79.675,61.189 79.675,43.363 49.497,77.174   "/><polygon points="50.504,38.811 20.326,5 20.326,24.872 49.497,60.537 79.675,24.872 80.682,5   "/></g></g></svg>
           </button>
         `);
 
@@ -1472,9 +1472,9 @@ $(document).on("keyup keypress blur change", "#ipt-valQuantityAmAddProdNInterfac
         });
 
         $("#s-caseNextStepTomerchandisedata").html(`
-          <button type="submit" class="cont-MainCamelLog--c--contSteps--item--cBtnNextStep--btnR" id="btn-CalcQuoteToMerchandiseData-4">
-            <span>CALCULAR COTIZACIÓN</span>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 125" x="0px" y="0px"><g data-name="13-Quotation"><path d="M53.47,77.72h.88a1.06,1.06,0,0,0,0-2.12H19.46V7.19H61.17V22.81a1.06,1.06,0,0,0,1.06,1.06H77.1V65.09a1.06,1.06,0,0,0,2.11,0V22.81s0,0,0-.07a2.38,2.38,0,0,0,0-.26l0-.1a1.17,1.17,0,0,0-.19-.3L63,5.41a1,1,0,0,0-.79-.32H18.41a1.05,1.05,0,0,0-1.06,1.06V75.6H6.11a1.06,1.06,0,0,0-1.05,1.06c0,7.43,5.29,13.47,11.79,13.47h37.5a1.06,1.06,0,1,0,0-2.12H16.85c-5,0-9.18-4.53-9.64-10.29H53.47ZM63.28,8.83l12.4,12.92H63.28Z"/><path d="M73.84,64V33.17a1.05,1.05,0,0,0-1.06-1.06h-49a1.05,1.05,0,0,0-1.06,1.06V64a1.05,1.05,0,0,0,1.06,1.06h49A1.05,1.05,0,0,0,73.84,64ZM71.73,38.29H39.25V34.22H71.73Zm-39.4,0V34.22h4.81v4.07Zm4.81,2.11V63H32.33V40.4ZM24.83,34.22h5.38v4.07H24.83Zm0,6.18h5.38V63H24.83ZM39.25,63V40.4H71.73V63Z"/><path d="M60.49,69.27a1.05,1.05,0,0,0-1.06-1.06H55.81a1.06,1.06,0,1,0,0,2.11h3.62A1.05,1.05,0,0,0,60.49,69.27Z"/><path d="M51.57,69.27a.95.95,0,1,0,1-1A.95.95,0,0,0,51.57,69.27Z"/><path d="M23,17.73H34.47a1.06,1.06,0,0,0,0-2.11H23a1.06,1.06,0,1,0,0,2.11Z"/><path d="M23,21.52H38.36a1.06,1.06,0,0,0,0-2.12H23a1.06,1.06,0,0,0,0,2.12Z"/><path d="M42.48,20.46a.95.95,0,1,0-.94.95A.95.95,0,0,0,42.48,20.46Z"/><path d="M71.47,75.84a2,2,0,0,1,2,2,1.06,1.06,0,0,0,1,1.1,1,1,0,0,0,1.09-1,4,4,0,0,0-3-4l0-.75a1.06,1.06,0,0,0-2.11-.08l0,.75a4,4,0,0,0-3.25,3.74,4,4,0,0,0,1.12,2.9,4.21,4.21,0,0,0,2.88,1.27,2.12,2.12,0,0,1,1.44.63,1.82,1.82,0,0,1,.53,1.35,2.05,2.05,0,0,1-4.09-.16,1.07,1.07,0,0,0-1-1.1,1,1,0,0,0-1.1,1,4,4,0,0,0,2.95,4l0,.68a1.05,1.05,0,0,0,1,1.1h0a1.06,1.06,0,0,0,1.05-1l0-.67a4,4,0,0,0,3.25-3.75,4,4,0,0,0-1.12-2.9,4.25,4.25,0,0,0-2.88-1.27A2.12,2.12,0,0,1,69.88,79a1.82,1.82,0,0,1-.53-1.35A2,2,0,0,1,71.47,75.84Z"/><path d="M83.67,92.54a1,1,0,0,0-1-.78,6.53,6.53,0,0,1-3.2-1,13.68,13.68,0,1,0-8.67,3.1A13.48,13.48,0,0,0,74,93.52,8.58,8.58,0,0,0,78.77,95a8.68,8.68,0,0,0,2.31-.31L83,94.15a1,1,0,0,0,.74-1.29Zm-6.67-1a8.39,8.39,0,0,0,1.88,1.32,6.37,6.37,0,0,1-4.07-1.34,1.08,1.08,0,0,0-.64-.22,1.26,1.26,0,0,0-.28,0,11.79,11.79,0,0,1-3.08.43,11.59,11.59,0,1,1,6.32-1.89,1.07,1.07,0,0,0-.47.8A1,1,0,0,0,77,91.56Z"/></g></svg>
+          <button type="button" class="cont-MainCamelLog--c--contSteps--item--cBtnNextStep--btn" id="btn-NextStepTomerchandisedata">
+            <span>Seguir</span>
+            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 100 125" enable-background="new 0 0 100 100" xml:space="preserve"><g><g><polygon points="19.318,43.363 19.318,61.189 49.497,95 79.675,61.189 79.675,43.363 49.497,77.174   "/><polygon points="50.504,38.811 20.326,5 20.326,24.872 49.497,60.537 79.675,24.872 80.682,5   "/></g></g></svg>
           </button>
         `);
 
@@ -1491,12 +1491,121 @@ $(document).on("keyup keypress blur change", "#ipt-valQuantityAmAddProdNInterfac
 
 
 
+// =================================================================================== //
+//                      5. SELECCIONAR SI DESEA TRANSPORTE INTERNO          
+// =================================================================================== //
+$(document).on("click", "#btn-NextStepTomerchandisedata", function(){
+  // ========== MOSTRAR EL SIGUIENTE PASO - ¿ NECESITAS TRANSPORTE ? =========== //
+  $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-requirespickup]").addClass("show");
+  sectionsSteps.moveTo('step-requirespickup', 1);
+  $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-requirespickup]").html(`
+    <div class="cont-MainCamelLog--c--contSteps--item--cTitle">
+      <h3 class="cont-MainCamelLog--c--contSteps--item--cTitle--title">¿Necesitas Transporte?</h3>
+      <span>
+        <span>
+          <input type="hidden" value="" id="opt-reqtransport" name="opt-reqtransport" class="n-val-sd">
+        </span>
+      </span>
+    </div>
+    <div class="cont-MainCamelLog--c--contSteps--item--cStep">
+      <ul class="cont-MainCamelLog--c--contSteps--item--cStep--m" id="list-requirespickup">
+        <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem">
+          <li class="cont-MainCamelLog--c--contSteps--item--cStep--m--item">
+            <div class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem--cImg">
+              <img src="views/assets/img/steps/inland-trans.png" alt="" loading="lazy">
+            </div>
+            <p>SÍ</p>
+          </li>
+        </a>
+        <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem">
+          <li class="cont-MainCamelLog--c--contSteps--item--cStep--m--item">
+            <div class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem--cImg">
+              <img src="views/assets/img/steps/no-inland-trans.png" alt="" loading="lazy">
+            </div>
+            <p>NO</p>
+          </li>
+        </a>
+      </ul>
+    </div>
+    <div class="cont-MainCamelLog--c--contSteps--item--cBtnNextStep"></div>
+  `);
+});
+
+
+
+
+
+
+// =================================================================================== //
+//                            6. INGRESAR EL VALOR DEL FLETE          
+// =================================================================================== //
+$(document).on("click", "#list-requirespickup a", function(){
+  var trequirespickup = $(this).index();
+  // ============= MOSTRAR EL INPUT PARA EL VALOR DEL FLETE ============== //
+  $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-fletevaldata]").addClass("show");
+  if(trequirespickup == 0){
+    sectionsSteps.moveTo('step-fletevaldata', 1);
+    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-fletevaldata]").html(`
+      <div class="cont-MainCamelLog--c--contSteps--item--cTitle">
+        <h3 class="cont-MainCamelLog--c--contSteps--item--cTitle--title">VALOR DE FLETE</h3>
+        <span>
+          <span>
+            <input type="text" id="val_valfleteprod" name="val_valfleteprod" class="n-val-sd" value="">
+          </span>
+        </span>
+      </div>
+      <div class="cont-MainCamelLog--c--contSteps--item--cStep">
+        <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControls">
+          <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControls--cControl">
+            <label for="val-iptPriceValNInterface" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControls--cControl--label">FLETE</label>
+            <input type="number" id="val-iptPriceValNInterface" name="val-iptPriceValNInterface" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControls--cControl--input">
+          </div>
+        </div>
+      </div>
+      <div class="cont-MainCamelLog--c--contSteps--item--cBtnNextStep">
+        <button type="button" class="cont-MainCamelLog--c--contSteps--item--cBtnNextStep--btn" id="btn-NextStepTochargedata">
+          <span>Seguir</span>
+          <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 100 125" enable-background="new 0 0 100 100" xml:space="preserve"><g><g><polygon points="19.318,43.363 19.318,61.189 49.497,95 79.675,61.189 79.675,43.363 49.497,77.174   "/><polygon points="50.504,38.811 20.326,5 20.326,24.872 49.497,60.537 79.675,24.872 80.682,5   "/></g></g></svg>
+        </button>
+      </div>
+    `);
+  }else{
+    sectionsSteps.moveTo('step-fletevaldata', 1);
+    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-fletevaldata]").html(`
+      <div class="cont-MainCamelLog--c--contSteps--item--cTitle">
+        <h3 class="cont-MainCamelLog--c--contSteps--item--cTitle--title">VALOR DE FLETE</h3>
+        <span>
+          <span>
+            <input type="text" id="val_valfleteprod" name="val_valfleteprod" class="n-val-sd" value="">
+          </span>
+        </span>
+      </div>
+      <div class="cont-MainCamelLog--c--contSteps--item--cStep">
+        <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControls">
+          <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControls--cControl">
+            <label for="val-iptPriceValNInterface" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControls--cControl--label">FLETE</label>
+            <input type="number" id="val-iptPriceValNInterface" name="val-iptPriceValNInterface" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControls--cControl--input">
+          </div>
+        </div>
+      </div>
+      <div class="cont-MainCamelLog--c--contSteps--item--cBtnNextStep">
+        <button type="button" class="cont-MainCamelLog--c--contSteps--item--cBtnNextStep--btn" id="btn-NextStepTochargedata">
+          <span>Seguir</span>
+          <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 100 125" enable-background="new 0 0 100 100" xml:space="preserve"><g><g><polygon points="19.318,43.363 19.318,61.189 49.497,95 79.675,61.189 79.675,43.363 49.497,77.174   "/><polygon points="50.504,38.811 20.326,5 20.326,24.872 49.497,60.537 79.675,24.872 80.682,5   "/></g></g></svg>
+        </button>
+      </div>
+    `);
+  }
+});
+
+
+
 
 
 /*
-// ============================================================================================ //
-// =            2.5. ELEGIR EL TIPO DE TRANSPORTE DE CARGA: GENERAL, IMO O REGRIGERADO          
-// ============================================================================================ //
+// ================================================================================== //
+//         7. ELEGIR EL TIPO DE TRANSPORTE DE CARGA: GENERAL, IMO O REGRIGERADO          
+// ================================================================================== //
 $(document).on("click","#list-typeTransporteSelectItems a",function(){
   //$(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-chargeload]").addClass("show");
   $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-chargedata]").addClass("show");
