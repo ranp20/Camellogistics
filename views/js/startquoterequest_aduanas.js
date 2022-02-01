@@ -5,7 +5,7 @@ $(() => {
   list_measurement_units(); // LISTAR LAS UNIDADES DE MEDIDA EN EL MODAL
   list_mass_units(); // LISTAR LAS UNIDADES DE MASA EN EL MODAL
 	listProductsUser(); // LISTAR LOS TIPOS DE PRODUCTOS
-  //listrateLCLTransport(); // LISTAR LOS DISTRITOS DE ACUERDO AL PAÍS DE DESTINO
+  listrateLCLTransport(); // LISTAR LOS DISTRITOS DE ACUERDO AL PAÍS DE DESTINO
 });
 function refreshIdCodeGenRandom(){
   $.ajax({
@@ -1616,8 +1616,7 @@ $(document).on("click", "#list-requirespickup a", function(){
 // =============== IR AL SIGUIENTE PASO DESDE EL VALOR DEL FLETE ============== //
 $(document).on("click", "#btn-NextStepTofletevaldata", function(){
   if($("#val-iptPriceValNInterface").val() != 0 && $("#val-iptPriceValNInterface").val() != "" && $("#val-iptPriceValNInterface").val() != null){
-    
-
+    // ========== MOSTRAR EL SIGUIENTE PASO (TIPOS DE TRANSPORTE) ========== //    
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-typetransport]").addClass("show");
     /************************** MOSTRAR EL SIGUIENTE PASO **************************/
     sectionsSteps.moveTo('step-typetransport', 1);
@@ -1659,10 +1658,6 @@ $(document).on("click", "#btn-NextStepTofletevaldata", function(){
         </ul>
       </div>
     `);
-
-
-
-    
   }else{
     // ================== MOSTRAR EL MENSAJE DE ALERTA PERSONALIZADO ================ //
     $("#idMessageSteps-prcss").html(`
@@ -1683,17 +1678,23 @@ $(document).on("click", "#btn-NextStepTofletevaldata", function(){
     });    
   }
 });
+// ========== ADMITIR SOLO 2 DECIMALES COMO MÁXIMO =========//
+$(document).on("input","#val-iptPriceValNInterface",function(e){
+  ($(this).val() == "") ? $(this).val() : $(this).val(twodecimals(e.target.value));
+});
 
 
 
 
-/*
+
+
+
 // ================================================================================== //
 //         7. ELEGIR EL TIPO DE TRANSPORTE DE CARGA: GENERAL, IMO O REGRIGERADO          
 // ================================================================================== //
 $(document).on("click","#list-typeTransporteSelectItems a",function(){
-  //$(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-chargeload]").addClass("show");
-  $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-chargedata]").addClass("show");
+  // ========== MOSTRAR EL SIGUENTE PASO ========= //
+  $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-pickuplocation]").addClass("show");
   var ttypeTransport = $(this).index();
   if(ttypeTransport == 0){
     // ============ AGREGAR A LAS VARIABLES LOCALES =============== //
@@ -1710,44 +1711,37 @@ $(document).on("click","#list-typeTransporteSelectItems a",function(){
         <span>T. GENERAL</span>
       </div>
     `);
-    // ================== MOSTRAR EL SIGUIENTE PASO =============== //
-    sectionsSteps.moveTo('step-chargedata', 1);
-    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-chargedata]").html(`
+    // =========== MOSTRAR EL SIGUIENTE PASO =========== //
+    sectionsSteps.moveTo('step-pickuplocation', 1);
+    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-pickuplocation]").html(`
       <div class="cont-MainCamelLog--c--contSteps--item--cTitle">
-        <h3 class="cont-MainCamelLog--c--contSteps--item--cTitle--title">Dimensiones de carga</h3>
+        <h3 class="cont-MainCamelLog--c--contSteps--item--cTitle--title">Recogida - Ubicación</h3>
         <span>
           <span>
-            <input type="text" id="n_packscompare_ultstep" class="n-val-sd" disabled>
-            <input type="text" id="n_weightcompare_ultstep" class="n-val-sd" disabled>
-            <input type="text" id="n_volumecompare_ultstep" class="n-val-sd" disabled>
+            <input type="hidden" value="" id="plc-pickuploc" name="plc-pickuploc" class="n-val-sd">
           </span>
         </span>
       </div>
       <div class="cont-MainCamelLog--c--contSteps--item--cStep">
-        <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControls">
-          <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControls--cControl">
-            <label for="val-iptPackagesNInterface" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControls--cControl--label">BULTOS</label>
-            <input type="number" id="val-iptPackagesNInterface" name="val-iptPackagesNInterface" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControls--cControl--input">
+        <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation">
+          <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation--cC">
+            <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation--cC--cControl">
+              <label for="" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation--cC--cControl--label">DISTRITO</label>
+              <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation--cC--cControl--cListChange">
+                <input type="text" id="ipt-valDistricByCountryNInterface" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation--cC--cControl--cListChange--input" autocomplete="nope" spellcheck="false">
+                <ul class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation--cC--cControl--cListChange--m" id="m-listAllDistricsByCountry"></ul>
+              </div>
+            </div>
           </div>
-          <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControls--cControl">
-            <label for="val-iptWeightNInterface" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControls--cControl--label">PESO (KG)</label>
-            <input type="text" id="val-iptWeightNInterface" name="val-iptWeightNInterface" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControls--cControl--input" maxlength="11">
-          </div>
-          <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControls--cControl">
-            <label for="val-iptVolumeNInterface" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControls--cControl--label">VOLUMEN (M³)</label>
-            <input type="text" id="val-iptVolumeNInterface" name="val-iptVolumeNInterface" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControls--cControl--input" maxlength="13">
-          </div>
-          <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControls--cBtnModalCalculator" id="link-showModalCalcVolum">
-            <span>AYUDA - ¡CALCULAR VOLUMEN (M³) AQUÍ!</span>
-          </a>
+          <!--<div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation--cBottom">
+            <label for="chck-insuremerchandise" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation--cBottom--cSwitch" switch-CFreeze="NO">
+              <input type="checkbox" id="chck-insuremerchandise" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation--cBottom--cSwitch--chck">
+            </label>
+            <span>¿Quieres asegurar la mercancía?</span>
+          </div>-->
         </div>
       </div>
-      <div class="cont-MainCamelLog--c--contSteps--item--cBtnNextStep">
-        <button type="button" class="cont-MainCamelLog--c--contSteps--item--cBtnNextStep--btn" id="btn-NextStepTochargedata">
-          <span>Seguir</span>
-          <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 100 125" enable-background="new 0 0 100 100" xml:space="preserve"><g><g><polygon points="19.318,43.363 19.318,61.189 49.497,95 79.675,61.189 79.675,43.363 49.497,77.174   "/><polygon points="50.504,38.811 20.326,5 20.326,24.872 49.497,60.537 79.675,24.872 80.682,5   "/></g></g></svg>
-        </button>
-      </div>
+      <div class="cont-MainCamelLog--c--contSteps--item--cBtnNextStep"></div>
     `);
   }else if(ttypeTransport == 1){
     // ================ AGREGAR A LAS VARIABLES LOCALES ================ //
@@ -1764,44 +1758,37 @@ $(document).on("click","#list-typeTransporteSelectItems a",function(){
         <span>T. IMO</span>
       </div>
     `);
-    // ================ MOSTRAR EL SIGUIENTE PASO ================= //
-    sectionsSteps.moveTo('step-chargedata', 1);
-    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-chargedata]").html(`
+    // =========== MOSTRAR EL SIGUIENTE PASO =========== //
+    sectionsSteps.moveTo('step-pickuplocation', 1);
+    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-pickuplocation]").html(`
       <div class="cont-MainCamelLog--c--contSteps--item--cTitle">
-        <h3 class="cont-MainCamelLog--c--contSteps--item--cTitle--title">Dimensiones de carga</h3>
+        <h3 class="cont-MainCamelLog--c--contSteps--item--cTitle--title">Recogida - Ubicación</h3>
         <span>
           <span>
-            <input type="text" id="n_packscompare_ultstep" class="n-val-sd" disabled>
-            <input type="text" id="n_weightcompare_ultstep" class="n-val-sd" disabled>
-            <input type="text" id="n_volumecompare_ultstep" class="n-val-sd" disabled>
+            <input type="hidden" value="" id="plc-pickuploc" name="plc-pickuploc" class="n-val-sd">
           </span>
         </span>
       </div>
       <div class="cont-MainCamelLog--c--contSteps--item--cStep">
-        <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControls">
-          <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControls--cControl">
-            <label for="val-iptPackagesNInterface" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControls--cControl--label">BULTOS</label>
-            <input type="number" id="val-iptPackagesNInterface" name="val-iptPackagesNInterface" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControls--cControl--input">
+        <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation">
+          <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation--cC">
+            <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation--cC--cControl">
+              <label for="" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation--cC--cControl--label">DISTRITO</label>
+              <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation--cC--cControl--cListChange">
+                <input type="text" id="ipt-valDistricByCountryNInterface" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation--cC--cControl--cListChange--input" autocomplete="nope" spellcheck="false">
+                <ul class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation--cC--cControl--cListChange--m" id="m-listAllDistricsByCountry"></ul>
+              </div>
+            </div>
           </div>
-          <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControls--cControl">
-            <label for="val-iptWeightNInterface" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControls--cControl--label">PESO (KG)</label>
-            <input type="text" id="val-iptWeightNInterface" name="val-iptWeightNInterface" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControls--cControl--input" maxlength="11">
-          </div>
-          <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControls--cControl">
-            <label for="val-iptVolumeNInterface" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControls--cControl--label">VOLUMEN (M³)</label>
-            <input type="text" id="val-iptVolumeNInterface" name="val-iptVolumeNInterface" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControls--cControl--input" maxlength="13">
-          </div>
-          <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControls--cBtnModalCalculator" id="link-showModalCalcVolum">
-            <span>AYUDA - ¡CALCULAR VOLUMEN (M³) AQUÍ!</span>
-          </a>
+          <!--<div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation--cBottom">
+            <label for="chck-insuremerchandise" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation--cBottom--cSwitch" switch-CFreeze="NO">
+              <input type="checkbox" id="chck-insuremerchandise" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation--cBottom--cSwitch--chck">
+            </label>
+            <span>¿Quieres asegurar la mercancía?</span>
+          </div>-->
         </div>
       </div>
-      <div class="cont-MainCamelLog--c--contSteps--item--cBtnNextStep">
-        <button type="button" class="cont-MainCamelLog--c--contSteps--item--cBtnNextStep--btn" id="btn-NextStepTochargedata">
-          <span>Seguir</span>
-          <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 100 125" enable-background="new 0 0 100 100" xml:space="preserve"><g><g><polygon points="19.318,43.363 19.318,61.189 49.497,95 79.675,61.189 79.675,43.363 49.497,77.174   "/><polygon points="50.504,38.811 20.326,5 20.326,24.872 49.497,60.537 79.675,24.872 80.682,5   "/></g></g></svg>
-        </button>
-      </div>
+      <div class="cont-MainCamelLog--c--contSteps--item--cBtnNextStep"></div>
     `);
   }else{
     // ============== AGREGAR A LAS VARIABLES LOCALES ================ //
@@ -1818,45 +1805,437 @@ $(document).on("click","#list-typeTransporteSelectItems a",function(){
         <span>T. REFRIGERADO</span>
       </div>
     `);
-    // ============== MOSTRAR EL SIGUIENTE PASO ================ //
-    sectionsSteps.moveTo('step-chargedata', 1);
-    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-chargedata]").html(`
+    // =========== MOSTRAR EL SIGUIENTE PASO =========== //
+    sectionsSteps.moveTo('step-pickuplocation', 1);
+    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-pickuplocation]").html(`
       <div class="cont-MainCamelLog--c--contSteps--item--cTitle">
-        <h3 class="cont-MainCamelLog--c--contSteps--item--cTitle--title">Dimensiones de carga</h3>
+        <h3 class="cont-MainCamelLog--c--contSteps--item--cTitle--title">Recogida - Ubicación</h3>
         <span>
           <span>
-            <input type="text" id="n_packscompare_ultstep" class="n-val-sd" disabled>
-            <input type="text" id="n_weightcompare_ultstep" class="n-val-sd" disabled>
-            <input type="text" id="n_volumecompare_ultstep" class="n-val-sd" disabled>
+            <input type="hidden" value="" id="plc-pickuploc" name="plc-pickuploc" class="n-val-sd">
           </span>
         </span>
       </div>
       <div class="cont-MainCamelLog--c--contSteps--item--cStep">
-        <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControls">
-          <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControls--cControl">
-            <label for="val-iptPackagesNInterface" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControls--cControl--label">BULTOS</label>
-            <input type="number" id="val-iptPackagesNInterface" name="val-iptPackagesNInterface" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControls--cControl--input">
+        <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation">
+          <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation--cC">
+            <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation--cC--cControl">
+              <label for="" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation--cC--cControl--label">DISTRITO</label>
+              <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation--cC--cControl--cListChange">
+                <input type="text" id="ipt-valDistricByCountryNInterface" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation--cC--cControl--cListChange--input" autocomplete="nope" spellcheck="false">
+                <ul class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation--cC--cControl--cListChange--m" id="m-listAllDistricsByCountry"></ul>
+              </div>
+            </div>
           </div>
-          <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControls--cControl">
-            <label for="val-iptWeightNInterface" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControls--cControl--label">PESO (KG)</label>
-            <input type="text" id="val-iptWeightNInterface" name="val-iptWeightNInterface" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControls--cControl--input" maxlength="11">
-          </div>
-          <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControls--cControl">
-            <label for="val-iptVolumeNInterface" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControls--cControl--label">VOLUMEN (M³)</label>
-            <input type="text" id="val-iptVolumeNInterface" name="val-iptVolumeNInterface" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControls--cControl--input" maxlength="13">
-          </div>
-          <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControls--cBtnModalCalculator" id="link-showModalCalcVolum">
-            <span>AYUDA - ¡CALCULAR VOLUMEN (M³) AQUÍ!</span>
-          </a>
+          <!--<div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation--cBottom">
+            <label for="chck-insuremerchandise" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation--cBottom--cSwitch" switch-CFreeze="NO">
+              <input type="checkbox" id="chck-insuremerchandise" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation--cBottom--cSwitch--chck">
+            </label>
+            <span>¿Quieres asegurar la mercancía?</span>
+          </div>-->
         </div>
       </div>
-      <div class="cont-MainCamelLog--c--contSteps--item--cBtnNextStep">
-        <button type="button" class="cont-MainCamelLog--c--contSteps--item--cBtnNextStep--btn" id="btn-NextStepTochargedata">
-          <span>Seguir</span>
-          <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 100 125" enable-background="new 0 0 100 100" xml:space="preserve"><g><g><polygon points="19.318,43.363 19.318,61.189 49.497,95 79.675,61.189 79.675,43.363 49.497,77.174   "/><polygon points="50.504,38.811 20.326,5 20.326,24.872 49.497,60.537 79.675,24.872 80.682,5   "/></g></g></svg>
-        </button>
-      </div>
+      <div class="cont-MainCamelLog--c--contSteps--item--cBtnNextStep"></div>
     `);
   }
 });
-*/
+
+
+
+
+
+
+
+
+// ================================================================================== //
+//                          8. ELEGIR EL LUGAR A TRANSPORTAR
+// ================================================================================== //
+/************************** LISTAR LOS DISTRITOS POR ID DE PAÍS **************************/
+function listrateLCLTransport(searchVal){
+  var ipt_idPortcountryDestiny = 1; //EL PAÍS POR DEFECTO PARA ESTE TIPO ES: PERÚ - CALLAO
+  if($("#loadTypeTranport").val() == "general")  {
+    /************************** LISTADO DE TARIFAS PARA TRANSPORTE INTERNO - TIPO GENERAL **************************/
+    $.ajax({
+      url: "controllers/list_zonasratelcltransport_general.php",
+      method: "POST",
+      datatype: "JSON",
+      contentType: 'application/x-www-form-urlencoded;charset=UTF-8',
+      data: {searchList : searchVal, idpaisdestiny : ipt_idPortcountryDestiny},
+    }).done( function (res) {
+      var response = JSON.parse(res);
+      var template = "";
+      if(response.length == 0){
+        template = `
+          <li class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation--cC--cControl--cListChange--m--anyresult">
+            <p>No encontado</p>
+          </li>
+        `;
+        $("#m-listAllDistricsByCountry").html(template);
+        setTimeout(function(){
+          $("#m-listAllDistricsByCountry").removeClass("show");
+        }, 4500);
+      }else{
+
+        response.forEach(e => {
+        var zonaUppercase = e.zona;
+
+        var g_1_1000 = parseFloat(e.g_1_1000);
+        var g_1001_2000 = parseFloat(e.g_1001_2000);
+        var g_2001_3000 = parseFloat(e.g_2001_3000);
+        var g_3001_4000 = parseFloat(e.g_3001_4000);
+        var g_4001_5000 = parseFloat(e.g_4001_5000);
+        var g_5001_7000 = parseFloat(e.g_5001_7000);
+        var g_20st_40nor = parseFloat(e.g_20st_40nor);
+
+        if($("#loadTypeCharge").val() == "LCL"){
+          /************************** QUITAR LOS PUNTOS A EL VALOR DEL PESO **************************/
+          var val_weighttotalstep = $("#n_weightcompare_ultstep").val();
+          var val_finalweighttotalstep = val_weighttotalstep.replace(/\./g, '');
+
+          if($("#n_weightcompare_ultstep").val() != 0 && $("#n_weightcompare_ultstep").val() != ""){
+            if(val_finalweighttotalstep > 0 && val_finalweighttotalstep <= 1000){
+              template += `
+                <li class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation--cC--cControl--cListChange--m--item" id="${e.id}" idprovince="${e.zona}" namprovince="${e.province}" rateprice="${g_1_1000.toFixed(2)}">
+                  <span>${zonaUppercase.toUpperCase()}</span>
+                </li>
+              `;
+            }else if(val_finalweighttotalstep > 1001 && val_finalweighttotalstep <= 2000){
+              template += `
+                <li class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation--cC--cControl--cListChange--m--item" id="${e.id}" idprovince="${e.zona}" namprovince="${e.province}" rateprice="${g_1001_2000.toFixed(2)}">
+                  <span>${zonaUppercase.toUpperCase()}</span>
+                </li>
+              `;
+            }else if(val_finalweighttotalstep > 2001 && val_finalweighttotalstep <= 3000){
+              template += `
+                <li class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation--cC--cControl--cListChange--m--item" id="${e.id}" idprovince="${e.zona}" namprovince="${e.province}" rateprice="${g_2001_3000.toFixed(2)}">
+                  <span>${zonaUppercase.toUpperCase()}</span>
+                </li>
+              `;
+            }else if(val_finalweighttotalstep > 3001 && val_finalweighttotalstep <= 4000){
+              template += `
+                <li class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation--cC--cControl--cListChange--m--item" id="${e.id}" idprovince="${e.zona}" namprovince="${e.province}" rateprice="${g_3001_4000.toFixed(2)}">
+                  <span>${zonaUppercase.toUpperCase()}</span>
+                </li>
+              `;
+            }else if(val_finalweighttotalstep > 4001 && val_finalweighttotalstep <= 5000){
+              template += `
+                <li class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation--cC--cControl--cListChange--m--item" id="${e.id}" idprovince="${e.zona}" namprovince="${e.province}" rateprice="${g_4001_5000.toFixed(2)}">
+                  <span>${zonaUppercase.toUpperCase()}</span>
+                </li>
+              `;
+            }else if(val_finalweighttotalstep > 5001 && val_finalweighttotalstep <= 7000){
+              template += `
+                <li class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation--cC--cControl--cListChange--m--item" id="${e.id}" idprovince="${e.zona}" namprovince="${e.province}" rateprice="${g_5001_7000.toFixed(2)}">
+                  <span>${zonaUppercase.toUpperCase()}</span>
+                </li>
+              `;
+            }else{
+              /************************** MOSTRAR EL MENSAJE DE ALERTA PERSONALIZADO **************************/
+              $("#idMessageSteps-prcss").html(`
+                <div class="cntMessageSteps-prcss--cont">
+                  <div class="cntMessageSteps-prcss--cont--c">
+                    <span class="cntMessageSteps-prcss--cont--c--btnclose" id="btnclose-modalMessage"></span>
+                    <h3 class="cntMessageSteps-prcss--cont--c--title">El peso excede las tarifas del sistema.</h3>
+                    <p class="cntMessageSteps-prcss--cont--c--text">Por favor, <b>contacte con el administrador para más información.</b></p>
+                  </div>
+                </div>
+              `)
+              /************************** CERRAR EL MODAL **************************/
+              setTimeout(function(){
+                $("#idMessageSteps-prcss .cntMessageSteps-prcss--cont").remove();
+              }, 8500)
+              $("#btnclose-modalMessage").on("click", function(){
+                $(this).parent().parent().remove();
+              });
+            }
+          }
+        }else{
+          template += `
+            <li class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation--cC--cControl--cListChange--m--item" id="${e.id}" idprovince="${e.zona}" namprovince="${e.province}" rateprice="${g_20st_40nor.toFixed(2)}">
+              <span>${zonaUppercase.toUpperCase()}</span>
+            </li>
+          `;
+        }
+
+        });
+        $("#m-listAllDistricsByCountry").html(template);
+      }
+    });
+  }else if($("#loadTypeTranport").val() == "imo"){
+    /************************** LISTADO DE TARIFAS PARA TRANSPORTE INTERNO - TIPO IMO **************************/
+    $.ajax({
+      url: "controllers/list_zonasratelcltransport_imo.php",
+      method: "POST",
+      datatype: "JSON",
+      contentType: 'application/x-www-form-urlencoded;charset=UTF-8',
+      data: {searchList : searchVal, idpaisdestiny : ipt_idPortcountryDestiny},
+    }).done( function (res) {
+      var response = JSON.parse(res);
+      var template = "";
+      if(response.length == 0){
+        template = `
+          <li class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation--cC--cControl--cListChange--m--anyresult">
+            <p>No encontado</p>
+          </li>
+        `;
+        $("#m-listAllDistricsByCountry").html(template);
+        setTimeout(function(){
+          $("#m-listAllDistricsByCountry").removeClass("show");
+        }, 4500);
+      }else{
+        
+        response.forEach(e => {
+        var zonaUppercase = e.zona;
+
+        var imo_1_1000 = parseFloat(e.imo_1_1000);
+        var imo_1001_2000 = parseFloat(e.imo_1001_2000);
+        var imo_2001_3000 = parseFloat(e.imo_2001_3000);
+        var imo_3001_4000 = parseFloat(e.imo_3001_4000);
+        var imo_4001_5000 = parseFloat(e.imo_4001_5000);
+        var imo_5001_7000 = parseFloat(e.imo_5001_7000);
+        var imo_20st_40nor = parseFloat(e.imo_20st_40nor);
+
+        if($("#loadTypeCharge").val() == "LCL"){
+          /************************** QUITAR LOS PUNTOS A EL VALOR DEL PESO **************************/
+          var val_weighttotalstep = $("#n_weightcompare_ultstep").val();
+          var val_finalweighttotalstep = val_weighttotalstep.replace(/\./g, '');
+
+          if($("#n_weightcompare_ultstep").val() != 0 && $("#n_weightcompare_ultstep").val() != ""){
+            if(val_finalweighttotalstep > 0 && val_finalweighttotalstep <= 1000){
+              template += `
+                <li class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation--cC--cControl--cListChange--m--item" id="${e.id}" idprovince="${e.zona}" namprovince="${e.province}" rateprice="${imo_1_1000.toFixed(2)}">
+                  <span>${zonaUppercase.toUpperCase()}</span>
+                </li>
+              `;
+            }else if(val_finalweighttotalstep > 1001 && val_finalweighttotalstep <= 2000){
+              template += `
+                <li class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation--cC--cControl--cListChange--m--item" id="${e.id}" idprovince="${e.zona}" namprovince="${e.province}" rateprice="${imo_1001_2000.toFixed(2)}">
+                  <span>${zonaUppercase.toUpperCase()}</span>
+                </li>
+              `;
+            }else if(val_finalweighttotalstep > 2001 && val_finalweighttotalstep <= 3000){
+              template += `
+                <li class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation--cC--cControl--cListChange--m--item" id="${e.id}" idprovince="${e.zona}" namprovince="${e.province}" rateprice="${imo_2001_3000.toFixed(2)}">
+                  <span>${zonaUppercase.toUpperCase()}</span>
+                </li>
+              `;
+            }else if(val_finalweighttotalstep > 3001 && val_finalweighttotalstep <= 4000){
+              template += `
+                <li class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation--cC--cControl--cListChange--m--item" id="${e.id}" idprovince="${e.zona}" namprovince="${e.province}" rateprice="${imo_3001_4000.toFixed(2)}">
+                  <span>${zonaUppercase.toUpperCase()}</span>
+                </li>
+              `;
+            }else if(val_finalweighttotalstep > 4001 && val_finalweighttotalstep <= 5000){
+              template += `
+                <li class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation--cC--cControl--cListChange--m--item" id="${e.id}" idprovince="${e.zona}" namprovince="${e.province}" rateprice="${imo_4001_5000.toFixed(2)}">
+                  <span>${zonaUppercase.toUpperCase()}</span>
+                </li>
+              `;
+            }else if(val_finalweighttotalstep > 5001 && val_finalweighttotalstep <= 7000){
+              template += `
+                <li class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation--cC--cControl--cListChange--m--item" id="${e.id}" idprovince="${e.zona}" namprovince="${e.province}" rateprice="${imo_5001_7000.toFixed(2)}">
+                  <span>${zonaUppercase.toUpperCase()}</span>
+                </li>
+              `;
+            }else{
+              /************************** MOSTRAR EL MENSAJE DE ALERTA PERSONALIZADO **************************/
+              $("#idMessageSteps-prcss").html(`
+                <div class="cntMessageSteps-prcss--cont">
+                  <div class="cntMessageSteps-prcss--cont--c">
+                    <span class="cntMessageSteps-prcss--cont--c--btnclose" id="btnclose-modalMessage"></span>
+                    <h3 class="cntMessageSteps-prcss--cont--c--title">El peso excede las tarifas del sistema.</h3>
+                    <p class="cntMessageSteps-prcss--cont--c--text">Por favor, <b>contacte con el administrador para más información.</b></p>
+                  </div>
+                </div>
+              `)
+              /************************** CERRAR EL MODAL **************************/
+              setTimeout(function(){
+                $("#idMessageSteps-prcss .cntMessageSteps-prcss--cont").remove();
+              }, 8500)
+              $("#btnclose-modalMessage").on("click", function(){
+                $(this).parent().parent().remove();
+              });
+            }
+          }
+        }else{
+          template += `
+            <li class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation--cC--cControl--cListChange--m--item" id="${e.id}" idprovince="${e.zona}" namprovince="${e.province}" rateprice="${imo_20st_40nor.toFixed(2)}">
+              <span>${zonaUppercase.toUpperCase()}</span>
+            </li>
+          `;
+        }
+        });
+        $("#m-listAllDistricsByCountry").html(template);
+      }
+    });
+  }else if($("#loadTypeTranport").val() == "refrigerado"){
+    /************************** LISTADO DE TARIFAS PARA TRANSPORTE INTERNO - TIPO REFRIGERADO **************************/
+    $.ajax({
+      url: "controllers/list_zonasratelcltransport_refrigerado.php",
+      method: "POST",
+      datatype: "JSON",
+      contentType: 'application/x-www-form-urlencoded;charset=UTF-8',
+      data: {searchList : searchVal, idpaisdestiny : ipt_idPortcountryDestiny},
+    }).done( function (res) {
+      var response = JSON.parse(res);
+      var template = "";
+      if(response.length == 0){
+        template = `
+          <li class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation--cC--cControl--cListChange--m--anyresult">
+            <p>No encontado</p>
+          </li>
+        `;
+        $("#m-listAllDistricsByCountry").html(template);
+        setTimeout(function(){
+          $("#m-listAllDistricsByCountry").removeClass("show");
+        }, 4500);
+      }else{
+        
+        response.forEach(e => {
+        var zonaUppercase = e.zona;
+
+        var refr_1_1000 = parseFloat(e.refr_1_1000);
+        var refr_1001_2000 = parseFloat(e.refr_1001_2000);
+        var refr_2001_3000 = parseFloat(e.refr_2001_3000);
+        var refr_3001_4000 = parseFloat(e.refr_3001_4000);
+        var refr_4001_5000 = parseFloat(e.refr_4001_5000);
+        var refr_5001_7000 = parseFloat(e.refr_5001_7000);
+        var refr_20st_40nor = parseFloat(e.refr_20st_40nor);
+
+        if($("#loadTypeCharge").val() == "LCL"){
+          /************************** QUITAR LOS PUNTOS A EL VALOR DEL PESO **************************/
+          var val_weighttotalstep = $("#n_weightcompare_ultstep").val();
+          var val_finalweighttotalstep = val_weighttotalstep.replace(/\./g, '');
+
+          if($("#n_weightcompare_ultstep").val() != 0 && $("#n_weightcompare_ultstep").val() != ""){
+            if(val_finalweighttotalstep > 0 && val_finalweighttotalstep <= 1000){
+              template += `
+                <li class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation--cC--cControl--cListChange--m--item" id="${e.id}" idprovince="${e.zona}" namprovince="${e.province}" rateprice="${refr_1_1000.toFixed(2)}">
+                  <span>${zonaUppercase.toUpperCase()}</span>
+                </li>
+              `;
+            }else if(val_finalweighttotalstep > 1001 && val_finalweighttotalstep <= 2000){
+              template += `
+                <li class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation--cC--cControl--cListChange--m--item" id="${e.id}" idprovince="${e.zona}" namprovince="${e.province}" rateprice="${refr_1001_2000.toFixed(2)}">
+                  <span>${zonaUppercase.toUpperCase()}</span>
+                </li>
+              `;
+            }else if(val_finalweighttotalstep > 2001 && val_finalweighttotalstep <= 3000){
+              template += `
+                <li class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation--cC--cControl--cListChange--m--item" id="${e.id}" idprovince="${e.zona}" namprovince="${e.province}" rateprice="${refr_2001_3000.toFixed(2)}">
+                  <span>${zonaUppercase.toUpperCase()}</span>
+                </li>
+              `;
+            }else if(val_finalweighttotalstep > 3001 && val_finalweighttotalstep <= 4000){
+              template += `
+                <li class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation--cC--cControl--cListChange--m--item" id="${e.id}" idprovince="${e.zona}" namprovince="${e.province}" rateprice="${refr_3001_4000.toFixed(2)}">
+                  <span>${zonaUppercase.toUpperCase()}</span>
+                </li>
+              `;
+            }else if(val_finalweighttotalstep > 4001 && val_finalweighttotalstep <= 5000){
+              template += `
+                <li class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation--cC--cControl--cListChange--m--item" id="${e.id}" idprovince="${e.zona}" namprovince="${e.province}" rateprice="${refr_4001_5000.toFixed(2)}">
+                  <span>${zonaUppercase.toUpperCase()}</span>
+                </li>
+              `;
+            }else if(val_finalweighttotalstep > 5001 && val_finalweighttotalstep <= 7000){
+              template += `
+                <li class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation--cC--cControl--cListChange--m--item" id="${e.id}" idprovince="${e.zona}" namprovince="${e.province}" rateprice="${refr_5001_7000.toFixed(2)}">
+                  <span>${zonaUppercase.toUpperCase()}</span>
+                </li>
+              `;
+            }else{
+              /************************** MOSTRAR EL MENSAJE DE ALERTA PERSONALIZADO **************************/
+              $("#idMessageSteps-prcss").html(`
+                <div class="cntMessageSteps-prcss--cont">
+                  <div class="cntMessageSteps-prcss--cont--c">
+                    <span class="cntMessageSteps-prcss--cont--c--btnclose" id="btnclose-modalMessage"></span>
+                    <h3 class="cntMessageSteps-prcss--cont--c--title">El peso excede las tarifas del sistema.</h3>
+                    <p class="cntMessageSteps-prcss--cont--c--text">Por favor, <b>contacte con el administrador para más información.</b></p>
+                  </div>
+                </div>
+              `)
+              /************************** CERRAR EL MODAL **************************/
+              setTimeout(function(){
+                $("#idMessageSteps-prcss .cntMessageSteps-prcss--cont").remove();
+              }, 8500)
+              $("#btnclose-modalMessage").on("click", function(){
+                $(this).parent().parent().remove();
+              });
+            }
+          }
+        }else{
+          template += `
+            <li class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation--cC--cControl--cListChange--m--item" id="${e.id}" idprovince="${e.zona}" namprovince="${e.province}" rateprice="${refr_20st_40nor.toFixed(2)}">
+              <span>${zonaUppercase.toUpperCase()}</span>
+            </li>
+          `;
+        }
+        });
+        $("#m-listAllDistricsByCountry").html(template);
+      }
+    });
+  }else{
+    //console.log("Por favor, elige un tipo de transporte para continuar");
+  }
+}
+/************************** MOSTRAR EL LISTADO DE DISTRITO POR PAÍS DE DESTINO **************************/
+$(document).on("focus", "#ipt-valDistricByCountryNInterface", function(){
+  $("#m-listAllDistricsByCountry").addClass("show");
+  listrateLCLTransport();
+  sectionsSteps.setAutoScrolling(false);
+});
+$(document).on("blur", "#ipt-valDistricByCountryNInterface", function(){
+  sectionsSteps.setAutoScrolling(true);
+});
+$(document).on("keyup", "#ipt-valDistricByCountryNInterface", function(){
+  $("#m-listAllDistricsByCountry").addClass("show");
+  var searchVal = $(this).val();
+  if(searchVal != ""){
+    $("#ipt-valDistricByCountryNInterface").attr("iddistrict", ""); 
+    listrateLCLTransport(searchVal);
+    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-pickuplocation] .cont-MainCamelLog--c--contSteps--item--cBtnNextStep").html("");
+  }else{
+    listrateLCLTransport();
+  }
+});
+/************************** FIJAR EL VALOR DE ITEM EN EL INPUT - DISTRITO POR PAÍS DE DESTINO **************************/
+$(document).on("click", ".cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation--cC--cControl--cListChange--m--item", function(){
+  $("#m-listAllDistricsByCountry").removeClass("show");
+  $("#ipt-valDistricByCountryNInterface").attr("iddistrict", $(this).attr("id"));
+  $("#ipt-valDistricByCountryNInterface").val($(this).find("span").text());
+  /************************** ASIGNAR VALORES DE LOS INPUTS HIDDEN - RECOGIDA UBICACIÓN **************************/
+  $("#plc-pickuploc").val($(this).attr("namprovince")+" - "+$(this).find("span").text());
+  /************************** VARIABLE PARA CONTENEDORES - 20ST,40ST,40HQ Y 40NOR **************************/
+  var q_containerType = 0;
+  if($("#loadTypeCharge").val() == "FCL"){
+    if($("#ipt-qvalContainer20ST").val() != 0 && $("#ipt-qvalContainer20ST").val() != ""){
+      q_containerType = $("#ipt-qvalContainer20ST").val();
+      /************************** ASIGNAR A LA VARIABLE LOCAL **************************/
+      localStorage.setItem("key_v-valuetransport", q_containerType * $(this).attr("rateprice"));
+    }else if($("#ipt-qvalContainer40ST").val() != 0 && $("#ipt-qvalContainer40ST").val() != ""){
+      q_containerType = $("#ipt-qvalContainer40ST").val();
+      /************************** ASIGNAR A LA VARIABLE LOCAL **************************/
+      localStorage.setItem("key_v-valuetransport", q_containerType * $(this).attr("rateprice"));
+    }else if($("#ipt-qvalContainer40HQ").val() != 0 && $("#ipt-qvalContainer40HQ").val() != ""){
+      q_containerType = $("#ipt-qvalContainer40HQ").val();
+      /************************** ASIGNAR A LA VARIABLE LOCAL **************************/
+      localStorage.setItem("key_v-valuetransport", q_containerType * $(this).attr("rateprice"));
+    }else if($("#ipt-qvalContainer40NOR").val() != 0 && $("#ipt-qvalContainer40NOR").val() != ""){
+      q_containerType = $("#ipt-qvalContainer40NOR").val();
+      /************************** ASIGNAR A LA VARIABLE LOCAL **************************/
+      localStorage.setItem("key_v-valuetransport", q_containerType * $(this).attr("rateprice"));
+    }else{
+      console.log('No se seleccionó ningún contenedor en FCL');
+    }
+  }else{
+    localStorage.setItem("key_v-valuetransport", $("#val-iptPackagesNInterface").val() * $(this).attr("rateprice"));
+  }
+  /************************** MOSTRAR EL BOTÓN DE COTIZACIÓN **************************/
+  $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-pickuplocation] .cont-MainCamelLog--c--contSteps--item--cBtnNextStep").html(`
+    <button type="submit" class="cont-MainCamelLog--c--contSteps--item--cBtnNextStep--btnR" id="btn-NextStepTopickuplocation">
+      <span>CALCULAR COTIZACIÓN</span>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 125" x="0px" y="0px"><g data-name="13-Quotation"><path d="M53.47,77.72h.88a1.06,1.06,0,0,0,0-2.12H19.46V7.19H61.17V22.81a1.06,1.06,0,0,0,1.06,1.06H77.1V65.09a1.06,1.06,0,0,0,2.11,0V22.81s0,0,0-.07a2.38,2.38,0,0,0,0-.26l0-.1a1.17,1.17,0,0,0-.19-.3L63,5.41a1,1,0,0,0-.79-.32H18.41a1.05,1.05,0,0,0-1.06,1.06V75.6H6.11a1.06,1.06,0,0,0-1.05,1.06c0,7.43,5.29,13.47,11.79,13.47h37.5a1.06,1.06,0,1,0,0-2.12H16.85c-5,0-9.18-4.53-9.64-10.29H53.47ZM63.28,8.83l12.4,12.92H63.28Z"/><path d="M73.84,64V33.17a1.05,1.05,0,0,0-1.06-1.06h-49a1.05,1.05,0,0,0-1.06,1.06V64a1.05,1.05,0,0,0,1.06,1.06h49A1.05,1.05,0,0,0,73.84,64ZM71.73,38.29H39.25V34.22H71.73Zm-39.4,0V34.22h4.81v4.07Zm4.81,2.11V63H32.33V40.4ZM24.83,34.22h5.38v4.07H24.83Zm0,6.18h5.38V63H24.83ZM39.25,63V40.4H71.73V63Z"/><path d="M60.49,69.27a1.05,1.05,0,0,0-1.06-1.06H55.81a1.06,1.06,0,1,0,0,2.11h3.62A1.05,1.05,0,0,0,60.49,69.27Z"/><path d="M51.57,69.27a.95.95,0,1,0,1-1A.95.95,0,0,0,51.57,69.27Z"/><path d="M23,17.73H34.47a1.06,1.06,0,0,0,0-2.11H23a1.06,1.06,0,1,0,0,2.11Z"/><path d="M23,21.52H38.36a1.06,1.06,0,0,0,0-2.12H23a1.06,1.06,0,0,0,0,2.12Z"/><path d="M42.48,20.46a.95.95,0,1,0-.94.95A.95.95,0,0,0,42.48,20.46Z"/><path d="M71.47,75.84a2,2,0,0,1,2,2,1.06,1.06,0,0,0,1,1.1,1,1,0,0,0,1.09-1,4,4,0,0,0-3-4l0-.75a1.06,1.06,0,0,0-2.11-.08l0,.75a4,4,0,0,0-3.25,3.74,4,4,0,0,0,1.12,2.9,4.21,4.21,0,0,0,2.88,1.27,2.12,2.12,0,0,1,1.44.63,1.82,1.82,0,0,1,.53,1.35,2.05,2.05,0,0,1-4.09-.16,1.07,1.07,0,0,0-1-1.1,1,1,0,0,0-1.1,1,4,4,0,0,0,2.95,4l0,.68a1.05,1.05,0,0,0,1,1.1h0a1.06,1.06,0,0,0,1.05-1l0-.67a4,4,0,0,0,3.25-3.75,4,4,0,0,0-1.12-2.9,4.25,4.25,0,0,0-2.88-1.27A2.12,2.12,0,0,1,69.88,79a1.82,1.82,0,0,1-.53-1.35A2,2,0,0,1,71.47,75.84Z"/><path d="M83.67,92.54a1,1,0,0,0-1-.78,6.53,6.53,0,0,1-3.2-1,13.68,13.68,0,1,0-8.67,3.1A13.48,13.48,0,0,0,74,93.52,8.58,8.58,0,0,0,78.77,95a8.68,8.68,0,0,0,2.31-.31L83,94.15a1,1,0,0,0,.74-1.29Zm-6.67-1a8.39,8.39,0,0,0,1.88,1.32,6.37,6.37,0,0,1-4.07-1.34,1.08,1.08,0,0,0-.64-.22,1.26,1.26,0,0,0-.28,0,11.79,11.79,0,0,1-3.08.43,11.59,11.59,0,1,1,6.32-1.89,1.07,1.07,0,0,0-.47.8A1,1,0,0,0,77,91.56Z"/></g></svg>
+    </button>
+  `);
+});

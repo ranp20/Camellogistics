@@ -3340,7 +3340,7 @@ $(document).on("click", "#list-requirespickup a", function(){
   if(trequirespickup == 0){
     /************************** ASIGNAR VALORES DE LOS INPUTS HIDDEN - NECESITAS TRANSPORTE **************************/
     $("#opt-reqtransport").val("SI")
-
+    /************************** MOSTRAR EL SIGUIENTE PASO **************************/
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-pickuplocation]").addClass("show");
     sectionsSteps.moveTo('step-pickuplocation', 1);
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-pickuplocation]").html(`
@@ -3719,7 +3719,8 @@ function listrateLCLTransport(searchVal){
 }
 /************************** MOSTRAR EL LISTADO DE DISTRITO POR PAÍS DE DESTINO **************************/
 $(document).on("focus", "#ipt-valDistricByCountryNInterface", function(){
-	$("#m-listAllDistricsByCountry").addClass("show");listrateLCLTransport();
+	$("#m-listAllDistricsByCountry").addClass("show");
+  listrateLCLTransport();
 	sectionsSteps.setAutoScrolling(false);
 });
 $(document).on("blur", "#ipt-valDistricByCountryNInterface", function(){

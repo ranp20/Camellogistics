@@ -1,3 +1,7 @@
+// HACER FOCUS EN EL PRIMER INPUT || CARGAR LOS VALORES DE LOGIN ALMACENADOS EN EL LOCALSTORAGE
+window.onload = function(){
+	document.querySelector("#adm-log-email").focus();
+}
 /************************** SHOW/HIDDEN PASSWORD **************************/
 $(document).on("click", "#icon-passControladm", function(){
 	var inputTypeControlPass1 = $(this).parent().find("input").attr("type");

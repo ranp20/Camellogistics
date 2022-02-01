@@ -40,7 +40,6 @@
             </div>
           </div>
           <div class='cont-MainCamelLog--c--contResumeCalc--item' data-advlevel='d-chargeload'></div>
-          <div class='cont-MainCamelLog--c--contResumeCalc--item' data-advlevel='d-typetransportcharge'></div>
           <div class='cont-MainCamelLog--c--contResumeCalc--item' data-advlevel='d-typecontainer'>
             <div class='cont-MainCamelLog--c--contResumeCalc--item--cardStep'>
               <div class='cont-MainCamelLog--c--contResumeCalc--item--cardStep--cNameFlag'>
@@ -92,6 +91,7 @@
               </div>
             </div>
           </div>
+          <div class='cont-MainCamelLog--c--contResumeCalc--item' data-advlevel='d-typetransportcharge'></div>
         </section>
         <section class='cont-MainCamelLog--c--contSteps' id='fullpage'>
           <!-- PASO #1 -->
