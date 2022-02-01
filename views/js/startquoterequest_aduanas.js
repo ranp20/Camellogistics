@@ -1077,7 +1077,7 @@ $(document).on("click", "#btn-NextStepTochargedata", function(){
         <div class="cntMessageSteps-prcss--cont--c">
           <span class="cntMessageSteps-prcss--cont--c--btnclose" id="btnclose-modalMessage"></span>
           <h3 class="cntMessageSteps-prcss--cont--c--title">No se completaron los datos de la carga</h3>
-          <p class="cntMessageSteps-prcss--cont--c--text">Por favor, rellena todos los campos relativos a las dimensiones de carga.</p>
+          <p class="cntMessageSteps-prcss--cont--c--text">Por favor, rellena todos los campos relativos a las <b>dimensiones de carga.</b></p>
         </div>
       </div>
     `)
@@ -1556,14 +1556,22 @@ $(document).on("click", "#list-requirespickup a", function(){
       </div>
       <div class="cont-MainCamelLog--c--contSteps--item--cStep">
         <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControls">
-          <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControls--cControl">
-            <label for="val-iptPriceValNInterface" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControls--cControl--label">FLETE</label>
-            <input type="number" id="val-iptPriceValNInterface" name="val-iptPriceValNInterface" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControls--cControl--input">
+          <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControls--cC">
+            <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControls--cC--cControl">
+              <label for="val-iptPriceValNInterface" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControls--cC--cControl--label">FLETE</label>
+              <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControls--cC--cControl--cListChangeWIcon">
+                <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControls--cC--cControl--cListChangeWIcon--cIcon">
+                  <svg xmlns="http://www.w3.org/2000/svg" data-name="Layer 1" viewBox="0 0 100 125" x="0px" y="0px"><title>dollar</title><path d="M44.38354,5V15.697c-10.549,2.19025-18.11077,10.34265-18.11077,19.681,0,10.004,7.56927,16.77643,22.49676,20.1286C62.49225,58.587,62.49225,63.167,62.49225,64.67181c0,4.88868-5.7204,9.019-12.49115,9.019-6.77191,0-12.49335-4.13031-12.49335-9.019V63.57428h-11.235v1.09753c0,9.33838,7.56176,17.48975,18.11077,19.67951V95h11.235V84.35132C66.1665,82.161,73.72723,74.0097,73.72723,64.67181c0-10.004-7.56823-16.77636-22.49566-20.12854-13.72382-3.08044-13.72382-7.6604-13.72382-9.16528,0-4.88971,5.72144-9.02057,12.49335-9.02057,6.77075,0,12.49115,4.13086,12.49115,9.02057v1.0976h11.235V35.378c0-9.33838-7.56073-17.49078-18.10864-19.681V5Z"/>
+                  </svg>
+                </div>
+                <input type="number" id="val-iptPriceValNInterface" name="val-iptPriceValNInterface" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControls--cC--cControl--cListChangeWIcon--input" maxlength="13" autocomplete="off">
+              </div>
+            </div>
           </div>
         </div>
       </div>
       <div class="cont-MainCamelLog--c--contSteps--item--cBtnNextStep">
-        <button type="button" class="cont-MainCamelLog--c--contSteps--item--cBtnNextStep--btn" id="btn-NextStepTochargedata">
+        <button type="button" class="cont-MainCamelLog--c--contSteps--item--cBtnNextStep--btn" id="btn-NextStepTofletevaldata">
           <span>Seguir</span>
           <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 100 125" enable-background="new 0 0 100 100" xml:space="preserve"><g><g><polygon points="19.318,43.363 19.318,61.189 49.497,95 79.675,61.189 79.675,43.363 49.497,77.174   "/><polygon points="50.504,38.811 20.326,5 20.326,24.872 49.497,60.537 79.675,24.872 80.682,5   "/></g></g></svg>
         </button>
@@ -1582,14 +1590,22 @@ $(document).on("click", "#list-requirespickup a", function(){
       </div>
       <div class="cont-MainCamelLog--c--contSteps--item--cStep">
         <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControls">
-          <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControls--cControl">
-            <label for="val-iptPriceValNInterface" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControls--cControl--label">FLETE</label>
-            <input type="number" id="val-iptPriceValNInterface" name="val-iptPriceValNInterface" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControls--cControl--input">
+          <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControls--cC">
+            <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControls--cC--cControl">
+              <label for="val-iptPriceValNInterface" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControls--cC--cControl--label">FLETE</label>
+              <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControls--cC--cControl--cListChangeWIcon">
+                <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControls--cC--cControl--cListChangeWIcon--cIcon">
+                  <svg xmlns="http://www.w3.org/2000/svg" data-name="Layer 1" viewBox="0 0 100 125" x="0px" y="0px"><title>dollar</title><path d="M44.38354,5V15.697c-10.549,2.19025-18.11077,10.34265-18.11077,19.681,0,10.004,7.56927,16.77643,22.49676,20.1286C62.49225,58.587,62.49225,63.167,62.49225,64.67181c0,4.88868-5.7204,9.019-12.49115,9.019-6.77191,0-12.49335-4.13031-12.49335-9.019V63.57428h-11.235v1.09753c0,9.33838,7.56176,17.48975,18.11077,19.67951V95h11.235V84.35132C66.1665,82.161,73.72723,74.0097,73.72723,64.67181c0-10.004-7.56823-16.77636-22.49566-20.12854-13.72382-3.08044-13.72382-7.6604-13.72382-9.16528,0-4.88971,5.72144-9.02057,12.49335-9.02057,6.77075,0,12.49115,4.13086,12.49115,9.02057v1.0976h11.235V35.378c0-9.33838-7.56073-17.49078-18.10864-19.681V5Z"/>
+                  </svg>
+                </div>
+                <input type="number" id="val-iptPriceValNInterface" name="val-iptPriceValNInterface" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControls--cC--cControl--cListChangeWIcon--input" maxlength="13" autocomplete="off">
+              </div>
+            </div>
           </div>
         </div>
       </div>
       <div class="cont-MainCamelLog--c--contSteps--item--cBtnNextStep">
-        <button type="button" class="cont-MainCamelLog--c--contSteps--item--cBtnNextStep--btn" id="btn-NextStepTochargedata">
+        <button type="button" class="cont-MainCamelLog--c--contSteps--item--cBtnNextStep--btn" id="btn-NextStepTofletevaldata">
           <span>Seguir</span>
           <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 100 125" enable-background="new 0 0 100 100" xml:space="preserve"><g><g><polygon points="19.318,43.363 19.318,61.189 49.497,95 79.675,61.189 79.675,43.363 49.497,77.174   "/><polygon points="50.504,38.811 20.326,5 20.326,24.872 49.497,60.537 79.675,24.872 80.682,5   "/></g></g></svg>
         </button>
@@ -1597,7 +1613,76 @@ $(document).on("click", "#list-requirespickup a", function(){
     `);
   }
 });
+// =============== IR AL SIGUIENTE PASO DESDE EL VALOR DEL FLETE ============== //
+$(document).on("click", "#btn-NextStepTofletevaldata", function(){
+  if($("#val-iptPriceValNInterface").val() != 0 && $("#val-iptPriceValNInterface").val() != "" && $("#val-iptPriceValNInterface").val() != null){
+    
 
+    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-typetransport]").addClass("show");
+    /************************** MOSTRAR EL SIGUIENTE PASO **************************/
+    sectionsSteps.moveTo('step-typetransport', 1);
+    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-typetransport]").html(`
+      <div class="cont-MainCamelLog--c--contSteps--item--cTitle">
+        <h3 class="cont-MainCamelLog--c--contSteps--item--cTitle--title">Tipo de Transporte</h3>
+        <span>
+          <span>
+            <input type="hidden" id="loadTypeTranport" name="loadTypeTranport" class="n-val-sd">
+          </span>
+        </span>
+      </div>
+      <div class="cont-MainCamelLog--c--contSteps--item--cStep">
+        <ul class="cont-MainCamelLog--c--contSteps--item--cStep--m" id="list-typeTransporteSelectItems">
+          <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem">
+            <li class="cont-MainCamelLog--c--contSteps--item--cStep--m--item">
+              <div class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem--cImg">
+                <img src="views/assets/img/steps/type_transport_06.png" alt="" loading="lazy" width="100" height="100">
+              </div>
+              <p>GENERAL</p>
+            </li>
+          </a>
+          <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem">
+            <li class="cont-MainCamelLog--c--contSteps--item--cStep--m--item">
+              <div class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem--cImg">
+                <img src="views/assets/img/steps/type_transport_03.png" alt="" loading="lazy" width="100" height="100">
+              </div>
+              <p>IMO</p>
+            </li>
+          </a>
+          <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem">
+            <li class="cont-MainCamelLog--c--contSteps--item--cStep--m--item">
+              <div class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem--cImg">
+                <img src="views/assets/img/steps/type_transport_05.png" alt="" loading="lazy" width="100" height="100">
+              </div>
+              <p>REFRIGERADO</p>
+            </li>
+          </a>
+        </ul>
+      </div>
+    `);
+
+
+
+    
+  }else{
+    // ================== MOSTRAR EL MENSAJE DE ALERTA PERSONALIZADO ================ //
+    $("#idMessageSteps-prcss").html(`
+      <div class="cntMessageSteps-prcss--cont">
+        <div class="cntMessageSteps-prcss--cont--c">
+          <span class="cntMessageSteps-prcss--cont--c--btnclose" id="btnclose-modalMessage"></span>
+          <h3 class="cntMessageSteps-prcss--cont--c--title">Complete la información</h3>
+          <p class="cntMessageSteps-prcss--cont--c--text">Por favor, rellene el campo con el valor de <b>FLETE.</b></p>
+        </div>
+      </div>
+    `)
+    // ================== CERRAR EL MODAL ================= //
+    setTimeout(function(){
+      $("#idMessageSteps-prcss .cntMessageSteps-prcss--cont").remove();
+    }, 6500)
+    $("#btnclose-modalMessage").on("click", function(){
+      $(this).parent().parent().remove();
+    });    
+  }
+});
 
 
 
