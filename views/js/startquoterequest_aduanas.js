@@ -1846,15 +1846,14 @@ $(document).on("click","#list-typeTransporteSelectItems a",function(){
 
 
 
-
 // ================================================================================== //
 //                          8. ELEGIR EL LUGAR A TRANSPORTAR
 // ================================================================================== //
-/************************** LISTAR LOS DISTRITOS POR ID DE PAÍS **************************/
+// ========== LISTAR LOS DISTRITOS POR ID DE PAÍS ========== //
 function listrateLCLTransport(searchVal){
-  var ipt_idPortcountryDestiny = 1; //EL PAÍS POR DEFECTO PARA ESTE TIPO ES: PERÚ - CALLAO
+  var ipt_idPortcountryDestiny = 2; //EL PAÍS POR DEFECTO, PARA ESTE TIPO ES: PERÚ - CALLAO
   if($("#loadTypeTranport").val() == "general")  {
-    /************************** LISTADO DE TARIFAS PARA TRANSPORTE INTERNO - TIPO GENERAL **************************/
+    // ========= LISTADO DE TARIFAS PARA TRANSPORTE INTERNO - TIPO GENERAL ========== //
     $.ajax({
       url: "controllers/list_zonasratelcltransport_general.php",
       method: "POST",
@@ -1888,7 +1887,7 @@ function listrateLCLTransport(searchVal){
         var g_20st_40nor = parseFloat(e.g_20st_40nor);
 
         if($("#loadTypeCharge").val() == "LCL"){
-          /************************** QUITAR LOS PUNTOS A EL VALOR DEL PESO **************************/
+          // ============ QUITAR LOS PUNTOS A EL VALOR DEL PESO =========== //
           var val_weighttotalstep = $("#n_weightcompare_ultstep").val();
           var val_finalweighttotalstep = val_weighttotalstep.replace(/\./g, '');
 
@@ -1930,7 +1929,7 @@ function listrateLCLTransport(searchVal){
                 </li>
               `;
             }else{
-              /************************** MOSTRAR EL MENSAJE DE ALERTA PERSONALIZADO **************************/
+              // ============= MOSTRAR EL MENSAJE DE ALERTA PERSONALIZADO ========= //
               $("#idMessageSteps-prcss").html(`
                 <div class="cntMessageSteps-prcss--cont">
                   <div class="cntMessageSteps-prcss--cont--c">
@@ -1940,7 +1939,7 @@ function listrateLCLTransport(searchVal){
                   </div>
                 </div>
               `)
-              /************************** CERRAR EL MODAL **************************/
+              // ============= CERRAR EL MODAL ============= //
               setTimeout(function(){
                 $("#idMessageSteps-prcss .cntMessageSteps-prcss--cont").remove();
               }, 8500)
@@ -1962,7 +1961,7 @@ function listrateLCLTransport(searchVal){
       }
     });
   }else if($("#loadTypeTranport").val() == "imo"){
-    /************************** LISTADO DE TARIFAS PARA TRANSPORTE INTERNO - TIPO IMO **************************/
+    // =========== LISTADO DE TARIFAS PARA TRANSPORTE INTERNO - TIPO IMO ========== //
     $.ajax({
       url: "controllers/list_zonasratelcltransport_imo.php",
       method: "POST",
@@ -1996,7 +1995,7 @@ function listrateLCLTransport(searchVal){
         var imo_20st_40nor = parseFloat(e.imo_20st_40nor);
 
         if($("#loadTypeCharge").val() == "LCL"){
-          /************************** QUITAR LOS PUNTOS A EL VALOR DEL PESO **************************/
+          // =========== QUITAR LOS PUNTOS A EL VALOR DEL PESO ========== //
           var val_weighttotalstep = $("#n_weightcompare_ultstep").val();
           var val_finalweighttotalstep = val_weighttotalstep.replace(/\./g, '');
 
@@ -2038,7 +2037,7 @@ function listrateLCLTransport(searchVal){
                 </li>
               `;
             }else{
-              /************************** MOSTRAR EL MENSAJE DE ALERTA PERSONALIZADO **************************/
+              // ============ MOSTRAR EL MENSAJE DE ALERTA PERSONALIZADO =========== //
               $("#idMessageSteps-prcss").html(`
                 <div class="cntMessageSteps-prcss--cont">
                   <div class="cntMessageSteps-prcss--cont--c">
@@ -2048,7 +2047,7 @@ function listrateLCLTransport(searchVal){
                   </div>
                 </div>
               `)
-              /************************** CERRAR EL MODAL **************************/
+              // =========== CERRAR EL MODAL ========== //
               setTimeout(function(){
                 $("#idMessageSteps-prcss .cntMessageSteps-prcss--cont").remove();
               }, 8500)
@@ -2069,7 +2068,7 @@ function listrateLCLTransport(searchVal){
       }
     });
   }else if($("#loadTypeTranport").val() == "refrigerado"){
-    /************************** LISTADO DE TARIFAS PARA TRANSPORTE INTERNO - TIPO REFRIGERADO **************************/
+    // ============ LISTADO DE TARIFAS PARA TRANSPORTE INTERNO - TIPO REFRIGERADO =========== //
     $.ajax({
       url: "controllers/list_zonasratelcltransport_refrigerado.php",
       method: "POST",
@@ -2103,7 +2102,7 @@ function listrateLCLTransport(searchVal){
         var refr_20st_40nor = parseFloat(e.refr_20st_40nor);
 
         if($("#loadTypeCharge").val() == "LCL"){
-          /************************** QUITAR LOS PUNTOS A EL VALOR DEL PESO **************************/
+          // ============= QUITAR LOS PUNTOS A EL VALOR DEL PESO ============ //
           var val_weighttotalstep = $("#n_weightcompare_ultstep").val();
           var val_finalweighttotalstep = val_weighttotalstep.replace(/\./g, '');
 
@@ -2145,7 +2144,7 @@ function listrateLCLTransport(searchVal){
                 </li>
               `;
             }else{
-              /************************** MOSTRAR EL MENSAJE DE ALERTA PERSONALIZADO **************************/
+              // ============= MOSTRAR EL MENSAJE DE ALERTA PERSONALIZADO ============ //
               $("#idMessageSteps-prcss").html(`
                 <div class="cntMessageSteps-prcss--cont">
                   <div class="cntMessageSteps-prcss--cont--c">
@@ -2155,7 +2154,7 @@ function listrateLCLTransport(searchVal){
                   </div>
                 </div>
               `)
-              /************************** CERRAR EL MODAL **************************/
+              // ============ CERRAR EL MODAL ============ //
               setTimeout(function(){
                 $("#idMessageSteps-prcss .cntMessageSteps-prcss--cont").remove();
               }, 8500)
@@ -2179,7 +2178,7 @@ function listrateLCLTransport(searchVal){
     //console.log("Por favor, elige un tipo de transporte para continuar");
   }
 }
-/************************** MOSTRAR EL LISTADO DE DISTRITO POR PAÍS DE DESTINO **************************/
+// =========== MOSTRAR EL LISTADO DE DISTRITO POR PAÍS DE DESTINO ============= //
 $(document).on("focus", "#ipt-valDistricByCountryNInterface", function(){
   $("#m-listAllDistricsByCountry").addClass("show");
   listrateLCLTransport();
@@ -2199,31 +2198,31 @@ $(document).on("keyup", "#ipt-valDistricByCountryNInterface", function(){
     listrateLCLTransport();
   }
 });
-/************************** FIJAR EL VALOR DE ITEM EN EL INPUT - DISTRITO POR PAÍS DE DESTINO **************************/
+// ============= FIJAR EL VALOR DE ITEM EN EL INPUT - DISTRITO POR PAÍS DE DESTINO ============== //
 $(document).on("click", ".cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation--cC--cControl--cListChange--m--item", function(){
   $("#m-listAllDistricsByCountry").removeClass("show");
   $("#ipt-valDistricByCountryNInterface").attr("iddistrict", $(this).attr("id"));
   $("#ipt-valDistricByCountryNInterface").val($(this).find("span").text());
-  /************************** ASIGNAR VALORES DE LOS INPUTS HIDDEN - RECOGIDA UBICACIÓN **************************/
+  // ========== ASIGNAR VALORES DE LOS INPUTS HIDDEN - RECOGIDA UBICACIÓN =========== //
   $("#plc-pickuploc").val($(this).attr("namprovince")+" - "+$(this).find("span").text());
-  /************************** VARIABLE PARA CONTENEDORES - 20ST,40ST,40HQ Y 40NOR **************************/
+  // ========== VARIABLE PARA CONTENEDORES - 20ST,40ST,40HQ Y 40NOR =========== //
   var q_containerType = 0;
   if($("#loadTypeCharge").val() == "FCL"){
     if($("#ipt-qvalContainer20ST").val() != 0 && $("#ipt-qvalContainer20ST").val() != ""){
       q_containerType = $("#ipt-qvalContainer20ST").val();
-      /************************** ASIGNAR A LA VARIABLE LOCAL **************************/
+      // =========== ASIGNAR A LA VARIABLE LOCAL =========== //
       localStorage.setItem("key_v-valuetransport", q_containerType * $(this).attr("rateprice"));
     }else if($("#ipt-qvalContainer40ST").val() != 0 && $("#ipt-qvalContainer40ST").val() != ""){
       q_containerType = $("#ipt-qvalContainer40ST").val();
-      /************************** ASIGNAR A LA VARIABLE LOCAL **************************/
+      // =========== ASIGNAR A LA VARIABLE LOCAL =========== //
       localStorage.setItem("key_v-valuetransport", q_containerType * $(this).attr("rateprice"));
     }else if($("#ipt-qvalContainer40HQ").val() != 0 && $("#ipt-qvalContainer40HQ").val() != ""){
       q_containerType = $("#ipt-qvalContainer40HQ").val();
-      /************************** ASIGNAR A LA VARIABLE LOCAL **************************/
+      // =========== ASIGNAR A LA VARIABLE LOCAL =========== //
       localStorage.setItem("key_v-valuetransport", q_containerType * $(this).attr("rateprice"));
     }else if($("#ipt-qvalContainer40NOR").val() != 0 && $("#ipt-qvalContainer40NOR").val() != ""){
       q_containerType = $("#ipt-qvalContainer40NOR").val();
-      /************************** ASIGNAR A LA VARIABLE LOCAL **************************/
+      // =========== ASIGNAR A LA VARIABLE LOCAL =========== //
       localStorage.setItem("key_v-valuetransport", q_containerType * $(this).attr("rateprice"));
     }else{
       console.log('No se seleccionó ningún contenedor en FCL');
@@ -2231,7 +2230,7 @@ $(document).on("click", ".cont-MainCamelLog--c--contSteps--item--cStep--mFrmIpts
   }else{
     localStorage.setItem("key_v-valuetransport", $("#val-iptPackagesNInterface").val() * $(this).attr("rateprice"));
   }
-  /************************** MOSTRAR EL BOTÓN DE COTIZACIÓN **************************/
+  // =========== MOSTRAR EL BOTÓN DE COTIZACIÓN =========== /
   $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-pickuplocation] .cont-MainCamelLog--c--contSteps--item--cBtnNextStep").html(`
     <button type="submit" class="cont-MainCamelLog--c--contSteps--item--cBtnNextStep--btnR" id="btn-NextStepTopickuplocation">
       <span>CALCULAR COTIZACIÓN</span>
