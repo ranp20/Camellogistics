@@ -573,6 +573,605 @@ $(document).on("click", "#list-typeChargeLoadItems a", function(){
 
 
 
+
+
+
+/*
+// ================================================================================== //
+//                          4. AÑADIR LA CANTIDAD DE CONTENEDORES                     //
+// ================================================================================== //
+// ============ PRIMER INPUT =========== //
+$(document).on("click", "#c-incdecBtns20 button", function(){
+  var tindBtn = $(this).index();
+  var input20 = $(this).parent().find("input").val();
+  var newValipt20 = $(this).parent().find("input").val();
+  var val20inputhidden = $("#loadQContainer20").val();
+  var val20inputhiddenNew = $("#loadQContainer20").val();
+  // ============ LISTAR LA TARIFA DEL PUERTO DE ORIGEN - FCL =========== //
+  $.ajax({
+    url: "controllers/list_rateByPortOriginFCL.php",
+    method: "POST",
+    datatype: "JSON",
+    contentType: 'application/x-www-form-urlencoded;charset=UTF-8',
+    data: {nameportOrigin : arrPortOrigin[0], typetransport: $("#loadTypeTranport").val(), container : "20ST"},
+  }).done((e) => {
+    var totalFCL = JSON.parse(e);
+    var totalSend20ST = 0;
+    var total20ST = 0;
+
+    // ========== DEVOLVER LA FECHA DE VALIDEZ DE LA TARIFA A LA VARIABLE LOCAL ========== //
+    var validdesde_final = totalFCL[0].validdesde;
+    var validhasta_final = totalFCL[0].validhasta;
+    // ========== ASIGNAR A LOS INPUTS DE ENVÍO =========== //
+    $("#val-datevaliddesde").val(validdesde_final);
+    $("#val-datevalidhasta").val(validhasta_final);
+    var convertOneDATE =  new Date(Date.parse(validdesde_final.replace(/-/g, '/')));
+    var convertTwoDATE =  new Date(Date.parse(validhasta_final.replace(/[-]/g,'/')));
+    var options = { year: 'numeric', month: 'long', day: 'numeric' };
+    var convertDateValidDesde = convertOneDATE.toLocaleDateString("es-ES", options);
+    var convertDateValidHasta = convertTwoDATE.toLocaleDateString("es-ES", options);
+    var separateDateValidDesde = convertDateValidDesde.split(" ");
+    var separateDateValidHasta = convertDateValidHasta.split(" ");
+    var monthSeparatetoArrayDesde = separateDateValidDesde[2].slice(0, 3);
+    var monthSeparatetoArrayHasta = separateDateValidHasta[2].slice(0, 3);
+
+    var val_dateValidDesde = separateDateValidDesde[0]+" "+"de"+" "+firstToUppercase(monthSeparatetoArrayDesde);
+    var val_dateValidHasta = separateDateValidHasta[0]+" "+"de"+" "+firstToUppercase(monthSeparatetoArrayHasta);
+    // ============= ASIGNAR A LAS VARIABLES LOCALES ============ //
+    localStorage.setItem("key_validaterate", val_dateValidDesde+" - "+val_dateValidHasta);
+    // ============= ASIGNAR AL VALOR DE ENVÍO ============= //
+    $("#val_validateratequote").val(val_dateValidDesde+" - "+val_dateValidHasta);
+    // ========== VALIDAR SI OTRO CONTROL TIENE ALGÚN VALOR ========== //
+    if($("#ipt-qvalContainer40ST").val() > 0 || $("#ipt-qvalContainer40HQ").val() > 0 || $("#ipt-qvalContainer40NOR").val() > 0){
+      // ========== MOSTRAR EL MENSAJE DE ALERTA PERSONALIZADO =========== //
+      $("#idMessageSteps-prcss").html(`
+        <div class="cntMessageSteps-prcss--cont">
+          <div class="cntMessageSteps-prcss--cont--c">
+            <span class="cntMessageSteps-prcss--cont--c--btnclose" id="btnclose-modalMessage"></span>
+            <h3 class="cntMessageSteps-prcss--cont--c--title">Un solo tipo</h3>
+            <p class="cntMessageSteps-prcss--cont--c--text">Por favor, elija <b>un solo tipo de contenedor.</b></p>
+          </div>
+        </div>
+      `);
+      // =========== CERRAR EL MODAL ========== //
+      setTimeout(function(){
+        $("#idMessageSteps-prcss .cntMessageSteps-prcss--cont").remove();
+      }, 6500);
+      $("#btnclose-modalMessage").on("click", function(){
+        $(this).parent().parent().remove();
+      });
+
+      $("#ipt-qvalContainer20ST").val(0);
+      total20ST = 0;
+      totalSend20ST = 0;
+    }else{
+      
+      total20ST = 0;
+      totalSend20ST = 0;
+
+      if(tindBtn == 2){
+        newValipt20 = parseInt(input20) + 1;
+        $(this).parent().find("input").val(newValipt20);
+        
+        // =========== ASIGNAR VALORES A LA VARIABLE GLOBAL REFERENTE =========== //
+        v_QContainersName20 = $(this).parent().parent().find("label").text();
+        v_QContainersImgSrc20 = $(this).parent().parent().parent().find("div").find("img").attr("src");
+        v_QContainersValue20 = newValipt20;
+
+        // =========== ASIGNAR VALORES DE LOS INPUTS HIDDEN =========== //
+        $("#loadTypeContainer20").val(v_QContainersName20+" "+"Std");
+        val20inputhiddenNew = parseInt(val20inputhidden) + 1;
+        $("#loadQContainer20").val(val20inputhiddenNew);
+        // =========== CALCULAR EL VALOR DEL TOTAL - 20ST =========== //
+        totalSend20ST = parseFloat(totalFCL[0].total) * $("#ipt-qvalContainer20ST").val();
+        // =========== ASIGNAR A LA VARIABLE LOCAL - LOCALSTORAGE ============ //
+        localStorage.setItem("key_v-totalflette", totalSend20ST);
+
+        // =========== RESUMEN DEL LISTADO - CONTENEDORES 20' ============ //
+        $("div[data-merchandisetype=rsm-qcontainer20]").find("img").attr("src", v_QContainersImgSrc20);
+        $("div[data-merchandisetype=rsm-qcontainer20]").find("span").eq(0).text(val20inputhiddenNew);
+        $("div[data-merchandisetype=rsm-qcontainer20]").find("span").eq(1).text("x");
+        $("div[data-merchandisetype=rsm-qcontainer20]").find("span").eq(2).text(v_QContainersName20);
+
+      }else if(tindBtn == 0){
+        if(input20 > 0){
+          newValipt20 = parseInt(input20) - 1;
+          $(this).parent().find("input").val(newValipt20);
+          // =========== ASIGNAR VALORES DE LOS INPUTS HIDDEN ============ //
+          val20inputhiddenNew = parseInt(val20inputhidden) - 1;
+          $("#loadQContainer20").val(val20inputhiddenNew);
+          // =========== CALCULAR EL VALOR DEL TOTAL - 20ST ============= //
+          totalSend20ST = parseFloat(totalFCL[0].total) * $("#ipt-qvalContainer20ST").val();
+          // =========== ASIGNAR A LA VARIABLE LOCAL - LOCALSTORAGE ============ //
+          localStorage.setItem("key_v-totalflette", totalSend20ST);
+          // =========== RESUMEN DEL LISTADO - CONTENEDORES 20' ============= //
+          $("div[data-merchandisetype=rsm-qcontainer20]").find("img").attr("src", v_QContainersImgSrc20);
+          $("div[data-merchandisetype=rsm-qcontainer20]").find("span").eq(0).text(val20inputhiddenNew);
+          $("div[data-merchandisetype=rsm-qcontainer20]").find("span").eq(1).text("x");
+          $("div[data-merchandisetype=rsm-qcontainer20]").find("span").eq(2).text(v_QContainersName20);
+        }else{
+          newValipt20 = 0;
+          $(this).parent().find("input").val(newValipt20);
+          // ============= ASIGNAR VALORES DE LOS INPUTS HIDDEN ============ //
+          $("#loadTypeContainer20").val("");
+          val20inputhiddenNew = 0;
+          $("#loadQContainer20").val(0);
+          // ============= CALCULAR EL VALOR DEL TOTAL - 20ST ============ //
+          totalSend20ST = 0;
+          // ============= ASIGNAR A LA VARIABLE LOCAL - LOCALSTORAGE =========== //
+          localStorage.setItem("key_v-totalflette", 0);
+          // ============= RESUMEN DEL LISTADO - CONTENEDORES 20' ============ //
+          $("div[data-merchandisetype=rsm-qcontainer20]").find("img").attr("src", "");
+          $("div[data-merchandisetype=rsm-qcontainer20]").find("span").eq(0).text("");
+          $("div[data-merchandisetype=rsm-qcontainer20]").find("span").eq(1).text("");
+          $("div[data-merchandisetype=rsm-qcontainer20]").find("span").eq(2).text("");
+        }
+      }else{
+        console.log('Sin acción');
+      }
+    }
+  });
+});
+// ============ SEGUNDO INPUT ============ //
+$(document).on("click", "#c-incdecBtns40 button", function(){
+  var tindBtn = $(this).index();
+  var input40 = $(this).parent().find("input").val();
+  var newValipt40 = $(this).parent().find("input").val();
+  var val40inputhidden = $("#loadQContainer40").val();
+  var val40inputhiddenNew = $("#loadQContainer40").val();
+  // ============ LISTAR LA TARIFA DEL PUERTO DE ORIGEN - FCL ============= //
+  $.ajax({
+    url: "controllers/list_rateByPortOriginFCL.php",
+    method: "POST",
+    datatype: "JSON",
+    contentType: 'application/x-www-form-urlencoded;charset=UTF-8',
+    data: {nameportOrigin : arrPortOrigin[0], typetransport: $("#loadTypeTranport").val(), container : "40ST"},
+  }).done((e) => {
+    var totalFCL = JSON.parse(e);
+    var totalSend40ST = 0;
+    var total40ST = 0;
+
+    // ============= DEVOLVER LA FECHA DE VALIDEZ DE LA TARIFA A LA VARIABLE LOCAL ============= //
+    var validdesde_final = totalFCL[0].validdesde;
+    var validhasta_final = totalFCL[0].validhasta;
+    // ============= ASIGNAR A LOS INPUTS DE ENVÍO ============== //
+    $("#val-datevaliddesde").val(validdesde_final);
+    $("#val-datevalidhasta").val(validhasta_final);
+    var convertOneDATE =  new Date(Date.parse(validdesde_final.replace(/-/g, '/')));
+    var convertTwoDATE =  new Date(Date.parse(validhasta_final.replace(/[-]/g,'/')));
+    var options = { year: 'numeric', month: 'long', day: 'numeric' };
+    var convertDateValidDesde = convertOneDATE.toLocaleDateString("es-ES", options);
+    var convertDateValidHasta = convertTwoDATE.toLocaleDateString("es-ES", options);
+    var separateDateValidDesde = convertDateValidDesde.split(" ");
+    var separateDateValidHasta = convertDateValidHasta.split(" ");
+    var monthSeparatetoArrayDesde = separateDateValidDesde[2].slice(0, 3);
+    var monthSeparatetoArrayHasta = separateDateValidHasta[2].slice(0, 3);
+
+    var val_dateValidDesde = separateDateValidDesde[0]+" "+"de"+" "+firstToUppercase(monthSeparatetoArrayDesde);
+    var val_dateValidHasta = separateDateValidHasta[0]+" "+"de"+" "+firstToUppercase(monthSeparatetoArrayHasta);
+    // ============= ASIGNAR A LAS VARIABLES LOCALES ============== //
+    localStorage.setItem("key_validaterate", val_dateValidDesde+" - "+val_dateValidHasta);
+    // ============= ASIGNAR AL VALOR DE ENVÍO ============= //
+    $("#val_validateratequote").val(val_dateValidDesde+" - "+val_dateValidHasta);
+
+    // ============= VALIDAR SI OTRO CONTROL TIENE ALGÚN VALOR ============ //
+    if($("#ipt-qvalContainer20ST").val() > 0 || $("#ipt-qvalContainer40HQ").val() > 0 || $("#ipt-qvalContainer40NOR").val() > 0){
+      // =========== MOSTRAR EL MENSAJE DE ALERTA PERSONALIZADO ============ //
+      $("#idMessageSteps-prcss").html(`
+        <div class="cntMessageSteps-prcss--cont">
+          <div class="cntMessageSteps-prcss--cont--c">
+            <span class="cntMessageSteps-prcss--cont--c--btnclose" id="btnclose-modalMessage"></span>
+            <h3 class="cntMessageSteps-prcss--cont--c--title">Un solo tipo</h3>
+            <p class="cntMessageSteps-prcss--cont--c--text">Por favor, elija <b>un solo tipo de contenedor.</b></p>
+          </div>
+        </div>
+      `)
+      // ============= CERRAR EL MODAL ============ //
+      setTimeout(function(){
+        $("#idMessageSteps-prcss .cntMessageSteps-prcss--cont").remove();
+      }, 6500);
+      $("#btnclose-modalMessage").on("click", function(){
+        $(this).parent().parent().remove();
+      });
+
+      $("#ipt-qvalContainer40ST").val(0);
+      total40ST = 0;
+      totalSend40ST = 0;
+    }else{
+
+      if(tindBtn == 2){
+        newValipt40 = parseInt(input40) + 1;
+        $(this).parent().find("input").val(newValipt40);
+
+        // ============ ASIGNAR VALORES A LA VARIABLE GLOBAL REFERENTE ============ //
+        v_QContainersName40 = $(this).parent().parent().find("label").text();
+        v_QContainersImgSrc40 = $(this).parent().parent().parent().find("div").find("img").attr("src");
+        v_QContainersValue40 = $(this).parent().find("input").val(newValipt40);
+
+        // ============ ASIGNAR VALORES DE LOS INPUTS HIDDEN ============== //
+        $("#loadTypeContainer40").val(v_QContainersName40+" "+"Std");
+        val40inputhiddenNew = parseInt(val40inputhidden) + 1;
+        $("#loadQContainer40").val(val40inputhiddenNew);
+        // ============ CALCULAR EL VALOR DEL TOTAL - 20ST ============= //
+        totalSend40ST = parseFloat(totalFCL[0].total) * $("#ipt-qvalContainer40ST").val();
+        // ============ ASIGNAR A LA VARIABLE LOCAL - LOCALSTORAGE ============ //
+        localStorage.setItem("key_v-totalflette", totalSend40ST);
+        // ============ RESUMEN DEL LISTADO - CONTENEDORES 40' ============ //
+        $("div[data-merchandisetype=rsm-qcontainer40]").find("img").attr("src", v_QContainersImgSrc40);
+        $("div[data-merchandisetype=rsm-qcontainer40]").find("span").eq(0).text(val40inputhiddenNew);
+        $("div[data-merchandisetype=rsm-qcontainer40]").find("span").eq(1).text("x");
+        $("div[data-merchandisetype=rsm-qcontainer40]").find("span").eq(2).text(v_QContainersName40);
+
+      }else if(tindBtn == 0){
+        if(input40 > 0){
+          newValipt40 = parseInt(input40) - 1;
+          $(this).parent().find("input").val(newValipt40);
+          // =========== ASIGNAR VALORES DE LOS INPUTS HIDDEN ============= //
+          val40inputhiddenNew = parseInt(val40inputhidden) - 1;
+          $("#loadQContainer40").val(val40inputhiddenNew);
+          // =========== CALCULAR EL VALOR DEL TOTAL - 20ST ============ //
+          totalSend40ST = parseFloat(totalFCL[0].total) * $("#ipt-qvalContainer40ST").val();
+          // =========== ASIGNAR A LA VARIABLE LOCAL - LOCALSTORAGE ============ //
+          localStorage.setItem("key_v-totalflette", totalSend40ST);
+          // =========== RESUMEN DEL LISTADO - CONTENEDORES 40' ============ //
+          $("div[data-merchandisetype=rsm-qcontainer40]").find("img").attr("src", v_QContainersImgSrc40);
+          $("div[data-merchandisetype=rsm-qcontainer40]").find("span").eq(0).text(val40inputhiddenNew);
+          $("div[data-merchandisetype=rsm-qcontainer40]").find("span").eq(1).text("x");
+          $("div[data-merchandisetype=rsm-qcontainer40]").find("span").eq(2).text(v_QContainersName40);
+        }else{
+          newValipt40 = 0;
+          $(this).parent().find("input").val(newValipt40);
+          // =========== ASIGNAR VALORES DE LOS INPUTS HIDDEN ============ //
+          $("#loadTypeContainer40").val("");
+          val40inputhiddenNew = 0;
+          $("#loadQContainer40").val(0);
+          // =========== CALCULAR EL VALOR DEL TOTAL - 20ST ============= //
+          totalSend40ST = 0;
+          // =========== ASIGNAR A LA VARIABLE LOCAL - LOCALSTORAGE ============= //
+          localStorage.setItem("key_v-totalflette", 0);
+          // =========== RESUMEN DEL LISTADO - CONTENEDORES 40' ============ //
+          $("div[data-merchandisetype=rsm-qcontainer40]").find("img").attr("src", "");
+          $("div[data-merchandisetype=rsm-qcontainer40]").find("span").eq(0).text("");
+          $("div[data-merchandisetype=rsm-qcontainer40]").find("span").eq(1).text("");
+          $("div[data-merchandisetype=rsm-qcontainer40]").find("span").eq(2).text("");
+        }
+      }else{
+        console.log('Sin acción');
+      }
+    }
+  });
+});
+// ============ TERCERO INPUT =========== //
+$(document).on("click", "#c-incdecBtns40-hc button", function(){
+  var tindBtn = $(this).index();
+  var input40_hq = $(this).parent().find("input").val();
+  var newValipt40_hq = $(this).parent().find("input").val();
+  var val40hqinputhidden = $("#loadQContainer40hq").val();
+  var val40hqinputhiddenNew = $("#loadQContainer40hq").val();
+
+  // ============= LISTAR LA TARIFA DEL PUERTO DE ORIGEN - FCL =========== //
+  $.ajax({
+    url: "controllers/list_rateByPortOriginFCL.php",
+    method: "POST",
+    datatype: "JSON",
+    contentType: 'application/x-www-form-urlencoded;charset=UTF-8',
+    data: {nameportOrigin : arrPortOrigin[0], typetransport: $("#loadTypeTranport").val(), container : "40HQ"},
+  }).done((e) => {
+    var totalFCL = JSON.parse(e);
+    var totalSend40HQ = 0;
+    var total40HQ = 0;
+
+    // ========== DEVOLVER LA FECHA DE VALIDEZ DE LA TARIFA A LA VARIABLE LOCAL =========== //
+    var validdesde_final = totalFCL[0].validdesde;
+    var validhasta_final = totalFCL[0].validhasta;
+    // ========== ASIGNAR A LOS INPUTS DE ENVÍO ========== //
+    $("#val-datevaliddesde").val(validdesde_final);
+    $("#val-datevalidhasta").val(validhasta_final);
+    var convertOneDATE =  new Date(Date.parse(validdesde_final.replace(/-/g, '/')));
+    var convertTwoDATE =  new Date(Date.parse(validhasta_final.replace(/[-]/g,'/')));
+    var options = { year: 'numeric', month: 'long', day: 'numeric' };
+    var convertDateValidDesde = convertOneDATE.toLocaleDateString("es-ES", options);
+    var convertDateValidHasta = convertTwoDATE.toLocaleDateString("es-ES", options);
+    var separateDateValidDesde = convertDateValidDesde.split(" ");
+    var separateDateValidHasta = convertDateValidHasta.split(" ");
+    var monthSeparatetoArrayDesde = separateDateValidDesde[2].slice(0, 3);
+    var monthSeparatetoArrayHasta = separateDateValidHasta[2].slice(0, 3);
+
+    var val_dateValidDesde = separateDateValidDesde[0]+" "+"de"+" "+firstToUppercase(monthSeparatetoArrayDesde);
+    var val_dateValidHasta = separateDateValidHasta[0]+" "+"de"+" "+firstToUppercase(monthSeparatetoArrayHasta);
+    // =========== ASIGNAR A LAS VARIABLES LOCALES ============= //
+    localStorage.setItem("key_validaterate", val_dateValidDesde+" - "+val_dateValidHasta);
+    // =========== ASIGNAR AL VALOR DE ENVÍO =========== //
+    $("#val_validateratequote").val(val_dateValidDesde+" - "+val_dateValidHasta);
+
+    // =========== VALIDAR SI OTRO CONTROL TIENE ALGÚN VALOR ============ //
+    if($("#ipt-qvalContainer20ST").val() > 0 || $("#ipt-qvalContainer40ST").val() > 0 || $("#ipt-qvalContainer40NOR").val() > 0){
+      // ========== MOSTRAR EL MENSAJE DE ALERTA PERSONALIZADO =========== //
+      $("#idMessageSteps-prcss").html(`
+        <div class="cntMessageSteps-prcss--cont">
+          <div class="cntMessageSteps-prcss--cont--c">
+            <span class="cntMessageSteps-prcss--cont--c--btnclose" id="btnclose-modalMessage"></span>
+            <h3 class="cntMessageSteps-prcss--cont--c--title">Un solo tipo</h3>
+            <p class="cntMessageSteps-prcss--cont--c--text">Por favor, elija <b>un solo tipo de contenedor.</b></p>
+          </div>
+        </div>
+      `)
+      // =========== CERRAR EL MODAL ========== //
+      setTimeout(function(){
+        $("#idMessageSteps-prcss .cntMessageSteps-prcss--cont").remove();
+      }, 6500);
+      $("#btnclose-modalMessage").on("click", function(){
+        $(this).parent().parent().remove();
+      });
+
+      $("#ipt-qvalContainer40HQ").val(0);
+      total40HQ = 0;
+      totalSend40HQ = 0;
+    }else{
+      
+      if(tindBtn == 2){
+        newValipt40_hq = parseInt(input40_hq) + 1;
+        $(this).parent().find("input").val(newValipt40_hq);
+        // =========== ASIGNAR VALORES A LA VARIABLE GLOBAL REFERENTE =========== //
+        v_QContainersName40_hq = $(this).parent().parent().find("label").text();
+        v_QContainersImgSrc40_hq = $(this).parent().parent().parent().find("div").find("img").attr("src");
+        v_QContainersValue40_hq = $(this).parent().find("input").val(newValipt40_hq);
+
+        // =========== ASIGNAR VALORES DE LOS INPUTS HIDDEN =========== //
+        $("#loadTypeContainer40hq").val("40' HIGH CUBE");
+        val40hqinputhiddenNew = parseInt(val40hqinputhidden) + 1;
+        $("#loadQContainer40hq").val(val40hqinputhiddenNew);
+        // =========== CALCULAR EL VALOR DEL TOTAL - 20ST ============ //
+        totalSend40HQ = parseFloat(totalFCL[0].total) * $("#ipt-qvalContainer40HQ").val();
+        // =========== ASIGNAR A LA VARIABLE LOCAL - LOCALSTORAGE ============ //
+        localStorage.setItem("key_v-totalflette", totalSend40HQ);
+        // =========== RESUMEN DEL LISTADO - CONTENEDORES 40hq' ============ //
+        $("div[data-merchandisetype=rsm-qcontainer40hq]").find("img").attr("src", v_QContainersImgSrc40_hq);
+        $("div[data-merchandisetype=rsm-qcontainer40hq]").find("span").eq(0).text(val40hqinputhiddenNew);
+        $("div[data-merchandisetype=rsm-qcontainer40hq]").find("span").eq(1).text("x");
+        $("div[data-merchandisetype=rsm-qcontainer40hq]").find("span").eq(2).text(v_QContainersName40_hq);
+
+      }else if(tindBtn == 0){
+        if(input40_hq > 0){
+          newValipt40_hq = parseInt(input40_hq) - 1;
+          $(this).parent().find("input").val(newValipt40_hq);
+          // ============ ASIGNAR VALORES DE LOS INPUTS HIDDEN ========== //
+          val40hqinputhiddenNew = parseInt(val40hqinputhidden) - 1;
+          $("#loadQContainer40hq").val(val40hqinputhiddenNew);
+          // ============ CALCULAR EL VALOR DEL TOTAL - 20ST ============= //
+          totalSend40HQ = parseFloat(totalFCL[0].total) * $("#ipt-qvalContainer40HQ").val();
+          // ============ ASIGNAR A LA VARIABLE LOCAL - LOCALSTORAGE =========== //
+          localStorage.setItem("key_v-totalflette", totalSend40HQ);
+          // ============ RESUMEN DEL LISTADO - CONTENEDORES 40hq' =========== //
+          $("div[data-merchandisetype=rsm-qcontainer40hq]").find("img").attr("src", v_QContainersImgSrc40_hq);
+          $("div[data-merchandisetype=rsm-qcontainer40hq]").find("span").eq(0).text(val40hqinputhiddenNew);
+          $("div[data-merchandisetype=rsm-qcontainer40hq]").find("span").eq(1).text("x");
+          $("div[data-merchandisetype=rsm-qcontainer40hq]").find("span").eq(2).text(v_QContainersName40_hq);
+        }else{
+          newValipt40_hq = 0;
+          $(this).parent().find("input").val(newValipt40_hq);
+          // ============ ASIGNAR VALORES DE LOS INPUTS HIDDEN =========== //
+          $("#loadTypeContainer40hq").val("");
+          val40hqinputhiddenNew = 0;
+          $("#loadQContainer40hq").val(0);
+          // ============ CALCULAR EL VALOR DEL TOTAL - 20ST ============ //
+          totalSend40HQ = 0;
+          // ============ ASIGNAR A LA VARIABLE LOCAL - LOCALSTORAGE ============ //
+          localStorage.setItem("key_v-totalflette", 0);
+          // ============ RESUMEN DEL LISTADO - CONTENEDORES 40hq' ============ //
+          $("div[data-merchandisetype=rsm-qcontainer40hq]").find("img").attr("src", "");
+          $("div[data-merchandisetype=rsm-qcontainer40hq]").find("span").eq(0).text("");
+          $("div[data-merchandisetype=rsm-qcontainer40hq]").find("span").eq(1).text("");
+          $("div[data-merchandisetype=rsm-qcontainer40hq]").find("span").eq(2).text("");
+        }
+      }else{
+        console.log('Sin acción');
+      }
+    }
+  });
+});
+// ============ CUARTO INPUT ============ //
+$(document).on("click", "#c-incdecBtns40-nor button", function(){
+  var tindBtn = $(this).index();
+  var input40_nor = $(this).parent().find("input").val();
+  var newValipt40_nor = $(this).parent().find("input").val();
+  var val40norinputhidden = $("#loadQContainer40nor").val();
+  var val40norinputhiddenNew = $("#loadQContainer40nor").val();
+
+  // ========== LISTAR LA TARIFA DEL PUERTO DE ORIGEN - FCL =========== //
+  $.ajax({
+    url: "controllers/list_rateByPortOriginFCL.php",
+    method: "POST",
+    datatype: "JSON",
+    contentType: 'application/x-www-form-urlencoded;charset=UTF-8',
+    data: {nameportOrigin : arrPortOrigin[0], typetransport: $("#loadTypeTranport").val(), container : "NOR"},
+  }).done((e) => {
+    var totalFCL = JSON.parse(e);
+    var totalSend40NOR = 0;
+    var total40NOR = 0;
+
+    // =========== DEVOLVER LA FECHA DE VALIDEZ DE LA TARIFA A LA VARIABLE LOCAL ============ //
+    var validdesde_final = totalFCL[0].validdesde;
+    var validhasta_final = totalFCL[0].validhasta;
+    // =========== ASIGNAR A LOS INPUTS DE ENVÍO ============ //
+    $("#val-datevaliddesde").val(validdesde_final);
+    $("#val-datevalidhasta").val(validhasta_final);
+    var convertOneDATE =  new Date(Date.parse(validdesde_final.replace(/-/g, '/')));
+    var convertTwoDATE =  new Date(Date.parse(validhasta_final.replace(/[-]/g,'/')));
+    var options = { year: 'numeric', month: 'long', day: 'numeric' };
+    var convertDateValidDesde = convertOneDATE.toLocaleDateString("es-ES", options);
+    var convertDateValidHasta = convertTwoDATE.toLocaleDateString("es-ES", options);
+    var separateDateValidDesde = convertDateValidDesde.split(" ");
+    var separateDateValidHasta = convertDateValidHasta.split(" ");
+    var monthSeparatetoArrayDesde = separateDateValidDesde[2].slice(0, 3);
+    var monthSeparatetoArrayHasta = separateDateValidHasta[2].slice(0, 3);
+
+    var val_dateValidDesde = separateDateValidDesde[0]+" "+"de"+" "+firstToUppercase(monthSeparatetoArrayDesde);
+    var val_dateValidHasta = separateDateValidHasta[0]+" "+"de"+" "+firstToUppercase(monthSeparatetoArrayHasta);
+    // ============ ASIGNAR A LAS VARIABLES LOCALES ============= //
+    localStorage.setItem("key_validaterate", val_dateValidDesde+" - "+val_dateValidHasta);
+    // ============ ASIGNAR AL VALOR DE ENVÍO ============= //
+    $("#val_validateratequote").val(val_dateValidDesde+" - "+val_dateValidHasta);
+
+    // ============ VALIDAR SI OTRO CONTROL TIENE ALGÚN VALOR ============ //
+    if($("#ipt-qvalContainer20ST").val() > 0 || $("#ipt-qvalContainer40ST").val() > 0 || $("#ipt-qvalContainer40HQ").val() > 0){
+      // =========== MOSTRAR EL MENSAJE DE ALERTA PERSONALIZADO ============ //
+      $("#idMessageSteps-prcss").html(`
+        <div class="cntMessageSteps-prcss--cont">
+          <div class="cntMessageSteps-prcss--cont--c">
+            <span class="cntMessageSteps-prcss--cont--c--btnclose" id="btnclose-modalMessage"></span>
+            <h3 class="cntMessageSteps-prcss--cont--c--title">Un solo tipo</h3>
+            <p class="cntMessageSteps-prcss--cont--c--text">Por favor, elija <b>un solo tipo de contenedor.</b></p>
+          </div>
+        </div>
+      `)
+      // ============ CERRAR EL MODAL ============ //
+      setTimeout(function(){
+        $("#idMessageSteps-prcss .cntMessageSteps-prcss--cont").remove();
+      }, 6500);
+      $("#btnclose-modalMessage").on("click", function(){
+        $(this).parent().parent().remove();
+      });
+
+      $("#ipt-qvalContainer40NOR").val(0);
+      total40NOR = 0;
+      totalSend40NOR = 0;
+    }else{
+
+      if(tindBtn == 2){
+        newValipt40_nor = parseInt(input40_nor) + 1;
+        $(this).parent().find("input").val(newValipt40_nor);
+        // =========== ASIGNAR VALORES A LA VARIABLE GLOBAL REFERENTE ============ //
+        v_QContainersName40_nor = $(this).parent().parent().find("label").text();
+        v_QContainersImgSrc40_nor = $(this).parent().parent().parent().find("div").find("img").attr("src");
+        v_QContainersValue40_nor = $(this).parent().find("input").val(newValipt40_nor);
+
+        // =========== ASIGNAR VALORES DE LOS INPUTS HIDDEN ============ //
+        $("#loadTypeContainer40nor").val("40' NOR");
+        val40norinputhiddenNew = parseInt(val40norinputhidden) + 1;
+        $("#loadQContainer40nor").val(val40norinputhiddenNew);
+        // =========== CALCULAR EL VALOR DEL TOTAL - 20ST ============= //
+        totalSend40NOR = parseFloat(totalFCL[0].total) * $("#ipt-qvalContainer40NOR").val();
+        // =========== ASIGNAR A LA VARIABLE LOCAL - LOCALSTORAGE ============ //
+        localStorage.setItem("key_v-totalflette", totalSend40NOR);
+        // =========== RESUMEN DEL LISTADO - CONTENEDORES 40nor' ============ //
+        $("div[data-merchandisetype=rsm-qcontainer40nor]").find("img").attr("src", v_QContainersImgSrc40_nor);
+        $("div[data-merchandisetype=rsm-qcontainer40nor]").find("span").eq(0).text(val40norinputhiddenNew);
+        $("div[data-merchandisetype=rsm-qcontainer40nor]").find("span").eq(1).text("x");
+        $("div[data-merchandisetype=rsm-qcontainer40nor]").find("span").eq(2).text(v_QContainersName40_nor);
+
+      }else if(tindBtn == 0){
+        if(input40_nor > 0){
+          newValipt40_nor = parseInt(input40_nor) - 1;
+          $(this).parent().find("input").val(newValipt40_nor);
+          // =========== ASIGNAR VALORES DE LOS INPUTS HIDDEN ============== //
+          val40norinputhiddenNew = parseInt(val40norinputhidden) - 1;
+          $("#loadQContainer40nor").val(val40norinputhiddenNew);
+          // =========== CALCULAR EL VALOR DEL TOTAL - 20ST ============ //
+          totalSend40NOR = parseFloat(totalFCL[0].total) * $("#ipt-qvalContainer40NOR").val();
+          // =========== ASIGNAR A LA VARIABLE LOCAL - LOCALSTORAGE ============ //
+          localStorage.setItem("key_v-totalflette", totalSend40NOR);
+          // =========== RESUMEN DEL LISTADO - CONTENEDORES 40nor' ============ //
+          $("div[data-merchandisetype=rsm-qcontainer40nor]").find("img").attr("src", v_QContainersImgSrc40_nor);
+          $("div[data-merchandisetype=rsm-qcontainer40nor]").find("span").eq(0).text(val40norinputhiddenNew);
+          $("div[data-merchandisetype=rsm-qcontainer40nor]").find("span").eq(1).text("x");
+          $("div[data-merchandisetype=rsm-qcontainer40nor]").find("span").eq(2).text(v_QContainersName40_nor);
+        }else{
+          newValipt40_nor = 0;
+          $(this).parent().find("input").val(newValipt40_nor);
+          // =========== ASIGNAR VALORES DE LOS INPUTS HIDDEN ============ //
+          $("#loadTypeContainer40nor").val("");
+          val40norinputhiddenNew = 0;
+          $("#loadQContainer40nor").val(0);
+          // =========== CALCULAR EL VALOR DEL TOTAL - 20ST ============ //
+          totalSend40NOR = 0;
+          // =========== ASIGNAR A LA VARIABLE LOCAL - LOCALSTORAGE ============ //
+          localStorage.setItem("key_v-totalflette", 0);
+          // =========== RESUMEN DEL LISTADO - CONTENEDORES 40nor' ============= //
+          $("div[data-merchandisetype=rsm-qcontainer40nor]").find("img").attr("src", "");
+          $("div[data-merchandisetype=rsm-qcontainer40nor]").find("span").eq(0).text("");
+          $("div[data-merchandisetype=rsm-qcontainer40nor]").find("span").eq(1).text("");
+          $("div[data-merchandisetype=rsm-qcontainer40nor]").find("span").eq(2).text("");
+        }
+      }else{
+        console.log('Sin acción');
+      }
+    }
+  });
+});
+// ============ VALIDAR EL BOTÓN DE PASO SIGUIENTE - DESDE CONTENEDORES ============ //
+$(document).on("click", "#btn-NextStepToSelOptResultExp", function(){
+  if($("#c-incdecBtns20").find("input").val() != 0 && $("#c-incdecBtns20").find("input").val() != "" || 
+     $("#c-incdecBtns40").find("input").val() != 0 && $("#c-incdecBtns40").find("input").val() != "" ||
+     $("#c-incdecBtns40-hc").find("input").val() != 0 && $("#c-incdecBtns40-hc").find("input").val() != "" ||
+     $("#c-incdecBtns40-nor").find("input").val() != 0 && $("#c-incdecBtns40-nor").find("input").val() != ""){
+    // =========== MOSTRAR EL RESUMEN HASTA ESTE PASO ============ //
+    $(".cont-MainCamelLog--c--contResumeCalc--item[data-advlevel=d-typecontainer]").addClass("show");
+    // =========== MOSTRAR EL PASO DE - ELIGE UNA OPCIÓN ============ //
+    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-integservorfleteinte]").addClass("show");
+    sectionsSteps.moveTo('step-integservorfleteinte', 1);
+    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-integservorfleteinte]").html(`
+      <div class="cont-MainCamelLog--c--contSteps--item--cTitle">
+        <h3 class="cont-MainCamelLog--c--contSteps--item--cTitle--title">Eliga una opción</h3>
+        <span>
+          <span>
+            <input type="hidden" id="opt-genfquotation" name="opt-genfquotation" class="n-val-sd">
+          </span>
+        </span>
+      </div>
+      <div class="cont-MainCamelLog--c--contSteps--item--cStep">
+        <ul class="cont-MainCamelLog--c--contSteps--item--cStep--m" id="list-SelOptionResultExp">
+          <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem">
+            <li class="cont-MainCamelLog--c--contSteps--item--cStep--m--item">
+              <h3>Opción 1</h3>
+              <div class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem--cImg">
+                <img src="views/assets/img/steps/customs-clearance.png" alt="" loading="lazy">
+              </div>
+              <p>AGREGAR SERVICIOS DE ADUANA EN DESTINO</p>
+            </li>
+          </a>
+          <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem">
+            <li class="cont-MainCamelLog--c--contSteps--item--cStep--m--item">
+              <h3>Opción 2</h3>
+              <div class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem--cImg">
+                <img src="views/assets/img/steps/no-customs-clearance.png" alt="" loading="lazy">
+              </div>
+              <p>NO AGREGAR SERVICIOS "SOLO DESEO FLETE"</p>
+            </li>
+          </a>
+        </ul>
+      </div>
+      <div class="cont-MainCamelLog--c--contSteps--item--cBtnNextStep"></div>
+    `);
+  }else{
+    // ============= MOSTRAR EL MENSAJE DE ALERTA PERSONALIZADO ============= //
+    $("#idMessageSteps-prcss").html(`
+      <div class="cntMessageSteps-prcss--cont">
+        <div class="cntMessageSteps-prcss--cont--c">
+          <span class="cntMessageSteps-prcss--cont--c--btnclose" id="btnclose-modalMessage"></span>
+          <h3 class="cntMessageSteps-prcss--cont--c--title">No se ha añadido ningún contenedor</h3>
+          <p class="cntMessageSteps-prcss--cont--c--text">Por favor añade al menos un contenedor o selecciona LCL como tipo de carga.</p>
+        </div>
+      </div>
+    `)
+    // ============= CERRAR EL MODAL ============= //
+    setTimeout(function(){
+      $("#idMessageSteps-prcss .cntMessageSteps-prcss--cont").remove();
+    }, 6500);
+    $("#btnclose-modalMessage").on("click", function(){
+      $(this).parent().parent().remove();
+    });
+  }  
+});
+*/
+
+
+
+
+
+
+
+
 // ================================================================================== //
 //                         3. AGREGAR LAS DIMENSIONES DE LA CARGA                        
 // ================================================================================== //
