@@ -2853,15 +2853,17 @@ function listrateLCLTransport(searchVal){
     //console.log("Por favor, elige un tipo de transporte para continuar");
   }
 }
-// =========== MOSTRAR EL LISTADO DE DISTRITO POR PAÍS DE DESTINO ============= //
+// =========== LISTAR TODOS LOS RESULTADOS DE DISTRITOS AL HACER FOCUS =========== //
 $(document).on("focus", "#ipt-valDistricByCountryNInterface", function(){
   $("#m-listAllDistricsByCountry").addClass("show");
   listrateLCLTransport();
   sectionsSteps.setAutoScrolling(false);
 });
+// =========== OCULTAR TODOS LOS RESULTADOS DE DISTRITOS AL HACER BLUR =========== //
 $(document).on("blur", "#ipt-valDistricByCountryNInterface", function(){
   sectionsSteps.setAutoScrolling(true);
 });
+// =========== LISTAR TODOS LOS RESULTADOS DE DISTRITOS DE ACUERDO AL VALOR INGRESADO =========== //
 $(document).on("keyup", "#ipt-valDistricByCountryNInterface", function(){
   $("#m-listAllDistricsByCountry").addClass("show");
   var searchVal = $(this).val();
