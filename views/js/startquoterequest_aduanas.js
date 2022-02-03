@@ -114,31 +114,42 @@ $(document).on("click", "#list-typeOperationItems a", function(){
     $(".cont-MainCamelLog--c--contResumeCalc--item[data-advlevel=d-typetransportcharge]").html("");
     // ================= OCULTAR TODOS LOS PASOS ABIERTOS EN CASO SE VUELVA HASTA ESTE PASO ================ //
     // ================= OCULTAR LOS OTROS PASOS AJENOS A ESTA ELECCIÓN ================= //
-    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-typetransport]").removeClass("show");
-    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-typetransport]").html("");
+    // TIPO DE CARGA
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-chargeload]").removeClass("show");
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-chargeload]").html("");
+    // CONTENEDORES
+    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-qcontainers]").removeClass("show");
+    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-qcontainers]").html("");
+    // DIMENSIONES DE CARGA
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-chargedata]").removeClass("show");
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-chargedata]").html("");
+    // MERCANCÍA
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-merchandisedata]").removeClass("show");
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-merchandisedata]").html("");
+    // ¿ NECESITAS TRANSPORTE ?
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-requirespickup]").removeClass("show");
-    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-requirespickup]").html("show");
+    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-requirespickup]").html("");
+    // VALOR DE FLETE
+    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-fletevaldata]").removeClass("show");
+    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-fletevaldata]").html("");
+    // TIPO DE TRANSPORTE
+    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-typetransport]").removeClass("show");
+    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-typetransport]").html("");
+    // RECOGIDA - UBICACIÓN
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-pickuplocation]").removeClass("show");
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-pickuplocation]").html("");
   }else{
     localStorage.setItem("key_v-totalflette", 0);
     localStorage.setItem("key_typeOp", $(this).find("li").find("p").text());
-    // ==================== ASIGNAR A LA VARIABLE BLOBAL ================ //
+    // =========== ASIGNAR A LA VARIABLE BLOBAL ============= //
     v_TypeOp = $(this).find("li").find("p").text();
-    // ==================== VALOR DEL TIPO DE OPERACIÓN ================ //
+    // =========== VALOR DEL TIPO DE OPERACIÓN ============= //
     $("#loadTypeOpe").val(v_TypeOp);
-    // ==================== OCULTAR AL LISTADO DE RESUMEN - ELIGE UN OPCIÓN ================ //
+    // =========== OCULTAR AL LISTADO DE RESUMEN - ELIGE UN OPCIÓN ================ //
     $(".cont-MainCamelLog--c--contResumeCalc--item[data-advlevel=d-reqspeacialservs]").removeClass("show");
     $(".cont-MainCamelLog--c--contResumeCalc--item[data-advlevel=d-reqspeacialservs]").find("span").text("");
-    
-    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-chargeload]").addClass("show");
-    
+    // =========== MOSTRAR EL SIGUIENTE PASO =========== //
+    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-chargeload]").addClass("show");    
     // ============= RESETEAR EL VALOR FINAL DEL FLETE, SI SE REGRESA HASTA ESTE PUNTO ========== //
     localStorage.setItem("key_v-totalflette", 0);
     // ============= MOSTRAR EL SIGUIENTE PASO ============ //
@@ -175,7 +186,7 @@ $(document).on("click", "#list-typeOperationItems a", function(){
         </ul>
       </div>
     `);
-    // ======== MOSTRAR EN EL RESUMEN - LADO IZQUIERDO ========= //
+    // ============ MOSTRAR EN EL RESUMEN - LADO IZQUIERDO ========= //
     $(".cont-MainCamelLog--c--contResumeCalc--item[data-advlevel=d-chargeload]").html(`
       <div class="cont-MainCamelLog--c--contResumeCalc--item--cardStep">
         <div class="cont-MainCamelLog--c--contResumeCalc--item--cardStep--cIcon">
@@ -216,22 +227,26 @@ $(document).on("click", "#list-typeChargeLoadItems a", function(){
     $(".cont-MainCamelLog--c--contResumeCalc--item--cardStep--cIconStepLeft[data-merchandise=rsm-totvolume]").find("span:nth-child(2)").text("");
     $(".cont-MainCamelLog--c--contResumeCalc--item--cardStep--cIconStepLeft[data-merchandise=rsm-totpackages]").find("span:first-child").text("");
     $(".cont-MainCamelLog--c--contResumeCalc--item--cardStep--cIconStepLeft[data-merchandise=rsm-totweight]").find("span:first-child").text("");
-    $(".cont-MainCamelLog--c--contResumeCalc--item--cardStep--cIconStepLeft[data-merchandise=rsm-totvolume]").find("span:first-child").text("");
-    
-    // =========== OCULTAR LOS OTROS PASOS AJENOS A ESTA ELECCIÓN ========== //
+    $(".cont-MainCamelLog--c--contResumeCalc--item--cardStep--cIconStepLeft[data-merchandise=rsm-totvolume]").find("span:first-child").text("");  
+    // =========== OCULTAR LOS DEMÁS PASOS SIGUIENTES Y/O AJENOS A ESTA ELECCIÓN ========== //
+    // DIMENSIONES DE CARGA
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-chargedata]").removeClass("show");
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-chargedata]").html("");
-    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-integservorfleteinte]").removeClass("show");
-    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-integservorfleteinte]").html("");
+    // MERCANCÍA
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-merchandisedata]").removeClass("show");
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-merchandisedata]").html("");
-    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-insuremerchandise]").removeClass("show");
-    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-insuremerchandise]").html("");
+    // ¿ NECESITAS TRANSPORTE ?
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-requirespickup]").removeClass("show");
-    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-requirespickup]").html("show");
+    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-requirespickup]").html("");
+    // VALOR DE FLETE
+    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-fletevaldata]").removeClass("show");
+    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-fletevaldata]").html("");
+    // TIPO DE TRANSPORTE
+    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-typetransport]").removeClass("show");
+    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-typetransport]").html("");
+    // RECOGIDA - UBICACIÓN
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-pickuplocation]").removeClass("show");
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-pickuplocation]").html("");
-
     // ============ MOSTRAR EL SIGUIENTE PASO ========== //
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-qcontainers]").addClass("show");
     sectionsSteps.moveTo('step-qcontainers', 1);
@@ -516,16 +531,27 @@ $(document).on("click", "#list-typeChargeLoadItems a", function(){
     // ========== ASIGNAR AL RESUMEN DEL LISTADO =========== //
     $(".cont-MainCamelLog--c--contResumeCalc--item--cardStep--cIconStepLeft[data-merchandise=rsm-typecharge]").find("img").attr("src", v_TypeChargeImgSrc);
     $(".cont-MainCamelLog--c--contResumeCalc--item--cardStep--cIconStepLeft[data-merchandise=rsm-typecharge]").find("span").text(v_TypeChargeName);
-    
-    // ========== OCULTAR - ELIGE UNA OPCIÓN ========== //
-    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-integservorfleteinte]").html("");
-    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-integservorfleteinte]").removeClass("show");
-    // ========== OCULTAR - CONTENEDORES ============ //
+    // =========== OCULTAR LOS DEMÁS PASOS SIGUIENTES Y/O AJENOS A ESTA ELECCIÓN ========== //
+    // CONTENEDORES
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-qcontainers]").html("");
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-qcontainers]").removeClass("show");
-
-    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-chargedata]").addClass("show");
+    // MERCANCÍA
+    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-merchandisedata]").removeClass("show");
+    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-merchandisedata]").html("");
+    // ¿ NECESITAS TRANSPORTE ?
+    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-requirespickup]").removeClass("show");
+    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-requirespickup]").html("");
+    // VALOR DE FLETE
+    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-fletevaldata]").removeClass("show");
+    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-fletevaldata]").html("");
+    // TIPO DE TRANSPORTE
+    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-typetransport]").removeClass("show");
+    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-typetransport]").html("");
+    // RECOGIDA - UBICACIÓN
+    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-pickuplocation]").removeClass("show");
+    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-pickuplocation]").html("");
     // ========== MOSTRAR EL SIGUIENTE PASO ============= //
+    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-chargedata]").addClass("show");
     sectionsSteps.moveTo('step-chargedata', 1);
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-chargedata]").html(`
       <div class="cont-MainCamelLog--c--contSteps--item--cTitle">
@@ -1596,7 +1622,7 @@ $(document).on("click", "#btn-NextStepTochargedata", function(){
 
     if(v_floatweightconvert > 7000){
       console.log("El peso excede");
-      // =========== OCULTAR EL PASO DE - ELIGE UNA OPCIÓN ========== //
+      // =========== OCULTAR EL SIGUIENTE PASO ========== //
       $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-merchandisedata]").removeClass("show");
       $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-merchandisedata]").html("");
       // =========== MOSTRAR EL MENSAJE DE ALERTA PERSONALIZADO ========= //
@@ -1660,6 +1686,12 @@ $(document).on("click", "#btn-NextStepTochargedata", function(){
                   </div>
                 </div>
               </div>
+              <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cBottom">
+                <label for="chck-importpreview" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cBottom--cSwitch" switch-CFreeze="NO">
+                  <input type="checkbox" id="chck-importpreview" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cBottom--cSwitch--chck">
+                </label>
+                <span>¿Has realizado importaciones previamente?</span>
+              </div>
             </div>
           </div>
           <div class="cont-MainCamelLog--c--contSteps--item--cBtnNextStep" id="s-caseNextStepTomerchandisedata">
@@ -1708,19 +1740,23 @@ $(document).on("click", "#btn-NextStepTochargedata", function(){
                   </div>
                 </div>
               </div>
+              <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cBottom">
+                <label for="chck-importpreview" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cBottom--cSwitch" switch-CFreeze="NO">
+                  <input type="checkbox" id="chck-importpreview" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cBottom--cSwitch--chck">
+                </label>
+                <span>¿Has realizado importaciones previamente?</span>
+              </div>
             </div>
           </div>
           <div class="cont-MainCamelLog--c--contSteps--item--cBtnNextStep" id="s-caseNextStepTomerchandisedata">
           </div>
         `);
-
       }else if(v_ValTotalVolume > 15){
         /************************** OCULTAR EL RESUMEN HASTA ESTE PASO **************************/
         $(".cont-MainCamelLog--c--contResumeCalc--item[data-advlevel=d-typecontainer]").removeClass("show");
-        /************************** OCULTAR EL PASO DE - ELIGE UNA OPCIÓN **************************/
-        $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-integservorfleteinte]").removeClass("show");
-        $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-integservorfleteinte]").html("");
-
+        /************************** OCULTAR EL SIGUIENTE PASO **************************/
+        $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-merchandisedata]").removeClass("show");
+        $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-merchandisedata]").html("");
         /************************** MOSTRAR EL MENSAJE DE ALERTA PERSONALIZADO **************************/
         $("#idMessageSteps-prcss").html(`
           <div class="cntMessageSteps-prcss--cont">
@@ -1743,9 +1779,9 @@ $(document).on("click", "#btn-NextStepTochargedata", function(){
       }
     }
   }else{
-    // ===================== OCULTAR EL PASO DE - ELIGE UNA OPCIÓN =================== //
-    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-integservorfleteinte]").removeClass("show");
-    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-integservorfleteinte]").html("");
+    // ===================== OCULTAR EL SIGUIENTE PASO =================== //
+    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-merchandisedata]").removeClass("show");
+    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-merchandisedata]").html("");
     // ===================== MOSTRAR EL MENSAJE DE ALERTA PERSONALIZADO ================== //
     $("#idMessageSteps-prcss").html(`
       <div class="cntMessageSteps-prcss--cont">
@@ -1772,9 +1808,9 @@ $(document).on("change input keyup", "#val-iptPackagesNInterface", function(e){
   // ============== ASIGNAR AL INPUT DE COMPARACIÓN ============== //
   $("#n_packscompare_ultstep").val($(this).val());
   if(e.target.value == "" || e.target.value == 0){
-    // ============== OCULTAR EL PASO DE - ELIGE UNA OPCIÓN ============= //
-    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-integservorfleteinte]").removeClass("show");
-    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-integservorfleteinte]").html("");
+    // ============== OCULTAR EL SIGUIENTE PASO ============= //
+    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-merchandisedata]").removeClass("show");
+    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-merchandisedata]").html("");
   }else{
     //console.log("Campo completado");
   }
@@ -1785,9 +1821,9 @@ $(document).on("change input keyup", "#val-iptWeightNInterface", function(e){
   // ============== ASIGNAR AL INPUT DE COMPARACIÓN ============== //
   $("#n_weightcompare_ultstep").val($(this).val());
   if(e.target.value == "" || e.target.value == 0){
-    // ============== OCULTAR EL PASO DE - ELIGE UNA OPCIÓN ============== //
-    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-integservorfleteinte]").removeClass("show");
-    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-integservorfleteinte]").html("");
+    // ============== OCULTAR EL SIGUIENTE PASO ============== //
+    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-merchandisedata]").removeClass("show");
+    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-merchandisedata]").html("");
   }else{
     //console.log("Campo completado");
   }
@@ -1798,9 +1834,9 @@ $(document).on("change input keyup", "#val-iptVolumeNInterface", function(e){
   // =============== ASIGNAR AL INPUT DE COMPARACIÓN ============= //
   $("#n_volumecompare_ultstep").val($(this).val());
   if(e.target.value == "" || e.target.value == 0){
-    // ============ OCULTAR EL PASO DE - ELIGE UNA OPCIÓN ============== //
-    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-integservorfleteinte]").removeClass("show");
-    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-integservorfleteinte]").html("");
+    // ============ OCULTAR EL SIGUIENTE PASO ============== //
+    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-merchandisedata]").removeClass("show");
+    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-merchandisedata]").html("");
   }else{
     //console.log("Campo completado");
   }
@@ -1891,12 +1927,15 @@ $(document).on("keyup keydown", "#ipt-valNameTypeProdNInterface", function(e){
   }
 
   if(e.which == 8 || event.keyCode == 46){
-    // =================== OCULTAR EL SIGUIENTE PASO =================== //
-    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-insuremerchandise]").removeClass("show");
-    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-insuremerchandise]").html("");
-    // =================== OCULTAR EL TRASSIGUIENTE PASO ================= //
+    // =================== OCULTAR EL SIGUIENTE PASO Y OTROS AJENOS ================= //
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-requirespickup]").removeClass("show");
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-requirespickup]").html("");
+    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-fletevaldata]").removeClass("show");
+    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-fletevaldata]").html("");
+    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-typetransport]").removeClass("show");
+    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-typetransport]").html("");
+    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-pickuplocation]").removeClass("show");
+    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-pickuplocation]").html("");
   }else{
     //console.log('Con contenido');
   }
