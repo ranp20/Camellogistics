@@ -1657,8 +1657,9 @@ $(document).on("click", "#btn-NextStepTochargedata", function(){
             <span>
               <span>
                 <input type="hidden" value="" id="val-categProdquot-noMoreOpts" name="val-categProdquot" class="n-val-sd">
-                <input type="hidden" value="" id="val-valProdquot-noMoreOpts" name="val-valProdquot" class="n-val-sd">
-                <input type="hidden" value="" id="val-quantityProdsAmmAdd-noMoreOpts" name="val-quantityProdsAmmAdd" class="n-val-sd">
+                <input type="hidden" value="" id="val-valProdquot" name="val-valProdquot" class="n-val-sd">
+                <input type="hidden" value="NO" id="val-prevImports" name="val-prevImports" class="n-val-sd">
+                <input type="hidden" value="" id="val-quantityProdsAmmAdd" name="val-quantityProdsAmmAdd" class="n-val-sd">
               </span>
             </span>
           </div>
@@ -1711,8 +1712,9 @@ $(document).on("click", "#btn-NextStepTochargedata", function(){
             <span>
               <span>
                 <input type="hidden" value="" id="val-categProdquot-noMoreOpts" name="val-categProdquot" class="n-val-sd">
-                <input type="hidden" value="" id="val-valProdquot-noMoreOpts" name="val-valProdquot" class="n-val-sd">
-                <input type="hidden" value="" id="val-quantityProdsAmmAdd-noMoreOpts" name="val-quantityProdsAmmAdd" class="n-val-sd">
+                <input type="hidden" value="" id="val-valProdquot" name="val-valProdquot" class="n-val-sd">
+                <input type="hidden" value="NO" id="val-prevImports" name="val-prevImports" class="n-val-sd">
+                <input type="hidden" value="" id="val-quantityProdsAmmAdd" name="val-quantityProdsAmmAdd" class="n-val-sd">
               </span>
             </span>
           </div>
@@ -1989,7 +1991,7 @@ $(document).on("change input keyup", "#ipt-valPriceProdNInterface", function(e){
     return v.replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d)\.?)/g, ".");
   });
   // ============== ASIGNAR VALORES DE LOS INPUTS HIDDEN - MERCANCÍA ============== //
-  $("#val-valProdquot-noMoreOpts").val($(this).val());
+  $("#val-valProdquot").val($(this).val());
   // ============== ASIGNAR A LA VARIABLE LOCAL =============== //
   localStorage.setItem("key_v-valueproduct", $(this).val());
   // ============== VALIDAR SI CONTIENE ALGÚN VALOR NULO O 0 ============== //
@@ -2010,7 +2012,7 @@ $(document).on("change input keyup", "#ipt-valPriceProdNInterface", function(e){
           contentType: 'application/x-www-form-urlencoded;charset=UTF-8'
         }).done((e) => {
           var resutlinsurance = JSON.parse(e);
-          var valfobproduct = $("#val-valProdquot-noMoreOpts").val();
+          var valfobproduct = $("#val-valProdquot").val();
           var cutefobprice = valfobproduct.split(" USD");
           var withoutpointsfob = cutefobprice[0].replace(/\./g, '');
           var finalvaluefob = twodecimals(withoutpointsfob);
@@ -2041,7 +2043,7 @@ $(document).on("change input keyup", "#ipt-valPriceProdNInterface", function(e){
           contentType: 'application/x-www-form-urlencoded;charset=UTF-8'
         }).done((e) => {
           var resutlinsurance = JSON.parse(e);
-          var valfobproduct = $("#val-valProdquot-noMoreOpts").val();
+          var valfobproduct = $("#val-valProdquot").val();
           var cutefobprice = valfobproduct.split(" USD");
           var withoutpointsfob = cutefobprice[0].replace(/\./g, '');
           var finalvaluefob = twodecimals(withoutpointsfob);
@@ -2107,7 +2109,7 @@ $(document).on("keyup keypress blur change", "#ipt-valQuantityAmAddProdNInterfac
     return v.replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d)\.?)/g, ".");
   });
   // ============= AGREGAR AL INPUT DE ENVÍO POST Y AGREGAR A LA VARIABLE LOCAL ============= //
-  $("#val-quantityProdsAmmAdd-noMoreOpts").val(e.target.value);
+  $("#val-quantityProdsAmmAdd").val(e.target.value);
   localStorage.setItem("key_v-ammountadditional", e.target.value);
   // ============= ASIGNAR A LA VARIABLE LOCAL ============== //
   localStorage.setItem("key_v-totalammountadditional", localStorage.getItem("key_v-dbammountadditional") * value);
@@ -2125,7 +2127,7 @@ $(document).on("keyup keypress blur change", "#ipt-valQuantityAmAddProdNInterfac
           contentType: 'application/x-www-form-urlencoded;charset=UTF-8'
         }).done((e) => {
           var resutlinsurance = JSON.parse(e);
-          var valfobproduct = $("#val-valProdquot-noMoreOpts").val();
+          var valfobproduct = $("#val-valProdquot").val();
           //var cutefobprice = valfobproduct.split(" USD");
           var withoutpointsfob = valfobproduct[0].replace(/\./g, '');
           console.log(withoutpointsfob);
@@ -2166,7 +2168,7 @@ $(document).on("keyup keypress blur change", "#ipt-valQuantityAmAddProdNInterfac
           contentType: 'application/x-www-form-urlencoded;charset=UTF-8'
         }).done((e) => {
           var resutlinsurance = JSON.parse(e);
-          var valfobproduct = $("#val-valProdquot-noMoreOpts").val();
+          var valfobproduct = $("#val-valProdquot").val();
           var cutefobprice = valfobproduct.split(" USD");
           var withoutpointsfob = cutefobprice[0].replace(/\./g, '');
           var finalvaluefob = twodecimals(withoutpointsfob);
