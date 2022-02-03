@@ -58,7 +58,7 @@
             <div class="c-FinalQuotation--contStep--cQuotation--cTop--c">
               <div class="c-FinalQuotation--contStep--cQuotation--cTop--c--nOriginDestinyInfo">
                 <div class="c-FinalQuotation--contStep--cQuotation--cTop--c--nOriginDestinyInfo--cImgInfo">
-                  <?php 
+                  <?php
                     if($_POST['idtypetransportsendinit'] == 1){
                       echo "<img src='{$url}assets/img/utilities/fleteMaritimo.png' alt='fletemaritimoicon_camel'>";
                     }else if($_POST['idtypetransportsendinit'] == 2){
@@ -67,11 +67,22 @@
                       echo "<img src='{$url}assets/img/logos/logotipo-camel.png' alt=''>";
                     }
                   ?>
-                  <p class="c-FinalQuotation--contStep--cQuotation--cTop--c--nOriginDestinyInfo--cImgInfo--info" id="v-listportsOandD">
-                    <span><?= strtoupper($_POST['val-originPortSend']); ?></span>
-                    <span>&#8594;</span>
-                    <span><?= strtoupper($_POST['val-destinyPortSend']); ?></span>
-                  </p>
+                  <?php 
+
+                    if(isset($_POST['val-originPortSend']) && isset($_POST['val-destinyPortSend'])){
+                      echo "
+                        <p class='c-FinalQuotation--contStep--cQuotation--cTop--c--nOriginDestinyInfo--cImgInfo--info' id='v-listportsOandD'>
+                          <span>".strtoupper($_POST['val-originPortSend'])."</span>
+                          <span>&#8594;</span>
+                          <span>".strtoupper($_POST['val-destinyPortSend'])."</span>
+                        </p>
+                      ";
+                    }else{
+                      echo "<p class='c-FinalQuotation--contStep--cQuotation--cTop--c--nOriginDestinyInfo--cImgInfo--info'>
+                        <span><b>DESPACHO DE ADUANAS</b></span>
+                      </p>";
+                    }
+                  ?>
                 </div>
                 <div class="c-FinalQuotation--contStep--cQuotation--cTop--c--nOriginDestinyInfo--cCodeQuotation">
                   <p>
@@ -154,12 +165,20 @@
                       ?>
                     </div>
                   </li>
-                  <li class="c-FinalQuotation--contStep--cQuotation--cTop--c--cDetailsQuotation--m--item">
-                    <div class="c-FinalQuotation--contStep--cQuotation--cTop--c--cDetailsQuotation--m--item--info">
-                      <span>Gasto Portuario y Almacenamiento aduanero</span>
-                      <span><?= ($_POST['opt-genfquotation'] == "not-moreOpts") ? "NO" : "SÍ"; ?></span>
-                    </div>
-                  </li>
+                  <!-- GASTOS PORTUARIOS Y ALMACENAMIENTO ADUANERO -->
+                  <?php 
+                    if(isset($_POST['opt-genfquotation'])){
+                      $t_01 = ($_POST['opt-genfquotation'] == 'not-moreOpts') ? 'NO' : 'SÍ';
+                      echo "
+                        <li class='c-FinalQuotation--contStep--cQuotation--cTop--c--cDetailsQuotation--m--item'>
+                          <div class='c-FinalQuotation--contStep--cQuotation--cTop--c--cDetailsQuotation--m--item--info'>
+                            <span>Gasto Portuario y Almacenamiento aduanero</span>
+                            <span>". $t_01 ."</span>
+                          </div>
+                        </li>
+                      ";
+                    }
+                  ?>
                   <li class="c-FinalQuotation--contStep--cQuotation--cTop--c--cDetailsQuotation--m--item">
                     <div class="c-FinalQuotation--contStep--cQuotation--cTop--c--cDetailsQuotation--m--item--info">
                       <span>Tipo de Producto</span>
@@ -169,13 +188,21 @@
                         </span>
                     </div>
                   </li>
-                  <li class="c-FinalQuotation--contStep--cQuotation--cTop--c--cDetailsQuotation--m--item">
-                    <div class="c-FinalQuotation--contStep--cQuotation--cTop--c--cDetailsQuotation--m--item--info">
-                      <span>Impuestos</span>
-                      <span id="v_previmports"><?php if(!isset($_POST['val-prevImports'])){echo "No especificado";}else if($_POST['val-prevImports'] == "NO"){echo "Primera importación";}else{echo "Importado previamente";}?>
-                      </span>
-                    </div>
-                  </li>
+
+                  <?php 
+                    if(isset($_POST['val-prevImports'])){
+                      $t_04 = ($_POST['val-prevImports'] == "NO") ? "Primera importación" : "Importado previamente";
+                      echo "
+                        <li class='c-FinalQuotation--contStep--cQuotation--cTop--c--cDetailsQuotation--m--item'>
+                          <div class='c-FinalQuotation--contStep--cQuotation--cTop--c--cDetailsQuotation--m--item--info'>
+                            <span>Impuestos</span>
+                            <span id='v_previmports'>".$t_04."</span>
+                          </div>
+                        </li>
+                      ";
+                    }
+                  ?>
+
                 </ul>
                 <ul class="c-FinalQuotation--contStep--cQuotation--cTop--c--cDetailsQuotation--m" id="m-second-listresume">
                   <li class="c-FinalQuotation--contStep--cQuotation--cTop--c--cDetailsQuotation--m--item">
@@ -184,24 +211,39 @@
                       <span><?= (isset($_POST['val-valProdquot']) && $_POST['val-valProdquot'] != 0 && $_POST['val-valProdquot'] != null) ? $_POST['val-valProdquot'] . " USD" : "No especificado"; ?></span>
                     </div>
                   </li>
-                  <li class="c-FinalQuotation--contStep--cQuotation--cTop--c--cDetailsQuotation--m--item">
-                    <div class="c-FinalQuotation--contStep--cQuotation--cTop--c--cDetailsQuotation--m--item--info">
-                      <span>Impuesto de Aduana</span>
-                      <span><?= ($_POST['opt-genfquotation'] == "y-moreOpts") ? "SÍ" : "NO"; ?></span>
-                    </div>
-                  </li>
+                  <?php 
+                    if(isset($_POST['opt-genfquotation'])){
+                      $t_02 = ($_POST['opt-genfquotation'] == "y-moreOpts") ? "SÍ" : "NO"; 
+                      echo "
+                        <li class='c-FinalQuotation--contStep--cQuotation--cTop--c--cDetailsQuotation--m--item'>
+                          <div class='c-FinalQuotation--contStep--cQuotation--cTop--c--cDetailsQuotation--m--item--info'>
+                            <span>Impuesto de Aduana</span>
+                            <span>".$t_02."</span>
+                          </div>
+                        </li>
+                      ";
+                    }
+                  ?>
                   <li class="c-FinalQuotation--contStep--cQuotation--cTop--c--cDetailsQuotation--m--item">
                     <div class="c-FinalQuotation--contStep--cQuotation--cTop--c--cDetailsQuotation--m--item--info">
                       <span>Transporte a Domicilio</span>
                       <span><?= (isset($_POST['plc-pickuploc'])) ? $_POST['plc-pickuploc'] : "NO"; ?></span>
                     </div>
                   </li>
-                  <li class="c-FinalQuotation--contStep--cQuotation--cTop--c--cDetailsQuotation--m--item">
-                    <div class="c-FinalQuotation--contStep--cQuotation--cTop--c--cDetailsQuotation--m--item--info">
-                      <span>Seguro de Mercancía</span>
-                      <span id="v_insurancemerch"><?php if(!isset($_POST['res-insuremerch'])){echo "No especificado";}else if($_POST['res-insuremerch'] == "NO"){echo "NO";}else{echo "SÍ";}?></span>
-                    </div>
-                  </li>
+                  <!-- SEGURO DE MERCANCÍA -->
+                  <?php 
+                    if(isset($_POST['res-insuremerch'])){
+                      $t_03 = ($_POST['res-insuremerch'] == "NO") ? "NO" : "SÍ";
+                      echo "
+                        <li class='c-FinalQuotation--contStep--cQuotation--cTop--c--cDetailsQuotation--m--item'>
+                          <div class='c-FinalQuotation--contStep--cQuotation--cTop--c--cDetailsQuotation--m--item--info'>
+                            <span>Seguro de Mercancía</span>
+                            <span id='v_insurancemerch'>".$t_03."</span>
+                          </div>
+                        </li>
+                      ";
+                    }
+                  ?>
                   <li class="c-FinalQuotation--contStep--cQuotation--cTop--c--cDetailsQuotation--m--item">
                     <div class="c-FinalQuotation--contStep--cQuotation--cTop--c--cDetailsQuotation--m--item--info">
                       <span>Permiso Gubernamental Adicional</span>
@@ -278,8 +320,10 @@ if($_POST['loadTypeCharge'] == "FCL" || $_POST['loadTypeCharge'] == "LCL"){array
 }else{array_push($arr_include, $handling);}
 
 /************************** VISTOS BUENOS **************************/
-if($_POST['opt-genfquotation'] == "y-moreOpts"){array_push($arr_include, $vistobueno, $descarga);
-}else{array_push($arr_include, $vistobueno, $descarga);}
+if(isset($_POST['opt-genfquotation'])){
+  if($_POST['opt-genfquotation'] == "y-moreOpts"){array_push($arr_include, $vistobueno, $descarga);
+  }else{array_push($arr_include, $vistobueno, $descarga);}
+}
 
 /************************** ALMACEN ADUANERO **************************/
 if(isset($_POST['val-categProdquot']) && $_POST['val-categProdquot'] != "" && $_POST['val-valProdquot']){array_push($arr_include, $almacenaduanero);

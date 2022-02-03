@@ -25,6 +25,7 @@
       $sections_qresumeandsteps = "
         <input type='hidden' class='cont-MainCamelLog--c--ctrbysend' id='ipt-vtypetranspinit' value='{$_POST['v_typetranspinit']}'>
         <section class='cont-MainCamelLog--c--contResumeCalc' id='id-resumeLeftQuoteCamel'>
+          <div class='cont-MainCamelLog--c--contResumeCalc--item' data-advlevel='d-typetransportnumb'></div>
           <div class='cont-MainCamelLog--c--contResumeCalc--item' data-advlevel='d-typeserviceinit'>
             <div class='cont-MainCamelLog--c--contResumeCalc--item--cardStep'>
               <div class='cont-MainCamelLog--c--contResumeCalc--item--cardStep--cNameFlag'>

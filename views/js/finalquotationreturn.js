@@ -431,6 +431,7 @@ $(document).ready(function(){
 		      cache: false,
 		      processData: false
 				}).done(function(e){
+					console.log(e);
 					var rquotaiton = JSON.parse(e);
 					if(rquotaiton[0].res != "exists"){
 						console.log("Cotización guardada");

@@ -1186,7 +1186,7 @@ $(document).on("keyup keypress blur change", "#val-iptWeightNInterface", functio
     return v.replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d)\.?)/g, ".");
   });
 });
-$(document).on("keyup keypress blur change", "#val-iptVolumeNInterface", function(e){
+$(document).on("input", "#val-iptVolumeNInterface", function(e){
   ($(this).val() == "") ? $(this).val() : $(this).val(twodecimals(e.target.value));
   if($(this).val().length >= parseInt($(this).attr('maxlength'))){
     return false;
