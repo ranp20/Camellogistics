@@ -4,7 +4,7 @@ $(() => {
   hiddenAllNextSteps(); // OCULTAR LOS PASOS SIGUIENTES
   list_measurement_units(); // LISTAR LAS UNIDADES DE MEDIDA EN EL MODAL
   list_mass_units(); // LISTAR LAS UNIDADES DE MASA EN EL MODAL
-	listProductsUser(); // LISTAR LOS TIPOS DE PRODUCTOS
+  listProductsUser(); // LISTAR LOS TIPOS DE PRODUCTOS
   listrateLCLTransport(); // LISTAR LOS DISTRITOS DE ACUERDO AL PAÍS DE DESTINO
 });
 function refreshIdCodeGenRandom(){
@@ -48,11 +48,11 @@ const sectionsSteps = new fullpage('#fullpage', {
            'step-chargeload',
            'step-qcontainers',
            'step-chargedata',
-  				 'step-merchandisedata',
-  				 'step-requirespickup',
+           'step-merchandisedata',
+           'step-requirespickup',
            'step-fletevaldata',
            'step-typetransport',
-  				 'step-pickuplocation'],
+           'step-pickuplocation'],
   verticalCentered: false,
   scrollingSpeed: 500,
   autoScrolling: true,
@@ -1594,9 +1594,6 @@ $(document).on("click", "#btn-NextStepTochargedata", function(){
     var v_convert = v_ValTotalWeight.replace(/\./g, '');
     var v_floatweightconvert = parseFloat(v_convert); //VALOR REAL DEL PESO
 
-    //============ AGREGAR AL VALOR POST ===========//
-    $("#val_maxtotalweight").val(v_floatweightconvert);
-
     if(v_floatweightconvert > 7000){
       console.log("El peso excede");
       // =========== OCULTAR EL PASO DE - ELIGE UNA OPCIÓN ========== //
@@ -1608,7 +1605,7 @@ $(document).on("click", "#btn-NextStepTochargedata", function(){
           <div class="cntMessageSteps-prcss--cont--c">
             <span class="cntMessageSteps-prcss--cont--c--btnclose" id="btnclose-modalMessage"></span>
             <h3 class="cntMessageSteps-prcss--cont--c--title">Carga excedida</h3>
-            <p class="cntMessageSteps-prcss--cont--c--text">El <b>VOLUMEN</b> registrado no debe exceder los <b>7000 Kg</b>, seleccione <b>CONTENEDOR COMPLETO o contacte a un ASESOR +51 990 234 625.</b></p>
+            <p class="cntMessageSteps-prcss--cont--c--text">El <b>PESO</b> registrado no debe exceder los <b>7000 Kg</b>, seleccione <b>CONTENEDOR COMPLETO (FCL) o contacte a un ASESOR +51 990 234 625.</b></p>
           </div>
         </div>
       `);
@@ -1620,51 +1617,130 @@ $(document).on("click", "#btn-NextStepTochargedata", function(){
         $(this).parent().parent().remove();
       });
     }else{
-      // ============= MOSTRAR EL RESUMEN HASTA ESTE PASO ========= //
-      $(".cont-MainCamelLog--c--contResumeCalc--item[data-advlevel=d-typecontainer]").addClass("show");
-      /************************** MOSTRAR EL SIGUIENTE PASO - DATOS DE MERCANCÍA DESDE SEGURO **************************/
-      $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-merchandisedata]").addClass("show");
-      sectionsSteps.moveTo('step-merchandisedata', 1);
-      $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-merchandisedata]").html(`
-        <div class="cont-MainCamelLog--c--contSteps--item--cTitle">
-        <h3 class="cont-MainCamelLog--c--contSteps--item--cTitle--title">Mercancía</h3>
-        <span>
-          <span>
-            <input type="hidden" value="" id="val-categProdquot-noMoreOpts" name="val-categProdquot" class="n-val-sd">
-            <input type="hidden" value="" id="val-valProdquot-noMoreOpts" name="val-valProdquot" class="n-val-sd">
-            <input type="hidden" value="" id="val-quantityProdsAmmAdd-noMoreOpts" name="val-quantityProdsAmmAdd" class="n-val-sd">
-          </span>
-        </span>
-      </div>
-      <div class="cont-MainCamelLog--c--contSteps--item--cStep">
-        <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise">
-          <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC">
-            <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl">
-              <label for="" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl--label">CATEGORÍA</label>
-              <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl--cListChange">
-                <input type="text" id="ipt-valNameTypeProdNInterface" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl--cListChange--input" autocomplete="off">
-                <ul class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl--cListChange--m" id="m-listAllNamTypeProds"></ul>
-              </div>
-            </div>
+      if(v_ValTotalVolume <= 5){
+        //============ AGREGAR AL VALOR POST ===========//
+        $("#val_maxtotalweight").val(v_floatweightconvert);
+        // ============= MOSTRAR EL RESUMEN HASTA ESTE PASO ========= //
+        $(".cont-MainCamelLog--c--contResumeCalc--item[data-advlevel=d-typecontainer]").addClass("show");
+        /************************** MOSTRAR EL SIGUIENTE PASO - DATOS DE MERCANCÍA **************************/
+        $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-merchandisedata]").addClass("show");
+        sectionsSteps.moveTo('step-merchandisedata', 1);
+        $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-merchandisedata]").html(`
+          <div class="cont-MainCamelLog--c--contSteps--item--cTitle">
+            <h3 class="cont-MainCamelLog--c--contSteps--item--cTitle--title">Mercancía</h3>
+            <span>
+              <span>
+                <input type="hidden" value="" id="val-categProdquot-noMoreOpts" name="val-categProdquot" class="n-val-sd">
+                <input type="hidden" value="" id="val-valProdquot-noMoreOpts" name="val-valProdquot" class="n-val-sd">
+                <input type="hidden" value="" id="val-quantityProdsAmmAdd-noMoreOpts" name="val-quantityProdsAmmAdd" class="n-val-sd">
+              </span>
+            </span>
           </div>
-          <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC" id="ipt-valCantOfAmountAdditional"></div>
-          <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC">
-            <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl">
-              <label for="" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl--label">VALOR</label>
-              <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl--cListChangeWIcon">
-                <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl--cListChangeWIcon--cIcon">
-                  <svg xmlns="http://www.w3.org/2000/svg" data-name="Layer 1" viewBox="0 0 100 125" x="0px" y="0px"><title>dollar</title><path d="M44.38354,5V15.697c-10.549,2.19025-18.11077,10.34265-18.11077,19.681,0,10.004,7.56927,16.77643,22.49676,20.1286C62.49225,58.587,62.49225,63.167,62.49225,64.67181c0,4.88868-5.7204,9.019-12.49115,9.019-6.77191,0-12.49335-4.13031-12.49335-9.019V63.57428h-11.235v1.09753c0,9.33838,7.56176,17.48975,18.11077,19.67951V95h11.235V84.35132C66.1665,82.161,73.72723,74.0097,73.72723,64.67181c0-10.004-7.56823-16.77636-22.49566-20.12854-13.72382-3.08044-13.72382-7.6604-13.72382-9.16528,0-4.88971,5.72144-9.02057,12.49335-9.02057,6.77075,0,12.49115,4.13086,12.49115,9.02057v1.0976h11.235V35.378c0-9.33838-7.56073-17.49078-18.10864-19.681V5Z"/>
-                  </svg>
+          <div class="cont-MainCamelLog--c--contSteps--item--cStep">
+            <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise">
+              <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC">
+                <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl">
+                  <label for="" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl--label">CATEGORÍA</label>
+                  <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl--cListChange">
+                    <input type="text" id="ipt-valNameTypeProdNInterface" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl--cListChange--input" autocomplete="off">
+                    <ul class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl--cListChange--m" id="m-listAllNamTypeProds"></ul>
+                  </div>
                 </div>
-                <input type="text" id="ipt-valPriceProdNInterface" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl--cListChangeWIcon--input" maxlength="13" autocomplete="off">
+              </div>
+              <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC" id="ipt-valCantOfAmountAdditional"></div>
+              <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC">
+                <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl">
+                  <label for="" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl--label">VALOR</label>
+                  <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl--cListChangeWIcon">
+                    <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl--cListChangeWIcon--cIcon">
+                      <svg xmlns="http://www.w3.org/2000/svg" data-name="Layer 1" viewBox="0 0 100 125" x="0px" y="0px"><title>dollar</title><path d="M44.38354,5V15.697c-10.549,2.19025-18.11077,10.34265-18.11077,19.681,0,10.004,7.56927,16.77643,22.49676,20.1286C62.49225,58.587,62.49225,63.167,62.49225,64.67181c0,4.88868-5.7204,9.019-12.49115,9.019-6.77191,0-12.49335-4.13031-12.49335-9.019V63.57428h-11.235v1.09753c0,9.33838,7.56176,17.48975,18.11077,19.67951V95h11.235V84.35132C66.1665,82.161,73.72723,74.0097,73.72723,64.67181c0-10.004-7.56823-16.77636-22.49566-20.12854-13.72382-3.08044-13.72382-7.6604-13.72382-9.16528,0-4.88971,5.72144-9.02057,12.49335-9.02057,6.77075,0,12.49115,4.13086,12.49115,9.02057v1.0976h11.235V35.378c0-9.33838-7.56073-17.49078-18.10864-19.681V5Z"/>
+                      </svg>
+                    </div>
+                    <input type="text" id="ipt-valPriceProdNInterface" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl--cListChangeWIcon--input" maxlength="13" autocomplete="off">
+                  </div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </div>
-      <div class="cont-MainCamelLog--c--contSteps--item--cBtnNextStep" id="s-caseNextStepTomerchandisedata">
-      </div>
-      `);
+          <div class="cont-MainCamelLog--c--contSteps--item--cBtnNextStep" id="s-caseNextStepTomerchandisedata">
+          </div>
+        `);
+      }else if(v_ValTotalVolume > 5 && v_ValTotalVolume <= 15){
+        //============ AGREGAR AL VALOR POST ===========//
+        $("#val_maxtotalweight").val(v_floatweightconvert);
+        // ============= MOSTRAR EL RESUMEN HASTA ESTE PASO ========= //
+        $(".cont-MainCamelLog--c--contResumeCalc--item[data-advlevel=d-typecontainer]").addClass("show");
+        /************************** MOSTRAR EL SIGUIENTE PASO - DATOS DE MERCANCÍA **************************/
+        $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-merchandisedata]").addClass("show");
+        sectionsSteps.moveTo('step-merchandisedata', 1);
+        $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-merchandisedata]").html(`
+          <div class="cont-MainCamelLog--c--contSteps--item--cTitle">
+            <h3 class="cont-MainCamelLog--c--contSteps--item--cTitle--title">Mercancía</h3>
+            <span>
+              <span>
+                <input type="hidden" value="" id="val-categProdquot-noMoreOpts" name="val-categProdquot" class="n-val-sd">
+                <input type="hidden" value="" id="val-valProdquot-noMoreOpts" name="val-valProdquot" class="n-val-sd">
+                <input type="hidden" value="" id="val-quantityProdsAmmAdd-noMoreOpts" name="val-quantityProdsAmmAdd" class="n-val-sd">
+              </span>
+            </span>
+          </div>
+          <div class="cont-MainCamelLog--c--contSteps--item--cStep">
+            <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise">
+              <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC">
+                <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl">
+                  <label for="" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl--label">CATEGORÍA</label>
+                  <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl--cListChange">
+                    <input type="text" id="ipt-valNameTypeProdNInterface" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl--cListChange--input" autocomplete="off">
+                    <ul class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl--cListChange--m" id="m-listAllNamTypeProds"></ul>
+                  </div>
+                </div>
+              </div>
+              <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC" id="ipt-valCantOfAmountAdditional"></div>
+              <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC">
+                <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl">
+                  <label for="" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl--label">VALOR</label>
+                  <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl--cListChangeWIcon">
+                    <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl--cListChangeWIcon--cIcon">
+                      <svg xmlns="http://www.w3.org/2000/svg" data-name="Layer 1" viewBox="0 0 100 125" x="0px" y="0px"><title>dollar</title><path d="M44.38354,5V15.697c-10.549,2.19025-18.11077,10.34265-18.11077,19.681,0,10.004,7.56927,16.77643,22.49676,20.1286C62.49225,58.587,62.49225,63.167,62.49225,64.67181c0,4.88868-5.7204,9.019-12.49115,9.019-6.77191,0-12.49335-4.13031-12.49335-9.019V63.57428h-11.235v1.09753c0,9.33838,7.56176,17.48975,18.11077,19.67951V95h11.235V84.35132C66.1665,82.161,73.72723,74.0097,73.72723,64.67181c0-10.004-7.56823-16.77636-22.49566-20.12854-13.72382-3.08044-13.72382-7.6604-13.72382-9.16528,0-4.88971,5.72144-9.02057,12.49335-9.02057,6.77075,0,12.49115,4.13086,12.49115,9.02057v1.0976h11.235V35.378c0-9.33838-7.56073-17.49078-18.10864-19.681V5Z"/>
+                      </svg>
+                    </div>
+                    <input type="text" id="ipt-valPriceProdNInterface" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl--cListChangeWIcon--input" maxlength="13" autocomplete="off">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="cont-MainCamelLog--c--contSteps--item--cBtnNextStep" id="s-caseNextStepTomerchandisedata">
+          </div>
+        `);
+
+      }else if(v_ValTotalVolume > 15){
+        /************************** OCULTAR EL RESUMEN HASTA ESTE PASO **************************/
+        $(".cont-MainCamelLog--c--contResumeCalc--item[data-advlevel=d-typecontainer]").removeClass("show");
+        /************************** OCULTAR EL PASO DE - ELIGE UNA OPCIÓN **************************/
+        $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-integservorfleteinte]").removeClass("show");
+        $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-integservorfleteinte]").html("");
+
+        /************************** MOSTRAR EL MENSAJE DE ALERTA PERSONALIZADO **************************/
+        $("#idMessageSteps-prcss").html(`
+          <div class="cntMessageSteps-prcss--cont">
+            <div class="cntMessageSteps-prcss--cont--c">
+              <span class="cntMessageSteps-prcss--cont--c--btnclose" id="btnclose-modalMessage"></span>
+              <h3 class="cntMessageSteps-prcss--cont--c--title">Carga excedida</h3>
+              <p class="cntMessageSteps-prcss--cont--c--text">El <b>VOLUMEN</b> registrado no debe exceder los <b>15 M³</b>, seleccione <b>CONTENEDOR COMPLETO (FCL) o contacte a un ASESOR +51 990 234 625.</b></p>
+            </div>
+          </div>
+        `)
+        /************************** CERRAR EL MODAL **************************/
+        setTimeout(function(){
+          $("#idMessageSteps-prcss .cntMessageSteps-prcss--cont").remove();
+        }, 8500);
+        $("#btnclose-modalMessage").on("click", function(){
+          $(this).parent().parent().remove();
+        });
+      }else{
+        console.log('Error de cálculo');
+      }
     }
   }else{
     // ===================== OCULTAR EL PASO DE - ELIGE UNA OPCIÓN =================== //
@@ -2799,6 +2875,9 @@ $(document).on("keyup", "#ipt-valDistricByCountryNInterface", function(){
 });
 // ============= FIJAR EL VALOR DE ITEM EN EL INPUT - DISTRITO POR PAÍS DE DESTINO ============== //
 $(document).on("click", ".cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation--cC--cControl--cListChange--m--item", function(){
+  
+  console.log($("#n_weightcompare_ultstep").val());
+
   $("#m-listAllDistricsByCountry").removeClass("show");
   $("#ipt-valDistricByCountryNInterface").attr("iddistrict", $(this).attr("id"));
   $("#ipt-valDistricByCountryNInterface").val($(this).find("span").text());
