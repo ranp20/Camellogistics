@@ -23,6 +23,23 @@ function refreshIdCodeGenRandom(){
   }, 100);
   */
 }
+// ========= ABRIR EL SIDEBARLEFT - MOBILE (PROCESO COTIZACIÓN) ========= //
+$(document).on("click", "#btn-resume-mobile-header", function(){
+  $(".cont-MainCamelLog--c--contResumeCalc").toggleClass("show");
+});
+/*
+// ========= CERRAR EL SIDEBARLEFT - MOBILE (PROCESO COTIZACIÓN) ========= //
+let containerSidebarLeft = document.querySelector("#c-mMobile-backdrop");
+containerSidebarLeft.addEventListener("click", (e) => {
+  if(e.target === containerSidebarLeft){
+    document.querySelector(".c-Htopbar--c--cMenu").classList.remove("show");
+  }
+});
+// ========= CERRAR EL SIDEBARLEFT - MOBILE (PROCESO COTIZACIÓN) ========= //
+document.querySelector("#btn-sidebarl-close").addEventListener("click", (e) => {
+  document.querySelector(".c-Htopbar--c--cMenu").classList.remove("show");
+});
+*/
 ////OTRAS TAREAS - MEJORA DE UI Y UX
 /*- Mostrar al inicio solo los pasos a usar antes de cada elección, luego ir añadiendo o quitando de acuerdo a los elementos seleccionados*/
 /************************** RECOGER LAS VARIABLES RECIBIDAS POR POST **************************/

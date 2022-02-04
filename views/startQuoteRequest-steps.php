@@ -313,6 +313,11 @@
           <img src="<?= $url ?>assets/img/logos/logotipo-camel.png" alt="logo_camel">
         </a>
       </div>
+      <button class="c-Htopbar--c--btnMobileNavbar" id="btn-resume-mobile-header" type="button">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
     </div>
   </nav>
   <main class="cont-MainCamelLog" id="cont-MainCamelLog">

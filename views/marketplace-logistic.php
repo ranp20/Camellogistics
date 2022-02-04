@@ -10,7 +10,6 @@
   <?php require_once 'includes/header-links.php'; ?>
 </head>
 <body>
-  <?php require_once 'api_whatsapp.php'; ?>
   <?php require_once 'includes/header-top.php'; ?>
   <main class="cont-MainCamelLog box-container mtop-headertop" id="cont-MainCamelLog">
     <div class="cont-MainCamelLog--c" id="cont-MainCamelLog--cMarketplaceLogistics">
@@ -98,6 +97,7 @@
   </main>
   <?php require_once 'includes/form-login-user.php'; ?>
   <script src="<?= $url ?>js/user-login.js"></script>
+  <script src="<?= $url ?>js/main.js"></script>
   <script src="<?= $url ?>js/marketplace-logistic.js"></script>
 </body>
 </html>
