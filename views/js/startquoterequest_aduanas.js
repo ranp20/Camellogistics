@@ -2331,7 +2331,7 @@ $(document).on("click", "#list-requirespickup a", function(){
 });
 // =============== IR AL SIGUIENTE PASO DESDE EL VALOR DEL FLETE ============== //
 $(document).on("click", "#btn-NextStepTofletevaldata", function(){
-  if($("#val-iptPriceValNInterface").val() != 0 && $("#val-iptPriceValNInterface").val() != "" && $("#val-iptPriceValNInterface").val() != null){
+  if($("#val-iptPriceValNInterface").val() != 0 && $("#val-iptPriceValNInterface").val() != ""){
     // ========== MOSTRAR EL SIGUIENTE PASO (TIPOS DE TRANSPORTE) ========== //    
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-typetransport]").addClass("show");
     /************************** MOSTRAR EL SIGUIENTE PASO **************************/
