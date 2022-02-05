@@ -327,13 +327,7 @@
   </nav>
   <main class="cont-MainCamelLog" id="cont-MainCamelLog">
     <div class="cont-MainCamelLog--c ptop-headertop" id="cont-MainCamelLog--cStartQuoteRequest">
-      
-
-      <form action="fquotationgenerate" method="POST" id="f-expquotationFrmClient">
-        <?php echo $sections_qresumeandsteps; ?>
-      </form>
-
-
+      <?php echo $sections_qresumeandsteps; ?>
     </div>
   </main>
   <?php require_once 'includes/form-calculator-flete.php'; ?>
