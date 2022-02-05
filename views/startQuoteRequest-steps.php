@@ -137,7 +137,7 @@
           <!-- PASO #5 -->
           <div class='cont-MainCamelLog--c--contSteps--item section' data-anchor='step-requirespickup' data-transportquote></div>
           <!-- PASO #6 -->
-          <div class='cont-MainCamelLog--c--contSteps--item section' data-anchor='step-fletevaldata' data-transportquote></div>
+          <!--<div class='cont-MainCamelLog--c--contSteps--item section' data-anchor='step-fletevaldata' data-transportquote></div>-->
           <!-- PASO #7 -->
           <div class='cont-MainCamelLog--c--contSteps--item section' data-anchor='step-typetransport' data-transportquote></div>
           <!-- PASO #8 -->
