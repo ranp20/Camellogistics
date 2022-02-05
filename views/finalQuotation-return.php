@@ -97,12 +97,43 @@
               </div>
               <div class="c-FinalQuotation--contStep--cQuotation--cTop--c--cDetailsQuotation">
                 <ul class="c-FinalQuotation--contStep--cQuotation--cTop--c--cDetailsQuotation--m" id="m-first-listresume">
-                  <li class="c-FinalQuotation--contStep--cQuotation--cTop--c--cDetailsQuotation--m--item">
-                    <div class="c-FinalQuotation--contStep--cQuotation--cTop--c--cDetailsQuotation--m--item--info">
-                      <span>Transporte</span>
-                      <span><?= ($_POST['idtypetransportsendinit'] == 1) ? "MARÍTIMO" : "No Especificado"; ?></span>
-                    </div>
-                  </li>
+                  <?php 
+                    $t_05 = "";
+                    if(isset($_POST['idtypetransportsendinit'])){
+                      if($_POST['idtypetransportsendinit'] == 1){
+                        $t_05 = "MARÍTIMO";
+                        echo "<li class='c-FinalQuotation--contStep--cQuotation--cTop--c--cDetailsQuotation--m--item'>
+                          <div class='c-FinalQuotation--contStep--cQuotation--cTop--c--cDetailsQuotation--m--item--info'>
+                            <span>Transporte</span>
+                            <span>{$t_05}</span>
+                          </div>
+                        </li>";
+                      }else if($_POST['idtypetransportsendinit'] == 2){
+                        $t_05 = "AÉREO";
+                        echo "<li class='c-FinalQuotation--contStep--cQuotation--cTop--c--cDetailsQuotation--m--item'>
+                          <div class='c-FinalQuotation--contStep--cQuotation--cTop--c--cDetailsQuotation--m--item--info'>
+                            <span>Transporte</span>
+                            <span>{$t_05}</span>
+                          </div>
+                        </li>";
+                      }else{
+                        $t_05 = "DESPACHO DE ADUANAS";
+                        echo "<li class='c-FinalQuotation--contStep--cQuotation--cTop--c--cDetailsQuotation--m--item'>
+                          <div class='c-FinalQuotation--contStep--cQuotation--cTop--c--cDetailsQuotation--m--item--info'>
+                            <span>Transporte</span>
+                            <span>{$t_05}</span>
+                          </div>
+                        </li>";
+                      }
+                    }else{
+                      echo "<li class='c-FinalQuotation--contStep--cQuotation--cTop--c--cDetailsQuotation--m--item'>
+                        <div class='c-FinalQuotation--contStep--cQuotation--cTop--c--cDetailsQuotation--m--item--info'>
+                          <span>Transporte</span>
+                          <span>No especificado</span>
+                        </div>
+                      </li>";
+                    }
+                  ?>
                   <li class="c-FinalQuotation--contStep--cQuotation--cTop--c--cDetailsQuotation--m--item">
                     <div class="c-FinalQuotation--contStep--cQuotation--cTop--c--cDetailsQuotation--m--item--info">
                       <span>Tipo de Transporte</span>
