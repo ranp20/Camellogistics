@@ -2850,8 +2850,6 @@ $(document).on("keyup", "#ipt-valDistricByCountryNInterface", function(){
 // ============= FIJAR EL VALOR DE ITEM EN EL INPUT - DISTRITO POR PAÍS DE DESTINO ============== //
 $(document).on("click", ".cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation--cC--cControl--cListChange--m--item", function(){
   
-  console.log($("#n_weightcompare_ultstep").val());
-
   $("#m-listAllDistricsByCountry").removeClass("show");
   $("#ipt-valDistricByCountryNInterface").attr("iddistrict", $(this).attr("id"));
   $("#ipt-valDistricByCountryNInterface").val($(this).find("span").text());
