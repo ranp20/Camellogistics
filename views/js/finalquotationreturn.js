@@ -562,7 +562,7 @@ $(document).ready(function(){
 
 							$.ajax({
 								type: 'POST',
-								url: 'controllers/c_generate-pdf.php',
+								url: 'controllers/c_generate-pdf-integral.php',
 								data: {
 									id_codegenrand : $("#v_idgencoderand").val(), 
 									code_quote : $("#v_gencodexxx").text(),
@@ -885,7 +885,7 @@ $(document).ready(function(){
 /************************** GENERAR EL PDF **************************/
 /*
 function generatePDF(nameuser){
-	$url = "controllers/c_generate-pdf.php?user="+nameuser;
+	$url = "controllers/c_generate-pdf-integral.php?user="+nameuser;
 	window.open($url, "cotizacion_pdf");
 }
 */
