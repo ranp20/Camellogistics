@@ -88,7 +88,7 @@
                   <p>
                     <span>ID:&nbsp;</span>
                     <span>
-                      <span id="v_gencodexxx"><?= $_POST['ipt-vcodgeneratex']; ?></span>
+                      <span id="v_gencodexxx"></span>
                       <span> - </span>
                       <span><?= $_POST['loadTypeCharge']; ?></span>
                     </span>
