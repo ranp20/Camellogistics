@@ -2185,7 +2185,7 @@ $(document).on("click", "#list-requirespickup a", function(){
           <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem">
             <li class="cont-MainCamelLog--c--contSteps--item--cStep--m--item">
               <div class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem--cImg">
-                <img src="views/assets/img/steps/type_transport_06.png" alt="" loading="lazy" width="100" height="100">
+                <img src="views/assets/img/steps/type_transport_06.png" alt="cml_type_transport_01" loading="lazy" width="100" height="100">
               </div>
               <p>GENERAL</p>
             </li>
@@ -2193,7 +2193,7 @@ $(document).on("click", "#list-requirespickup a", function(){
           <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem">
             <li class="cont-MainCamelLog--c--contSteps--item--cStep--m--item">
               <div class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem--cImg">
-                <img src="views/assets/img/steps/type_transport_03.png" alt="" loading="lazy" width="100" height="100">
+                <img src="views/assets/img/steps/type_transport_03.png" alt="cml_type_transport_02" loading="lazy" width="100" height="100">
               </div>
               <p>IMO</p>
             </li>
@@ -2201,7 +2201,7 @@ $(document).on("click", "#list-requirespickup a", function(){
           <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem">
             <li class="cont-MainCamelLog--c--contSteps--item--cStep--m--item">
               <div class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem--cImg">
-                <img src="views/assets/img/steps/type_transport_05.png" alt="" loading="lazy" width="100" height="100">
+                <img src="views/assets/img/steps/type_transport_05.png" alt="cml_type_transport_03" loading="lazy" width="100" height="100">
               </div>
               <p>REFRIGERADO</p>
             </li>
@@ -2250,7 +2250,7 @@ $(document).on("click", "#btn-NextStepTofletevaldata", function(){
           <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem">
             <li class="cont-MainCamelLog--c--contSteps--item--cStep--m--item">
               <div class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem--cImg">
-                <img src="views/assets/img/steps/type_transport_06.png" alt="" loading="lazy" width="100" height="100">
+                <img src="views/assets/img/steps/type_transport_06.png" alt="cml_type_transport_01" loading="lazy" width="100" height="100">
               </div>
               <p>GENERAL</p>
             </li>
@@ -2258,7 +2258,7 @@ $(document).on("click", "#btn-NextStepTofletevaldata", function(){
           <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem">
             <li class="cont-MainCamelLog--c--contSteps--item--cStep--m--item">
               <div class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem--cImg">
-                <img src="views/assets/img/steps/type_transport_03.png" alt="" loading="lazy" width="100" height="100">
+                <img src="views/assets/img/steps/type_transport_03.png" alt="cml_type_transport_02" loading="lazy" width="100" height="100">
               </div>
               <p>IMO</p>
             </li>
@@ -2266,7 +2266,7 @@ $(document).on("click", "#btn-NextStepTofletevaldata", function(){
           <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem">
             <li class="cont-MainCamelLog--c--contSteps--item--cStep--m--item">
               <div class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem--cImg">
-                <img src="views/assets/img/steps/type_transport_05.png" alt="" loading="lazy" width="100" height="100">
+                <img src="views/assets/img/steps/type_transport_05.png" alt="cml_type_transport_03" loading="lazy" width="100" height="100">
               </div>
               <p>REFRIGERADO</p>
             </li>
@@ -2353,7 +2353,7 @@ $(document).on("click","#list-typeTransporteSelectItems a",function(){
     $(".cont-MainCamelLog--c--contResumeCalc--item[data-advlevel=d-typetransportcharge]").html(`
       <div class="cont-MainCamelLog--c--contResumeCalc--item--cardStep">
         <div class="cont-MainCamelLog--c--contResumeCalc--item--cardStep--cImgIcon">
-           <img class="cont-MainCamelLog--c--contResumeCalc--item--cardStep--cImgIcon--icon" loading="lazy" src="views/assets/img/steps/type_transport_06.png">
+           <img class="cont-MainCamelLog--c--contResumeCalc--item--cardStep--cImgIcon--icon" loading="lazy" src="views/assets/img/steps/type_transport_06.png" alt="cml_type_transport_01">
          </div>
         <span>T. GENERAL</span>
       </div>
@@ -2400,7 +2400,7 @@ $(document).on("click","#list-typeTransporteSelectItems a",function(){
     $(".cont-MainCamelLog--c--contResumeCalc--item[data-advlevel=d-typetransportcharge]").html(`
       <div class="cont-MainCamelLog--c--contResumeCalc--item--cardStep">
         <div class="cont-MainCamelLog--c--contResumeCalc--item--cardStep--cImgIcon">
-           <img class="cont-MainCamelLog--c--contResumeCalc--item--cardStep--cImgIcon--icon" loading="lazy" src="views/assets/img/steps/type_transport_03.png">
+           <img class="cont-MainCamelLog--c--contResumeCalc--item--cardStep--cImgIcon--icon" loading="lazy" src="views/assets/img/steps/type_transport_03.png" alt="cml_type_transport_02">
          </div>
         <span>T. IMO</span>
       </div>
@@ -2447,7 +2447,7 @@ $(document).on("click","#list-typeTransporteSelectItems a",function(){
     $(".cont-MainCamelLog--c--contResumeCalc--item[data-advlevel=d-typetransportcharge]").html(`
       <div class="cont-MainCamelLog--c--contResumeCalc--item--cardStep">
         <div class="cont-MainCamelLog--c--contResumeCalc--item--cardStep--cImgIcon">
-           <img class="cont-MainCamelLog--c--contResumeCalc--item--cardStep--cImgIcon--icon" loading="lazy" src="views/assets/img/steps/type_transport_05.png">
+           <img class="cont-MainCamelLog--c--contResumeCalc--item--cardStep--cImgIcon--icon" loading="lazy" src="views/assets/img/steps/type_transport_05.png" alt="cml_type_transport_03">
          </div>
         <span>T. REFRIGERADO</span>
       </div>
