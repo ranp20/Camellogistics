@@ -18,6 +18,10 @@ function refreshIdCodeGenRandom(){
     $("#ipt-vidcodgenrand").val(e);
   });
 }
+// ========= ABRIR EL SIDEBARLEFT - MOBILE (PROCESO COTIZACIÓN) ========= //
+$(document).on("click", "#btn-resume-mobile-header", function(){
+  $(".cont-MainCamelLog--c--contResumeCalc").toggleClass("show");
+});
 ////OTRAS TAREAS - MEJORA DE UI Y UX
 /*- Mostrar al inicio solo los pasos a usar antes de cada elección, luego ir añadiendo o quitando de acuerdo a los elementos seleccionados*/
 // RECOGER LAS VARIABLES RECIBIDAS POR POST
