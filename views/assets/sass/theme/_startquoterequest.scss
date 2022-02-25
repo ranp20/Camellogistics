@@ -292,12 +292,44 @@
 					align-items: center;
 					justify-content: space-between;
 					gap: 1rem;
-					padding: 0 1rem;
+					padding: 0;
+					flex-wrap: wrap;
+					width: calc(100% * 2/2);
+
+					@media (min-width: 620px){
+						width: calc(100% * 3/3);
+						justify-content: center;
+					}
+
+					@media (min-width: 768px){
+						width: calc(100% * 4/4);
+						flex-wrap: nowrap;
+						justify-content: space-between;
+					}
 
 					/* ITEMS - CONTAINERS */
 					&--item{
-						width: calc(100% * 1/4);
+						width: 47%;
 						position: relative;
+
+						@media (min-width: 425px){
+							width: 47%;
+							padding: 0 1rem;
+						}
+
+						@media (min-width: 501px){
+							width: 38%;
+							padding: 0 .5rem;
+						}
+
+						@media (min-width: 620px){
+							width: 31%;
+						}
+
+						@media (min-width: 991px){
+							width: calc(100% * 1/4);
+						}
+
 						&--cImg{
 							cursor: pointer;
 							margin-bottom: 0.5rem;
@@ -585,7 +617,11 @@
 									background-color: #000;
 									color: #fff;
 									line-height: 1.5;
-									padding: 0.3rem 1.5rem;
+									padding: 0.3rem 1rem;
+
+									@media (min-width: 768px){
+										padding: 0.3rem 1.5rem;
+									}
 								}
 
 								&--input{
@@ -1086,7 +1122,7 @@
 							position: relative;
 							height: 37px;
 							display: flex;
-							flex: 0 0 134px;
+							flex: 0 0 100px;
 							border-radius: .2rem;
 							vertical-align: middle;
 							transition: .2s ease-in-out;
@@ -1094,28 +1130,26 @@
 
 							&.active{
 								background-color: #70C767;
-
 								&:after{
 									content: "NO";
 									position: absolute;
 									background-color: transparent;
 									color: #fff;
 									left: 2px;
-									width: 65px;
+									width: 47px;
 									height: 32px;
 									border-radius: .2rem;
 									display: flex;
 									align-items: center;
 									justify-content: center;
 								}
-
 								&:before{
 									content: "SÍ";
 									position: absolute;
 									background-color: #fff;
 									color: #70C767;
 									right: 2px;
-									width: 65px;
+									width: 47px;
 									height: 32px;
 									border-radius: .2rem;
 									display: flex;
@@ -1136,7 +1170,7 @@
 								background-color: #fff;
 								color: #d74742;
 								left: 2px;
-								width: 65px;
+								width: 47px;
 								height: 32px;
 								border-radius: .2rem;
 								display: flex;
@@ -1150,12 +1184,74 @@
 								background-color: transparent;
 								color: #fff;
 								right: 2px;
-								width: 65px;
+								width: 47px;
 								height: 32px;
 								border-radius: .2rem;
 								display: flex;
 								align-items: center;
 								justify-content: center;
+							}
+
+							@media (min-width: 991px){
+								flex: 0 0 134px;
+
+								&:after{
+									content: "NO";
+									position: absolute;
+									background-color: #fff;
+									color: #d74742;
+									left: 2px;
+									width: 65px;
+									height: 32px;
+									border-radius: .2rem;
+									display: flex;
+									align-items: center;
+									justify-content: center;
+								}
+
+								&:before{
+									content: "SÍ";
+									position: absolute;
+									background-color: transparent;
+									color: #fff;
+									right: 2px;
+									width: 65px;
+									height: 32px;
+									border-radius: .2rem;
+									display: flex;
+									align-items: center;
+									justify-content: center;
+								}
+
+								&.active{
+									background-color: #70C767;
+									&:after{
+										content: "NO";
+										position: absolute;
+										background-color: transparent;
+										color: #fff;
+										left: 2px;
+										width: 65px;
+										height: 32px;
+										border-radius: .2rem;
+										display: flex;
+										align-items: center;
+										justify-content: center;
+									}
+									&:before{
+										content: "SÍ";
+										position: absolute;
+										background-color: #fff;
+										color: #70C767;
+										right: 2px;
+										width: 65px;
+										height: 32px;
+										border-radius: .2rem;
+										display: flex;
+										align-items: center;
+										justify-content: center;	
+									}
+								}
 							}
 						}
 					}

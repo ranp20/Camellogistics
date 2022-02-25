@@ -99,6 +99,10 @@ const sectionsSteps = new fullpage('#fullpage', {
   //lockAnchors: true,
   loopTop: false,
   loopBottom: false,
+
+  responsiveWidth: 0,
+  responsiveHeight: 0,
+  responsiveSlides: false,
 });
 /************************** OCULTAR LOS DEMÁS PASOS **************************/
 function hiddenAllNextSteps(){
