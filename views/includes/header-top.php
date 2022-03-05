@@ -57,8 +57,8 @@
           <li class="c-Htopbar--c--cMenu--Mmobile--m--item">
             <a href="marketplace-logistico" class="c-Htopbar--c--cMenu--Mmobile--m--link">Marketplace Logístico</a>
           </li>
-          <li class="c-Htopbar--c--cMenu--Mmobile--m--item" id="s-loginsessuser-active">
-            <?php 
+          <li class="c-Htopbar--c--cMenu--Mmobile--m--item" id="s-loginsessuser-active-mb">
+            <?php
               if(isset($_SESSION['user_camel'])){
                 echo "
                   <a href='javascript:void(0);' class='c-Htopbar--c--cMenu--Mmobile--m--link'>
@@ -89,7 +89,7 @@
         <li class="c-Htopbar--c--cMenu--m--item">
           <a href="marketplace-logistico" class="c-Htopbar--c--cMenu--m--link">Marketplace Logístico</a>
         </li>
-        <li class="c-Htopbar--c--cMenu--m--item" id="s-loginsessuser-active">
+        <li class="c-Htopbar--c--cMenu--m--item" id="s-loginsessuser-active-ms">
           <?php 
             if(isset($_SESSION['user_camel'])){
               echo "

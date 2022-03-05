@@ -18,8 +18,7 @@
 	<?php require_once 'views/hero-image.php';?>
   <?php require_once 'views/includes/footer.php'; ?>
   <?php require_once 'views/includes/form-login-user.php'; ?>
-  <script src="<?= $url ?>js/jquery-3.6.0.min.js"></script>
-  <script src="<?= $url ?>js/main.js"></script>
-  <script src="<?= $url ?>js/user-login.js"></script>
+  <script type="text/javascript" src="<?= $url ?>js/main.js"></script>
+  <script type="text/javascript" src="<?= $url ?>js/user-login.js"></script>
 </body>
 </html>
