@@ -283,9 +283,9 @@ $(document).ready(function(){
 			}).done(function(e){
 				//console.log(e);
 				var vtaxations = JSON.parse(e);
-				var save_valueIGV = vtaxations[0].data_value;
-				var save_valueIPM = vtaxations[1].data_value;
-				var save_valuePercepcion = vtaxations[2].data_value;
+				var save_valueIGV = vtaxations[0].data_value; // I.G.V
+				var save_valueIPM = vtaxations[1].data_value; // I.P.M
+				var save_valuePercepcion = vtaxations[2].data_value; // Percepción
 
 				// ========== INSERTAR EN LA TABLA DE COTIZACIONES ========== //
 				if($("#s_useregin-sistem").val() == "" || 

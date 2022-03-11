@@ -4,7 +4,7 @@ class list_Taxation_values extends Connection{
 	function list(){
 
 		try{
-			$sql = "CALL sp_taxation_values_to_savequotation()";
+			$sql = "CALL sp_list_taxation_values_to_savequotation()";
 			$stm = $this->con->prepare($sql);
 			$stm->execute();
 			
