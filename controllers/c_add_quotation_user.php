@@ -7,7 +7,6 @@ class Add_Quotation_User extends Connection{
 		$codegen_auto = new List_ultimate_codegen();
 		$ulti_codegenauto = $codegen_auto->list();
 		
-
 		$arr_userquotation = [
 			'id_codegenrand' => $_POST['id_codegenrand'],
 			'codegenerate' => $ulti_codegenauto[0]['res'],
@@ -27,6 +26,27 @@ class Add_Quotation_User extends Connection{
 			'f_flete' => $_POST['f_flete'],
 			'f_insurance' => $_POST['f_insurance'],
 			'f_cif' => $_POST['f_cif'],
+
+			'f_percepcion' => 0,
+			'f_ad_valoren' => 0,
+			'f_impuesto_selectivo' => 0,
+			'f_emision_BL' => 0,
+			'f_handling' => 0,
+			'f_visto_bueno' => 0,
+			'f_desconsolidacion' => 0,
+			'f_almacen_referencial' => 0,
+			'f_transporte_interno' => 0,
+			'f_aforo_fisico_y_previo' => 0,
+			'f_gremios_maritimos' => 0,
+			'f_THC' => 0,
+			'f_devolucion_contenedores' => 0,
+			'f_derechos_embarque' => 0,
+			'f_consolidacion' => 0,
+			'f_bohe_o_inspeccion' => 0,
+			'f_comision_agencia' => 0,
+			'f_gastos_operativos' => 0,
+			'f_estiba' => 0,
+
 			'f_totalservices' => $_POST['f_totalservices'],
 			'f_totalservicesIGV18' => $_POST['f_totalservicesIGV18'],
 			'f_totalimpuestos' => $_POST['f_totalimpuestos'],
@@ -55,6 +75,27 @@ class Add_Quotation_User extends Connection{
 			:f_flete, 
 			:f_insurance, 
 			:f_cif,
+
+			:f_percepcion,
+			:f_ad_valoren,
+			:f_impuesto_selectivo,
+			:f_emision_BL,
+			:f_handling,
+			:f_visto_bueno,
+			:f_desconsolidacion,
+			:f_almacen_referencial,
+			:f_transporte_interno,
+			:f_aforo_fisico_y_previo,
+			:f_gremios_maritimos,
+			:f_THC,
+			:f_devolucion_contenedores,
+			:f_derechos_embarque,
+			:f_consolidacion,
+			:f_bohe_o_inspeccion,
+			:f_comision_agencia,
+			:f_gastos_operativos,
+			:f_estiba,
+
 			:f_totalservices,
 			:f_totalservicesIGV18,
 			:f_totalimpuestos,
