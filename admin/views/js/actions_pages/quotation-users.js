@@ -156,6 +156,11 @@ $(document).on("click", ".btn-generate-pdf", function(e){
   $.each($(this), function(i, v){
     var item_data = {id: $(this).attr('data-id'), codequote: $(this).attr('data-codequote')};
 
+    console.log(item_data['id']);
+    console.log(item_data['codequote']);
+
+    // LISTAR EL SP DE "sp_list_quotation_by_codegenrand" PARA HACER LA VALIDACIÓN DE PLANTILLAS...
+
     $.ajax({
       type: 'POST',
       url: 'controllers/c_generate-pdf-adm-integral.php',

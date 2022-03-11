@@ -196,13 +196,7 @@ $(document).ready(function(){
 	    contentType: 'application/x-www-form-urlencoded;charset=UTF-8',
 	  }).done((e) => {
 	    var restaxvalues = JSON.parse(e);
-	  	/*
-	  	console.log(e);
-	    console.log(restaxvalues);
-	    console.log(restaxvalues[0]);
-	    console.log(restaxvalues[1]);
-	    console.log(restaxvalues[2]);
-	    */
+	  	
 	    var res_IGV = parseFloat(restaxvalues[0].data_value);
 	    var res_IPM = parseFloat(restaxvalues[1].data_value);
 	    var res_Percepcion_YES = parseFloat(restaxvalues[2].data_value);
@@ -271,8 +265,10 @@ $(document).ready(function(){
 				//console.log("No existe el elemento");
 			}
 
+
 			// ========== VALIDAR EL VALOR DEL USUARIO ========== //
 			var user_sessquote = "";
+			
 			// ========== INSERTAR EN LA TABLA DE COTIZACIONES ========== //
 			if($("#s_useregin-sistem").val() == "" || 
 				 $("#s_useregin-sistem").val() == undefined || 
