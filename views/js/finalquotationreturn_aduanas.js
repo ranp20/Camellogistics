@@ -271,250 +271,265 @@ $(document).ready(function(){
 				//console.log("No existe el elemento");
 			}
 
+
 			// ========== VALIDAR EL VALOR DEL USUARIO ========== //
 			var user_sessquote = "";
-			// ========== INSERTAR EN LA TABLA DE COTIZACIONES ========== //
-			if($("#s_useregin-sistem").val() == "" || 
-				 $("#s_useregin-sistem").val() == undefined || 
-				 $("#s_useregin-sistem").val() == 'undefined' || 
-				 $("#s_useregin-sistem").val() == null ||
-				 $("#s_useregin-sistem").val() == 'null'){
-				//console.log('Sin usuario, se redirigirá al inicio');
-				//window.location.href = "marketplace-logistico";
-				user_sessquote = s_username_local.username;
-				var formdata = new FormData();
-				formdata.append("id_codegenrand", $("#v_idgencoderand").val());
-				//formdata.append("codegenerate", $("#v_gencodexxx").text());
-				formdata.append("u_login", user_sessquote);
-				formdata.append("f_type_op", $("#v_typeserviceinit").val());
-				formdata.append("f_type_transp", $("#v_typeserviceinit").val());
-				formdata.append("f_type_cont", localStorage.getItem("key_typeChrg"));
-				formdata.append("u_n_document", "No especificado");
-				formdata.append("u_enterprise", "No especificado");
-				formdata.append("u_telephone", "No especificado");
-				formdata.append("u_service", "No especificado");
-				formdata.append("u_cont", localStorage.getItem("key_v-nametypeproduct"));
-				formdata.append("f_origen", localStorage.getItem("port_OName"));
-				formdata.append("f_weight_v", "No especificado");
-				formdata.append("f_time_trans", localStorage.getItem("key_v-valttaproxbycontain"));
-				formdata.append("f_fob", totalfinalvaluefob);
-				formdata.append("f_flete", totflete);
-				formdata.append("f_insurance", totalinsurance);
-				formdata.append("f_cif", sumbyCIF);
-				formdata.append("f_totalservices", totalNotround);
-				formdata.append("f_totalservicesIGV18", totalNotRountByIGV);
-				formdata.append("f_totalimpuestos", twodecimals_FinalTax);
-				formdata.append("f_totalwithIGV", totalNotRoundFinal);
-				formdata.append("f_validdesde", $("#v_datevaliddesde").val());
-				formdata.append("f_validhasta", $("#v_datevalidhasta").val());
+			
+			$.ajax({
+				url: 'controllers/list_taxation_values_bysavequotation.php',
+				method: "POST",
+		    datatype: "JSON",
+		    contentType: 'application/x-www-form-urlencoded;charset=UTF-8',
+			}).done(function(e){
+				//console.log(e);
+				var vtaxations = JSON.parse(e);
+				var save_valueIGV = vtaxations[0].data_value;
+				var save_valueIPM = vtaxations[1].data_value;
+				var save_valuePercepcion = vtaxations[2].data_value;
 
-				$.ajax({
-					url: 'controllers/c_add_quotation_user.php',
-					method: 'POST',
-					datatype: "JSON",
-					data: formdata,
-					contentType: false,
-		      cache: false,
-		      processData: false
-				}).done(function(e){
-					//console.log(e);
-					var rquotaiton = JSON.parse(e);
-					if(rquotaiton[0].res != "exists"){
-						console.log("Cotización guardada");
-						$("#v_gencodexxx").text(rquotaiton[0].res);
-					}else if(rquotaiton[0].res == "exists"){
-						console.log("Esta cotización ya existe");
-						$.ajax({
-					    url: "controllers/c_list_quotation_by_codegenrand.php",
-					    method: "POST",
-					    datatype: "JSON",
-					    contentType: 'application/x-www-form-urlencoded;charset=UTF-8',
-					    data: {id_codegenrand : $("#v_idgencoderand").val()},
-					  }).done(function(e){
-					  	var ralldata = JSON.parse(e);
-					  	// VARIABLES A USAR EN EL RE-MOSTRADO DE INFORMACÍON...
-					  	var partFinalDecimal = 0;
-					  	var partFinalDecimal_FTotal = 0;
+				// ========== INSERTAR EN LA TABLA DE COTIZACIONES ========== //
+				if($("#s_useregin-sistem").val() == "" || 
+					 $("#s_useregin-sistem").val() == undefined || 
+					 $("#s_useregin-sistem").val() == 'undefined' || 
+					 $("#s_useregin-sistem").val() == null ||
+					 $("#s_useregin-sistem").val() == 'null'){
+					//console.log('Sin usuario, se redirigirá al inicio');
+					//window.location.href = "marketplace-logistico";
+					user_sessquote = s_username_local.username;
+					var formdata = new FormData();
+					formdata.append("id_codegenrand", $("#v_idgencoderand").val());
+					//formdata.append("codegenerate", $("#v_gencodexxx").text());
+					formdata.append("u_login", user_sessquote);
+					formdata.append("f_type_op", $("#v_typeserviceinit").val());
+					formdata.append("f_type_transp", $("#v_typeserviceinit").val());
+					formdata.append("f_type_cont", localStorage.getItem("key_typeChrg"));
+					formdata.append("u_n_document", "No especificado");
+					formdata.append("u_enterprise", "No especificado");
+					formdata.append("u_telephone", "No especificado");
+					formdata.append("u_service", "No especificado");
+					formdata.append("u_cont", localStorage.getItem("key_v-nametypeproduct"));
+					formdata.append("f_origen", localStorage.getItem("port_OName"));
+					formdata.append("f_weight_v", "No especificado");
+					formdata.append("f_time_trans", localStorage.getItem("key_v-valttaproxbycontain"));
+					formdata.append("f_fob", totalfinalvaluefob);
+					formdata.append("f_flete", totflete);
+					formdata.append("f_insurance", totalinsurance);
+					formdata.append("f_cif", sumbyCIF);
+					formdata.append("f_totalservices", totalNotround);
+					formdata.append("f_totalservicesIGV18", totalNotRountByIGV);
+					formdata.append("f_totalimpuestos", twodecimals_FinalTax);
+					formdata.append("f_totalwithIGV", totalNotRoundFinal);
+					formdata.append("f_validdesde", $("#v_datevaliddesde").val());
+					formdata.append("f_validhasta", $("#v_datevalidhasta").val());
 
-					  	// --------------- IMPRIMIR EL CÓDIGO AUTOGENERADO DE LA COTIZACIÓN
-					  	$("#v_gencodexxx").text(ralldata[0].code_quote);
+					$.ajax({
+						url: 'controllers/c_add_quotation_user.php',
+						method: 'POST',
+						datatype: "JSON",
+						data: formdata,
+						contentType: false,
+			      cache: false,
+			      processData: false
+					}).done(function(e){
+						//console.log(e);
+						var rquotaiton = JSON.parse(e);
+						if(rquotaiton[0].res != "exists"){
+							console.log("Cotización guardada");
+							$("#v_gencodexxx").text(rquotaiton[0].res);
+						}else if(rquotaiton[0].res == "exists"){
+							console.log("Esta cotización ya existe");
+							$.ajax({
+						    url: "controllers/c_list_quotation_by_codegenrand.php",
+						    method: "POST",
+						    datatype: "JSON",
+						    contentType: 'application/x-www-form-urlencoded;charset=UTF-8',
+						    data: {id_codegenrand : $("#v_idgencoderand").val()},
+						  }).done(function(e){
+						  	var ralldata = JSON.parse(e);
+						  	// VARIABLES A USAR EN EL RE-MOSTRADO DE INFORMACÍON...
+						  	var partFinalDecimal = 0;
+						  	var partFinalDecimal_FTotal = 0;
 
-					  	// --------------- IMPRIMIR LA VALIDEZ DE LA COTIZACIÓN
-					  	if(ralldata[0].f_validdesde == "0000-00-00 00:00:00" || ralldata[0].f_validhasta == "0000-00-00 00:00:00"){
-					  		$("#v_validratedate").text('No especificado');
-					  	}else{
-						  	var convertOneDATE =  new Date(Date.parse(ralldata[0].f_validdesde.replace(/-/g, '/')));
-						    var convertTwoDATE =  new Date(Date.parse(ralldata[0].f_validhasta.replace(/[-]/g,'/')));
-						    //var options = { year: 'numeric', month: '2-digit', day: 'numeric' };
-						    var options = { year: 'numeric', month: 'long', day: 'numeric' };
-						    var convertDateValidDesde = convertOneDATE.toLocaleDateString("es-ES", options);
-						    var convertDateValidHasta = convertTwoDATE.toLocaleDateString("es-ES", options);
-						    var separateDateValidDesde = convertDateValidDesde.split(" ");
-						    var separateDateValidHasta = convertDateValidHasta.split(" ");
-						    var monthSeparatetoArrayDesde = separateDateValidDesde[2].slice(0, 3);
-						    var monthSeparatetoArrayHasta = separateDateValidHasta[2].slice(0, 3);
-						    var val_dateValidDesde = separateDateValidDesde[0]+" "+"de"+" "+firstToUppercase(monthSeparatetoArrayDesde);
-						    var val_dateValidHasta = separateDateValidHasta[0]+" "+"de"+" "+firstToUppercase(monthSeparatetoArrayHasta);
-						    $("#v_validratedate").text(val_dateValidDesde+" - "+val_dateValidHasta);
-					  	}
+						  	// --------------- IMPRIMIR EL CÓDIGO AUTOGENERADO DE LA COTIZACIÓN
+						  	$("#v_gencodexxx").text(ralldata[0].code_quote);
 
-					  	// --------------- IMPRIMIR EL TOTAL - SERVICIOS
-					  	var n = Math.abs(ralldata[0].f_totalservices);
-							partInteger = Math.trunc(n);
-							var separate_point = partInteger.toString().replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d)\.?)/g, ".");
-							partDecimal = totalNotround.toString().split('.');
-							if(partDecimal[1] == undefined || partDecimal[1] == 'undefined' || partDecimal[1] == ""){partFinalDecimal = '00';
-							}else	if(partDecimal[1].length < 2){partFinalDecimal = partDecimal[1]+'0';
-							}else{partFinalDecimal = partDecimal[1];}
-							$("#intdecval-quotefinal").html(`<span>${separate_point},<sup>${partFinalDecimal}</sup> USD</span>`);
+						  	// --------------- IMPRIMIR LA VALIDEZ DE LA COTIZACIÓN
+						  	if(ralldata[0].f_validdesde == "0000-00-00 00:00:00" || ralldata[0].f_validhasta == "0000-00-00 00:00:00"){
+						  		$("#v_validratedate").text('No especificado');
+						  	}else{
+							  	var convertOneDATE =  new Date(Date.parse(ralldata[0].f_validdesde.replace(/-/g, '/')));
+							    var convertTwoDATE =  new Date(Date.parse(ralldata[0].f_validhasta.replace(/[-]/g,'/')));
+							    //var options = { year: 'numeric', month: '2-digit', day: 'numeric' };
+							    var options = { year: 'numeric', month: 'long', day: 'numeric' };
+							    var convertDateValidDesde = convertOneDATE.toLocaleDateString("es-ES", options);
+							    var convertDateValidHasta = convertTwoDATE.toLocaleDateString("es-ES", options);
+							    var separateDateValidDesde = convertDateValidDesde.split(" ");
+							    var separateDateValidHasta = convertDateValidHasta.split(" ");
+							    var monthSeparatetoArrayDesde = separateDateValidDesde[2].slice(0, 3);
+							    var monthSeparatetoArrayHasta = separateDateValidHasta[2].slice(0, 3);
+							    var val_dateValidDesde = separateDateValidDesde[0]+" "+"de"+" "+firstToUppercase(monthSeparatetoArrayDesde);
+							    var val_dateValidHasta = separateDateValidHasta[0]+" "+"de"+" "+firstToUppercase(monthSeparatetoArrayHasta);
+							    $("#v_validratedate").text(val_dateValidDesde+" - "+val_dateValidHasta);
+						  	}
 
-							// --------------- IMPRIMIR EL TOTAL ENTRE EL IGV
-							var n_byIGV = Math.abs(ralldata[0].f_totalservicesIGV18);
-							var partInteger_byIGV = Math.trunc(n_byIGV);
-							var separate_point_byIGV = partInteger_byIGV.toString().replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d)\.?)/g, ".");
-							var part_decimalbyIGV = totalNotRountByIGV.toString().split('.');
-							var partFinal_decimal_byIGV = 0;
-							if(part_decimalbyIGV[1] == undefined || part_decimalbyIGV[1] == 'undefined' || part_decimalbyIGV[1] == ""){partFinal_decimal_byIGV = '00';
-							}else	if(part_decimalbyIGV[1].length < 2){partFinal_decimal_byIGV = part_decimalbyIGV[1]+'0';
-							}else{partFinal_decimal_byIGV = part_decimalbyIGV[1];}
-							$("#igvval-quotefinal").html(`<span>+ IGV 18% </span><span>${separate_point_byIGV},${partFinal_decimal_byIGV} USD</span>`);
+						  	// --------------- IMPRIMIR EL TOTAL - SERVICIOS
+						  	var n = Math.abs(ralldata[0].f_totalservices);
+								partInteger = Math.trunc(n);
+								var separate_point = partInteger.toString().replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d)\.?)/g, ".");
+								partDecimal = totalNotround.toString().split('.');
+								if(partDecimal[1] == undefined || partDecimal[1] == 'undefined' || partDecimal[1] == ""){partFinalDecimal = '00';
+								}else	if(partDecimal[1].length < 2){partFinalDecimal = partDecimal[1]+'0';
+								}else{partFinalDecimal = partDecimal[1];}
+								$("#intdecval-quotefinal").html(`<span>${separate_point},<sup>${partFinalDecimal}</sup> USD</span>`);
 
-							// ---------------- IMPRIMIR EL ÚLTIMO VALOR - SUMA DEL TOTAL DE FLETE Y EL TOTAL ENTRE EL IGV
-							var n_ftotal = Math.abs(ralldata[0].f_totalwithIGV);
-							partInteger_FTotal = Math.trunc(n_ftotal);
-							var separate_point_FTotal = partInteger_FTotal.toString().replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d)\.?)/g, ".");
-							partDecimal_FTotal = totalNotRoundFinal.toString().split('.');
-							if(partDecimal_FTotal[1] == undefined || partDecimal_FTotal[1] == 'undefined' || partDecimal_FTotal[1] == ""){partFinalDecimal_FTotal = '00';
-							}else	if(partDecimal_FTotal[1].length < 2){partFinalDecimal_FTotal = partDecimal_FTotal[1]+'0';
-							}else{partFinalDecimal_FTotal = partDecimal_FTotal[1];}
-							$("#totalval_quoteFinal").html(`<span>${separate_point_FTotal},<sup>${partFinalDecimal_FTotal}</sup> USD</span>`);
+								// --------------- IMPRIMIR EL TOTAL ENTRE EL IGV
+								var n_byIGV = Math.abs(ralldata[0].f_totalservicesIGV18);
+								var partInteger_byIGV = Math.trunc(n_byIGV);
+								var separate_point_byIGV = partInteger_byIGV.toString().replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d)\.?)/g, ".");
+								var part_decimalbyIGV = totalNotRountByIGV.toString().split('.');
+								var partFinal_decimal_byIGV = 0;
+								if(part_decimalbyIGV[1] == undefined || part_decimalbyIGV[1] == 'undefined' || part_decimalbyIGV[1] == ""){partFinal_decimal_byIGV = '00';
+								}else	if(part_decimalbyIGV[1].length < 2){partFinal_decimal_byIGV = part_decimalbyIGV[1]+'0';
+								}else{partFinal_decimal_byIGV = part_decimalbyIGV[1];}
+								$("#igvval-quotefinal").html(`<span>+ IGV 18% </span><span>${separate_point_byIGV},${partFinal_decimal_byIGV} USD</span>`);
 
-					  });
-					}else{
-						console.log("Lo sentimos, hubo un error al guardar la cotización");
-					}
-				});
-			}else if($("#s_useregin-sistem").val() != "" || 
-							 $("#s_useregin-sistem").val() != undefined || 
-							 $("#s_useregin-sistem").val() != 'undefined' || 
-							 $("#s_useregin-sistem").val() != null ||
-							 $("#s_useregin-sistem").val() != 'null'){
+								// ---------------- IMPRIMIR EL ÚLTIMO VALOR - SUMA DEL TOTAL DE FLETE Y EL TOTAL ENTRE EL IGV
+								var n_ftotal = Math.abs(ralldata[0].f_totalwithIGV);
+								partInteger_FTotal = Math.trunc(n_ftotal);
+								var separate_point_FTotal = partInteger_FTotal.toString().replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d)\.?)/g, ".");
+								partDecimal_FTotal = totalNotRoundFinal.toString().split('.');
+								if(partDecimal_FTotal[1] == undefined || partDecimal_FTotal[1] == 'undefined' || partDecimal_FTotal[1] == ""){partFinalDecimal_FTotal = '00';
+								}else	if(partDecimal_FTotal[1].length < 2){partFinalDecimal_FTotal = partDecimal_FTotal[1]+'0';
+								}else{partFinalDecimal_FTotal = partDecimal_FTotal[1];}
+								$("#totalval_quoteFinal").html(`<span>${separate_point_FTotal},<sup>${partFinalDecimal_FTotal}</sup> USD</span>`);
 
-				var formdata = new FormData();
-				formdata.append("id_codegenrand", $("#v_idgencoderand").val());
-				//formdata.append("codegenerate", $("#v_gencodexxx").text());
-				formdata.append("u_login", $("#s_useregin-sistem").val());
-				formdata.append("f_type_op", $("#v_typeserviceinit").val());
-				formdata.append("f_type_transp", $("#v_typeserviceinit").val());
-				formdata.append("f_type_cont", localStorage.getItem("key_typeChrg"));
-				formdata.append("u_n_document", "No especificado");
-				formdata.append("u_enterprise", "No especificado");
-				formdata.append("u_telephone", "No especificado");
-				formdata.append("u_service", "No especificado");
-				formdata.append("u_cont", localStorage.getItem("key_v-nametypeproduct"));
-				formdata.append("f_origen", localStorage.getItem("port_OName"));
-				formdata.append("f_weight_v", "No especificado");
-				formdata.append("f_time_trans", localStorage.getItem("key_v-valttaproxbycontain"));
-				formdata.append("f_fob", totalfinalvaluefob);
-				formdata.append("f_flete", totflete);
-				formdata.append("f_insurance", totalinsurance);
-				formdata.append("f_cif", sumbyCIF);
-				formdata.append("f_totalservices", totalNotround);
-				formdata.append("f_totalservicesIGV18", totalNotRountByIGV);
-				formdata.append("f_totalimpuestos", twodecimals_FinalTax);
-				formdata.append("f_totalwithIGV", totalNotRoundFinal);
-				formdata.append("f_validdesde", $("#v_datevaliddesde").val());
-				formdata.append("f_validhasta", $("#v_datevalidhasta").val());
+						  });
+						}else{
+							console.log("Lo sentimos, hubo un error al guardar la cotización");
+						}
+					});
+				}else if($("#s_useregin-sistem").val() != "" || 
+								 $("#s_useregin-sistem").val() != undefined || 
+								 $("#s_useregin-sistem").val() != 'undefined' || 
+								 $("#s_useregin-sistem").val() != null ||
+								 $("#s_useregin-sistem").val() != 'null'){
 
-				$.ajax({
-					url: 'controllers/c_add_quotation_user.php',
-					method: 'POST',
-					datatype: "JSON",
-					data: formdata,
-					contentType: false,
-		      cache: false,
-		      processData: false
-				}).done(function(e){
-					//console.log(e);
-					var rquotaiton = JSON.parse(e);
-					if(rquotaiton[0].res != "exists"){
-						console.log("Cotización guardada");
-						$("#v_gencodexxx").text(rquotaiton[0].res);
-					}else if(rquotaiton[0].res == "exists"){
-						console.log("Esta cotización ya existe");
-						$.ajax({
-					    url: "controllers/c_list_quotation_by_codegenrand.php",
-					    method: "POST",
-					    datatype: "JSON",
-					    contentType: 'application/x-www-form-urlencoded;charset=UTF-8',
-					    data: {id_codegenrand : $("#v_idgencoderand").val()},
-					  }).done(function(e){
-					  	var ralldata = JSON.parse(e);
-					  	// VARIABLES A USAR EN EL RE-MOSTRADO DE INFORMACÍON...
-					  	var partFinalDecimal = 0;
-					  	var partFinalDecimal_FTotal = 0;
+					var formdata = new FormData();
+					formdata.append("id_codegenrand", $("#v_idgencoderand").val());
+					//formdata.append("codegenerate", $("#v_gencodexxx").text());
+					formdata.append("u_login", $("#s_useregin-sistem").val());
+					formdata.append("f_type_op", $("#v_typeserviceinit").val());
+					formdata.append("f_type_transp", $("#v_typeserviceinit").val());
+					formdata.append("f_type_cont", localStorage.getItem("key_typeChrg"));
+					formdata.append("u_n_document", "No especificado");
+					formdata.append("u_enterprise", "No especificado");
+					formdata.append("u_telephone", "No especificado");
+					formdata.append("u_service", "No especificado");
+					formdata.append("u_cont", localStorage.getItem("key_v-nametypeproduct"));
+					formdata.append("f_origen", localStorage.getItem("port_OName"));
+					formdata.append("f_weight_v", "No especificado");
+					formdata.append("f_time_trans", localStorage.getItem("key_v-valttaproxbycontain"));
+					formdata.append("f_fob", totalfinalvaluefob);
+					formdata.append("f_flete", totflete);
+					formdata.append("f_insurance", totalinsurance);
+					formdata.append("f_cif", sumbyCIF);
+					formdata.append("f_totalservices", totalNotround);
+					formdata.append("f_totalservicesIGV18", totalNotRountByIGV);
+					formdata.append("f_totalimpuestos", twodecimals_FinalTax);
+					formdata.append("f_totalwithIGV", totalNotRoundFinal);
+					formdata.append("f_validdesde", $("#v_datevaliddesde").val());
+					formdata.append("f_validhasta", $("#v_datevalidhasta").val());
 
-					  	// --------------- IMPRIMIR EL CÓDIGO AUTOGENERADO DE LA COTIZACIÓN
-					  	$("#v_gencodexxx").text(ralldata[0].code_quote);
+					$.ajax({
+						url: 'controllers/c_add_quotation_user.php',
+						method: 'POST',
+						datatype: "JSON",
+						data: formdata,
+						contentType: false,
+			      cache: false,
+			      processData: false
+					}).done(function(e){
+						//console.log(e);
+						var rquotaiton = JSON.parse(e);
+						if(rquotaiton[0].res != "exists"){
+							console.log("Cotización guardada");
+							$("#v_gencodexxx").text(rquotaiton[0].res);
+						}else if(rquotaiton[0].res == "exists"){
+							console.log("Esta cotización ya existe");
+							$.ajax({
+						    url: "controllers/c_list_quotation_by_codegenrand.php",
+						    method: "POST",
+						    datatype: "JSON",
+						    contentType: 'application/x-www-form-urlencoded;charset=UTF-8',
+						    data: {id_codegenrand : $("#v_idgencoderand").val()},
+						  }).done(function(e){
+						  	var ralldata = JSON.parse(e);
+						  	// VARIABLES A USAR EN EL RE-MOSTRADO DE INFORMACÍON...
+						  	var partFinalDecimal = 0;
+						  	var partFinalDecimal_FTotal = 0;
 
-					  	// --------------- IMPRIMIR LA VALIDEZ DE LA COTIZACIÓN
-					  	if(ralldata[0].f_validdesde == "0000-00-00 00:00:00" || ralldata[0].f_validhasta == "0000-00-00 00:00:00"){
-					  		$("#v_validratedate").text('No especificado');
-					  	}else{
-						  	var convertOneDATE =  new Date(Date.parse(ralldata[0].f_validdesde.replace(/-/g, '/')));
-						    var convertTwoDATE =  new Date(Date.parse(ralldata[0].f_validhasta.replace(/[-]/g,'/')));
-						    //var options = { year: 'numeric', month: '2-digit', day: 'numeric' };
-						    var options = { year: 'numeric', month: 'long', day: 'numeric' };
-						    var convertDateValidDesde = convertOneDATE.toLocaleDateString("es-ES", options);
-						    var convertDateValidHasta = convertTwoDATE.toLocaleDateString("es-ES", options);
-						    var separateDateValidDesde = convertDateValidDesde.split(" ");
-						    var separateDateValidHasta = convertDateValidHasta.split(" ");
-						    var monthSeparatetoArrayDesde = separateDateValidDesde[2].slice(0, 3);
-						    var monthSeparatetoArrayHasta = separateDateValidHasta[2].slice(0, 3);
-						    var val_dateValidDesde = separateDateValidDesde[0]+" "+"de"+" "+firstToUppercase(monthSeparatetoArrayDesde);
-						    var val_dateValidHasta = separateDateValidHasta[0]+" "+"de"+" "+firstToUppercase(monthSeparatetoArrayHasta);
-						    $("#v_validratedate").text(val_dateValidDesde+" - "+val_dateValidHasta);
-					  	}
+						  	// --------------- IMPRIMIR EL CÓDIGO AUTOGENERADO DE LA COTIZACIÓN
+						  	$("#v_gencodexxx").text(ralldata[0].code_quote);
 
-					  	// --------------- IMPRIMIR EL TOTAL - SERVICIOS
-					  	var n = Math.abs(ralldata[0].f_totalservices);
-							partInteger = Math.trunc(n);
-							var separate_point = partInteger.toString().replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d)\.?)/g, ".");
-							partDecimal = totalNotround.toString().split('.');
-							if(partDecimal[1] == undefined || partDecimal[1] == 'undefined' || partDecimal[1] == ""){partFinalDecimal = '00';
-							}else	if(partDecimal[1].length < 2){partFinalDecimal = partDecimal[1]+'0';
-							}else{partFinalDecimal = partDecimal[1];}
-							$("#intdecval-quotefinal").html(`<span>${separate_point},<sup>${partFinalDecimal}</sup> USD</span>`);
+						  	// --------------- IMPRIMIR LA VALIDEZ DE LA COTIZACIÓN
+						  	if(ralldata[0].f_validdesde == "0000-00-00 00:00:00" || ralldata[0].f_validhasta == "0000-00-00 00:00:00"){
+						  		$("#v_validratedate").text('No especificado');
+						  	}else{
+							  	var convertOneDATE =  new Date(Date.parse(ralldata[0].f_validdesde.replace(/-/g, '/')));
+							    var convertTwoDATE =  new Date(Date.parse(ralldata[0].f_validhasta.replace(/[-]/g,'/')));
+							    //var options = { year: 'numeric', month: '2-digit', day: 'numeric' };
+							    var options = { year: 'numeric', month: 'long', day: 'numeric' };
+							    var convertDateValidDesde = convertOneDATE.toLocaleDateString("es-ES", options);
+							    var convertDateValidHasta = convertTwoDATE.toLocaleDateString("es-ES", options);
+							    var separateDateValidDesde = convertDateValidDesde.split(" ");
+							    var separateDateValidHasta = convertDateValidHasta.split(" ");
+							    var monthSeparatetoArrayDesde = separateDateValidDesde[2].slice(0, 3);
+							    var monthSeparatetoArrayHasta = separateDateValidHasta[2].slice(0, 3);
+							    var val_dateValidDesde = separateDateValidDesde[0]+" "+"de"+" "+firstToUppercase(monthSeparatetoArrayDesde);
+							    var val_dateValidHasta = separateDateValidHasta[0]+" "+"de"+" "+firstToUppercase(monthSeparatetoArrayHasta);
+							    $("#v_validratedate").text(val_dateValidDesde+" - "+val_dateValidHasta);
+						  	}
 
-							// --------------- IMPRIMIR EL TOTAL ENTRE EL IGV
-							var n_byIGV = Math.abs(ralldata[0].f_totalservicesIGV18);
-							var partInteger_byIGV = Math.trunc(n_byIGV);
-							var separate_point_byIGV = partInteger_byIGV.toString().replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d)\.?)/g, ".");
-							var part_decimalbyIGV = totalNotRountByIGV.toString().split('.');
-							var partFinal_decimal_byIGV = 0;
-							if(part_decimalbyIGV[1] == undefined || part_decimalbyIGV[1] == 'undefined' || part_decimalbyIGV[1] == ""){partFinal_decimal_byIGV = '00';
-							}else	if(part_decimalbyIGV[1].length < 2){partFinal_decimal_byIGV = part_decimalbyIGV[1]+'0';
-							}else{partFinal_decimal_byIGV = part_decimalbyIGV[1];}
-							$("#igvval-quotefinal").html(`<span>+ IGV 18% </span><span>${separate_point_byIGV},${partFinal_decimal_byIGV} USD</span>`);
+						  	// --------------- IMPRIMIR EL TOTAL - SERVICIOS
+						  	var n = Math.abs(ralldata[0].f_totalservices);
+								partInteger = Math.trunc(n);
+								var separate_point = partInteger.toString().replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d)\.?)/g, ".");
+								partDecimal = totalNotround.toString().split('.');
+								if(partDecimal[1] == undefined || partDecimal[1] == 'undefined' || partDecimal[1] == ""){partFinalDecimal = '00';
+								}else	if(partDecimal[1].length < 2){partFinalDecimal = partDecimal[1]+'0';
+								}else{partFinalDecimal = partDecimal[1];}
+								$("#intdecval-quotefinal").html(`<span>${separate_point},<sup>${partFinalDecimal}</sup> USD</span>`);
 
-							// ---------------- IMPRIMIR EL ÚLTIMO VALOR - SUMA DEL TOTAL DE FLETE Y EL TOTAL ENTRE EL IGV
-							var n_ftotal = Math.abs(ralldata[0].f_totalwithIGV);
-							partInteger_FTotal = Math.trunc(n_ftotal);
-							var separate_point_FTotal = partInteger_FTotal.toString().replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d)\.?)/g, ".");
-							partDecimal_FTotal = totalNotRoundFinal.toString().split('.');
-							if(partDecimal_FTotal[1] == undefined || partDecimal_FTotal[1] == 'undefined' || partDecimal_FTotal[1] == ""){partFinalDecimal_FTotal = '00';
-							}else	if(partDecimal_FTotal[1].length < 2){partFinalDecimal_FTotal = partDecimal_FTotal[1]+'0';
-							}else{partFinalDecimal_FTotal = partDecimal_FTotal[1];}
-							$("#totalval_quoteFinal").html(`<span>${separate_point_FTotal},<sup>${partFinalDecimal_FTotal}</sup> USD</span>`);
-					  });
-					}else{
-						console.log("Lo sentimos, hubo un error al guardar la cotización");
-					}
-				});
-			}else{
-				//console.log('Sin usuario, se redirigirá al inicio');
-				//window.location.href = "marketplace-logistico";
-			}
+								// --------------- IMPRIMIR EL TOTAL ENTRE EL IGV
+								var n_byIGV = Math.abs(ralldata[0].f_totalservicesIGV18);
+								var partInteger_byIGV = Math.trunc(n_byIGV);
+								var separate_point_byIGV = partInteger_byIGV.toString().replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d)\.?)/g, ".");
+								var part_decimalbyIGV = totalNotRountByIGV.toString().split('.');
+								var partFinal_decimal_byIGV = 0;
+								if(part_decimalbyIGV[1] == undefined || part_decimalbyIGV[1] == 'undefined' || part_decimalbyIGV[1] == ""){partFinal_decimal_byIGV = '00';
+								}else	if(part_decimalbyIGV[1].length < 2){partFinal_decimal_byIGV = part_decimalbyIGV[1]+'0';
+								}else{partFinal_decimal_byIGV = part_decimalbyIGV[1];}
+								$("#igvval-quotefinal").html(`<span>+ IGV 18% </span><span>${separate_point_byIGV},${partFinal_decimal_byIGV} USD</span>`);
+
+								// ---------------- IMPRIMIR EL ÚLTIMO VALOR - SUMA DEL TOTAL DE FLETE Y EL TOTAL ENTRE EL IGV
+								var n_ftotal = Math.abs(ralldata[0].f_totalwithIGV);
+								partInteger_FTotal = Math.trunc(n_ftotal);
+								var separate_point_FTotal = partInteger_FTotal.toString().replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d)\.?)/g, ".");
+								partDecimal_FTotal = totalNotRoundFinal.toString().split('.');
+								if(partDecimal_FTotal[1] == undefined || partDecimal_FTotal[1] == 'undefined' || partDecimal_FTotal[1] == ""){partFinalDecimal_FTotal = '00';
+								}else	if(partDecimal_FTotal[1].length < 2){partFinalDecimal_FTotal = partDecimal_FTotal[1]+'0';
+								}else{partFinalDecimal_FTotal = partDecimal_FTotal[1];}
+								$("#totalval_quoteFinal").html(`<span>${separate_point_FTotal},<sup>${partFinalDecimal_FTotal}</sup> USD</span>`);
+						  });
+						}else{
+							console.log("Lo sentimos, hubo un error al guardar la cotización");
+						}
+					});
+				}else{
+					//console.log('Sin usuario, se redirigirá al inicio');
+					//window.location.href = "marketplace-logistico";
+				}
+			});
 
 	    // ========== VALIDAR SI EXISTE UN USUARIO AL ABRIR EL MODAL - PRIMER BOTÓN ========== //
 	    $(document).on("click","#btn-requireDownloadQuotaion_one",function(e){
