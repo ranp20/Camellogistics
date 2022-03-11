@@ -18,6 +18,10 @@ function refreshIdCodeGenRandom(){
     $("#ipt-vidcodgenrand").val(e);
   });
 }
+// ========= ABRIR EL SIDEBARLEFT - MOBILE (PROCESO COTIZACIÓN) ========= //
+$(document).on("click", "#btn-resume-mobile-header", function(){
+  $(".cont-MainCamelLog--c--contResumeCalc").toggleClass("show");
+});
 ////OTRAS TAREAS - MEJORA DE UI Y UX
 /*- Mostrar al inicio solo los pasos a usar antes de cada elección, luego ir añadiendo o quitando de acuerdo a los elementos seleccionados*/
 // RECOGER LAS VARIABLES RECIBIDAS POR POST
@@ -62,6 +66,10 @@ const sectionsSteps = new fullpage('#fullpage', {
   //lockAnchors: true,
   loopTop: false,
   loopBottom: false,
+  
+  responsiveWidth: 0,
+  responsiveHeight: 0,
+  responsiveSlides: false,
 });
 // =============== OCULTAR LOS DEMÁS PASOS ================= //
 function hiddenAllNextSteps(){
@@ -2185,7 +2193,7 @@ $(document).on("click", "#list-requirespickup a", function(){
           <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem">
             <li class="cont-MainCamelLog--c--contSteps--item--cStep--m--item">
               <div class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem--cImg">
-                <img src="views/assets/img/steps/type_transport_06.png" alt="" loading="lazy" width="100" height="100">
+                <img src="views/assets/img/steps/type_transport_06.png" alt="cml_type_transport_01" loading="lazy" width="100" height="100">
               </div>
               <p>GENERAL</p>
             </li>
@@ -2193,7 +2201,7 @@ $(document).on("click", "#list-requirespickup a", function(){
           <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem">
             <li class="cont-MainCamelLog--c--contSteps--item--cStep--m--item">
               <div class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem--cImg">
-                <img src="views/assets/img/steps/type_transport_03.png" alt="" loading="lazy" width="100" height="100">
+                <img src="views/assets/img/steps/type_transport_03.png" alt="cml_type_transport_02" loading="lazy" width="100" height="100">
               </div>
               <p>IMO</p>
             </li>
@@ -2201,7 +2209,7 @@ $(document).on("click", "#list-requirespickup a", function(){
           <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem">
             <li class="cont-MainCamelLog--c--contSteps--item--cStep--m--item">
               <div class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem--cImg">
-                <img src="views/assets/img/steps/type_transport_05.png" alt="" loading="lazy" width="100" height="100">
+                <img src="views/assets/img/steps/type_transport_05.png" alt="cml_type_transport_03" loading="lazy" width="100" height="100">
               </div>
               <p>REFRIGERADO</p>
             </li>
@@ -2250,7 +2258,7 @@ $(document).on("click", "#btn-NextStepTofletevaldata", function(){
           <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem">
             <li class="cont-MainCamelLog--c--contSteps--item--cStep--m--item">
               <div class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem--cImg">
-                <img src="views/assets/img/steps/type_transport_06.png" alt="" loading="lazy" width="100" height="100">
+                <img src="views/assets/img/steps/type_transport_06.png" alt="cml_type_transport_01" loading="lazy" width="100" height="100">
               </div>
               <p>GENERAL</p>
             </li>
@@ -2258,7 +2266,7 @@ $(document).on("click", "#btn-NextStepTofletevaldata", function(){
           <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem">
             <li class="cont-MainCamelLog--c--contSteps--item--cStep--m--item">
               <div class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem--cImg">
-                <img src="views/assets/img/steps/type_transport_03.png" alt="" loading="lazy" width="100" height="100">
+                <img src="views/assets/img/steps/type_transport_03.png" alt="cml_type_transport_02" loading="lazy" width="100" height="100">
               </div>
               <p>IMO</p>
             </li>
@@ -2266,7 +2274,7 @@ $(document).on("click", "#btn-NextStepTofletevaldata", function(){
           <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem">
             <li class="cont-MainCamelLog--c--contSteps--item--cStep--m--item">
               <div class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem--cImg">
-                <img src="views/assets/img/steps/type_transport_05.png" alt="" loading="lazy" width="100" height="100">
+                <img src="views/assets/img/steps/type_transport_05.png" alt="cml_type_transport_03" loading="lazy" width="100" height="100">
               </div>
               <p>REFRIGERADO</p>
             </li>
@@ -2353,7 +2361,7 @@ $(document).on("click","#list-typeTransporteSelectItems a",function(){
     $(".cont-MainCamelLog--c--contResumeCalc--item[data-advlevel=d-typetransportcharge]").html(`
       <div class="cont-MainCamelLog--c--contResumeCalc--item--cardStep">
         <div class="cont-MainCamelLog--c--contResumeCalc--item--cardStep--cImgIcon">
-           <img class="cont-MainCamelLog--c--contResumeCalc--item--cardStep--cImgIcon--icon" loading="lazy" src="views/assets/img/steps/type_transport_06.png">
+           <img class="cont-MainCamelLog--c--contResumeCalc--item--cardStep--cImgIcon--icon" loading="lazy" src="views/assets/img/steps/type_transport_06.png" alt="cml_type_transport_01">
          </div>
         <span>T. GENERAL</span>
       </div>
@@ -2400,7 +2408,7 @@ $(document).on("click","#list-typeTransporteSelectItems a",function(){
     $(".cont-MainCamelLog--c--contResumeCalc--item[data-advlevel=d-typetransportcharge]").html(`
       <div class="cont-MainCamelLog--c--contResumeCalc--item--cardStep">
         <div class="cont-MainCamelLog--c--contResumeCalc--item--cardStep--cImgIcon">
-           <img class="cont-MainCamelLog--c--contResumeCalc--item--cardStep--cImgIcon--icon" loading="lazy" src="views/assets/img/steps/type_transport_03.png">
+           <img class="cont-MainCamelLog--c--contResumeCalc--item--cardStep--cImgIcon--icon" loading="lazy" src="views/assets/img/steps/type_transport_03.png" alt="cml_type_transport_02">
          </div>
         <span>T. IMO</span>
       </div>
@@ -2447,7 +2455,7 @@ $(document).on("click","#list-typeTransporteSelectItems a",function(){
     $(".cont-MainCamelLog--c--contResumeCalc--item[data-advlevel=d-typetransportcharge]").html(`
       <div class="cont-MainCamelLog--c--contResumeCalc--item--cardStep">
         <div class="cont-MainCamelLog--c--contResumeCalc--item--cardStep--cImgIcon">
-           <img class="cont-MainCamelLog--c--contResumeCalc--item--cardStep--cImgIcon--icon" loading="lazy" src="views/assets/img/steps/type_transport_05.png">
+           <img class="cont-MainCamelLog--c--contResumeCalc--item--cardStep--cImgIcon--icon" loading="lazy" src="views/assets/img/steps/type_transport_05.png" alt="cml_type_transport_03">
          </div>
         <span>T. REFRIGERADO</span>
       </div>

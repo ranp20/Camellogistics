@@ -23,160 +23,30 @@
       $portDestinyPOST = "";
       $portCountryDestinyPOST = "";
       $sections_qresumeandsteps = "
-        <input type='hidden' class='cont-MainCamelLog--c--ctrbysend' id='ipt-vtypetranspinit' value='{$_POST['v_typetranspinit']}'>
-        <section class='cont-MainCamelLog--c--contResumeCalc' id='id-resumeLeftQuoteCamel'>
-          <div class='cont-MainCamelLog--c--contResumeCalc--item' data-advlevel='d-typetransportnumb'></div>
-          <div class='cont-MainCamelLog--c--contResumeCalc--item' data-advlevel='d-typeserviceinit'>
-            <div class='cont-MainCamelLog--c--contResumeCalc--item--cardStep'>
-              <div class='cont-MainCamelLog--c--contResumeCalc--item--cardStep--cNameFlag'>
-                <span id='v_typeoptselectininit'>{$val_name_service}</span>
-                <div>
-                  <span>
-                    <span>
-                      <input type='hidden' id='val-typeoptselectininit' name='val-typeoptselectininit' value='{$val_name_service}' class='n-val-sd'>
-                    </span>
-                  </span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class='cont-MainCamelLog--c--contResumeCalc--item' data-advlevel='d-chargeload'></div>
-          <div class='cont-MainCamelLog--c--contResumeCalc--item' data-advlevel='d-typecontainer'>
-            <div class='cont-MainCamelLog--c--contResumeCalc--item--cardStep'>
-              <div class='cont-MainCamelLog--c--contResumeCalc--item--cardStep--cNameFlag'>
-                <span>DIMENSIONES</span>
-              </div>
-              <div class='cont-MainCamelLog--c--contResumeCalc--item--cardStep--cIconStepLeft' data-merchandise='rsm-typecharge'>
-                <img src='' alt=''>
-                <span></span>
-              </div>
-              <div>
-                <div class='cont-MainCamelLog--c--contResumeCalc--item--cardStep--cIconStepLeft' data-merchandise='rsm-qcontainer'>
-                  <div data-merchandisetype='rsm-qcontainer20'>
-                    <img src='' alt=''>
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                  </div>
-                  <div data-merchandisetype='rsm-qcontainer40'>
-                    <img src='' alt=''>
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                  </div>
-                  <div data-merchandisetype='rsm-qcontainer40hq'>
-                    <img src='' alt=''>
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                  </div>
-                  <div data-merchandisetype='rsm-qcontainer40nor'>
-                    <img src='' alt=''>
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                  </div>
-                </div>
-              </div>
-              <div class='cont-MainCamelLog--c--contResumeCalc--item--cardStep--cIconStepLeft' data-merchandise='rsm-totpackages'>
-                <span></span>
-                <span></span>
-              </div>
-              <div class='cont-MainCamelLog--c--contResumeCalc--item--cardStep--cIconStepLeft' data-merchandise='rsm-totweight'>
-                <span></span>
-                <span></span>
-              </div>
-              <div class='cont-MainCamelLog--c--contResumeCalc--item--cardStep--cIconStepLeft' data-merchandise='rsm-totvolume'>
-                <span></span>
-                <span></span>
-              </div>
-            </div>
-          </div>
-          <div class='cont-MainCamelLog--c--contResumeCalc--item' data-advlevel='d-typetransportcharge'></div>
-        </section>
-        <section class='cont-MainCamelLog--c--contSteps' id='fullpage'>
-          <!-- PASO #1 -->
-          <div class='cont-MainCamelLog--c--contSteps--item active section' data-anchor='step-typeoperation' data-transportquote>
-            <div class='cont-MainCamelLog--c--contSteps--item--cTitle'>
-              <h3 class='cont-MainCamelLog--c--contSteps--item--cTitle--title'>¿Qué tipo de operación vas a realizar?</h3>
-              <span>
-                <span>
-                  <input type='hidden' id='loadTypeOpe' name='loadTypeOpe' class='n-val-sd' disabled>
-                </span>
-              </span>
-            </div>
-            <div class='cont-MainCamelLog--c--contSteps--item--cStep'>
-              <ul class='cont-MainCamelLog--c--contSteps--item--cStep--m' id='list-typeOperationItems'>
-                <a href='javascript:void(0);' class='cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem'>
-                  <li class='cont-MainCamelLog--c--contSteps--item--cStep--m--item'>
-                    <div class='cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem--cImg'>
-                      <img src='{$url}assets/img/steps/export.png' alt='' loading='lazy' width='100' height='100'>
-                    </div>
-                    <p>Exportación</p>
-                  </li>
-                </a>
-                <a href='javascript:void(0);' class='cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem'>
-                  <li class='cont-MainCamelLog--c--contSteps--item--cStep--m--item'>
-                    <div class='cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem--cImg'>
-                      <img src='{$url}assets/img/steps/import.png' alt='' loading='lazy' width='100' height='100'>
-                    </div>
-                    <p>Importación</p>
-                  </li>
-                </a>
-              </ul>
-            </div>
-          </div>
-          <!-- PASO #2 -->
-          <div class='cont-MainCamelLog--c--contSteps--item section' data-anchor='step-chargeload' data-transportquote></div>
-          <!-- PASO #3 -->
-          <div class='cont-MainCamelLog--c--contSteps--item section' data-anchor='step-qcontainers' data-transportquote></div>
-          <!-- PASO #3 -->
-          <div class='cont-MainCamelLog--c--contSteps--item section' data-anchor='step-chargedata' data-transportquote></div>
-          <!-- PASO #4 -->
-          <div class='cont-MainCamelLog--c--contSteps--item section' data-anchor='step-merchandisedata' data-transportquote></div>
-          <!-- PASO #5 -->
-          <div class='cont-MainCamelLog--c--contSteps--item section' data-anchor='step-requirespickup' data-transportquote></div>
-          <!-- PASO #6 -->
-          <!--<div class='cont-MainCamelLog--c--contSteps--item section' data-anchor='step-fletevaldata' data-transportquote></div>-->
-          <!-- PASO #7 -->
-          <div class='cont-MainCamelLog--c--contSteps--item section' data-anchor='step-typetransport' data-transportquote></div>
-          <!-- PASO #8 -->
-          <div class='cont-MainCamelLog--c--contSteps--item section' data-anchor='step-pickuplocation' data-transportquote></div>
-        </section>
-      ";
-
-      $script_qbysteps = "<script src='{$url}js/startquoterequest_aduanas.js'></script>";
-    }else if($_POST['v_typetranspinit'] == 1){
-      if(isset($_POST['v_iptportoriginpost']) && is_numeric($_POST['v_iptportoriginpost']) && 
-         isset($_POST['v_iptcountryportoriginpost']) && is_numeric($_POST['v_iptcountryportoriginpost']) &&
-         isset($_POST['v_iptportdestinypost']) && is_numeric($_POST['v_iptportdestinypost']) &&
-         isset($_POST['v_iptcountryportdestinypost']) && is_numeric($_POST['v_iptcountryportdestinypost'])){
-
-        $portOriginPOST = $_POST['v_iptportoriginpost'];
-        $portCountryOriginPOST = $_POST['v_iptcountryportoriginpost'];
-        $portDestinyPOST = $_POST['v_iptportdestinypost'];
-        $portCountryDestinyPOST = $_POST['v_iptcountryportdestinypost'];
-
-        echo "<input type='hidden' class='cont-MainCamelLog--c--ctrbysend' id='val-port-norigin' name='port-norigin' value='".$_POST['ipt-valNamePortOrigin']."'>";
-
-        $sections_qresumeandsteps = "
-          <input type='hidden' class='cont-MainCamelLog--c--ctrbysend' id='val-typeoptselectininit' name='val-typeoptselectininit' value='{$val_name_service}'>
+        <form action='fquotationgenerateaduanas' method='POST' id='f-expquotationFrmClient'>
           <input type='hidden' class='cont-MainCamelLog--c--ctrbysend' id='ipt-vtypetranspinit' value='{$_POST['v_typetranspinit']}'>
-          <input type='hidden' class='cont-MainCamelLog--c--ctrbysend' id='ipt-vportidOrigin' value='{$portOriginPOST}'>
-          <input type='hidden' class='cont-MainCamelLog--c--ctrbysend' id='ipt-vportidcountryOrigin' value='{$portCountryOriginPOST}'>
-          <input type='hidden' class='cont-MainCamelLog--c--ctrbysend' id='ipt-vportidDestiny' value='{$portDestinyPOST}'>
-          <input type='hidden' class='cont-MainCamelLog--c--ctrbysend' id='ipt-vportidcountryDestiny' value='{$portCountryDestinyPOST}'>
-          <input type='hidden' class='cont-MainCamelLog--c--ctrbysend' id='ipt-vcodgeneratex' name='ipt-vcodgeneratex' value=''>
           <input type='hidden' class='cont-MainCamelLog--c--ctrbysend' id='ipt-vidcodgenrand' name='ipt-vidcodgenrand' value=''>
           <section class='cont-MainCamelLog--c--contResumeCalc' id='id-resumeLeftQuoteCamel'>
             <div class='cont-MainCamelLog--c--contResumeCalc--item' data-advlevel='d-typetransportnumb'></div>
-            <div class='cont-MainCamelLog--c--contResumeCalc--item' data-advlevel='d-firstChargeLoad'></div>
+            <div class='cont-MainCamelLog--c--contResumeCalc--item' data-advlevel='d-typeserviceinit'>
+              <div class='cont-MainCamelLog--c--contResumeCalc--item--cardStep'>
+                <div class='cont-MainCamelLog--c--contResumeCalc--item--cardStep--cNameFlag'>
+                  <span id='v_typeoptselectininit'>{$val_name_service}</span>
+                  <div>
+                    <span>
+                      <span>
+                        <input type='hidden' id='val-typeoptselectininit' name='val-typeoptselectininit' value='{$val_name_service}' class='n-val-sd'>
+                      </span>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
             <div class='cont-MainCamelLog--c--contResumeCalc--item' data-advlevel='d-chargeload'></div>
-            <div class='cont-MainCamelLog--c--contResumeCalc--item' data-advlevel='d-typetransportcharge'></div>
             <div class='cont-MainCamelLog--c--contResumeCalc--item' data-advlevel='d-typecontainer'>
               <div class='cont-MainCamelLog--c--contResumeCalc--item--cardStep'>
                 <div class='cont-MainCamelLog--c--contResumeCalc--item--cardStep--cNameFlag'>
-                  <span>TRANSPORTE</span>
+                  <span>DIMENSIONES</span>
                 </div>
                 <div class='cont-MainCamelLog--c--contResumeCalc--item--cardStep--cIconStepLeft' data-merchandise='rsm-typecharge'>
                   <img src='' alt=''>
@@ -224,11 +94,7 @@
                 </div>
               </div>
             </div>
-            <div class='cont-MainCamelLog--c--contResumeCalc--item' data-advlevel='d-reqspeacialservs'>
-              <div class='cont-MainCamelLog--c--contResumeCalc--item--cardStep'>
-                <span></span>
-              </div>
-            </div>
+            <div class='cont-MainCamelLog--c--contResumeCalc--item' data-advlevel='d-typetransportcharge'></div>
           </section>
           <section class='cont-MainCamelLog--c--contSteps' id='fullpage'>
             <!-- PASO #1 -->
@@ -262,25 +128,165 @@
                 </ul>
               </div>
             </div>
-            <!-- PASO #1.5 -->
-            <div class='cont-MainCamelLog--c--contSteps--item section' data-anchor='step-typetransport' data-transportquote></div>
             <!-- PASO #2 -->
             <div class='cont-MainCamelLog--c--contSteps--item section' data-anchor='step-chargeload' data-transportquote></div>
             <!-- PASO #3 -->
             <div class='cont-MainCamelLog--c--contSteps--item section' data-anchor='step-qcontainers' data-transportquote></div>
-            <!-- PASO #3.5 o 4.5 -->
-            <div class='cont-MainCamelLog--c--contSteps--item section' data-anchor='step-integservorfleteinte' data-transportquote></div>
-            <!-- PASO #4 -->
+            <!-- PASO #3 -->
             <div class='cont-MainCamelLog--c--contSteps--item section' data-anchor='step-chargedata' data-transportquote></div>
-            <!-- PASO #5 -->
+            <!-- PASO #4 -->
             <div class='cont-MainCamelLog--c--contSteps--item section' data-anchor='step-merchandisedata' data-transportquote></div>
-            <!-- PASO #6 -->
-            <div class='cont-MainCamelLog--c--contSteps--item section' data-anchor='step-insuremerchandise' data-transportquote></div>
-            <!-- PASO #7 -->
+            <!-- PASO #5 -->
             <div class='cont-MainCamelLog--c--contSteps--item section' data-anchor='step-requirespickup' data-transportquote></div>
+            <!-- PASO #6 -->
+            <!--<div class='cont-MainCamelLog--c--contSteps--item section' data-anchor='step-fletevaldata' data-transportquote></div>-->
+            <!-- PASO #7 -->
+            <div class='cont-MainCamelLog--c--contSteps--item section' data-anchor='step-typetransport' data-transportquote></div>
             <!-- PASO #8 -->
             <div class='cont-MainCamelLog--c--contSteps--item section' data-anchor='step-pickuplocation' data-transportquote></div>
           </section>
+        </form>
+      ";
+
+      $script_qbysteps = "<script src='{$url}js/startquoterequest_aduanas.js'></script>";
+    }else if($_POST['v_typetranspinit'] == 1){
+      if(isset($_POST['v_iptportoriginpost']) && is_numeric($_POST['v_iptportoriginpost']) && 
+         isset($_POST['v_iptcountryportoriginpost']) && is_numeric($_POST['v_iptcountryportoriginpost']) &&
+         isset($_POST['v_iptportdestinypost']) && is_numeric($_POST['v_iptportdestinypost']) &&
+         isset($_POST['v_iptcountryportdestinypost']) && is_numeric($_POST['v_iptcountryportdestinypost'])){
+
+        $portOriginPOST = $_POST['v_iptportoriginpost'];
+        $portCountryOriginPOST = $_POST['v_iptcountryportoriginpost'];
+        $portDestinyPOST = $_POST['v_iptportdestinypost'];
+        $portCountryDestinyPOST = $_POST['v_iptcountryportdestinypost'];
+
+        //echo "";
+
+        $sections_qresumeandsteps = "
+          <form action='fquotationgenerate' method='POST' id='f-expquotationFrmClient'>
+            <input type='hidden' class='cont-MainCamelLog--c--ctrbysend' id='val-port-norigin' name='port-norigin' value='{$_POST['ipt-valNamePortOrigin']}'>
+            <input type='hidden' class='cont-MainCamelLog--c--ctrbysend' id='val-typeoptselectininit' name='val-typeoptselectininit' value='{$val_name_service}'>
+            <input type='hidden' class='cont-MainCamelLog--c--ctrbysend' id='ipt-vtypetranspinit' value='{$_POST['v_typetranspinit']}'>
+            <input type='hidden' class='cont-MainCamelLog--c--ctrbysend' id='ipt-vportidOrigin' value='{$portOriginPOST}'>
+            <input type='hidden' class='cont-MainCamelLog--c--ctrbysend' id='ipt-vportidcountryOrigin' value='{$portCountryOriginPOST}'>
+            <input type='hidden' class='cont-MainCamelLog--c--ctrbysend' id='ipt-vportidDestiny' value='{$portDestinyPOST}'>
+            <input type='hidden' class='cont-MainCamelLog--c--ctrbysend' id='ipt-vportidcountryDestiny' value='{$portCountryDestinyPOST}'>
+            <!--<input type='hidden' class='cont-MainCamelLog--c--ctrbysend' id='ipt-vcodgeneratex' name='ipt-vcodgeneratex' value=''>-->
+            <input type='hidden' class='cont-MainCamelLog--c--ctrbysend' id='ipt-vidcodgenrand' name='ipt-vidcodgenrand' value=''>
+            <section class='cont-MainCamelLog--c--contResumeCalc' id='id-resumeLeftQuoteCamel'>
+              <div class='cont-MainCamelLog--c--contResumeCalc--item' data-advlevel='d-typetransportnumb'></div>
+              <div class='cont-MainCamelLog--c--contResumeCalc--item' data-advlevel='d-firstChargeLoad'></div>
+              <div class='cont-MainCamelLog--c--contResumeCalc--item' data-advlevel='d-chargeload'></div>
+              <div class='cont-MainCamelLog--c--contResumeCalc--item' data-advlevel='d-typetransportcharge'></div>
+              <div class='cont-MainCamelLog--c--contResumeCalc--item' data-advlevel='d-typecontainer'>
+                <div class='cont-MainCamelLog--c--contResumeCalc--item--cardStep'>
+                  <div class='cont-MainCamelLog--c--contResumeCalc--item--cardStep--cNameFlag'>
+                    <span>TRANSPORTE</span>
+                  </div>
+                  <div class='cont-MainCamelLog--c--contResumeCalc--item--cardStep--cIconStepLeft' data-merchandise='rsm-typecharge'>
+                    <img src='' alt=''>
+                    <span></span>
+                  </div>
+                  <div>
+                    <div class='cont-MainCamelLog--c--contResumeCalc--item--cardStep--cIconStepLeft' data-merchandise='rsm-qcontainer'>
+                      <div data-merchandisetype='rsm-qcontainer20'>
+                        <img src='' alt=''>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                      </div>
+                      <div data-merchandisetype='rsm-qcontainer40'>
+                        <img src='' alt=''>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                      </div>
+                      <div data-merchandisetype='rsm-qcontainer40hq'>
+                        <img src='' alt=''>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                      </div>
+                      <div data-merchandisetype='rsm-qcontainer40nor'>
+                        <img src='' alt=''>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class='cont-MainCamelLog--c--contResumeCalc--item--cardStep--cIconStepLeft' data-merchandise='rsm-totpackages'>
+                    <span></span>
+                    <span></span>
+                  </div>
+                  <div class='cont-MainCamelLog--c--contResumeCalc--item--cardStep--cIconStepLeft' data-merchandise='rsm-totweight'>
+                    <span></span>
+                    <span></span>
+                  </div>
+                  <div class='cont-MainCamelLog--c--contResumeCalc--item--cardStep--cIconStepLeft' data-merchandise='rsm-totvolume'>
+                    <span></span>
+                    <span></span>
+                  </div>
+                </div>
+              </div>
+              <div class='cont-MainCamelLog--c--contResumeCalc--item' data-advlevel='d-reqspeacialservs'>
+                <div class='cont-MainCamelLog--c--contResumeCalc--item--cardStep'>
+                  <span></span>
+                </div>
+              </div>
+            </section>
+            <section class='cont-MainCamelLog--c--contSteps' id='fullpage'>
+              <!-- PASO #1 -->
+              <div class='cont-MainCamelLog--c--contSteps--item active section' data-anchor='step-typeoperation' data-transportquote>
+                <div class='cont-MainCamelLog--c--contSteps--item--cTitle'>
+                  <h3 class='cont-MainCamelLog--c--contSteps--item--cTitle--title'>¿Qué tipo de operación vas a realizar?</h3>
+                  <span>
+                    <span>
+                      <input type='hidden' id='loadTypeOpe' name='loadTypeOpe' class='n-val-sd' disabled>
+                    </span>
+                  </span>
+                </div>
+                <div class='cont-MainCamelLog--c--contSteps--item--cStep'>
+                  <ul class='cont-MainCamelLog--c--contSteps--item--cStep--m' id='list-typeOperationItems'>
+                    <a href='javascript:void(0);' class='cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem'>
+                      <li class='cont-MainCamelLog--c--contSteps--item--cStep--m--item'>
+                        <div class='cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem--cImg'>
+                          <img src='{$url}assets/img/steps/export.png' alt='' loading='lazy' width='100' height='100'>
+                        </div>
+                        <p>Exportación</p>
+                      </li>
+                    </a>
+                    <a href='javascript:void(0);' class='cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem'>
+                      <li class='cont-MainCamelLog--c--contSteps--item--cStep--m--item'>
+                        <div class='cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem--cImg'>
+                          <img src='{$url}assets/img/steps/import.png' alt='' loading='lazy' width='100' height='100'>
+                        </div>
+                        <p>Importación</p>
+                      </li>
+                    </a>
+                  </ul>
+                </div>
+              </div>
+              <!-- PASO #1.5 -->
+              <div class='cont-MainCamelLog--c--contSteps--item section' data-anchor='step-typetransport' data-transportquote></div>
+              <!-- PASO #2 -->
+              <div class='cont-MainCamelLog--c--contSteps--item section' data-anchor='step-chargeload' data-transportquote></div>
+              <!-- PASO #3 -->
+              <div class='cont-MainCamelLog--c--contSteps--item section' data-anchor='step-qcontainers' data-transportquote></div>
+              <!-- PASO #3.5 o 4.5 -->
+              <div class='cont-MainCamelLog--c--contSteps--item section' data-anchor='step-integservorfleteinte' data-transportquote></div>
+              <!-- PASO #4 -->
+              <div class='cont-MainCamelLog--c--contSteps--item section' data-anchor='step-chargedata' data-transportquote></div>
+              <!-- PASO #5 -->
+              <div class='cont-MainCamelLog--c--contSteps--item section' data-anchor='step-merchandisedata' data-transportquote></div>
+              <!-- PASO #6 -->
+              <div class='cont-MainCamelLog--c--contSteps--item section' data-anchor='step-insuremerchandise' data-transportquote></div>
+              <!-- PASO #7 -->
+              <div class='cont-MainCamelLog--c--contSteps--item section' data-anchor='step-requirespickup' data-transportquote></div>
+              <!-- PASO #8 -->
+              <div class='cont-MainCamelLog--c--contSteps--item section' data-anchor='step-pickuplocation' data-transportquote></div>
+            </section>
+          </form>
         ";
 
         $script_qbysteps = "<script src='{$url}js/startquoterequest_maritimo.js'></script>";
@@ -322,9 +328,7 @@
   </nav>
   <main class="cont-MainCamelLog" id="cont-MainCamelLog">
     <div class="cont-MainCamelLog--c ptop-headertop" id="cont-MainCamelLog--cStartQuoteRequest">
-      <form action="fquotationgenerate" method="POST" id="f-expquotationFrmClient">
-        <?php echo $sections_qresumeandsteps; ?>
-      </form>
+      <?php echo $sections_qresumeandsteps; ?>
     </div>
   </main>
   <?php require_once 'includes/form-calculator-flete.php'; ?>

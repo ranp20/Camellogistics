@@ -88,7 +88,7 @@ if(isset($_FILES) && isset($_POST)){
 					validdesde = '".$_POST['validdesdelcl']."', 
 					validhasta = '".$_POST['validhastalcl']."',
 					utility = ".$_POST['utilitylcl']." WHERE id = ".$listids[$ilistid]['id']."";
-					$result = $conexion->prepare($sql);
+					$result = $con->prepare($sql);
 					$result->execute();
 
 					if($result == true){
@@ -111,7 +111,7 @@ if(isset($_FILES) && isset($_POST)){
 
 				if(move_uploaded_file($file_origin, $file_folder . $file_lowercase)){
 					$sql = "CALL sp_add_spreadsheet_rate_lcl(:spreadsheet)";
-					$stm = $conexion->prepare($sql);
+					$stm = $con->prepare($sql);
 					$stm->bindValue(":spreadsheet", $file_name);
 					$stm->execute();
 					if($stm == true){
@@ -137,7 +137,7 @@ if(isset($_FILES) && isset($_POST)){
 				(".$_POST['utilitylcl'].",
 				'".$_POST['validdesdelcl']."', 
 				'".$_POST['validhastalcl']."')";
-				$result = $conexion->prepare($sql);
+				$result = $con->prepare($sql);
 				$result->execute();
 
 				if($result == true){
@@ -210,7 +210,7 @@ if(isset($_FILES) && isset($_POST)){
 						'".$_POST['validdesdelcl']."', 
 						'".$_POST['validhastalcl']."', 
 						".$_POST['utilitylcl'].")";
-						$result = $conexion->prepare($sql);
+						$result = $con->prepare($sql);
 						$result->execute();
 
 						if($result == true){
@@ -234,7 +234,7 @@ if(isset($_FILES) && isset($_POST)){
 
 				if(move_uploaded_file($file_origin, $file_folder . $file_lowercase)){
 					$sql = "CALL sp_add_spreadsheet_rate_lcl(:spreadsheet)";
-					$stm = $conexion->prepare($sql);
+					$stm = $con->prepare($sql);
 					$stm->bindValue(":spreadsheet", $file_name);
 					$stm->execute();
 					if($stm == true){
@@ -261,7 +261,7 @@ if(isset($_FILES) && isset($_POST)){
 				(".$_POST['utilitylcl'].",
 				'".$_POST['validdesdelcl']."', 
 				'".$_POST['validhastalcl']."')";
-				$result = $conexion->prepare($sql);
+				$result = $con->prepare($sql);
 				$result->execute();
 
 				if($result == true){

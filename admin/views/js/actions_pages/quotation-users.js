@@ -158,9 +158,9 @@ $(document).on("click", ".btn-generate-pdf", function(e){
 
     $.ajax({
       type: 'POST',
-      url: 'controllers/c_generate-pdf-adm.php',
+      url: 'controllers/c_generate-pdf-adm-integral.php',
       data: {
-        id_codegenrand : item_data['id'], 
+        id_codegenrand : item_data['id'],
         code_quote : item_data['codequote']
       },
       xhrFields: {

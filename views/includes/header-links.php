@@ -6,9 +6,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
 <link rel="icon" type="image/x-icon" href="views/img/favicon-camel.png"/>
 <meta name="theme-color" content="#B58440">
-<meta name="description" content=""/>
-<meta name="author" content=""/>
 <meta name="description" content="¡Calcula el costo de tu importación en 4 simples pasos!"/>
+<meta name="author" content="Camel Logistics"/>
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1"/>
 <meta property="og:url" content="<?= $url_defaulthome; ?>">
 <meta property="og:title" content="Calculadora de Envíos | Camel Logistics"/>
@@ -20,4 +19,4 @@
 <link rel="stylesheet" href="<?= $url ?>css/styles.css">
 <link rel="stylesheet" href="<?= $url ?>assets/css/styles.min.css">
 <link rel="stylesheet" href="<?= $url ?>css/camel.css">
-<script src="<?= $url ?>js/jquery-3.6.0.min.js"></script>
+<script type="text/javascript" src="<?= $url ?>js/jquery-3.6.0.min.js"></script>

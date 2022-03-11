@@ -340,19 +340,23 @@ $(document).ready(function(){
 					  	$("#v_gencodexxx").text(ralldata[0].code_quote);
 
 					  	// --------------- IMPRIMIR LA VALIDEZ DE LA COTIZACIÓN
-					  	var convertOneDATE =  new Date(Date.parse(ralldata[0].f_validdesde.replace(/-/g, '/')));
-					    var convertTwoDATE =  new Date(Date.parse(ralldata[0].f_validhasta.replace(/[-]/g,'/')));
-					    //var options = { year: 'numeric', month: '2-digit', day: 'numeric' };
-					    var options = { year: 'numeric', month: 'long', day: 'numeric' };
-					    var convertDateValidDesde = convertOneDATE.toLocaleDateString("es-ES", options);
-					    var convertDateValidHasta = convertTwoDATE.toLocaleDateString("es-ES", options);
-					    var separateDateValidDesde = convertDateValidDesde.split(" ");
-					    var separateDateValidHasta = convertDateValidHasta.split(" ");
-					    var monthSeparatetoArrayDesde = separateDateValidDesde[2].slice(0, 3);
-					    var monthSeparatetoArrayHasta = separateDateValidHasta[2].slice(0, 3);
-					    var val_dateValidDesde = separateDateValidDesde[0]+" "+"de"+" "+firstToUppercase(monthSeparatetoArrayDesde);
-					    var val_dateValidHasta = separateDateValidHasta[0]+" "+"de"+" "+firstToUppercase(monthSeparatetoArrayHasta);
-					    $("#v_validratedate").text(val_dateValidDesde+" - "+val_dateValidHasta);
+					  	if(ralldata[0].f_validdesde == "0000-00-00 00:00:00" || ralldata[0].f_validhasta == "0000-00-00 00:00:00"){
+					  		$("#v_validratedate").text('No especificado');
+					  	}else{
+						  	var convertOneDATE =  new Date(Date.parse(ralldata[0].f_validdesde.replace(/-/g, '/')));
+						    var convertTwoDATE =  new Date(Date.parse(ralldata[0].f_validhasta.replace(/[-]/g,'/')));
+						    //var options = { year: 'numeric', month: '2-digit', day: 'numeric' };
+						    var options = { year: 'numeric', month: 'long', day: 'numeric' };
+						    var convertDateValidDesde = convertOneDATE.toLocaleDateString("es-ES", options);
+						    var convertDateValidHasta = convertTwoDATE.toLocaleDateString("es-ES", options);
+						    var separateDateValidDesde = convertDateValidDesde.split(" ");
+						    var separateDateValidHasta = convertDateValidHasta.split(" ");
+						    var monthSeparatetoArrayDesde = separateDateValidDesde[2].slice(0, 3);
+						    var monthSeparatetoArrayHasta = separateDateValidHasta[2].slice(0, 3);
+						    var val_dateValidDesde = separateDateValidDesde[0]+" "+"de"+" "+firstToUppercase(monthSeparatetoArrayDesde);
+						    var val_dateValidHasta = separateDateValidHasta[0]+" "+"de"+" "+firstToUppercase(monthSeparatetoArrayHasta);
+						    $("#v_validratedate").text(val_dateValidDesde+" - "+val_dateValidHasta);
+					  	}
 
 					  	// --------------- IMPRIMIR EL TOTAL - SERVICIOS
 					  	var n = Math.abs(ralldata[0].f_totalservices);
@@ -454,19 +458,23 @@ $(document).ready(function(){
 					  	$("#v_gencodexxx").text(ralldata[0].code_quote);
 
 					  	// --------------- IMPRIMIR LA VALIDEZ DE LA COTIZACIÓN
-					  	var convertOneDATE =  new Date(Date.parse(ralldata[0].f_validdesde.replace(/-/g, '/')));
-					    var convertTwoDATE =  new Date(Date.parse(ralldata[0].f_validhasta.replace(/[-]/g,'/')));
-					    //var options = { year: 'numeric', month: '2-digit', day: 'numeric' };
-					    var options = { year: 'numeric', month: 'long', day: 'numeric' };
-					    var convertDateValidDesde = convertOneDATE.toLocaleDateString("es-ES", options);
-					    var convertDateValidHasta = convertTwoDATE.toLocaleDateString("es-ES", options);
-					    var separateDateValidDesde = convertDateValidDesde.split(" ");
-					    var separateDateValidHasta = convertDateValidHasta.split(" ");
-					    var monthSeparatetoArrayDesde = separateDateValidDesde[2].slice(0, 3);
-					    var monthSeparatetoArrayHasta = separateDateValidHasta[2].slice(0, 3);
-					    var val_dateValidDesde = separateDateValidDesde[0]+" "+"de"+" "+firstToUppercase(monthSeparatetoArrayDesde);
-					    var val_dateValidHasta = separateDateValidHasta[0]+" "+"de"+" "+firstToUppercase(monthSeparatetoArrayHasta);
-					    $("#v_validratedate").text(val_dateValidDesde+" - "+val_dateValidHasta);
+					  	if(ralldata[0].f_validdesde == "0000-00-00 00:00:00" || ralldata[0].f_validhasta == "0000-00-00 00:00:00"){
+					  		$("#v_validratedate").text('No especificado');
+					  	}else{
+						  	var convertOneDATE =  new Date(Date.parse(ralldata[0].f_validdesde.replace(/-/g, '/')));
+						    var convertTwoDATE =  new Date(Date.parse(ralldata[0].f_validhasta.replace(/[-]/g,'/')));
+						    //var options = { year: 'numeric', month: '2-digit', day: 'numeric' };
+						    var options = { year: 'numeric', month: 'long', day: 'numeric' };
+						    var convertDateValidDesde = convertOneDATE.toLocaleDateString("es-ES", options);
+						    var convertDateValidHasta = convertTwoDATE.toLocaleDateString("es-ES", options);
+						    var separateDateValidDesde = convertDateValidDesde.split(" ");
+						    var separateDateValidHasta = convertDateValidHasta.split(" ");
+						    var monthSeparatetoArrayDesde = separateDateValidDesde[2].slice(0, 3);
+						    var monthSeparatetoArrayHasta = separateDateValidHasta[2].slice(0, 3);
+						    var val_dateValidDesde = separateDateValidDesde[0]+" "+"de"+" "+firstToUppercase(monthSeparatetoArrayDesde);
+						    var val_dateValidHasta = separateDateValidHasta[0]+" "+"de"+" "+firstToUppercase(monthSeparatetoArrayHasta);
+						    $("#v_validratedate").text(val_dateValidDesde+" - "+val_dateValidHasta);
+					  	}
 
 					  	// --------------- IMPRIMIR EL TOTAL - SERVICIOS
 					  	var n = Math.abs(ralldata[0].f_totalservices);
@@ -562,7 +570,7 @@ $(document).ready(function(){
 
 							$.ajax({
 								type: 'POST',
-								url: 'controllers/c_generate-pdf.php',
+								url: 'controllers/c_generate-pdf-integral.php',
 								data: {
 									id_codegenrand : $("#v_idgencoderand").val(), 
 									code_quote : $("#v_gencodexxx").text(),
@@ -885,7 +893,7 @@ $(document).ready(function(){
 /************************** GENERAR EL PDF **************************/
 /*
 function generatePDF(nameuser){
-	$url = "controllers/c_generate-pdf.php?user="+nameuser;
+	$url = "controllers/c_generate-pdf-integral.php?user="+nameuser;
 	window.open($url, "cotizacion_pdf");
 }
 */

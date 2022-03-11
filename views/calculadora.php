@@ -1,16 +1,23 @@
-<?php 
+<?php
+	/* 
 	$actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]";
   $url =  $actual_link . "/Camellogistics/views/";
+  */
 ?>
+<!--
 <!DOCTYPE html>
 <html lang="es">
 <head>
   <title>Calculadora de Fletes | Camel Logistics</title>
-  <?php require_once 'includes/header-links.php'; ?>
+  <?php //require_once 'includes/header-links.php'; ?>
 </head>
 <body>
-  <?php require_once 'api_whatsapp.php'; ?>
-  <?php require_once 'includes/calculator_header-top.php'; ?>
+	<?php 
+		/*
+		require_once 'api_whatsapp.php';
+		require_once 'includes/calculator_header-top.php';
+		*/
+	?>
 	<section id="cont-loader">
 		<div class="cont-loader--loader">
 			<span class="cont-loader--loader--circle"></span>
@@ -20,11 +27,15 @@
 		</div>
 		<p>Cargando...</p>
 	</section>
+-->
 	<!-- style="display:none!important;pointer-events:none!important;" -->
+	<!--
 	<section class="mtop-headertop" id="portfolio">
 		<?php require_once 'api_whatsapp.php'; ?>
 		<form id="frm_cotizacion" method="POST" class="c-CalculatorStep--form">
+		-->
 			<!------------------------------------------ PRIMERA FASE - PASO 1 (INICIO) ----------------------------------->
+			<!--
 			<div id="step-One" class="c-CalculatorStep--form--contStep ptop-2">
 				<div class="box-container">
 					<div class="c-CalculatorStep--form--contStep--cTitle">
@@ -38,7 +49,9 @@
 				<input type="hidden" id="text_tipo_flete" name="text_tipo_flete" value="">
 				</div>
 			</div>
+		-->
 			<!------------------------------------------ SEGUNDA FASE - PASO 2 (INICIO) ----------------------------------->
+			<!--
 			<div id="step-Two" class="c-CalculatorStep--form--contStep hide step-hidden ptop-2">
 				<div class="box-container">
 					<div class="c-CalculatorStep--form--contStep--cTitledesconly">
@@ -109,25 +122,36 @@
 					</div>				
 				</div>
 			</div>
+		-->
 			<!------------------------------------------ TERCERA FASE - PASO 2.1 (INICO) ---------------------------------->
+			<!--
 			<div id="step-TwoPointOne" class="c-SelServicesOrNotStep--contStep hide step-hidden"></div>
+		-->
 			<!------------------------------------------- CUARTA FASE - PASO 3 (INICIO - FIN) ----------------------------->
 			<!------------------------------------------- QUINTA FASE - PASO 4 (INICIO - FIN) ----------------------------->
 			<!-- OTHERS DEVELOPERS (INICIO) -->
+			<!--
 			<div id="fase_reporte_maritimo_con_servicios"></div>
+		-->
 			<!-- OTHERS DEVELOPERS (FIN) -->
+		  <!--
 		  </div>
 		</form>	
 	</section>
-	<?php require_once 'includes/form-calculator-flete.php'; ?>
-	<?php require_once 'includes/form-before-download-pdf.php'; ?>
-	<?php require_once 'includes/form-login-user.php'; ?>
+	<?php 
+		/*
+		require_once 'includes/form-calculator-flete.php';
+		require_once 'includes/form-before-download-pdf.php';
+		require_once 'includes/form-login-user.php';
+		*/
+	 ?>
 
-	<script src="<?= $url ?>js/jquery-3.6.0.min.js"></script>
-	<script src="<?= $url ?>js/customs.js"></script>
-	<script src="<?= $url ?>js/modal-calculator.js"></script>
-	<script src="<?= $url ?>js/user-login.js"></script>
-	<script src="<?= $url ?>js/cotization_allfunctionsSystem.js"></script>
-	<script src="<?= $url ?>js/register-before-download.js"></script>
+	<script src="<?= //$url ?>js/jquery-3.6.0.min.js"></script>
+	<script src="<?= //$url ?>js/customs.js"></script>
+	<script src="<?= //$url ?>js/modal-calculator.js"></script>
+	<script src="<?= //$url ?>js/user-login.js"></script>
+	<script src="<?= //$url ?>js/cotization_allfunctionsSystem.js"></script>
+	<script src="<?= //$url ?>js/register-before-download.js"></script>
 	</body>
 </html>
+-->
