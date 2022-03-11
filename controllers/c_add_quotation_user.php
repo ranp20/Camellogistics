@@ -6,7 +6,7 @@ class Add_Quotation_User extends Connection{
 
 		$codegen_auto = new List_ultimate_codegen();
 		$ulti_codegenauto = $codegen_auto->list();
-		
+
 		$arr_userquotation = [
 			'id_codegenrand' => $_POST['id_codegenrand'],
 			'codegenerate' => $ulti_codegenauto[0]['res'],
@@ -19,7 +19,7 @@ class Add_Quotation_User extends Connection{
 			'u_telephone' => $_POST['u_telephone'],
 			'u_service' => $_POST['u_service'],
 			'u_cont' => $_POST['u_cont'],
-			'f_origen' => $_POST['f_origen'],
+			'f_origen' => (isset($_POST['f_origen']) || $_POST['f_origen'] == "") ? "No especificado" : $_POST['f_origen'],
 			'f_weight_v' => $_POST['f_weight_v'],
 			'f_time_trans' => (isset($_POST['f_time_trans']) || $_POST['f_time_trans'] == "") ? "No especificado" : $_POST['f_time_trans'],
 			'f_fob' => $_POST['f_fob'],

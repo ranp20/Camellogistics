@@ -11,7 +11,7 @@ $listbyidcode = $quotebyidcode->get_by_idcodegenrand($_POST['id_codegenrand']);
 print_r($listbyidcode);
 
 //VARIABLES A USAR EN EL MOSTRADO DE INFORMACIÓN DENTRO DEL PDF
-$u_nameenterprise = $listbyidcode[0]['u_enterprise'];
+$u_nameenterprise = $listbyidcode[0]['u_enterprise']; // NOMBRE DE EMPRESA (u_eterprise)
 $u_ndocument = $listbyidcode[0]['u_n_document'];
 $u_telephone = $listbyidcode[0]['u_telephone'];
 $f_typecontainer = $listbyidcode[0]['f_type_container'];
