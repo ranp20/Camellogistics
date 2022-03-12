@@ -69,7 +69,9 @@
 					<?php
 							$tmp_chkrempass = "";
 							if(count($_COOKIE) > 0){
-								if(!isset($_COOKIE['adm-email']) && !isset($_COOKIE['adm-password'])){
+								if(isset($_COOKIE['adm-email']) && isset($_COOKIE['adm-password'])){
+									$tmp_chkrempass = "";
+								}else{
 									$tmp_chkrempass = "
 										<div class='c-LoginAdm--cLoginF--cForm--form--cControl'>
 											<input type='checkbox' name='adm-remem-pass' id='adm-remem-pass' class='c-LoginAdm--cLoginF--cForm--form--cControl--input'>
@@ -79,6 +81,15 @@
 										</div>
 									";
 								}
+							}else{
+								$tmp_chkrempass = "
+										<div class='c-LoginAdm--cLoginF--cForm--form--cControl'>
+											<input type='checkbox' name='adm-remem-pass' id='adm-remem-pass' class='c-LoginAdm--cLoginF--cForm--form--cControl--input'>
+											<label for='adm-remem-pass' class='c-LoginAdm--cLoginF--cForm--form--cControl--cLabeltext'>
+												<span>Recordar contraseña</span>
+											</label>
+										</div>
+									";
 							}
 							echo $tmp_chkrempass;
 					?>
