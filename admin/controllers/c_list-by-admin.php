@@ -1,12 +1,11 @@
 <?php 
 require_once '../../models/db/connection.php';
 class List_byIdAdmin extends Connection{
-	
-	function list($id){
+	function list($email){
 		try{
-			$sql = "SELECT * FROM tbl_admin WHERE id = :id";
+			$sql = "SELECT * FROM tbl_admin WHERE email = :email";
 			$stm = $this->con->prepare($sql);
-			$stm->bindValue(":id", $id);
+			$stm->bindValue(":email", $email);
 			$stm->execute();
 			return $stm->fetchAll(PDO::FETCH_ASSOC);
 
