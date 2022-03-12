@@ -271,21 +271,29 @@ $(document).ready(function(){
 				//console.log("No existe el elemento");
 			}
 
+			// ========== VALIDAR EL VALOR DE TRANSPORTE DE INICIO ========== //
+			var inittranpsendid = $("#v_typetranspsendinitid").val();
+			var transsendinitbyid = "";
+			if(inittranpsendid == 0){
+				transsendinitbyid = "S-ADU";
+			}else if(inittranpsendid == 1){
+				transsendinitbyid = "T-MAR";
+			}else if(inittranpsendid == 2){
+				transsendinitbyid = "T-AER";
+			}else{
+				console.log('Inv-ID');
+			}
+
 			/************************** VALIDAR EL VALOR DEL USUARIO **************************/
 			var user_sessquote = "";
 			/************************** INSERTAR EN LA TABLA DE COTIZACIONES **************************/
-			if($("#s_useregin-sistem").val() == "" || 
-				 $("#s_useregin-sistem").val() == undefined || 
-				 $("#s_useregin-sistem").val() == 'undefined' || 
-				 $("#s_useregin-sistem").val() == null ||
-				 $("#s_useregin-sistem").val() == 'null'){
-				//console.log('Sin usuario, se redirigirá al inicio');
-				//window.location.href = "marketplace-logistico";
+			if($("#s_useregin-sistem").val() == "" || $("#s_useregin-sistem").val() == undefined || $("#s_useregin-sistem").val() == 'undefined' || $("#s_useregin-sistem").val() == null || $("#s_useregin-sistem").val() == 'null'){
+
 				user_sessquote = s_username_local.username;
 				var formdata = new FormData();
 				formdata.append("id_codegenrand", $("#v_idgencoderand").val());
-				//formdata.append("codegenerate", $("#v_gencodexxx").text());
 				formdata.append("u_login", user_sessquote);
+				formdata.append("f_typetransendinitid", transsendinitbyid);
 				formdata.append("f_type_op", $("#v_typeserviceinit").val());
 				formdata.append("f_type_transp", $("#v_typeserviceinit").val());
 				formdata.append("f_type_cont", localStorage.getItem("key_typeChrg"));
@@ -394,16 +402,12 @@ $(document).ready(function(){
 						console.log("Lo sentimos, hubo un error al guardar la cotización");
 					}
 				});
-			}else if($("#s_useregin-sistem").val() != "" || 
-							 $("#s_useregin-sistem").val() != undefined || 
-							 $("#s_useregin-sistem").val() != 'undefined' || 
-							 $("#s_useregin-sistem").val() != null ||
-							 $("#s_useregin-sistem").val() != 'null'){
+			}else if($("#s_useregin-sistem").val() != "" || $("#s_useregin-sistem").val() != undefined || $("#s_useregin-sistem").val() != 'undefined' || $("#s_useregin-sistem").val() != null || $("#s_useregin-sistem").val() != 'null'){
 
 				var formdata = new FormData();
 				formdata.append("id_codegenrand", $("#v_idgencoderand").val());
-				//formdata.append("codegenerate", $("#v_gencodexxx").text());
 				formdata.append("u_login", $("#s_useregin-sistem").val());
+				formdata.append("f_typetransendinitid", transsendinitbyid);
 				formdata.append("f_type_op", $("#v_typeserviceinit").val());
 				formdata.append("f_type_transp", $("#v_typeserviceinit").val());
 				formdata.append("f_type_cont", localStorage.getItem("key_typeChrg"));

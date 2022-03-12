@@ -2,9 +2,6 @@
 require_once '../../models/db/connection.php';
 class TypeQuotation_filter extends Connection{
 	function list(){
-
-		print_r($_POST);
-		exit();
 		$id_codegenrand = $_POST['id_codegenrand'];
 		try{
 			$sql = "CALL sp_list_type_quotation_filter(:id_codegenrand)";
