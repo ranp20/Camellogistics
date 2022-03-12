@@ -88,7 +88,7 @@
                   <p>
                     <span>ID:&nbsp;</span>
                     <span>
-                      <span id="v_gencodexxx"><?= $_POST['ipt-vcodgeneratex']; ?></span>
+                      <span id="v_gencodexxx"><?= (isset($_POST['ipt-vcodgeneratex']) && $_POST['ipt-vcodgeneratex'] != "") ? $_POST['ipt-vcodgeneratex'] : ""; ?></span>
                       <span> - </span>
                       <span><?= $_POST['loadTypeCharge']; ?></span>
                     </span>
@@ -500,7 +500,7 @@ echo $template_incserv.$template_notincserv;
   <?php require_once 'includes/form-login-user.php'; ?>
   <?php require_once 'includes/form-before-download-pdf.php'; ?>
   <script src="<?= $url; ?>js/user-login.js"></script>
-  <script src="<?= $url; ?>js/finalquotationreturn.js"></script>
+  <script src="<?= $url; ?>js/finalquotationreturn_aduanas.js"></script>
   <script src="<?= $url; ?>js/register-before-download.js"></script>
 </body>
 </html>

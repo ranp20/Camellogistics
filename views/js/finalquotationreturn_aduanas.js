@@ -113,6 +113,16 @@ $(document).ready(function(){
   var totalfinalvaluefob = parseFloat(twodecimals(cutewithoutofpricefob)); //TOTAL DE VALOR FOB
   var totalfinalvaluedownload = parseFloat(twodecimals(receiveddownload)); //TOTAL DE VALOR DE DESCARGA
 
+  /*
+  console.log(totflete);
+  console.log(totalamountadditional);
+  console.log(totaltransport);
+  console.log(totalinsurance);
+  console.log(totalvaluesquotation);
+  console.log(totalfinalvaluedownload);
+ 	*/
+
+
 	// LLAMAR A LOS VALORES DE ASEGURAMIENTO, METER LOS VALORES DENTRO DEL AJAX DE TAXATION O CREAR VARIABLES GLOBALES Y USARLAS
 	$.ajax({
     url: "controllers/list_insurancevalues.php",
@@ -270,25 +280,20 @@ $(document).ready(function(){
 			var user_sessquote = "";
 			
 			// ========== INSERTAR EN LA TABLA DE COTIZACIONES ========== //
-			if($("#s_useregin-sistem").val() == "" || 
-				 $("#s_useregin-sistem").val() == undefined || 
-				 $("#s_useregin-sistem").val() == 'undefined' || 
-				 $("#s_useregin-sistem").val() == null ||
-				 $("#s_useregin-sistem").val() == 'null'){
-				//console.log('Sin usuario, se redirigirá al inicio');
-				//window.location.href = "marketplace-logistico";
+			if($("#s_useregin-sistem").val() == "" || $("#s_useregin-sistem").val() == undefined || $("#s_useregin-sistem").val() == 'undefined' || $("#s_useregin-sistem").val() == null || $("#s_useregin-sistem").val() == 'null'){
+
 				user_sessquote = s_username_local.username;
 
-var igv_calculate=convert_IGV*sumbyCIF;
-var ipm_calculate=sumbyCIF*convert_IPM;
- var impuesto=0;
-var percepcion_calculate=(sumbyCIF+igv_calculate+ipm_calculate+impuesto)*convert_Percepcion;
-
-
+				var igv_calculate = convert_IGV * sumbyCIF;
+				var ipm_calculate = sumbyCIF * convert_IPM;
+				var impuestosel_calculate = 0;
+				var igvcalc_twodeci = myRound(igv_calculate);
+				var ipmcalc_twodeci = myRound(ipm_calculate);
+				var percepcion_calculate = (sumbyCIF + igvcalc_twodeci + ipmcalc_twodeci + impuestosel_calculate) * convert_Percepcion;
+				var percepcioncalc_twodeci = myRound(percepcion_calculate);
 
 				var formdata = new FormData();
 				formdata.append("id_codegenrand", $("#v_idgencoderand").val());
-				//formdata.append("codegenerate", $("#v_gencodexxx").text());
 				formdata.append("u_login", user_sessquote);
 				formdata.append("f_type_op", $("#v_typeserviceinit").val());
 				formdata.append("f_type_transp", $("#v_typeserviceinit").val());
@@ -305,9 +310,9 @@ var percepcion_calculate=(sumbyCIF+igv_calculate+ipm_calculate+impuesto)*convert
 				formdata.append("f_flete", totflete);
 				formdata.append("f_insurance", totalinsurance);
 				formdata.append("f_cif", sumbyCIF);
-				formdata.append("f_IGV", igv_calculate);
-				formdata.append("f_IPM", ipm_calculate);
-				formdata.append("f_percepcion", percepcion_calculate);				
+				formdata.append("f_IGV", igvcalc_twodeci);
+				formdata.append("f_IPM", ipmcalc_twodeci);
+				formdata.append("f_percepcion", percepcioncalc_twodeci);
 				formdata.append("f_totalservices", totalNotround);
 				formdata.append("f_totalservicesIGV18", totalNotRountByIGV);
 				formdata.append("f_totalimpuestos", twodecimals_FinalTax);
@@ -401,15 +406,18 @@ var percepcion_calculate=(sumbyCIF+igv_calculate+ipm_calculate+impuesto)*convert
 						console.log("Lo sentimos, hubo un error al guardar la cotización");
 					}
 				});
-			}else if($("#s_useregin-sistem").val() != "" || 
-							 $("#s_useregin-sistem").val() != undefined || 
-							 $("#s_useregin-sistem").val() != 'undefined' || 
-							 $("#s_useregin-sistem").val() != null ||
-							 $("#s_useregin-sistem").val() != 'null'){
+			}else if($("#s_useregin-sistem").val() != "" || $("#s_useregin-sistem").val() != undefined || $("#s_useregin-sistem").val() != 'undefined' || $("#s_useregin-sistem").val() != null || $("#s_useregin-sistem").val() != 'null'){
+
+				var igv_calculate = convert_IGV * sumbyCIF;
+				var ipm_calculate = sumbyCIF * convert_IPM;
+				var impuestosel_calculate = 0;
+				var igvcalc_twodeci = myRound(igv_calculate);
+				var ipmcalc_twodeci = myRound(ipm_calculate);
+				var percepcion_calculate = (sumbyCIF + igvcalc_twodeci + ipmcalc_twodeci + impuestosel_calculate) * convert_Percepcion;
+				var percepcioncalc_twodeci = myRound(percepcion_calculate);
 
 				var formdata = new FormData();
 				formdata.append("id_codegenrand", $("#v_idgencoderand").val());
-				//formdata.append("codegenerate", $("#v_gencodexxx").text());
 				formdata.append("u_login", $("#s_useregin-sistem").val());
 				formdata.append("f_type_op", $("#v_typeserviceinit").val());
 				formdata.append("f_type_transp", $("#v_typeserviceinit").val());
@@ -426,6 +434,9 @@ var percepcion_calculate=(sumbyCIF+igv_calculate+ipm_calculate+impuesto)*convert
 				formdata.append("f_flete", totflete);
 				formdata.append("f_insurance", totalinsurance);
 				formdata.append("f_cif", sumbyCIF);
+				formdata.append("f_IGV", igvcalc_twodeci);
+				formdata.append("f_IPM", ipmcalc_twodeci);
+				formdata.append("f_percepcion", percepcioncalc_twodeci);
 				formdata.append("f_totalservices", totalNotround);
 				formdata.append("f_totalservicesIGV18", totalNotRountByIGV);
 				formdata.append("f_totalimpuestos", twodecimals_FinalTax);
@@ -897,10 +908,3 @@ var percepcion_calculate=(sumbyCIF+igv_calculate+ipm_calculate+impuesto)*convert
 		}
 	});
 });
-// ========== GENERAR EL PDF ========== //
-/*
-function generatePDF(nameuser){
-	$url = "controllers/c_generate-pdf-aduanas.php?user="+nameuser;
-	window.open($url, "cotizacion_pdf");
-}
-*/
