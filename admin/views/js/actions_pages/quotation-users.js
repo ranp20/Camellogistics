@@ -166,59 +166,119 @@ $(document).on("click", ".btn-generate-pdf", function(e){
       contentType: 'application/x-www-form-urlencoded;charset=UTF-8',
       data: {id_codegenrand : item_data['id']},
     }).done((e) => {
-      console.log(e);
-    });
+      var rtypetrans = JSON.parse(e);
+      var tinitidtrans = rtypetrans[0].f_typetransendinitid;
 
+      if(tinitidtrans == "S-ADU"){
 
-    // LISTAR EL SP DE "sp_list_quotation_by_codegenrand" PARA HACER LA VALIDACIÓN DE PLANTILLAS...
-
-    $.ajax({
-      type: 'POST',
-      url: 'controllers/c_generate-pdf-adm-integral.php',
-      data: {
-        id_codegenrand : item_data['id'],
-        code_quote : item_data['codequote']
-      },
-      xhrFields: {
-        responseType: 'blob' // to avoid binary data being mangled on charset conversion
-      },
-      success: function(blob, status, xhr) {
-        // check for a filename
-        var filename = "";
-        var disposition = xhr.getResponseHeader('Content-Disposition');
-        if (disposition && disposition.indexOf('attachment') !== -1) {
-          var filenameRegex = /filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/;
-          var matches = filenameRegex.exec(disposition);
-          if (matches != null && matches[1]) filename = matches[1].replace(/['"]/g, '');
-        }
-
-        if (typeof window.navigator.msSaveBlob !== 'undefined') {
-          // IE workaround for "HTML7007: One or more blob URLs were revoked by closing the blob for which they were created. These URLs will no longer resolve as the data backing the URL has been freed."
-          window.navigator.msSaveBlob(blob, filename);
-        } else {
-          var URL = window.URL || window.webkitURL;
-          var downloadUrl = URL.createObjectURL(blob);
-
-          if (filename) {
-            // use HTML5 a[download] attribute to specify filename
-            var a = document.createElement("a");
-            // safari doesn't support this yet
-            if (typeof a.download === 'undefined') {
-              window.location.href = downloadUrl;
-            } else {
-              a.href = downloadUrl;
-              a.download = filename;
-              document.body.appendChild(a);
-              a.click();
-              $("#cUIMessageValid-adm").html("");
+        $.ajax({
+          type: 'POST',
+          url: 'controllers/c_generate-pdf-adm-aduanas.php',
+          data: {
+            id_codegenrand : item_data['id'], 
+            code_quote : item_data['codequote']
+          },
+          xhrFields: { 
+            responseType: 'blob' // to avoid binary data being mangled on charset conversion
+          },
+          success: function(blob, status, xhr) {
+            // check for a filename
+            var filename = "";
+            var disposition = xhr.getResponseHeader('Content-Disposition');
+            if (disposition && disposition.indexOf('attachment') !== -1) {
+              var filenameRegex = /filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/;
+              var matches = filenameRegex.exec(disposition);
+              if (matches != null && matches[1]) filename = matches[1].replace(/['"]/g, '');
             }
-          } else {
-            window.location.href = downloadUrl;
-          }
 
-          setTimeout(function () { URL.revokeObjectURL(downloadUrl); }, 100); // cleanup
-        }
+            if (typeof window.navigator.msSaveBlob !== 'undefined') {
+              // IE workaround for "HTML7007: One or more blob URLs were revoked by closing the blob for which they were created. These URLs will no longer resolve as the data backing the URL has been freed."
+              window.navigator.msSaveBlob(blob, filename);
+            } else {
+              var URL = window.URL || window.webkitURL;
+              var downloadUrl = URL.createObjectURL(blob);
+              //var downloadUrl = HTMLMediaElement.srcObject(blob);
+
+              if (filename) {
+                // use HTML5 a[download] attribute to specify filename
+                var a = document.createElement("a");
+                // safari doesn't support this yet
+                if (typeof a.download === 'undefined') {
+                  window.location.href = downloadUrl;
+                } else {
+                  a.href = downloadUrl;
+                  a.download = filename;
+                  document.body.appendChild(a);
+                  a.click();
+                  $("#cUIMessageValid-adm").html("");
+                }
+              } else {
+                window.location.href = downloadUrl;
+              }
+              setTimeout(function () { URL.revokeObjectURL(downloadUrl); }, 100); // cleanup
+            }
+          }
+        });
+
+      }else if(tinitidtrans == "T-MAR"){
+
+        //ESTO SOLO EN TRANSPORTE MARÍTIMO...
+        //HACER LA VALIDACIÓN, SI EN LA COTIZACION SE ELIGIÓ "SOLO DESEO FLETE" Y DE ACUERDO AL TIPO DE CARGA SELECCIONADA...
+        // 1. FCL => Colocar URL de archivo 'c_generate-pdf-adm-fcl.php'.
+        // 2. LCL => Colocar URL de archivo 'c_generate-pdf-adm-lcl.php'.
+
+        $.ajax({
+          type: 'POST',
+          url: 'controllers/c_generate-pdf-adm-integral.php',
+          data: {
+            id_codegenrand : item_data['id'], 
+            code_quote : item_data['codequote']
+          },
+          xhrFields: { 
+            responseType: 'blob' // to avoid binary data being mangled on charset conversion
+          }, 
+          success: function(blob, status, xhr) {
+            // check for a filename
+            var filename = "";
+            var disposition = xhr.getResponseHeader('Content-Disposition');
+            if (disposition && disposition.indexOf('attachment') !== -1) {
+              var filenameRegex = /filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/;
+              var matches = filenameRegex.exec(disposition);
+              if (matches != null && matches[1]) filename = matches[1].replace(/['"]/g, '');
+            }
+
+            if (typeof window.navigator.msSaveBlob !== 'undefined') {
+              // IE workaround for "HTML7007: One or more blob URLs were revoked by closing the blob for which they were created. These URLs will no longer resolve as the data backing the URL has been freed."
+              window.navigator.msSaveBlob(blob, filename);
+            } else {
+              var URL = window.URL || window.webkitURL;
+              var downloadUrl = URL.createObjectURL(blob);
+
+              if (filename) {
+                // use HTML5 a[download] attribute to specify filename
+                var a = document.createElement("a");
+                // safari doesn't support this yet
+                if (typeof a.download === 'undefined') {
+                  window.location.href = downloadUrl;
+                } else {
+                  a.href = downloadUrl;
+                  a.download = filename;
+                  document.body.appendChild(a);
+                  a.click();
+                  $("#cUIMessageValid-adm").html("");
+                }
+              } else {
+                window.location.href = downloadUrl;
+              }
+              setTimeout(function () { URL.revokeObjectURL(downloadUrl); }, 100); // cleanup
+            }
+          }
+        });
+
+      }else{
+        console.log("Error, tipo de transporte inválido");
       }
     });
+
   });
 });

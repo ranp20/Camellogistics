@@ -275,7 +275,18 @@ $(document).ready(function(){
 				//console.log("No existe el elemento");
 			}
 
-
+			// ========== VALIDAR EL VALOR DE TRANSPORTE DE INICIO ========== //
+			var inittranpsendid = $("#v_typetranspsendinitid").val();
+			var transsendinitbyid = "";
+			if(inittranpsendid == 0){
+				transsendinitbyid = "S-ADU";
+			}else if(inittranpsendid == 1){
+				transsendinitbyid = "T-MAR";
+			}else if(inittranpsendid == 2){
+				transsendinitbyid = "T-AER";
+			}else{
+				console.log('Inv-ID');
+			}
 			// ========== VALIDAR EL VALOR DEL USUARIO ========== //
 			var user_sessquote = "";
 			
@@ -295,6 +306,7 @@ $(document).ready(function(){
 				var formdata = new FormData();
 				formdata.append("id_codegenrand", $("#v_idgencoderand").val());
 				formdata.append("u_login", user_sessquote);
+				formdata.append("f_typetransendinitid", transsendinitbyid);
 				formdata.append("f_type_op", $("#v_typeserviceinit").val());
 				formdata.append("f_type_transp", $("#v_typeserviceinit").val());
 				formdata.append("f_type_cont", localStorage.getItem("key_typeChrg"));
@@ -419,6 +431,7 @@ $(document).ready(function(){
 				var formdata = new FormData();
 				formdata.append("id_codegenrand", $("#v_idgencoderand").val());
 				formdata.append("u_login", $("#s_useregin-sistem").val());
+				formdata.append("f_typetransendinitid", transsendinitbyid);
 				formdata.append("f_type_op", $("#v_typeserviceinit").val());
 				formdata.append("f_type_transp", $("#v_typeserviceinit").val());
 				formdata.append("f_type_cont", localStorage.getItem("key_typeChrg"));

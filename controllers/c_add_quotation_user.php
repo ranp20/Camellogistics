@@ -11,6 +11,7 @@ class Add_Quotation_User extends Connection{
 			'id_codegenrand' => $_POST['id_codegenrand'],
 			'codegenerate' => $ulti_codegenauto[0]['res'],
 			'u_login' => $_POST['u_login'],
+			'f_typetransendinitid' => (!isset($_POST['f_typetransendinitid']) || $_POST['f_typetransendinitid'] == "") ? "ID inválido" : $_POST['f_typetransendinitid'],
 			'f_type_op' => $_POST['f_type_op'],
 			'f_type_transp' => $_POST['f_type_transp'],
 			'f_type_cont' => $_POST['f_type_cont'],
@@ -59,7 +60,8 @@ class Add_Quotation_User extends Connection{
 			$sql = "CALL sp_add_quotation_user(
 			:id_codegenrand,
 			:codegenerate,
-			:u_login, 
+			:u_login,
+			:f_typetransendinitid,
 			:f_type_op, 
 			:f_type_transp, 
 			:f_type_cont, 
