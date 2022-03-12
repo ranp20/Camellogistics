@@ -484,6 +484,7 @@ echo $template_incserv.$template_notincserv;
   <?php require_once 'includes/form-login-user.php'; ?>
   <?php require_once 'includes/form-before-download-pdf.php'; ?>
   <script src="<?= $url; ?>js/user-login.js"></script>
+  <!-- DEBE APARECER ESTE LLAMADO AL SCRIPT -->
   <script src="<?= $url; ?>js/finalquotationreturn_aduanas.js"></script>
   <script src="<?= $url; ?>js/register-before-download.js"></script>
 </body>
