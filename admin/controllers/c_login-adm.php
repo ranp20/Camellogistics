@@ -1,20 +1,15 @@
 <?php 
 require_once '../../models/db/connection.php';
 class Login_Adm extends Connection{
-	function Login(){
-		$arr_logiadm = [
-			"email" => $_POST['adm-log-email'],
-			"password" => $_POST['adm-log-pass']
-		];
-
+	function Login($arr_logiadm){
 		try{
-			$sql = "SELECT * FROM tbl_admin WHERE email = :email AND password = :password";
+			$sql = "CALL sp_verify_admin(:email, :password)";
 			$stm = $this->con->prepare($sql);
 			foreach ($arr_logiadm as $key => $value) {
 				$stm->bindValue($key, $value);
 			}
 			$stm->execute();
-			return $stm->fetchAll(PDO::FETCH_ASSOC);
+			return $stm->rowCount() > 0 ? "true" : "false";
 
 		}catch(PDOException $e){
 			return $e->getMessage();
