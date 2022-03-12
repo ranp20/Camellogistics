@@ -211,9 +211,9 @@ $(document).ready(function(){
 	    var convert_antidumping = received_antidumping / 100; //VALOR ANTIDUMPING
 
 	    if(totalimportprev != "NO"){
-		    convert_Percepcion = res_Percepcion_YES / 100;
+		    convert_Percepcion = res_Percepcion_YES / 100; /// 3.50
 	    }else{
-	    	convert_Percepcion = res_Percepcion_NO / 100;
+	    	convert_Percepcion = res_Percepcion_NO / 100;///10
 	    }
 
 	    // ========== CALCULAR AD-VALOREN ========== //
@@ -278,6 +278,14 @@ $(document).ready(function(){
 				//console.log('Sin usuario, se redirigirá al inicio');
 				//window.location.href = "marketplace-logistico";
 				user_sessquote = s_username_local.username;
+
+var igv_calculate=convert_IGV*sumbyCIF;
+var ipm_calculate=sumbyCIF*convert_IPM;
+ var impuesto=0;
+var percepcion_calculate=(sumbyCIF+igv_calculate+ipm_calculate+impuesto)*convert_Percepcion;
+
+
+
 				var formdata = new FormData();
 				formdata.append("id_codegenrand", $("#v_idgencoderand").val());
 				//formdata.append("codegenerate", $("#v_gencodexxx").text());
@@ -297,6 +305,9 @@ $(document).ready(function(){
 				formdata.append("f_flete", totflete);
 				formdata.append("f_insurance", totalinsurance);
 				formdata.append("f_cif", sumbyCIF);
+				formdata.append("f_IGV", igv_calculate);
+				formdata.append("f_IPM", ipm_calculate);
+				formdata.append("f_percepcion", percepcion_calculate);				
 				formdata.append("f_totalservices", totalNotround);
 				formdata.append("f_totalservicesIGV18", totalNotRountByIGV);
 				formdata.append("f_totalimpuestos", twodecimals_FinalTax);
