@@ -154,10 +154,21 @@ $(document).on("click", ".btn-generate-pdf", function(e){
   </div>`);
 
   $.each($(this), function(i, v){
-    var item_data = {id: $(this).attr('data-id'), codequote: $(this).attr('data-codequote')};
+    var item_data = {
+      id: $(this).attr('data-id'), 
+      codequote: $(this).attr('data-codequote')
+    };
+    
+    $.ajax({
+      url: "controllers/c_list-typequotation-filter.php",
+      method: "POST",
+      datatype: "JSON",
+      contentType: 'application/x-www-form-urlencoded;charset=UTF-8',
+      data: {id_codegenrand : item_data['id']},
+    }).done((e) => {
+      console.log(e);
+    });
 
-    console.log(item_data['id']);
-    console.log(item_data['codequote']);
 
     // LISTAR EL SP DE "sp_list_quotation_by_codegenrand" PARA HACER LA VALIDACIÓN DE PLANTILLAS...
 
