@@ -2,6 +2,16 @@
 window.onload = function(){
 	document.querySelector("#adm-log-email").focus();
 }
+// ========= CAMBIAR EL VALOR DEL CHECKBOX DE RECORDAR CONTRASEÑA ========= //
+$(document).on("click", "#adm-remem-pass", function(){
+	if($(this).is(":checked")){
+		let oncheckrempass = $(this).val();
+		console.log(oncheckrempass);
+		console.log("Está activado");
+	}else{
+		console.log("Está desactivado");
+	}
+});
 /************************** SHOW/HIDDEN PASSWORD **************************/
 $(document).on("click", "#icon-passControladm", function(){
 	var inputTypeControlPass1 = $(this).parent().find("input").attr("type");

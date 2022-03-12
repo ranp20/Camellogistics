@@ -63,10 +63,12 @@
 					width: 100%;
 					display: flex;
 					align-items: center;
-					justify-content: space-between;
+					justify-content: flex-start;
 					position: relative;
 					margin-bottom: 1rem;
-					&--input{
+					&--input[type="text"],
+					&--input[type="email"],
+					&--input[type="password"]{
 						width: 100%;
 						border-radius: .4rem;
 						border: thin solid #ccc;
@@ -74,6 +76,22 @@
 						padding: 0.6rem 42px 0.6rem 0.7rem;
 						line-height: 1.5;
 						font-size: 0.9rem;
+					}
+
+					&--input_chkset[type="text"],
+					&--input_chkset[type="email"],
+					&--input_chkset[type="password"]{
+						width: 100%;
+						border-radius: .4rem;
+						border: thin solid #ccc;
+						outline: none;
+						padding: 0.6rem 42px 0.6rem 0.7rem;
+						line-height: 1.5;
+						font-size: 0.9rem;
+						appearance: menulist-button;
+				    background-image: none !important;
+				    background-color: #E8F0FE !important;
+				    color: #000 !important;	
 					}
 
 					&--cIcon{
@@ -93,6 +111,25 @@
 						}
 						svg{
 							fill: #666;
+						}
+					}
+
+					&--input[type="checkbox"]{
+						width: auto;
+						outline: none;
+						padding: 0;
+						line-height: initial;
+						margin: 0 0.2rem;
+						vertical-align: middle;
+					}
+
+					&--cLabeltext{
+						margin-bottom: 0;
+						cursor: pointer;
+						vertical-align: middle;
+						span{
+							margin-left: 0.5rem;
+							vertical-align: middle;
 						}
 					}
 				}
