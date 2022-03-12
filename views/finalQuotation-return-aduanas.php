@@ -17,7 +17,25 @@
 <html lang="es">
 <head>
   <title>Camel Logistics | Descarga tu Cotización</title>
-  <?php require_once 'includes/header-links.php'; ?>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+  <link rel="icon" type="image/x-icon" href="views/img/favicon-camel.png"/>
+  <meta name="theme-color" content="#B58440">
+  <meta name="description" content=""/>
+  <meta name="author" content=""/>
+  <meta name="description" content="¡Calcula el costo de tu importación en 4 simples pasos!"/>
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1"/>
+  <meta property="og:url" content="<?= $url_defaulthome; ?>">
+  <meta property="og:title" content="Calculadora de Envíos | Camel Logistics"/>
+  <meta property="og:description" content="¡Calcula el costo de tu importación en 4 simples pasos!"/>
+  <meta property="og:locale" content="es_ES"/>
+  <meta property="og:image" content="<?= $url; ?>assets/img/logos/logotipo-camel.png"/>
+  <meta property="og:type" content="article"/>
+  <meta property="og:site_name" content="Camel Logistics"/>
+  <link rel="stylesheet" href="<?= $url; ?>css/styles.css">
+  <link rel="stylesheet" href="<?= $url; ?>assets/css/styles.min.css">
+  <link rel="stylesheet" href="<?= $url; ?>css/camel.css">
+  <script src="<?= $url; ?>js/jquery-3.6.0.min.js"></script>
 </head>
 <body>
   <div id="cUIMessageValid-user"></div>
@@ -70,7 +88,7 @@
                   <p>
                     <span>ID:&nbsp;</span>
                     <span>
-                      <span id="v_gencodexxx"></span>
+                      <span id="v_gencodexxx"><?= $_POST['ipt-vcodgeneratex']; ?></span>
                       <span> - </span>
                       <span><?= $_POST['loadTypeCharge']; ?></span>
                     </span>
@@ -279,7 +297,7 @@
               <div class="c-FinalQuotation--contStep--cQuotation--cTop--c--cValidTimeQuotation">
                 <p>
                   <span>Validez de tarifa: </span>
-                  <span id="v_validratedate"><?= (!isset($_POST['val_validateratequote']) || $_POST['val_validateratequote'] == "") ? "No especificado" : $_POST['val_validateratequote'];?></span></p>
+                  <span id=""><?= (!isset($_POST['val_validateratequote']) || $_POST['val_validateratequote'] == "") ? "No especificado" : $_POST['val_validateratequote'];?></span></p>
               </div>
             </div>
           </div>
@@ -474,17 +492,14 @@ echo $template_incserv.$template_notincserv;
   </div>
   <?php
     
-    
     echo "<pre>";
     print_r($_POST);
     echo "</pre>";
-    
     
   ?>
   <?php require_once 'includes/form-login-user.php'; ?>
   <?php require_once 'includes/form-before-download-pdf.php'; ?>
   <script src="<?= $url; ?>js/user-login.js"></script>
-  <!-- DEBE APARECER ESTE LLAMADO AL SCRIPT -->
   <script src="<?= $url; ?>js/finalquotationreturn_aduanas.js"></script>
   <script src="<?= $url; ?>js/register-before-download.js"></script>
 </body>
