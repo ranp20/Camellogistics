@@ -73,21 +73,29 @@
 									$tmp_chkrempass = "";
 								}else{
 									$tmp_chkrempass = "
-										<div class='c-LoginAdm--cLoginF--cForm--form--cControl'>
-											<input type='checkbox' name='adm-remem-pass' id='adm-remem-pass' class='c-LoginAdm--cLoginF--cForm--form--cControl--input'>
-											<label for='adm-remem-pass' class='c-LoginAdm--cLoginF--cForm--form--cControl--cLabeltext'>
+										<div class='c-LoginAdm--cLoginF--cForm--form--cControl flx-justify-end'>
+											<div class='c-LoginAdm--cLoginF--cForm--form--cControl--cSpanText'>
 												<span>Recordar contraseña</span>
-											</label>
+											</div>
+											<div class='c-LoginAdm--cLoginF--cForm--form--cControl--cIptChk'>
+												<input type='checkbox' name='adm-remem-pass' id='adm-remem-pass' class='c-LoginAdm--cLoginF--cForm--form--cControl--cIptChk--input'>											
+												<label for='adm-remem-pass' class='c-LoginAdm--cLoginF--cForm--form--cControl--cIptChk--cLabeltext'>
+												</label>
+											</div>
 										</div>
 									";
 								}
 							}else{
 								$tmp_chkrempass = "
-										<div class='c-LoginAdm--cLoginF--cForm--form--cControl'>
-											<input type='checkbox' name='adm-remem-pass' id='adm-remem-pass' class='c-LoginAdm--cLoginF--cForm--form--cControl--input'>
-											<label for='adm-remem-pass' class='c-LoginAdm--cLoginF--cForm--form--cControl--cLabeltext'>
+										<div class='c-LoginAdm--cLoginF--cForm--form--cControl flx-justify-end'>
+											<div class='c-LoginAdm--cLoginF--cForm--form--cControl--cSpanText'>
 												<span>Recordar contraseña</span>
-											</label>
+											</div>
+											<div class='c-LoginAdm--cLoginF--cForm--form--cControl--cIptChk'>
+												<input type='checkbox' name='adm-remem-pass' id='adm-remem-pass' class='c-LoginAdm--cLoginF--cForm--form--cControl--cIptChk--input'>											
+												<label for='adm-remem-pass' class='c-LoginAdm--cLoginF--cForm--form--cControl--cIptChk--cLabeltext'>
+												</label>
+											</div>
 										</div>
 									";
 							}
