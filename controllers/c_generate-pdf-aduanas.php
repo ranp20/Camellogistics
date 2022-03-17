@@ -30,7 +30,7 @@ $f_fob = $listbyidcode[0]['f_fob'];
 $f_flete = $listbyidcode[0]['f_flete'];
 $f_insurance = $listbyidcode[0]['f_insurance'];
 $f_cif = $listbyidcode[0]['f_cif'];
-// VALORES DE CÁLCULO DE IMPUESTOS...
+// VALORES PARA CALCULAR LOS IMPUESTOS...
 $f_v_IGV = $listbyidcode[0]['f_v_IGV'];
 $f_v_IPM = $listbyidcode[0]['f_v_IPM'];
 $f_v_percepcion = $listbyidcode[0]['f_v_percepcion'];
