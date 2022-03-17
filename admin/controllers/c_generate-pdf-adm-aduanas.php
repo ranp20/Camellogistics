@@ -7,7 +7,6 @@ ob_start(); //CARGA EN MEMORIA UN ARCHIVO
 require_once '../../models/quotation-user.php';
 $quotebyidcode = new Quotation_user();
 $listbyidcode = $quotebyidcode->get_by_idcodegenrand($_POST['id_codegenrand']);
-//print_r($_POST);
 print_r($listbyidcode);
 
 //VARIABLES A USAR EN EL MOSTRADO DE INFORMACIÓN DENTRO DEL PDF
