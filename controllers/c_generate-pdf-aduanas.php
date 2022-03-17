@@ -38,6 +38,8 @@ $f_v_percepcion = $listbyidcode[0]['f_v_percepcion'];
 $f_IGV = $listbyidcode[0]['f_IGV'];
 $f_IPM = $listbyidcode[0]['f_IPM'];
 $f_percepcion = $listbyidcode[0]['f_percepcion'];
+$f_comision_agencia = $listbyidcode[0]['f_comision_agencia'];
+$f_gastos_operativos = $listbyidcode[0]['f_gastos_operativos'];
 
 //NOMBRE DE LA COTIZACIÓN
 $name_quotation = "Presupuesto-".$_POST['code_quote']."-".$f_typecontainer;
@@ -61,7 +63,7 @@ $name_quotation = "Presupuesto-".$_POST['code_quote']."-".$f_typecontainer;
 			</div>
 	    <div id="marc_cab">
 	      <div id="marc_cab_izq">
-          <div id="title_code_cot">COTIZACIÓN</div>
+          <div id="title_code_cot">LIQUIDACIÓN</div>
           <div id="title_fech_cot">FECHA</div>
 	      </div>
 	      <div id="marc_cab_der">
@@ -232,18 +234,18 @@ $name_quotation = "Presupuesto-".$_POST['code_quote']."-".$f_typecontainer;
 	          <div class="item_marc_usd_det_ser1 h-18">$</div>
 	        </div>
 	        <div id="marc_tot_ser">
-	          <div class="item_marc_tot_ser pt-02 text-red">100</div>
 	          <div class="item_marc_tot_ser pt-02 text-red">-</div>
-	          <div class="item_marc_tot_ser pt-02 text-red">100</div>
+	          <div class="item_marc_tot_ser pt-02 text-red">-</div>
+	          <div class="item_marc_tot_ser pt-02 text-red">-</div>
 	          <div class="item_marc_tot_ser pt-02">100</div>
-	          <div class="item_marc_tot_ser pt-02">100</div>
-	          <div class="item_marc_tot_ser pt-02 text-red">100</div>
-	          <div class="item_marc_tot_ser pt-02 text-red">100</div>
-	          <div class="item_marc_tot_ser h-25 pt-05">100</div>
-	          <div class="item_marc_tot_ser pt-02">100</div>
-	          <div class="item_marc_tot_ser pt-02 text-red">100</div>
-	          <div class="item_marc_tot_ser pt-02">100</div>
-	          <div class="item_marc_tot_ser pt-02">100</div>
+	          <div class="item_marc_tot_ser pt-02">-</div>
+	          <div class="item_marc_tot_ser pt-02 text-red">-</div>
+	          <div class="item_marc_tot_ser pt-02 text-red">-</div>
+	          <div class="item_marc_tot_ser h-25 pt-05">-</div>
+	          <div class="item_marc_tot_ser pt-02">-</div>
+	          <div class="item_marc_tot_ser pt-02 text-red">-</div>
+	          <div class="item_marc_tot_ser pt-02"><?php echo addTwoDecimals($f_comision_agencia); ?></div>
+	          <div class="item_marc_tot_ser pt-02"><?php echo addTwoDecimals($f_gastos_operativos); ?></div>
 	        </div>
 	      </div>
 	      <div id="marc_det_inf1_log">
