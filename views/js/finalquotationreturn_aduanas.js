@@ -279,10 +279,10 @@ $(document).ready(function(){
 				//window.location.href = "marketplace-logistico";
 				user_sessquote = s_username_local.username;
 
-var igv_calculate=convert_IGV*sumbyCIF;
-var ipm_calculate=sumbyCIF*convert_IPM;
- var impuesto=0;
-var percepcion_calculate=(sumbyCIF+igv_calculate+ipm_calculate+impuesto)*convert_Percepcion;
+			var igv_calculate=convert_IGV*sumbyCIF;
+			var ipm_calculate=sumbyCIF*convert_IPM;
+			var impuesto=0;
+			var percepcion_calculate=(sumbyCIF+igv_calculate+ipm_calculate+impuesto)*convert_Percepcion;
 
 
 
@@ -314,6 +314,7 @@ var percepcion_calculate=(sumbyCIF+igv_calculate+ipm_calculate+impuesto)*convert
 				formdata.append("f_totalwithIGV", totalNotRoundFinal);
 				formdata.append("f_validdesde", $("#v_datevaliddesde").val());
 				formdata.append("f_validhasta", $("#v_datevalidhasta").val());
+				formdata.append("f_transporte_interno", $("#calculate-tarifario").val());
 
 				$.ajax({
 					url: 'controllers/c_add_quotation_user.php',
