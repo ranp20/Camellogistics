@@ -122,8 +122,7 @@ $(document).ready(function(){
   console.log(totalfinalvaluedownload);
  	*/
 
-
-	// LLAMAR A LOS VALORES DE ASEGURAMIENTO, METER LOS VALORES DENTRO DEL AJAX DE TAXATION O CREAR VARIABLES GLOBALES Y USARLAS
+	// LLAMAR A LOS VALORES DE SEGURO, METER LOS VALORES DENTRO DEL AJAX DE TAXATION O CREAR VARIABLES GLOBALES Y USARLAS
 	$.ajax({
     url: "controllers/list_insurancevalues.php",
     method: "POST",
@@ -197,7 +196,6 @@ $(document).ready(function(){
 		}
 		$("#totalval_quoteFinal").html(`<span>${separate_point_FTotal},<sup>${partFinalDecimal_FTotal}</sup> USD</span>`);
 
-
 		// ========== LISTAR SERVICIOS PARA CALCULO CON IGV - FCL ========== //
 	  $.ajax({
 	    url: "controllers/list_taxation_values_byquotation.php",
@@ -213,6 +211,7 @@ $(document).ready(function(){
 	    var res_Percepcion_NO = parseFloat(restaxvalues[2].data_value_two);
 
 	    // ========== VALORES - DE PORCENTAJES A DECIMALES ========== //
+	    var percepcion_notfilter = "";
 	    var convert_IGV = res_IGV / 100; //VALOR I.G.V.
 	    var convert_IPM = res_IPM / 100; //VALOR I.P.M.
 	    var convert_Percepcion = 0; //VALOR PERCEPCIÓN
@@ -222,8 +221,10 @@ $(document).ready(function(){
 
 	    if(totalimportprev != "NO"){
 		    convert_Percepcion = res_Percepcion_YES / 100; /// 3.50
+		    percepcion_notfilter = restaxvalues[2].data_value;
 	    }else{
 	    	convert_Percepcion = res_Percepcion_NO / 100;///10
+	    	percepcion_notfilter = restaxvalues[2].data_value_two;
 	    }
 
 	    // ========== CALCULAR AD-VALOREN ========== //
@@ -322,6 +323,9 @@ $(document).ready(function(){
 				formdata.append("f_flete", totflete);
 				formdata.append("f_insurance", totalinsurance);
 				formdata.append("f_cif", sumbyCIF);
+				formdata.append("f_v_IGV", restaxvalues[0].data_value);
+				formdata.append("f_v_IPM", restaxvalues[1].data_value);
+				formdata.append("f_v_percepcion", percepcion_notfilter);
 				formdata.append("f_IGV", igvcalc_twodeci);
 				formdata.append("f_IPM", ipmcalc_twodeci);
 				formdata.append("f_percepcion", percepcioncalc_twodeci);
@@ -447,6 +451,9 @@ $(document).ready(function(){
 				formdata.append("f_flete", totflete);
 				formdata.append("f_insurance", totalinsurance);
 				formdata.append("f_cif", sumbyCIF);
+				formdata.append("f_v_IGV", restaxvalues[0].data_value);
+				formdata.append("f_v_IPM", restaxvalues[1].data_value);
+				formdata.append("f_v_percepcion", percepcion_notfilter);
 				formdata.append("f_IGV", igvcalc_twodeci);
 				formdata.append("f_IPM", ipmcalc_twodeci);
 				formdata.append("f_percepcion", percepcioncalc_twodeci);
@@ -543,8 +550,7 @@ $(document).ready(function(){
 					}
 				});
 			}else{
-				//console.log('Sin usuario, se redirigirá al inicio');
-				//window.location.href = "marketplace-logistico";
+				window.location.href = "marketplace-logistico";
 			}
 
 	    // ========== VALIDAR SI EXISTE UN USUARIO AL ABRIR EL MODAL - PRIMER BOTÓN ========== //
@@ -656,28 +662,26 @@ $(document).ready(function(){
 							console.log('lo sentimos, hubo un error');
 						}
 					});
-
 				}else if($("#s_useregin-sistem").val() != "" || $("#s_useregin-sistem").val() != undefined || $("#s_useregin-sistem").val() != 'undefined' || $("#s_useregin-sistem").val() != null || $("#s_useregin-sistem").val() != 'null' || $("#s_useregin-sistem").val() != 'Invitado'){
-				
+					console.log('Validación, cuando existe un usuario y/o hay uno logueado');
 				}else{
 					$("#cnt-modalFormLoginyRegister").add($(".cnt-modalFormLoginyRegister--c")).addClass("show");
 					console.log('Hubo un error al generar el PDF');
 				}
 			});
-			/************************** VALIDAR SI EXISTE UN USUARIO AL ABRIR EL MODAL - SEGUNDO BOTÓN **************************/
+			// ========== VALIDAR SI EXISTE UN USUARIO AL ABRIR EL MODAL - SEGUNDO BOTÓN ========== //
 			$(document).on("click","#btn-requireDownloadQuotaion_two",function(e){
 				e.preventDefault();
 
-				if($("#s_useregin-sistem").val() == "" || 
-					 $("#s_useregin-sistem").val() == undefined || 
-					 $("#s_useregin-sistem").val() == 'undefined' || 
-					 $("#s_useregin-sistem").val() == null ||
-					 $("#s_useregin-sistem").val() == 'null'){
+				if($("#s_useregin-sistem").val() == "" || $("#s_useregin-sistem").val() == undefined || $("#s_useregin-sistem").val() == 'undefined' || $("#s_useregin-sistem").val() == null || $("#s_useregin-sistem").val() == 'null'){
 
-				$("#cnt-modalFormLoginyRegister").add($(".cnt-modalFormLoginyRegister--c")).addClass("show");
-				console.log('Por favor, rellene sus datos.');
+					$("#cnt-modalFormLoginyRegister").add($(".cnt-modalFormLoginyRegister--c")).addClass("show");
+					console.log('Por favor, rellene sus datos.');
 
-				}else if($("#s_useregin-sistem").val() == "Invitado" || $("#s_useregin-sistem").val() == 'Invitado'){
+					$("#cnt-modalFormLoginyRegister").add($(".cnt-modalFormLoginyRegister--c")).addClass("show");
+					console.log('Por favor, rellene sus datos.');
+					
+				}else if($("#s_useregin-sistem").val() == "Invitado"){
 
 					$("#cUIMessageValid-user").html(`<div id="msgAlertpreloader">
 						<div class="cont-loader--loader">
@@ -733,9 +737,7 @@ $(document).ready(function(){
 					});
 
 				}else if($("#s_useregin-sistem").val() != "" || $("#s_useregin-sistem").val() != undefined || $("#s_useregin-sistem").val() != 'undefined' || $("#s_useregin-sistem").val() != null || $("#s_useregin-sistem").val() != 'null'){
-					
 					console.log('Validación, cuando existe un usuario y/o hay uno logueado');
-
 				}else{
 					$("#cnt-modalFormLoginyRegister").add($(".cnt-modalFormLoginyRegister--c")).addClass("show");
 					console.log('Hubo un error al generar el PDF');
