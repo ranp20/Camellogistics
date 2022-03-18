@@ -570,3 +570,7 @@ img{
 #msgAlerterr{
 	@include error-message(#fff, red);
 }
+/* NOTIFICACIÓN - MENSAJES AL USUARIO */
+#notiMsgAlertCli{
+	@include notifiMsg-client(transparent, #fff, $primary-color);
+}
