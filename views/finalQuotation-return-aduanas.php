@@ -280,7 +280,8 @@
                 <p>
                   <span>Validez de tarifa: </span>
                   <span id="v_validratedate">
-                    <?= (!isset($_POST['val_validateratequote']) || $_POST['val_validateratequote'] == "") ? "No especificado" : $_POST['val_validateratequote'];?></span></p>
+                    <?= (!isset($_POST['val_validateratequote']) || $_POST['val_validateratequote'] == "") ? "No especificado" : $_POST['val_validateratequote'];?></span>
+                </p>
               </div>
             </div>
           </div>
