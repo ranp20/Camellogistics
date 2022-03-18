@@ -7,7 +7,13 @@ ob_start(); //CARGA EN MEMORIA UN ARCHIVO
 require_once '../models/quotation-user.php';
 $quotebyidcode = new Quotation_user();
 $listbyidcode = $quotebyidcode->get_by_idcodegenrand($_POST['id_codegenrand']);
-print_r($listbyidcode);
+// print_r($listbyidcode);
+
+function cambiaf_mysql($date){
+  $originalDate = $date;
+	$newDate = date("d/m/Y", strtotime($originalDate));
+	return $newDate;
+}
 
 function addTwoDecimals($number){
 	$output_final = "";
@@ -22,7 +28,7 @@ function addTwoDecimals($number){
 	return $output_final;
 }
 //VARIABLES A USAR EN EL MOSTRADO DE INFORMACIÓN DENTRO DEL PDF
-// $creation_date = $listbyidcode[0]['$creation_date'];
+$creation_date = $listbyidcode[0]['creation_date'];
 $u_nameenterprise = $listbyidcode[0]['u_enterprise'];
 $u_ndocument = $listbyidcode[0]['u_n_document'];
 $u_telephone = $listbyidcode[0]['u_telephone'];
@@ -89,7 +95,7 @@ $name_quotation = "Presupuesto-".$_POST['code_quote']."-".$f_typecontainer;
 	      </div>
 	      <div id="marc_cab_der">
 	        <div id="corr_cot"><?php echo $_POST['code_quote']; ?></div>
-	        <div id="fech_cot">21/09/2021</div>
+	        <div id="fech_cot"><?php echo cambiaf_mysql($creation_date); ?></div>
 	      </div>
 	    </div>
 	  </div>
@@ -178,10 +184,10 @@ $name_quotation = "Presupuesto-".$_POST['code_quote']."-".$f_typecontainer;
 	        <div class="item_dpt3_dat1">$</div>
 	      </div>
         <div id="marc_dat3_derr11">
-	        <div class="item_tpor3_dat1"><?php echo $f_fob; ?></div>
-	        <div class="item_tpor3_dat1"><?php echo $f_flete; ?></div>
-	        <div class="item_tpor3_dat1"><?php echo $f_insurance; ?></div>
-	        <div class="item_tpor3_dat1"><?php echo $f_cif; ?></div>
+	        <div class="item_tpor3_dat1"><?php echo addTwoDecimals($f_fob); ?></div>
+	        <div class="item_tpor3_dat1"><?php echo addTwoDecimals($f_flete); ?></div>
+	        <div class="item_tpor3_dat1"><?php echo addTwoDecimals($f_insurance); ?></div>
+	        <div class="item_tpor3_dat1"><?php echo addTwoDecimals($f_cif); ?></div>
 	      </div>
 	    </div>
 	  </div>
