@@ -13,9 +13,9 @@
   <?php require_once 'views/includes/header-links.php'; ?>
 </head>
 <body>
-  <?php require_once 'views/api_whatsapp.php'; ?>
+  <?php require_once 'views/includes/api_whatsapp.php'; ?>
   <?php require_once 'views/includes/header-top.php'; ?>
-	<?php require_once 'views/hero-image.php';?>
+	<?php require_once 'views/includes/hero-image.php';?>
   <?php require_once 'views/includes/footer.php'; ?>
   <?php require_once 'views/includes/form-login-user.php'; ?>
   <script type="text/javascript" src="<?= $url ?>js/main.js"></script>
