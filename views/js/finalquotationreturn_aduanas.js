@@ -314,7 +314,8 @@ $(document).ready(function(){
 				formdata.append("f_totalwithIGV", totalNotRoundFinal);
 				formdata.append("f_validdesde", $("#v_datevaliddesde").val());
 				formdata.append("f_validhasta", $("#v_datevalidhasta").val());
-				formdata.append("f_transporte_interno", $("#calculate-tarifario").val());
+				formdata.append("f_transporte_interno", $("#v-calculate-tarifario").val());
+				
 
 				$.ajax({
 					url: 'controllers/c_add_quotation_user.php',
@@ -326,6 +327,7 @@ $(document).ready(function(){
 		      processData: false
 				}).done(function(e){
 					//console.log(e);
+					
 					var rquotaiton = JSON.parse(e);
 					if(rquotaiton[0].res != "exists"){
 						console.log("Cotización guardada");
@@ -433,7 +435,7 @@ $(document).ready(function(){
 				formdata.append("f_totalwithIGV", totalNotRoundFinal);
 				formdata.append("f_validdesde", $("#v_datevaliddesde").val());
 				formdata.append("f_validhasta", $("#v_datevalidhasta").val());
-
+				formdata.append("f_transporte_interno", $("#v-calculate-tarifario").val());
 				$.ajax({
 					url: 'controllers/c_add_quotation_user.php',
 					method: 'POST',
