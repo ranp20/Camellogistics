@@ -44,7 +44,7 @@ class Add_Quotation_User extends Connection{
 			'f_visto_bueno' => 0,
 			'f_desconsolidacion' => 0,
 			'f_almacen_referencial' => 0,
-			'f_transporte_interno' => 0,
+			'f_transporte_interno' => (!isset($_POST['f_transporte_interno']) || $_POST['f_transporte_interno'] == "" || $_POST['f_transporte_interno'] == 0) ? 0 : $_POST['f_transporte_interno'],
 			'f_aforo_fisico_y_previo' => 0,
 			'f_gremios_maritimos' => 0,
 			'f_THC' => 0,

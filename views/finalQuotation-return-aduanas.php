@@ -17,25 +17,7 @@
 <html lang="es">
 <head>
   <title>Camel Logistics | Descarga tu Cotización</title>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
-  <link rel="icon" type="image/x-icon" href="views/img/favicon-camel.png"/>
-  <meta name="theme-color" content="#B58440">
-  <meta name="description" content=""/>
-  <meta name="author" content=""/>
-  <meta name="description" content="¡Calcula el costo de tu importación en 4 simples pasos!"/>
-  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1"/>
-  <meta property="og:url" content="<?= $url_defaulthome; ?>">
-  <meta property="og:title" content="Calculadora de Envíos | Camel Logistics"/>
-  <meta property="og:description" content="¡Calcula el costo de tu importación en 4 simples pasos!"/>
-  <meta property="og:locale" content="es_ES"/>
-  <meta property="og:image" content="<?= $url; ?>assets/img/logos/logotipo-camel.png"/>
-  <meta property="og:type" content="article"/>
-  <meta property="og:site_name" content="Camel Logistics"/>
-  <link rel="stylesheet" href="<?= $url; ?>css/styles.css">
-  <link rel="stylesheet" href="<?= $url; ?>assets/css/styles.min.css">
-  <link rel="stylesheet" href="<?= $url; ?>css/camel.css">
-  <script src="<?= $url; ?>js/jquery-3.6.0.min.js"></script>
+  <?php require_once 'includes/header-links.php'; ?>
 </head>
 <body>
   <div id="cUIMessageValid-user"></div>
@@ -297,7 +279,8 @@
               <div class="c-FinalQuotation--contStep--cQuotation--cTop--c--cValidTimeQuotation">
                 <p>
                   <span>Validez de tarifa: </span>
-                  <span id=""><?= (!isset($_POST['val_validateratequote']) || $_POST['val_validateratequote'] == "") ? "No especificado" : $_POST['val_validateratequote'];?></span></p>
+                  <span id="v_validratedate">
+                    <?= (!isset($_POST['val_validateratequote']) || $_POST['val_validateratequote'] == "") ? "No especificado" : $_POST['val_validateratequote'];?></span></p>
               </div>
             </div>
           </div>
@@ -489,13 +472,17 @@ echo $template_incserv.$template_notincserv;
     <input type="hidden" autocomplete="off" placeholder="" spellcheck="false" class="non-visvalipt h-alternative-shwnon s-fkeynone-step" id="v_datevalidhasta" value="<?php echo $_POST['val-datevalidhasta'];?>">
     <input type="hidden" autocomplete="off" placeholder="" spellcheck="false" class="non-visvalipt h-alternative-shwnon s-fkeynone-step" id="v_idgencoderand" value="<?php echo $_POST['ipt-vidcodgenrand'];?>">
     <input type="hidden" autocomplete="off" placeholder="" spellcheck="false" class="non-visvalipt h-alternative-shwnon s-fkeynone-step" id="v_loadtypecharge" value="<?php echo $_POST['loadTypeCharge'];?>">
+    <input type="hidden" autocomplete="off" placeholder="" spellcheck="false" class="non-visvalipt h-alternative-shwnon s-fkeynone-step" id="v-plcpickuprateprov" value="<?php echo $_POST['plc-pickuprate'];?>">
     <input type="hidden" autocomplete="off" placeholder="" spellcheck="false" class="non-visvalipt h-alternative-shwnon s-fkeynone-step" id="v_typetranspsendinitid" value="<?php echo $_POST['idtypetransportsendinit'];?>">
+  
   </div>
   <?php
+    
     
     echo "<pre>";
     print_r($_POST);
     echo "</pre>";
+    
     
   ?>
   <?php require_once 'includes/form-login-user.php'; ?>
