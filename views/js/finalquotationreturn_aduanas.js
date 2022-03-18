@@ -14,7 +14,7 @@ function firstToUppercase(e) {
   return e.charAt(0).toUpperCase() + e.slice(1);
 }
 // ========== NOTIFICACIONES ========== //
-function showNotification(typeNotify){
+function showNotification(typeNotify, titlemsg, descmsg){
 	var htmlNotify = "";
 	if(typeNotify == "true"){
 		htmlNotify = `<div id="notiMsgAlertCli">
@@ -26,8 +26,8 @@ function showNotification(typeNotify){
           </svg>
         </div>
         <div class="c_notifyMsg__content">
-          <p class="c_notifyMsg__type">Success</p>
-          <p class="c_notifyMsg__message">Anyone with access can view your invited visitors.</p>
+          <p class="c_notifyMsg__type">${titlemsg}</p>
+          <p class="c_notifyMsg__message">${descmsg}</p>
         </div>
         <div class="c_notifyMsg__close">
           <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.642 15.642" xmlns:xlink="http://www.w3.org/1999/xlink" enable-background="new 0 0 15.642 15.642">
@@ -1208,7 +1208,7 @@ $(document).ready(function(){
 							$("#cUIMessageValid-user").html("");
 							console.log('Cotización guardada en unlogged');
 
-							$("#cUIMessageValid-user").html(showNotification(notifyMessage));
+							$("#cUIMessageValid-user").html(showNotification(notifyMessage, "Éxito", "Proceda a descargar su cotización."));
 
 							$(document).on("click", ".c_notifyMsg__close", function(e){
 						    e.preventDefault();
