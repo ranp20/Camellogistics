@@ -1,13 +1,10 @@
 <?php 
-
 	//COMPRIMIR ARCHIVOS DE TEXTO...
   (substr_count($_SERVER["HTTP_ACCEPT_ENCODING"], "gzip")) ? ob_start("ob_gzhandler") : ob_start();
-  
 	session_start();
 	if(isset($_SESSION['admin_camel'])){
 		header("Location: dashboard");
 	}
-
   $actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]";
   $url =  $actual_link . "/Camellogistics/admin/views/";
 ?>
@@ -30,13 +27,37 @@
 				</div>
 				<form method="POST" class="c-LoginAdm--cLoginF--cForm--form" id="c-formvalidLoginAdm">
 					<div class="c-LoginAdm--cLoginF--cForm--form--cControl">
-						<input type="email" name="adm-log-email" id="adm-log-email" class="c-LoginAdm--cLoginF--cForm--form--cControl--input" placeholder="Email" maxlength="200" required autocomplete="off" spellcheck="false">
+						<?php
+							$tmp_email = "";
+							if(count($_COOKIE) > 0){
+								if(isset($_COOKIE['adm-email'])){
+									$tmp_email = "<input type='email' name='adm-log-email' id='adm-log-email' class='c-LoginAdm--cLoginF--cForm--form--cControl--input_chkset' placeholder='Email' maxlength='200' required autocomplete='off' spellcheck='false' value='". json_decode($_COOKIE['adm-email'], true) ."'>";
+								}else{
+									$tmp_email = "<input type='email' name='adm-log-email' id='adm-log-email' class='c-LoginAdm--cLoginF--cForm--form--cControl--input' placeholder='Email' maxlength='200' required autocomplete='off' spellcheck='false'>";
+								}
+							}else{
+								$tmp_email = "<input type='email' name='adm-log-email' id='adm-log-email' class='c-LoginAdm--cLoginF--cForm--form--cControl--input' placeholder='Email' maxlength='200' required autocomplete='off' spellcheck='false'>";
+							}
+							echo $tmp_email;
+						?>
 						<div class="c-LoginAdm--cLoginF--cForm--form--cControl--cIcon">
 							<img src="views/assets/img/svg/icon-user-login.svg" alt="">
 						</div>
 					</div>
 					<div class="c-LoginAdm--cLoginF--cForm--form--cControl">
-						<input type="password" name="adm-log-pass" id="adm-log-pass" class="c-LoginAdm--cLoginF--cForm--form--cControl--input" placeholder="Contraseña" maxlength="100" required autocomplete="off" spellcheck="false">
+						<?php
+							$tmp_pass = "";
+							if(count($_COOKIE) > 0){
+								if(isset($_COOKIE['adm-password'])){
+									$tmp_pass = "<input type='password' name='adm-log-pass' id='adm-log-pass' class='c-LoginAdm--cLoginF--cForm--form--cControl--input_chkset' placeholder='Contraseña' maxlength='100' required autocomplete='off' spellcheck='false' value='". json_decode($_COOKIE['adm-password'], true) ."'>";
+								}else{
+									$tmp_pass = "<input type='password' name='adm-log-pass' id='adm-log-pass' class='c-LoginAdm--cLoginF--cForm--form--cControl--input' placeholder='Contraseña' maxlength='100' required autocomplete='off' spellcheck='false'>";
+								}
+							}else{
+								$tmp_pass = "<input type='password' name='adm-log-pass' id='adm-log-pass' class='c-LoginAdm--cLoginF--cForm--form--cControl--input' placeholder='Contraseña' maxlength='100' required autocomplete='off' spellcheck='false'>";
+							}
+							echo $tmp_pass;
+						?>
 						<div class="c-LoginAdm--cLoginF--cForm--form--cControl--cIcon" id="icon-passControladm">
 							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
 			         class="cAccount__cont--fAccount--form--controls--cIcon--pass">
@@ -45,6 +66,41 @@
 			     	</svg>
 						</div>
 					</div>
+					<?php
+							$tmp_chkrempass = "";
+							if(count($_COOKIE) > 0){
+								if(isset($_COOKIE['adm-email']) && isset($_COOKIE['adm-password'])){
+									$tmp_chkrempass = "";
+								}else{
+									$tmp_chkrempass = "
+										<div class='c-LoginAdm--cLoginF--cForm--form--cControl flx-justify-end'>
+											<div class='c-LoginAdm--cLoginF--cForm--form--cControl--cSpanText'>
+												<span>Recordar contraseña</span>
+											</div>
+											<div class='c-LoginAdm--cLoginF--cForm--form--cControl--cIptChk'>
+												<input type='checkbox' name='adm-remem-pass' id='adm-remem-pass' class='c-LoginAdm--cLoginF--cForm--form--cControl--cIptChk--input'>											
+												<label for='adm-remem-pass' class='c-LoginAdm--cLoginF--cForm--form--cControl--cIptChk--cLabeltext'>
+												</label>
+											</div>
+										</div>
+									";
+								}
+							}else{
+								$tmp_chkrempass = "
+										<div class='c-LoginAdm--cLoginF--cForm--form--cControl flx-justify-end'>
+											<div class='c-LoginAdm--cLoginF--cForm--form--cControl--cSpanText'>
+												<span>Recordar contraseña</span>
+											</div>
+											<div class='c-LoginAdm--cLoginF--cForm--form--cControl--cIptChk'>
+												<input type='checkbox' name='adm-remem-pass' id='adm-remem-pass' class='c-LoginAdm--cLoginF--cForm--form--cControl--cIptChk--input'>											
+												<label for='adm-remem-pass' class='c-LoginAdm--cLoginF--cForm--form--cControl--cIptChk--cLabeltext'>
+												</label>
+											</div>
+										</div>
+									";
+							}
+							echo $tmp_chkrempass;
+					?>
 					<button type="submit" class="c-LoginAdm--cLoginF--cForm--form--btnLoginAdm">
 						<span>ACCEDER</span>
 						<img src="views/assets/img/svg/icon-arrow-intranet-login.svg" alt="">

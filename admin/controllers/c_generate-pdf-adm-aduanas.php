@@ -1,13 +1,12 @@
 <?php
 // OJO: El método con AJAX de Jquery, no funciona y/o no devuelve el PDF si dentro del HTML se pasa un array...
-require_once '../vendor/autoload.php';
+require_once '../../vendor/autoload.php';
 use Dompdf\Dompdf;
 ob_start(); //CARGA EN MEMORIA UN ARCHIVO
 //include(dirname('_FILE_').'/c_pdfquotation.php'); //INCLUIR LA PLANTILLA DE LA COTIZACIÓN, DEVOLVER DE LA RUTA PADRE, PARA COMPARTIR INFO.
-require_once '../models/quotation-user.php';
+require_once '../../models/quotation-user.php';
 $quotebyidcode = new Quotation_user();
 $listbyidcode = $quotebyidcode->get_by_idcodegenrand($_POST['id_codegenrand']);
-//print_r($_POST);
 print_r($listbyidcode);
 
 //VARIABLES A USAR EN EL MOSTRADO DE INFORMACIÓN DENTRO DEL PDF
@@ -38,11 +37,11 @@ $name_quotation = "Presupuesto-".$_POST['code_quote']."-".$f_typecontainer;
 	<div id="cont_quotationpdf">
 		<div id="marc_fill1">
 			<div class="c_quotationpdf__cTop--cLogo">
-	    	<img id="logo"  src="../vendor/dompdf/logotipo-camel.png" alt="" class="c_quotationpdf__cTop--cLogo--img" width="100" height="100">
+	    	<img id="logo"  src="../../vendor/dompdf/logotipo-camel.png" alt="" class="c_quotationpdf__cTop--cLogo--img" width="100" height="100">
 			</div>
 	    <div id="marc_cab">
 	      <div id="marc_cab_izq">
-          <div id="title_code_cot">COTIZACIÓN</div>
+          <div id="title_code_cot">LIQUIDACIÓN</div>
           <div id="title_fech_cot">FECHA</div>
 	      </div>
 	      <div id="marc_cab_der">
@@ -254,7 +253,7 @@ $name_quotation = "Presupuesto-".$_POST['code_quote']."-".$f_typecontainer;
 	  <div class="marc_fill" id="four_sectionlist">
 	    <div id="marc_det_cuentas">
         <div id="cnt_img_money_camel1">
-          <img src="../vendor/dompdf/Imagen1.png" alt="" width="100" height="100">
+          <img src="../../vendor/dompdf/Imagen1.png" alt="" width="100" height="100">
         </div>
 	      <div id="title_serv_ulti_camel1">
 	        <div class="item_marc_det_serinf_serv1">Total Impuestos a Pagar</div>
@@ -268,7 +267,7 @@ $name_quotation = "Presupuesto-".$_POST['code_quote']."-".$f_typecontainer;
 	    </div>
 	    <div id="marc_des_monto">
         <div id="cnt_img_money_camel2">
-          <img src="../vendor/dompdf/Imagen1.png" alt="" width="100" height="100">
+          <img src="../../vendor/dompdf/Imagen1.png" alt="" width="100" height="100">
         </div>
 	      <div id="title_serv_ulti_camel2">
 	        <div class="item_marc_det_serinf_serv1">Total Proforma Camel Logistics</div>

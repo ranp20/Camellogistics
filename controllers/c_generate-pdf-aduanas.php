@@ -7,11 +7,22 @@ ob_start(); //CARGA EN MEMORIA UN ARCHIVO
 require_once '../models/quotation-user.php';
 $quotebyidcode = new Quotation_user();
 $listbyidcode = $quotebyidcode->get_by_idcodegenrand($_POST['id_codegenrand']);
-//print_r($_POST);
 print_r($listbyidcode);
 
+function addTwoDecimals($number){
+	$output_final = "";
+	$output_num = explode(".", $number);
+	if(!isset($output_num[1]) || $output_num[1] == "undefined" || $output_num[1] == ""){
+		$output_final = $number.".00";
+	}else	if(isset($output_num[1]) && strlen($output_num[1]) < 2){
+		$output_final = $number."0";
+	}else{
+		$output_final = $number;
+	}
+	return $output_final;
+}
 //VARIABLES A USAR EN EL MOSTRADO DE INFORMACIÓN DENTRO DEL PDF
-$u_nameenterprise = $listbyidcode[0]['u_enterprise']; // NOMBRE DE EMPRESA (u_eterprise)
+$u_nameenterprise = $listbyidcode[0]['u_enterprise'];
 $u_ndocument = $listbyidcode[0]['u_n_document'];
 $u_telephone = $listbyidcode[0]['u_telephone'];
 $f_typecontainer = $listbyidcode[0]['f_type_container'];
@@ -19,7 +30,17 @@ $f_fob = $listbyidcode[0]['f_fob'];
 $f_flete = $listbyidcode[0]['f_flete'];
 $f_insurance = $listbyidcode[0]['f_insurance'];
 $f_cif = $listbyidcode[0]['f_cif'];
-
+// VALORES PARA CALCULAR LOS IMPUESTOS...
+$f_v_IGV = $listbyidcode[0]['f_v_IGV'];
+$f_v_IPM = $listbyidcode[0]['f_v_IPM'];
+$f_v_percepcion = $listbyidcode[0]['f_v_percepcion'];
+// VALORES CALCULADOS DE IMPUESTOS
+$f_IGV = $listbyidcode[0]['f_IGV'];
+$f_IPM = $listbyidcode[0]['f_IPM'];
+$f_percepcion = $listbyidcode[0]['f_percepcion'];
+$f_comision_agencia = $listbyidcode[0]['f_comision_agencia'];
+$f_gastos_operativos = $listbyidcode[0]['f_gastos_operativos'];
+$transporte_interno=$listbyidcode[0]['f_transporte_interno'];
 //NOMBRE DE LA COTIZACIÓN
 $name_quotation = "Presupuesto-".$_POST['code_quote']."-".$f_typecontainer;
 ?>
@@ -42,7 +63,7 @@ $name_quotation = "Presupuesto-".$_POST['code_quote']."-".$f_typecontainer;
 			</div>
 	    <div id="marc_cab">
 	      <div id="marc_cab_izq">
-          <div id="title_code_cot">COTIZACIÓN</div>
+          <div id="title_code_cot">LIQUIDACIÓN</div>
           <div id="title_fech_cot">FECHA</div>
 	      </div>
 	      <div id="marc_cab_der">
@@ -158,9 +179,9 @@ $name_quotation = "Presupuesto-".$_POST['code_quote']."-".$f_typecontainer;
           <div class="item_marc_det_imp1">ANTIDUMPING</div>
 	      </div>
 	      <div id="marc_porc_det_imp1">
-	        <div class="item_marc_porc_det_imp1">16%</div>
-	        <div class="item_marc_porc_det_imp1">2.00%</div>
-	        <div class="item_marc_porc_det_imp1">3.5%    </div>
+	        <div class="item_marc_porc_det_imp1"><?php echo $f_v_IGV; ?>%</div>
+	        <div class="item_marc_porc_det_imp1"><?php echo $f_v_IPM; ?>%</div>
+	        <div class="item_marc_porc_det_imp1"><?php echo $f_v_percepcion; ?>%    </div>
 	        <div class="item_marc_porc_det_imp1">0.0%</div>
 	        <div class="item_marc_porc_det_imp1">0%</div>
           <div class="item_marc_porc_det_imp1">0%</div>
@@ -174,9 +195,9 @@ $name_quotation = "Presupuesto-".$_POST['code_quote']."-".$f_typecontainer;
           <div class="item_marc_usd_det_imp1">$</div>
 	      </div>
 	      <div id="marc_det_tot_imp1">
-	        <div class="item_usd_tot_imp1">133.05</div>
-	        <div class="item_usd_tot_imp1">16.66</div>
-	        <div class="item_usd_tot_imp1">34.40</div>
+	        <div class="item_usd_tot_imp1"><?php echo addTwoDecimals($f_IGV);?></div>
+	        <div class="item_usd_tot_imp1"><?php echo addTwoDecimals($f_IPM); ?></div>
+	        <div class="item_usd_tot_imp1"><?php echo addTwoDecimals($f_percepcion); ?></div>
 	        <div class="item_usd_tot_imp1">93.50</div>
 	        <div class="item_usd_tot_imp1">23.20</div>
           <div class="item_usd_tot_imp1">17.40</div>
@@ -213,18 +234,18 @@ $name_quotation = "Presupuesto-".$_POST['code_quote']."-".$f_typecontainer;
 	          <div class="item_marc_usd_det_ser1 h-18">$</div>
 	        </div>
 	        <div id="marc_tot_ser">
-	          <div class="item_marc_tot_ser pt-02 text-red">100</div>
 	          <div class="item_marc_tot_ser pt-02 text-red">-</div>
-	          <div class="item_marc_tot_ser pt-02 text-red">100</div>
-	          <div class="item_marc_tot_ser pt-02">100</div>
-	          <div class="item_marc_tot_ser pt-02">100</div>
-	          <div class="item_marc_tot_ser pt-02 text-red">100</div>
-	          <div class="item_marc_tot_ser pt-02 text-red">100</div>
-	          <div class="item_marc_tot_ser h-25 pt-05">100</div>
-	          <div class="item_marc_tot_ser pt-02">100</div>
-	          <div class="item_marc_tot_ser pt-02 text-red">100</div>
-	          <div class="item_marc_tot_ser pt-02">100</div>
-	          <div class="item_marc_tot_ser pt-02">100</div>
+	          <div class="item_marc_tot_ser pt-02 text-red">-</div>
+	          <div class="item_marc_tot_ser pt-02 text-red">-</div>
+	          <div class="item_marc_tot_ser pt-02"><?php echo $transporte_interno; ?></div>
+	          <div class="item_marc_tot_ser pt-02">-</div>
+	          <div class="item_marc_tot_ser pt-02 text-red">-</div>
+	          <div class="item_marc_tot_ser pt-02 text-red">-</div>
+	          <div class="item_marc_tot_ser h-25 pt-05">-</div>
+	          <div class="item_marc_tot_ser pt-02">-</div>
+	          <div class="item_marc_tot_ser pt-02 text-red">-</div>
+	          <div class="item_marc_tot_ser pt-02"><?php echo addTwoDecimals($f_comision_agencia); ?></div>
+	          <div class="item_marc_tot_ser pt-02"><?php echo addTwoDecimals($f_gastos_operativos); ?></div>
 	        </div>
 	      </div>
 	      <div id="marc_det_inf1_log">

@@ -70,7 +70,7 @@
                   <p>
                     <span>ID:&nbsp;</span>
                     <span>
-                      <span id="v_gencodexxx"></span>
+                      <span id="v_gencodexxx"><?= (isset($_POST['ipt-vcodgeneratex']) && $_POST['ipt-vcodgeneratex'] != "") ? $_POST['ipt-vcodgeneratex'] : ""; ?></span>
                       <span> - </span>
                       <span><?= $_POST['loadTypeCharge']; ?></span>
                     </span>
@@ -473,6 +473,8 @@ echo $template_incserv.$template_notincserv;
     <input type="hidden" autocomplete="off" placeholder="" spellcheck="false" class="non-visvalipt h-alternative-shwnon s-fkeynone-step" id="v_idgencoderand" value="<?php echo $_POST['ipt-vidcodgenrand'];?>">
     <input type="hidden" autocomplete="off" placeholder="" spellcheck="false" class="non-visvalipt h-alternative-shwnon s-fkeynone-step" id="v_loadtypecharge" value="<?php echo $_POST['loadTypeCharge'];?>">
     <input type="hidden" autocomplete="off" placeholder="" spellcheck="false" class="non-visvalipt h-alternative-shwnon s-fkeynone-step" id="v-calculate-tarifario" value="<?php echo $_POST['nm-calculate-tarifario'];?>">
+    <input type="hidden" autocomplete="off" placeholder="" spellcheck="false" class="non-visvalipt h-alternative-shwnon s-fkeynone-step" id="v_typetranspsendinitid" value="<?php echo $_POST['idtypetransportsendinit'];?>">
+  
   </div>
   <?php
     
@@ -486,7 +488,6 @@ echo $template_incserv.$template_notincserv;
   <?php require_once 'includes/form-login-user.php'; ?>
   <?php require_once 'includes/form-before-download-pdf.php'; ?>
   <script src="<?= $url; ?>js/user-login.js"></script>
-  <!-- DEBE APARECER ESTE LLAMADO AL SCRIPT -->
   <script src="<?= $url; ?>js/finalquotationreturn_aduanas.js"></script>
   <script src="<?= $url; ?>js/register-before-download.js"></script>
 </body>

@@ -2,6 +2,16 @@
 window.onload = function(){
 	document.querySelector("#adm-log-email").focus();
 }
+// ========= CAMBIAR EL VALOR DEL CHECKBOX DE RECORDAR CONTRASEÑA ========= //
+$(document).on("click", "#adm-remem-pass", function(){
+	if($(this).is(":checked")){
+		let oncheckrempass = $(this).val();
+		console.log(oncheckrempass);
+		console.log("Está activado");
+	}else{
+		console.log("Está desactivado");
+	}
+});
 /************************** SHOW/HIDDEN PASSWORD **************************/
 $(document).on("click", "#icon-passControladm", function(){
 	var inputTypeControlPass1 = $(this).parent().find("input").attr("type");
@@ -34,24 +44,28 @@ $(document).on("submit", "#c-formvalidLoginAdm", function(e){
 		data: frm
 	}).done( (e) => {
 		var res = JSON.parse(e);
+		/*
+		document.cookie = "email="+res.received.email+"&password="+res.received.password+";path=/admin;max-age=60*60*24*365;expires=Sat, 13 Sep 275760 00:00:00 GMT";
+		var cookieValor = document.cookie;
+		alert(cookieValor);
+		*/
 
 		if(res.response == "true"){
 			$("#cMessage-user").html(`<div id="msgAlertLoginSuccess">
-													<div class="cont-loader--loader">
-														<span class="cont-loader--loader--circle"></span>
-														<span class="cont-loader--loader--circle"></span>
-														<span class="cont-loader--loader--circle"></span>
-														<span class="cont-loader--loader--circle"></span>
-													</div>
-													<p>Cargando...</p>
-												</div>
-												`);
-
+				<div class="cont-loader--loader">
+					<span class="cont-loader--loader--circle"></span>
+					<span class="cont-loader--loader--circle"></span>
+					<span class="cont-loader--loader--circle"></span>
+					<span class="cont-loader--loader--circle"></span>
+				</div>
+				<p>Cargando...</p>
+			</div>
+			`);
 			$(this).find("button[type=submit]").addClass("showActive");
-
 			setTimeout(function(){
 				window.location.replace("dashboard");
 			}, 500);
+			
 		}else{
 			$("#cMessage-user").html(`<div id="msgAlertLoginErr">
 												<div class="msgAlertLoginErr--c">
@@ -68,7 +82,7 @@ $(document).on("submit", "#c-formvalidLoginAdm", function(e){
 				$('#msgAlertLoginErr').addClass('disabled');
 			}, 4500);
 
-			/* CERRAR EL MENSAJE DE ERROR */
+			// CERRAR EL MENSAJE DE ERROR
 			let containermodal = document.querySelector('#msgAlertLoginErr');
 			containermodal.addEventListener('click', e => {
 				if(e.target === containermodal)	containermodal.classList.add('disabled');
