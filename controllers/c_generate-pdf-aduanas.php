@@ -40,7 +40,7 @@ $f_IPM = $listbyidcode[0]['f_IPM'];
 $f_percepcion = $listbyidcode[0]['f_percepcion'];
 $f_comision_agencia = $listbyidcode[0]['f_comision_agencia'];
 $f_gastos_operativos = $listbyidcode[0]['f_gastos_operativos'];
-$transporte_interno=$listbyidcode[0]['f_transporte_interno'];
+$f_transporte_interno = $listbyidcode[0]['f_transporte_interno'];
 //NOMBRE DE LA COTIZACIÓN
 $name_quotation = "Presupuesto-".$_POST['code_quote']."-".$f_typecontainer;
 ?>
@@ -237,7 +237,7 @@ $name_quotation = "Presupuesto-".$_POST['code_quote']."-".$f_typecontainer;
 	          <div class="item_marc_tot_ser pt-02 text-red">-</div>
 	          <div class="item_marc_tot_ser pt-02 text-red">-</div>
 	          <div class="item_marc_tot_ser pt-02 text-red">-</div>
-	          <div class="item_marc_tot_ser pt-02"><?php echo $transporte_interno; ?></div>
+	          <div class="item_marc_tot_ser pt-02"><?php echo addTwoDecimals($f_transporte_interno); ?></div>
 	          <div class="item_marc_tot_ser pt-02">-</div>
 	          <div class="item_marc_tot_ser pt-02 text-red">-</div>
 	          <div class="item_marc_tot_ser pt-02 text-red">-</div>

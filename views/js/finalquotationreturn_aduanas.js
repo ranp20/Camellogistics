@@ -374,7 +374,7 @@ $(document).ready(function(){
 					formdata.append("f_totalwithIGV", totalNotRoundFinal);
 					formdata.append("f_validdesde", $("#v_datevaliddesde").val());
 					formdata.append("f_validhasta", $("#v_datevalidhasta").val());
-					formdata.append("f_transporte_interno", $("#v-calculate-tarifario").val());
+					formdata.append("f_transporte_interno", $("#v-plcpickuprateprov").val());
 
 					$.ajax({
 						url: 'controllers/c_add_quotation_user.php',
@@ -505,7 +505,7 @@ $(document).ready(function(){
 					formdata.append("f_totalwithIGV", totalNotRoundFinal);
 					formdata.append("f_validdesde", $("#v_datevaliddesde").val());
 					formdata.append("f_validhasta", $("#v_datevalidhasta").val());
-					formdata.append("f_transporte_interno", $("#v-calculate-tarifario").val());
+					formdata.append("f_transporte_interno", $("#v-plcpickuprateprov").val());
 
 					$.ajax({
 						url: 'controllers/c_add_quotation_user.php',
