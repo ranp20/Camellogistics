@@ -1665,8 +1665,15 @@ $(document).on("click", "#btn-NextStepTochargedata", function(){
 });
 // ========== ADMITIR SOLO 2 DECIMALES COMO MÁXIMO (VALOR DEL FLETE INTERNACIONAL) =========//
 $(document).on("input","#val-iptPriceValNInterface",function(e){
-  ($(this).val() == "") ? $(this).val() : $(this).val(twodecimals(e.target.value));
-  $("#val_valfleteprod").val(twodecimals(e.target.value));
+  //($(this).val() == "") ? $(this).val() : $(this).val(twodecimals(e.target.value));
+  var val = e.target.value;
+  if(isNaN(val)){
+    val = val.replace(/[^0-9\.]/g,'');
+    if(val.split('.').length>2) 
+      val =val.replace(/\.+$/,"");
+  }
+  $(this).val(val);
+  $("#val_valfleteprod").val(twodecimals(val));
   //this.value = this.value.replace(/[^0-9,.-]/g, '').replace(/,/g, '.');
 });
 // =============== DEVOLVER EL VALOR DE LOS CONTROLES (DIMENSIONES DE CARGA) AL RESUMEN DEL PROCESO ================ //
@@ -1809,6 +1816,12 @@ $(document).on("keyup keydown", "#ipt-valNameTypeProdNInterface", function(e){
   }else{
     //console.log('Con contenido');
   }
+});
+// =============== VALIDAR PARA QUE SE INGRESE SOLO LETRAS =============== //
+$(document).on("change input keyup", "#ipt-valNameTypeProdNInterface", function(e){
+  let value = e.target.value;
+  e.target.value = value.replace(/^([0-9@ç!¡¿?|.,'])/g, "");
+  return false;
 });
 // =============== SWITCH DE IMPORTACIONES PREVIAS ============== //
 $(document).on("click", "#chck-importpreview", function(){
