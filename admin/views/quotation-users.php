@@ -3,7 +3,7 @@
   (substr_count($_SERVER["HTTP_ACCEPT_ENCODING"], "gzip")) ? ob_start("ob_gzhandler") : ob_start();
 	session_start();
 	if(!isset($_SESSION['admin_camel'])){
-		header("Location: ../");
+		header("Location: ../admin");
 	}
 
 	require_once '../controllers/c_pagination_quotationusers.php';
