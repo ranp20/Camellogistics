@@ -2871,6 +2871,12 @@ $(document).on("keyup", "#ipt-valDistricByCountryNInterface", function(){
     listrateLCLTransport();
   }
 });
+// ============= PERMITIR SOLOR LETRAS EN CAMPO DE DISTRITOS ============= //
+$(document).on("change input keyup", "#ipt-valDistricByCountryNInterface", function(e){
+  let value = e.target.value;
+  e.target.value = value.replace(/^([0-9@ç!¡¿?|.,'])/g, "");
+  return false;
+});
 // ============= FIJAR EL VALOR DE ITEM EN EL INPUT - DISTRITO POR PAÍS DE DESTINO ============== //
 $(document).on("click", ".cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation--cC--cControl--cListChange--m--item", function(){
   

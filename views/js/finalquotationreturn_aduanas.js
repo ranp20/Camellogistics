@@ -603,10 +603,8 @@ $(document).ready(function(){
 				e.preventDefault();	
 
 				if($("#s_useregin-sistem").val() == "" || $("#s_useregin-sistem").val() == undefined || $("#s_useregin-sistem").val() == 'undefined' || $("#s_useregin-sistem").val() == null || $("#s_useregin-sistem").val() == 'null'){
-					
 					$("#cnt-modalFormLoginyRegister").add($(".cnt-modalFormLoginyRegister--c")).addClass("show");
 					console.log('Por favor, rellene sus datos.');
-
 				}else if($("#s_useregin-sistem").val() == 'Invitado'){
 					
 					$("#cUIMessageValid-user").html(`<div id="msgAlertpreloader">
@@ -719,13 +717,8 @@ $(document).ready(function(){
 				e.preventDefault();
 
 				if($("#s_useregin-sistem").val() == "" || $("#s_useregin-sistem").val() == undefined || $("#s_useregin-sistem").val() == 'undefined' || $("#s_useregin-sistem").val() == null || $("#s_useregin-sistem").val() == 'null'){
-
 					$("#cnt-modalFormLoginyRegister").add($(".cnt-modalFormLoginyRegister--c")).addClass("show");
 					console.log('Por favor, rellene sus datos.');
-
-					$("#cnt-modalFormLoginyRegister").add($(".cnt-modalFormLoginyRegister--c")).addClass("show");
-					console.log('Por favor, rellene sus datos.');
-					
 				}else if($("#s_useregin-sistem").val() == "Invitado"){
 
 					$("#cUIMessageValid-user").html(`<div id="msgAlertpreloader">
@@ -754,24 +747,70 @@ $(document).ready(function(){
 		        cache: false,
 		        processData: false
 					}).done(function(e){
+						console.log(e);
 						var rvalidpdf = JSON.parse(e);
 						if(rvalidpdf[0].res != "notexists"){
 							console.log("El usuario SI se registró previamente");
 							//generatePDF(queryresult.username);
-							// var formdata = new FormData();
-							// formdata.append("id_codegenrand", $("#v_idgencoderand").val());
+							$("#cUIMessageValid-user").html(`<div id="msgAlertpreloader">
+								<div class="cont-loader--loader">
+									<span class="cont-loader--loader--circle"></span>
+									<span class="cont-loader--loader--circle"></span>
+									<span class="cont-loader--loader--circle"></span>
+									<span class="cont-loader--loader--circle"></span>
+								</div>
+								<p>Preparando cotización...</p>
+							</div>`);
 
-							// $.ajax({
-							// 	url: 'controllers/c_launchpdfquotation.php',
-							// 	method: 'POST',
-							// 	datatype: 'JSON',
-							// 	data: formdata,
-							// 	contentType: false,
-				   //      cache: false,
-				   //      processData: false
-							// }).done(function(e){
-							// 	console.log(e);
-							// });
+							$.ajax({
+								type: 'POST',
+								url: 'controllers/c_generate-pdf-aduanas.php',
+								data: {
+									id_codegenrand : $("#v_idgencoderand").val(), 
+									code_quote : $("#v_gencodexxx").text(),
+									u_login : user_sessquote
+								},
+								xhrFields: {
+						      responseType: 'blob' // to avoid binary data being mangled on charset conversion
+						    },
+						    success: function(blob, status, xhr) {
+					        // check for a filename
+					        var filename = "";
+					        var disposition = xhr.getResponseHeader('Content-Disposition');
+					        if (disposition && disposition.indexOf('attachment') !== -1) {
+				            var filenameRegex = /filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/;
+				            var matches = filenameRegex.exec(disposition);
+				            if (matches != null && matches[1]) filename = matches[1].replace(/['"]/g, '');
+					        }
+
+					        if (typeof window.navigator.msSaveBlob !== 'undefined') {
+				            // IE workaround for "HTML7007: One or more blob URLs were revoked by closing the blob for which they were created. These URLs will no longer resolve as the data backing the URL has been freed."
+				            window.navigator.msSaveBlob(blob, filename);
+					        } else {
+				            var URL = window.URL || window.webkitURL;
+				            var downloadUrl = URL.createObjectURL(blob);
+
+				            if (filename) {
+			                // use HTML5 a[download] attribute to specify filename
+			                var a = document.createElement("a");
+			                // safari doesn't support this yet
+			                if (typeof a.download === 'undefined') {
+			                  window.location.href = downloadUrl;
+			                } else {
+		                    a.href = downloadUrl;
+		                    a.download = filename;
+		                    document.body.appendChild(a);
+		                    a.click();
+		                    $("#cUIMessageValid-user").html("");
+			                }
+				            } else {
+				              window.location.href = downloadUrl;
+				            }
+
+				            setTimeout(function () { URL.revokeObjectURL(downloadUrl); }, 100); // cleanup
+					        }
+						    }
+							});
 						}else if(rvalidpdf[0].res == "notexists"){
 							$("#cUIMessageValid-user").html("");
 							$("#cnt-modalFormLoginyRegister").add($(".cnt-modalFormLoginyRegister--c")).addClass("show");
@@ -780,7 +819,6 @@ $(document).ready(function(){
 							console.log('lo sentimos, hubo un error');
 						}
 					});
-
 				}else if($("#s_useregin-sistem").val() != "" || $("#s_useregin-sistem").val() != undefined || $("#s_useregin-sistem").val() != 'undefined' || $("#s_useregin-sistem").val() != null || $("#s_useregin-sistem").val() != 'null'){
 					console.log('Validación, cuando existe un usuario y/o hay uno logueado');
 				}else{
