@@ -22,7 +22,13 @@
 			&--title{
 				margin: 0;
 		    font-weight: 600;
-		    font-size: .95rem;
+		    font-size: .9rem;
+		    color: $color-paragraph;
+
+		    @media (min-width: 768px){
+		    	color: #000;
+		    	font-size: .95rem;
+		    }
 			}
 
 			&--c{
@@ -31,9 +37,11 @@
 					display: flex;
 					align-items: center;
 					justify-content: space-between;
+					flex-flow: wrap row;
 					&--cImgInfo{
 						display: flex;
 						align-items: center;
+						margin-right: 2.8rem;
 						img{
 							max-width: 3rem;
 							width: 100%;
@@ -55,6 +63,7 @@
 					}
 
 					&--cCodeQuotation{
+						margin-left: auto;
 						p{
 							margin: 0;
 					    font-size: 0.75rem;
@@ -72,11 +81,27 @@
 					align-items: flex-start;
 					justify-content: space-between;
 					flex: 0 0 100%;
-					padding: 0 3rem;
+					flex-flow: wrap column;
+					padding: 0;
+
+					@media (min-width: 768px){
+						flex-flow: wrap row;
+					}					
+
+					@media (min-width: 991px){
+						padding: 0 3rem;
+					}
+
 					&--m{
 						flex: 48%;
-						padding-inline-start: 40px;
+						padding-inline-start: 1.45rem;
 						list-style: disc !important;
+						width: 100%;
+
+						@media (min-width: 768px){
+							padding-inline-start: 40px;
+						}
+
 						&--item{
 							text-align: left;
 							&--info{
@@ -87,6 +112,17 @@
 
 								p{
 									margin: 0;
+									span{
+										text-align: right !important;
+									}
+								}
+
+								span:first-child{
+									text-align: left;
+								}
+
+								span:nth-child(2){
+									text-align: right;
 								}
 							}
 						}
@@ -141,16 +177,26 @@
 						width: 100%;
 							
 						&--cImg{
-							max-width: 4rem;
+							max-width: 2.8rem;
 							width: 95%;
+							margin-left: 0.45rem;
 							img{
+							}
+
+							@media (min-width: 768px){
+								max-width: 4rem;
+								margin-left: 0;
 							}
 						}
 
 						h3{
 							margin-left: 0.5rem;
 							margin-bottom: 0;
-							font-size: 1.5em;
+							font-size: .9rem;
+
+							@media (min-width: 768px){
+								font-size: 1.5em;
+							}
 						}
 
 						&:hover{
@@ -168,6 +214,15 @@
 						color: $color-paragraph;
 						font-weight: 600;
 						padding: 0.25rem 0 0 0;
+						font-size: .9rem;
+				    display: flex;
+				    align-items: center;
+				    justify-content: center;
+				    flex-flow: wrap row;
+
+						@media (min-width: 768px){
+							font-size: 1rem;
+						}
 					}
 				}
 			}
@@ -180,18 +235,28 @@
 				display: flex;
 				align-items: center;
 				img{
-					max-width: 90px;
+					max-width: 70px;
 					width: 100%;
 					height: 100%;
 					margin-right: 1rem;
+
+					@media (min-width: 768px){
+						max-width: 90px;
+					}
 				}
 
 				&--info{
 					text-align: left;
 					h3{
 						color: $primary-color;
-		    		font-size: 1.2rem;
+		    		font-size: 1rem;
+		    		font-weight: 800;
 		    		margin: 0;
+
+		    		@media (min-width: 768px){
+		    			font-size: 1.2rem;
+		    			font-weight: 600;
+						}
 					}
 					span{
 						color: $color-paragraph;
@@ -206,7 +271,12 @@
 				align-items: center;
 				justify-content: space-between;
 				flex: 0 0 100%;
+				flex-flow: wrap column;
 				border-bottom: thin solid #cccc;
+
+				@media (min-width: 768px){
+					flex-flow: wrap row;
+				}
 
 				&--cCharactsInfovals{
 					display: none;
@@ -240,25 +310,48 @@
 
 				&--moreDetails{
 					flex: 48%;
-					border-right: thin solid #cccc;
 					padding: 1.15rem 0;
+					border-bottom: thin solid #cccc;
+					margin-bottom: 1rem;
+					display: block;
+					width: 100%;
+
+					@media (min-width: 768px){
+						border-right: thin solid #cccc;
+						border-bottom: unset;
+						margin-bottom: 0;
+					}
 
 					/************************** CONTENEDOR DE - SERVICIOS INCLUIDOS Y NO INCLUIDOS **************************/
 					&--cInnotIn{
-					padding: 0 0 0 4rem;
+						padding: 0;
+
+						@media (min-width: 768px){
+							padding: 0 0 0 4rem;
+						}
+
 						&--include{
 							text-align: left;
 							&--title{
 								color: $quotation-titles;
 								font-weight: 600;
 								font-size: 0.9rem;
-								padding-inline-start: 40px;
+								padding-inline-start: 1.45rem;
 								margin: 0;
+
+								@media (min-width: 768px){
+									padding-inline-start: 40px;
+								}
 							}
 							&--m{
-								padding-inline-start: 40px;
+								padding-inline-start: 1.45rem;
 								list-style: disc !important;
 								font-size: 0.9rem;
+
+								@media (min-width: 768px){
+									padding-inline-start: 40px;
+								}
+
 								&--item{
 								}
 							}
@@ -270,13 +363,23 @@
 								color: $quotation-titles;
 								font-weight: 600;
 								font-size: 0.9rem;
-								padding-inline-start: 40px;
+								padding-inline-start: 1.45rem;
 								margin: 0;
+
+								@media (min-width: 768px){
+									padding-inline-start: 40px;
+								}
+
 							}
 							&--m{
-								padding-inline-start: 40px;
+								padding-inline-start: 1.45rem;
 								list-style: disc !important;
 								font-size: 0.9rem;
+
+								@media (min-width: 768px){
+									padding-inline-start: 40px;
+								}
+
 								&--item{
 								}
 							}
@@ -304,9 +407,13 @@
 				p{
 					color: $quotation-titles;
 					font-weight: 800;
-					font-size: 0.9rem;
+					font-size: 0.82rem;
 					margin-bottom: 0;
 					padding: 0.35rem 0;
+
+					@media (min-width: 768px){
+						font-size: 0.9rem;
+					}
 				}
 			}
 
@@ -377,15 +484,36 @@
 
   				&--m{
   					display: flex;
-  					align-items: flex-start;
+  					align-items: center;
   					flex: 0 0 100%;
+  					flex-flow: wrap column;
+
+  					@media (min-width: 768px) {
+  						align-items: flex-start;
+  						flex-flow: wrap row;
+  					}
+
   					&--item{
-							border-left: thin solid #fff;
+  						border: unset;
   						flex: 15%;
   						padding: 0.5rem;
+
+  						@media (min-width: 768px) {
+								border-left: thin solid #fff;
+	  					}
+
 							&:first-child{
 								flex: 50%;
-								border: unset;			
+								border: unset;
+								display: block;
+						    width: 100%;
+						    border-bottom: thin solid #fff;
+
+								@media (min-width: 768px){
+									display: inline-block;
+									width: auto;
+									border: unset;
+								}			
 							}
 
 							h3,
@@ -394,8 +522,12 @@
 							}
 
 							h3{
-						    font-size: 1.5rem;
+						    font-size: 1.1rem;
 						    font-weight: 600;
+
+						    @media (min-width: 768px){
+						    	font-size: 1.5rem;
+						    }
 							}
 
 							p{
@@ -484,9 +616,15 @@
 		    display: flex;
 		    align-items: center;
 		    justify-content: center;
-		    max-width: 350px;
+		    max-width: 290px;
 		    width: 95%;
 		    margin: 0.5rem 0;
+		    font-size: 0.78rem;
+
+		    @media (min-width: 768px){
+		    	font-size: 1rem;
+			    max-width: 350px;
+		    }
 
 		    &:hover{
 		    	opacity: 0.6;
