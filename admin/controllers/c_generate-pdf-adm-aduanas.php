@@ -75,7 +75,7 @@ $name_quotation = "Presupuesto-".$_POST['code_quote']."-".$f_typecontainer;
 	    <div id="marc_dat2">
 	    	<div id="marc_dat11_izq">
 	    		<div class="item_marc2_dat1">Telefono</div>
-	      	<div class="item_marc2_dat1">P. Arancela</div>
+	      	<div class="item_marc2_dat1">T. Cambio</div>
 	    	</div>
 	    	<div id="marc_dat2_cent">
 		      <div class="item_dpt1_dat1">:</div>

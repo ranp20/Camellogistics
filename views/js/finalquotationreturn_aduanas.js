@@ -355,7 +355,7 @@ $(document).ready(function(){
 					formdata.append("u_cont", localStorage.getItem("key_v-nametypeproduct"));
 					formdata.append("f_origen", localStorage.getItem("port_OName"));
 					formdata.append("f_weight_v", "No especificado");
-					formdata.append("f_time_trans", localStorage.getItem("key_v-valttaproxbycontain"));
+					formdata.append("f_time_transit", localStorage.getItem("key_v-valttaproxbycontain"));
 					formdata.append("f_fob", totalfinalvaluefob);
 					formdata.append("f_flete", totflete);
 					formdata.append("f_insurance", totalinsurance);
@@ -486,7 +486,7 @@ $(document).ready(function(){
 					formdata.append("u_cont", localStorage.getItem("key_v-nametypeproduct"));
 					formdata.append("f_origen", localStorage.getItem("port_OName"));
 					formdata.append("f_weight_v", "No especificado");
-					formdata.append("f_time_trans", localStorage.getItem("key_v-valttaproxbycontain"));
+					formdata.append("f_time_transit", localStorage.getItem("key_v-valttaproxbycontain"));
 					formdata.append("f_fob", totalfinalvaluefob);
 					formdata.append("f_flete", totflete);
 					formdata.append("f_insurance", totalinsurance);
