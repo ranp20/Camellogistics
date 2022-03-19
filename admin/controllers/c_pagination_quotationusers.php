@@ -15,6 +15,7 @@ class Pagination_quotationusers extends Connection{
 		}else{
 			$search = addslashes($que);
 			$where = " WHERE u_login LIKE '%$search%' OR
+											 f_type_container LIKE '%$search%' OR
 											 u_n_document LIKE '%$search%' ";
 			$sql = "SELECT * FROM tbl_quotation_user $where ORDER BY id DESC LIMIT $inicio, $cant_por_pagina";
 		}
