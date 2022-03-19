@@ -66,10 +66,11 @@ const sectionsSteps = new fullpage('#fullpage', {
   //lockAnchors: true,
   loopTop: false,
   loopBottom: false,
-  
+  scrollBar: false,
   responsiveWidth: 0,
   responsiveHeight: 0,
   responsiveSlides: false,
+  scrollOverflow: false
 });
 // =============== OCULTAR LOS DEMÁS PASOS ================= //
 function hiddenAllNextSteps(){
