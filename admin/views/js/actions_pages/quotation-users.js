@@ -1,5 +1,7 @@
+$(() => {
+  scannear_botones(); //carga la pagina y le digo que sea operativo el funcionamiento de los links...
+});
 var nombre = '';
-scannear_botones(); //carga la pagina y le digo que sea operativo el funcionamiento de los links...
 /************************** CAPTURAR LOS VALORES DEL INPUT DE ENTRADA **************************/
 var inputsearch = document.querySelector("#search_quotationusers");
 inputsearch.addEventListener('keyup', function(e){
