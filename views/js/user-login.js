@@ -227,6 +227,28 @@ $(document).on("submit", "#c-formLoginU_Camel", function(e) {
         }, 1000);
         $("#cnt-modalFormSessLoginorRegister").removeClass("show");
         $('#c-formLoginU_Camel')[0].reset();
+      } else if (e.response == "error_email") {
+        /************************** AGREGAR AL CONTROL DE VALIDACIÓN **************************/
+        $("#s_useregin-sistem").val("");
+        /************************** MOSTRAR EL MENSAJE DE ALERTA PERSONALIZADO **************************/
+        $("#s-mssgloadSendAction").html(`
+		      <div class="c-mssgloadSendAction--contalert">
+						<div class="c-mssgloadSendAction--contalert--c">
+							<span class="c-mssgloadSendAction--contalert--c--close" id="btncloseModalLorR"></span>
+							<div class="c-mssgloadSendAction--contalert--c--cmssg">
+								<h1 class="c-mssgloadSendAction--contalert--c--cmssg--title">Email Inválido</h1>
+								<p class="c-mssgloadSendAction--contalert--c--cmssg--desc">El correo electrónico ingresado no es válido.</p>
+							</div>
+						</div>
+					</div>
+		    `)
+        /************************** CERRAR EL MODAL **************************/
+        setTimeout(function() {
+          $("#s-mssgloadSendAction .c-mssgloadSendAction--contalert").remove();
+        }, 6500);
+        $("#btncloseModalLorR").on("click", function() {
+          $(this).parent().parent().remove();
+        });
       } else {
         /************************** AGREGAR AL CONTROL DE VALIDACIÓN **************************/
         $("#s_useregin-sistem").val("");
