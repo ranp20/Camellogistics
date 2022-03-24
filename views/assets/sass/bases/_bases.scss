@@ -572,5 +572,5 @@ img{
 }
 /* NOTIFICACIÓN - MENSAJES AL USUARIO */
 #notiMsgAlertCli{
-	@include notifiMsg-client(transparent, #fff, $primary-color);
+	@include notifiMsg-client(rgba(0,0,0,.2), #fff, $primary-color);
 }
