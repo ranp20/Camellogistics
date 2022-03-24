@@ -161,22 +161,26 @@
 	}
 }
 
-@mixin notifiMsg-client($background-cont, $background-notify, $border-notify){
+@mixin notifiMsg-client($backdrop-cont, $background-notify, $border-notify){
 	&{
 		position: fixed;
-		width: auto;
-	  min-height: auto;
-	  height: auto;
-	  background-color: $background-cont;
-	  display: flex;
-	  flex-direction: column;
-	  justify-content: center;
-	  align-items: center;
-	  z-index: 9999999999;
-	  top: 0;
-	  left: 0;
-	  margin-top: 1rem;
-	  margin-left: 1rem;
+    width: 100%;
+    min-height: 100vh;
+    height: 100%;
+    background-color: $backdrop-cont;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: flex-end;
+    z-index: 9999999999;
+    top: 0;
+    right: 0;
+    left: auto;
+    padding: .65rem;
+
+    @media (min-width: 768px){
+    	padding: 1rem;
+    }
 
 	  &.hidden{
 	  	display: none;
@@ -188,14 +192,38 @@
 	  .c_notifyMsg{
 	    border-radius: 0 0 .45rem .45rem;
     	text-align: left;
-	    padding: 21px 0;
+	    padding: .8rem 0;
 	    background-color: $background-notify;
-	    max-width: 500px;
+	    max-width: 390px;
+	    width: 100%;
 	    top: 0px;
 	    position: relative;
 	    box-shadow: 1px 7px 14px -5px rgba(0,0,0,0.2);
 	    font-family: 'Raleway', sans-serif;
 	    border: thin solid #eeee;
+	    transition: ease-in-out .3s;
+    	transform: translateX(150%);
+    	animation-name: moveToRightMobile;
+    	animation-duration: .2s;
+    	animation-timing-function: ease-in-out;
+    	animation-fill-mode: forwards;
+
+    	@keyframes moveToRightMobile{
+    		0%{
+    			transform: translateX(150%);
+    		}
+    		100%{
+    			transform: translateX(0%);
+    		}
+    	}
+
+	    @media (min-width: 768px){
+	    	max-width: 500px;
+	    	padding: 21px 0;
+	    	margin-top: initial;
+    		margin-left: auto;
+    		margin-right: .25rem;
+	    }
 
   		&:before{
 	    	content: '';
@@ -255,13 +283,18 @@
     	}
 
     	&__message{
-    		font-size: 14px;
+    		font-size: .86rem;
 		    margin-top: 0;
 		  	margin-bottom: 0;
 		    color: #878787;
+
+		    @media (min-width: 768px){
+		    	font-size: 14px;
+		    }
     	}
 
     	&__close{
+		    display: table;
     		position: absolute;
 		    right: 22px;
 		    top: 50%;
