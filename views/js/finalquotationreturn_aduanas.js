@@ -139,15 +139,6 @@ $(document).ready(function(){
   var totalfinalvaluefob = parseFloat(twodecimals(cutewithoutofpricefob)); //TOTAL DE VALOR FOB
   var totalfinalvaluedownload = parseFloat(twodecimals(receiveddownload)); //TOTAL DE VALOR DE DESCARGA
 
-  /*
-  console.log(totflete);
-  console.log(totalamountadditional);
-  console.log(totaltransport);
-  console.log(totalinsurance);
-  console.log(totalvaluesquotation);
-  console.log(totalfinalvaluedownload);
- 	*/
-
 	// LLAMAR A LOS VALORES DE SEGURO, METER LOS VALORES DENTRO DEL AJAX DE TAXATION O CREAR VARIABLES GLOBALES Y USARLAS
 	$.ajax({
     url: "controllers/list_insurancevalues.php",

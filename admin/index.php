@@ -14,7 +14,7 @@
 	<?php require_once 'views/includes/adm-header-index.php'; ?>
 	<title>Login - CamelLogistics</title>
 </head>
-<body>
+<body class="c_body-loginAdm">
 	<div id="cMessage-user"></div>
 	<main class="c-LoginAdm">
 		<div class="c-LoginAdm--cLoginF box-small">

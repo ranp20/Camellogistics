@@ -3,7 +3,7 @@ require_once '../../models/db/connection.php';
 class List_byIdAdmin extends Connection{
 	function list($email){
 		try{
-			$sql = "SELECT * FROM tbl_admin WHERE email = :email";
+			$sql = "SELECT * FROM tbl_admin WHERE email = :email LIMIT 1";
 			$stm = $this->con->prepare($sql);
 			$stm->bindValue(":email", $email);
 			$stm->execute();

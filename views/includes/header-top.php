@@ -12,7 +12,7 @@
   <div class="c-Htopbar--c">
     <div class="c-Htopbar--c--cLogo">
       <a href="./">
-        <img src="<?= $url ?>assets/img/logos/logotipo-camel.png" alt="logo_camel">
+        <img src="<?= $url ?>assets/img/logos/logotipo-camel.png" alt="logo_camel" width="100" height="100" decoding="async">
         <span>
           <span>
             <span>
