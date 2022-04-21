@@ -170,8 +170,8 @@ $(document).on("submit", "#c-formLoginU_Camel", function(e) {
   if ($("#u-username").val() != 0 && $("#u-username").val() != "" && $("#u-password").val() != 0 && $("#u-password").val() != "") {
     var form = $(this).serializeArray();
     $.ajax({
-      url: 'controllers/prcss_login-user.php',
-      method: 'POST',
+      url: "controllers/prcss_login-user.php",
+      method: "POST",
       dataType: 'JSON',
       contentType: 'application/x-www-form-urlencoded;charset=UTF-8',
       data: form
