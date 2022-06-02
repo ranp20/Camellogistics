@@ -1,8 +1,8 @@
-// ------------ ABRIR EL MODAL DE LOGIN/REGISTER ------------ //
+// ------------ ABRIR EL MODAL DE LOGIN/REGISTER 
 $(document).on("click", "#s-formLoginOrRegister", function(){
   $("#cnt-modalFormSessLoginorRegister").add($(".cnt-modalFormSessLoginorRegister--c")).addClass("show");
 });
-// ------------ CERRAR EL MODAL DE LOGIN/REGISTER ------------ //
+// ------------ CERRAR EL MODAL DE LOGIN/REGISTER 
 $(document).on("click", "#btn-closeiconFormLoginorRegister", function() {
   $("#cnt-modalFormSessLoginorRegister").removeClass("show");
   $("#c-formLoginorRegisterU").html(`
@@ -69,7 +69,7 @@ containerMLoginorRegister.addEventListener("click", e => {
 		</form>`);
   }
 });
-// ------------ VALIDAR LOS CAMPOS DE TEXTO ------------ //
+// ------------ VALIDAR LOS CAMPOS DE TEXTO 
 $(document).on("input keyup", "#u-username", function(e){
   if(e.target.value != ""){
     $("#mssg_alertcontrol_usr").text("");
@@ -110,7 +110,7 @@ $(document).on("input keyup", "#u-passwordtwo", function(e){
 $(document).on("blur", "#u-passwordtwo", function(){
   $("#mssg_alertcontrol_passrepeat").text("");
 });
-// ------------ CAMBIAR LOS BOTONES SEGÚN SEA LA OCASIÓN ------------ //
+// ------------ CAMBIAR LOS BOTONES SEGÚN SEA LA OCASIÓN 
 $(document).on("click", "#btn-ChangeR", function(){
   $("#c-formLoginorRegisterU").html(`
 		<form method="POST" class="cnt-modalFormSessLoginorRegister--c--cForm" id="c-formRegisterU_Camel">
@@ -156,7 +156,7 @@ $(document).on("click", "#btn-ChangeIS", function(){
 			</div>
 		</form>`);
 });
-// ------------ INICIO DE SESIÓN DEL USUARIO ------------ //
+// ------------ INICIO DE SESIÓN DEL USUARIO 
 $(document).on("submit", "#c-formLoginU_Camel", function(e){
   e.preventDefault();
   ($("#u-username").val() != 0 && $("#u-username").val() != "") ? $("#mssg_alertcontrol_usr").text(""): $("#mssg_alertcontrol_usr").text("Debes ingresar un usuario");
@@ -173,9 +173,9 @@ $(document).on("submit", "#c-formLoginU_Camel", function(e){
       console.log(e);
       if(e.response == "true"){
         console.log('Usuario correcto');
-        // ------------ AGREGAR AL CONTROL DE VALIDACIÓN ------------ //
+        // ------------ AGREGAR AL CONTROL DE VALIDACIÓN 
         $("#s_useregin-sistem").val(e.received.username);
-        // ------------ ASIGNAR A LA VARIABLE DE SESIÓN LOCAL ------------ //
+        // ------------ ASIGNAR A LA VARIABLE DE SESIÓN LOCAL 
         var sessstorage_loguser = {
           'username': e.received.username
         }
@@ -207,21 +207,21 @@ $(document).on("submit", "#c-formLoginU_Camel", function(e){
             </a>
           </li>
         </ul>`);
-        // ------------ MOSTRAR EL LOADER PERSONALIZADO ------------ //
+        // ------------ MOSTRAR EL LOADER PERSONALIZADO 
         $("#s-mssgloadSendAction").html(`
           <div class="c-mssgloadSendAction--cloader">
 						<span class="c-mssgloadSendAction--cloader--loader"></span>
 					</div>`);
-        // ------------ QUITAR EL LOADER ------------ //
+        // ------------ QUITAR EL LOADER 
         setTimeout(function(){
           $("#s-mssgloadSendAction .c-mssgloadSendAction--cloader").remove();
         }, 1000);
         $("#cnt-modalFormSessLoginorRegister").removeClass("show");
         $('#c-formLoginU_Camel')[0].reset();
       }else if(e.response == "error_email"){
-        // ------------ AGREGAR AL CONTROL DE VALIDACIÓN ------------ //
+        // ------------ AGREGAR AL CONTROL DE VALIDACIÓN 
         $("#s_useregin-sistem").val("");
-        // ------------ MOSTRAR EL MENSAJE DE ALERTA PERSONALIZADO ------------ //
+        // ------------ MOSTRAR EL MENSAJE DE ALERTA PERSONALIZADO 
         $("#s-mssgloadSendAction").html(`
 	      <div class="c-mssgloadSendAction--contalert">
 					<div class="c-mssgloadSendAction--contalert--c">
@@ -232,7 +232,7 @@ $(document).on("submit", "#c-formLoginU_Camel", function(e){
 						</div>
 					</div>
 				</div>`);
-        // ------------ CERRAR EL MODAL ------------ //
+        // ------------ CERRAR EL MODAL 
         setTimeout(function(){
           $("#s-mssgloadSendAction .c-mssgloadSendAction--contalert").remove();
         }, 6500);
@@ -240,9 +240,9 @@ $(document).on("submit", "#c-formLoginU_Camel", function(e){
           $(this).parent().parent().remove();
         });
       }else{
-        // ------------ AGREGAR AL CONTROL DE VALIDACIÓN ------------ //
+        // ------------ AGREGAR AL CONTROL DE VALIDACIÓN 
         $("#s_useregin-sistem").val("");
-        // ------------ MOSTRAR EL MENSAJE DE ALERTA PERSONALIZADO ------------ //
+        // ------------ MOSTRAR EL MENSAJE DE ALERTA PERSONALIZADO 
         $("#s-mssgloadSendAction").html(`
 	      <div class="c-mssgloadSendAction--contalert">
 					<div class="c-mssgloadSendAction--contalert--c">
@@ -253,7 +253,7 @@ $(document).on("submit", "#c-formLoginU_Camel", function(e){
 						</div>
 					</div>
 				</div>`);
-        // ------------ CERRAR EL MODAL ------------ //
+        // ------------ CERRAR EL MODAL 
         setTimeout(function(){
           $("#s-mssgloadSendAction .c-mssgloadSendAction--contalert").remove();
         }, 6500);
@@ -263,7 +263,7 @@ $(document).on("submit", "#c-formLoginU_Camel", function(e){
       }
     });
   } else {
-    // ------------ MOSTRAR EL MENSAJE DE ALERTA PERSONALIZADO ------------ //
+    // ------------ MOSTRAR EL MENSAJE DE ALERTA PERSONALIZADO 
     $("#s-mssgloadSendAction").html(`
       <div class="c-mssgloadSendAction--contalert">
 				<div class="c-mssgloadSendAction--contalert--c">
@@ -274,7 +274,7 @@ $(document).on("submit", "#c-formLoginU_Camel", function(e){
 					</div>
 				</div>
 			</div>`);
-    // ------------ CERRAR EL MODAL ------------ //
+    // ------------ CERRAR EL MODAL 
     setTimeout(function(){
       $("#s-mssgloadSendAction .c-mssgloadSendAction--contalert").remove();
     }, 6500);
@@ -283,7 +283,7 @@ $(document).on("submit", "#c-formLoginU_Camel", function(e){
     });
   }
 });
-// ------------ REGISTRO DEL USUARIO ------------ //
+// ------------ REGISTRO DEL USUARIO 
 $(document).on("submit", "#c-formRegisterU_Camel", function(e){
   e.preventDefault();
   ($("#u-username").val() != 0 && $("#u-username").val() != "") ? $("#mssg_alertcontrol_usr").text(""): $("#mssg_alertcontrol_usr").text("Debes ingresar un usuario");
@@ -299,9 +299,9 @@ $(document).on("submit", "#c-formRegisterU_Camel", function(e){
       data: form
     }).done((e) => {
       if(e.response == "true"){
-        // ------------ AGREGAR AL CONTROL DE VALIDACIÓN ------------ //
+        // ------------ AGREGAR AL CONTROL DE VALIDACIÓN 
         $("#s_useregin-sistem").val(e.received.username);
-        // ------------ ASIGNAR A LA VARIABLE DE SESIÓN LOCAL ------------ //
+        // ------------ ASIGNAR A LA VARIABLE DE SESIÓN LOCAL 
         var sessstorage_loguser = {
           'username': e.received.username
         }
@@ -333,21 +333,21 @@ $(document).on("submit", "#c-formRegisterU_Camel", function(e){
             </a>
           </li>
         </ul>`);
-        // ------------ MOSTRAR EL LOADER PERSONALIZADO ------------ //
+        // ------------ MOSTRAR EL LOADER PERSONALIZADO 
         $("#s-mssgloadSendAction").html(`
         <div class="c-mssgloadSendAction--cloader">
 					<span class="c-mssgloadSendAction--cloader--loader"></span>
 				</div>`);
-        // ------------ QUITAR EL LOADER ------------ //
+        // ------------ QUITAR EL LOADER 
         setTimeout(function(){
           $("#s-mssgloadSendAction .c-mssgloadSendAction--cloader").remove();
         }, 1000);
         $("#cnt-modalFormSessLoginorRegister").removeClass("show");
         $('#c-formRegisterU_Camel')[0].reset();
       }else if(e.response == "equals"){
-        // ------------ AGREGAR AL CONTROL DE VALIDACIÓN ------------ //
+        // ------------ AGREGAR AL CONTROL DE VALIDACIÓN 
         $("#s_useregin-sistem").val("");
-        // ------------ MOSTRAR EL MENSAJE DE ALERTA PERSONALIZADO ------------ //
+        // ------------ MOSTRAR EL MENSAJE DE ALERTA PERSONALIZADO 
         $("#s-mssgloadSendAction").html(`
         <div class="c-mssgloadSendAction--contalert">
 					<div class="c-mssgloadSendAction--contalert--c">
@@ -358,7 +358,7 @@ $(document).on("submit", "#c-formRegisterU_Camel", function(e){
 						</div>
 					</div>
 				</div>`);
-        // ------------ CERRAR EL MODAL ------------ //
+        // ------------ CERRAR EL MODAL 
         setTimeout(function(){
           $("#s-mssgloadSendAction .c-mssgloadSendAction--contalert").remove();
         }, 6500);
@@ -366,9 +366,9 @@ $(document).on("submit", "#c-formRegisterU_Camel", function(e){
           $(this).parent().parent().remove();
         });
       }else if(e.response == "errinsert"){
-        // ------------ AGREGAR AL CONTROL DE VALIDACIÓN ------------ //
+        // ------------ AGREGAR AL CONTROL DE VALIDACIÓN 
         $("#s_useregin-sistem").val("");
-        // ------------ MOSTRAR EL MENSAJE DE ALERTA PERSONALIZADO ------------ //
+        // ------------ MOSTRAR EL MENSAJE DE ALERTA PERSONALIZADO 
         $("#s-mssgloadSendAction").html(`
         <div class="c-mssgloadSendAction--contalert">
 					<div class="c-mssgloadSendAction--contalert--c">
@@ -379,7 +379,7 @@ $(document).on("submit", "#c-formRegisterU_Camel", function(e){
 						</div>
 					</div>
 				</div>`);
-        // ------------ CERRAR EL MODAL ------------ //
+        // ------------ CERRAR EL MODAL 
         setTimeout(function(){
           $("#s-mssgloadSendAction .c-mssgloadSendAction--contalert").remove();
         }, 6500);
@@ -387,9 +387,9 @@ $(document).on("submit", "#c-formRegisterU_Camel", function(e){
           $(this).parent().parent().remove();
         });
       }else if(e.response == "error_email"){
-        // ------------ AGREGAR AL CONTROL DE VALIDACIÓN ------------ //
+        // ------------ AGREGAR AL CONTROL DE VALIDACIÓN 
         $("#s_useregin-sistem").val("");
-        // ------------ MOSTRAR EL MENSAJE DE ALERTA PERSONALIZADO ------------ //
+        // ------------ MOSTRAR EL MENSAJE DE ALERTA PERSONALIZADO 
         $("#s-mssgloadSendAction").html(`
         <div class="c-mssgloadSendAction--contalert">
 					<div class="c-mssgloadSendAction--contalert--c">
@@ -400,7 +400,7 @@ $(document).on("submit", "#c-formRegisterU_Camel", function(e){
 						</div>
 					</div>
 				</div>`);
-        // ------------ CERRAR EL MODAL ------------ //
+        // ------------ CERRAR EL MODAL 
         setTimeout(function(){
           $("#s-mssgloadSendAction .c-mssgloadSendAction--contalert").remove();
         }, 6500);
@@ -408,9 +408,9 @@ $(document).on("submit", "#c-formRegisterU_Camel", function(e){
           $(this).parent().parent().remove();
         });
       } else if (e.response == "error_pass") {
-        // ------------ AGREGAR AL CONTROL DE VALIDACIÓN ------------ //
+        // ------------ AGREGAR AL CONTROL DE VALIDACIÓN 
         $("#s_useregin-sistem").val("");
-        // ------------ MOSTRAR EL MENSAJE DE ALERTA PERSONALIZADO ------------ //
+        // ------------ MOSTRAR EL MENSAJE DE ALERTA PERSONALIZADO 
         $("#s-mssgloadSendAction").html(`
         <div class="c-mssgloadSendAction--contalert">
 					<div class="c-mssgloadSendAction--contalert--c">
@@ -421,7 +421,7 @@ $(document).on("submit", "#c-formRegisterU_Camel", function(e){
 						</div>
 					</div>
 				</div>`);
-        // ------------ CERRAR EL MODAL ------------ //
+        // ------------ CERRAR EL MODAL 
         setTimeout(function(){
           $("#s-mssgloadSendAction .c-mssgloadSendAction--contalert").remove();
         }, 6500);
@@ -429,9 +429,9 @@ $(document).on("submit", "#c-formRegisterU_Camel", function(e){
           $(this).parent().parent().remove();
         });
       }else{
-        // ------------ AGREGAR AL CONTROL DE VALIDACIÓN ------------ //
+        // ------------ AGREGAR AL CONTROL DE VALIDACIÓN 
         $("#s_useregin-sistem").val("");
-        // ------------ MOSTRAR EL MENSAJE DE ALERTA PERSONALIZADO ------------ //
+        // ------------ MOSTRAR EL MENSAJE DE ALERTA PERSONALIZADO 
         $("#s-mssgloadSendAction").html(`
           <div class="c-mssgloadSendAction--contalert">
 						<div class="c-mssgloadSendAction--contalert--c">
@@ -442,7 +442,7 @@ $(document).on("submit", "#c-formRegisterU_Camel", function(e){
 							</div>
 						</div>
 					</div>`);
-        // ------------ CERRAR EL MODAL ------------ //
+        // ------------ CERRAR EL MODAL 
         setTimeout(function(){
           $("#s-mssgloadSendAction .c-mssgloadSendAction--contalert").remove();
         }, 6500);
@@ -452,7 +452,7 @@ $(document).on("submit", "#c-formRegisterU_Camel", function(e){
       }
     });
   }else{
-    // ------------ MOSTRAR EL MENSAJE DE ALERTA PERSONALIZADO ------------ //
+    // ------------ MOSTRAR EL MENSAJE DE ALERTA PERSONALIZADO 
     $("#s-mssgloadSendAction").html(`
     <div class="c-mssgloadSendAction--contalert">
 			<div class="c-mssgloadSendAction--contalert--c">
@@ -463,7 +463,7 @@ $(document).on("submit", "#c-formRegisterU_Camel", function(e){
 				</div>
 			</div>
 		</div>`);
-    // ------------ CERRAR EL MODAL ------------ //
+    // ------------ CERRAR EL MODAL 
     setTimeout(function(){
       $("#s-mssgloadSendAction .c-mssgloadSendAction--contalert").remove();
     }, 6500);

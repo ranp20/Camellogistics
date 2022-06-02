@@ -14,6 +14,7 @@
     <a class="h-heroImage-init--c--btngoToServices" href="#services">Tell Me More</a>
   </div>
 </header>
+<!-- 
 <section class="page-section" id="services">
   <div class="container">
     <div class="text-center">
@@ -115,3 +116,4 @@
     </ul>
   </div>
 </section>
+ -->

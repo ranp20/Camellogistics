@@ -36,7 +36,7 @@
         </span>
       </a>
     </div>
-    <button class="c-Htopbar--c--btnMobileNavbar" id="btn-m-mobile-header" type="button">
+    <button type="button" class="c-Htopbar--c--btnMobileNavbar" id="btn-m-mobile-header" title="Menu">
       <span></span>
       <span></span>
       <span></span>

@@ -3,9 +3,9 @@ $(function(){
 	list_puertoOriginLCL(); // LISTAR LOS PUERTOS DE ORIGEN LCL
   list_puertoDestinyLCL(); // LISTAR LOS PUERTOS DE DESTINO LCL
 });
-/************************** CAMBIAR DE CONTROLES SEGÚN LA OPCIÓN SELECCIONADA **************************/
+// ------------ CAMBIAR DE CONTROLES SEGÚN LA OPCIÓN SELECCIONADA 
 function changesTabsOperation(){
-  /************************** VARIABLES LOCALSTORAGE **************************/
+  // ------------ VARIABLES LOCALSTORAGE 
   //#1. SELECCIONAR EL TIPO DE SERVICIO + PAGES...
   var selService = localStorage.setItem("key_v-type_service", ""); //TIPO DE SERVICIO...
   //#2. CREAR LOS VALORES DE CÁLCULO...
@@ -41,7 +41,7 @@ function changesTabsOperation(){
   var key_valvaluestaxThreebyigv = localStorage.setItem("key_v-valuestaxThreebyigv", 0); //VALOR DE ANTIDUMPING
   var key_valbytotaldownload = localStorage.setItem("key_v-valbytotaldownload", 0); //VALOR DE DESCARGA
 
-  /************************** VARIABLES SESSIONSTORAGE **************************/
+  // ------------ VARIABLES SESSIONSTORAGE 
   var sess_usercli = sessionStorage.setItem("sess_usercli", 0); //SESSION DE VARIABLE LOCAL PARA EL USUARIO
   var sess_valuser = sessionStorage.setItem("sess_valuser", 0); //VALOR DEL TIPO DE USUARIO: 0 = NINGUNO Y 1 = INVITADO O REGISTRADO
   var sessval_loginuser = "";
@@ -163,7 +163,7 @@ function changesTabsOperation(){
     }
 	});
 }
-/************************** MOSTRAR EL LISTADO DE PAÍSES O PUERTOS - ORIGEN **************************/
+// ------------ MOSTRAR EL LISTADO DE PAÍSES O PUERTOS - ORIGEN 
 function list_puertoOriginLCL(searchVal){ 
   $.ajax({
     url: "controllers/list_puertoOriginLCL.php",
@@ -201,33 +201,33 @@ function list_puertoOriginLCL(searchVal){
     }
   });
 }
-/************************** BUSQUEDA EN TIEMPO REAL DE PUERTO DE ORIGIN - LCL **************************/
+// ------------ BUSQUEDA EN TIEMPO REAL DE PUERTO DE ORIGIN - LCL 
 $(document).on("keyup", "#ipt-valNamePortOrigin", function(){ 
   $("#list-itemsNamePortsOrigin").addClass("show");
   var searchVal = $(this).val();
   (searchVal != "") ? list_puertoOriginLCL(searchVal) : list_puertoOriginLCL();
 });
-/************************** FIJAR EL VALOR DEL PUERTO EN EL INPUT **************************/
+// ------------ FIJAR EL VALOR DEL PUERTO EN EL INPUT 
 $(document).on("click", "#list-itemsNamePortsOrigin .cont-MainCamelLog--c--cOptionsMarket--f--cont--cTabsItem--item--cControl--control--cGroupIptsIcon--cInput--m--item", function(){ 
   $("#list-itemsNamePortsOrigin").removeClass("show");
   $("#ipt-valNamePortOrigin").attr("id-puertoorigin", $(this).attr("id"));
   $("#ipt-valNamePortOrigin").attr("id-paispuertoorigin", $(this).attr("idpaisattr"));
   $("#ipt-valNamePortOrigin").val($(this).find("span:nth-child(2)").text());
-  /************************** GUARDAR PARA ENVIAR POR POST **************************/
+  // ------------ GUARDAR PARA ENVIAR POR POST 
   $("#v_iptportoriginpost").val($(this).attr("id"));
   $("#v_iptcountryportoriginpost").val($(this).attr("idpaisattr"));
-  /************************** GUARDAR INFO. EN LOCALSTORAGE **************************/
+  // ------------ GUARDAR INFO. EN LOCALSTORAGE 
   localStorage.setItem("port_OId", $(this).attr("id"));
   localStorage.setItem("port_OName", $(this).find("span:nth-child(2)").text());
 });
-/************************** VARIABLE DE PAÍS DE ORIGEN **************************/
+// ------------ VARIABLE DE PAÍS DE ORIGEN 
 var idCountryOrigin = 0;
-/************************** OBTENER EL VALOR DEL ID DE ORIGEN **************************/
+// ------------ OBTENER EL VALOR DEL ID DE ORIGEN 
 $(document).on("click", "#list-itemsNamePortsOrigin .cont-MainCamelLog--c--cOptionsMarket--f--cont--cTabsItem--item--cControl--control--cGroupIptsIcon--cInput--m--item", function(){
   idCountryOrigin = $(this).attr("idpaisattr");
   return idCountryOrigin;
 });
-/************************** MOSTRAR EL LISTADO DE PAÍSES O PUERTOS - ORIGEN **************************/
+// ------------ MOSTRAR EL LISTADO DE PAÍSES O PUERTOS - ORIGEN 
 function list_puertoDestinyLCL(searchVal){ 
   $.ajax({
     url: "controllers/list_puertoDestinyLCL.php",
@@ -269,23 +269,23 @@ function list_puertoDestinyLCL(searchVal){
     }
   });
 }
-/************************** BUSQUEDA EN TIEMPO REAL DE PUERTO DE DESTINO - LCL **************************/
+// ------------ BUSQUEDA EN TIEMPO REAL DE PUERTO DE DESTINO - LCL 
 $(document).on("keyup", "#ipt-valNamePortDestiny", function(){  
   $("#list-itemsNamePortsDestiny").addClass("show");
   var searchVal = $(this).val();
   (searchVal != "") ? list_puertoDestinyLCL(searchVal) : list_puertoDestinyLCL();
 
 });
-/************************** FIJAR EL VALOR DEL PUERTO EN EL INPUT **************************/
+// ------------ FIJAR EL VALOR DEL PUERTO EN EL INPUT 
 $(document).on("click", "#list-itemsNamePortsDestiny .cont-MainCamelLog--c--cOptionsMarket--f--cont--cTabsItem--item--cControl--control--cGroupIptsIcon--cInput--m--item", function(){ 
   $("#list-itemsNamePortsDestiny").removeClass("show");
   $("#ipt-valNamePortDestiny").attr("id-puertodestiny", $(this).attr("id"));
   $("#ipt-valNamePortDestiny").attr("id-paispuertodestiny", $(this).attr("idpaisattr"));
   $("#ipt-valNamePortDestiny").val($(this).find("span:nth-child(2)").text());
-  /************************** GUARDAR PARA ENVIAR POR POST **************************/
+  // ------------ GUARDAR PARA ENVIAR POR POST 
   $("#v_iptportdestinypost").val($(this).attr("id"));
   $("#v_iptcountryportdestinypost").val($(this).attr("idpaisattr"));
-  /************************** GUARDAR INFO. EN LOCALSTORAGE **************************/
+  // ------------ GUARDAR INFO. EN LOCALSTORAGE 
   localStorage.setItem("port_DId", $(this).attr("id"));
   localStorage.setItem("port_DName", $(this).find("span:nth-child(2)").text());
 });

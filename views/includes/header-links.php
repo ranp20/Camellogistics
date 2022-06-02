@@ -21,8 +21,21 @@
 <meta property="og:title" name="twitter.title" content="Calculadora de Envíos | Camel Logistics"/>
 <meta property="og:description" name="twitter.description" content="¡Calcula el costo de tu importación en 4 simples pasos!"/>
 <meta property="og:image" name="twitter.image" content="<?= $url; ?>assets/img/logos/logotipo-camel.png"/>
-<link rel="icon" type="image/x-icon" href="views/img/favicon-camel.png"/>
-<link rel="stylesheet" href="<?= $url; ?>css/styles.css">
+<link rel="icon" type="image/x-icon" href="views/assets/img/favicon/favicon-camel.png"/>
+<!-- JQUERY COMPRESSED -->
+<script type="text/javascript" src="<?= $url; ?>js/plugins/jquery/jquery-3.6.0.min.js"></script>
+<!-- BOOSTRAP DOWNLOADED -->
+<link rel="stylesheet" href="<?= $url ?>js/plugins/bootstrap/css/bootstrap.min.css">
+<script type="text/javascript" src="<?= $url ?>js/plugins/bootstrap/js/bootstrap.min.js"></script>
+<!-- STYLESSHEET -->
 <link rel="stylesheet" href="<?= $url; ?>assets/css/styles.min.css">
-<link rel="stylesheet" href="<?= $url; ?>css/camel.css">
-<script type="text/javascript" src="<?= $url; ?>js/jquery-3.6.0.min.js"></script>
+<!-- 
+<link rel="stylesheet" href="./css/styles.css">
+<link rel="stylesheet" href="./css/camel.css">
+ -->
+<!-- GOOGLE FONTS -->
+<!--
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;700&display=swap" rel="stylesheet">
+-->

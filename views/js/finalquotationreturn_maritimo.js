@@ -1,27 +1,27 @@
-/************************** DEJAR EN 2 DECIMALES POR DEFECTO **************************/
+// ------------ DEJAR EN 2 DECIMALES POR DEFECTO 
 function myRound(num, dec){
   var exp = Math.pow(10, dec || 2); // 2 decimales por defecto
   return parseInt(num * exp, 10) / exp;
 }
-/************************** FUNCIÓN - LIMITAR A DOS DECIMALES SIN REDONDEO **************************/
+// ------------ FUNCIÓN - LIMITAR A DOS DECIMALES SIN REDONDEO 
 function twodecimals(n){
   let t = n.toString();
   let regex = /(\d*.\d{0,2})/;
   return t.match(regex)[0];
 }
-/************************** RETORNAR - PRIMERA LETRA EN MAYÚSCULA **************************/
+// ------------ RETORNAR - PRIMERA LETRA EN MAYÚSCULA 
 function firstToUppercase(e) {
   return e.charAt(0).toUpperCase() + e.slice(1);
 }
 $(document).ready(function(){
-	/************************** VALIDAR SI EXISTE UN USUARIO, DE LO CONTRARIO ASIGNAR EL USUARIO POR DEFECTO **************************/
+	// ------------ VALIDAR SI EXISTE UN USUARIO, DE LO CONTRARIO ASIGNAR EL USUARIO POR DEFECTO 
 	if($("#s_useregin-sistem").val() == "" || $("#s_useregin-sistem").val() == undefined || $("#s_useregin-sistem").val() == 'undefined' || $("#s_useregin-sistem").val() == null || $("#s_useregin-sistem").val() == 'null'){
 
 		sessval_loginuser = { username: 'Invitado' }
     sessionStorage.setItem("sess_usercli", JSON.stringify(sessval_loginuser));
     sessionStorage.setItem("sess_valuser", 0);
     var s_username_local = JSON.parse(sessionStorage.getItem("sess_usercli"));
-		/************************** ACTUALIZAR EL HEADER TOP **************************/
+		// ------------ ACTUALIZAR EL HEADER TOP 
 		$("#s-loginsessuser-active").html(`
 			<a href='javascript:void(0);' class='c-Htopbar--c--cMenu--m--link'>
 	      <span id='namUser_validSess' class='c-Htopbar--c--cMenu--m--link--sessUser'>${s_username_local.username}</span>
@@ -33,9 +33,8 @@ $(document).ready(function(){
 	        	<span>Cerrar sesión</span>
 	        </a>
 	      </li>
-	    </ul>
-		`);
-			
+	    </ul>`);
+
 		$.ajax({
 			url: 'controllers/prcss_login-user.php',
 			method: 'POST',
@@ -43,56 +42,53 @@ $(document).ready(function(){
 			contentType: 'application/x-www-form-urlencoded;charset=UTF-8',
 			data: { 'u-username' : s_username_local.username, 'u-typeorder' : sessionStorage.getItem("sess_valuser")}
 		}).done(function(e){
-			/************************** MOSTRAR EL NOMBRE/CORREO DEL USUARIO **************************/
+			// ------------ MOSTRAR EL NOMBRE/CORREO DEL USUARIO 
 			$("#s-loginsessuser-active").html(`
-				<a href='javascript:void(0);' class='c-Htopbar--c--cMenu--m--link'>
-          <span id='namUser_validSess' class='c-Htopbar--c--cMenu--m--link--sessUser'>${e.received.username}</span>
-        </a>
-        <ul class='c-Htopbar--c--cMenu--m--item--subm'>
-          <li class='c-Htopbar--c--cMenu--m--item--subm--subitem'>
-            <a href='logout' class='c-Htopbar--c--cMenu--m--item--subm--sublink'>
-            	<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#fff" viewBox="0 0 24 24"><path d="M8 9v-4l8 7-8 7v-4h-8v-6h8zm2-7v2h12v16h-12v2h14v-20h-14z"/></svg>
-      				<span>Cerrar sesión</span>
-            </a>
-          </li>
-        </ul>
-			`);
+			<a href='javascript:void(0);' class='c-Htopbar--c--cMenu--m--link'>
+        <span id='namUser_validSess' class='c-Htopbar--c--cMenu--m--link--sessUser'>${e.received.username}</span>
+      </a>
+      <ul class='c-Htopbar--c--cMenu--m--item--subm'>
+        <li class='c-Htopbar--c--cMenu--m--item--subm--subitem'>
+          <a href='logout' class='c-Htopbar--c--cMenu--m--item--subm--sublink'>
+          	<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#fff" viewBox="0 0 24 24"><path d="M8 9v-4l8 7-8 7v-4h-8v-6h8zm2-7v2h12v16h-12v2h14v-20h-14z"/></svg>
+    				<span>Cerrar sesión</span>
+          </a>
+        </li>
+      </ul>`);
 		});
-
 	}else{
 		sessval_loginuser = { username: $("#s_useregin-sistem").val() }
     sessionStorage.setItem("sess_usercli", JSON.stringify(sessval_loginuser));
     sessionStorage.setItem("sess_valuser", 1);
     var s_username_local = JSON.parse(sessionStorage.getItem("sess_usercli"));
-		/************************** ACTUALIZAR EL HEADER TOP **************************/
+		// ------------ ACTUALIZAR EL HEADER TOP 
 		$("#s-loginsessuser-active").html(`
-			<a href='javascript:void(0);' class='c-Htopbar--c--cMenu--m--link'>
-	      <span id='namUser_validSess' class='c-Htopbar--c--cMenu--m--link--sessUser'>${s_username_local.username}</span>
-	    </a>
-	    <ul class='c-Htopbar--c--cMenu--m--item--subm'>
-	      <li class='c-Htopbar--c--cMenu--m--item--subm--subitem'>
-	        <a href='logout' class='c-Htopbar--c--cMenu--m--item--subm--sublink'>
-	      		<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#fff" viewBox="0 0 24 24"><path d="M8 9v-4l8 7-8 7v-4h-8v-6h8zm2-7v2h12v16h-12v2h14v-20h-14z"/></svg>
-	        	<span>Cerrar sesión</span>
-	        </a>
-	      </li>
-	    </ul>
-		`);
+		<a href='javascript:void(0);' class='c-Htopbar--c--cMenu--m--link'>
+      <span id='namUser_validSess' class='c-Htopbar--c--cMenu--m--link--sessUser'>${s_username_local.username}</span>
+    </a>
+    <ul class='c-Htopbar--c--cMenu--m--item--subm'>
+      <li class='c-Htopbar--c--cMenu--m--item--subm--subitem'>
+        <a href='logout' class='c-Htopbar--c--cMenu--m--item--subm--sublink'>
+      		<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#fff" viewBox="0 0 24 24"><path d="M8 9v-4l8 7-8 7v-4h-8v-6h8zm2-7v2h12v16h-12v2h14v-20h-14z"/></svg>
+        	<span>Cerrar sesión</span>
+        </a>
+      </li>
+    </ul>`);
 	}
 
 	$("#btn-scrollingtTtB").on("click", function(){$("body, html").animate({scrollTop: '500'}, 350);}); //BOTÓN DE IR HACIA ABAJO
-	/************************** VALORES PARA LAS VALIDACIONES **************************/
+	// ------------ VALORES PARA LAS VALIDACIONES 
 	var v_loadtypecharge = $("#v_loadtypecharge").val();
-	/************************** CÁLCULO DE IMPUESTOS **************************/
+	// ------------ CÁLCULO DE IMPUESTOS 
 	var partInteger_Tax = 0;
 	var partDecimal_Tax = 0;
 	var partFinalDecimal_Tax = 0;
-	/************************** VARIABLES PARA LOS TOTALES A IMPRIMIR **************************/
+	// ------------ VARIABLES PARA LOS TOTALES A IMPRIMIR 
 	var sumTotalFirstFlete = 0;
 	var sumTotalbyIGV = 0;
 	var sumTotalFinalFleteandIGV = 0;
 	var sumbyCIF = 0;
-	/************************** LISTAR LOS VALORES PARA LOS CÁLCULOS **************************/
+	// ------------ LISTAR LOS VALORES PARA LOS CÁLCULOS 
 	var partInteger = 0;
 	var partDecimal = 0;
 	var partFinalDecimal = 0;
@@ -126,21 +122,21 @@ $(document).ready(function(){
   	var insure_default = parseFloat(rinsurance[2].data_value); //SIN FOB/VALOR POR DEFECTO
 
   	if($("#v_insurancemerch").text() != "NO"){
-			/************************** TOTALES A IMPRIMIR - CON SEGURO **************************/
+			// ------------ TOTALES A IMPRIMIR - CON SEGURO 
 			sumTotalFirstFlete = totflete + totalamountadditional + totaltransport + totalinsurance + totalvaluesquotation + totalfinalvaluedownload; //FLETE FINAL
 			sumTotalbyIGV = (totaltransport + totalamountadditional + totalvaluesquotationbyIGV) * (18 / 100); //IGV (DEBAJO DEL FLETE FINAL)
 			sumTotalFinalFleteandIGV = sumTotalFirstFlete + sumTotalbyIGV; //VALOR TOTAL FINAL DE LA COTIZACIÓN
 			sumbyCIF = totalfinalvaluefob + totflete + totalinsurance; //CIF FINAL
 
   	}else{
-  		/************************** TOTALES A IMPRIMIR - SIN SEGURO **************************/
+  		// ------------ TOTALES A IMPRIMIR - SIN SEGURO 
 			sumTotalFirstFlete = totflete + totalamountadditional + totaltransport + totalvaluesquotation + totalfinalvaluedownload; //FLETE FINAL
 			sumTotalbyIGV = (totaltransport + totalamountadditional + totalvaluesquotationbyIGV) * (18 / 100); //IGV (DEBAJO DEL FLETE FINAL)
 			sumTotalFinalFleteandIGV = sumTotalFirstFlete + sumTotalbyIGV; //VALOR TOTAL FINAL DE LA COTIZACIÓN
 			sumbyCIF = totalfinalvaluefob + totflete + totalinsurance; //CIF FINAL
   	}
 	
-		/************************** LIMPIAR EL VALOR E IMPRIMIR EN EL TOTAL DEL SERVICIOS **************************/
+		// ------------ LIMPIAR EL VALOR E IMPRIMIR EN EL TOTAL DEL SERVICIOS 
 		var totalNotround = twodecimals(sumTotalFirstFlete);
 		var n = Math.abs(totalNotround);
 		partInteger = Math.trunc(n);
@@ -154,7 +150,7 @@ $(document).ready(function(){
 			partFinalDecimal = partDecimal[1];
 		}
 		$("#intdecval-quotefinal").html(`<span>${separate_point},<sup>${partFinalDecimal}</sup> USD</span>`);
-		/************************** IMPRIMIR EL TOTAL DE SERVICIOS ENTRE EL IGV 18% **************************/
+		// ------------ IMPRIMIR EL TOTAL DE SERVICIOS ENTRE EL IGV 18% 
 		var totalNotRountByIGV = twodecimals(sumTotalbyIGV);
 		var n_byIGV = Math.abs(totalNotRountByIGV);
 		var partInteger_byIGV = Math.trunc(n_byIGV);
@@ -169,7 +165,7 @@ $(document).ready(function(){
 			partFinal_decimal_byIGV = part_decimalbyIGV[1];
 		}
 		$("#igvval-quotefinal").html(`<span>+ IGV 18% </span><span>${separate_point_byIGV},${partFinal_decimal_byIGV} USD</span>`);
-		/************************** IMPRIMIR EL ÚLTIMO VALOR - SUMA DEL TOTAL DE FLETE Y EL TOTAL ENTRE EL IGV **************************/
+		// ------------ IMPRIMIR EL ÚLTIMO VALOR - SUMA DEL TOTAL DE FLETE Y EL TOTAL ENTRE EL IGV 
 		var partInteger_FTotal = 0;
 		var partDecimal_FTotal = 0;
 		var partFinalDecimal_FTotal = 0;
@@ -187,8 +183,7 @@ $(document).ready(function(){
 		}
 		$("#totalval_quoteFinal").html(`<span>${separate_point_FTotal},<sup>${partFinalDecimal_FTotal}</sup> USD</span>`);
 
-
-		/************************** LISTAR SERVICIOS PARA CALCULO CON IGV - FCL **************************/
+		// ------------ LISTAR SERVICIOS PARA CALCULO CON IGV - FCL 
 	  $.ajax({
 	    url: "controllers/list_taxation_values_byquotation.php",
 	    method: "POST",
@@ -208,7 +203,7 @@ $(document).ready(function(){
 	    var res_Percepcion_YES = parseFloat(restaxvalues[2].data_value);
 	    var res_Percepcion_NO = parseFloat(restaxvalues[2].data_value_two);
 
-	    /************************** VALORES - DE PORCENTAJES A DECIMALES **************************/
+	    // ------------ VALORES - DE PORCENTAJES A DECIMALES 
 	    var convert_IGV = res_IGV / 100; //VALOR I.G.V.
 	    var convert_IPM = res_IPM / 100; //VALOR I.P.M.
 	    var convert_Percepcion = 0; //VALOR PERCEPCIÓN
@@ -222,32 +217,32 @@ $(document).ready(function(){
 	    	convert_Percepcion = res_Percepcion_NO / 100;
 	    }
 
-	    /************************** CALCULAR AD-VALOREN **************************/
+	    // ------------ CALCULAR AD-VALOREN 
 	    var val_Ad_valoren = sumbyCIF * convert_Ad_Valoren;
 	    var twodecimal_Ad_valoren = twodecimals(val_Ad_valoren);
 	    var finalval_Ad_valoren = parseFloat(twodecimal_Ad_valoren);
-			/************************** CALCULAR IMPUESTO SELECTIVO **************************/
+			// ------------ CALCULAR IMPUESTO SELECTIVO 
 			var val_i_selectivo = sumbyCIF * convert_I_selectivo;
 			var twodecimal_i_selectivo = twodecimals(val_i_selectivo);
 			var finalval_i_selectivo = parseFloat(twodecimal_i_selectivo);
-			/************************** CALCULAR ANTIDUMPING **************************/
+			// ------------ CALCULAR ANTIDUMPING 
 			var val_antidumping = sumbyCIF * convert_antidumping;
 			var twodecimal_antidumping = twodecimals(val_antidumping);
 			var finalval_antidumping = parseFloat(twodecimal_antidumping);
-	    /************************** CALCULAR IGV **************************/
+	    // ------------ CALCULAR IGV 
 			var val_IGV = ( sumbyCIF + finalval_Ad_valoren ) * convert_IGV;
 			var twodecimal_IGV = twodecimals(val_IGV);
 			var finalval_IGV = parseFloat(twodecimal_IGV);
-			/************************** CALCULAR IPM **************************/
+			// ------------ CALCULAR IPM 
 			var val_IPM = ( sumbyCIF + finalval_Ad_valoren) * convert_IPM;
 			var twodecimal_IPM = twodecimals(val_IPM);
 			var finalval_IPM = parseFloat(twodecimal_IPM);
-			/************************** CALCULAR PERCEPCIÓN **************************/
+			// ------------ CALCULAR PERCEPCIÓN 
 			var val_Percepcion = ( sumbyCIF + finalval_Ad_valoren + finalval_IGV + finalval_IPM ) * convert_Percepcion;
 			var twodecimal_percepcion = twodecimals(val_Percepcion);
 			var finalval_percepcion = parseFloat(twodecimal_percepcion);
 
-			/************************** CALCULO FINAL DE IMPUESTOS **************************/
+			// ------------ CALCULO FINAL DE IMPUESTOS 
 			var val_FinalTax = finalval_IGV + finalval_IPM + finalval_percepcion + finalval_Ad_valoren + finalval_i_selectivo + finalval_antidumping + totalinsurance;
 
 			var twodecimals_FinalTax = twodecimals(val_FinalTax);
@@ -264,14 +259,14 @@ $(document).ready(function(){
 				partFinalDecimal_Tax = partDecimal_Tax[1];
 			}
 
-			/************************** IMPRESIÓN DE LOS VALORES **************************/
+			// ------------ IMPRESIÓN DE LOS VALORES 
 			if(document.querySelector(".c-FinalQuotation--contStep--cQuotation--cBottom--cAduanaImpst").contains(document.querySelector("#taxval_quotefinal"))){			
 				$("#taxval_quotefinal").html(`<span>${separate_point_Tax},<sup>${partFinalDecimal_Tax}</sup> USD</span>`);
 			}else{
 				//console.log("No existe el elemento");
 			}
 
-			// ========== VALIDAR EL VALOR DE TRANSPORTE DE INICIO ========== //
+			// ------------ VALIDAR EL VALOR DE TRANSPORTE DE INICIO 
 			var inittranpsendid = $("#v_typetranspsendinitid").val();
 			var transsendinitbyid = "";
 			if(inittranpsendid == 0){
@@ -284,9 +279,9 @@ $(document).ready(function(){
 				console.log('Inv-ID');
 			}
 
-			/************************** VALIDAR EL VALOR DEL USUARIO **************************/
+			// ------------ VALIDAR EL VALOR DEL USUARIO 
 			var user_sessquote = "";
-			/************************** INSERTAR EN LA TABLA DE COTIZACIONES **************************/
+			// ------------ INSERTAR EN LA TABLA DE COTIZACIONES 
 			if($("#s_useregin-sistem").val() == "" || $("#s_useregin-sistem").val() == undefined || $("#s_useregin-sistem").val() == 'undefined' || $("#s_useregin-sistem").val() == null || $("#s_useregin-sistem").val() == 'null'){
 
 				user_sessquote = s_username_local.username;
@@ -439,13 +434,10 @@ $(document).ready(function(){
 		      cache: false,
 		      processData: false
 				}).done(function(e){
-					console.log(e);
 					var rquotaiton = JSON.parse(e);
 					if(rquotaiton[0].res != "exists"){
-						console.log("Cotización guardada");
 						$("#v_gencodexxx").text(rquotaiton[0].res);
 					}else if(rquotaiton[0].res == "exists"){
-						console.log("Esta cotización ya existe");
 						$.ajax({
 					    url: "controllers/c_list_quotation_by_codegenrand.php",
 					    method: "POST",
@@ -520,7 +512,7 @@ $(document).ready(function(){
 				//window.location.href = "marketplace-logistico";
 			}
 
-	    /************************** VALIDAR SI EXISTE UN USUARIO AL ABRIR EL MODAL - PRIMER BOTÓN **************************/
+	    // ------------ VALIDAR SI EXISTE UN USUARIO AL ABRIR EL MODAL - PRIMER BOTÓN 
 	    $(document).on("click","#btn-requireDownloadQuotaion_one",function(e){
 				e.preventDefault();	
 
@@ -637,7 +629,7 @@ $(document).ready(function(){
 					console.log('Hubo un error al generar el PDF');
 				}
 			});
-			/************************** VALIDAR SI EXISTE UN USUARIO AL ABRIR EL MODAL - SEGUNDO BOTÓN **************************/
+			// ------------ VALIDAR SI EXISTE UN USUARIO AL ABRIR EL MODAL - SEGUNDO BOTÓN 
 			$(document).on("click","#btn-requireDownloadQuotaion_two",function(e){
 				e.preventDefault();
 
@@ -715,7 +707,7 @@ $(document).ready(function(){
 				}
 			});
 
-			/************************** CARGAR LOS VALORES E INCLUIRLOS EN EL TEXTO PARA EL BOTÓN DE WHATSAPP **************************/
+			// ------------ CARGAR LOS VALORES E INCLUIRLOS EN EL TEXTO PARA EL BOTÓN DE WHATSAPP 
 			var typeFleteService = $("#m-first-listresume").find("li:first-child").find("div").find("span:nth-child(2)").text(),
 					typeFleteContainer = $("#m-first-listresume").find("li:nth-child(2)").find("div").find("span:nth-child(2)").text(),
 					fleteportOrigin = $("#v-listportsOandD").find("span:first-child").text(),
@@ -738,7 +730,7 @@ $(document).ready(function(){
 				seguroflete : seguroFlete
 			}
 
-			/************************** AÑADIR LOS DATOS AL ENLACE DE WHATSAPP **************************/
+			// ------------ AÑADIR LOS DATOS AL ENLACE DE WHATSAPP 
 			$("#d-link-messagecontact").attr("href", 
 		`https://api.whatsapp.com/send?phone=51989874368&text=Saludos,%20me%20gustaría%20cotizar%20
 			ID:31798-LCL,%20
@@ -758,7 +750,7 @@ $(document).ready(function(){
   });
 
 	
-	/************************** VALIDAR CUADRO DE TEXTO DE DOCUMENTO DE IDENTIDAD **************************/
+	// ------------ VALIDAR CUADRO DE TEXTO DE DOCUMENTO DE IDENTIDAD 
 	$(document).on("input keyup keypress blur change","#n_document_cli",function(e){
     if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
 	    return false;
@@ -774,7 +766,7 @@ $(document).ready(function(){
 	    }
 	  }
 	});
-	/************************** VALIDAR NOMBRE DE LA EMPRESA **************************/
+	// ------------ VALIDAR NOMBRE DE LA EMPRESA 
 	$(document).on("input keyup keypress blur change","#name_enterprise_cli",function(e){
     if( $(this).val().length >= parseInt($(this).attr('maxlength')) && (e.which != 8 && e.which != 0)){
       return false;
@@ -786,7 +778,7 @@ $(document).ready(function(){
 			}
     }
 	});
-	/************************** VALIDAR NÚMERO DE TELÉFONO **************************/
+	// ------------ VALIDAR NÚMERO DE TELÉFONO 
 	$(document).on("input keyup keypress blur change","#telephone_cli",function(e){
     if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
 	    return false;
@@ -802,7 +794,7 @@ $(document).ready(function(){
 	    }
 	  }
 	});
-	/************************** VALIDAR EMAIL DEL USUARIO **************************/
+	// ------------ VALIDAR EMAIL DEL USUARIO 
 	$(document).on("input keyup keypress blur change","#email_cli",function(e){
     if( $(this).val().length >= parseInt($(this).attr('maxlength')) && (e.which != 8 && e.which != 0)){
       return false;
@@ -814,7 +806,7 @@ $(document).ready(function(){
 			}
     }
 	});
-	/************************** FORMULARIO DE DATOS DEL USUARIO - ANTES DE DESCARGAR SU COTIZACIÓN **************************/
+	// ------------ FORMULARIO DE DATOS DEL USUARIO - ANTES DE DESCARGAR SU COTIZACIÓN 
 	$(document).on("submit","#btngen_formDataUserQuotation",function(e){
 		e.preventDefault();
 
@@ -894,10 +886,3 @@ $(document).ready(function(){
 		}
 	});
 });
-/************************** GENERAR EL PDF **************************/
-/*
-function generatePDF(nameuser){
-	$url = "controllers/c_generate-pdf-integral.php?user="+nameuser;
-	window.open($url, "cotizacion_pdf");
-}
-*/
