@@ -218,15 +218,8 @@ $(document).on("submit", "#c-formLoginU_Camel", function(e){
         }, 1000);
         $("#cnt-modalFormSessLoginorRegister").removeClass("show");
         $('#c-formLoginU_Camel')[0].reset();
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      } else if (e.response == "error_email") {
-        /************************** AGREGAR AL CONTROL DE VALIDACIÓN **************************/
-=======
       }else if(e.response == "error_email"){
         // ------------ AGREGAR AL CONTROL DE VALIDACIÓN ------------ //
->>>>>>> alvaro
         $("#s_useregin-sistem").val("");
         // ------------ MOSTRAR EL MENSAJE DE ALERTA PERSONALIZADO ------------ //
         $("#s-mssgloadSendAction").html(`
@@ -246,14 +239,8 @@ $(document).on("submit", "#c-formLoginU_Camel", function(e){
         $("#btncloseModalLorR").on("click", function() {
           $(this).parent().parent().remove();
         });
-<<<<<<< HEAD
->>>>>>> alvaro
-      } else {
-        /************************** AGREGAR AL CONTROL DE VALIDACIÓN **************************/
-=======
       }else{
         // ------------ AGREGAR AL CONTROL DE VALIDACIÓN ------------ //
->>>>>>> alvaro
         $("#s_useregin-sistem").val("");
         // ------------ MOSTRAR EL MENSAJE DE ALERTA PERSONALIZADO ------------ //
         $("#s-mssgloadSendAction").html(`
