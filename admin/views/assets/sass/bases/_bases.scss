@@ -2,18 +2,21 @@
 @import 'variables';
 @import 'mixins';
 
+:root,
 *,
 *::before,
 *::before{
 	padding: 0;
 	margin: 0;
 	box-sizing: border-box;
-	font-family: sans-serif;
-}
-body{
 	font-family: $total-font-family;
+}
+html,
+body{
 	position: relative;
 	overflow: hidden;
+	margin: 0;
+	padding: 0;
 }
 a{
 	text-decoration: none !important;

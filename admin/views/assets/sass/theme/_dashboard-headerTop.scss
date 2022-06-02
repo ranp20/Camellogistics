@@ -5,45 +5,37 @@
 		justify-content: flex-start;
 		padding: .5rem 1rem;
 		background-color: $header-top-color;
-
 		@media (min-width: 1200px){
 			padding: 0 1rem;
 		}
-
 		/* TÍTULO DE ADMINISTRADOR CAMEL */
 		&--cTitle{
 			display: none;
 			color: #fff;
-
 			@media (min-width: 960px){
 				display: block;
 				margin-right: auto;
 			}
-
 			h2{
-				font-weight: 300;
+				font-weight: 600;
 				margin-bottom: 0;
 				font-size: 1.25rem !important;
 			}
 		}
-
 		/* RELOJ DEL SISTEMA */
 		&--cClock{
 			display: none;
 			margin-right: 0.8rem;
 			position: relative;
 			top: 1px;
-
 			@media (min-width: 1200px){
 				display: block;
 			}
-
 			&--timeclock{
 				color: #fff;
 				font-weight: 600;
 			}
 		}
-
 		/* BOTÓN DE IR AL SITIO WEB */
 		&--cCBtnWebPage{
 	    display: flex;
@@ -51,28 +43,23 @@
 	    justify-content: center;
 	    text-align: center;
 	    margin: 0 auto;
-
 	    @media (min-width: 960px){
 	    	margin-left: unset;
 	    	margin-right: 0.6rem;
 	    }
-
 			&--link{
 				cursor: pointer;
 		    background-color: $dashboard-color;
 		    padding: 0.35rem 2rem;
 		    border-radius: 0.3rem;
-				
 		    &:hover{
 		    	opacity: 0.6;
 		    }
-
 				svg{
 					fill: #fff;
 				}
 			}
 		}
-
 		/* OPCIONES DE USUARIO - MOBILE */
 		&--cUserMobile{
 			display: block;
@@ -80,12 +67,10 @@
 			@media (min-width: 960px){
 				margin-left: unset;
 			}
-
 			@media (min-width: 1200px){
 				display: none;
 				pointer-events: none;
 			}
-
 			&--linkcont{
 				cursor: pointer;
 				display: flex;
@@ -96,15 +81,12 @@
 					height: 34px;
 					border-radius: 50%;
 					box-shadow: 0 0 0 1px #D0D0D0;
-
 					@media (min-width: 960px){
 						margin-right: 0.5rem;
 					}
 				}
-
 				span{
 					display: none;
-
 					@media (min-width: 960px){
 						display: block;
 					}
@@ -120,22 +102,18 @@
 		    border-radius: .3rem;
 		    overflow: hidden;
 		    z-index: 9999;
-
 				&.show{
 					display: block;
 				}
-
 				@media (min-width: 1024px){
 					&:hover{
 						display: block;
 					}
 				}
-
 				&--link{
 					display: block;
 					color: #fff;
 					padding: 0.5rem 1rem;
-
 					&:hover{
 						color: #fff;
 						opacity: 0.6;
@@ -143,7 +121,6 @@
 				}
 			}
 		}
-
 		/* OPCIONES DE USUARIO - DESKTOP */
 		&--cUserDesktop{
 			margin-left: auto;
@@ -152,18 +129,15 @@
 			@media (min-width: 960px){
 				margin-left: unset;
 			}
-
 			@media (min-width: 1200px){
 				padding: 0.5rem 0;
 				display: block;
 				pointer-events: auto;
 			}
-
 			/* MOSTRAR LAS OPCIONES */
 			&:hover &--m{
 				display: block;
 			}
-
 			&--linkcont{
 				cursor: pointer;
 				display: flex;
@@ -174,15 +148,12 @@
 					height: 34px;
 					border-radius: 50%;
 					box-shadow: 0 0 0 1px #D0D0D0;
-
 					@media (min-width: 960px){
 						margin-right: 0.5rem;
 					}
 				}
-
 				span{
 					display: none;
-
 					@media (min-width: 960px){
 						display: block;
 					}
@@ -198,18 +169,15 @@
 		    border-radius: .3rem;
 		    overflow: hidden;
 		    z-index: 9999;
-
 				@media (min-width: 1024px){
 					&:hover{
 						display: block;
 					}
 				}
-
 				&--link{
 					display: block;
 					color: #fff;
 					padding: 0.5rem 1rem;
-
 					&:hover{
 						color: #fff;
 						opacity: 0.6;

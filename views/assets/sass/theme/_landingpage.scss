@@ -1,4 +1,63 @@
-/************************** HEADER TOP - PÁGINAS PRINCIPALES **************************/
+#h-heroImage-init{
+  min-height: 743px;
+	height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 0 !important;
+  padding-bottom: 3rem !important;
+  background-attachment: scroll;
+  background-repeat: no-repeat;
+  background-position: center 0;
+  background-size: cover;
+  position: relative;
+  text-align: center;
+  color: #fff;
+
+  &:after{
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: rgba(0,0,0,0.25);
+  }
+}
+
+.h-heroImage-init{
+  &--c{
+    z-index: 9;
+    &--cTitle{
+      font-size: 2.25rem;
+      font-style: italic;
+      line-height: 2.25rem;
+      margin-bottom: 2rem;
+    }
+
+    &--cDesc{
+      font-size: 4.5rem;
+      font-weight: 700;
+      line-height: 4.5rem;
+      margin-bottom: 4rem;
+    }
+
+    &--btngoToServices{
+      background-color: $primary-color;
+      padding: 1rem 2rem;
+      border-radius: .4rem;
+      color: #fff;
+      text-transform: uppercase;
+      font-size: 1.25rem;
+      font-weight: 600;
+
+      &:hover{
+        //color: #fff;
+      }
+    }
+  }
+}
+/* HEADER TOP - PÁGINAS PRINCIPALES */
 #c-HTop-camel{
 	position: fixed;
 	z-index: 9999999;
@@ -9,7 +68,6 @@
 	min-height: $min-headertop;
 	border-bottom: thin solid $border-bottom-headertop;
 	text-align: center;
-
 	.c-Htopbar--c{
 		display: -webkit-inline-box;
 		-webkit-box-align: end;
@@ -21,15 +79,12 @@
 		justify-content: space-between;
 		padding: 0;
 		position: relative;
-
 		@media (min-width: 991px){
 			-webkit-box-align: start;
 		}
-
 		&--cLogo{
 			width: 7rem;
 			height: auto;
-		
 			a{
 				width: 7rem;
 				display: table;
@@ -53,11 +108,9 @@
 			background-color: orange;
 			margin-left: auto;
 			height: 100%;
-
 			@media (min-width: 991px){
 				display: none;
 			}
-		
 			span{
 				width: 22px;
 				height: 2px;
@@ -73,7 +126,6 @@
 				margin-top: 0.5rem;
 			}
 		}
-
 		/* MENU - DESKTOP */
 		&--cMenu{
 			position: fixed;
@@ -88,12 +140,10 @@
 			transition: .5s ease-in-out;
 			pointer-events: none;
 			overscroll-behavior-y: contain;
-
 			&.show{
 				transform: translateX(0);
 				pointer-events: auto;
 			}
-
 			@media (min-width: 991px){
 				display: block;
 				position: relative;
@@ -109,20 +159,17 @@
 		    pointer-events: auto;
 		    transform: translateX(0);
 			}
-			
 			/* MENU - MOBILE */
 			&--Mmobile{
 				width: 100%;
 				height: 100%;
 				overscroll-behavior-y: contain;
-
 				@media (min-width: 991px){
 					display: none;
 					opacity: 0;
 					visibility: hidden;
 					pointer-events: none;
 				}
-
 				#btn-sidebarl-close{
 					position: fixed;
 			    margin-left: 0;
@@ -132,7 +179,6 @@
 			    height: 40px;
 			    background-color: #000;
 				}
-
 				#btn-sidebarl-close--btn{
 					cursor: pointer;
 					position: fixed;
@@ -154,7 +200,6 @@
 			    padding: .5rem;
 			    z-index: 99999999;
 				}
-
 				/* LIST MENU -MOBILE */
 				&--m{
 					display: flex;
@@ -171,7 +216,6 @@
 					flex-direction: column;
 					padding-top: 1rem;
 					text-align: left;
-
 					@media (min-width: 991px){
 						flex-direction: row;
 						width: auto;
@@ -179,20 +223,15 @@
 						padding: 0;
 						display: -webkit-inline-box;
 					}
-			
 					&--item{
 						width: 100%;
 						position: relative;
-
 						&:last-child{
 							padding: 0;
 						}
-
 						@media (min-width: 991px){
 							width: auto;
 						}
-
-
 						&--subm{
 							position: absolute;
 					    background-color: #000;
@@ -202,7 +241,6 @@
 					    line-height: 2rem;
 					    display: none;
 							pointer-events: none;
-
 							&--subitem{
 								text-align: left;
 								&:hover{
@@ -213,7 +251,6 @@
 									}
 								}
 							}
-
 							&--sublink{
 								display: block;
 								padding: .5rem 1rem;
@@ -228,17 +265,13 @@
 								}
 							}
 						}
-
-
 						&:hover{
 							ul{
 								display: block;
 								pointer-events: auto;
 							}
 						}
-
 					}
-
 					&--link{
 						color: $color-headertop-links;
 						text-transform: uppercase;
@@ -246,13 +279,11 @@
 						font-weight: 600;
 						padding: 1.5rem 1rem 1.5rem 2rem;
 						display: block;
-
 						&:hover{
 							color: #000;
 							box-shadow: 0px 2px 0px 0px #000 inset;
 							background-color: #ddd;
 						}
-
 						@media (min-width: 991px){
 							font-size: 1rem;
 							padding: 0 1rem;
@@ -260,7 +291,6 @@
 					}
 				}
 			}
-
 			/* LIST MENU - DESKTOP */
 			&--m{
 				display: none;
@@ -280,7 +310,6 @@
 				flex-direction: column;
 				padding-top: 1rem;
 				text-align: left;
-
 				@media (min-width: 991px){
 					display: -webkit-inline-box;
 					opacity: 1;
@@ -290,20 +319,15 @@
 					max-width: unset;
 					padding: 0;
 				}
-		
 				&--item{
 					width: 100%;
 					position: relative;
-
 					&:last-child{
 						padding: 0;
 					}
-
 					@media (min-width: 991px){
 						width: auto;
 					}
-
-
 					&--subm{
 						position: absolute;
 				    background-color: #000;
@@ -313,7 +337,6 @@
 				    line-height: 2rem;
 				    display: none;
 						pointer-events: none;
-
 						&--subitem{
 							text-align: left;
 							&:hover{
@@ -324,7 +347,6 @@
 								}
 							}
 						}
-
 						&--sublink{
 							display: block;
 							padding: .5rem 1rem;
@@ -339,8 +361,6 @@
 							}
 						}
 					}
-
-
 					&:hover{
 						ul{
 							display: block;
@@ -348,21 +368,17 @@
 						}
 					}
 				}
-
 				&--link{
 					color: $color-headertop-links;
-					text-transform: uppercase;
 					font-size: 0.9rem;
-					font-weight: 700;
+					font-weight: 500;
 					padding: 1.5rem 1rem 1.5rem 2rem;
 					display: block;
-
 					&:hover{
 						color: #000;
 						box-shadow: 0px 2px 0px 0px #000 inset;
 						background-color: #ddd;
 					}
-
 					@media (min-width: 991px){
 						font-size: 1rem;
 						padding: 0 1rem;
@@ -372,7 +388,7 @@
 		}
 	}
 }
-/************************** HEADER TOP - PÁGINA DE COTIZACIÓN **************************/
+/* HEADER TOP - PÁGINA DE COTIZACIÓN */
 #c-HTopQuotation-camel{
 	position: fixed;
 	z-index: 9999999;
@@ -382,7 +398,6 @@
 	background-color: #fff;
 	min-height: $min-headertop;
 	border-bottom: thin solid $border-bottom-headertop;
-
 	.c-Htopbar--c{
 		width: 100%;
 		margin-left: auto;
@@ -391,11 +406,9 @@
 		align-items: center;
 		justify-content: space-between;
 		padding: .65rem;
-
 		&--cLogo{
 			width: 7rem;
 			height: auto;
-		
 			a{
 				display: table;
 				img{
@@ -406,7 +419,6 @@
 				}
 			}
 		}
-
 		&--btnMobileNavbar{
 			cursor: pointer;
 			display: flex;
@@ -420,14 +432,12 @@
 			opacity: 1;
 			visibility: visible;
 			pointer-events: auto;
-
 			@media (min-width: 991px){
 				display: none;
 				opacity: 0;
 				visibility: hidden;
 				pointer-events: none;
 			}
-		
 			span{
 				width: 22px;
 				height: 2px;

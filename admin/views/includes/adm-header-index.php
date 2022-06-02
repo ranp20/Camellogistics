@@ -21,3 +21,9 @@
 <!-- BOOTSTRAP UNCOMPRESSED -->
 <link rel="stylesheet" href="<?php echo $url ?>js/bootstrap/css/bootstrap.min.css">
 <script src="<?php echo $url ?>js/bootstrap/js/bootstrap.min.js"></script>
+<!-- GOOGLE FONTS -->
+<!-- 
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+ -->

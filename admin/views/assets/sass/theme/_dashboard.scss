@@ -189,7 +189,7 @@
 					}
 
 					&--cInputs{
-						max-width: 370px;
+						max-width: 27rem;
 						width: 100%;
 						&--input{
 							outline: none;
@@ -234,11 +234,9 @@
 					background-color: yellow;
 					margin-left: unset;
 				}
-
 				&:nth-child(2){
 					background-color: blue;
 				}
-
 				&:hover{
 					color: #fff;
 					opacity: 0.6;
@@ -285,11 +283,12 @@
 				}
 				
 				td{
-					font-size: 0.8rem;
 					border: 1px solid $border-color-table;
 					border-top: 1px solid $border-color-table;
 					border-bottom-width: 0;
 					padding: 8px;
+					font-size: 0.75rem;
+					font-weight: 400;
 
 					&.cont-img-table{
 						display: table-cell;
