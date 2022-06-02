@@ -95,9 +95,9 @@
       </section>
     </div>
   </main>
-  <?php require_once 'includes/form-login-user.php'; ?>
-  <script type="text/javascript" src="<?= $url ?>js/user-login.js"></script>
-  <script type="text/javascript" src="<?= $url ?>js/main.js"></script>
-  <script type="text/javascript" src="<?= $url ?>js/marketplace-logistic.js"></script>
+  <?php require_once 'includes/form-login-user.php';?>
+  <script type="text/javascript" src="<?= $url; ?>js/user-login.js"></script>
+  <script type="text/javascript" src="<?= $url; ?>js/main.js"></script>
+  <script type="text/javascript" src="<?= $url; ?>js/marketplace-logistic.js"></script>
 </body>
 </html>
