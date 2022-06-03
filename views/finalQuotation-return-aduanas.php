@@ -477,11 +477,11 @@ echo $template_incserv.$template_notincserv;
     <input type="hidden" autocomplete="off" placeholder="" spellcheck="false" class="non-visvalipt h-alternative-shwnon s-fkeynone-step" id="v_typetranspsendinitid" value="<?php echo $_POST['idtypetransportsendinit'];?>">
   </div>
   <?php
-    /*  
+      
     echo "<pre>";
     print_r($_POST);
     echo "</pre>";
-    */
+    
   ?>
   <?php require_once 'includes/form-login-user.php'; ?>
   <?php require_once 'includes/form-before-download-pdf.php'; ?>
