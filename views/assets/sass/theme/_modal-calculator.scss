@@ -123,7 +123,7 @@
 						line-height: 1.5;
 						padding: 0.5rem .8rem;
 						border: thin solid #ccc;
-						border-radius: .4rem !important;
+						border-radius: 5px;
 						text-align: left;
 
 						&[type=number]::-webkit-inner-spin-button, 
@@ -197,7 +197,7 @@
 							justify-content: space-between;
 							position: relative;
 							border: thin solid #ccc;
-							border-radius: .4rem !important;
+							border-radius: 5px !important;
 							overflow: hidden;
 							&--input{
 								display: block !important;
@@ -207,7 +207,7 @@
 								padding: 0.4rem .8rem;
 								text-align: center;
 								border: none;
-								border-radius: .4rem;
+								border-radius: 5px 0 0 5px;
 
 								&[type=number]::-webkit-inner-spin-button, 
 								&[type=number]::-webkit-outer-spin-button { 
@@ -237,7 +237,7 @@
 				&--btnAddModal{
 					display: inline-block;
 			    border: none;
-			    border-radius: 0.4rem;
+			    border-radius: 5px;
 			    background-color: #B58440;
 			    padding: 0.5rem 1.5rem;
 			    margin-top: 1rem;
@@ -352,7 +352,7 @@
 				    padding: 0.4rem 0.8rem;
 				    text-align: center;
 				    border: none;
-				    border-radius: 0.4rem;
+				    border-radius: 5px;
 				    background-color: #ccc;
 					}
 
@@ -361,8 +361,8 @@
 						align-items: center;
 						justify-content: space-between;
 						background-color: #fff;
-						border-radius: .4rem;
 						overflow: hidden;
+						border-radius: 5px;
 						&--input{
 							display: block;
 					    width: 100%;
@@ -372,12 +372,12 @@
 					    text-align: center;
 					    border: none;
 					    background-color: #ccc;
+					    border-radius: 5px 0 0 5px;
 						}
 
 						&--cmassUnitPrefix{
 							padding: .4rem 0.6rem;
 					    height: 100%;
-					    border-left: thin solid #ccc;
 					    font-size: 0.75rem;
 					  }
 
