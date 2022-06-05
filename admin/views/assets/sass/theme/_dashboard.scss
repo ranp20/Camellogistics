@@ -558,7 +558,7 @@
 								background-color: transparent;
 								font-size: 0.9rem;
 								padding: 0.4rem 0.5rem;
-								border-radius: .5rem;
+								border-radius: 5px;
 
 
 								&[type=number]::-webkit-inner-spin-button, &[type=number]::-webkit-outer-spin-button { 
@@ -592,7 +592,7 @@
 							&__input-photo{
 								padding: .5rem;
 						    border: thin solid $border-bottom-input;
-						    border-radius: .4rem;
+						    border-radius: 5px;
 						    cursor: pointer;
 							}
 
@@ -815,7 +815,7 @@
 					    padding: .4rem 1rem;
 					    margin-left: .5rem;
 					    color: $color-paragraph;
-					    border-radius: .5rem;
+					    border-radius: 5px;
 					    margin-bottom: 0.5rem;
 					    width: 100%;
 					    font-size: 0.9rem;
@@ -843,7 +843,7 @@
 					    padding: .4rem 1rem;
 					    margin-left: .5rem;
 					    color: $color-paragraph;
-					    border-radius: .5rem;
+					    border-radius: 5px;
 					    margin-bottom: 0.5rem;
 					    width: 100%;
 					    font-size: 0.9rem;
