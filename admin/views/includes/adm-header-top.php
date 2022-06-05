@@ -9,11 +9,6 @@
 			<span></span>
 			<span></span>
 		</div>
-		<div id="icon-togglemenuDesktop">
-			<span></span>
-			<span></span>
-			<span></span>
-		</div>
 		<div class="h-dashCamel--c--cTitle">
 			<h2>CAMELLOGISTICS</h2>
 		</div>

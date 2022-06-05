@@ -1,41 +1,29 @@
-/************************** BOTÓN DE HAMBURGUESA - MOBILE **************************/
-$(document).on("click", "#icon-togglemenuMobile", function(){
-	if(!document.querySelector(".nav-dashCamel").classList.contains("show")){
-		$(".nav-dashCamel").addClass("show");
-		$(".nav-dashCamel--c").addClass("show");
-		$(this).addClass("position");
-	}else{
-		$(".nav-dashCamel").removeClass("show");
-		$(".nav-dashCamel--c").removeClass("show");
-		$(this).removeClass("position");
-	}
+$(() => {
+	let btnOpen_m = document.querySelector("#icon-togglemenuMobile");
+	let btnClose_m = document.querySelector("#closebtnToggSideNav_icon");
+	let mSideBarLBackdop_m = document.querySelector(".nav-dashCamel");
+	let mContainRight = document.querySelector("#main-dashCamel");
+	// ------------ TOGGLE MENU - DESKTOP
+	btnOpen_m.addEventListener("click", function(){
+		mSideBarLBackdop_m.classList.toggle("active");
+		mContainRight.classList.toggle("show");
+	});
+	btnClose_m.addEventListener("click", function(){
+		mSideBarLBackdop_m.classList.remove("active");
+		mContainRight.classList.remove("show");
+	});
+	mSideBarLBackdop_m.addEventListener("click", function(e){
+		if(e.target === mSideBarLBackdop_m){
+			mSideBarLBackdop_m.classList.remove("active");
+		}
+	});
 });
-/************************** CERRAR EL SIDEBARLEFT - MOBILE **************************/
-let containerSidebarLeft = document.querySelector("#nav-dashCamel");
-containerSidebarLeft.addEventListener("click", (e) => {
-	if(e.target === containerSidebarLeft){
-		containerSidebarLeft.classList.remove("show");
-		document.querySelector("#icon-togglemenuMobile").classList.remove("position");
-	} 
-});
-/************************** BOTÓN DE HAMBURGUESA - DESKTOP **************************/
-$(document).on("click", "#icon-togglemenuDesktop", function(){
-	if(!document.querySelector("#dash-contT").classList.contains("hiddenLeft")){
-		$("#dash-contT").addClass("hiddenLeft");
-		$(".nav-dashCamel").addClass("hidden");
-		$(".nav-dashCamel--c").addClass("hidden");
-	}else{
-		$("#dash-contT").removeClass("hiddenLeft");
-		$(".nav-dashCamel").removeClass("hidden");
-		$(".nav-dashCamel--c").removeClass("hidden");
-	}
-});
-/************************** SHOW/HIDDEN BUTTON USER **************************/
+// ------------ SHOW/HIDDEN BUTTON USER
 $(document).on("click", "#btn-sessuserAdm", function(e){
 	e.preventDefault();
 	$("#list-opts-sessuser").toggleClass("show");
 });
-/************************** ITEM SELECCIONADO DEL MENÚ EN CADA PÁGINA - SIDEBARLEFT **************************/
+// ------------ ITEM SELECCIONADO DEL MENÚ EN CADA PÁGINA - SIDEBARLEFT
 var url = window.location.pathname;
 var filename = url.substring(url.lastIndexOf('/')+1);
 if(filename == "ajustes-del-home" || filename == "banner-principal"){

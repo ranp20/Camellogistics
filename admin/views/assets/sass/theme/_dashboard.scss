@@ -6,7 +6,6 @@
 }
 .cont-group-form-controls__control{
 	width: 100%;
-
 	@media (min-width: 1024px){
 		width: 48%;		
 	}
@@ -17,11 +16,9 @@
   width: 100%;
   min-height: 100vh;
   height: 100vh;
-
 	@media (min-width: 960px){
 		display: flex;
 		align-items: flex-start;
-
 		&.hiddenLeft{
 			grid-template-columns: 1fr;
 		}
@@ -31,45 +28,7 @@
 #icon-togglemenuMobile{
 	position: relative;
 	@include nav-burger-design(24px, 23px, #fff, flex-end);
-	&.position{
-		position: fixed;
-		margin-left: 73%;
-		background-color: #fff;
-		animation-name: moveIconBurger;
-		animation-duration: .3s;
-		animation-timing-function: ease-in-out;
-    color: #fff;
-    font-size: 2rem;
-		display: inline-block;
-		transition: .3s;
-    width: 20px;
-    height: 20px;
-    background:
-      linear-gradient(45deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 43%, #fff 45%, #fff 55%, rgba(0, 0, 0, 0) 57%, rgba(0, 0, 0, 0) 100%), 
-      linear-gradient(135deg, transparent 0%, transparent 43%, #fff 45%, #fff 55%, transparent 57%, transparent 100%);
-    border: none;
-    padding: 0.5rem;
-    z-index: 99999999;
-	}
-	@keyframes moveIconBurger{
-		0%{
-			margin-left: 0;
-		}
-		100%{
-			margin-left: 73%;	
-		}
-	}
-
 	@media (min-width: 960px){
-		display: none;
-	}
-}
-/* BOTÓN DE HAMBURGUES - DESKTOP */
-#icon-togglemenuDesktop{
-	display: none;
-	position: relative;
-	@media (min-width: 960px){
-		@include nav-burger-design(24px, 23px, #fff, flex-end);
 		margin-right: 1rem;
 	}
 }
@@ -84,9 +43,13 @@
   height: 100%;
   overflow-x: hidden;
   overflow-y: scroll;
-
+  transition: all .4s ease-in-out;
 	@media (min-width: 960px){
 		width: 100%;
+		margin-left: 285px;
+		&.show{
+			margin-left: 0;
+		}
 	}
 }
 /* DASHBOARD - CONTENIDO AND DIFERENTS PAGES*/
