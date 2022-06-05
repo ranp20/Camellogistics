@@ -6,44 +6,44 @@ $(document).on("click", "#s-formLoginOrRegister", function(){
 $(document).on("click", "#btn-closeiconFormLoginorRegister", function() {
   $("#cnt-modalFormSessLoginorRegister").removeClass("show");
   $("#c-formLoginorRegisterU").html(`
-		<form method="POST" class="cnt-modalFormSessLoginorRegister--c--cForm" id="c-formLoginU_Camel">
-			<div class="cnt-modalFormSessLoginorRegister--c--cForm--cControl">
-				<label for="u-username" class="cnt-modalFormSessLoginorRegister--c--cForm--cControl--label">USUARIO</label>
-				<input type="text" id="u-username" name="u-username" class="cnt-modalFormSessLoginorRegister--c--cForm--cControl--input" placeholder="Usuario" maxlength="80">
-				<span id="mssg_alertcontrol_usr"></span>
-			</div>
-			<div class="cnt-modalFormSessLoginorRegister--c--cForm--cControl">
-				<label for="u-password" class="cnt-modalFormSessLoginorRegister--c--cForm--cControl--label">CONTRASEÑA</label>
-				<input type="password" id="u-password" name="u-password" class="cnt-modalFormSessLoginorRegister--c--cForm--cControl--input" placeholder="Contraseña" maxlength="80">
-				<span id="mssg_alertcontrol_pass"></span>
-			</div>
-			<div class="cnt-modalFormSessLoginorRegister--c--cForm--cBtnsLoginorRegisterOptions" id="cont-btnsLoginorRegisterOptions">
-				<button type="submit" class="cnt-modalFormSessLoginorRegister--c--cForm--cBtnsLoginorRegisterOptions--action">Iniciar Sesión</button>
-				<span>&nbsp;&nbsp;o&nbsp;&nbsp;</span>
-				<a href="javascript:void(0);" class="cnt-modalFormSessLoginorRegister--c--cForm--cBtnsLoginorRegisterOptions--link" id="btn-ChangeR">Regístrate</a>
-			</div>
-		</form>`);
+	<form method="POST" class="cnt-modalFormSessLoginorRegister--c--cForm" id="c-formLoginU_Camel">
+		<div class="cnt-modalFormSessLoginorRegister--c--cForm--cControl">
+			<label for="u-username" class="cnt-modalFormSessLoginorRegister--c--cForm--cControl--label">USUARIO</label>
+			<input type="text" id="u-username" name="u-username" class="cnt-modalFormSessLoginorRegister--c--cForm--cControl--input" placeholder="Usuario" maxlength="80">
+			<span id="mssg_alertcontrol_usr"></span>
+		</div>
+		<div class="cnt-modalFormSessLoginorRegister--c--cForm--cControl">
+			<label for="u-password" class="cnt-modalFormSessLoginorRegister--c--cForm--cControl--label">CONTRASEÑA</label>
+			<input type="password" id="u-password" name="u-password" class="cnt-modalFormSessLoginorRegister--c--cForm--cControl--input" placeholder="Contraseña" maxlength="80">
+			<span id="mssg_alertcontrol_pass"></span>
+		</div>
+		<div class="cnt-modalFormSessLoginorRegister--c--cForm--cBtnsLoginorRegisterOptions" id="cont-btnsLoginorRegisterOptions">
+			<button type="submit" class="cnt-modalFormSessLoginorRegister--c--cForm--cBtnsLoginorRegisterOptions--action">Iniciar Sesión</button>
+			<span>&nbsp;&nbsp;o&nbsp;&nbsp;</span>
+			<a href="javascript:void(0);" class="cnt-modalFormSessLoginorRegister--c--cForm--cBtnsLoginorRegisterOptions--link" id="btn-ChangeR">Regístrate</a>
+		</div>
+	</form>`);
 });
 $(document).on("click", "#btn-closeTwoFormLoginorRegister", function() {
   $("#cnt-modalFormSessLoginorRegister").removeClass("show");
   $("#c-formLoginorRegisterU").html(`
-		<form method="POST" class="cnt-modalFormSessLoginorRegister--c--cForm" id="c-formLoginU_Camel">
-			<div class="cnt-modalFormSessLoginorRegister--c--cForm--cControl">
-				<label for="u-username" class="cnt-modalFormSessLoginorRegister--c--cForm--cControl--label">USUARIO</label>
-				<input type="text" id="u-username" name="u-username" class="cnt-modalFormSessLoginorRegister--c--cForm--cControl--input" placeholder="Usuario" maxlength="80">
-				<span id="mssg_alertcontrol_usr"></span>
-			</div>
-			<div class="cnt-modalFormSessLoginorRegister--c--cForm--cControl">
-				<label for="u-password" class="cnt-modalFormSessLoginorRegister--c--cForm--cControl--label">CONTRASEÑA</label>
-				<input type="password" id="u-password" name="u-password" class="cnt-modalFormSessLoginorRegister--c--cForm--cControl--input" placeholder="Contraseña" maxlength="80">
-				<span id="mssg_alertcontrol_pass"></span>
-			</div>
-			<div class="cnt-modalFormSessLoginorRegister--c--cForm--cBtnsLoginorRegisterOptions" id="cont-btnsLoginorRegisterOptions">
-				<button type="submit" class="cnt-modalFormSessLoginorRegister--c--cForm--cBtnsLoginorRegisterOptions--action">Iniciar Sesión</button>
-				<span>&nbsp;&nbsp;o&nbsp;&nbsp;</span>
-				<a href="javascript:void(0);" class="cnt-modalFormSessLoginorRegister--c--cForm--cBtnsLoginorRegisterOptions--link" id="btn-ChangeR">Regístrate</a>
-			</div>
-		</form>`);
+	<form method="POST" class="cnt-modalFormSessLoginorRegister--c--cForm" id="c-formLoginU_Camel">
+		<div class="cnt-modalFormSessLoginorRegister--c--cForm--cControl">
+			<label for="u-username" class="cnt-modalFormSessLoginorRegister--c--cForm--cControl--label">USUARIO</label>
+			<input type="text" id="u-username" name="u-username" class="cnt-modalFormSessLoginorRegister--c--cForm--cControl--input" placeholder="Usuario" maxlength="80">
+			<span id="mssg_alertcontrol_usr"></span>
+		</div>
+		<div class="cnt-modalFormSessLoginorRegister--c--cForm--cControl">
+			<label for="u-password" class="cnt-modalFormSessLoginorRegister--c--cForm--cControl--label">CONTRASEÑA</label>
+			<input type="password" id="u-password" name="u-password" class="cnt-modalFormSessLoginorRegister--c--cForm--cControl--input" placeholder="Contraseña" maxlength="80">
+			<span id="mssg_alertcontrol_pass"></span>
+		</div>
+		<div class="cnt-modalFormSessLoginorRegister--c--cForm--cBtnsLoginorRegisterOptions" id="cont-btnsLoginorRegisterOptions">
+			<button type="submit" class="cnt-modalFormSessLoginorRegister--c--cForm--cBtnsLoginorRegisterOptions--action">Iniciar Sesión</button>
+			<span>&nbsp;&nbsp;o&nbsp;&nbsp;</span>
+			<a href="javascript:void(0);" class="cnt-modalFormSessLoginorRegister--c--cForm--cBtnsLoginorRegisterOptions--link" id="btn-ChangeR">Regístrate</a>
+		</div>
+	</form>`);
 });
 let containerMLoginorRegister = document.querySelector("#cnt-modalFormSessLoginorRegister");
 containerMLoginorRegister.addEventListener("click", e => {
@@ -88,19 +88,13 @@ $(document).on("input keyup", "#u-passwordtwo", function(e){
   if(e.target.value != ""){
     $("#mssg_alertcontrol_passrepeat").text("");
     if(e.target.value != $("#u-password").val()){
-      $("#mssg_alertcontrol_passrepeat").css({
-        'color': 'red'
-      });
+      $("#mssg_alertcontrol_passrepeat").css({'color': 'red'});
       $("#mssg_alertcontrol_passrepeat").text("Las contraseñas deben coincidir");
     }else if(e.target.value == $("#u-password").val()){
-      $("#mssg_alertcontrol_passrepeat").css({
-        'color': 'green'
-      });
+      $("#mssg_alertcontrol_passrepeat").css({'color': 'green'});
       $("#mssg_alertcontrol_passrepeat").text("Las contraseñas coinciden");
     }else{
-      $("#mssg_alertcontrol_passrepeat").css({
-        'color': 'red'
-      });
+      $("#mssg_alertcontrol_passrepeat").css({'color': 'red'});
       $("#mssg_alertcontrol_passrepeat").text("");
     }
   }else{
@@ -113,28 +107,28 @@ $(document).on("blur", "#u-passwordtwo", function(){
 // ------------ CAMBIAR LOS BOTONES SEGÚN SEA LA OCASIÓN 
 $(document).on("click", "#btn-ChangeR", function(){
   $("#c-formLoginorRegisterU").html(`
-		<form method="POST" class="cnt-modalFormSessLoginorRegister--c--cForm" id="c-formRegisterU_Camel">
-			<div class="cnt-modalFormSessLoginorRegister--c--cForm--cControl">
-				<label for="u-username" class="cnt-modalFormSessLoginorRegister--c--cForm--cControl--label">EMAIL</label>
-				<input type="email" id="u-username" name="u-username" class="cnt-modalFormSessLoginorRegister--c--cForm--cControl--input" placeholder="Email" maxlength="80">
-				<span id="mssg_alertcontrol_usr"></span>
-			</div>
-			<div class="cnt-modalFormSessLoginorRegister--c--cForm--cControl">
-				<label for="u-password" class="cnt-modalFormSessLoginorRegister--c--cForm--cControl--label">CONTRASEÑA</label>
-				<input type="password" id="u-password" name="u-password" class="cnt-modalFormSessLoginorRegister--c--cForm--cControl--input" placeholder="Contraseña" maxlength="80">
-				<span id="mssg_alertcontrol_pass"></span>
-			</div>
-			<div class="cnt-modalFormSessLoginorRegister--c--cForm--cControl">
-				<label for="u-passwordtwo" class="cnt-modalFormSessLoginorRegister--c--cForm--cControl--label">CONFIRMAR CONTRASEÑA</label>
-				<input type="password" id="u-passwordtwo" name="u-passwordtwo" class="cnt-modalFormSessLoginorRegister--c--cForm--cControl--input" placeholder="Confirmar contraseña" maxlength="80">
-				<span id="mssg_alertcontrol_passrepeat"></span>
-			</div>
-			<div class="cnt-modalFormSessLoginorRegister--c--cForm--cBtnsLoginorRegisterOptions" id="cont-btnsLoginorRegisterOptions">
-				<button type="submit" class="cnt-modalFormSessLoginorRegister--c--cForm--cBtnsLoginorRegisterOptions--action">Regístrate</button>
-				<span>&nbsp;&nbsp;o&nbsp;&nbsp;</span>
-				<a href="javascript:void(0);" class="cnt-modalFormSessLoginorRegister--c--cForm--cBtnsLoginorRegisterOptions--link" id="btn-ChangeIS">Iniciar Sesión</a>
-			</div>
-		</form>`);
+	<form method="POST" class="cnt-modalFormSessLoginorRegister--c--cForm" id="c-formRegisterU_Camel">
+		<div class="cnt-modalFormSessLoginorRegister--c--cForm--cControl">
+			<label for="u-username" class="cnt-modalFormSessLoginorRegister--c--cForm--cControl--label">EMAIL</label>
+			<input type="email" id="u-username" name="u-username" class="cnt-modalFormSessLoginorRegister--c--cForm--cControl--input" placeholder="Email" maxlength="80">
+			<span id="mssg_alertcontrol_usr"></span>
+		</div>
+		<div class="cnt-modalFormSessLoginorRegister--c--cForm--cControl">
+			<label for="u-password" class="cnt-modalFormSessLoginorRegister--c--cForm--cControl--label">CONTRASEÑA</label>
+			<input type="password" id="u-password" name="u-password" class="cnt-modalFormSessLoginorRegister--c--cForm--cControl--input" placeholder="Contraseña" maxlength="80">
+			<span id="mssg_alertcontrol_pass"></span>
+		</div>
+		<div class="cnt-modalFormSessLoginorRegister--c--cForm--cControl">
+			<label for="u-passwordtwo" class="cnt-modalFormSessLoginorRegister--c--cForm--cControl--label">CONFIRMAR CONTRASEÑA</label>
+			<input type="password" id="u-passwordtwo" name="u-passwordtwo" class="cnt-modalFormSessLoginorRegister--c--cForm--cControl--input" placeholder="Confirmar contraseña" maxlength="80">
+			<span id="mssg_alertcontrol_passrepeat"></span>
+		</div>
+		<div class="cnt-modalFormSessLoginorRegister--c--cForm--cBtnsLoginorRegisterOptions" id="cont-btnsLoginorRegisterOptions">
+			<button type="submit" class="cnt-modalFormSessLoginorRegister--c--cForm--cBtnsLoginorRegisterOptions--action">Regístrate</button>
+			<span>&nbsp;&nbsp;o&nbsp;&nbsp;</span>
+			<a href="javascript:void(0);" class="cnt-modalFormSessLoginorRegister--c--cForm--cBtnsLoginorRegisterOptions--link" id="btn-ChangeIS">Iniciar Sesión</a>
+		</div>
+	</form>`);
 });
 $(document).on("click", "#btn-ChangeIS", function(){
   $("#c-formLoginorRegisterU").html(`

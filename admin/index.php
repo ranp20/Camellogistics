@@ -111,7 +111,7 @@
 			<div class="c-LoginAdm--cLoginF--cBottInfo">
 				<small class="c-LoginAdm--cLoginF--cBottInfo--desc">
 					<span>&copy;</span>
-					<span>2020 - 2021</span>
+					<span>2020 - <?php echo date("Y"); ?></span>
 					<span>&nbsp;-&nbsp;</span>
 					<span>Versión 1.0</span>
 				</small>

@@ -17,11 +17,11 @@
 <html lang="es">
 <head>
   <title>Camel Logistics | Descarga tu Cotización</title>
-  <?php require_once 'includes/header-links.php'; ?>
+  <?php require_once 'includes/inc_header-links.php'; ?>
 </head>
 <body>
   <div id="cUIMessageValid-user"></div>
-  <?php require_once 'includes/header-top.php'; ?>
+  <?php require_once 'includes/inc_header-top.php'; ?>
   <main class="cont-MainCamelLog" id="cont-MainCamelLog">
     <div class="cont-MainCamelLog--c ptop-headertop" id="cont-MainCamelLog--cFinalDownloadQuoteReturn">
       <div class="box-container">
@@ -483,10 +483,10 @@ echo $template_incserv.$template_notincserv;
     echo "</pre>";
     
   ?>
-  <?php require_once 'includes/form-login-user.php'; ?>
-  <?php require_once 'includes/form-before-download-pdf.php'; ?>
-  <script src="<?= $url; ?>js/user-login.js"></script>
-  <script src="<?= $url; ?>js/finalquotationreturn_aduanas.js"></script>
-  <script src="<?= $url; ?>js/register-before-download.js"></script>
+  <?php require_once 'includes/inc_form-login-user.php'; ?>
+  <?php require_once 'includes/inc_form-before-download-pdf.php'; ?>
+  <script type="text/javascript" src="<?= $url; ?>js/user-login.js"></script>
+  <script type="text/javascript" src="<?= $url; ?>js/finalquotationreturn_aduanas.js"></script>
+  <script type="text/javascript" src="<?= $url; ?>js/register-before-download.js"></script>
 </body>
 </html>

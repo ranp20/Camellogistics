@@ -7,10 +7,10 @@
 <html lang="es">
 <head>
   <title>Camel Logistics | Marketplace Logístico</title>
-  <?php require_once 'includes/header-links.php'; ?>
+  <?php require_once 'includes/inc_header-links.php'; ?>
 </head>
 <body>
-  <?php require_once 'includes/header-top.php'; ?>
+  <?php require_once 'includes/inc_header-top.php'; ?>
   <main class="cont-MainCamelLog box-container mtop-headertop" id="cont-MainCamelLog">
     <div class="cont-MainCamelLog--c" id="cont-MainCamelLog--cMarketplaceLogistics">
       <section class="cont-MainCamelLog--c--cTop">
@@ -95,7 +95,7 @@
       </section>
     </div>
   </main>
-  <?php require_once 'includes/form-login-user.php';?>
+  <?php require_once 'includes/inc_form-login-user.php';?>
   <script type="text/javascript" src="<?= $url; ?>js/user-login.js"></script>
   <script type="text/javascript" src="<?= $url; ?>js/main.js"></script>
   <script type="text/javascript" src="<?= $url; ?>js/marketplace-logistic.js"></script>
