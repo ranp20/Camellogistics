@@ -149,7 +149,7 @@
         </form>
       ";
 
-      $script_qbysteps = "<script src='{$url_defaultURL}views/js/startquoterequest_aduanas.js'></script>";
+      $script_qbysteps = "<script src='{$url_defaultURL}views/js/actions_pages/startquoterequest_aduanas.js'></script>";
     }else if($_POST['v_typetranspinit'] == 1){
       if(isset($_POST['v_iptportoriginpost']) && is_numeric($_POST['v_iptportoriginpost']) && 
          isset($_POST['v_iptcountryportoriginpost']) && is_numeric($_POST['v_iptcountryportoriginpost']) &&
@@ -290,7 +290,7 @@
           </form>
         ";
 
-        $script_qbysteps = "<script src='{$url_defaultURL}views/js/startquoterequest_maritimo.js'></script>";
+        $script_qbysteps = "<script src='{$url_defaultURL}views/js/actions_pages/startquoterequest_maritimo.js'></script>";
 
       }else{
         header("Location: marketplace-logistico");

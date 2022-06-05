@@ -18,6 +18,6 @@ $url         = $actual_link . "/Camellogistics/views/";
   <?php require_once 'views/includes/inc_footer.php';?>
   <?php require_once 'views/includes/inc_form-login-user.php';?>
   <script type="text/javascript" src="<?=$url;?>js/main.js"></script>
-  <script type="text/javascript" src="<?=$url;?>js/user-login.js"></script>
+  <script type="text/javascript" src="<?=$url;?>js/actions_pages/user-login.js"></script>
 </body>
 </html>
