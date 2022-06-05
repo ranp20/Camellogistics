@@ -55,39 +55,30 @@
 /* DASHBOARD - CONTENIDO AND DIFERENTS PAGES*/
 .cont-dashCamel{
 	padding: 0.5em;
-
 	@media (min-width: 991px){
 		padding: 0.8rem 0.8rem;
 	}
-
 	/************************** CONTENIDO CONTROLES - CONFIGURACIÓN DE PRECIOS **************************/
 	&__cControlsList{
 		display: flex;
 		gap: 1rem;
 		flex-direction: column;
-
 		@media (min-width: 1200px){
 			flex-direction: row;
 		}
-
 		&--cC{
 			max-width: 750px;
 	    width: 100%;
-
 	    @media (min-width: 991px){
 	    	width: 95%;
 	    }
-
 	    &--cTable{
 	    	width: 100%;
 	    	border: none;
-	    	
 	    	tr{
 	    		td{
-
 	    		}
 	    	}
-
 				&--cControl{
 					display: flex;
 			    flex-direction: column;
@@ -98,7 +89,6 @@
 			    gap: 0;
 			    margin-bottom: 0.6rem;
 			    text-align: left;
-
 					@media (min-width: 720px){
 						flex-direction: row;
 						align-items: center;
@@ -107,19 +97,16 @@
 						gap: 1rem;
 						margin-bottom: 0.6rem;
 					}
-
 					&--label{
 						flex: 32%;
 						text-align: right;
 						margin-bottom: 0;
-
 						@media (min-width: 1024px){
 							a{
 								display: none;
 								opacity: 0;
 								pointer-events: none;
 							}
-
 							&:hover{
 								a{
 									display: inline-block;
@@ -128,7 +115,6 @@
 								}
 							}
 						}
-
 						a{
 							display: inline-block;
 							svg{
@@ -140,8 +126,6 @@
 								margin-right: 0.25rem;
 							}
 						}
-
-
 						span{
 							vertical-align: middle;
 							&:last-child{
@@ -150,7 +134,6 @@
 							}
 						}
 					}
-
 					&--cInputs{
 						max-width: 27rem;
 						width: 100%;
@@ -160,7 +143,7 @@
 							padding: 0.15rem 0.3rem;
 							width: 100%;
 							margin-top: 0.5rem;
-
+							border-radius: 3px;
 							&[type=number]::-webkit-inner-spin-button, &[type=number]::-webkit-outer-spin-button { 
 					    	-webkit-appearance: none;
 					    	margin: 0;
@@ -168,7 +151,6 @@
 							&[type=number]{ 
 								-moz-appearance:textfield;
 							}
-
 							@media (min-width: 720px){
 								width: auto;
 								margin: 0;
@@ -178,7 +160,6 @@
 				}
 	    }
 		}
-
 		&--cActionsBtns{
 			display: inline-block;
 			flex-wrap: wrap;
@@ -192,7 +173,6 @@
 				font-weight: 600;
 				margin-left: 0.5rem;
 				margin-bottom: 0.5rem;
-
 				&:first-child{
 					background-color: yellow;
 					margin-left: unset;
@@ -207,13 +187,11 @@
 			}
 		}
 	}
-
 	/************************** CONTENIDO DE LA PARTE INFERIOR **************************/
 	&__list-results{
 		width: 100%;
 		border-collapse: collapse !important;
 		border: 1px solid $border-color-table;
-
 		thead{
 			tr{
 				border: 1px solid $border-color-table;
@@ -231,20 +209,15 @@
 		tbody{
 			tr{
 				border: 1px solid $border-color-table;
-
-
 				&:first-child{
 					border-top: 2px solid $border-color-table;							
 				}
-
 				&:nth-child(2n+1){
 					background-color: $bgc-th-table;
 				}
-
 				&:hover{
 					background-color: rgba(0,0,0,.12);
 				}
-				
 				td{
 					border: 1px solid $border-color-table;
 					border-top: 1px solid $border-color-table;
@@ -252,7 +225,6 @@
 					padding: 8px;
 					font-size: 0.75rem;
 					font-weight: 400;
-
 					&.cont-img-table{
 						display: table-cell;
 						align-items: center;
@@ -262,14 +234,12 @@
 						margin-right: auto;
 						width: 100px;
 						height: 80px;
-
 						a{
 							display: flex;
 							margin-left: auto;
 							margin-right: auto;
 							width: auto;
 							height: auto;
-
 							img{
 								display: flex;
 								margin-left: auto;
@@ -287,52 +257,44 @@
 						a{
 							color: #fff;
 							padding: 0.5rem 2rem;
-							border-radius: 1.5rem;
-
+							border-radius: 5px;
 							&:hover{
 								opacity: .6;
 							}
 						}
 					}
-
 					&.cont-btn-update{
 						a{
 							background-color: $btn-color-blue;
 						}
 					}
-
 					&.cont-btn-delete{
 						a{
 							background-color: $btn-color-red;
 						}
 					}
-
 					&.cont-btn-generate-pdf{
 						a{
 							background-color: red;
 							width: auto;
 							height: auto;
 							padding: .45rem 0.65rem 0.65rem .65rem;
-							border-radius: .35rem;
+							border-radius: 5px;
 							color: #fff;
-
 							span{
 								margin: 0 .25rem 0 0;
 								padding: 0;
 								display: none;
-
 								@media (min-width: 1600px){
 									display: inline-block;
 								}
 							}
-
 							svg{
 								fill: #fff;
 								width: 1rem;
 								height: auto;
 								vertical-align: middle;
 							}
-
 							&:hover{
 								opacity: 0.6;
 							}
@@ -342,7 +304,6 @@
 			}
 		}
 	}
-
 	/************************** STYLES INTO INPUT SEARCH **************************/
 	&__inputsearch-table{
 		margin-bottom: 0.5rem;
@@ -350,9 +311,8 @@
 			outline: none;
 			padding: 0.4rem 0.5rem;
 			border: thin solid $border-bottom-input;
-			border-radius: .4rem;
+			border-radius: 5px;
 			line-height: 0.3;
-
 			@media (min-width: 991px){
 		    font-size: 1rem;
 		    padding: 0.4rem 0.8rem 0.4rem 0.8rem;
@@ -361,7 +321,6 @@
 			}
 		}
 	}
-
 	/************************** CONTENIDO DE LA PARTE SUPERIOR **************************/
 	&__addtitle{
 		display: flex;
@@ -374,7 +333,6 @@
 		flex-wrap: wrap;
 		box-shadow: 0 -2px 0 0px #1797be inset;
     margin-bottom: 1rem;
-
 		&--title{
 			font-weight: 600;
 			font-size: 1.2rem !important;
@@ -382,7 +340,6 @@
 			color: $color-titles-windows;
 			margin: 0;
 		}
-
 		&--btn-add{
 			border: none;
 	    background-color: $btn-color-green;
@@ -400,45 +357,38 @@
 	    display: flex;
 	    align-items: center;
 	    justify-content: center;
-
 	    &__hidden{
 	    	display: none;
 	    }
-
 	    /* TAMAÑO - TABLET(768px)*/
 	    @media (min-width: 768px){
 	    	position: relative;
 				background-color: green;
 				font-size: .9rem;
 				padding: 0.5rem 2rem;
-				border-radius: .4rem;
+				border-radius: 5px;
 				box-shadow: unset;
 				z-index: 9;
 				bottom: 0;
 				right: 0;
-
 				&:hover{
 					opacity: 0.6;
 				}
-
 				&__hidden{
 					display: block;
 				}
 	    }
-
 	    span:nth-child(2){
 	    	max-width: 1.3rem;
 	    	display: flex;
 	    	align-items: center;
 	    	justify-content: center;
-
 	    	@media (min-width: 768px){
 	    		max-width: 1.05rem;
 	    		position: relative;
 	    		top: 2px;
 	    		margin-left: 0.4rem;
 	    	}
-
 	    	svg{
 	    		width: 100%;
 	    		height: auto;
@@ -1100,7 +1050,7 @@
 								background-color: transparent;
 								font-size: 0.9rem;
 								padding: 0.4rem 0.5rem;
-								border-radius: .5rem;
+								border-radius: 5px;
 
 								&[type=number]::-webkit-inner-spin-button, &[type=number]::-webkit-outer-spin-button { 
 						    	-webkit-appearance: none;
@@ -1336,7 +1286,7 @@
 					    padding: .4rem 1rem;
 					    margin-left: .5rem;
 					    color: $color-paragraph;
-					    border-radius: .5rem;
+					    border-radius: 5px;
 					    margin-bottom: 0.5rem;
 					    width: 100%;
 					    font-size: 0.9rem;
@@ -1359,7 +1309,7 @@
 					    padding: .4rem 1rem;
 					    margin-left: .5rem;
 					    color: $color-paragraph;
-					    border-radius: .5rem;
+					    border-radius: 5px;
 					    margin-bottom: 0.5rem;
 					    width: 100%;
 					    font-size: 0.9rem;
