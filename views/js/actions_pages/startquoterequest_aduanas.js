@@ -153,7 +153,7 @@ $(document).on("click", "#list-typeOperationItems a", function(){
     // ------------ ASIGNAR A LA VARIABLE BLOBAL 
     v_TypeOp = $(this).find("li").find("p").text();
     // ------------ VALOR DEL TIPO DE OPERACIÓN 
-    $("#loadTypeOpe").val(v_TypeOp);
+    $("#val_loadTypeOpe").val(v_TypeOp);
     // ------------ OCULTAR AL LISTADO DE RESUMEN - ELIGE UN OPCIÓN 
     $(".cont-MainCamelLog--c--contResumeCalc--item[data-advlevel=d-reqspeacialservs]").removeClass("show");
     $(".cont-MainCamelLog--c--contResumeCalc--item[data-advlevel=d-reqspeacialservs]").find("span").text("");
@@ -216,7 +216,6 @@ $(document).on("click", "#list-typeChargeLoadItems a", function(){
   var tTypeChargeLoad = $(this).index();
   if(tTypeChargeLoad == 0){
     localStorage.setItem("key_v-totalflette", 0);
-    localStorage.setItem("key_typeChrg", $(this).find("li").find("p").text());
     // ------------ ASIGNAR A LAS VARIABLES GLOBALES 
     v_TypeChargeImgSrc = $(this).find("li").find("div").find("img").attr("src");
     v_TypeChargeName = $(this).find("li").find("p").text();
@@ -507,7 +506,6 @@ $(document).on("click", "#list-typeChargeLoadItems a", function(){
     `);
   }else{
     localStorage.setItem("key_v-totalflette", 0);
-    localStorage.setItem("key_typeChrg", $(this).find("li").find("p").text());
     // ------------ ASIGNAR A LAS VARIABLES GLOBALES 
     v_TypeChargeImgSrc = $(this).find("li").find("div").find("img").attr("src");
     v_TypeChargeName = $(this).find("li").find("p").text();
@@ -574,6 +572,7 @@ $(document).on("click", "#list-typeChargeLoadItems a", function(){
             <input type="text" id="n_volumecompare_ultstep" class="n-val-sd" disabled>
             <input type="text" id="val_validateratequote" name="val_validateratequote" class="n-val-sd" value="">
             <input type="text" id="val_maxtotalweight" name="val_maxtotalweight" class="n-val-sd" value="">
+            <input type="text" id="val_ftotvalofdownload" name="val_ftotvalofdownload" class="n-val-sd" value="">
           </span>
         </span>
       </div>
@@ -1170,13 +1169,7 @@ $(document).on("click", "#btn-addCalculateFleteModal", function(e){
   ($("#val-Heightinputitem").val() != "") ? $("#msgNounHeightvalue").text("") : $("#msgNounHeightvalue").text("Campo requerido");
   ($("#val-Weightinputitem").val() != "") ? $("#msgNounWeightvalue").text("") : $("#msgNounWeightvalue").text("Campo requerido");
 
-  if($("#val-Lengthselitem").val() != 0 && 
-     $("#val-UnitWeightselitem").val() != 0 &&
-     $("#val-NroPackagestselitem").val() != "" &&
-     $("#val-Longinputitem").val() != "" &&
-     $("#val-Widthinputitem").val() != "" &&
-     $("#val-Heightinputitem").val() != "" &&
-     $("#val-Weightinputitem").val() != ""){
+  if($("#val-Lengthselitem").val() != 0 && $("#val-UnitWeightselitem").val() != 0 && $("#val-NroPackagestselitem").val() != "" && $("#val-Longinputitem").val() != "" && $("#val-Widthinputitem").val() != "" && $("#val-Heightinputitem").val() != "" && $("#val-Weightinputitem").val() != ""){
 
     var typeUnitLong = $("#val-Lengthselitem").val();
     var typeUnitMass = $("#val-UnitWeightselitem").val();
@@ -1238,9 +1231,12 @@ $(document).on("click", "#btn-addCalculateFleteModal", function(e){
     // ------------ LIMPIAR LOS CONTROLES 
     $("#f-formCalcModalSendInfo")[0].reset();
 
-  }else{
+  }
+  /*
+  else{
     console.log('Información incompleta');
   }
+  */
 });
 // ------------ REUNIR TODOS LOS TOTALES 
 function Add_Calculation_Total(totalPacks, totalWeight, totalVolume){
@@ -1342,7 +1338,10 @@ $(document).on("click", ".del-calculation-item", function(e){
     $("#b-valTotalPackages").val(valTotalResultPackages);
     $("#b-valTotalWeight").val(valTotalResultWeight);
     $("#b-valTotalVolume").val(valTotalvolumenfinal);
-
+    // ------------ AGREGAR A LOS VALORES A ENVIAR EN LOS INPUTS
+    $("#n_packscompare_ultstep").val(valTotalResultPackages); //AGREGAR AL CONTROL DE PAQUETES
+    $("#n_weightcompare_ultstep").val(valTotalResultWeight); //AGREGAR AL CONTROL DE PESO
+    $("#n_volumecompare_ultstep").val(valTotalvolumenfinal); //AGREGAR AL CONTROL DE VOLUMEN
     // ------------ AÑADIR LOS TOTALES AL LISTADO DE RESUMEN 
     
     
@@ -1393,6 +1392,10 @@ $(document).on("click", "#btn-addCalcValueToCalculator", function(e){
     $("#val-iptPackagesNInterface").val(valCalculadoPackages);
     $("#val-iptWeightNInterface").val(valCalculadoWeight);
     $("#val-iptVolumeNInterface").val(valCalculadoVolume);
+    // ------------ AGREGAR A LOS VALORES A ENVIAR EN LOS INPUTS
+    $("#n_packscompare_ultstep").val(valCalculadoPackages); //AGREGAR AL CONTROL DE PAQUETES
+    $("#n_weightcompare_ultstep").val(valCalculadoWeight); //AGREGAR AL CONTROL DE PESO
+    $("#n_volumecompare_ultstep").val(valCalculadoVolume); //AGREGAR AL CONTROL DE VOLUMEN
     
     // ------------ SOBREESCRIBIR VALORES DEL LOCALSTORAGE 
     localStorage.setItem("tot_packages", valCalculadoPackages);
@@ -1462,6 +1465,29 @@ $(document).on("click", "#btn-NextStepTochargedata", function(){
         $(this).parent().parent().remove();
       });
     }else{
+      // ------------ DEVOLVER EL CÁLCULO DE LA DESCARGA 
+      $.ajax({
+        url: "controllers/list_quotation_values_lcl_by_download.php",
+        method: "POST",
+        datatype: "JSON",
+        contentType: 'application/x-www-form-urlencoded;charset=UTF-8'
+      }).done((e) => {
+        var res = JSON.parse(e);
+        var valdownload_convert = parseFloat(res[0].data_value);
+        var val_totaldownload = 0;
+
+        if(v_ValDividedTotalWeight < 1){
+          val_totaldownload = valdownload_convert;
+          // ------------ ASIGNAR A LA VARIABLE LOCAL 
+          // localStorage.setItem("key_v-valbytotaldownload", val_totaldownload);
+          $("#val_ftotvalofdownload").val(val_totaldownload);
+        }else{
+          val_totaldownload = valdownload_convert * v_ValDividedTotalWeight;
+          // ------------ ASIGNAR A LA VARIABLE LOCAL 
+          // localStorage.setItem("key_v-valbytotaldownload", val_totaldownload);
+          $("#val_ftotvalofdownload").val(val_totaldownload);
+        }
+      });
       if(v_ValTotalVolume <= 5){
         // ------------ AGREGAR AL VALOR POST
         $("#val_maxtotalweight").val(v_floatweightconvert);
@@ -2514,7 +2540,7 @@ function listrateLCLTransport(searchVal){
       datatype: "JSON",
       contentType: 'application/x-www-form-urlencoded;charset=UTF-8',
       data: {searchList : searchVal, idpaisdestiny : ipt_idPortcountryDestiny},
-    }).done( function (res) {
+    }).done((res) => {
       var response = JSON.parse(res);
       var template = "";
       if(response.length == 0){
@@ -2622,7 +2648,7 @@ function listrateLCLTransport(searchVal){
       datatype: "JSON",
       contentType: 'application/x-www-form-urlencoded;charset=UTF-8',
       data: {searchList : searchVal, idpaisdestiny : ipt_idPortcountryDestiny},
-    }).done( function (res) {
+    }).done((res) => {
       var response = JSON.parse(res);
       var template = "";
       if(response.length == 0){
@@ -2729,7 +2755,7 @@ function listrateLCLTransport(searchVal){
       datatype: "JSON",
       contentType: 'application/x-www-form-urlencoded;charset=UTF-8',
       data: {searchList : searchVal, idpaisdestiny : ipt_idPortcountryDestiny},
-    }).done( function (res) {
+    }).done((res) => {
       var response = JSON.parse(res);
       var template = "";
       if(response.length == 0){

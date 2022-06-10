@@ -104,7 +104,7 @@
                 <h3 class='cont-MainCamelLog--c--contSteps--item--cTitle--title'>¿Qué tipo de operación vas a realizar?</h3>
                 <span>
                   <span>
-                    <input type='hidden' id='loadTypeOpe' name='loadTypeOpe' class='n-val-sd' disabled>
+                    <input tabindex='-1' placeholder='' type='hidden' width='0' height='0' autocomplete='off' spellcheck='false' f-hidden='aria-hidden' class='non-visvalipt h-alternative-shwnon s-fkeynone-step' type='hidden' id='val_loadTypeOpe' name='val_loadTypeOpe' class='n-val-sd'>
                   </span>
                 </span>
               </div>
@@ -243,7 +243,7 @@
                   <h3 class='cont-MainCamelLog--c--contSteps--item--cTitle--title'>¿Qué tipo de operación vas a realizar?</h3>
                   <span>
                     <span>
-                      <input type='hidden' id='loadTypeOpe' name='loadTypeOpe' class='n-val-sd' disabled>
+                      <input tabindex='-1' placeholder='' type='hidden' width='0' height='0' autocomplete='off' spellcheck='false' f-hidden='aria-hidden' class='non-visvalipt h-alternative-shwnon s-fkeynone-step' type='hidden' id='val_loadTypeOpe' name='val_loadTypeOpe' class='n-val-sd'>
                     </span>
                   </span>
                 </div>
@@ -308,7 +308,7 @@
 <html lang="es">
 <head>
   <title>Camel Logistics | Pasos de cotización</title>
-  <?php require_once 'includes/inc_header-links.php'; ?>
+  <?php require_once 'includes/inc_header-links.php';?>
   <link rel="stylesheet" href="<?php echo $url_defaultURL;?>views/js/plugins/fullpage/fullpage.min.css">
 </head>
 <body>
@@ -317,10 +317,10 @@
     <div class="c-Htopbar--c">
       <div class="c-Htopbar--c--cLogo">
         <a href="./">
-          <img src="<?= $url_defaultURL ?>views/assets/img/logos/logotipo-camel.png" alt="logo_camel">
+          <img src="<?= $url_defaultURL ?>views/assets/img/logos/logotipo-camel.png" alt="logo_camel" width="100" height="100" decoding="async">
         </a>
       </div>
-      <button class="c-Htopbar--c--btnMobileNavbar" id="btn-resume-mobile-header" type="button">
+      <button class="c-Htopbar--c--btnMobileNavbar" id="btn-resume-mobile-header" type="button" title="Menu">
         <span></span>
         <span></span>
         <span></span>
@@ -332,10 +332,10 @@
       <?php echo $sections_qresumeandsteps;?>
     </div>
   </main>
-  <?php require_once 'includes/inc_form-calculator-flete.php'; ?>
+  <?php require_once 'includes/inc_form-calculator-flete.php';?>
   <div id="msgLoaderPage_start"></div>
   <script type="text/javascript" src="<?php echo $url_defaultURL;?>views/js/plugins/fullpage/scrolloverflow.min.js"></script>
   <script type="text/javascript" src="<?php echo $url_defaultURL;?>views/js/plugins/fullpage/fullpage.min.js"></script>
-  <?php echo $script_qbysteps; ?>
+  <?php echo $script_qbysteps;?>
 </body>
 </html>

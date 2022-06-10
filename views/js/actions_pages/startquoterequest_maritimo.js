@@ -221,7 +221,7 @@ $(document).on("click", "#list-typeOperationItems a", function(){
     // ------------ ASIGNAR A LA VARIABLE BLOBAL 
     v_TypeOp = $(this).find("li").find("p").text();
     // ------------ VALOR DEL TIPO DE OPERACIÓN 
-    $("#loadTypeOpe").val(v_TypeOp);
+    $("#val_loadTypeOpe").val(v_TypeOp);
     // ------------ OCULTAR AL LISTADO DE RESUMEN - ELIGE UN OPCIÓN 
     $(".cont-MainCamelLog--c--contResumeCalc--item[data-advlevel=d-reqspeacialservs]").removeClass("show");
     $(".cont-MainCamelLog--c--contResumeCalc--item[data-advlevel=d-reqspeacialservs]").find("span").text("");
@@ -2336,6 +2336,10 @@ $(document).on("click", ".del-calculation-item", function(e){
 		$("#b-valTotalPackages").val(valTotalResultPackages);
 		$("#b-valTotalWeight").val(valTotalResultWeight);
 		$("#b-valTotalVolume").val(valTotalvolumenfinal);
+    // ------------ AGREGAR A LOS VALORES A ENVIAR EN LOS INPUTS
+    $("#n_packscompare_ultstep").val(valTotalResultPackages); //AGREGAR AL CONTROL DE PAQUETES
+    $("#n_weightcompare_ultstep").val(valTotalResultWeight); //AGREGAR AL CONTROL DE PESO
+    $("#n_volumecompare_ultstep").val(valTotalvolumenfinal); //AGREGAR AL CONTROL DE VOLUMEN
 
     // ------------ AÑADIR LOS TOTALES AL LISTADO DE RESUMEN 
     
@@ -2387,6 +2391,10 @@ $(document).on("click", "#btn-addCalcValueToCalculator", function(e){
 		$("#val-iptPackagesNInterface").val(valCalculadoPackages);
 		$("#val-iptWeightNInterface").val(valCalculadoWeight);
 		$("#val-iptVolumeNInterface").val(valCalculadoVolume);
+    // ------------ AGREGAR A LOS VALORES A ENVIAR EN LOS INPUTS
+    $("#n_packscompare_ultstep").val(valCalculadoPackages); //AGREGAR AL CONTROL DE PAQUETES
+    $("#n_weightcompare_ultstep").val(valCalculadoWeight); //AGREGAR AL CONTROL DE PESO
+    $("#n_volumecompare_ultstep").val(valCalculadoVolume); //AGREGAR AL CONTROL DE VOLUMEN
 		
 		// ------------ SOBREESCRIBIR VALORES DEL LOCALSTORAGE 
 		localStorage.setItem("tot_packages", valCalculadoPackages);
@@ -2443,329 +2451,58 @@ $(document).on("click", "#btn-NextStepTochargedata", function(){
       var v_convert = v_ValTotalWeight.replace(/\./g, '');
       var v_floatweightconvert = parseFloat(v_convert); //VALOR REAL DEL PESO
       var v_ValDividedTotalWeight = v_floatweightconvert / 1000;
-
-      // ------------ DEVOLVER EL CÁLCULO DE LA DESCARGA 
-      $.ajax({
-        url: "controllers/list_quotation_values_lcl_by_download.php",
-        method: "POST",
-        datatype: "JSON",
-        contentType: 'application/x-www-form-urlencoded;charset=UTF-8'
-      }).done((e) => {
-        var res = JSON.parse(e);
-        var valdownload_convert = parseFloat(res[0].data_value);
-        var val_totaldownload = 0;
-
-        if(v_ValDividedTotalWeight < 1){
-          val_totaldownload = valdownload_convert;
-          // ------------ ASIGNAR A LA VARIABLE LOCAL 
-          // localStorage.setItem("key_v-valbytotaldownload", val_totaldownload);
-          $("#val_ftotvalofdownload").val(val_totaldownload);
-        }else{
-          val_totaldownload = valdownload_convert * v_ValDividedTotalWeight;
-          // ------------ ASIGNAR A LA VARIABLE LOCAL 
-          // localStorage.setItem("key_v-valbytotaldownload", val_totaldownload);
-          $("#val_ftotvalofdownload").val(val_totaldownload);
-        }
-      });
-
-      if($("#loadTypeTranport").val() == "general"){
-        rate_5cbm = parseFloat(ratesorigin[0].total5cbm); //EN CASO DE NO SUPERAR LOS 5CBM
-        rate_15cbm = parseFloat(ratesorigin[0].total15cbm); //EN CASO DE SUPERAR LOS 15CBM
-        twodecimal_rate_5cbm = roundToTwo(rate_5cbm);
-        twodecimal_rate_15cbm = roundToTwo(rate_15cbm);
-
-        // ------------ DEVOLVER LA FECHA DE VALIDEZ DE LA TARIFA A LA VARIABLE LOCAL 
-        var validdesde_final = ratesorigin[0].validdesde;
-        var validhasta_final = ratesorigin[0].validhasta;
-        // ------------ ASIGNAR A LOS INPUTS DE ENVÍO 
-        $("#val-datevaliddesde").val(validdesde_final);
-        $("#val-datevalidhasta").val(validhasta_final);
-        var convertOneDATE =  new Date(Date.parse(validdesde_final.replace(/-/g, '/')));
-        var convertTwoDATE =  new Date(Date.parse(validhasta_final.replace(/[-]/g,'/')));
-        var options = { year: 'numeric', month: 'long', day: 'numeric' };
-        var convertDateValidDesde = convertOneDATE.toLocaleDateString("es-ES", options);
-        var convertDateValidHasta = convertTwoDATE.toLocaleDateString("es-ES", options);
-        var separateDateValidDesde = convertDateValidDesde.split(" ");
-        var separateDateValidHasta = convertDateValidHasta.split(" ");
-        var monthSeparatetoArrayDesde = separateDateValidDesde[2].slice(0, 3);
-        var monthSeparatetoArrayHasta = separateDateValidHasta[2].slice(0, 3);
-
-        var val_dateValidDesde = separateDateValidDesde[0]+" "+"de"+" "+firstToUppercase(monthSeparatetoArrayDesde);
-        var val_dateValidHasta = separateDateValidHasta[0]+" "+"de"+" "+firstToUppercase(monthSeparatetoArrayHasta);
-        // ------------ ASIGNAR A LAS VARIABLES LOCALES 
-        localStorage.setItem("key_validaterate", val_dateValidDesde+" - "+val_dateValidHasta);
-        localStorage.setItem("key_v-valttaproxbycontain", ratesorigin[0].tt_aprox);
-        $("#val-timeaproxtransbycont").val(ratesorigin[0].tt_aprox);
-        // ------------ ASIGNAR AL VALOR DE ENVÍO 
-        $("#val_validateratequote").val(val_dateValidDesde+" - "+val_dateValidHasta);
-
-        if(v_ValTotalVolume <= 5){
-
-          if(v_ValTotalVolume > v_ValDividedTotalWeight){
-
-            totwithoutvalues = roundToTwo(twodecimal_rate_5cbm * v_ValTotalVolume);
-            localStorage.setItem("key_v-totalflette", totwithoutvalues);
-
-          }else{
-
-            totwithoutvalues = roundToTwo(twodecimal_rate_5cbm * v_ValDividedTotalWeight);
-            localStorage.setItem("key_v-totalflette", totwithoutvalues);
-          }
-
-          // ------------ MOSTRAR EL RESUMEN HASTA ESTE PASO 
-          $(".cont-MainCamelLog--c--contResumeCalc--item[data-advlevel=d-typecontainer]").addClass("show");
-          // ------------ MOSTRAR EL PASO DE - ELIGE UNA OPCIÓN 
-          $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-integservorfleteinte]").addClass("show");
-          sectionsSteps.moveTo('step-integservorfleteinte', 1);
-          $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-integservorfleteinte]").html(`
-            <div class="cont-MainCamelLog--c--contSteps--item--cTitle">
-              <h3 class="cont-MainCamelLog--c--contSteps--item--cTitle--title">Eliga una opción</h3>
-              <span>
-                <span>
-                  <input type="hidden" id="opt-genfquotation" name="opt-genfquotation" class="n-val-sd">
-                </span>
-              </span>
+      if(v_floatweightconvert > 7000){
+        // ------------ OCULTAR EL SIGUIENTE PASO 
+        $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-merchandisedata]").removeClass("show");
+        $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-merchandisedata]").html("");
+        // ------------ MOSTRAR EL MENSAJE DE ALERTA PERSONALIZADO 
+        $("#idMessageSteps-prcss").html(`
+          <div class="cntMessageSteps-prcss--cont">
+            <div class="cntMessageSteps-prcss--cont--c">
+              <span class="cntMessageSteps-prcss--cont--c--btnclose" id="btnclose-modalMessage"></span>
+              <h3 class="cntMessageSteps-prcss--cont--c--title">Carga excedida</h3>
+              <p class="cntMessageSteps-prcss--cont--c--text">El <b>PESO</b> registrado no debe exceder los <b>7000 Kg</b>, seleccione <b>CONTENEDOR COMPLETO (FCL) o contacte a un ASESOR +51 990 234 625.</b></p>
             </div>
-            <div class="cont-MainCamelLog--c--contSteps--item--cStep">
-              <ul class="cont-MainCamelLog--c--contSteps--item--cStep--m" id="list-SelOptionResultExp">
-                <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem">
-                  <li class="cont-MainCamelLog--c--contSteps--item--cStep--m--item">
-                    <h3>Opción 1</h3>
-                    <div class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem--cImg">
-                      <img src="views/assets/img/steps/customs-clearance.png" alt="" loading="lazy">
-                    </div>
-                    <p>AGREGAR SERVICIOS DE ADUANA EN DESTINO</p>
-                  </li>
-                </a>
-                <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem">
-                  <li class="cont-MainCamelLog--c--contSteps--item--cStep--m--item">
-                    <h3>Opción 2</h3>
-                    <div class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem--cImg">
-                      <img src="views/assets/img/steps/no-customs-clearance.png" alt="" loading="lazy">
-                    </div>
-                    <p>NO AGREGAR SERVICIOS "SOLO DESEO FLETE"</p>
-                  </li>
-                </a>
-              </ul>
-            </div>
-            <div class="cont-MainCamelLog--c--contSteps--item--cBtnNextStep"></div>
-          `);
-
-
-        }else if(v_ValTotalVolume > 5 && v_ValTotalVolume <= 15){
-
-          if(v_ValTotalVolume > v_ValDividedTotalWeight){
-
-            totwithoutvalues = roundToTwo(twodecimal_rate_15cbm * v_ValTotalVolume);
-            localStorage.setItem("key_v-totalflette", totwithoutvalues);
-          }else{
-
-            totwithoutvalues = roundToTwo(twodecimal_rate_15cbm * v_ValDividedTotalWeight);
-            localStorage.setItem("key_v-totalflette", totwithoutvalues);
-          }
-
-          // ------------ MOSTRAR EL RESUMEN HASTA ESTE PASO 
-          $(".cont-MainCamelLog--c--contResumeCalc--item[data-advlevel=d-typecontainer]").addClass("show");
-
-          // ------------ MOSTRAR EL PASO DE - ELIGE UNA OPCIÓN 
-          $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-integservorfleteinte]").addClass("show");
-          sectionsSteps.moveTo('step-integservorfleteinte', 1);
-          $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-integservorfleteinte]").html(`
-            <div class="cont-MainCamelLog--c--contSteps--item--cTitle">
-              <h3 class="cont-MainCamelLog--c--contSteps--item--cTitle--title">Eliga una opción</h3>
-              <span>
-                <span>
-                  <input type="hidden" value="" id="opt-genfquotation" name="opt-genfquotation" class="n-val-sd">
-                </span>
-              </span>
-            </div>
-            <div class="cont-MainCamelLog--c--contSteps--item--cStep">
-              <ul class="cont-MainCamelLog--c--contSteps--item--cStep--m" id="list-SelOptionResultExp">
-                <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem">
-                  <li class="cont-MainCamelLog--c--contSteps--item--cStep--m--item">
-                    <h3>Opción 1</h3>
-                    <div class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem--cImg">
-                      <img src="views/assets/img/steps/customs-clearance.png" alt="" loading="lazy">
-                    </div>
-                    <p>AGREGAR SERVICIOS DE ADUANA EN DESTINO</p>
-                  </li>
-                </a>
-                <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem">
-                  <li class="cont-MainCamelLog--c--contSteps--item--cStep--m--item">
-                    <h3>Opción 2</h3>
-                    <div class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem--cImg">
-                      <img src="views/assets/img/steps/no-customs-clearance.png" alt="" loading="lazy">
-                    </div>
-                    <p>NO AGREGAR SERVICIOS "SOLO DESEO FLETE"</p>
-                  </li>
-                </a>
-              </ul>
-            </div>
-            <div class="cont-MainCamelLog--c--contSteps--item--cBtnNextStep"></div>
-          `);
-
-        }else if(v_ValTotalVolume > 15){
-
-          // ------------ OCULTAR EL RESUMEN HASTA ESTE PASO 
-          $(".cont-MainCamelLog--c--contResumeCalc--item[data-advlevel=d-typecontainer]").removeClass("show");
-          // ------------ OCULTAR EL PASO DE - ELIGE UNA OPCIÓN 
-          $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-integservorfleteinte]").removeClass("show");
-          $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-integservorfleteinte]").html("");
-
-          // ------------ MOSTRAR EL MENSAJE DE ALERTA PERSONALIZADO 
-          $("#idMessageSteps-prcss").html(`
-            <div class="cntMessageSteps-prcss--cont">
-              <div class="cntMessageSteps-prcss--cont--c">
-                <span class="cntMessageSteps-prcss--cont--c--btnclose" id="btnclose-modalMessage"></span>
-                <h3 class="cntMessageSteps-prcss--cont--c--title">Carga excedida</h3>
-                <p class="cntMessageSteps-prcss--cont--c--text">El <b>VOLUMEN</b> registrado no debe exceder los <b>15 M³</b>, seleccione <b>CONTENEDOR COMPLETO o contacte a un ASESOR +51 990 234 625.</b></p>
-              </div>
-            </div>
-          `)
-          // ------------ CERRAR EL MODAL 
-          setTimeout(function(){
-            $("#idMessageSteps-prcss .cntMessageSteps-prcss--cont").remove();
-          }, 6500)
-          $("#btnclose-modalMessage").on("click", function(){
-            $(this).parent().parent().remove();
-          });
-
-        }else{
-          console.log('Error de cálculo');
-        }
-
-      }else if($("#loadTypeTranport").val() == "imo"){
-        twodecimal_total_imo = roundToTwo(ratesorigin[0].total_imo);
-        // ------------ ASIGNAR A LA VARIABLE LOCAL 
-        localStorage.setItem("key_v-valttaproxbycontain", ratesorigin[0].tt_aprox);
-        $("#val-timeaproxtransbycont").val(ratesorigin[0].tt_aprox);
-        if(v_ValTotalVolume > 15){
-          // ------------ OCULTAR EL RESUMEN HASTA ESTE PASO 
-          $(".cont-MainCamelLog--c--contResumeCalc--item[data-advlevel=d-typecontainer]").removeClass("show");
-          // ------------ OCULTAR EL PASO DE - ELIGE UNA OPCIÓN 
-          $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-integservorfleteinte]").removeClass("show");
-          $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-integservorfleteinte]").html("");
-          // ------------ MOSTRAR EL MENSAJE DE ALERTA PERSONALIZADO 
-          $("#idMessageSteps-prcss").html(`
-            <div class="cntMessageSteps-prcss--cont">
-              <div class="cntMessageSteps-prcss--cont--c">
-                <span class="cntMessageSteps-prcss--cont--c--btnclose" id="btnclose-modalMessage"></span>
-                <h3 class="cntMessageSteps-prcss--cont--c--title">Carga excedida</h3>
-                <p class="cntMessageSteps-prcss--cont--c--text">El <b>VOLUMEN</b> registrado no debe exceder los <b>15 M³</b>, seleccione <b>CONTENEDOR COMPLETO o contacte a un ASESOR +51 990 234 625.</b></p>
-              </div>
-            </div>
-          `);
-          // ------------ CERRAR EL MODAL 
-          setTimeout(function(){
-            $("#idMessageSteps-prcss .cntMessageSteps-prcss--cont").remove();
-          }, 6500)
-          $("#btnclose-modalMessage").on("click", function(){
-            $(this).parent().parent().remove();
-          });
-        }else{
-          // ------------ DEVOLVER LA FECHA DE VALIDEZ DE LA TARIFA A LA VARIABLE LOCAL 
-          var validdesde_final = ratesorigin[0].validdesde;
-          var validhasta_final = ratesorigin[0].validhasta;
-          // ------------ ASIGNAR A LOS INPUTS DE ENVÍO 
-          $("#val-datevaliddesde").val(validdesde_final);
-          $("#val-datevalidhasta").val(validhasta_final);
-          var convertOneDATE =  new Date(Date.parse(validdesde_final.replace(/-/g, '/')));
-          var convertTwoDATE =  new Date(Date.parse(validhasta_final.replace(/[-]/g,'/')));
-          var options = { year: 'numeric', month: 'long', day: 'numeric' };
-          var convertDateValidDesde = convertOneDATE.toLocaleDateString("es-ES", options);
-          var convertDateValidHasta = convertTwoDATE.toLocaleDateString("es-ES", options);
-          var separateDateValidDesde = convertDateValidDesde.split(" ");
-          var separateDateValidHasta = convertDateValidHasta.split(" ");
-          var monthSeparatetoArrayDesde = separateDateValidDesde[2].slice(0, 3);
-          var monthSeparatetoArrayHasta = separateDateValidHasta[2].slice(0, 3);
-
-          var val_dateValidDesde = separateDateValidDesde[0]+" "+"de"+" "+firstToUppercase(monthSeparatetoArrayDesde);
-          var val_dateValidHasta = separateDateValidHasta[0]+" "+"de"+" "+firstToUppercase(monthSeparatetoArrayHasta);
-          // ------------ ASIGNAR A LAS VARIABLES LOCALES 
-          localStorage.setItem("key_validaterate", val_dateValidDesde+" - "+val_dateValidHasta);
-          // ------------ ASIGNAR AL VALOR DE ENVÍO 
-          $("#val_validateratequote").val(val_dateValidDesde+" - "+val_dateValidHasta);
-          
-          // ------------ VALIDAR EL VALOR MÁXIMO ENTRE PESO Y VOLUMEN 
-          if(v_ValTotalVolume > v_ValDividedTotalWeight){
-            totwithoutvalues = roundToTwo(twodecimal_total_imo * v_ValTotalVolume);
-            localStorage.setItem("key_v-totalflette", totwithoutvalues);
-
-          }else{
-            totwithoutvalues = roundToTwo(twodecimal_total_imo * v_ValDividedTotalWeight);
-            localStorage.setItem("key_v-totalflette", totwithoutvalues);
-          }
-          // ------------ MOSTRAR EL RESUMEN HASTA ESTE PASO 
-          $(".cont-MainCamelLog--c--contResumeCalc--item[data-advlevel=d-typecontainer]").addClass("show");
-          // ------------ MOSTRAR EL PASO DE - ELIGE UNA OPCIÓN 
-          $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-integservorfleteinte]").addClass("show");
-          sectionsSteps.moveTo('step-integservorfleteinte', 1);
-          $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-integservorfleteinte]").html(`
-            <div class="cont-MainCamelLog--c--contSteps--item--cTitle">
-              <h3 class="cont-MainCamelLog--c--contSteps--item--cTitle--title">Eliga una opción</h3>
-              <span>
-                <span>
-                  <input type="hidden" value="" id="opt-genfquotation" name="opt-genfquotation" class="n-val-sd">
-                </span>
-              </span>
-            </div>
-            <div class="cont-MainCamelLog--c--contSteps--item--cStep">
-              <ul class="cont-MainCamelLog--c--contSteps--item--cStep--m" id="list-SelOptionResultExp">
-                <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem">
-                  <li class="cont-MainCamelLog--c--contSteps--item--cStep--m--item">
-                    <h3>Opción 1</h3>
-                    <div class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem--cImg">
-                      <img src="views/assets/img/steps/customs-clearance.png" alt="" loading="lazy">
-                    </div>
-                    <p>AGREGAR SERVICIOS DE ADUANA EN DESTINO</p>
-                  </li>
-                </a>
-                <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem">
-                  <li class="cont-MainCamelLog--c--contSteps--item--cStep--m--item">
-                    <h3>Opción 2</h3>
-                    <div class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem--cImg">
-                      <img src="views/assets/img/steps/no-customs-clearance.png" alt="" loading="lazy">
-                    </div>
-                    <p>NO AGREGAR SERVICIOS "SOLO DESEO FLETE"</p>
-                  </li>
-                </a>
-              </ul>
-            </div>
-            <div class="cont-MainCamelLog--c--contSteps--item--cBtnNextStep"></div>
-          `);
-        }
-
+          </div>
+        `);
+        // ------------ CERRAR EL MODAL 
+        setTimeout(function(){
+          $("#idMessageSteps-prcss .cntMessageSteps-prcss--cont").remove();
+        }, 6500)
+        $("#btnclose-modalMessage").on("click", function(){
+          $(this).parent().parent().remove();
+        });
       }else{
-        twodecimal_total_refrigerado = roundToTwo(ratesorigin[0].total_refrigerado);
-        // ------------ ASIGNAR A LA VARIABLE LOCAL 
-        localStorage.setItem("key_v-valttaproxbycontain", ratesorigin[0].tt_aprox);
-        $("#val-timeaproxtransbycont").val(ratesorigin[0].tt_aprox);
-        if(v_ValTotalVolume > 15){
+        // ------------ DEVOLVER EL CÁLCULO DE LA DESCARGA 
+        $.ajax({
+          url: "controllers/list_quotation_values_lcl_by_download.php",
+          method: "POST",
+          datatype: "JSON",
+          contentType: 'application/x-www-form-urlencoded;charset=UTF-8'
+        }).done((e) => {
+          var res = JSON.parse(e);
+          console.log(res);
+          var valdownload_convert = parseFloat(res[0].data_value);
+          var val_totaldownload = 0;
 
-          // ------------ OCULTAR EL RESUMEN HASTA ESTE PASO 
-          $(".cont-MainCamelLog--c--contResumeCalc--item[data-advlevel=d-typecontainer]").removeClass("show");
-          // ------------ OCULTAR EL PASO DE - ELIGE UNA OPCIÓN 
-          $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-integservorfleteinte]").removeClass("show");
-          $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-integservorfleteinte]").html("");
+          if(v_ValDividedTotalWeight < 1){
+            val_totaldownload = valdownload_convert;
+            // ------------ ASIGNAR A LA VARIABLE LOCAL 
+            // localStorage.setItem("key_v-valbytotaldownload", val_totaldownload);
+            $("#val_ftotvalofdownload").val(val_totaldownload);
+          }else{
+            val_totaldownload = valdownload_convert * v_ValDividedTotalWeight;
+            // ------------ ASIGNAR A LA VARIABLE LOCAL 
+            // localStorage.setItem("key_v-valbytotaldownload", val_totaldownload);
+            $("#val_ftotvalofdownload").val(val_totaldownload);
+          }
+        });
 
-          // ------------ MOSTRAR EL MENSAJE DE ALERTA PERSONALIZADO 
-          $("#idMessageSteps-prcss").html(`
-            <div class="cntMessageSteps-prcss--cont">
-              <div class="cntMessageSteps-prcss--cont--c">
-                <span class="cntMessageSteps-prcss--cont--c--btnclose" id="btnclose-modalMessage"></span>
-                <h3 class="cntMessageSteps-prcss--cont--c--title">Carga excedida</h3>
-                <p class="cntMessageSteps-prcss--cont--c--text">El <b>VOLUMEN</b> registrado no debe exceder los <b>15 M³</b>, seleccione <b>CONTENEDOR COMPLETO o contacte a un ASESOR +51 990 234 625.</b></p>
-              </div>
-            </div>
-          `)
-          // ------------ CERRAR EL MODAL 
-          setTimeout(function(){
-            $("#idMessageSteps-prcss .cntMessageSteps-prcss--cont").remove();
-          }, 6500)
-          $("#btnclose-modalMessage").on("click", function(){
-            $(this).parent().parent().remove();
-          });
-        }else{
+        if($("#loadTypeTranport").val() == "general"){
+          rate_5cbm = parseFloat(ratesorigin[0].total5cbm); //EN CASO DE NO SUPERAR LOS 5CBM
+          rate_15cbm = parseFloat(ratesorigin[0].total15cbm); //EN CASO DE SUPERAR LOS 15CBM
+          twodecimal_rate_5cbm = roundToTwo(rate_5cbm);
+          twodecimal_rate_15cbm = roundToTwo(rate_15cbm);
 
           // ------------ DEVOLVER LA FECHA DE VALIDEZ DE LA TARIFA A LA VARIABLE LOCAL 
           var validdesde_final = ratesorigin[0].validdesde;
@@ -2787,17 +2524,66 @@ $(document).on("click", "#btn-NextStepTochargedata", function(){
           var val_dateValidHasta = separateDateValidHasta[0]+" "+"de"+" "+firstToUppercase(monthSeparatetoArrayHasta);
           // ------------ ASIGNAR A LAS VARIABLES LOCALES 
           localStorage.setItem("key_validaterate", val_dateValidDesde+" - "+val_dateValidHasta);
+          localStorage.setItem("key_v-valttaproxbycontain", ratesorigin[0].tt_aprox);
+          $("#val-timeaproxtransbycont").val(ratesorigin[0].tt_aprox);
           // ------------ ASIGNAR AL VALOR DE ENVÍO 
           $("#val_validateratequote").val(val_dateValidDesde+" - "+val_dateValidHasta);
-          // ------------ VALIDAR EL VALOR MÁXIMO ENTRE PESO Y VOLUMEN 
-          if(v_ValTotalVolume > v_ValDividedTotalWeight){
-            totwithoutvalues = roundToTwo(twodecimal_total_refrigerado * v_ValTotalVolume);
-            localStorage.setItem("key_v-totalflette", totwithoutvalues);
-          }else{
-            totwithoutvalues = roundToTwo(twodecimal_total_refrigerado * v_ValDividedTotalWeight);
-            localStorage.setItem("key_v-totalflette", totwithoutvalues);
-          }
-          // ------------ MOSTRAR EL RESUMEN HASTA ESTE PASO 
+
+          if(v_ValTotalVolume <= 5){
+            if(v_ValTotalVolume > v_ValDividedTotalWeight){
+              totwithoutvalues = roundToTwo(twodecimal_rate_5cbm * v_ValTotalVolume);
+              localStorage.setItem("key_v-totalflette", totwithoutvalues);
+            }else{
+              totwithoutvalues = roundToTwo(twodecimal_rate_5cbm * v_ValDividedTotalWeight);
+              localStorage.setItem("key_v-totalflette", totwithoutvalues);
+            }
+            // ------------ MOSTRAR EL RESUMEN HASTA ESTE PASO 
+            $(".cont-MainCamelLog--c--contResumeCalc--item[data-advlevel=d-typecontainer]").addClass("show");
+            // ------------ MOSTRAR EL PASO DE - ELIGE UNA OPCIÓN 
+            $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-integservorfleteinte]").addClass("show");
+            sectionsSteps.moveTo('step-integservorfleteinte', 1);
+            $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-integservorfleteinte]").html(`
+              <div class="cont-MainCamelLog--c--contSteps--item--cTitle">
+                <h3 class="cont-MainCamelLog--c--contSteps--item--cTitle--title">Eliga una opción</h3>
+                <span>
+                  <span>
+                    <input type="hidden" id="opt-genfquotation" name="opt-genfquotation" class="n-val-sd">
+                  </span>
+                </span>
+              </div>
+              <div class="cont-MainCamelLog--c--contSteps--item--cStep">
+                <ul class="cont-MainCamelLog--c--contSteps--item--cStep--m" id="list-SelOptionResultExp">
+                  <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem">
+                    <li class="cont-MainCamelLog--c--contSteps--item--cStep--m--item">
+                      <h3>Opción 1</h3>
+                      <div class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem--cImg">
+                        <img src="views/assets/img/steps/customs-clearance.png" alt="" loading="lazy">
+                      </div>
+                      <p>AGREGAR SERVICIOS DE ADUANA EN DESTINO</p>
+                    </li>
+                  </a>
+                  <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem">
+                    <li class="cont-MainCamelLog--c--contSteps--item--cStep--m--item">
+                      <h3>Opción 2</h3>
+                      <div class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem--cImg">
+                        <img src="views/assets/img/steps/no-customs-clearance.png" alt="" loading="lazy">
+                      </div>
+                      <p>NO AGREGAR SERVICIOS "SOLO DESEO FLETE"</p>
+                    </li>
+                  </a>
+                </ul>
+              </div>
+              <div class="cont-MainCamelLog--c--contSteps--item--cBtnNextStep"></div>
+            `);
+          }else if(v_ValTotalVolume > 5 && v_ValTotalVolume <= 15){
+            if(v_ValTotalVolume > v_ValDividedTotalWeight){
+              totwithoutvalues = roundToTwo(twodecimal_rate_15cbm * v_ValTotalVolume);
+              localStorage.setItem("key_v-totalflette", totwithoutvalues);
+            }else{
+              totwithoutvalues = roundToTwo(twodecimal_rate_15cbm * v_ValDividedTotalWeight);
+              localStorage.setItem("key_v-totalflette", totwithoutvalues);
+            }
+            // ------------ MOSTRAR EL RESUMEN HASTA ESTE PASO 
             $(".cont-MainCamelLog--c--contResumeCalc--item[data-advlevel=d-typecontainer]").addClass("show");
             // ------------ MOSTRAR EL PASO DE - ELIGE UNA OPCIÓN 
             $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-integservorfleteinte]").addClass("show");
@@ -2835,6 +2621,228 @@ $(document).on("click", "#btn-NextStepTochargedata", function(){
               </div>
               <div class="cont-MainCamelLog--c--contSteps--item--cBtnNextStep"></div>
             `);
+          }else if(v_ValTotalVolume > 15){
+            // ------------ OCULTAR EL RESUMEN HASTA ESTE PASO 
+            $(".cont-MainCamelLog--c--contResumeCalc--item[data-advlevel=d-typecontainer]").removeClass("show");
+            // ------------ OCULTAR EL PASO DE - ELIGE UNA OPCIÓN 
+            $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-integservorfleteinte]").removeClass("show");
+            $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-integservorfleteinte]").html("");
+            // ------------ MOSTRAR EL MENSAJE DE ALERTA PERSONALIZADO 
+            $("#idMessageSteps-prcss").html(`
+              <div class="cntMessageSteps-prcss--cont">
+                <div class="cntMessageSteps-prcss--cont--c">
+                  <span class="cntMessageSteps-prcss--cont--c--btnclose" id="btnclose-modalMessage"></span>
+                  <h3 class="cntMessageSteps-prcss--cont--c--title">Carga excedida</h3>
+                  <p class="cntMessageSteps-prcss--cont--c--text">El <b>VOLUMEN</b> registrado no debe exceder los <b>15 M³</b>, seleccione <b>CONTENEDOR COMPLETO o contacte a un ASESOR +51 990 234 625.</b></p>
+                </div>
+              </div>
+            `)
+            // ------------ CERRAR EL MODAL 
+            setTimeout(function(){
+              $("#idMessageSteps-prcss .cntMessageSteps-prcss--cont").remove();
+            }, 6500)
+            $("#btnclose-modalMessage").on("click", function(){
+              $(this).parent().parent().remove();
+            });
+          }else{
+            console.log('Error de cálculo');
+          }
+        }else if($("#loadTypeTranport").val() == "imo"){
+          twodecimal_total_imo = roundToTwo(ratesorigin[0].total_imo);
+          // ------------ ASIGNAR A LA VARIABLE LOCAL 
+          localStorage.setItem("key_v-valttaproxbycontain", ratesorigin[0].tt_aprox);
+          $("#val-timeaproxtransbycont").val(ratesorigin[0].tt_aprox);
+          if(v_ValTotalVolume > 15){
+            // ------------ OCULTAR EL RESUMEN HASTA ESTE PASO 
+            $(".cont-MainCamelLog--c--contResumeCalc--item[data-advlevel=d-typecontainer]").removeClass("show");
+            // ------------ OCULTAR EL PASO DE - ELIGE UNA OPCIÓN 
+            $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-integservorfleteinte]").removeClass("show");
+            $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-integservorfleteinte]").html("");
+            // ------------ MOSTRAR EL MENSAJE DE ALERTA PERSONALIZADO 
+            $("#idMessageSteps-prcss").html(`
+              <div class="cntMessageSteps-prcss--cont">
+                <div class="cntMessageSteps-prcss--cont--c">
+                  <span class="cntMessageSteps-prcss--cont--c--btnclose" id="btnclose-modalMessage"></span>
+                  <h3 class="cntMessageSteps-prcss--cont--c--title">Carga excedida</h3>
+                  <p class="cntMessageSteps-prcss--cont--c--text">El <b>VOLUMEN</b> registrado no debe exceder los <b>15 M³</b>, seleccione <b>CONTENEDOR COMPLETO o contacte a un ASESOR +51 990 234 625.</b></p>
+                </div>
+              </div>
+            `);
+            // ------------ CERRAR EL MODAL 
+            setTimeout(function(){
+              $("#idMessageSteps-prcss .cntMessageSteps-prcss--cont").remove();
+            }, 6500)
+            $("#btnclose-modalMessage").on("click", function(){
+              $(this).parent().parent().remove();
+            });
+          }else{
+            // ------------ DEVOLVER LA FECHA DE VALIDEZ DE LA TARIFA A LA VARIABLE LOCAL 
+            var validdesde_final = ratesorigin[0].validdesde;
+            var validhasta_final = ratesorigin[0].validhasta;
+            // ------------ ASIGNAR A LOS INPUTS DE ENVÍO 
+            $("#val-datevaliddesde").val(validdesde_final);
+            $("#val-datevalidhasta").val(validhasta_final);
+            var convertOneDATE =  new Date(Date.parse(validdesde_final.replace(/-/g, '/')));
+            var convertTwoDATE =  new Date(Date.parse(validhasta_final.replace(/[-]/g,'/')));
+            var options = { year: 'numeric', month: 'long', day: 'numeric' };
+            var convertDateValidDesde = convertOneDATE.toLocaleDateString("es-ES", options);
+            var convertDateValidHasta = convertTwoDATE.toLocaleDateString("es-ES", options);
+            var separateDateValidDesde = convertDateValidDesde.split(" ");
+            var separateDateValidHasta = convertDateValidHasta.split(" ");
+            var monthSeparatetoArrayDesde = separateDateValidDesde[2].slice(0, 3);
+            var monthSeparatetoArrayHasta = separateDateValidHasta[2].slice(0, 3);
+
+            var val_dateValidDesde = separateDateValidDesde[0]+" "+"de"+" "+firstToUppercase(monthSeparatetoArrayDesde);
+            var val_dateValidHasta = separateDateValidHasta[0]+" "+"de"+" "+firstToUppercase(monthSeparatetoArrayHasta);
+            // ------------ ASIGNAR A LAS VARIABLES LOCALES 
+            localStorage.setItem("key_validaterate", val_dateValidDesde+" - "+val_dateValidHasta);
+            // ------------ ASIGNAR AL VALOR DE ENVÍO 
+            $("#val_validateratequote").val(val_dateValidDesde+" - "+val_dateValidHasta);
+            // ------------ VALIDAR EL VALOR MÁXIMO ENTRE PESO Y VOLUMEN 
+            if(v_ValTotalVolume > v_ValDividedTotalWeight){
+              totwithoutvalues = roundToTwo(twodecimal_total_imo * v_ValTotalVolume);
+              localStorage.setItem("key_v-totalflette", totwithoutvalues);
+            }else{
+              totwithoutvalues = roundToTwo(twodecimal_total_imo * v_ValDividedTotalWeight);
+              localStorage.setItem("key_v-totalflette", totwithoutvalues);
+            }
+            // ------------ MOSTRAR EL RESUMEN HASTA ESTE PASO 
+            $(".cont-MainCamelLog--c--contResumeCalc--item[data-advlevel=d-typecontainer]").addClass("show");
+            // ------------ MOSTRAR EL PASO DE - ELIGE UNA OPCIÓN 
+            $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-integservorfleteinte]").addClass("show");
+            sectionsSteps.moveTo('step-integservorfleteinte', 1);
+            $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-integservorfleteinte]").html(`
+              <div class="cont-MainCamelLog--c--contSteps--item--cTitle">
+                <h3 class="cont-MainCamelLog--c--contSteps--item--cTitle--title">Eliga una opción</h3>
+                <span>
+                  <span>
+                    <input type="hidden" value="" id="opt-genfquotation" name="opt-genfquotation" class="n-val-sd">
+                  </span>
+                </span>
+              </div>
+              <div class="cont-MainCamelLog--c--contSteps--item--cStep">
+                <ul class="cont-MainCamelLog--c--contSteps--item--cStep--m" id="list-SelOptionResultExp">
+                  <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem">
+                    <li class="cont-MainCamelLog--c--contSteps--item--cStep--m--item">
+                      <h3>Opción 1</h3>
+                      <div class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem--cImg">
+                        <img src="views/assets/img/steps/customs-clearance.png" alt="" loading="lazy">
+                      </div>
+                      <p>AGREGAR SERVICIOS DE ADUANA EN DESTINO</p>
+                    </li>
+                  </a>
+                  <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem">
+                    <li class="cont-MainCamelLog--c--contSteps--item--cStep--m--item">
+                      <h3>Opción 2</h3>
+                      <div class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem--cImg">
+                        <img src="views/assets/img/steps/no-customs-clearance.png" alt="" loading="lazy">
+                      </div>
+                      <p>NO AGREGAR SERVICIOS "SOLO DESEO FLETE"</p>
+                    </li>
+                  </a>
+                </ul>
+              </div>
+              <div class="cont-MainCamelLog--c--contSteps--item--cBtnNextStep"></div>
+            `);
+          }
+        }else{
+          twodecimal_total_refrigerado = roundToTwo(ratesorigin[0].total_refrigerado);
+          // ------------ ASIGNAR A LA VARIABLE LOCAL 
+          localStorage.setItem("key_v-valttaproxbycontain", ratesorigin[0].tt_aprox);
+          $("#val-timeaproxtransbycont").val(ratesorigin[0].tt_aprox);
+          if(v_ValTotalVolume > 15){
+            // ------------ OCULTAR EL RESUMEN HASTA ESTE PASO 
+            $(".cont-MainCamelLog--c--contResumeCalc--item[data-advlevel=d-typecontainer]").removeClass("show");
+            // ------------ OCULTAR EL PASO DE - ELIGE UNA OPCIÓN 
+            $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-integservorfleteinte]").removeClass("show");
+            $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-integservorfleteinte]").html("");
+            // ------------ MOSTRAR EL MENSAJE DE ALERTA PERSONALIZADO 
+            $("#idMessageSteps-prcss").html(`
+              <div class="cntMessageSteps-prcss--cont">
+                <div class="cntMessageSteps-prcss--cont--c">
+                  <span class="cntMessageSteps-prcss--cont--c--btnclose" id="btnclose-modalMessage"></span>
+                  <h3 class="cntMessageSteps-prcss--cont--c--title">Carga excedida</h3>
+                  <p class="cntMessageSteps-prcss--cont--c--text">El <b>VOLUMEN</b> registrado no debe exceder los <b>15 M³</b>, seleccione <b>CONTENEDOR COMPLETO o contacte a un ASESOR +51 990 234 625.</b></p>
+                </div>
+              </div>
+            `)
+            // ------------ CERRAR EL MODAL 
+            setTimeout(function(){
+              $("#idMessageSteps-prcss .cntMessageSteps-prcss--cont").remove();
+            }, 6500)
+            $("#btnclose-modalMessage").on("click", function(){
+              $(this).parent().parent().remove();
+            });
+          }else{
+            // ------------ DEVOLVER LA FECHA DE VALIDEZ DE LA TARIFA A LA VARIABLE LOCAL 
+            var validdesde_final = ratesorigin[0].validdesde;
+            var validhasta_final = ratesorigin[0].validhasta;
+            // ------------ ASIGNAR A LOS INPUTS DE ENVÍO 
+            $("#val-datevaliddesde").val(validdesde_final);
+            $("#val-datevalidhasta").val(validhasta_final);
+            var convertOneDATE =  new Date(Date.parse(validdesde_final.replace(/-/g, '/')));
+            var convertTwoDATE =  new Date(Date.parse(validhasta_final.replace(/[-]/g,'/')));
+            var options = { year: 'numeric', month: 'long', day: 'numeric' };
+            var convertDateValidDesde = convertOneDATE.toLocaleDateString("es-ES", options);
+            var convertDateValidHasta = convertTwoDATE.toLocaleDateString("es-ES", options);
+            var separateDateValidDesde = convertDateValidDesde.split(" ");
+            var separateDateValidHasta = convertDateValidHasta.split(" ");
+            var monthSeparatetoArrayDesde = separateDateValidDesde[2].slice(0, 3);
+            var monthSeparatetoArrayHasta = separateDateValidHasta[2].slice(0, 3);
+
+            var val_dateValidDesde = separateDateValidDesde[0]+" "+"de"+" "+firstToUppercase(monthSeparatetoArrayDesde);
+            var val_dateValidHasta = separateDateValidHasta[0]+" "+"de"+" "+firstToUppercase(monthSeparatetoArrayHasta);
+            // ------------ ASIGNAR A LAS VARIABLES LOCALES 
+            localStorage.setItem("key_validaterate", val_dateValidDesde+" - "+val_dateValidHasta);
+            // ------------ ASIGNAR AL VALOR DE ENVÍO 
+            $("#val_validateratequote").val(val_dateValidDesde+" - "+val_dateValidHasta);
+            // ------------ VALIDAR EL VALOR MÁXIMO ENTRE PESO Y VOLUMEN 
+            if(v_ValTotalVolume > v_ValDividedTotalWeight){
+              totwithoutvalues = roundToTwo(twodecimal_total_refrigerado * v_ValTotalVolume);
+              localStorage.setItem("key_v-totalflette", totwithoutvalues);
+            }else{
+              totwithoutvalues = roundToTwo(twodecimal_total_refrigerado * v_ValDividedTotalWeight);
+              localStorage.setItem("key_v-totalflette", totwithoutvalues);
+            }
+            // ------------ MOSTRAR EL RESUMEN HASTA ESTE PASO 
+              $(".cont-MainCamelLog--c--contResumeCalc--item[data-advlevel=d-typecontainer]").addClass("show");
+              // ------------ MOSTRAR EL PASO DE - ELIGE UNA OPCIÓN 
+              $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-integservorfleteinte]").addClass("show");
+              sectionsSteps.moveTo('step-integservorfleteinte', 1);
+              $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-integservorfleteinte]").html(`
+                <div class="cont-MainCamelLog--c--contSteps--item--cTitle">
+                  <h3 class="cont-MainCamelLog--c--contSteps--item--cTitle--title">Eliga una opción</h3>
+                  <span>
+                    <span>
+                      <input type="hidden" value="" id="opt-genfquotation" name="opt-genfquotation" class="n-val-sd">
+                    </span>
+                  </span>
+                </div>
+                <div class="cont-MainCamelLog--c--contSteps--item--cStep">
+                  <ul class="cont-MainCamelLog--c--contSteps--item--cStep--m" id="list-SelOptionResultExp">
+                    <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem">
+                      <li class="cont-MainCamelLog--c--contSteps--item--cStep--m--item">
+                        <h3>Opción 1</h3>
+                        <div class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem--cImg">
+                          <img src="views/assets/img/steps/customs-clearance.png" alt="" loading="lazy">
+                        </div>
+                        <p>AGREGAR SERVICIOS DE ADUANA EN DESTINO</p>
+                      </li>
+                    </a>
+                    <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem">
+                      <li class="cont-MainCamelLog--c--contSteps--item--cStep--m--item">
+                        <h3>Opción 2</h3>
+                        <div class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem--cImg">
+                          <img src="views/assets/img/steps/no-customs-clearance.png" alt="" loading="lazy">
+                        </div>
+                        <p>NO AGREGAR SERVICIOS "SOLO DESEO FLETE"</p>
+                      </li>
+                    </a>
+                  </ul>
+                </div>
+                <div class="cont-MainCamelLog--c--contSteps--item--cBtnNextStep"></div>
+              `);
+          }
         }
       }
     });
