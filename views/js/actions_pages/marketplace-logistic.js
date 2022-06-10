@@ -1,4 +1,4 @@
-$(function(){
+$(() => {
 	changesTabsOperation(); // CAMBIAR ENTRE LOS TABS
 	list_puertoOriginLCL(); // LISTAR LOS PUERTOS DE ORIGEN LCL
   list_puertoDestinyLCL(); // LISTAR LOS PUERTOS DE DESTINO LCL
@@ -22,7 +22,6 @@ function changesTabsOperation(){
   var key_typeOperation = localStorage.setItem("key_typeOp", ""); //TIPO DE OPERACIÓN...
   var key_typeTransport = localStorage.setItem("key_typeTransp", ""); //TIPO DE TRANSPORTE...
   var key_validaterate = localStorage.setItem("key_validaterate", ""); //TARIFA VALIDA DESDE - HASTA...
-  var key_typeCharge = localStorage.setItem("key_typeChrg", ""); //TIPO DE CARGA...
   var key_qContainers = localStorage.setItem("key_qContainers", 0); //CONTENEDORES...
   //# VALORES PARA EL CÁLCULO DEL FLETE...
   var key_valflete = localStorage.setItem("key_v-totalflette", 0); //FCL Y LCL
@@ -40,7 +39,8 @@ function changesTabsOperation(){
   var key_valvaluestaxOnebyigv = localStorage.setItem("key_v-valuestaxOnebyigv", 0); //VALOR DE AD-VALOREN
   var key_valvaluestaxTwobyigv = localStorage.setItem("key_v-valuestaxTwobyigv", 0); //VALOR DE IMPUESTO SELECCTIVO
   var key_valvaluestaxThreebyigv = localStorage.setItem("key_v-valuestaxThreebyigv", 0); //VALOR DE ANTIDUMPING
-  var key_valbytotaldownload = localStorage.setItem("key_v-valbytotaldownload", 0); //VALOR DE DESCARGA
+  // var key_typeCharge = localStorage.setItem("key_typeChrg", ""); //TIPO DE CARGA...
+  // var key_valbytotaldownload = localStorage.setItem("key_v-valbytotaldownload", 0); //VALOR DE DESCARGA
 
   // ------------ VARIABLES SESSIONSTORAGE 
   var sess_usercli = sessionStorage.setItem("sess_usercli", 0); //SESSION DE VARIABLE LOCAL PARA EL USUARIO
@@ -275,7 +275,6 @@ $(document).on("keyup", "#ipt-valNamePortDestiny", function(){
   $("#list-itemsNamePortsDestiny").addClass("show");
   var searchVal = $(this).val();
   (searchVal != "") ? list_puertoDestinyLCL(searchVal) : list_puertoDestinyLCL();
-
 });
 // ------------ FIJAR EL VALOR DEL PUERTO EN EL INPUT 
 $(document).on("click", "#list-itemsNamePortsDestiny .cont-MainCamelLog--c--cOptionsMarket--f--cont--cTabsItem--item--cControl--control--cGroupIptsIcon--cInput--m--item", function(){ 
