@@ -1437,6 +1437,7 @@ $(document).on("click", "#btn-NextStepTochargedata", function(){
     // ------------ DEVOLVER EL RESULTADO MAYOR - VOLUMEN O PESO 
     var v_convert = v_ValTotalWeight.replace(/\./g, '');
     var v_floatweightconvert = parseFloat(v_convert); //VALOR REAL DEL PESO
+    var v_ValDividedTotalWeight = v_floatweightconvert / 1000;
 
     if(v_floatweightconvert > 7000){
       console.log("El peso excede");
