@@ -110,6 +110,8 @@ $(document).ready(function(){
 	var v_typeserviceinit = $("#v_typeserviceinit").val();
 	var v_fnamecategprod = $("#v_fnamecategprod").val();
 	var v_ftaproxtransbycont = $("#v_ftaproxtransbycont").val();
+	// ------------ VALORES PARA EL CÁLCULO
+	var val_ftotvalofdownload = $("#v_ftotvalofdownload").val();
 	// ------------ CÁLCULO DE IMPUESTOS 
 	var partInteger_Tax = 0;
 	var partDecimal_Tax = 0;
@@ -127,7 +129,7 @@ $(document).ready(function(){
 	var receivedI_selectivo = parseFloat(localStorage.getItem("key_v-valuestaxTwobyigv")); //IMPUESTO SELECTIVO
 	var received_antidumping = parseFloat(localStorage.getItem("key_v-valuestaxThreebyigv")); //ANTIDUMPING
 	var receivedfob = localStorage.getItem("key_v-valueproduct"); //VALOR FOB DESDE LOCALSTORAGE
-	var receiveddownload = localStorage.getItem("key_v-valbytotaldownload"); //VALOR DE DESCARGA DESDE LOCALSTORAGE
+	var receiveddownload = val_ftotvalofdownload; //VALOR DE DESCARGA DESDE LOCALSTORAGE
 	var cutefobofpriceusd = receivedfob.split(" USD");
   var cutewithoutofpricefob = cutefobofpriceusd[0].replace(/\./g, '');
 	var totflete = parseFloat(localStorage.getItem("key_v-totalflette")); //TOTAL - SOLO FLETE

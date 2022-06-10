@@ -480,6 +480,7 @@ echo $template_incserv.$template_notincserv;
 <input tabindex="-1" placeholder="" type="hidden" width="0" height="0" autocomplete="off" spellcheck="false" f-hidden="aria-hidden" class="non-visvalipt h-alternative-shwnon s-fkeynone-step" id="v_fportdestiname" value="<?= (isset($_POST['val-destinyPortSend']) && $_POST['val-destinyPortSend'] != "") ? $_POST['val-destinyPortSend'] : "No especificado";?>">
 <input tabindex="-1" placeholder="" type="text" width="0" height="0" autocomplete="off" spellcheck="false" f-hidden="aria-hidden" class="non-visvalipt h-alternative-shwnon s-fkeynone-step" id="v_fnamecategprod" value="<?php echo $_POST['val-categProdquot'];?>">
 <input tabindex="-1" placeholder="" type="text" width="0" height="0" autocomplete="off" spellcheck="false" f-hidden="aria-hidden" class="non-visvalipt h-alternative-shwnon s-fkeynone-step" id="v_ftaproxtransbycont" value="<?= (isset($_POST['val-timeaproxtransbycont']) && $_POST['val-timeaproxtransbycont'] != "") ? $_POST['val-timeaproxtransbycont'] : 0;?>">
+<input tabindex="-1" placeholder="" type="hidden" width="0" height="0" autocomplete="off" spellcheck="false" f-hidden="aria-hidden" class="non-visvalipt h-alternative-shwnon s-fkeynone-step" id="v_ftotvalofdownload" value="<?= (isset($_POST['val_ftotvalofdownload']) && $_POST['val_ftotvalofdownload'] != "") ? $_POST['val_ftotvalofdownload'] : 0;?>">
 </div>
 </div>
   <?php
