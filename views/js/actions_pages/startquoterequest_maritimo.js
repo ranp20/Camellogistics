@@ -313,6 +313,7 @@ $(document).on("click","#list-typeTransporteSelectItems a",function(){
             <input type="hidden" id="loadTypeCharge" name="loadTypeCharge" class="n-val-sd">
             <input type="hidden" id="val-datevaliddesde" name="val-datevaliddesde" class="n-val-sd">
             <input type="hidden" id="val-datevalidhasta" name="val-datevalidhasta" class="n-val-sd">
+            <input type="hidden" id="val-timeaproxtransbycont" name="val-timeaproxtransbycont" class="n-val-sd">
           </span>
         </span>
       </div>
@@ -363,6 +364,7 @@ $(document).on("click","#list-typeTransporteSelectItems a",function(){
             <input type="hidden" id="loadTypeCharge" name="loadTypeCharge" class="n-val-sd">
             <input type="hidden" id="val-datevaliddesde" name="val-datevaliddesde" class="n-val-sd">
             <input type="hidden" id="val-datevalidhasta" name="val-datevalidhasta" class="n-val-sd">
+            <input type="hidden" id="val-timeaproxtransbycont" name="val-timeaproxtransbycont" class="n-val-sd">
           </span>
         </span>
       </div>
@@ -413,6 +415,7 @@ $(document).on("click","#list-typeTransporteSelectItems a",function(){
             <input type="hidden" id="loadTypeCharge" name="loadTypeCharge" class="n-val-sd">
             <input type="hidden" id="val-datevaliddesde" name="val-datevaliddesde" class="n-val-sd">
             <input type="hidden" id="val-datevalidhasta" name="val-datevalidhasta" class="n-val-sd">
+            <input type="hidden" id="val-timeaproxtransbycont" name="val-timeaproxtransbycont" class="n-val-sd">
           </span>
         </span>
       </div>
@@ -2494,6 +2497,7 @@ $(document).on("click", "#btn-NextStepTochargedata", function(){
         /************************** ASIGNAR A LAS VARIABLES LOCALES **************************/
         localStorage.setItem("key_validaterate", val_dateValidDesde+" - "+val_dateValidHasta);
         localStorage.setItem("key_v-valttaproxbycontain", ratesorigin[0].tt_aprox);
+        $("#val-timeaproxtransbycont").val(ratesorigin[0].tt_aprox);
         /************************** ASIGNAR AL VALOR DE ENVÍO **************************/
         $("#val_validateratequote").val(val_dateValidDesde+" - "+val_dateValidHasta);
 
@@ -2636,6 +2640,7 @@ $(document).on("click", "#btn-NextStepTochargedata", function(){
         twodecimal_total_imo = roundToTwo(ratesorigin[0].total_imo);
         /************************** ASIGNAR A LA VARIABLE LOCAL **************************/
         localStorage.setItem("key_v-valttaproxbycontain", ratesorigin[0].tt_aprox);
+        $("#val-timeaproxtransbycont").val(ratesorigin[0].tt_aprox);
         if(v_ValTotalVolume > 15){
           /************************** OCULTAR EL RESUMEN HASTA ESTE PASO **************************/
           $(".cont-MainCamelLog--c--contResumeCalc--item[data-advlevel=d-typecontainer]").removeClass("show");
@@ -2736,6 +2741,7 @@ $(document).on("click", "#btn-NextStepTochargedata", function(){
         twodecimal_total_refrigerado = roundToTwo(ratesorigin[0].total_refrigerado);
         /************************** ASIGNAR A LA VARIABLE LOCAL **************************/
         localStorage.setItem("key_v-valttaproxbycontain", ratesorigin[0].tt_aprox);
+        $("#val-timeaproxtransbycont").val(ratesorigin[0].tt_aprox);
         if(v_ValTotalVolume > 15){
 
           /************************** OCULTAR EL RESUMEN HASTA ESTE PASO **************************/

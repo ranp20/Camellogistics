@@ -20,25 +20,21 @@ function showNotification(typeNotify, titlemsg, descmsg){
 		htmlNotify = `<div id="notiMsgAlertCli">
       <div class="c_notifyMsg toast--green">
         <div class="c_notifyMsg__icon">
-          <svg version="1.1" class="c_notifyMsg__svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
-          <g><g><path d="M504.502,75.496c-9.997-9.998-26.205-9.998-36.204,0L161.594,382.203L43.702,264.311c-9.997-9.998-26.205-9.997-36.204,0    c-9.998,9.997-9.998,26.205,0,36.203l135.994,135.992c9.994,9.997,26.214,9.99,36.204,0L504.502,111.7    C514.5,101.703,514.499,85.494,504.502,75.496z"></path>
-          </g></g>
-          </svg>
+          <svg version="1.1" class="c_notifyMsg__svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve"><g><g><path d="M504.502,75.496c-9.997-9.998-26.205-9.998-36.204,0L161.594,382.203L43.702,264.311c-9.997-9.998-26.205-9.997-36.204,0    c-9.998,9.997-9.998,26.205,0,36.203l135.994,135.992c9.994,9.997,26.214,9.99,36.204,0L504.502,111.7    C514.5,101.703,514.499,85.494,504.502,75.496z"></path></g></g></svg>
         </div>
         <div class="c_notifyMsg__content">
           <p class="c_notifyMsg__type">${titlemsg}</p>
           <p class="c_notifyMsg__message">${descmsg}</p>
         </div>
         <div class="c_notifyMsg__close">
-          <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.642 15.642" xmlns:xlink="http://www.w3.org/1999/xlink" enable-background="new 0 0 15.642 15.642">
-          <path fill-rule="evenodd" d="M8.882,7.821l6.541-6.541c0.293-0.293,0.293-0.768,0-1.061  c-0.293-0.293-0.768-0.293-1.061,0L7.821,6.76L1.28,0.22c-0.293-0.293-0.768-0.293-1.061,0c-0.293,0.293-0.293,0.768,0,1.061  l6.541,6.541L0.22,14.362c-0.293,0.293-0.293,0.768,0,1.061c0.147,0.146,0.338,0.22,0.53,0.22s0.384-0.073,0.53-0.22l6.541-6.541  l6.541,6.541c0.147,0.146,0.338,0.22,0.53,0.22c0.192,0,0.384-0.073,0.53-0.22c0.293-0.293,0.293-0.768,0-1.061L8.882,7.821z"></path>
-          </svg>
+          <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.642 15.642" xmlns:xlink="http://www.w3.org/1999/xlink" enable-background="new 0 0 15.642 15.642"><path fill-rule="evenodd" d="M8.882,7.821l6.541-6.541c0.293-0.293,0.293-0.768,0-1.061  c-0.293-0.293-0.768-0.293-1.061,0L7.821,6.76L1.28,0.22c-0.293-0.293-0.768-0.293-1.061,0c-0.293,0.293-0.293,0.768,0,1.061  l6.541,6.541L0.22,14.362c-0.293,0.293-0.293,0.768,0,1.061c0.147,0.146,0.338,0.22,0.53,0.22s0.384-0.073,0.53-0.22l6.541-6.541  l6.541,6.541c0.147,0.146,0.338,0.22,0.53,0.22c0.192,0,0.384-0.073,0.53-0.22c0.293-0.293,0.293-0.768,0-1.061L8.882,7.821z"></path></svg>
         </div>
       </div>
     </div>`;
 	}
 	return htmlNotify;
 }
+$("#btn-scrollingtTtB").on("click", function(){$("body, html").animate({scrollTop: '500'}, 350);}); //BOTÓN DE IR HACIA ABAJO
 $(document).ready(function(){
 	// ------------ VALIDAR SI EXISTE UN USUARIO, DE LO CONTRARIO ASIGNAR EL USUARIO POR DEFECTO 
 	if($("#s_useregin-sistem").val() == "" || $("#s_useregin-sistem").val() == undefined || $("#s_useregin-sistem").val() == 'undefined' || $("#s_useregin-sistem").val() == null || $("#s_useregin-sistem").val() == 'null'){
@@ -106,9 +102,14 @@ $(document).ready(function(){
 		`);
 	}
 
-	$("#btn-scrollingtTtB").on("click", function(){$("body, html").animate({scrollTop: '500'}, 350);}); //BOTÓN DE IR HACIA ABAJO
 	// ------------ VALORES PARA LAS VALIDACIONES 
+	// ------------ VALORES DE TEXTO
 	var v_loadtypecharge = $("#v_loadtypecharge").val();
+	var portOriginName = $("#v_fportorigname").val();
+	var portDestinyName = $("#v_fportdestiname").val();
+	var v_typeserviceinit = $("#v_typeserviceinit").val();
+	var v_fnamecategprod = $("#v_fnamecategprod").val();
+	var v_ftaproxtransbycont = $("#v_ftaproxtransbycont").val();
 	// ------------ CÁLCULO DE IMPUESTOS 
 	var partInteger_Tax = 0;
 	var partDecimal_Tax = 0;
@@ -361,17 +362,18 @@ $(document).ready(function(){
 					formdata.append("id_codegenrand", $("#v_idgencoderand").val());
 					formdata.append("u_login", user_sessquote);
 					formdata.append("f_typetransendinitid", transsendinitbyid);
-					formdata.append("f_type_op", $("#v_typeserviceinit").val());
-					formdata.append("f_type_transp", $("#v_typeserviceinit").val());
-					formdata.append("f_type_cont", localStorage.getItem("key_typeChrg"));
+					formdata.append("f_type_op", v_typeserviceinit);
+					formdata.append("f_type_transp", v_typeserviceinit);
+					formdata.append("f_type_cont", v_loadtypecharge);
 					formdata.append("u_n_document", "No especificado");
 					formdata.append("u_enterprise", "No especificado");
 					formdata.append("u_telephone", "No especificado");
 					formdata.append("u_service", "No especificado");
-					formdata.append("u_cont", localStorage.getItem("key_v-nametypeproduct"));
-					formdata.append("f_origen", localStorage.getItem("port_OName"));
+					formdata.append("u_cont", v_fnamecategprod);
+					formdata.append("f_origen", portOriginName);
+					formdata.append("f_destiny", portDestinyName);
 					formdata.append("f_weight_v", "No especificado");
-					formdata.append("f_time_transit", localStorage.getItem("key_v-valttaproxbycontain"));
+					formdata.append("f_time_transit", v_ftaproxtransbycont);
 					formdata.append("f_fob", totalfinalvaluefob);
 					formdata.append("f_flete", totflete);
 					formdata.append("f_insurance", totalinsurance);
@@ -492,17 +494,18 @@ $(document).ready(function(){
 					formdata.append("id_codegenrand", $("#v_idgencoderand").val());
 					formdata.append("u_login", $("#s_useregin-sistem").val());
 					formdata.append("f_typetransendinitid", transsendinitbyid);
-					formdata.append("f_type_op", $("#v_typeserviceinit").val());
-					formdata.append("f_type_transp", $("#v_typeserviceinit").val());
-					formdata.append("f_type_cont", localStorage.getItem("key_typeChrg"));
+					formdata.append("f_type_op", v_typeserviceinit);
+					formdata.append("f_type_transp", v_typeserviceinit);
+					formdata.append("f_type_cont", v_loadtypecharge);
 					formdata.append("u_n_document", "No especificado");
 					formdata.append("u_enterprise", "No especificado");
 					formdata.append("u_telephone", "No especificado");
 					formdata.append("u_service", "No especificado");
-					formdata.append("u_cont", localStorage.getItem("key_v-nametypeproduct"));
-					formdata.append("f_origen", localStorage.getItem("port_OName"));
+					formdata.append("u_cont", v_fnamecategprod);
+					formdata.append("f_origen", portOriginName);
+					formdata.append("f_destiny", portDestinyName);
 					formdata.append("f_weight_v", "No especificado");
-					formdata.append("f_time_transit", localStorage.getItem("key_v-valttaproxbycontain"));
+					formdata.append("f_time_transit", v_ftaproxtransbycont);
 					formdata.append("f_fob", totalfinalvaluefob);
 					formdata.append("f_flete", totflete);
 					formdata.append("f_insurance", totalinsurance);

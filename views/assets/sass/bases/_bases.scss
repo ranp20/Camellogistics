@@ -39,6 +39,18 @@ img{
 	height: auto;
 }
 /* CLASS UTILITIES */
+input[f-hidden="aria-hidden"]{
+	width: 0;
+	height: 0;
+	display: none;
+	opacity: 0;
+	visibility: hidden;
+	user-select: none;
+	background-color: #fff;
+	border: none;
+	appearance: none;
+	line-height: unset;
+}
 .non-visvalipt{
 	width: 0;
 	height: 0;
