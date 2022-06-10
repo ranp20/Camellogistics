@@ -465,14 +465,20 @@ echo $template_incserv.$template_notincserv;
       </div>
     </div>
   </main>
-  <div>
-    <input type="hidden" autocomplete="off" placeholder="" spellcheck="false" class="non-visvalipt h-alternative-shwnon s-fkeynone-step" id="v_typeserviceinit" value="<?php echo $_POST['val-typeoptselectininit'];?>">
-    <input type="hidden" autocomplete="off" placeholder="" spellcheck="false" class="non-visvalipt h-alternative-shwnon s-fkeynone-step" id="v_datevaliddesde" value="<?php echo $_POST['val-datevaliddesde'];?>">
-    <input type="hidden" autocomplete="off" placeholder="" spellcheck="false" class="non-visvalipt h-alternative-shwnon s-fkeynone-step" id="v_datevalidhasta" value="<?php echo $_POST['val-datevalidhasta'];?>">
-    <input type="hidden" autocomplete="off" placeholder="" spellcheck="false" class="non-visvalipt h-alternative-shwnon s-fkeynone-step" id="v_idgencoderand" value="<?php echo $_POST['ipt-vidcodgenrand'];?>">
-    <input type="hidden" autocomplete="off" placeholder="" spellcheck="false" class="non-visvalipt h-alternative-shwnon s-fkeynone-step" id="v_loadtypecharge" value="<?php echo $_POST['loadTypeCharge'];?>">
-    <input type="hidden" autocomplete="off" placeholder="" spellcheck="false" class="non-visvalipt h-alternative-shwnon s-fkeynone-step" id="v_typetranspsendinitid" value="<?php echo $_POST['idtypetransportsendinit'];?>">
-  </div>
+<div>
+<div>
+<input tabindex="-1" placeholder="" type="hidden" width="0" height="0" autocomplete="off" spellcheck="false" f-hidden="aria-hidden" class="non-visvalipt h-alternative-shwnon s-fkeynone-step" id="v_typeserviceinit" value="<?php echo $_POST['val-typeoptselectininit'];?>">
+<input tabindex="-1" placeholder="" type="hidden" width="0" height="0" autocomplete="off" spellcheck="false" f-hidden="aria-hidden" class="non-visvalipt h-alternative-shwnon s-fkeynone-step" id="v_datevaliddesde" value="<?= (isset($_POST['val-datevaliddesde']) && $_POST['val-datevaliddesde'] != "") ? $_POST['val-datevaliddesde'] : 0;?>">
+<input tabindex="-1" placeholder="" type="hidden" width="0" height="0" autocomplete="off" spellcheck="false" f-hidden="aria-hidden" class="non-visvalipt h-alternative-shwnon s-fkeynone-step" id="v_datevalidhasta" value="<?= (isset($_POST['val-datevalidhasta']) && $_POST['val-datevalidhasta'] != "") ? $_POST['val-datevalidhasta'] : 0;?>">
+<input tabindex="-1" placeholder="" type="hidden" width="0" height="0" autocomplete="off" spellcheck="false" f-hidden="aria-hidden" class="non-visvalipt h-alternative-shwnon s-fkeynone-step" id="v_idgencoderand" value="<?php echo $_POST['ipt-vidcodgenrand'];?>">
+<input tabindex="-1" placeholder="" type="hidden" width="0" height="0" autocomplete="off" spellcheck="false" f-hidden="aria-hidden" class="non-visvalipt h-alternative-shwnon s-fkeynone-step" id="v_loadtypecharge" value="<?php echo $_POST['loadTypeCharge'];?>">
+<input tabindex="-1" placeholder="" type="hidden" width="0" height="0" autocomplete="off" spellcheck="false" f-hidden="aria-hidden" class="non-visvalipt h-alternative-shwnon s-fkeynone-step" id="v_typetranspsendinitid" value="<?php echo $_POST['idtypetransportsendinit'];?>">
+<input tabindex="-1" placeholder="" type="hidden" width="0" height="0" autocomplete="off" spellcheck="false" f-hidden="aria-hidden" class="non-visvalipt h-alternative-shwnon s-fkeynone-step" id="v_fportorigname" value="<?= (isset($_POST['val-originPortSend']) && $_POST['val-originPortSend'] != "") ? $_POST['val-originPortSend'] : "No especificado";?>">
+<input tabindex="-1" placeholder="" type="hidden" width="0" height="0" autocomplete="off" spellcheck="false" f-hidden="aria-hidden" class="non-visvalipt h-alternative-shwnon s-fkeynone-step" id="v_fportdestiname" value="<?= (isset($_POST['val-destinyPortSend']) && $_POST['val-destinyPortSend'] != "") ? $_POST['val-destinyPortSend'] : "No especificado";?>">
+<input tabindex="-1" placeholder="" type="hidden" width="0" height="0" autocomplete="off" spellcheck="false" f-hidden="aria-hidden" class="non-visvalipt h-alternative-shwnon s-fkeynone-step" id="v_fnamecategprod" value="<?php echo $_POST['val-categProdquot'];?>">
+<input tabindex="-1" placeholder="" type="hidden" width="0" height="0" autocomplete="off" spellcheck="false" f-hidden="aria-hidden" class="non-visvalipt h-alternative-shwnon s-fkeynone-step" id="v_ftaproxtransbycont" value="<?= (isset($_POST['val-timeaproxtransbycont']) && $_POST['val-timeaproxtransbycont'] != "") ? $_POST['val-timeaproxtransbycont'] : 0;?>">
+</div>
+</div>
   <?php
     
     echo "<pre>";

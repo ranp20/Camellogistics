@@ -13,6 +13,7 @@ function twodecimals(n){
 function firstToUppercase(e) {
   return e.charAt(0).toUpperCase() + e.slice(1);
 }
+$("#btn-scrollingtTtB").on("click", function(){$("body, html").animate({scrollTop: '500'}, 350);}); //BOTÓN DE IR HACIA ABAJO
 $(document).ready(function(){
 	// ------------ VALIDAR SI EXISTE UN USUARIO, DE LO CONTRARIO ASIGNAR EL USUARIO POR DEFECTO 
 	if($("#s_useregin-sistem").val() == "" || $("#s_useregin-sistem").val() == undefined || $("#s_useregin-sistem").val() == 'undefined' || $("#s_useregin-sistem").val() == null || $("#s_useregin-sistem").val() == 'null'){
@@ -76,9 +77,14 @@ $(document).ready(function(){
     </ul>`);
 	}
 
-	$("#btn-scrollingtTtB").on("click", function(){$("body, html").animate({scrollTop: '500'}, 350);}); //BOTÓN DE IR HACIA ABAJO
 	// ------------ VALORES PARA LAS VALIDACIONES 
+	// ------------ VALORES DE TEXTO
 	var v_loadtypecharge = $("#v_loadtypecharge").val();
+	var portOriginName = $("#v_fportorigname").val();
+	var portDestinyName = $("#v_fportdestiname").val();
+	var v_typeserviceinit = $("#v_typeserviceinit").val();
+	var v_fnamecategprod = $("#v_fnamecategprod").val();
+	var v_ftaproxtransbycont = $("#v_ftaproxtransbycont").val();
 	// ------------ CÁLCULO DE IMPUESTOS 
 	var partInteger_Tax = 0;
 	var partDecimal_Tax = 0;
@@ -88,7 +94,7 @@ $(document).ready(function(){
 	var sumTotalbyIGV = 0;
 	var sumTotalFinalFleteandIGV = 0;
 	var sumbyCIF = 0;
-	// ------------ LISTAR LOS VALORES PARA LOS CÁLCULOS 
+	// ------------ LISTAR LOS VALORES PARA ALMACENAR LA COTIZACIÓN 
 	var partInteger = 0;
 	var partDecimal = 0;
 	var partFinalDecimal = 0;
@@ -289,17 +295,18 @@ $(document).ready(function(){
 				formdata.append("id_codegenrand", $("#v_idgencoderand").val());
 				formdata.append("u_login", user_sessquote);
 				formdata.append("f_typetransendinitid", transsendinitbyid);
-				formdata.append("f_type_op", $("#v_typeserviceinit").val());
-				formdata.append("f_type_transp", $("#v_typeserviceinit").val());
-				formdata.append("f_type_cont", localStorage.getItem("key_typeChrg"));
+				formdata.append("f_type_op", v_typeserviceinit);
+				formdata.append("f_type_transp", v_typeserviceinit);
+				formdata.append("f_type_cont", v_loadtypecharge);
 				formdata.append("u_n_document", "No especificado");
 				formdata.append("u_enterprise", "No especificado");
 				formdata.append("u_telephone", "No especificado");
 				formdata.append("u_service", "No especificado");
-				formdata.append("u_cont", localStorage.getItem("key_v-nametypeproduct"));
-				formdata.append("f_origen", localStorage.getItem("port_OName"));
+				formdata.append("u_cont", v_fnamecategprod);
+				formdata.append("f_origen", portOriginName);
+				formdata.append("f_destiny", portDestinyName);
 				formdata.append("f_weight_v", "No especificado");
-				formdata.append("f_time_trans", localStorage.getItem("key_v-valttaproxbycontain"));
+				formdata.append("f_time_transit", v_ftaproxtransbycont);
 				formdata.append("f_fob", totalfinalvaluefob);
 				formdata.append("f_flete", totflete);
 				formdata.append("f_insurance", totalinsurance);
@@ -403,17 +410,18 @@ $(document).ready(function(){
 				formdata.append("id_codegenrand", $("#v_idgencoderand").val());
 				formdata.append("u_login", $("#s_useregin-sistem").val());
 				formdata.append("f_typetransendinitid", transsendinitbyid);
-				formdata.append("f_type_op", $("#v_typeserviceinit").val());
-				formdata.append("f_type_transp", $("#v_typeserviceinit").val());
-				formdata.append("f_type_cont", localStorage.getItem("key_typeChrg"));
+				formdata.append("f_type_op", v_typeserviceinit);
+				formdata.append("f_type_transp", v_typeserviceinit);
+				formdata.append("f_type_cont", v_loadtypecharge);
 				formdata.append("u_n_document", "No especificado");
 				formdata.append("u_enterprise", "No especificado");
 				formdata.append("u_telephone", "No especificado");
 				formdata.append("u_service", "No especificado");
-				formdata.append("u_cont", localStorage.getItem("key_v-nametypeproduct"));
-				formdata.append("f_origen", localStorage.getItem("port_OName"));
+				formdata.append("u_cont", v_fnamecategprod);
+				formdata.append("f_origen", portOriginName);
+				formdata.append("f_destiny", portDestinyName);
 				formdata.append("f_weight_v", "No especificado");
-				formdata.append("f_time_trans", localStorage.getItem("key_v-valttaproxbycontain"));
+				formdata.append("f_time_transit", v_ftaproxtransbycont);
 				formdata.append("f_fob", totalfinalvaluefob);
 				formdata.append("f_flete", totflete);
 				formdata.append("f_insurance", totalinsurance);
