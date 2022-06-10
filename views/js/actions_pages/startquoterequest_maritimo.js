@@ -1,5 +1,5 @@
 $(() => {
-  refreshIdCodeGenRandom(); // REFRESCAR EL ID DE CÓDIGO RANDOM
+  refreshIdCodeGenRandom();
   ChangesSibblingsLinks(); // CAMBIAR ENTRE ENLACES HERMANOS Y OCULTAR LOS PASOS SIGUIENTES
   hiddenAllNextSteps(); // OCULTAR LOS PASOS SIGUIENTES
 	listPortOriginandDestiny(); // LISTAR LOS PUERTOS DE ORIGEN Y DE DESTINO DE ACUERDO AL ID RECIBIDO POR POST
@@ -8,6 +8,7 @@ $(() => {
 	listProductsUser(); // LISTAR LOS TIPOS DE PRODUCTOS
 	listrateLCLTransport(); // LISTAR LOS DISTRITOS DE ACUERDO AL PAÍS DE DESTINO
 });
+// ------------ ACTUALIZAR EL ID DE CÓDIGO RANDOM
 function refreshIdCodeGenRandom(){
   $.ajax({
     url: "controllers/c_list_id_codegenrandom.php",
@@ -18,31 +19,27 @@ function refreshIdCodeGenRandom(){
   }).done(function(e){
     $("#ipt-vidcodgenrand").val(e);
   });
-  /*
-  setInterval(function(){
-  }, 100);
-  */
 }
-// ========= ABRIR EL SIDEBARLEFT - MOBILE (PROCESO COTIZACIÓN) ========= //
+// ------------ ABRIR EL SIDEBARLEFT - MOBILE (PROCESO COTIZACIÓN)
 $(document).on("click", "#btn-resume-mobile-header", function(){
   $(".cont-MainCamelLog--c--contResumeCalc").toggleClass("show");
 });
 /*
-// ========= CERRAR EL SIDEBARLEFT - MOBILE (PROCESO COTIZACIÓN) ========= //
+// ------------ CERRAR EL SIDEBARLEFT - MOBILE (PROCESO COTIZACIÓN)
 let containerSidebarLeft = document.querySelector("#c-mMobile-backdrop");
 containerSidebarLeft.addEventListener("click", (e) => {
   if(e.target === containerSidebarLeft){
     document.querySelector(".c-Htopbar--c--cMenu").classList.remove("show");
   }
 });
-// ========= CERRAR EL SIDEBARLEFT - MOBILE (PROCESO COTIZACIÓN) ========= //
+// ------------ CERRAR EL SIDEBARLEFT - MOBILE (PROCESO COTIZACIÓN)
 document.querySelector("#btn-sidebarl-close").addEventListener("click", (e) => {
   document.querySelector(".c-Htopbar--c--cMenu").classList.remove("show");
 });
 */
 ////OTRAS TAREAS - MEJORA DE UI Y UX
 /*- Mostrar al inicio solo los pasos a usar antes de cada elección, luego ir añadiendo o quitando de acuerdo a los elementos seleccionados*/
-/************************** RECOGER LAS VARIABLES RECIBIDAS POR POST **************************/
+// ------------ RECOGER LAS VARIABLES RECIBIDAS POR POST 
 var ipt_idTypeTransport = $("#ipt-vtypetranspinit").val(),
     ipt_idPortOrigin = $("#ipt-vportidOrigin").val(),
 		ipt_idPortcountryOrigin = $("#ipt-vportidcountryOrigin").val(),
@@ -51,34 +48,34 @@ var ipt_idTypeTransport = $("#ipt-vtypetranspinit").val(),
 /*===============================================================
 =            LISTAR LAS TARIFAS DEL PUERTO DE ORIGEN            =
 ===============================================================*/
-/************************** VALORES PARA CALCULAR EL FLETE - SIN IGV **************************/
+// ------------ VALORES PARA CALCULAR EL FLETE - SIN IGV 
 var rate_5cbm = 0,
     rate_15cbm = 0,
     twodecimal_rate_5cbm = 0,
     twodecimal_rate_15cbm = 0;
 var nameOrigin = $("#val-port-norigin").val();
 var arrPortOrigin = nameOrigin.split(', ');
-/************************** CAMBIAR/REMOVER EL ESTADO ENTRE OPCIONES **************************/
+// ------------ CAMBIAR/REMOVER EL ESTADO ENTRE OPCIONES 
 function ChangesSibblingsLinks(){
   $(document).on("click", ".cont-MainCamelLog--c--contSteps--item--cStep--m a", function(){
     $(this).addClass("active").siblings().removeClass("active");
   });
 }
-/************************** REDONDEAR A 2 DECIMALES - ALTERNATIVA .toFixed(2) **************************/
+// ------------ REDONDEAR A 2 DECIMALES - ALTERNATIVA .toFixed(2) 
 function roundToTwo(num){    
   return +(Math.round(num + "e+2")  + "e-2");
 }
-/************************** FUNCIÓN - LIMITAR A DOS DECIMALES SIN REDONDEO **************************/
+// ------------ FUNCIÓN - LIMITAR A DOS DECIMALES SIN REDONDEO 
 function twodecimals(n) {
   let t = n.toString();
   let regex = /(\d*.\d{0,2})/;
   return t.match(regex)[0];
 }
-/************************** RETORNAR - PRIMERA LETRA EN MAYÚSCULA **************************/
+// ------------ RETORNAR - PRIMERA LETRA EN MAYÚSCULA 
 function firstToUppercase(e) {
   return e.charAt(0).toUpperCase() + e.slice(1);
 }
-/************************** PLUGIN - FULLPAGE.JS **************************/
+// ------------ PLUGIN - FULLPAGE.JS 
 const sectionsSteps = new fullpage('#fullpage', {
   anchors:['step-typeoperation',
            'step-typetransport',
@@ -104,15 +101,15 @@ const sectionsSteps = new fullpage('#fullpage', {
   responsiveHeight: 0,
   responsiveSlides: false,
 });
-/************************** OCULTAR LOS DEMÁS PASOS **************************/
+// ------------ OCULTAR LOS DEMÁS PASOS 
 function hiddenAllNextSteps(){
   sectionsSteps.setKeyboardScrolling(false);
 }
-/************************** ASIGNAR EL ID DEL TIPO DE TRANSPORTE **************************/
+// ------------ ASIGNAR EL ID DEL TIPO DE TRANSPORTE 
 $(".cont-MainCamelLog--c--contResumeCalc--item[data-advlevel=d-typetransportnumb]").html(`
   <input type="hidden" id="idtypetransportsendinit" name="idtypetransportsendinit" value="${ipt_idTypeTransport}">
 `);
-/************************** LISTAR EL PUERTO DE ORIGEN Y EL PUERTO DE DESTINO **************************/
+// ------------ LISTAR EL PUERTO DE ORIGEN Y EL PUERTO DE DESTINO 
 function listPortOriginandDestiny(){
   var tempOriginDestiny = "";
 	$.ajax({
@@ -123,7 +120,7 @@ function listPortOriginandDestiny(){
     data: {idpaisportOrigin : ipt_idPortcountryOrigin, idportOrigin : ipt_idPortOrigin},
 	}).done((e) => {
     var result = JSON.parse(e);
-		/************************** LISTAR LOS NOMBRES - PUERTO DE ORIGEN **************************/
+		// ------------ LISTAR LOS NOMBRES - PUERTO DE ORIGEN 
     $.each(result, function(i, e){
       tempOriginDestiny += `
         <div class="cont-MainCamelLog--c--contResumeCalc--item--cardStep">
@@ -137,7 +134,7 @@ function listPortOriginandDestiny(){
         </div>
       `;
     });
-    /************************** LISTAR LOS NOMBRES - PUERTO DE DESTINO **************************/
+    // ------------ LISTAR LOS NOMBRES - PUERTO DE DESTINO 
     $.ajax({
       url: "controllers/list_puertoDestinyByIds.php",
       method: "POST",
@@ -177,7 +174,7 @@ $(document).on("click", "#list-typeOperationItems a", function(){
       "border" : "unset"
     });
     //alert("Esta opción aún no está disponible. Por favor, pase a elegir IMPORTACIÓN");
-    /************************** MOSTRAR EL MENSAJE DE ALERTA PERSONALIZADO **************************/
+    // ------------ MOSTRAR EL MENSAJE DE ALERTA PERSONALIZADO 
     $("#idMessageSteps-prcss").html(`
       <div class="cntMessageSteps-prcss--cont">
         <div class="cntMessageSteps-prcss--cont--c">
@@ -187,21 +184,21 @@ $(document).on("click", "#list-typeOperationItems a", function(){
         </div>
       </div>
     `)
-    /************************** CERRAR EL MODAL **************************/
+    // ------------ CERRAR EL MODAL 
     setTimeout(function(){
       $("#idMessageSteps-prcss .cntMessageSteps-prcss--cont").remove();
     }, 6500)
     $("#btnclose-modalMessage").on("click", function(){
       $(this).parent().parent().remove();
     });
-    /************************** OCULTAR AL LISTADO DE RESUMEN - ELIGE UN OPCIÓN **************************/
+    // ------------ OCULTAR AL LISTADO DE RESUMEN - ELIGE UN OPCIÓN 
     $(".cont-MainCamelLog--c--contResumeCalc--item[data-advlevel=d-reqspeacialservs]").removeClass("show");
     $(".cont-MainCamelLog--c--contResumeCalc--item[data-advlevel=d-reqspeacialservs]").find("span").text("");
     $(".cont-MainCamelLog--c--contResumeCalc--item[data-advlevel=d-typecontainer]").removeClass("show");
     $(".cont-MainCamelLog--c--contResumeCalc--item--cardStep--cIconStepLeft[data-merchandise=rsm-typecharge]").find("img").attr("src","");
     $(".cont-MainCamelLog--c--contResumeCalc--item[data-advlevel=d-typetransportcharge]").html("");
-    /************************** OCULTAR TODOS LOS PASOS ABIERTOS EN CASO SE VUELVA HASTA ESTE PASO **************************/
-    /************************** OCULTAR LOS OTROS PASOS AJENOS A ESTA ELECCIÓN **************************/
+    // ------------ OCULTAR TODOS LOS PASOS ABIERTOS EN CASO SE VUELVA HASTA ESTE PASO 
+    // ------------ OCULTAR LOS OTROS PASOS AJENOS A ESTA ELECCIÓN 
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-typetransport]").removeClass("show");
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-typetransport]").html("");
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-chargeload]").removeClass("show");
@@ -221,16 +218,16 @@ $(document).on("click", "#list-typeOperationItems a", function(){
   }else{
     localStorage.setItem("key_v-totalflette", 0);
     localStorage.setItem("key_typeOp", $(this).find("li").find("p").text());
-    /************************** ASIGNAR A LA VARIABLE BLOBAL **************************/
+    // ------------ ASIGNAR A LA VARIABLE BLOBAL 
     v_TypeOp = $(this).find("li").find("p").text();
-    /************************** VALOR DEL TIPO DE OPERACIÓN **************************/
+    // ------------ VALOR DEL TIPO DE OPERACIÓN 
     $("#loadTypeOpe").val(v_TypeOp);
-    /************************** OCULTAR AL LISTADO DE RESUMEN - ELIGE UN OPCIÓN **************************/
+    // ------------ OCULTAR AL LISTADO DE RESUMEN - ELIGE UN OPCIÓN 
     $(".cont-MainCamelLog--c--contResumeCalc--item[data-advlevel=d-reqspeacialservs]").removeClass("show");
     $(".cont-MainCamelLog--c--contResumeCalc--item[data-advlevel=d-reqspeacialservs]").find("span").text("");
     
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-typetransport]").addClass("show");
-    /************************** MOSTRAR EL SIGUIENTE PASO **************************/
+    // ------------ MOSTRAR EL SIGUIENTE PASO 
     sectionsSteps.moveTo('step-typetransport', 1);
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-typetransport]").html(`
       <div class="cont-MainCamelLog--c--contSteps--item--cTitle">
@@ -270,7 +267,7 @@ $(document).on("click", "#list-typeOperationItems a", function(){
         </ul>
       </div>
     `);
-    /************************** MOSTRAR EN EL RESUMEN - LADO IZQUIERDO **************************/
+    // ------------ MOSTRAR EN EL RESUMEN - LADO IZQUIERDO 
     $(".cont-MainCamelLog--c--contResumeCalc--item[data-advlevel=d-chargeload]").html(`
       <div class="cont-MainCamelLog--c--contResumeCalc--item--cardStep">
         <div class="cont-MainCamelLog--c--contResumeCalc--item--cardStep--cIcon">
@@ -288,13 +285,13 @@ $(document).on("click","#list-typeTransporteSelectItems a",function(){
   $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-chargeload]").addClass("show");
   var ttypeTransport = $(this).index();
   if(ttypeTransport == 0){
-    /************************** RESETEAR EL VALOR FINAL DEL FLETE, SI SE REGRESA HASTA ESTE PUNTO **************************/
+    // ------------ RESETEAR EL VALOR FINAL DEL FLETE, SI SE REGRESA HASTA ESTE PUNTO 
     localStorage.setItem("key_v-totalflette", 0);
-    /************************** AGREGAR A LA VARIABLE LOCAL **************************/
+    // ------------ AGREGAR A LA VARIABLE LOCAL 
     localStorage.setItem("key_typeTransp", "General");
-    /************************** ASIGNAR AL VALOR DEL INPUT DE ENVÍO POST **************************/
+    // ------------ ASIGNAR AL VALOR DEL INPUT DE ENVÍO POST 
     $("#loadTypeTranport").val("general");
-    /************************** MOSTRAR EN EL RESUMEN - LADO IZQUIERDO **************************/
+    // ------------ MOSTRAR EN EL RESUMEN - LADO IZQUIERDO 
     $(".cont-MainCamelLog--c--contResumeCalc--item[data-advlevel=d-typetransportcharge]").html(`
       <div class="cont-MainCamelLog--c--contResumeCalc--item--cardStep">
         <div class="cont-MainCamelLog--c--contResumeCalc--item--cardStep--cImgIcon">
@@ -303,7 +300,7 @@ $(document).on("click","#list-typeTransporteSelectItems a",function(){
         <span>T. GENERAL</span>
       </div>
     `);
-    /************************** MOSTRAR EL SIGUIENTE PASO **************************/
+    // ------------ MOSTRAR EL SIGUIENTE PASO 
     sectionsSteps.moveTo('step-chargeload', 1);
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-chargeload]").html(`
      <div class="cont-MainCamelLog--c--contSteps--item--cTitle">
@@ -339,13 +336,13 @@ $(document).on("click","#list-typeTransporteSelectItems a",function(){
       </div>
     `);
   }else if(ttypeTransport == 1){
-    /************************** RESETEAR EL VALOR FINAL DEL FLETE, SI SE REGRESA HASTA ESTE PUNTO **************************/
+    // ------------ RESETEAR EL VALOR FINAL DEL FLETE, SI SE REGRESA HASTA ESTE PUNTO 
     localStorage.setItem("key_v-totalflette", 0);
-    /************************** AGREGAR A LA VARIABLE LOCAL **************************/
+    // ------------ AGREGAR A LA VARIABLE LOCAL 
     localStorage.setItem("key_typeTransp", "Imo");
-    /************************** ASIGNAR AL VALOR DEL INPUT DE ENVÍO POST **************************/
+    // ------------ ASIGNAR AL VALOR DEL INPUT DE ENVÍO POST 
     $("#loadTypeTranport").val("imo");
-    /************************** MOSTRAR EN EL RESUMEN - LADO IZQUIERDO **************************/
+    // ------------ MOSTRAR EN EL RESUMEN - LADO IZQUIERDO 
     $(".cont-MainCamelLog--c--contResumeCalc--item[data-advlevel=d-typetransportcharge]").html(`
       <div class="cont-MainCamelLog--c--contResumeCalc--item--cardStep">
         <div class="cont-MainCamelLog--c--contResumeCalc--item--cardStep--cImgIcon">
@@ -354,7 +351,7 @@ $(document).on("click","#list-typeTransporteSelectItems a",function(){
         <span>T. IMO</span>
       </div>
     `);
-    /************************** MOSTRAR EL SIGUIENTE PASO **************************/
+    // ------------ MOSTRAR EL SIGUIENTE PASO 
     sectionsSteps.moveTo('step-chargeload', 1);
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-chargeload]").html(`
      <div class="cont-MainCamelLog--c--contSteps--item--cTitle">
@@ -390,13 +387,13 @@ $(document).on("click","#list-typeTransporteSelectItems a",function(){
       </div>
     `);
   }else{
-    /************************** RESETEAR EL VALOR FINAL DEL FLETE, SI SE REGRESA HASTA ESTE PUNTO **************************/
+    // ------------ RESETEAR EL VALOR FINAL DEL FLETE, SI SE REGRESA HASTA ESTE PUNTO 
     localStorage.setItem("key_v-totalflette", 0);
-    /************************** AGREGAR A LA VARIABLE LOCAL **************************/
+    // ------------ AGREGAR A LA VARIABLE LOCAL 
     localStorage.setItem("key_typeTransp", "Refrigerado");
-    /************************** ASIGNAR AL VALOR DEL INPUT DE ENVÍO POST **************************/
+    // ------------ ASIGNAR AL VALOR DEL INPUT DE ENVÍO POST 
     $("#loadTypeTranport").val("refrigerado");
-    /************************** MOSTRAR EN EL RESUMEN - LADO IZQUIERDO **************************/
+    // ------------ MOSTRAR EN EL RESUMEN - LADO IZQUIERDO 
     $(".cont-MainCamelLog--c--contResumeCalc--item[data-advlevel=d-typetransportcharge]").html(`
       <div class="cont-MainCamelLog--c--contResumeCalc--item--cardStep">
         <div class="cont-MainCamelLog--c--contResumeCalc--item--cardStep--cImgIcon">
@@ -405,7 +402,7 @@ $(document).on("click","#list-typeTransporteSelectItems a",function(){
         <span>T. REFRIGERADO</span>
       </div>
     `);
-    /************************** MOSTRAR EL SIGUIENTE PASO **************************/
+    // ------------ MOSTRAR EL SIGUIENTE PASO 
     sectionsSteps.moveTo('step-chargeload', 1);
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-chargeload]").html(`
      <div class="cont-MainCamelLog--c--contSteps--item--cTitle">
@@ -449,19 +446,18 @@ $(document).on("click", "#list-typeChargeLoadItems a", function(){
 	var tTypeChargeLoad = $(this).index();
 	if(tTypeChargeLoad == 0){
     localStorage.setItem("key_v-totalflette", 0);
-    localStorage.setItem("key_typeChrg", $(this).find("li").find("p").text());
-    /************************** ASIGNAR A LAS VARIABLES GLOBALES **************************/
+    // ------------ ASIGNAR A LAS VARIABLES GLOBALES 
     v_TypeChargeImgSrc = $(this).find("li").find("div").find("img").attr("src");
     v_TypeChargeName = $(this).find("li").find("p").text();
-    /************************** VALOR DEL TIPO DE CARGA **************************/
+    // ------------ VALOR DEL TIPO DE CARGA 
     $("#loadTypeCharge").val(v_TypeChargeName);
-    /************************** OCULTAR AL LISTADO DE RESUMEN - ELIGE UN OPCIÓN **************************/
+    // ------------ OCULTAR AL LISTADO DE RESUMEN - ELIGE UN OPCIÓN 
     $(".cont-MainCamelLog--c--contResumeCalc--item[data-advlevel=d-reqspeacialservs]").removeClass("show");
     $(".cont-MainCamelLog--c--contResumeCalc--item[data-advlevel=d-reqspeacialservs]").find("span").text("");
-    /************************** ASIGNAR AL RESUMEN DEL LISTADO **************************/
+    // ------------ ASIGNAR AL RESUMEN DEL LISTADO 
     $(".cont-MainCamelLog--c--contResumeCalc--item--cardStep--cIconStepLeft[data-merchandise=rsm-typecharge]").find("img").attr("src", v_TypeChargeImgSrc);
     $(".cont-MainCamelLog--c--contResumeCalc--item--cardStep--cIconStepLeft[data-merchandise=rsm-typecharge]").find("span").text(v_TypeChargeName);
-    /************************** LIMPIAR EL LISTADO DE RESUMEN IZQUIERDO - DIMENSIONES DE CARGA **************************/
+    // ------------ LIMPIAR EL LISTADO DE RESUMEN IZQUIERDO - DIMENSIONES DE CARGA 
     $(".cont-MainCamelLog--c--contResumeCalc--item--cardStep--cIconStepLeft[data-merchandise=rsm-totpackages]").find("span:nth-child(2)").text("");
     $(".cont-MainCamelLog--c--contResumeCalc--item--cardStep--cIconStepLeft[data-merchandise=rsm-totweight]").find("span:nth-child(2)").text("");
     $(".cont-MainCamelLog--c--contResumeCalc--item--cardStep--cIconStepLeft[data-merchandise=rsm-totvolume]").find("span:nth-child(2)").text("");
@@ -469,7 +465,7 @@ $(document).on("click", "#list-typeChargeLoadItems a", function(){
     $(".cont-MainCamelLog--c--contResumeCalc--item--cardStep--cIconStepLeft[data-merchandise=rsm-totweight]").find("span:first-child").text("");
     $(".cont-MainCamelLog--c--contResumeCalc--item--cardStep--cIconStepLeft[data-merchandise=rsm-totvolume]").find("span:first-child").text("");
     
-    /************************** OCULTAR LOS OTROS PASOS AJENOS A ESTA ELECCIÓN **************************/
+    // ------------ OCULTAR LOS OTROS PASOS AJENOS A ESTA ELECCIÓN 
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-chargedata]").removeClass("show");
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-chargedata]").html("");
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-integservorfleteinte]").removeClass("show");
@@ -483,7 +479,7 @@ $(document).on("click", "#list-typeChargeLoadItems a", function(){
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-pickuplocation]").removeClass("show");
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-pickuplocation]").html("");
 
-    /************************** MOSTRAR EL SIGUIENTE PASO **************************/
+    // ------------ MOSTRAR EL SIGUIENTE PASO 
 	  $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-qcontainers]").addClass("show");
 		sectionsSteps.moveTo('step-qcontainers', 1);
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-qcontainers]").html(`
@@ -734,11 +730,10 @@ $(document).on("click", "#list-typeChargeLoadItems a", function(){
 		`);
 	}else{
     localStorage.setItem("key_v-totalflette", 0);
-    localStorage.setItem("key_typeChrg", $(this).find("li").find("p").text());
-    /************************** ASIGNAR A LAS VARIABLES GLOBALES **************************/
+    // ------------ ASIGNAR A LAS VARIABLES GLOBALES 
     v_TypeChargeImgSrc = $(this).find("li").find("div").find("img").attr("src");
     v_TypeChargeName = $(this).find("li").find("p").text();
-    /************************** LIMPIAR EL LISTADO DE RESUMEN IZQUIERDO - CONTENEDORES **************************/
+    // ------------ LIMPIAR EL LISTADO DE RESUMEN IZQUIERDO - CONTENEDORES 
     /** LIMIPIAR 20' **/
     $("div[data-merchandisetype=rsm-qcontainer20]").find("img").attr("src", "");
     $("div[data-merchandisetype=rsm-qcontainer20]").find("span").eq(0).text("");
@@ -759,24 +754,24 @@ $(document).on("click", "#list-typeChargeLoadItems a", function(){
     $("div[data-merchandisetype=rsm-qcontainer40nor]").find("span").eq(0).text("");
     $("div[data-merchandisetype=rsm-qcontainer40nor]").find("span").eq(1).text("");
     $("div[data-merchandisetype=rsm-qcontainer40nor]").find("span").eq(2).text("");
-    /************************** VALOR DEL TIPO DE CARGA **************************/
+    // ------------ VALOR DEL TIPO DE CARGA 
     $("#loadTypeCharge").val(v_TypeChargeName);
-    /************************** OCULTAR AL LISTADO DE RESUMEN - ELIGE UN OPCIÓN **************************/
+    // ------------ OCULTAR AL LISTADO DE RESUMEN - ELIGE UN OPCIÓN 
     $(".cont-MainCamelLog--c--contResumeCalc--item[data-advlevel=d-reqspeacialservs]").removeClass("show");
     $(".cont-MainCamelLog--c--contResumeCalc--item[data-advlevel=d-reqspeacialservs]").find("span").text("");
-    /************************** ASIGNAR AL RESUMEN DEL LISTADO **************************/
+    // ------------ ASIGNAR AL RESUMEN DEL LISTADO 
     $(".cont-MainCamelLog--c--contResumeCalc--item--cardStep--cIconStepLeft[data-merchandise=rsm-typecharge]").find("img").attr("src", v_TypeChargeImgSrc);
     $(".cont-MainCamelLog--c--contResumeCalc--item--cardStep--cIconStepLeft[data-merchandise=rsm-typecharge]").find("span").text(v_TypeChargeName);
     
-    /************************** OCULTAR - ELIGE UNA OPCIÓN **************************/
+    // ------------ OCULTAR - ELIGE UNA OPCIÓN 
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-integservorfleteinte]").html("");
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-integservorfleteinte]").removeClass("show");
-    /************************** OCULTAR - CONTENEDORES **************************/
+    // ------------ OCULTAR - CONTENEDORES 
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-qcontainers]").html("");
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-qcontainers]").removeClass("show");
 
 		$(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-chargedata]").addClass("show");
-    /************************** MOSTRAR EL SIGUIENTE PASO **************************/
+    // ------------ MOSTRAR EL SIGUIENTE PASO 
     sectionsSteps.moveTo('step-chargedata', 1);
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-chargedata]").html(`
       <div class="cont-MainCamelLog--c--contSteps--item--cTitle">
@@ -787,6 +782,7 @@ $(document).on("click", "#list-typeChargeLoadItems a", function(){
             <input type="text" id="n_weightcompare_ultstep" class="n-val-sd" disabled>
             <input type="text" id="n_volumecompare_ultstep" class="n-val-sd" disabled>
             <input type="text" id="val_validateratequote" name="val_validateratequote" class="n-val-sd" value="">
+            <input type="text" id="val_ftotvalofdownload" name="val_ftotvalofdownload" class="n-val-sd" value="">
           </span>
         </span>
       </div>
@@ -821,14 +817,14 @@ $(document).on("click", "#list-typeChargeLoadItems a", function(){
 /*========================================================================================
 =                          4. AÑADIR LA CANTIDAD DE CONTENEDORES                         =
 =========================================================================================*/
-/************************** PRIMER INPUT **************************/
+// ------------ PRIMER INPUT 
 $(document).on("click", "#c-incdecBtns20 button", function(){
   var tindBtn = $(this).index();
   var input20 = $(this).parent().find("input").val();
   var newValipt20 = $(this).parent().find("input").val();
   var val20inputhidden = $("#loadQContainer20").val();
   var val20inputhiddenNew = $("#loadQContainer20").val();
-  /************************** LISTAR LA TARIFA DEL PUERTO DE ORIGEN - FCL **************************/
+  // ------------ LISTAR LA TARIFA DEL PUERTO DE ORIGEN - FCL 
   $.ajax({
     url: "controllers/list_rateByPortOriginFCL.php",
     method: "POST",
@@ -840,10 +836,10 @@ $(document).on("click", "#c-incdecBtns20 button", function(){
     var totalSend20ST = 0;
     var total20ST = 0;
 
-    /************************** DEVOLVER LA FECHA DE VALIDEZ DE LA TARIFA A LA VARIABLE LOCAL **************************/
+    // ------------ DEVOLVER LA FECHA DE VALIDEZ DE LA TARIFA A LA VARIABLE LOCAL 
     var validdesde_final = totalFCL[0].validdesde;
     var validhasta_final = totalFCL[0].validhasta;
-    /************************** ASIGNAR A LOS INPUTS DE ENVÍO **************************/
+    // ------------ ASIGNAR A LOS INPUTS DE ENVÍO 
     $("#val-datevaliddesde").val(validdesde_final);
     $("#val-datevalidhasta").val(validhasta_final);
     var convertOneDATE =  new Date(Date.parse(validdesde_final.replace(/-/g, '/')));
@@ -858,14 +854,14 @@ $(document).on("click", "#c-incdecBtns20 button", function(){
 
     var val_dateValidDesde = separateDateValidDesde[0]+" "+"de"+" "+firstToUppercase(monthSeparatetoArrayDesde);
     var val_dateValidHasta = separateDateValidHasta[0]+" "+"de"+" "+firstToUppercase(monthSeparatetoArrayHasta);
-    /************************** ASIGNAR A LAS VARIABLES LOCALES **************************/
+    // ------------ ASIGNAR A LAS VARIABLES LOCALES 
     localStorage.setItem("key_validaterate", val_dateValidDesde+" - "+val_dateValidHasta);
-    /************************** ASIGNAR AL VALOR DE ENVÍO **************************/
+    // ------------ ASIGNAR AL VALOR DE ENVÍO 
     $("#val_validateratequote").val(val_dateValidDesde+" - "+val_dateValidHasta);
 
-    /************************** VALIDAR SI OTRO CONTROL TIENE ALGÚN VALOR **************************/
+    // ------------ VALIDAR SI OTRO CONTROL TIENE ALGÚN VALOR 
     if($("#ipt-qvalContainer40ST").val() > 0 || $("#ipt-qvalContainer40HQ").val() > 0 || $("#ipt-qvalContainer40NOR").val() > 0){
-      /************************** MOSTRAR EL MENSAJE DE ALERTA PERSONALIZADO **************************/
+      // ------------ MOSTRAR EL MENSAJE DE ALERTA PERSONALIZADO 
       $("#idMessageSteps-prcss").html(`
         <div class="cntMessageSteps-prcss--cont">
           <div class="cntMessageSteps-prcss--cont--c">
@@ -875,7 +871,7 @@ $(document).on("click", "#c-incdecBtns20 button", function(){
           </div>
         </div>
       `)
-      /************************** CERRAR EL MODAL **************************/
+      // ------------ CERRAR EL MODAL 
       setTimeout(function(){
         $("#idMessageSteps-prcss .cntMessageSteps-prcss--cont").remove();
       }, 6500)
@@ -895,21 +891,21 @@ $(document).on("click", "#c-incdecBtns20 button", function(){
         newValipt20 = parseInt(input20) + 1;
         $(this).parent().find("input").val(newValipt20);
         
-        /************************** ASIGNAR VALORES A LA VARIABLE GLOBAL REFERENTE **************************/
+        // ------------ ASIGNAR VALORES A LA VARIABLE GLOBAL REFERENTE 
         v_QContainersName20 = $(this).parent().parent().find("label").text();
         v_QContainersImgSrc20 = $(this).parent().parent().parent().find("div").find("img").attr("src");
         v_QContainersValue20 = newValipt20;
 
-        /************************** ASIGNAR VALORES DE LOS INPUTS HIDDEN **************************/
+        // ------------ ASIGNAR VALORES DE LOS INPUTS HIDDEN 
         $("#loadTypeContainer20").val(v_QContainersName20+" "+"Std");
         val20inputhiddenNew = parseInt(val20inputhidden) + 1;
         $("#loadQContainer20").val(val20inputhiddenNew);
-        /************************** CALCULAR EL VALOR DEL TOTAL - 20ST **************************/
+        // ------------ CALCULAR EL VALOR DEL TOTAL - 20ST 
         totalSend20ST = parseFloat(totalFCL[0].total) * $("#ipt-qvalContainer20ST").val();
-        /************************** ASIGNAR A LA VARIABLE LOCAL - LOCALSTORAGE **************************/
+        // ------------ ASIGNAR A LA VARIABLE LOCAL - LOCALSTORAGE 
         localStorage.setItem("key_v-totalflette", totalSend20ST);
 
-        /************************** RESUMEN DEL LISTADO - CONTENEDORES 20' **************************/
+        // ------------ RESUMEN DEL LISTADO - CONTENEDORES 20' 
         $("div[data-merchandisetype=rsm-qcontainer20]").find("img").attr("src", v_QContainersImgSrc20);
         $("div[data-merchandisetype=rsm-qcontainer20]").find("span").eq(0).text(val20inputhiddenNew);
         $("div[data-merchandisetype=rsm-qcontainer20]").find("span").eq(1).text("x");
@@ -919,14 +915,14 @@ $(document).on("click", "#c-incdecBtns20 button", function(){
         if(input20 > 0){
           newValipt20 = parseInt(input20) - 1;
           $(this).parent().find("input").val(newValipt20);
-          /************************** ASIGNAR VALORES DE LOS INPUTS HIDDEN **************************/
+          // ------------ ASIGNAR VALORES DE LOS INPUTS HIDDEN 
           val20inputhiddenNew = parseInt(val20inputhidden) - 1;
           $("#loadQContainer20").val(val20inputhiddenNew);
-          /************************** CALCULAR EL VALOR DEL TOTAL - 20ST **************************/
+          // ------------ CALCULAR EL VALOR DEL TOTAL - 20ST 
           totalSend20ST = parseFloat(totalFCL[0].total) * $("#ipt-qvalContainer20ST").val();
-          /************************** ASIGNAR A LA VARIABLE LOCAL - LOCALSTORAGE **************************/
+          // ------------ ASIGNAR A LA VARIABLE LOCAL - LOCALSTORAGE 
           localStorage.setItem("key_v-totalflette", totalSend20ST);
-          /************************** RESUMEN DEL LISTADO - CONTENEDORES 20' **************************/
+          // ------------ RESUMEN DEL LISTADO - CONTENEDORES 20' 
           $("div[data-merchandisetype=rsm-qcontainer20]").find("img").attr("src", v_QContainersImgSrc20);
           $("div[data-merchandisetype=rsm-qcontainer20]").find("span").eq(0).text(val20inputhiddenNew);
           $("div[data-merchandisetype=rsm-qcontainer20]").find("span").eq(1).text("x");
@@ -934,15 +930,15 @@ $(document).on("click", "#c-incdecBtns20 button", function(){
         }else{
           newValipt20 = 0;
           $(this).parent().find("input").val(newValipt20);
-          /************************** ASIGNAR VALORES DE LOS INPUTS HIDDEN **************************/
+          // ------------ ASIGNAR VALORES DE LOS INPUTS HIDDEN 
           $("#loadTypeContainer20").val("");
           val20inputhiddenNew = 0;
           $("#loadQContainer20").val(0);
-          /************************** CALCULAR EL VALOR DEL TOTAL - 20ST **************************/
+          // ------------ CALCULAR EL VALOR DEL TOTAL - 20ST 
           totalSend20ST = 0;
-          /************************** ASIGNAR A LA VARIABLE LOCAL - LOCALSTORAGE **************************/
+          // ------------ ASIGNAR A LA VARIABLE LOCAL - LOCALSTORAGE 
           localStorage.setItem("key_v-totalflette", 0);
-          /************************** RESUMEN DEL LISTADO - CONTENEDORES 20' **************************/
+          // ------------ RESUMEN DEL LISTADO - CONTENEDORES 20' 
           $("div[data-merchandisetype=rsm-qcontainer20]").find("img").attr("src", "");
           $("div[data-merchandisetype=rsm-qcontainer20]").find("span").eq(0).text("");
           $("div[data-merchandisetype=rsm-qcontainer20]").find("span").eq(1).text("");
@@ -954,14 +950,14 @@ $(document).on("click", "#c-incdecBtns20 button", function(){
     }
   });
 });
-/************************** SEGUNDO INPUT **************************/
+// ------------ SEGUNDO INPUT 
 $(document).on("click", "#c-incdecBtns40 button", function(){
   var tindBtn = $(this).index();
   var input40 = $(this).parent().find("input").val();
   var newValipt40 = $(this).parent().find("input").val();
   var val40inputhidden = $("#loadQContainer40").val();
   var val40inputhiddenNew = $("#loadQContainer40").val();
-  /************************** LISTAR LA TARIFA DEL PUERTO DE ORIGEN - FCL **************************/
+  // ------------ LISTAR LA TARIFA DEL PUERTO DE ORIGEN - FCL 
   $.ajax({
     url: "controllers/list_rateByPortOriginFCL.php",
     method: "POST",
@@ -973,10 +969,10 @@ $(document).on("click", "#c-incdecBtns40 button", function(){
     var totalSend40ST = 0;
     var total40ST = 0;
 
-    /************************** DEVOLVER LA FECHA DE VALIDEZ DE LA TARIFA A LA VARIABLE LOCAL **************************/
+    // ------------ DEVOLVER LA FECHA DE VALIDEZ DE LA TARIFA A LA VARIABLE LOCAL 
     var validdesde_final = totalFCL[0].validdesde;
     var validhasta_final = totalFCL[0].validhasta;
-    /************************** ASIGNAR A LOS INPUTS DE ENVÍO **************************/
+    // ------------ ASIGNAR A LOS INPUTS DE ENVÍO 
     $("#val-datevaliddesde").val(validdesde_final);
     $("#val-datevalidhasta").val(validhasta_final);
     var convertOneDATE =  new Date(Date.parse(validdesde_final.replace(/-/g, '/')));
@@ -991,14 +987,14 @@ $(document).on("click", "#c-incdecBtns40 button", function(){
 
     var val_dateValidDesde = separateDateValidDesde[0]+" "+"de"+" "+firstToUppercase(monthSeparatetoArrayDesde);
     var val_dateValidHasta = separateDateValidHasta[0]+" "+"de"+" "+firstToUppercase(monthSeparatetoArrayHasta);
-    /************************** ASIGNAR A LAS VARIABLES LOCALES **************************/
+    // ------------ ASIGNAR A LAS VARIABLES LOCALES 
     localStorage.setItem("key_validaterate", val_dateValidDesde+" - "+val_dateValidHasta);
-    /************************** ASIGNAR AL VALOR DE ENVÍO **************************/
+    // ------------ ASIGNAR AL VALOR DE ENVÍO 
     $("#val_validateratequote").val(val_dateValidDesde+" - "+val_dateValidHasta);
 
-    /************************** VALIDAR SI OTRO CONTROL TIENE ALGÚN VALOR **************************/
+    // ------------ VALIDAR SI OTRO CONTROL TIENE ALGÚN VALOR 
     if($("#ipt-qvalContainer20ST").val() > 0 || $("#ipt-qvalContainer40HQ").val() > 0 || $("#ipt-qvalContainer40NOR").val() > 0){
-      /************************** MOSTRAR EL MENSAJE DE ALERTA PERSONALIZADO **************************/
+      // ------------ MOSTRAR EL MENSAJE DE ALERTA PERSONALIZADO 
       $("#idMessageSteps-prcss").html(`
         <div class="cntMessageSteps-prcss--cont">
           <div class="cntMessageSteps-prcss--cont--c">
@@ -1008,7 +1004,7 @@ $(document).on("click", "#c-incdecBtns40 button", function(){
           </div>
         </div>
       `)
-      /************************** CERRAR EL MODAL **************************/
+      // ------------ CERRAR EL MODAL 
       setTimeout(function(){
         $("#idMessageSteps-prcss .cntMessageSteps-prcss--cont").remove();
       }, 6500)
@@ -1025,20 +1021,20 @@ $(document).on("click", "#c-incdecBtns40 button", function(){
         newValipt40 = parseInt(input40) + 1;
         $(this).parent().find("input").val(newValipt40);
 
-        /************************** ASIGNAR VALORES A LA VARIABLE GLOBAL REFERENTE **************************/
+        // ------------ ASIGNAR VALORES A LA VARIABLE GLOBAL REFERENTE 
         v_QContainersName40 = $(this).parent().parent().find("label").text();
         v_QContainersImgSrc40 = $(this).parent().parent().parent().find("div").find("img").attr("src");
         v_QContainersValue40 = $(this).parent().find("input").val(newValipt40);
 
-        /************************** ASIGNAR VALORES DE LOS INPUTS HIDDEN **************************/
+        // ------------ ASIGNAR VALORES DE LOS INPUTS HIDDEN 
         $("#loadTypeContainer40").val(v_QContainersName40+" "+"Std");
         val40inputhiddenNew = parseInt(val40inputhidden) + 1;
         $("#loadQContainer40").val(val40inputhiddenNew);
-        /************************** CALCULAR EL VALOR DEL TOTAL - 20ST **************************/
+        // ------------ CALCULAR EL VALOR DEL TOTAL - 20ST 
         totalSend40ST = parseFloat(totalFCL[0].total) * $("#ipt-qvalContainer40ST").val();
-        /************************** ASIGNAR A LA VARIABLE LOCAL - LOCALSTORAGE **************************/
+        // ------------ ASIGNAR A LA VARIABLE LOCAL - LOCALSTORAGE 
         localStorage.setItem("key_v-totalflette", totalSend40ST);
-        /************************** RESUMEN DEL LISTADO - CONTENEDORES 40' **************************/
+        // ------------ RESUMEN DEL LISTADO - CONTENEDORES 40' 
         $("div[data-merchandisetype=rsm-qcontainer40]").find("img").attr("src", v_QContainersImgSrc40);
         $("div[data-merchandisetype=rsm-qcontainer40]").find("span").eq(0).text(val40inputhiddenNew);
         $("div[data-merchandisetype=rsm-qcontainer40]").find("span").eq(1).text("x");
@@ -1048,14 +1044,14 @@ $(document).on("click", "#c-incdecBtns40 button", function(){
         if(input40 > 0){
           newValipt40 = parseInt(input40) - 1;
           $(this).parent().find("input").val(newValipt40);
-          /************************** ASIGNAR VALORES DE LOS INPUTS HIDDEN **************************/
+          // ------------ ASIGNAR VALORES DE LOS INPUTS HIDDEN 
           val40inputhiddenNew = parseInt(val40inputhidden) - 1;
           $("#loadQContainer40").val(val40inputhiddenNew);
-          /************************** CALCULAR EL VALOR DEL TOTAL - 20ST **************************/
+          // ------------ CALCULAR EL VALOR DEL TOTAL - 20ST 
           totalSend40ST = parseFloat(totalFCL[0].total) * $("#ipt-qvalContainer40ST").val();
-          /************************** ASIGNAR A LA VARIABLE LOCAL - LOCALSTORAGE **************************/
+          // ------------ ASIGNAR A LA VARIABLE LOCAL - LOCALSTORAGE 
           localStorage.setItem("key_v-totalflette", totalSend40ST);
-          /************************** RESUMEN DEL LISTADO - CONTENEDORES 40' **************************/
+          // ------------ RESUMEN DEL LISTADO - CONTENEDORES 40' 
           $("div[data-merchandisetype=rsm-qcontainer40]").find("img").attr("src", v_QContainersImgSrc40);
           $("div[data-merchandisetype=rsm-qcontainer40]").find("span").eq(0).text(val40inputhiddenNew);
           $("div[data-merchandisetype=rsm-qcontainer40]").find("span").eq(1).text("x");
@@ -1063,15 +1059,15 @@ $(document).on("click", "#c-incdecBtns40 button", function(){
         }else{
           newValipt40 = 0;
           $(this).parent().find("input").val(newValipt40);
-          /************************** ASIGNAR VALORES DE LOS INPUTS HIDDEN **************************/
+          // ------------ ASIGNAR VALORES DE LOS INPUTS HIDDEN 
           $("#loadTypeContainer40").val("");
           val40inputhiddenNew = 0;
           $("#loadQContainer40").val(0);
-          /************************** CALCULAR EL VALOR DEL TOTAL - 20ST **************************/
+          // ------------ CALCULAR EL VALOR DEL TOTAL - 20ST 
           totalSend40ST = 0;
-          /************************** ASIGNAR A LA VARIABLE LOCAL - LOCALSTORAGE **************************/
+          // ------------ ASIGNAR A LA VARIABLE LOCAL - LOCALSTORAGE 
           localStorage.setItem("key_v-totalflette", 0);
-          /************************** RESUMEN DEL LISTADO - CONTENEDORES 40' **************************/
+          // ------------ RESUMEN DEL LISTADO - CONTENEDORES 40' 
           $("div[data-merchandisetype=rsm-qcontainer40]").find("img").attr("src", "");
           $("div[data-merchandisetype=rsm-qcontainer40]").find("span").eq(0).text("");
           $("div[data-merchandisetype=rsm-qcontainer40]").find("span").eq(1).text("");
@@ -1084,7 +1080,7 @@ $(document).on("click", "#c-incdecBtns40 button", function(){
 
   });
 });
-/************************** TERCERO INPUT **************************/
+// ------------ TERCERO INPUT 
 $(document).on("click", "#c-incdecBtns40-hc button", function(){
   var tindBtn = $(this).index();
   var input40_hq = $(this).parent().find("input").val();
@@ -1092,7 +1088,7 @@ $(document).on("click", "#c-incdecBtns40-hc button", function(){
   var val40hqinputhidden = $("#loadQContainer40hq").val();
   var val40hqinputhiddenNew = $("#loadQContainer40hq").val();
 
-  /************************** LISTAR LA TARIFA DEL PUERTO DE ORIGEN - FCL **************************/
+  // ------------ LISTAR LA TARIFA DEL PUERTO DE ORIGEN - FCL 
   $.ajax({
     url: "controllers/list_rateByPortOriginFCL.php",
     method: "POST",
@@ -1104,10 +1100,10 @@ $(document).on("click", "#c-incdecBtns40-hc button", function(){
     var totalSend40HQ = 0;
     var total40HQ = 0;
 
-    /************************** DEVOLVER LA FECHA DE VALIDEZ DE LA TARIFA A LA VARIABLE LOCAL **************************/
+    // ------------ DEVOLVER LA FECHA DE VALIDEZ DE LA TARIFA A LA VARIABLE LOCAL 
     var validdesde_final = totalFCL[0].validdesde;
     var validhasta_final = totalFCL[0].validhasta;
-    /************************** ASIGNAR A LOS INPUTS DE ENVÍO **************************/
+    // ------------ ASIGNAR A LOS INPUTS DE ENVÍO 
     $("#val-datevaliddesde").val(validdesde_final);
     $("#val-datevalidhasta").val(validhasta_final);
     var convertOneDATE =  new Date(Date.parse(validdesde_final.replace(/-/g, '/')));
@@ -1122,14 +1118,14 @@ $(document).on("click", "#c-incdecBtns40-hc button", function(){
 
     var val_dateValidDesde = separateDateValidDesde[0]+" "+"de"+" "+firstToUppercase(monthSeparatetoArrayDesde);
     var val_dateValidHasta = separateDateValidHasta[0]+" "+"de"+" "+firstToUppercase(monthSeparatetoArrayHasta);
-    /************************** ASIGNAR A LAS VARIABLES LOCALES **************************/
+    // ------------ ASIGNAR A LAS VARIABLES LOCALES 
     localStorage.setItem("key_validaterate", val_dateValidDesde+" - "+val_dateValidHasta);
-    /************************** ASIGNAR AL VALOR DE ENVÍO **************************/
+    // ------------ ASIGNAR AL VALOR DE ENVÍO 
     $("#val_validateratequote").val(val_dateValidDesde+" - "+val_dateValidHasta);
 
-    /************************** VALIDAR SI OTRO CONTROL TIENE ALGÚN VALOR **************************/
+    // ------------ VALIDAR SI OTRO CONTROL TIENE ALGÚN VALOR 
     if($("#ipt-qvalContainer20ST").val() > 0 || $("#ipt-qvalContainer40ST").val() > 0 || $("#ipt-qvalContainer40NOR").val() > 0){
-      /************************** MOSTRAR EL MENSAJE DE ALERTA PERSONALIZADO **************************/
+      // ------------ MOSTRAR EL MENSAJE DE ALERTA PERSONALIZADO 
       $("#idMessageSteps-prcss").html(`
         <div class="cntMessageSteps-prcss--cont">
           <div class="cntMessageSteps-prcss--cont--c">
@@ -1139,7 +1135,7 @@ $(document).on("click", "#c-incdecBtns40-hc button", function(){
           </div>
         </div>
       `)
-      /************************** CERRAR EL MODAL **************************/
+      // ------------ CERRAR EL MODAL 
       setTimeout(function(){
         $("#idMessageSteps-prcss .cntMessageSteps-prcss--cont").remove();
       }, 6500)
@@ -1155,20 +1151,20 @@ $(document).on("click", "#c-incdecBtns40-hc button", function(){
       if(tindBtn == 2){
         newValipt40_hq = parseInt(input40_hq) + 1;
         $(this).parent().find("input").val(newValipt40_hq);
-        /************************** ASIGNAR VALORES A LA VARIABLE GLOBAL REFERENTE **************************/
+        // ------------ ASIGNAR VALORES A LA VARIABLE GLOBAL REFERENTE 
         v_QContainersName40_hq = $(this).parent().parent().find("label").text();
         v_QContainersImgSrc40_hq = $(this).parent().parent().parent().find("div").find("img").attr("src");
         v_QContainersValue40_hq = $(this).parent().find("input").val(newValipt40_hq);
 
-        /************************** ASIGNAR VALORES DE LOS INPUTS HIDDEN **************************/
+        // ------------ ASIGNAR VALORES DE LOS INPUTS HIDDEN 
         $("#loadTypeContainer40hq").val("40' HIGH CUBE");
         val40hqinputhiddenNew = parseInt(val40hqinputhidden) + 1;
         $("#loadQContainer40hq").val(val40hqinputhiddenNew);
-        /************************** CALCULAR EL VALOR DEL TOTAL - 20ST **************************/
+        // ------------ CALCULAR EL VALOR DEL TOTAL - 20ST 
         totalSend40HQ = parseFloat(totalFCL[0].total) * $("#ipt-qvalContainer40HQ").val();
-        /************************** ASIGNAR A LA VARIABLE LOCAL - LOCALSTORAGE **************************/
+        // ------------ ASIGNAR A LA VARIABLE LOCAL - LOCALSTORAGE 
         localStorage.setItem("key_v-totalflette", totalSend40HQ);
-        /************************** RESUMEN DEL LISTADO - CONTENEDORES 40hq' **************************/
+        // ------------ RESUMEN DEL LISTADO - CONTENEDORES 40hq' 
         $("div[data-merchandisetype=rsm-qcontainer40hq]").find("img").attr("src", v_QContainersImgSrc40_hq);
         $("div[data-merchandisetype=rsm-qcontainer40hq]").find("span").eq(0).text(val40hqinputhiddenNew);
         $("div[data-merchandisetype=rsm-qcontainer40hq]").find("span").eq(1).text("x");
@@ -1178,14 +1174,14 @@ $(document).on("click", "#c-incdecBtns40-hc button", function(){
         if(input40_hq > 0){
           newValipt40_hq = parseInt(input40_hq) - 1;
           $(this).parent().find("input").val(newValipt40_hq);
-          /************************** ASIGNAR VALORES DE LOS INPUTS HIDDEN **************************/
+          // ------------ ASIGNAR VALORES DE LOS INPUTS HIDDEN 
           val40hqinputhiddenNew = parseInt(val40hqinputhidden) - 1;
           $("#loadQContainer40hq").val(val40hqinputhiddenNew);
-          /************************** CALCULAR EL VALOR DEL TOTAL - 20ST **************************/
+          // ------------ CALCULAR EL VALOR DEL TOTAL - 20ST 
           totalSend40HQ = parseFloat(totalFCL[0].total) * $("#ipt-qvalContainer40HQ").val();
-          /************************** ASIGNAR A LA VARIABLE LOCAL - LOCALSTORAGE **************************/
+          // ------------ ASIGNAR A LA VARIABLE LOCAL - LOCALSTORAGE 
           localStorage.setItem("key_v-totalflette", totalSend40HQ);
-          /************************** RESUMEN DEL LISTADO - CONTENEDORES 40hq' **************************/
+          // ------------ RESUMEN DEL LISTADO - CONTENEDORES 40hq' 
           $("div[data-merchandisetype=rsm-qcontainer40hq]").find("img").attr("src", v_QContainersImgSrc40_hq);
           $("div[data-merchandisetype=rsm-qcontainer40hq]").find("span").eq(0).text(val40hqinputhiddenNew);
           $("div[data-merchandisetype=rsm-qcontainer40hq]").find("span").eq(1).text("x");
@@ -1193,15 +1189,15 @@ $(document).on("click", "#c-incdecBtns40-hc button", function(){
         }else{
           newValipt40_hq = 0;
           $(this).parent().find("input").val(newValipt40_hq);
-          /************************** ASIGNAR VALORES DE LOS INPUTS HIDDEN **************************/
+          // ------------ ASIGNAR VALORES DE LOS INPUTS HIDDEN 
           $("#loadTypeContainer40hq").val("");
           val40hqinputhiddenNew = 0;
           $("#loadQContainer40hq").val(0);
-          /************************** CALCULAR EL VALOR DEL TOTAL - 20ST **************************/
+          // ------------ CALCULAR EL VALOR DEL TOTAL - 20ST 
           totalSend40HQ = 0;
-          /************************** ASIGNAR A LA VARIABLE LOCAL - LOCALSTORAGE **************************/
+          // ------------ ASIGNAR A LA VARIABLE LOCAL - LOCALSTORAGE 
           localStorage.setItem("key_v-totalflette", 0);
-          /************************** RESUMEN DEL LISTADO - CONTENEDORES 40hq' **************************/
+          // ------------ RESUMEN DEL LISTADO - CONTENEDORES 40hq' 
           $("div[data-merchandisetype=rsm-qcontainer40hq]").find("img").attr("src", "");
           $("div[data-merchandisetype=rsm-qcontainer40hq]").find("span").eq(0).text("");
           $("div[data-merchandisetype=rsm-qcontainer40hq]").find("span").eq(1).text("");
@@ -1213,7 +1209,7 @@ $(document).on("click", "#c-incdecBtns40-hc button", function(){
     }
   });
 });
-/************************** CUARTO INPUT **************************/
+// ------------ CUARTO INPUT 
 $(document).on("click", "#c-incdecBtns40-nor button", function(){
   var tindBtn = $(this).index();
   var input40_nor = $(this).parent().find("input").val();
@@ -1221,7 +1217,7 @@ $(document).on("click", "#c-incdecBtns40-nor button", function(){
   var val40norinputhidden = $("#loadQContainer40nor").val();
   var val40norinputhiddenNew = $("#loadQContainer40nor").val();
 
-  /************************** LISTAR LA TARIFA DEL PUERTO DE ORIGEN - FCL **************************/
+  // ------------ LISTAR LA TARIFA DEL PUERTO DE ORIGEN - FCL 
   $.ajax({
     url: "controllers/list_rateByPortOriginFCL.php",
     method: "POST",
@@ -1233,10 +1229,10 @@ $(document).on("click", "#c-incdecBtns40-nor button", function(){
     var totalSend40NOR = 0;
     var total40NOR = 0;
 
-    /************************** DEVOLVER LA FECHA DE VALIDEZ DE LA TARIFA A LA VARIABLE LOCAL **************************/
+    // ------------ DEVOLVER LA FECHA DE VALIDEZ DE LA TARIFA A LA VARIABLE LOCAL 
     var validdesde_final = totalFCL[0].validdesde;
     var validhasta_final = totalFCL[0].validhasta;
-    /************************** ASIGNAR A LOS INPUTS DE ENVÍO **************************/
+    // ------------ ASIGNAR A LOS INPUTS DE ENVÍO 
     $("#val-datevaliddesde").val(validdesde_final);
     $("#val-datevalidhasta").val(validhasta_final);
     var convertOneDATE =  new Date(Date.parse(validdesde_final.replace(/-/g, '/')));
@@ -1251,14 +1247,14 @@ $(document).on("click", "#c-incdecBtns40-nor button", function(){
 
     var val_dateValidDesde = separateDateValidDesde[0]+" "+"de"+" "+firstToUppercase(monthSeparatetoArrayDesde);
     var val_dateValidHasta = separateDateValidHasta[0]+" "+"de"+" "+firstToUppercase(monthSeparatetoArrayHasta);
-    /************************** ASIGNAR A LAS VARIABLES LOCALES **************************/
+    // ------------ ASIGNAR A LAS VARIABLES LOCALES 
     localStorage.setItem("key_validaterate", val_dateValidDesde+" - "+val_dateValidHasta);
-    /************************** ASIGNAR AL VALOR DE ENVÍO **************************/
+    // ------------ ASIGNAR AL VALOR DE ENVÍO 
     $("#val_validateratequote").val(val_dateValidDesde+" - "+val_dateValidHasta);
 
-    /************************** VALIDAR SI OTRO CONTROL TIENE ALGÚN VALOR **************************/
+    // ------------ VALIDAR SI OTRO CONTROL TIENE ALGÚN VALOR 
     if($("#ipt-qvalContainer20ST").val() > 0 || $("#ipt-qvalContainer40ST").val() > 0 || $("#ipt-qvalContainer40HQ").val() > 0){
-      /************************** MOSTRAR EL MENSAJE DE ALERTA PERSONALIZADO **************************/
+      // ------------ MOSTRAR EL MENSAJE DE ALERTA PERSONALIZADO 
       $("#idMessageSteps-prcss").html(`
         <div class="cntMessageSteps-prcss--cont">
           <div class="cntMessageSteps-prcss--cont--c">
@@ -1268,7 +1264,7 @@ $(document).on("click", "#c-incdecBtns40-nor button", function(){
           </div>
         </div>
       `)
-      /************************** CERRAR EL MODAL **************************/
+      // ------------ CERRAR EL MODAL 
       setTimeout(function(){
         $("#idMessageSteps-prcss .cntMessageSteps-prcss--cont").remove();
       }, 6500)
@@ -1284,20 +1280,20 @@ $(document).on("click", "#c-incdecBtns40-nor button", function(){
       if(tindBtn == 2){
         newValipt40_nor = parseInt(input40_nor) + 1;
         $(this).parent().find("input").val(newValipt40_nor);
-        /************************** ASIGNAR VALORES A LA VARIABLE GLOBAL REFERENTE **************************/
+        // ------------ ASIGNAR VALORES A LA VARIABLE GLOBAL REFERENTE 
         v_QContainersName40_nor = $(this).parent().parent().find("label").text();
         v_QContainersImgSrc40_nor = $(this).parent().parent().parent().find("div").find("img").attr("src");
         v_QContainersValue40_nor = $(this).parent().find("input").val(newValipt40_nor);
 
-        /************************** ASIGNAR VALORES DE LOS INPUTS HIDDEN **************************/
+        // ------------ ASIGNAR VALORES DE LOS INPUTS HIDDEN 
         $("#loadTypeContainer40nor").val("40' NOR");
         val40norinputhiddenNew = parseInt(val40norinputhidden) + 1;
         $("#loadQContainer40nor").val(val40norinputhiddenNew);
-        /************************** CALCULAR EL VALOR DEL TOTAL - 20ST **************************/
+        // ------------ CALCULAR EL VALOR DEL TOTAL - 20ST 
         totalSend40NOR = parseFloat(totalFCL[0].total) * $("#ipt-qvalContainer40NOR").val();
-        /************************** ASIGNAR A LA VARIABLE LOCAL - LOCALSTORAGE **************************/
+        // ------------ ASIGNAR A LA VARIABLE LOCAL - LOCALSTORAGE 
         localStorage.setItem("key_v-totalflette", totalSend40NOR);
-        /************************** RESUMEN DEL LISTADO - CONTENEDORES 40nor' **************************/
+        // ------------ RESUMEN DEL LISTADO - CONTENEDORES 40nor' 
         $("div[data-merchandisetype=rsm-qcontainer40nor]").find("img").attr("src", v_QContainersImgSrc40_nor);
         $("div[data-merchandisetype=rsm-qcontainer40nor]").find("span").eq(0).text(val40norinputhiddenNew);
         $("div[data-merchandisetype=rsm-qcontainer40nor]").find("span").eq(1).text("x");
@@ -1307,14 +1303,14 @@ $(document).on("click", "#c-incdecBtns40-nor button", function(){
         if(input40_nor > 0){
           newValipt40_nor = parseInt(input40_nor) - 1;
           $(this).parent().find("input").val(newValipt40_nor);
-          /************************** ASIGNAR VALORES DE LOS INPUTS HIDDEN **************************/
+          // ------------ ASIGNAR VALORES DE LOS INPUTS HIDDEN 
           val40norinputhiddenNew = parseInt(val40norinputhidden) - 1;
           $("#loadQContainer40nor").val(val40norinputhiddenNew);
-          /************************** CALCULAR EL VALOR DEL TOTAL - 20ST **************************/
+          // ------------ CALCULAR EL VALOR DEL TOTAL - 20ST 
           totalSend40NOR = parseFloat(totalFCL[0].total) * $("#ipt-qvalContainer40NOR").val();
-          /************************** ASIGNAR A LA VARIABLE LOCAL - LOCALSTORAGE **************************/
+          // ------------ ASIGNAR A LA VARIABLE LOCAL - LOCALSTORAGE 
           localStorage.setItem("key_v-totalflette", totalSend40NOR);
-          /************************** RESUMEN DEL LISTADO - CONTENEDORES 40nor' **************************/
+          // ------------ RESUMEN DEL LISTADO - CONTENEDORES 40nor' 
           $("div[data-merchandisetype=rsm-qcontainer40nor]").find("img").attr("src", v_QContainersImgSrc40_nor);
           $("div[data-merchandisetype=rsm-qcontainer40nor]").find("span").eq(0).text(val40norinputhiddenNew);
           $("div[data-merchandisetype=rsm-qcontainer40nor]").find("span").eq(1).text("x");
@@ -1322,15 +1318,15 @@ $(document).on("click", "#c-incdecBtns40-nor button", function(){
         }else{
           newValipt40_nor = 0;
           $(this).parent().find("input").val(newValipt40_nor);
-          /************************** ASIGNAR VALORES DE LOS INPUTS HIDDEN **************************/
+          // ------------ ASIGNAR VALORES DE LOS INPUTS HIDDEN 
           $("#loadTypeContainer40nor").val("");
           val40norinputhiddenNew = 0;
           $("#loadQContainer40nor").val(0);
-          /************************** CALCULAR EL VALOR DEL TOTAL - 20ST **************************/
+          // ------------ CALCULAR EL VALOR DEL TOTAL - 20ST 
           totalSend40NOR = 0;
-          /************************** ASIGNAR A LA VARIABLE LOCAL - LOCALSTORAGE **************************/
+          // ------------ ASIGNAR A LA VARIABLE LOCAL - LOCALSTORAGE 
           localStorage.setItem("key_v-totalflette", 0);
-          /************************** RESUMEN DEL LISTADO - CONTENEDORES 40nor' **************************/
+          // ------------ RESUMEN DEL LISTADO - CONTENEDORES 40nor' 
           $("div[data-merchandisetype=rsm-qcontainer40nor]").find("img").attr("src", "");
           $("div[data-merchandisetype=rsm-qcontainer40nor]").find("span").eq(0).text("");
           $("div[data-merchandisetype=rsm-qcontainer40nor]").find("span").eq(1).text("");
@@ -1342,14 +1338,14 @@ $(document).on("click", "#c-incdecBtns40-nor button", function(){
     }
   });
 });
-/************************** DEVOLVER EL VALOR DE LOS CONTROLES (DIMENSIONES DE CARGA) AL RESUMEN DEL PROCESO **************************/
+// ------------ DEVOLVER EL VALOR DE LOS CONTROLES (DIMENSIONES DE CARGA) AL RESUMEN DEL PROCESO 
 $(document).on("change input keyup", "#val-iptPackagesNInterface", function(e){
   $(".cont-MainCamelLog--c--contResumeCalc--item--cardStep--cIconStepLeft[data-merchandise=rsm-totpackages]").find("span:first-child").text("Bultos");
   $(".cont-MainCamelLog--c--contResumeCalc--item--cardStep--cIconStepLeft[data-merchandise=rsm-totpackages]").find("span:nth-child(2)").text($(this).val());
-  /************************** ASIGNAR AL INPUT DE COMPARACIÓN **************************/
+  // ------------ ASIGNAR AL INPUT DE COMPARACIÓN 
   $("#n_packscompare_ultstep").val($(this).val());
   if(e.target.value == "" || e.target.value == 0){
-    /************************** OCULTAR EL PASO DE - ELIGE UNA OPCIÓN **************************/
+    // ------------ OCULTAR EL PASO DE - ELIGE UNA OPCIÓN 
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-integservorfleteinte]").removeClass("show");
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-integservorfleteinte]").html("");
   }else{
@@ -1359,10 +1355,10 @@ $(document).on("change input keyup", "#val-iptPackagesNInterface", function(e){
 $(document).on("change input keyup", "#val-iptWeightNInterface", function(e){
   $(".cont-MainCamelLog--c--contResumeCalc--item--cardStep--cIconStepLeft[data-merchandise=rsm-totweight]").find("span:first-child").text("Peso(Kg)");
   $(".cont-MainCamelLog--c--contResumeCalc--item--cardStep--cIconStepLeft[data-merchandise=rsm-totweight]").find("span:nth-child(2)").text($(this).val());
-  /************************** ASIGNAR AL INPUT DE COMPARACIÓN **************************/
+  // ------------ ASIGNAR AL INPUT DE COMPARACIÓN 
   $("#n_weightcompare_ultstep").val($(this).val());
   if(e.target.value == "" || e.target.value == 0){
-    /************************** OCULTAR EL PASO DE - ELIGE UNA OPCIÓN **************************/
+    // ------------ OCULTAR EL PASO DE - ELIGE UNA OPCIÓN 
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-integservorfleteinte]").removeClass("show");
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-integservorfleteinte]").html("");
   }else{
@@ -1372,27 +1368,27 @@ $(document).on("change input keyup", "#val-iptWeightNInterface", function(e){
 $(document).on("change input keyup", "#val-iptVolumeNInterface", function(e){
   $(".cont-MainCamelLog--c--contResumeCalc--item--cardStep--cIconStepLeft[data-merchandise=rsm-totvolume]").find("span:first-child").text("Volumen(M³)");
   $(".cont-MainCamelLog--c--contResumeCalc--item--cardStep--cIconStepLeft[data-merchandise=rsm-totvolume]").find("span:nth-child(2)").text($(this).val());
-  /************************** ASIGNAR AL INPUT DE COMPARACIÓN **************************/
+  // ------------ ASIGNAR AL INPUT DE COMPARACIÓN 
   $("#n_volumecompare_ultstep").val($(this).val());
   if(e.target.value == "" || e.target.value == 0){
-    /************************** OCULTAR EL PASO DE - ELIGE UNA OPCIÓN **************************/
+    // ------------ OCULTAR EL PASO DE - ELIGE UNA OPCIÓN 
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-integservorfleteinte]").removeClass("show");
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-integservorfleteinte]").html("");
   }else{
     //console.log("Campo completado");
   }
 });
-/************************** VALIDAR EL BOTÓN DE PASO SIGUIENTE - DESDE CONTENEDORES **************************/
+// ------------ VALIDAR EL BOTÓN DE PASO SIGUIENTE - DESDE CONTENEDORES 
 $(document).on("click", "#btn-NextStepToSelOptResultExp", function(){
   if($("#c-incdecBtns20").find("input").val() != 0 && $("#c-incdecBtns20").find("input").val() != "" || 
      $("#c-incdecBtns40").find("input").val() != 0 && $("#c-incdecBtns40").find("input").val() != "" ||
      $("#c-incdecBtns40-hc").find("input").val() != 0 && $("#c-incdecBtns40-hc").find("input").val() != "" ||
      $("#c-incdecBtns40-nor").find("input").val() != 0 && $("#c-incdecBtns40-nor").find("input").val() != ""){
     
-    /************************** MOSTRAR EL RESUMEN HASTA ESTE PASO **************************/
+    // ------------ MOSTRAR EL RESUMEN HASTA ESTE PASO 
     $(".cont-MainCamelLog--c--contResumeCalc--item[data-advlevel=d-typecontainer]").addClass("show");
 
-    /************************** MOSTRAR EL PASO DE - ELIGE UNA OPCIÓN **************************/
+    // ------------ MOSTRAR EL PASO DE - ELIGE UNA OPCIÓN 
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-integservorfleteinte]").addClass("show");
     sectionsSteps.moveTo('step-integservorfleteinte', 1);
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-integservorfleteinte]").html(`
@@ -1430,7 +1426,7 @@ $(document).on("click", "#btn-NextStepToSelOptResultExp", function(){
     `);
 
   }else{
-    /************************** MOSTRAR EL MENSAJE DE ALERTA PERSONALIZADO **************************/
+    // ------------ MOSTRAR EL MENSAJE DE ALERTA PERSONALIZADO 
     $("#idMessageSteps-prcss").html(`
       <div class="cntMessageSteps-prcss--cont">
         <div class="cntMessageSteps-prcss--cont--c">
@@ -1440,7 +1436,7 @@ $(document).on("click", "#btn-NextStepToSelOptResultExp", function(){
         </div>
       </div>
     `)
-    /************************** CERRAR EL MODAL **************************/
+    // ------------ CERRAR EL MODAL 
     setTimeout(function(){
       $("#idMessageSteps-prcss .cntMessageSteps-prcss--cont").remove();
     }, 6500)
@@ -1449,12 +1445,12 @@ $(document).on("click", "#btn-NextStepToSelOptResultExp", function(){
     });
   }  
 });
-/************************** VALIDAR DE ACUERDO A LA OPCIÓN SELECCIONADA - ELIGE UNA OPCIÓN **************************/
+// ------------ VALIDAR DE ACUERDO A LA OPCIÓN SELECCIONADA - ELIGE UNA OPCIÓN 
 $(document).on("click", "#list-SelOptionResultExp a", function(){
   var tItemSelOptExp = $(this).index();
   if(tItemSelOptExp == 0){
     if($("#loadTypeCharge").val() != "LCL"){
-      /************************** LISTAR SERVICIOS PARA CALCULO CON IGV - FCL **************************/
+      // ------------ LISTAR SERVICIOS PARA CALCULO CON IGV - FCL 
       $.ajax({
         url: "controllers/list_quotation_values_fcl_by_igv.php",
         method: "POST",
@@ -1466,11 +1462,11 @@ $(document).on("click", "#list-SelOptionResultExp a", function(){
         $.each(resbyigv, function(i, e){
           unitvaluesQuotesbyIGV+= parseFloat(e.data_value);
         });
-        /************************** AGREGAR A LA VARIABLE LOCAL **************************/
+        // ------------ AGREGAR A LA VARIABLE LOCAL 
         localStorage.setItem("key_v-valuesquotationbyigv", unitvaluesQuotesbyIGV);
       });
 
-      /************************** LISTAR SERVICIOS DE ACUERDO A LA SELECCIÓN - FCL **************************/
+      // ------------ LISTAR SERVICIOS DE ACUERDO A LA SELECCIÓN - FCL 
       $.ajax({
         url: "controllers/list_quotation_values_fcl.php",
         method: "POST",
@@ -1484,11 +1480,11 @@ $(document).on("click", "#list-SelOptionResultExp a", function(){
           unitvaluesQuotes+= parseFloat(e.data_value);
         });
 
-        /************************** ASIGNAR A LA VARIABLE GLOBAL **************************/
+        // ------------ ASIGNAR A LA VARIABLE GLOBAL 
         localStorage.setItem("key_v-valuesquotation", unitvaluesQuotes);
       });
     }else{
-      /************************** LISTAR SERVICIOS PARA CALCULO CON IGV - FCL **************************/
+      // ------------ LISTAR SERVICIOS PARA CALCULO CON IGV - FCL 
       $.ajax({
         url: "controllers/list_quotation_values_lcl_by_igv.php",
         method: "POST",
@@ -1500,11 +1496,11 @@ $(document).on("click", "#list-SelOptionResultExp a", function(){
         $.each(resbyigv, function(i, e){
           unitvaluesQuotesbyIGV+= parseFloat(e.data_value);
         });
-        /************************** AGREGAR A LA VARIABLE LOCAL **************************/
+        // ------------ AGREGAR A LA VARIABLE LOCAL 
         localStorage.setItem("key_v-valuesquotationbyigv", unitvaluesQuotesbyIGV);
       });
 
-      /************************** LISTAR SERVICIOS DE ACUERDO A LA SELECCIÓN - LCL **************************/
+      // ------------ LISTAR SERVICIOS DE ACUERDO A LA SELECCIÓN - LCL 
       $.ajax({
         url: "controllers/list_quotation_values_lcl.php",
         method: "POST",
@@ -1518,11 +1514,11 @@ $(document).on("click", "#list-SelOptionResultExp a", function(){
           unitvaluesQuotes+= parseFloat(e.data_value);
         });
 
-        /************************** ASIGNAR A LA VARIABLE GLOBAL **************************/
+        // ------------ ASIGNAR A LA VARIABLE GLOBAL 
         localStorage.setItem("key_v-valuesquotation", unitvaluesQuotes);
       });
     }
-    /************************** LISTAR EL IMPUESTO DE IMPORTACIÓN PREVIA **************************/
+    // ------------ LISTAR EL IMPUESTO DE IMPORTACIÓN PREVIA 
     $.ajax({
       url: "controllers/list_taxation_values_byimport.php",
       method: "POST",
@@ -1530,20 +1526,20 @@ $(document).on("click", "#list-SelOptionResultExp a", function(){
       contentType: 'application/x-www-form-urlencoded;charset=UTF-8'
     }).done(function(e){
       var resultTaximport = JSON.parse(e);
-      /************************** ASIGNAR A LA VARIABLE LOCAL DE PERCEPCIÓN **************************/
+      // ------------ ASIGNAR A LA VARIABLE LOCAL DE PERCEPCIÓN 
       localStorage.setItem("key_v-valuestaxationimport", resultTaximport[0].data_value_two);
     });
-    /************************** OCULTAR LOS DEMÁS PASOS POSTERIORES **************************/
+    // ------------ OCULTAR LOS DEMÁS PASOS POSTERIORES 
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-insuremerchandise]").removeClass("show");
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-insuremerchandise]").html("");
-    /************************** ASIGNAR VALORES DE LOS INPUTS HIDDEN - ELIGE UNA OPCIÓN **************************/
+    // ------------ ASIGNAR VALORES DE LOS INPUTS HIDDEN - ELIGE UNA OPCIÓN 
     $("#opt-genfquotation").val("y-moreOpts");
-    /************************** OCULTAR EL BOTÓN DE ENVIAR **************************/
+    // ------------ OCULTAR EL BOTÓN DE ENVIAR 
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-integservorfleteinte] .cont-MainCamelLog--c--contSteps--item--cBtnNextStep").html("");
-    /************************** AGREGAR AL LISTADO DE RESUMEN - ELIGE UN OPCIÓN **************************/
+    // ------------ AGREGAR AL LISTADO DE RESUMEN - ELIGE UN OPCIÓN 
     $(".cont-MainCamelLog--c--contResumeCalc--item[data-advlevel=d-reqspeacialservs]").addClass("show");
     $(".cont-MainCamelLog--c--contResumeCalc--item[data-advlevel=d-reqspeacialservs]").find("span").text("Despacho de aduanas");
-    /************************** MOSTRAR EL SIGUIENTE PASO **************************/
+    // ------------ MOSTRAR EL SIGUIENTE PASO 
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-merchandisedata]").addClass("show");
     sectionsSteps.moveTo('step-merchandisedata', 1);
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-merchandisedata]").html(`
@@ -1599,12 +1595,12 @@ $(document).on("click", "#list-SelOptionResultExp a", function(){
       </div>
     `);
   }else{
-    /************************** ASIGNAR A LA VARIABLE LOCAL DE SEGURO **************************/
+    // ------------ ASIGNAR A LA VARIABLE LOCAL DE SEGURO 
     localStorage.setItem("key_v-valueinsurance", 0);
-    /************************** ASIGNAR A LA VARIABLE LOCAL DE PERCEPCIÓN **************************/
+    // ------------ ASIGNAR A LA VARIABLE LOCAL DE PERCEPCIÓN 
     localStorage.setItem("key_v-valuestaxationimport", 0);
     if($("#loadTypeCharge").val() != "LCL"){
-      /************************** LISTAR SERVICIOS PARA CALCULO CON IGV - FCL **************************/
+      // ------------ LISTAR SERVICIOS PARA CALCULO CON IGV - FCL 
       $.ajax({
         url: "controllers/list_quotation_values_fcl_by_igv.php",
         method: "POST",
@@ -1616,11 +1612,11 @@ $(document).on("click", "#list-SelOptionResultExp a", function(){
         $.each(resbyigv, function(i, e){
           unitvaluesQuotesbyIGV+= parseFloat(e.data_value);
         });
-        /************************** AGREGAR A LA VARIABLE LOCAL **************************/
+        // ------------ AGREGAR A LA VARIABLE LOCAL 
         localStorage.setItem("key_v-valuesquotationbyigv", unitvaluesQuotesbyIGV);
       });
 
-      /************************** LISTAR SERVICIOS DE ACUERDO A LA SELECCIÓN - FCL **************************/
+      // ------------ LISTAR SERVICIOS DE ACUERDO A LA SELECCIÓN - FCL 
       $.ajax({
         url: "controllers/list_quotation_values_fcl.php",
         method: "POST",
@@ -1633,11 +1629,11 @@ $(document).on("click", "#list-SelOptionResultExp a", function(){
         $.each(res, function(i, e){
           unitvaluesQuotes+= parseFloat(e.data_value);
         });
-        /************************** ASIGNAR A LA VARIABLE GLOBAL **************************/
+        // ------------ ASIGNAR A LA VARIABLE GLOBAL 
         localStorage.setItem("key_v-valuesquotation", unitvaluesQuotes);
       });
     }else{
-      /************************** LISTAR SERVICIOS PARA CALCULO CON IGV - FCL **************************/
+      // ------------ LISTAR SERVICIOS PARA CALCULO CON IGV - FCL 
       $.ajax({
         url: "controllers/list_quotation_values_lcl_by_igv.php",
         method: "POST",
@@ -1649,11 +1645,11 @@ $(document).on("click", "#list-SelOptionResultExp a", function(){
         $.each(resbyigv, function(i, e){
           unitvaluesQuotesbyIGV+= parseFloat(e.data_value);
         });
-        /************************** AGREGAR A LA VARIABLE LOCAL **************************/
+        // ------------ AGREGAR A LA VARIABLE LOCAL 
         localStorage.setItem("key_v-valuesquotationbyigv", unitvaluesQuotesbyIGV);
       });
 
-      /************************** LISTAR SERVICIOS DE ACUERDO A LA SELECCIÓN - LCL **************************/
+      // ------------ LISTAR SERVICIOS DE ACUERDO A LA SELECCIÓN - LCL 
       $.ajax({
         url: "controllers/list_quotation_values_lcl.php",
         method: "POST",
@@ -1666,20 +1662,20 @@ $(document).on("click", "#list-SelOptionResultExp a", function(){
         $.each(res, function(i, e){
           unitvaluesQuotes+= parseFloat(e.data_value);
         });
-        /************************** ASIGNAR A LA VARIABLE GLOBAL **************************/
+        // ------------ ASIGNAR A LA VARIABLE GLOBAL 
         localStorage.setItem("key_v-valuesquotation", unitvaluesQuotes);
       });
     }
 
-    /************************** ASIGNAR VALORES DE LOS INPUTS HIDDEN - ELIGE UNA OPCIÓN **************************/
+    // ------------ ASIGNAR VALORES DE LOS INPUTS HIDDEN - ELIGE UNA OPCIÓN 
     $("#opt-genfquotation").val("not-moreOpts");
-    /************************** AGREGAR AL LISTADO DE RESUMEN - ELIGE UN OPCIÓN **************************/
+    // ------------ AGREGAR AL LISTADO DE RESUMEN - ELIGE UN OPCIÓN 
     $(".cont-MainCamelLog--c--contResumeCalc--item[data-advlevel=d-reqspeacialservs]").removeClass("show");
     $(".cont-MainCamelLog--c--contResumeCalc--item[data-advlevel=d-reqspeacialservs]").find("span").text("");
-    /************************** OCULTAR - DATOS DE MERCANCÍA **************************/
+    // ------------ OCULTAR - DATOS DE MERCANCÍA 
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-merchandisedata]").removeClass("show");
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-merchandisedata]").html("");
-    /************************** MOSTRAR EL SIGUIENTE PASO **************************/
+    // ------------ MOSTRAR EL SIGUIENTE PASO 
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-insuremerchandise]").addClass("show");
     sectionsSteps.moveTo('step-insuremerchandise', 1);
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-insuremerchandise]").html(`
@@ -1721,11 +1717,11 @@ $(document).on("click", "#list-SelOptionResultExp a", function(){
 $(document).on("click","#list-insuremerchandise-notMoreOpts a",function(){
   var tinsuremerchandise = $(this).index();
   if(tinsuremerchandise == 0){
-    /************************** ASIGNAR AL INPUT DE ENVÍO POST **************************/
+    // ------------ ASIGNAR AL INPUT DE ENVÍO POST 
     $("#res-insuremerch").val("SI");
-    /************************** REMOVER EL BOTÓN DE CALCULAR COTIZACIÓN **************************/
+    // ------------ REMOVER EL BOTÓN DE CALCULAR COTIZACIÓN 
     $("#s-quotationToNextStep").html("");
-    /************************** MOSTRAR EL SIGUIENTE PASO - DATOS DE MERCANCÍA DESDE SEGURO **************************/
+    // ------------ MOSTRAR EL SIGUIENTE PASO - DATOS DE MERCANCÍA DESDE SEGURO 
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-requirespickup]").addClass("show");
     sectionsSteps.moveTo('step-requirespickup', 1);
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-requirespickup]").html(`
@@ -1769,14 +1765,14 @@ $(document).on("click","#list-insuremerchandise-notMoreOpts a",function(){
     </div>
     `);
   }else{
-    /************************** ASIGNAR A LA VARIABLE LOCAL **************************/
+    // ------------ ASIGNAR A LA VARIABLE LOCAL 
     localStorage.setItem("key_v-valueinsurance", 0);
-    /************************** ASIGNAR AL INPUT DE ENVÍO POST **************************/
+    // ------------ ASIGNAR AL INPUT DE ENVÍO POST 
     $("#res-insuremerch").val("NO");
-    /************************** OCULTAR LOS PASOS ABIERTOS POSTERIORMENTE **************************/
+    // ------------ OCULTAR LOS PASOS ABIERTOS POSTERIORMENTE 
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-requirespickup]").removeClass("show");
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-requirespickup]").html("");
-    /************************** MOSTRAR EL BOTÓN DE CALCULAR COTIZACIÓN **************************/
+    // ------------ MOSTRAR EL BOTÓN DE CALCULAR COTIZACIÓN 
     $("#s-quotationToNextStep").html(`
       <button type="submit" class="cont-MainCamelLog--c--contSteps--item--cBtnNextStep--btnR" id="btn-CalcQuoteToMerchandiseData-1">
         <span>CALCULAR COTIZACIÓN</span>
@@ -1785,7 +1781,7 @@ $(document).on("click","#list-insuremerchandise-notMoreOpts a",function(){
     `);
   }
 });
-/************************** VALIDAR EL INPUT DE PRECIO DEL PRODUCTO - OPCIÓN 2 **************************/
+// ------------ VALIDAR EL INPUT DE PRECIO DEL PRODUCTO - OPCIÓN 2 
 $(document).on("change input keyup", "#ipt-valPriceProdNInterface-notMoreOpts", function(e){
   if ((e.which != 8 && e.which != 0) && (e.which < 48 || e.which > 57) && $(this).val().length >= parseInt($(this).attr('maxlength'))){
     return false;
@@ -1795,11 +1791,11 @@ $(document).on("change input keyup", "#ipt-valPriceProdNInterface-notMoreOpts", 
   $(this).val(function(i, v){
     return v.replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d)\.?)/g, ".");
   });
-  /************************** ASIGNAR VALORES DE LOS INPUTS HIDDEN - MERCANCÍA **************************/
+  // ------------ ASIGNAR VALORES DE LOS INPUTS HIDDEN - MERCANCÍA 
   $("#val-valProdquot-noMoreOpts").val($(this).val());
-  /************************** ASIGNAR A LA VARIABLE LOCAL **************************/
+  // ------------ ASIGNAR A LA VARIABLE LOCAL 
   localStorage.setItem("key_v-valueproduct", $(this).val());
-  /************************** VALIDAR SI CONTIENE ALGÚN VALOR NULO O 0 **************************/
+  // ------------ VALIDAR SI CONTIENE ALGÚN VALOR NULO O 0 
   if(e.target.value == "" || e.target.value == 0 || $(this).val() == " USD" || $(this).val() == ".00" || $(this).val() == 0.00){
     $("#s-caseNextStepTomerchandisedata").html("");
     $("#MsgItemValueProdRequired").text("Ingrese valor exacto, SIN DECIMALES");
@@ -1809,7 +1805,7 @@ $(document).on("change input keyup", "#ipt-valPriceProdNInterface-notMoreOpts", 
     $("#MsgItemValueProdRequired").text("");
     if(document.querySelector("#ipt-valCantOfAmountAdditional-notMoreOpts").contains(document.querySelector("#ipt-valQuantityAmAddProdNInterface-notMoreOpts"))){
       if($("#ipt-valNameTypeProdNInterface-notMoreOpts").attr("idproduct") && $("#ipt-valQuantityAmAddProdNInterface-notMoreOpts").val() != "" && $("#ipt-valQuantityAmAddProdNInterface-notMoreOpts").val() != 0){
-        /************************** AGREGAR A LA VARIABLE LOCAL **************************/
+        // ------------ AGREGAR A LA VARIABLE LOCAL 
         $.ajax({
           url: "controllers/list_insurancevalues.php",
           method: "POST",
@@ -1838,7 +1834,7 @@ $(document).on("change input keyup", "#ipt-valPriceProdNInterface-notMoreOpts", 
       }
     }else{
       if($("#ipt-valNameTypeProdNInterface-notMoreOpts").attr("idproduct")){
-        /************************** AGREGAR A LA VARIABLE LOCAL **************************/
+        // ------------ AGREGAR A LA VARIABLE LOCAL 
         $.ajax({
           url: "controllers/list_insurancevalues.php",
           method: "POST",
@@ -1875,12 +1871,12 @@ $(document).on("change input keyup", "#ipt-valPriceProdNInterface-notMoreOpts", 
     `);
   }
 });
-/************************** MOSTRAR EL LISTADO DE TIPOS DE PRODUCTOS **************************/
+// ------------ MOSTRAR EL LISTADO DE TIPOS DE PRODUCTOS 
 $(document).on("focus", "#ipt-valNameTypeProdNInterface-notMoreOpts", function(){
   $("#m-listAllNamTypeProds").addClass("show");
   listProductsUser();
 });
-/************************** LISTAR LOS PRODUCTOS EN TIEMPO REAL **************************/
+// ------------ LISTAR LOS PRODUCTOS EN TIEMPO REAL 
 $(document).on("keyup keydown", "#ipt-valNameTypeProdNInterface-notMoreOpts", function(e){
   $("#m-listAllNamTypeProds").addClass("show");
   var searchVal = $(this).val();
@@ -1894,15 +1890,15 @@ $(document).on("keyup keydown", "#ipt-valNameTypeProdNInterface-notMoreOpts", fu
     listProductsUser();
   }
 });
-/************************** FIJAR EL VALOR DE ITEM EN EL INPUT - TIPOS DE PRODUCTOS **************************/
+// ------------ FIJAR EL VALOR DE ITEM EN EL INPUT - TIPOS DE PRODUCTOS 
 $(document).on("click", ".cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl--cListChange--m--item", function(){
   $("#m-listAllNamTypeProds").removeClass("show");
   $("#ipt-valNameTypeProdNInterface-notMoreOpts").attr("idproduct", $(this).attr("id"));
   $("#ipt-valNameTypeProdNInterface-notMoreOpts").val($(this).find("p").text());
-  /************************** ASIGNAR A LA VARIABLE LOCAL **************************/
+  // ------------ ASIGNAR A LA VARIABLE LOCAL 
   localStorage.setItem("key_v-nametypeproduct", $(this).find("p").text()); //NOMBRE DEL TIPO DE PRODUCTO
   localStorage.setItem("key_v-dbammountadditional", $(this).attr("data-amountadditional")); //VALOR ADICIONAL DEL PRODUCTO
-  /************************** MOSTRAR/OCULTAR DE ACUERDO A EL VALOR DEL MONTO ADICIONAL **************************/
+  // ------------ MOSTRAR/OCULTAR DE ACUERDO A EL VALOR DEL MONTO ADICIONAL 
   if($(this).attr("data-amountadditional") != 0 || $(this).attr("data-amountadditional") != 0.00){
     $("#ipt-valCantOfAmountAdditional-notMoreOpts").html(`
       <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl">
@@ -1915,10 +1911,10 @@ $(document).on("click", ".cont-MainCamelLog--c--contSteps--item--cStep--mFrmIpts
   }else{
     $("#ipt-valCantOfAmountAdditional-notMoreOpts").html("");
   }
-  /************************** ASIGNAR VALORES DE LOS INPUTS HIDDEN - MERCANCÍA **************************/
+  // ------------ ASIGNAR VALORES DE LOS INPUTS HIDDEN - MERCANCÍA 
   $("#val-categProdquot-noMoreOpts").val($(this).find("p").text());
 });
-/************************** VALIDAR INPUT - CANTIDAD DE PRODUCTOS CON MONTO ADICIONAL **************************/
+// ------------ VALIDAR INPUT - CANTIDAD DE PRODUCTOS CON MONTO ADICIONAL 
 $(document).on("keyup keypress blur change", "#ipt-valQuantityAmAddProdNInterface-notMoreOpts", function(e){
   if ((e.which != 8 && e.which != 0) && (e.which < 48 || e.which > 57) && $(this).val().length >= parseInt($(this).attr('maxlength'))) {
     return false;
@@ -1928,18 +1924,18 @@ $(document).on("keyup keypress blur change", "#ipt-valQuantityAmAddProdNInterfac
   $(this).val(function(i, v) {
     return v.replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d)\.?)/g, ".");
   });
-  /************************** AGREGAR AL INPUT DE ENVÍO POST Y AGREGAR A LA VARIABLE LOCAL **************************/
+  // ------------ AGREGAR AL INPUT DE ENVÍO POST Y AGREGAR A LA VARIABLE LOCAL 
   $("#val-quantityProdsAmmAdd-noMoreOpts").val(e.target.value);
   localStorage.setItem("key_v-ammountadditional", e.target.value);
-  /************************** ASIGNAR A LA VARIABLE LOCAL **************************/
+  // ------------ ASIGNAR A LA VARIABLE LOCAL 
   localStorage.setItem("key_v-totalammountadditional", localStorage.getItem("key_v-dbammountadditional") * value);
-  /************************** VALIDAR SI CONTIENE ALGÚN VALOR NULO O 0 **************************/
+  // ------------ VALIDAR SI CONTIENE ALGÚN VALOR NULO O 0 
   if(e.target.value == 0 && e.target.value == ""){
     $("#s-caseNextStepTomerchandisedata").html("");
   }else{
     if(document.querySelector("#ipt-valCantOfAmountAdditional-notMoreOpts").contains(document.querySelector("#ipt-valQuantityAmAddProdNInterface-notMoreOpts"))){
       if($("#ipt-valNameTypeProdNInterface-notMoreOpts").attr("idproduct") && $("#ipt-valPriceProdNInterface-notMoreOpts").val() != 0 && $("#ipt-valPriceProdNInterface-notMoreOpts").val() != ""){
-        /************************** AGREGAR A LA VARIABLE LOCAL **************************/
+        // ------------ AGREGAR A LA VARIABLE LOCAL 
         $.ajax({
           url: "controllers/list_insurancevalues.php",
           method: "POST",
@@ -1978,7 +1974,7 @@ $(document).on("keyup keypress blur change", "#ipt-valQuantityAmAddProdNInterfac
 
     }else{
       if($("#ipt-valNameTypeProdNInterface-notMoreOpts").attr("idproduct")){
-        /************************** AGREGAR A LA VARIABLE LOCAL **************************/
+        // ------------ AGREGAR A LA VARIABLE LOCAL 
         $.ajax({
           url: "controllers/list_insurancevalues.php",
           method: "POST",
@@ -2019,7 +2015,7 @@ $(document).on("keyup keypress blur change", "#ipt-valQuantityAmAddProdNInterfac
 /*========================================================================================
 =           	 						5. AGREGAR LAS DIMENSIONES DE LA CARGA            						 =
 =========================================================================================*/
-/************************** RESPETAR EL MAX-LENGHT DEL INPUT **************************/
+// ------------ RESPETAR EL MAX-LENGHT DEL INPUT 
 $(document).on("keyup keypress blur change", "#val-iptWeightNInterface", function(e){
 	if ($(this).val().length >= parseInt($(this).attr('maxlength')) && e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
     return false;
@@ -2036,14 +2032,14 @@ $(document).on("keyup keypress blur change", "#val-iptVolumeNInterface", functio
     return false;
   }
 });
-/************************** MOSTRAR EL MODAL DE LA CALCULADORA VOLUMÉTRICA **************************/
+// ------------ MOSTRAR EL MODAL DE LA CALCULADORA VOLUMÉTRICA 
 $(document).on("click","#link-showModalCalcVolum",function(){$("#cnt-modalFormCalculator").add($(".cnt-modalFormCalculator--c")).addClass("show");});
-/************************** CERRAR EL MODAL DE LA CALCULADORA VOLUMÉTRICA **************************/
+// ------------ CERRAR EL MODAL DE LA CALCULADORA VOLUMÉTRICA 
 $(document).on("click","#btn-closeiconFormCalculator",function(){$("#cnt-modalFormCalculator").removeClass("show");});
 $(document).on("click","#btn-CancelCalcValueToCalculator",function(){$("#cnt-modalFormCalculator").removeClass("show");});
 let contModalCalcVolum = document.querySelector("#cnt-modalFormCalculator");
 contModalCalcVolum.addEventListener("click", e => {	if(e.target === contModalCalcVolum) contModalCalcVolum.classList.remove("show");});
-/************************** CARGAR - UNIDADES DE MEDIDA **************************/
+// ------------ CARGAR - UNIDADES DE MEDIDA 
 function list_measurement_units(){
 	$.ajax({
     url: "controllers/list_measurement_units.php",
@@ -2074,7 +2070,7 @@ function list_measurement_units(){
     }
   });
 }
-/************************** VALIDAR SI SE SELECCIONÓ UN DATO VÁLIDO - UNIDAD DE LONGITUD **************************/
+// ------------ VALIDAR SI SE SELECCIONÓ UN DATO VÁLIDO - UNIDAD DE LONGITUD 
 $("#val-Lengthselitem").on("change", function(){
 	if($("#val-Lengthselitem").val() != 0){
 		$("#msgNounLengthvalue").css({"display":"none"});
@@ -2085,11 +2081,11 @@ $("#val-Lengthselitem").on("change", function(){
 		$(".cnt-modalFormCalculator--c--cForm--cBottom--cControls--control--c--cPrefixLong").find("span").text("");
 	}
 
-	/************************** FIJAR EL PREFIJO PARA LAS UNIDADES DE MEDIDA **************************/
+	// ------------ FIJAR EL PREFIJO PARA LAS UNIDADES DE MEDIDA 
 	var prefixunit = $("#val-Lengthselitem option:selected").attr("prefixunit");
 	$(".cnt-modalFormCalculator--c--cForm--cBottom--cControls--control--c--cPrefixLong").find("span").text(prefixunit);
 });
-/************************** CARGAR - UNIDADES DE MEDIDA **************************/
+// ------------ CARGAR - UNIDADES DE MEDIDA 
 function list_mass_units(){
 	$.ajax({
     url: "controllers/list_mass_units.php",
@@ -2119,7 +2115,7 @@ function list_mass_units(){
     }
   });
 }
-/************************** VALIDAR SI SE SELECCIONÓ UN DATO VÁLIDO - UNIDAD DE PESO **************************/
+// ------------ VALIDAR SI SE SELECCIONÓ UN DATO VÁLIDO - UNIDAD DE PESO 
 $("#val-UnitWeightselitem").on("change", function(){
 	if($(this).val() != 0){
 		$("#msgNounUnitWeightvalue").css({"display":"none"});
@@ -2129,25 +2125,25 @@ $("#val-UnitWeightselitem").on("change", function(){
 		$("#msgNounUnitWeightvalue").text("Campo requerido");
 		$(".cnt-modalFormCalculator--c--cForm--cBottom--cControls--control--c--cPrefixWeight").find("span").text("");
 	}
-	/************************** FIJAR EL PREFIJO PARA LAS UNIDADES DE PESO **************************/
+	// ------------ FIJAR EL PREFIJO PARA LAS UNIDADES DE PESO 
 	var prefixunitWeight = $("#val-UnitWeightselitem option:selected").attr("prefixunitWeight");
 	$(".cnt-modalFormCalculator--c--cForm--cBottom--cControls--control--c--cPrefixWeight").find("span").text(prefixunitWeight);
 	$(".cnt-modalFormCalculator--c--cForm--cBottom--cControls--control--c--cPrefixWeight").find("span").attr("id-UnitWeight", $("#val-UnitWeightselitem option:selected").val());
 });
-/************************** VALIDAR SI CONTIENE UN VALOR - NRO DE BULTOS **************************/
+// ------------ VALIDAR SI CONTIENE UN VALOR - NRO DE BULTOS 
 $(document).on("keyup", "#val-NroPackagestselitem", function(){	($(this).val() != "") ? $("#msgNounNroPackagesvalue").text("") : $("#msgNounNroPackagesvalue").text("Campo requerido");});
-/************************** VALIDAR SI CONTIENE UN VALOR - LARGO **************************/
+// ------------ VALIDAR SI CONTIENE UN VALOR - LARGO 
 $(document).on("keyup", "#val-Longinputitem", function(){	($(this).val() != "") ? $("#msgNounLongvalue").text("") : $("#msgNounLongvalue").text("Campo requerido");});
-/************************** VALIDAR SI CONTIENE UN VALOR - ANCHO **************************/
+// ------------ VALIDAR SI CONTIENE UN VALOR - ANCHO 
 $(document).on("keyup", "#val-Widthinputitem", function(){	($(this).val() != "") ? $("#msgNounWidthvalue").text("") : $("#msgNounWidthvalue").text("Campo requerido");});
-/************************** VALIDAR SI CONTIENE UN VALOR - ALTO **************************/
+// ------------ VALIDAR SI CONTIENE UN VALOR - ALTO 
 $(document).on("keyup", "#val-Heightinputitem", function(){	($(this).val() != "") ? $("#msgNounHeightvalue").text("") : $("#msgNounHeightvalue").text("Campo requerido");});
-/************************** VALIDAR SI CONTIENE UN VALOR - PESO **************************/
+// ------------ VALIDAR SI CONTIENE UN VALOR - PESO 
 $(document).on("keyup", "#val-Weightinputitem", function(){	($(this).val() != "") ? $("#msgNounWeightvalue").text("") : $("#msgNounWeightvalue").text("Campo requerido");});
-/************************** CREAR OBJETO PARA ALMACENAR LOS CÁLCULOS EN LA TABLA DEL MODAL **************************/
+// ------------ CREAR OBJETO PARA ALMACENAR LOS CÁLCULOS EN LA TABLA DEL MODAL 
 var calculateDataUser = [];
 var calculateTotal = [];
-/************************** FUNCIÓN PARA AGREGAR DATOS AL OBJETO DE CÁLCULO **************************/
+// ------------ FUNCIÓN PARA AGREGAR DATOS AL OBJETO DE CÁLCULO 
 function addCalculationData(cpackages, cweight, ctotal, cprefix){
 	var listobjCalcData = {
 		packages: cpackages,
@@ -2157,7 +2153,7 @@ function addCalculationData(cpackages, cweight, ctotal, cprefix){
 	};
 	calculateDataUser.push(listobjCalcData);
 }
-/************************** CALCULAR Y AGREGAR EL VALOR DEBAJO DEL BOTÓN CALCULAR **************************/
+// ------------ CALCULAR Y AGREGAR EL VALOR DEBAJO DEL BOTÓN CALCULAR 
 $(document).on("click", "#btn-addCalculateFleteModal", function(e){
 	e.preventDefault();
 	($("#val-Lengthselitem").val() != 0) ? $("#msgNounLengthvalue").text("") : $("#msgNounLengthvalue").text("Campo requerido");
@@ -2209,7 +2205,7 @@ $(document).on("click", "#btn-addCalculateFleteModal", function(e){
 		// 	placeDestiny: $("#input-vallistdestiny").val()
 		// };
 
-		/************************** AGREGAR Y SUMAR A LOS TOTALES **************************/
+		// ------------ AGREGAR Y SUMAR A LOS TOTALES 
 		var ObjDataAddTable = {
 			nroPackagesResult: $("#val-NroPackagestselitem").val(),
 			valWeightResult: $("#val-Weightinputitem").val(),
@@ -2233,14 +2229,14 @@ $(document).on("click", "#btn-addCalculateFleteModal", function(e){
 			list_Calculation_Total();
 		}
 
-		/************************** LIMPIAR LOS CONTROLES **************************/
+		// ------------ LIMPIAR LOS CONTROLES 
 		$("#f-formCalcModalSendInfo")[0].reset();
 
 	}else{
 		console.log('Información incompleta');
 	}
 });
-/************************** REUNIR TODOS LOS TOTALES **************************/
+// ------------ REUNIR TODOS LOS TOTALES 
 function Add_Calculation_Total(totalPacks, totalWeight, totalVolume){
 	listObjCalcTotal = {
 		packagesTotal: totalPacks,
@@ -2249,7 +2245,7 @@ function Add_Calculation_Total(totalPacks, totalWeight, totalVolume){
 	};
 	calculateTotal.push(listObjCalcTotal);
 }
-/************************** SUMAR TODOS LOS TOTALES Y MOSTRARLOS **************************/
+// ------------ SUMAR TODOS LOS TOTALES Y MOSTRARLOS 
 function list_Calculation_Total(){
 	listCalcTotal	= calculateTotal;
 	for (var i = 0; i < listCalcTotal.length; i++) {
@@ -2258,7 +2254,7 @@ function list_Calculation_Total(){
 		$("#b-valTotalVolume").val(listCalcTotal[i].volumeTotal++);
 	}
 }
-/************************** LISTAR TODOS LOS CALCULOS PREVIOS **************************/
+// ------------ LISTAR TODOS LOS CALCULOS PREVIOS 
 function list_Calculation_data(){
 	
 	var listCalc = calculateDataUser;
@@ -2303,7 +2299,7 @@ function list_Calculation_data(){
 		}
 	}
 }
-/************************** ELIMINAR UN CÁLCULO **************************/
+// ------------ ELIMINAR UN CÁLCULO 
 $(document).on("click", ".del-calculation-item", function(e){
 	e.preventDefault();
  	var delListCalc = calculateDataUser;
@@ -2311,22 +2307,22 @@ $(document).on("click", ".del-calculation-item", function(e){
 	var thisid = $(this).parent().parent();
 	
 	$.each(thisid, function(i, v){
-		/************************** OBTENER VALORES DE LAS COLUMNAS *************************/
+		// ------------ OBTENER VALORES DE LAS COLUMNAS 
 		var restPackages = $(this).find("td").eq(2).text();
 		var restWeight = $(this).find("td").eq(3).find("span:first-child").text();
 		var restVolume = $(this).find("td").eq(4).find("span:first-child").text();
 
-		/************************** OBTENER EL VALOR DE LOS CONTROLES *************************/
+		// ------------ OBTENER EL VALOR DE LOS CONTROLES 
 		var valTotalResultPackages = $("#b-valTotalPackages").val();
 		var valTotalResultWeight = $("#b-valTotalWeight").val();
 		var valTotalResultVolume = $("#b-valTotalVolume").val();
 
-		/************************** RESTAR A LOS TOTALES *************************/
+		// ------------ RESTAR A LOS TOTALES 
 		valTotalResultPackages = valTotalResultPackages - parseFloat(restPackages);
 		valTotalResultWeight = valTotalResultWeight - parseFloat(restWeight);
 		valTotalResultVolume = valTotalResultVolume - parseFloat(restVolume);
 
-		/************************** VALIDACIÓN DE DECIMALES ANTES DE FIJAR EL VALOR **************************/
+		// ------------ VALIDACIÓN DE DECIMALES ANTES DE FIJAR EL VALOR 
   	var valdecimalTwoFinal  = valTotalResultVolume - Math.trunc(valTotalResultVolume);
   	var valdecimalvalidationFinal = valdecimalTwoFinal.toFixed(2);
   	var valTotalvolumenfinal = 0;
@@ -2336,22 +2332,22 @@ $(document).on("click", ".del-calculation-item", function(e){
 			valTotalvolumenfinal = parseFloat(valTotalResultVolume).toFixed(2);
   	}
 
-  	/************************** DEVOLVER LA RESTA A LOS INPUTS DE TOTALES **************************/
+  	// ------------ DEVOLVER LA RESTA A LOS INPUTS DE TOTALES 
 		$("#b-valTotalPackages").val(valTotalResultPackages);
 		$("#b-valTotalWeight").val(valTotalResultWeight);
 		$("#b-valTotalVolume").val(valTotalvolumenfinal);
 
-    /************************** AÑADIR LOS TOTALES AL LISTADO DE RESUMEN **************************/
+    // ------------ AÑADIR LOS TOTALES AL LISTADO DE RESUMEN 
     
 		
-		/************************** ELIMINAR FILA **************************/
+		// ------------ ELIMINAR FILA 
 		$(this).remove();
 		delListCalc.splice($(this), 1);
 	});
 
 	if(delListCalc.length == 0){
 		list_Calculation_data();
-		/************************** RELLENAR LOS INPUT DE TOTALES CON 0 **************************/
+		// ------------ RELLENAR LOS INPUT DE TOTALES CON 0 
 		$("#b-valTotalPackages").val(0);
 		$("#b-valTotalWeight").val(0);
 		$("#b-valTotalVolume").val(0);
@@ -2359,13 +2355,13 @@ $(document).on("click", ".del-calculation-item", function(e){
 		list_Calculation_data();
 	}
 });
-/************************** CERRAR EL MODAL SIN GUARDAR LOS CAMBIOS **************************/
+// ------------ CERRAR EL MODAL SIN GUARDAR LOS CAMBIOS 
 $(document).on("click", "#btn-CancelCalcValueToCalculator", function(e){
 	e.preventDefault();
 	$("#cnt-modalFormCalculator").removeClass("show");
 	$(".cnt-modalFormCalculator--c").removeClass("show");
 });
-/************************** AGREGAR LOS VALORES AL PRIMER MODAL **************************/
+// ------------ AGREGAR LOS VALORES AL PRIMER MODAL 
 $(document).on("click", "#btn-addCalcValueToCalculator", function(e){
 	e.preventDefault();
 
@@ -2381,23 +2377,23 @@ $(document).on("click", "#btn-addCalcValueToCalculator", function(e){
 		 $("#b-valTotalWeight").val() != "" && $("#b-valTotalWeight").val() != 0 &&
 		 $("#b-valTotalVolume").val() != "" && $("#b-valTotalVolume").val() != 0){
 
-		/************************** OBTENER LOS VALORES DE LOS TOTALES **************************/
+		// ------------ OBTENER LOS VALORES DE LOS TOTALES 
 		var valCalculadoPackages = $("#b-valTotalPackages").val();
 		var valCalculadoWeight = $("#b-valTotalWeight").val();
 		var valCalculadoVolume = $("#b-valTotalVolume").val();
 		var valCalculadoWeightPrefix = $("#b-valTotalWeight").parent().find("div").find("span").text();
 		var valCalculadoVolumePrefix = $("#b-valTotalVolume").parent().find("div").find("span").text();
-		/************************** DEVOLVER LOS VALORES A LAS CAJAS DE TEXTO ANTERIOR **************************/
+		// ------------ DEVOLVER LOS VALORES A LAS CAJAS DE TEXTO ANTERIOR 
 		$("#val-iptPackagesNInterface").val(valCalculadoPackages);
 		$("#val-iptWeightNInterface").val(valCalculadoWeight);
 		$("#val-iptVolumeNInterface").val(valCalculadoVolume);
 		
-		/************************** SOBREESCRIBIR VALORES DEL LOCALSTORAGE **************************/
+		// ------------ SOBREESCRIBIR VALORES DEL LOCALSTORAGE 
 		localStorage.setItem("tot_packages", valCalculadoPackages);
 		localStorage.setItem("tot_weight", valCalculadoWeight);
 		localStorage.setItem("tot_volume", valCalculadoVolume);
 
-    /************************** AÑADIR LOS TOTALES AL LISTADO DE RESUMEN **************************/
+    // ------------ AÑADIR LOS TOTALES AL LISTADO DE RESUMEN 
     $(".cont-MainCamelLog--c--contResumeCalc--item--cardStep--cIconStepLeft[data-merchandise=rsm-totpackages]").find("span:first-child").text("Bultos");
     $(".cont-MainCamelLog--c--contResumeCalc--item--cardStep--cIconStepLeft[data-merchandise=rsm-totpackages]").find("span:nth-child(2)").text(valCalculadoPackages);
     $(".cont-MainCamelLog--c--contResumeCalc--item--cardStep--cIconStepLeft[data-merchandise=rsm-totweight]").find("span:first-child").text("Peso(Kg)");
@@ -2405,7 +2401,7 @@ $(document).on("click", "#btn-addCalcValueToCalculator", function(e){
     $(".cont-MainCamelLog--c--contResumeCalc--item--cardStep--cIconStepLeft[data-merchandise=rsm-totvolume]").find("span:first-child").text("Volumen(M³)");
     $(".cont-MainCamelLog--c--contResumeCalc--item--cardStep--cIconStepLeft[data-merchandise=rsm-totvolume]").find("span:nth-child(2)").text(valCalculadoVolume);
 
-		/************************** OCULTAR Y LIMPIAR EL MODAL **************************/
+		// ------------ OCULTAR Y LIMPIAR EL MODAL 
 		$("#cnt-modalFormCalculator").removeClass("show");
 		$(".cnt-modalFormCalculator--c").removeClass("show");
 		$("#detail-CalcToModalAssoc").addClass("show");
@@ -2420,13 +2416,13 @@ $(document).on("click", "#btn-addCalcValueToCalculator", function(e){
 		console.log('No hay registros a fijar');
 	}
 });
-/************************** VALIDAR EL BOTÓN DE PASO SIGUIENTE DESDE - DIMENSIONES DE CARGA **************************/
+// ------------ VALIDAR EL BOTÓN DE PASO SIGUIENTE DESDE - DIMENSIONES DE CARGA 
 $(document).on("click", "#btn-NextStepTochargedata", function(){
   if($("#val-iptPackagesNInterface").val() != 0 && $("#val-iptPackagesNInterface").val() != "" &&
      $("#val-iptWeightNInterface").val() != 0 && $("#val-iptWeightNInterface").val() != "" &&
      $("#val-iptVolumeNInterface").val() != 0 && $("#val-iptVolumeNInterface").val() != ""){
 
-    /************************** ASIGNAR A LAS VARIABLES GLOBALES **************************/
+    // ------------ ASIGNAR A LAS VARIABLES GLOBALES 
     v_ValQuantityPackages = $("#val-iptPackagesNInterface").val();
     v_ValTotalWeight = $("#val-iptWeightNInterface").val();
     v_ValTotalVolume = $("#val-iptVolumeNInterface").val();
@@ -2434,7 +2430,7 @@ $(document).on("click", "#btn-NextStepTochargedata", function(){
     var totwithoutvalues = 0;
     var twodecimal_total_imo = 0;
     var twodecimal_total_refrigerado = 0;
-    /************************** LISTAR LA TARIFA DEL PUERTO DE ORIGEN **************************/
+    // ------------ LISTAR LA TARIFA DEL PUERTO DE ORIGEN 
     $.ajax({
       url: "controllers/list_rateByPortOriginLCL.php",
       method: "POST",
@@ -2443,12 +2439,12 @@ $(document).on("click", "#btn-NextStepTochargedata", function(){
       data: {nameportOrigin : arrPortOrigin[0], typetransport: $("#loadTypeTranport").val()},
     }).done((e) => {
       var ratesorigin = JSON.parse(e);
-      /************************** DEVOLVER EL RESULTADO MAYOR - VOLUMEN O PESO **************************/
+      // ------------ DEVOLVER EL RESULTADO MAYOR - VOLUMEN O PESO 
       var v_convert = v_ValTotalWeight.replace(/\./g, '');
       var v_floatweightconvert = parseFloat(v_convert); //VALOR REAL DEL PESO
       var v_ValDividedTotalWeight = v_floatweightconvert / 1000;
 
-      /************************** DEVOLVER EL CÁLCULO DE LA DESCARGA **************************/
+      // ------------ DEVOLVER EL CÁLCULO DE LA DESCARGA 
       $.ajax({
         url: "controllers/list_quotation_values_lcl_by_download.php",
         method: "POST",
@@ -2461,12 +2457,14 @@ $(document).on("click", "#btn-NextStepTochargedata", function(){
 
         if(v_ValDividedTotalWeight < 1){
           val_totaldownload = valdownload_convert;
-          /************************** ASIGNAR A LA VARIABLE LOCAL **************************/
-          localStorage.setItem("key_v-valbytotaldownload", val_totaldownload);
+          // ------------ ASIGNAR A LA VARIABLE LOCAL 
+          // localStorage.setItem("key_v-valbytotaldownload", val_totaldownload);
+          $("#val_ftotvalofdownload").val(val_totaldownload);
         }else{
           val_totaldownload = valdownload_convert * v_ValDividedTotalWeight;
-          /************************** ASIGNAR A LA VARIABLE LOCAL **************************/
-          localStorage.setItem("key_v-valbytotaldownload", val_totaldownload);
+          // ------------ ASIGNAR A LA VARIABLE LOCAL 
+          // localStorage.setItem("key_v-valbytotaldownload", val_totaldownload);
+          $("#val_ftotvalofdownload").val(val_totaldownload);
         }
       });
 
@@ -2476,10 +2474,10 @@ $(document).on("click", "#btn-NextStepTochargedata", function(){
         twodecimal_rate_5cbm = roundToTwo(rate_5cbm);
         twodecimal_rate_15cbm = roundToTwo(rate_15cbm);
 
-        /************************** DEVOLVER LA FECHA DE VALIDEZ DE LA TARIFA A LA VARIABLE LOCAL **************************/
+        // ------------ DEVOLVER LA FECHA DE VALIDEZ DE LA TARIFA A LA VARIABLE LOCAL 
         var validdesde_final = ratesorigin[0].validdesde;
         var validhasta_final = ratesorigin[0].validhasta;
-        /************************** ASIGNAR A LOS INPUTS DE ENVÍO **************************/
+        // ------------ ASIGNAR A LOS INPUTS DE ENVÍO 
         $("#val-datevaliddesde").val(validdesde_final);
         $("#val-datevalidhasta").val(validhasta_final);
         var convertOneDATE =  new Date(Date.parse(validdesde_final.replace(/-/g, '/')));
@@ -2494,11 +2492,11 @@ $(document).on("click", "#btn-NextStepTochargedata", function(){
 
         var val_dateValidDesde = separateDateValidDesde[0]+" "+"de"+" "+firstToUppercase(monthSeparatetoArrayDesde);
         var val_dateValidHasta = separateDateValidHasta[0]+" "+"de"+" "+firstToUppercase(monthSeparatetoArrayHasta);
-        /************************** ASIGNAR A LAS VARIABLES LOCALES **************************/
+        // ------------ ASIGNAR A LAS VARIABLES LOCALES 
         localStorage.setItem("key_validaterate", val_dateValidDesde+" - "+val_dateValidHasta);
         localStorage.setItem("key_v-valttaproxbycontain", ratesorigin[0].tt_aprox);
         $("#val-timeaproxtransbycont").val(ratesorigin[0].tt_aprox);
-        /************************** ASIGNAR AL VALOR DE ENVÍO **************************/
+        // ------------ ASIGNAR AL VALOR DE ENVÍO 
         $("#val_validateratequote").val(val_dateValidDesde+" - "+val_dateValidHasta);
 
         if(v_ValTotalVolume <= 5){
@@ -2514,9 +2512,9 @@ $(document).on("click", "#btn-NextStepTochargedata", function(){
             localStorage.setItem("key_v-totalflette", totwithoutvalues);
           }
 
-          /************************** MOSTRAR EL RESUMEN HASTA ESTE PASO **************************/
+          // ------------ MOSTRAR EL RESUMEN HASTA ESTE PASO 
           $(".cont-MainCamelLog--c--contResumeCalc--item[data-advlevel=d-typecontainer]").addClass("show");
-          /************************** MOSTRAR EL PASO DE - ELIGE UNA OPCIÓN **************************/
+          // ------------ MOSTRAR EL PASO DE - ELIGE UNA OPCIÓN 
           $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-integservorfleteinte]").addClass("show");
           sectionsSteps.moveTo('step-integservorfleteinte', 1);
           $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-integservorfleteinte]").html(`
@@ -2566,10 +2564,10 @@ $(document).on("click", "#btn-NextStepTochargedata", function(){
             localStorage.setItem("key_v-totalflette", totwithoutvalues);
           }
 
-          /************************** MOSTRAR EL RESUMEN HASTA ESTE PASO **************************/
+          // ------------ MOSTRAR EL RESUMEN HASTA ESTE PASO 
           $(".cont-MainCamelLog--c--contResumeCalc--item[data-advlevel=d-typecontainer]").addClass("show");
 
-          /************************** MOSTRAR EL PASO DE - ELIGE UNA OPCIÓN **************************/
+          // ------------ MOSTRAR EL PASO DE - ELIGE UNA OPCIÓN 
           $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-integservorfleteinte]").addClass("show");
           sectionsSteps.moveTo('step-integservorfleteinte', 1);
           $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-integservorfleteinte]").html(`
@@ -2608,13 +2606,13 @@ $(document).on("click", "#btn-NextStepTochargedata", function(){
 
         }else if(v_ValTotalVolume > 15){
 
-          /************************** OCULTAR EL RESUMEN HASTA ESTE PASO **************************/
+          // ------------ OCULTAR EL RESUMEN HASTA ESTE PASO 
           $(".cont-MainCamelLog--c--contResumeCalc--item[data-advlevel=d-typecontainer]").removeClass("show");
-          /************************** OCULTAR EL PASO DE - ELIGE UNA OPCIÓN **************************/
+          // ------------ OCULTAR EL PASO DE - ELIGE UNA OPCIÓN 
           $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-integservorfleteinte]").removeClass("show");
           $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-integservorfleteinte]").html("");
 
-          /************************** MOSTRAR EL MENSAJE DE ALERTA PERSONALIZADO **************************/
+          // ------------ MOSTRAR EL MENSAJE DE ALERTA PERSONALIZADO 
           $("#idMessageSteps-prcss").html(`
             <div class="cntMessageSteps-prcss--cont">
               <div class="cntMessageSteps-prcss--cont--c">
@@ -2624,7 +2622,7 @@ $(document).on("click", "#btn-NextStepTochargedata", function(){
               </div>
             </div>
           `)
-          /************************** CERRAR EL MODAL **************************/
+          // ------------ CERRAR EL MODAL 
           setTimeout(function(){
             $("#idMessageSteps-prcss .cntMessageSteps-prcss--cont").remove();
           }, 6500)
@@ -2638,16 +2636,16 @@ $(document).on("click", "#btn-NextStepTochargedata", function(){
 
       }else if($("#loadTypeTranport").val() == "imo"){
         twodecimal_total_imo = roundToTwo(ratesorigin[0].total_imo);
-        /************************** ASIGNAR A LA VARIABLE LOCAL **************************/
+        // ------------ ASIGNAR A LA VARIABLE LOCAL 
         localStorage.setItem("key_v-valttaproxbycontain", ratesorigin[0].tt_aprox);
         $("#val-timeaproxtransbycont").val(ratesorigin[0].tt_aprox);
         if(v_ValTotalVolume > 15){
-          /************************** OCULTAR EL RESUMEN HASTA ESTE PASO **************************/
+          // ------------ OCULTAR EL RESUMEN HASTA ESTE PASO 
           $(".cont-MainCamelLog--c--contResumeCalc--item[data-advlevel=d-typecontainer]").removeClass("show");
-          /************************** OCULTAR EL PASO DE - ELIGE UNA OPCIÓN **************************/
+          // ------------ OCULTAR EL PASO DE - ELIGE UNA OPCIÓN 
           $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-integservorfleteinte]").removeClass("show");
           $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-integservorfleteinte]").html("");
-          /************************** MOSTRAR EL MENSAJE DE ALERTA PERSONALIZADO **************************/
+          // ------------ MOSTRAR EL MENSAJE DE ALERTA PERSONALIZADO 
           $("#idMessageSteps-prcss").html(`
             <div class="cntMessageSteps-prcss--cont">
               <div class="cntMessageSteps-prcss--cont--c">
@@ -2657,7 +2655,7 @@ $(document).on("click", "#btn-NextStepTochargedata", function(){
               </div>
             </div>
           `);
-          /************************** CERRAR EL MODAL **************************/
+          // ------------ CERRAR EL MODAL 
           setTimeout(function(){
             $("#idMessageSteps-prcss .cntMessageSteps-prcss--cont").remove();
           }, 6500)
@@ -2665,10 +2663,10 @@ $(document).on("click", "#btn-NextStepTochargedata", function(){
             $(this).parent().parent().remove();
           });
         }else{
-          /************************** DEVOLVER LA FECHA DE VALIDEZ DE LA TARIFA A LA VARIABLE LOCAL **************************/
+          // ------------ DEVOLVER LA FECHA DE VALIDEZ DE LA TARIFA A LA VARIABLE LOCAL 
           var validdesde_final = ratesorigin[0].validdesde;
           var validhasta_final = ratesorigin[0].validhasta;
-          /************************** ASIGNAR A LOS INPUTS DE ENVÍO **************************/
+          // ------------ ASIGNAR A LOS INPUTS DE ENVÍO 
           $("#val-datevaliddesde").val(validdesde_final);
           $("#val-datevalidhasta").val(validhasta_final);
           var convertOneDATE =  new Date(Date.parse(validdesde_final.replace(/-/g, '/')));
@@ -2683,12 +2681,12 @@ $(document).on("click", "#btn-NextStepTochargedata", function(){
 
           var val_dateValidDesde = separateDateValidDesde[0]+" "+"de"+" "+firstToUppercase(monthSeparatetoArrayDesde);
           var val_dateValidHasta = separateDateValidHasta[0]+" "+"de"+" "+firstToUppercase(monthSeparatetoArrayHasta);
-          /************************** ASIGNAR A LAS VARIABLES LOCALES **************************/
+          // ------------ ASIGNAR A LAS VARIABLES LOCALES 
           localStorage.setItem("key_validaterate", val_dateValidDesde+" - "+val_dateValidHasta);
-          /************************** ASIGNAR AL VALOR DE ENVÍO **************************/
+          // ------------ ASIGNAR AL VALOR DE ENVÍO 
           $("#val_validateratequote").val(val_dateValidDesde+" - "+val_dateValidHasta);
           
-          /************************** VALIDAR EL VALOR MÁXIMO ENTRE PESO Y VOLUMEN **************************/
+          // ------------ VALIDAR EL VALOR MÁXIMO ENTRE PESO Y VOLUMEN 
           if(v_ValTotalVolume > v_ValDividedTotalWeight){
             totwithoutvalues = roundToTwo(twodecimal_total_imo * v_ValTotalVolume);
             localStorage.setItem("key_v-totalflette", totwithoutvalues);
@@ -2697,9 +2695,9 @@ $(document).on("click", "#btn-NextStepTochargedata", function(){
             totwithoutvalues = roundToTwo(twodecimal_total_imo * v_ValDividedTotalWeight);
             localStorage.setItem("key_v-totalflette", totwithoutvalues);
           }
-          /************************** MOSTRAR EL RESUMEN HASTA ESTE PASO **************************/
+          // ------------ MOSTRAR EL RESUMEN HASTA ESTE PASO 
           $(".cont-MainCamelLog--c--contResumeCalc--item[data-advlevel=d-typecontainer]").addClass("show");
-          /************************** MOSTRAR EL PASO DE - ELIGE UNA OPCIÓN **************************/
+          // ------------ MOSTRAR EL PASO DE - ELIGE UNA OPCIÓN 
           $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-integservorfleteinte]").addClass("show");
           sectionsSteps.moveTo('step-integservorfleteinte', 1);
           $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-integservorfleteinte]").html(`
@@ -2739,18 +2737,18 @@ $(document).on("click", "#btn-NextStepTochargedata", function(){
 
       }else{
         twodecimal_total_refrigerado = roundToTwo(ratesorigin[0].total_refrigerado);
-        /************************** ASIGNAR A LA VARIABLE LOCAL **************************/
+        // ------------ ASIGNAR A LA VARIABLE LOCAL 
         localStorage.setItem("key_v-valttaproxbycontain", ratesorigin[0].tt_aprox);
         $("#val-timeaproxtransbycont").val(ratesorigin[0].tt_aprox);
         if(v_ValTotalVolume > 15){
 
-          /************************** OCULTAR EL RESUMEN HASTA ESTE PASO **************************/
+          // ------------ OCULTAR EL RESUMEN HASTA ESTE PASO 
           $(".cont-MainCamelLog--c--contResumeCalc--item[data-advlevel=d-typecontainer]").removeClass("show");
-          /************************** OCULTAR EL PASO DE - ELIGE UNA OPCIÓN **************************/
+          // ------------ OCULTAR EL PASO DE - ELIGE UNA OPCIÓN 
           $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-integservorfleteinte]").removeClass("show");
           $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-integservorfleteinte]").html("");
 
-          /************************** MOSTRAR EL MENSAJE DE ALERTA PERSONALIZADO **************************/
+          // ------------ MOSTRAR EL MENSAJE DE ALERTA PERSONALIZADO 
           $("#idMessageSteps-prcss").html(`
             <div class="cntMessageSteps-prcss--cont">
               <div class="cntMessageSteps-prcss--cont--c">
@@ -2760,7 +2758,7 @@ $(document).on("click", "#btn-NextStepTochargedata", function(){
               </div>
             </div>
           `)
-          /************************** CERRAR EL MODAL **************************/
+          // ------------ CERRAR EL MODAL 
           setTimeout(function(){
             $("#idMessageSteps-prcss .cntMessageSteps-prcss--cont").remove();
           }, 6500)
@@ -2769,10 +2767,10 @@ $(document).on("click", "#btn-NextStepTochargedata", function(){
           });
         }else{
 
-          /************************** DEVOLVER LA FECHA DE VALIDEZ DE LA TARIFA A LA VARIABLE LOCAL **************************/
+          // ------------ DEVOLVER LA FECHA DE VALIDEZ DE LA TARIFA A LA VARIABLE LOCAL 
           var validdesde_final = ratesorigin[0].validdesde;
           var validhasta_final = ratesorigin[0].validhasta;
-          /************************** ASIGNAR A LOS INPUTS DE ENVÍO **************************/
+          // ------------ ASIGNAR A LOS INPUTS DE ENVÍO 
           $("#val-datevaliddesde").val(validdesde_final);
           $("#val-datevalidhasta").val(validhasta_final);
           var convertOneDATE =  new Date(Date.parse(validdesde_final.replace(/-/g, '/')));
@@ -2787,11 +2785,11 @@ $(document).on("click", "#btn-NextStepTochargedata", function(){
 
           var val_dateValidDesde = separateDateValidDesde[0]+" "+"de"+" "+firstToUppercase(monthSeparatetoArrayDesde);
           var val_dateValidHasta = separateDateValidHasta[0]+" "+"de"+" "+firstToUppercase(monthSeparatetoArrayHasta);
-          /************************** ASIGNAR A LAS VARIABLES LOCALES **************************/
+          // ------------ ASIGNAR A LAS VARIABLES LOCALES 
           localStorage.setItem("key_validaterate", val_dateValidDesde+" - "+val_dateValidHasta);
-          /************************** ASIGNAR AL VALOR DE ENVÍO **************************/
+          // ------------ ASIGNAR AL VALOR DE ENVÍO 
           $("#val_validateratequote").val(val_dateValidDesde+" - "+val_dateValidHasta);
-          /************************** VALIDAR EL VALOR MÁXIMO ENTRE PESO Y VOLUMEN **************************/
+          // ------------ VALIDAR EL VALOR MÁXIMO ENTRE PESO Y VOLUMEN 
           if(v_ValTotalVolume > v_ValDividedTotalWeight){
             totwithoutvalues = roundToTwo(twodecimal_total_refrigerado * v_ValTotalVolume);
             localStorage.setItem("key_v-totalflette", totwithoutvalues);
@@ -2799,9 +2797,9 @@ $(document).on("click", "#btn-NextStepTochargedata", function(){
             totwithoutvalues = roundToTwo(twodecimal_total_refrigerado * v_ValDividedTotalWeight);
             localStorage.setItem("key_v-totalflette", totwithoutvalues);
           }
-          /************************** MOSTRAR EL RESUMEN HASTA ESTE PASO **************************/
+          // ------------ MOSTRAR EL RESUMEN HASTA ESTE PASO 
             $(".cont-MainCamelLog--c--contResumeCalc--item[data-advlevel=d-typecontainer]").addClass("show");
-            /************************** MOSTRAR EL PASO DE - ELIGE UNA OPCIÓN **************************/
+            // ------------ MOSTRAR EL PASO DE - ELIGE UNA OPCIÓN 
             $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-integservorfleteinte]").addClass("show");
             sectionsSteps.moveTo('step-integservorfleteinte', 1);
             $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-integservorfleteinte]").html(`
@@ -2843,10 +2841,10 @@ $(document).on("click", "#btn-NextStepTochargedata", function(){
 
   }else{
 
-    /************************** OCULTAR EL PASO DE - ELIGE UNA OPCIÓN **************************/
+    // ------------ OCULTAR EL PASO DE - ELIGE UNA OPCIÓN 
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-integservorfleteinte]").removeClass("show");
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-integservorfleteinte]").html("");
-    /************************** MOSTRAR EL MENSAJE DE ALERTA PERSONALIZADO **************************/
+    // ------------ MOSTRAR EL MENSAJE DE ALERTA PERSONALIZADO 
     $("#idMessageSteps-prcss").html(`
       <div class="cntMessageSteps-prcss--cont">
         <div class="cntMessageSteps-prcss--cont--c">
@@ -2856,7 +2854,7 @@ $(document).on("click", "#btn-NextStepTochargedata", function(){
         </div>
       </div>
     `)
-    /************************** CERRAR EL MODAL **************************/
+    // ------------ CERRAR EL MODAL 
     setTimeout(function(){
       $("#idMessageSteps-prcss .cntMessageSteps-prcss--cont").remove();
     }, 6500)
@@ -2868,7 +2866,7 @@ $(document).on("click", "#btn-NextStepTochargedata", function(){
 /*=====================================================================================
 =            							6. AGREGAR LOS DATOS DE MERCANCÍA            								=
 ======================================================================================*/
-/************************** LISTAR LOS TIPOS DE PRODUCTOS **************************/
+// ------------ LISTAR LOS TIPOS DE PRODUCTOS 
 function listProductsUser(searchVal){
   $.ajax({
     url: "controllers/list_products.php",
@@ -2926,7 +2924,7 @@ function listProductsUser(searchVal){
     }
   });
 }
-/************************** MOSTRAR EL LISTADO DE TIPOS DE PRODUCTOS **************************/
+// ------------ MOSTRAR EL LISTADO DE TIPOS DE PRODUCTOS 
 $(document).on("focus", "#ipt-valNameTypeProdNInterface", function(){
 	$("#m-listAllNamTypeProds").addClass("show");
   listProductsUser();
@@ -2945,17 +2943,17 @@ $(document).on("keyup keydown", "#ipt-valNameTypeProdNInterface", function(e){
   }
 
   if(e.which == 8 || event.keyCode == 46){
-    /************************** OCULTAR EL SIGUIENTE PASO **************************/
+    // ------------ OCULTAR EL SIGUIENTE PASO 
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-insuremerchandise]").removeClass("show");
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-insuremerchandise]").html("");
-    /************************** OCULTAR EL TRASSIGUIENTE PASO **************************/
+    // ------------ OCULTAR EL TRASSIGUIENTE PASO 
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-requirespickup]").removeClass("show");
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-requirespickup]").html("");
   }else{
     //console.log('Con contenido');
   }
 });
-/************************** FIJAR EL VALOR DE ITEM EN EL INPUT - TIPOS DE PRODUCTOS **************************/
+// ------------ FIJAR EL VALOR DE ITEM EN EL INPUT - TIPOS DE PRODUCTOS 
 $(document).on("click", ".cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl--cListChange--m--item", function(){
   $("#m-listAllNamTypeProds").removeClass("show");
   $("#ipt-valNameTypeProdNInterface").attr("idproduct", $(this).attr("id"));
@@ -2963,14 +2961,14 @@ $(document).on("click", ".cont-MainCamelLog--c--contSteps--item--cStep--mFrmIpts
   var taxationOneVal = parseFloat($(this).attr("data-taxone"));
   var taxationTwoVal = parseFloat($(this).attr("data-taxtwo"));
   var taxationThreeVal = parseFloat($(this).attr("data-taxthree"));
-  /************************** ASIGNAR A LA VARIABLE LOCAL DE IMPUESTOS DE PRODUCTO PARA IGV **************************/
+  // ------------ ASIGNAR A LA VARIABLE LOCAL DE IMPUESTOS DE PRODUCTO PARA IGV 
   localStorage.setItem("key_v-nametypeproduct", $(this).find("p").text()); //NOMBRE DEL TIPO DE PRODUCTO
   localStorage.setItem("key_v-valuestaxOnebyigv", taxationOneVal); //VALOR DE AD-VALOREN
   localStorage.setItem("key_v-valuestaxTwobyigv", taxationTwoVal); //VALOR DE IMPUESTO SELECCTIVO
   localStorage.setItem("key_v-valuestaxThreebyigv", taxationThreeVal); //VALOR DE ANTIDUMPING
-  /************************** ASIGNAR A LA VARIABLE LOCAL **************************/
+  // ------------ ASIGNAR A LA VARIABLE LOCAL 
   localStorage.setItem("key_v-dbammountadditional", $(this).attr("data-amountadditional"));
-  /************************** MOSTRAR/OCULTAR DE ACUERDO A EL VALOR DEL MONTO ADICIONAL **************************/
+  // ------------ MOSTRAR/OCULTAR DE ACUERDO A EL VALOR DEL MONTO ADICIONAL 
   if($(this).attr("data-amountadditional") != 0 || $(this).attr("data-amountadditional") != 0.00){
     $("#ipt-valCantOfAmountAdditional").html(`
       <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl">
@@ -2983,16 +2981,16 @@ $(document).on("click", ".cont-MainCamelLog--c--contSteps--item--cStep--mFrmIpts
   }else{
     $("#ipt-valCantOfAmountAdditional").html("");
   }
-  /************************** ASIGNAR VALORES DE LOS INPUTS HIDDEN - MERCANCÍA **************************/
+  // ------------ ASIGNAR VALORES DE LOS INPUTS HIDDEN - MERCANCÍA 
   $("#val-categProdquot").val($(this).find("p").text());
   $("#val-reqPermisoProdquot").val($(this).find("small").find("span:nth-child(2)").text());
 });
-/************************** VALIDAR INPUT - CANTIDAD DE PRODUCTOS CON MONTO ADICIONAL **************************/
+// ------------ VALIDAR INPUT - CANTIDAD DE PRODUCTOS CON MONTO ADICIONAL 
 $(document).on("keyup keypress blur change", "#ipt-valQuantityAmAddProdNInterface", function(e){
   if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
     return false;
   }else{
-    /************************** LIMITAR EL MÁXMIMO DE CARACTERES **************************/
+    // ------------ LIMITAR EL MÁXMIMO DE CARACTERES 
     if( $(this).val().length >= parseInt($(this).attr('maxlength')) && (e.which != 8 && e.which != 0)){
       return false;
     }
@@ -3002,18 +3000,18 @@ $(document).on("keyup keypress blur change", "#ipt-valQuantityAmAddProdNInterfac
   $(this).val(function(i, v) {
     return v.replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d)\.?)/g, ".");
   });
-  /************************** AGREGAR AL INPUT DE ENVÍO POST Y AGREGAR A LA VARIABLE LOCAL **************************/
+  // ------------ AGREGAR AL INPUT DE ENVÍO POST Y AGREGAR A LA VARIABLE LOCAL 
   $("#val-quantityProdsAmmAdd").val(e.target.value);
   localStorage.setItem("key_v-ammountadditional", e.target.value);
-  /************************** ASIGNAR A LA VARIABLE LOCAL **************************/
+  // ------------ ASIGNAR A LA VARIABLE LOCAL 
   localStorage.setItem("key_v-totalammountadditional", localStorage.getItem("key_v-dbammountadditional") * value);
 });
-/************************** VALIDAR INPUT - VALOR DE PRODUCTO IMPORTADO **************************/
+// ------------ VALIDAR INPUT - VALOR DE PRODUCTO IMPORTADO 
 $(document).on("input", "#ipt-valPriceProdNInterface", function(e){
   if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
     return false;
   }else{
-    /************************** LIMITAR EL MÁXMIMO DE CARACTERES **************************/
+    // ------------ LIMITAR EL MÁXMIMO DE CARACTERES 
     if( $(this).val().length >= parseInt($(this).attr('maxlength')) && (e.which != 8 && e.which != 0)){
       return false;
     }
@@ -3024,56 +3022,56 @@ $(document).on("input", "#ipt-valPriceProdNInterface", function(e){
   $(this).val(function(i, v) {
     return v.replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d)\.?)/g, ".");
   });
-  /************************** ASIGNAR VALORES DE LOS INPUTS HIDDEN - MERCANCÍA **************************/
+  // ------------ ASIGNAR VALORES DE LOS INPUTS HIDDEN - MERCANCÍA 
   $("#val-valProdquot").val($(this).val());
-  /************************** ASIGNAR A LA VARIABLE LOCAL **************************/
+  // ------------ ASIGNAR A LA VARIABLE LOCAL 
   localStorage.setItem("key_v-valueproduct", $(this).val());
   if(e.target.value == "" || e.target.value == 0){
-    /************************** OCULTAR EL SIGUIENTE PASO **************************/
+    // ------------ OCULTAR EL SIGUIENTE PASO 
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-insuremerchandise]").removeClass("show");
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-insuremerchandise]").html("");
-    /************************** OCULTAR EL TRASSIGUIENTE PASO **************************/
+    // ------------ OCULTAR EL TRASSIGUIENTE PASO 
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-requirespickup]").removeClass("show");
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-requirespickup]").html("");
   }else{
     //console.log("Campo completado");
   }
 });
-/************************** VALIDAR SI HAY ALGÚN VALOR EN EL CONTROL - VALOR DE PRODUCTO IMPORTADO **************************/
+// ------------ VALIDAR SI HAY ALGÚN VALOR EN EL CONTROL - VALOR DE PRODUCTO IMPORTADO 
 $(document).on("change input keyup", "#ipt-valPriceProdNInterface", function(e){
   if(e.target.value == "" || e.target.value == 0){
-    /************************** OCULTAR EL SIGUIENTE PASO **************************/
+    // ------------ OCULTAR EL SIGUIENTE PASO 
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-insuremerchandise]").removeClass("show");
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-insuremerchandise]").html("");
-    /************************** OCULTAR EL TRASSIGUIENTE PASO **************************/
+    // ------------ OCULTAR EL TRASSIGUIENTE PASO 
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-requirespickup]").removeClass("show");
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-requirespickup]").html("");
   }else{
     //console.log("Campo completado");
   }
 });
-/************************** VALIDAR SI CONTIENE ALGÚN VALOR NULO O 0 **************************/
+// ------------ VALIDAR SI CONTIENE ALGÚN VALOR NULO O 0 
 $(document).on("keyup", "#ipt-valPriceProdNInterface", function(){
   if($(this).val() == "" || $(this).val() == 0 || $(this).val() == " USD" || $(this).val() == ".00" || $(this).val() == 0.00){
     $("#MsgItemValueProdRequired").text("Ingrese valor exacto, SIN DECIMALES");
     $(this).val("");
-    /************************** OCULTAR EL SIGUIENTE PASO **************************/
+    // ------------ OCULTAR EL SIGUIENTE PASO 
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-insuremerchandise]").removeClass("show");
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-insuremerchandise]").html("");
-    /************************** OCULTAR EL TRASSIGUIENTE PASO **************************/
+    // ------------ OCULTAR EL TRASSIGUIENTE PASO 
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-requirespickup]").removeClass("show");
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-requirespickup]").html("");
   }else{
     $("#MsgItemValueProdRequired").text("");
   }
 });
-/************************** SWITCH DE IMPORTACIONES PREVIAS **************************/
+// ------------ SWITCH DE IMPORTACIONES PREVIAS 
 $(document).on("click", "#chck-importpreview", function(){
   if($(this).is(":checked")){
 		$(this).parent().addClass("active");
 		$(this).parent().attr("switch-CFreeze", "SI");
     var yesImportPrev = $(this).parent().attr("switch-CFreeze");
-    /************************** ASIGNAR VALORES DE LOS INPUTS HIDDEN - MERCANCÍA **************************/
+    // ------------ ASIGNAR VALORES DE LOS INPUTS HIDDEN - MERCANCÍA 
     $("#val-prevImports").val(yesImportPrev);
 
     $.ajax({
@@ -3083,14 +3081,14 @@ $(document).on("click", "#chck-importpreview", function(){
       contentType: 'application/x-www-form-urlencoded;charset=UTF-8'
     }).done(function(e){
       var resultTaximport = JSON.parse(e);
-      /************************** ASIGNAR A LA VARIABLE LOCAL **************************/
+      // ------------ ASIGNAR A LA VARIABLE LOCAL 
       localStorage.setItem("key_v-valuestaxationimport", resultTaximport[0].data_value);
     });
 	}else{
 		$(this).parent().removeClass("active");
 		$(this).parent().attr("switch-CFreeze", "NO");
     var notImportPrev = $(this).parent().attr("switch-CFreeze");
-    /************************** ASIGNAR VALORES DE LOS INPUTS HIDDEN - MERCANCÍA **************************/
+    // ------------ ASIGNAR VALORES DE LOS INPUTS HIDDEN - MERCANCÍA 
     $("#val-prevImports").val(notImportPrev);
 
     $.ajax({
@@ -3100,12 +3098,12 @@ $(document).on("click", "#chck-importpreview", function(){
       contentType: 'application/x-www-form-urlencoded;charset=UTF-8'
     }).done(function(e){
       var resultTaximport = JSON.parse(e);
-      /************************** ASIGNAR A LA VARIABLE LOCAL **************************/
+      // ------------ ASIGNAR A LA VARIABLE LOCAL 
       localStorage.setItem("key_v-valuestaxationimport", resultTaximport[0].data_value_two);
     });
 	}
 });
-/************************** VALIDAR EL BOTÓN DE PASOS SIGUIENTES DESDE - MERCANCÍA **************************/
+// ------------ VALIDAR EL BOTÓN DE PASOS SIGUIENTES DESDE - MERCANCÍA 
 $(document).on("click", "#btn-NextStepTomerchandisedata", function(){
   if(document.querySelector("#ipt-valCantOfAmountAdditional").contains(document.querySelector("#ipt-valQuantityAmAddProdNInterface"))){
     if($("#ipt-valNameTypeProdNInterface").val() != "" && $("#ipt-valNameTypeProdNInterface").val() != 0 &&
@@ -3113,12 +3111,12 @@ $(document).on("click", "#btn-NextStepTomerchandisedata", function(){
        $("#ipt-valQuantityAmAddProdNInterface").val() != 0 && $("#ipt-valQuantityAmAddProdNInterface").val() != "" &&
        $("#ipt-valPriceProdNInterface").val() != "" && $("#ipt-valPriceProdNInterface").val() != 0){
 
-      /************************** ASIGNAR VALORES DE LOS INPUTS HIDDEN - MERCANCÍA **************************/
+      // ------------ ASIGNAR VALORES DE LOS INPUTS HIDDEN - MERCANCÍA 
       $("#val-categProdquot").val($("#ipt-valNameTypeProdNInterface").val());
       $("#val-valProdquot").val($("#ipt-valPriceProdNInterface").val());
       $("#val-prevImports").val($("#chck-importpreview").parent().attr("switch-CFreeze"));
 
-      /************************** MOSTRAR EL SIGUIENTE PASO **************************/
+      // ------------ MOSTRAR EL SIGUIENTE PASO 
       $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-insuremerchandise]").addClass("show");
       sectionsSteps.moveTo('step-insuremerchandise', 1);
       $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-insuremerchandise]").html(`
@@ -3152,11 +3150,11 @@ $(document).on("click", "#btn-NextStepTomerchandisedata", function(){
         </div>
       `);
     }else{
-      /************************** OCULTAR EL SIGUIENTE PASO **************************/
+      // ------------ OCULTAR EL SIGUIENTE PASO 
       $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-insuremerchandise]").removeClass("show");
       $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-insuremerchandise]").html("");
       
-      /************************** MOSTRAR EL MENSAJE DE ALERTA PERSONALIZADO **************************/
+      // ------------ MOSTRAR EL MENSAJE DE ALERTA PERSONALIZADO 
       $("#idMessageSteps-prcss").html(`
         <div class="cntMessageSteps-prcss--cont">
           <div class="cntMessageSteps-prcss--cont--c">
@@ -3166,7 +3164,7 @@ $(document).on("click", "#btn-NextStepTomerchandisedata", function(){
           </div>
         </div>
       `)
-      /************************** CERRAR EL MODAL **************************/
+      // ------------ CERRAR EL MODAL 
       setTimeout(function(){
         $("#idMessageSteps-prcss .cntMessageSteps-prcss--cont").remove();
       }, 6500)
@@ -3180,12 +3178,12 @@ $(document).on("click", "#btn-NextStepTomerchandisedata", function(){
        $("#ipt-valNameTypeProdNInterface").attr("idproduct") &&
        $("#ipt-valPriceProdNInterface").val() != "" && $("#ipt-valPriceProdNInterface").val() != 0){
 
-      /************************** ASIGNAR VALORES DE LOS INPUTS HIDDEN - MERCANCÍA **************************/
+      // ------------ ASIGNAR VALORES DE LOS INPUTS HIDDEN - MERCANCÍA 
       $("#val-categProdquot").val($("#ipt-valNameTypeProdNInterface").val());
       $("#val-valProdquot").val($("#ipt-valPriceProdNInterface").val());
       $("#val-prevImports").val($("#chck-importpreview").parent().attr("switch-CFreeze"));
 
-      /************************** MOSTRAR EL SIGUIENTE PASO **************************/
+      // ------------ MOSTRAR EL SIGUIENTE PASO 
       $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-insuremerchandise]").addClass("show");
       sectionsSteps.moveTo('step-insuremerchandise', 1);
       $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-insuremerchandise]").html(`
@@ -3219,11 +3217,11 @@ $(document).on("click", "#btn-NextStepTomerchandisedata", function(){
         </div>
       `);
     }else{
-      /************************** OCULTAR EL SIGUIENTE PASO **************************/
+      // ------------ OCULTAR EL SIGUIENTE PASO 
       $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-insuremerchandise]").removeClass("show");
       $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-insuremerchandise]").html("");
       
-      /************************** MOSTRAR EL MENSAJE DE ALERTA PERSONALIZADO **************************/
+      // ------------ MOSTRAR EL MENSAJE DE ALERTA PERSONALIZADO 
       $("#idMessageSteps-prcss").html(`
         <div class="cntMessageSteps-prcss--cont">
           <div class="cntMessageSteps-prcss--cont--c">
@@ -3233,7 +3231,7 @@ $(document).on("click", "#btn-NextStepTomerchandisedata", function(){
           </div>
         </div>
       `)
-      /************************** CERRAR EL MODAL **************************/
+      // ------------ CERRAR EL MODAL 
       setTimeout(function(){
         $("#idMessageSteps-prcss .cntMessageSteps-prcss--cont").remove();
       }, 6500)
@@ -3265,7 +3263,7 @@ $(document).on("click", "#list-insuremerchandise a", function(){
     var c_InsuranceDefault = parseFloat(resutlinsurance[2].data_value) / 100;
 
     if(tinsuremerchandise == 0){
-      /************************** ASIGNAR VALORES DE LOS INPUTS HIDDEN - QUIERES ASEGURAR LA MERCANCÍA **************************/
+      // ------------ ASIGNAR VALORES DE LOS INPUTS HIDDEN - QUIERES ASEGURAR LA MERCANCÍA 
       $("#res-insuremerch").val("SI");
       var valorfinalseguro = 0;
       if(finalvaluefob > 25000){
@@ -3275,7 +3273,7 @@ $(document).on("click", "#list-insuremerchandise a", function(){
         valorfinalseguro = c_InsuranceMenor; //FOB ES MENOR A 25000
         localStorage.setItem("key_v-valueinsurance", roundToTwo(valorfinalseguro));
       }
-      /************************** MOSTRAR EL SIGUIENTE PASO - ¿ NECESITAS TRANSPORTE ? **************************/
+      // ------------ MOSTRAR EL SIGUIENTE PASO - ¿ NECESITAS TRANSPORTE ? 
       sectionsSteps.moveTo('step-requirespickup', 1);
       $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-requirespickup]").html(`
         <div class="cont-MainCamelLog--c--contSteps--item--cTitle">
@@ -3309,10 +3307,10 @@ $(document).on("click", "#list-insuremerchandise a", function(){
         <div class="cont-MainCamelLog--c--contSteps--item--cBtnNextStep"></div>
       `);
     }else{
-      /************************** ASIGNAR VALORES DE LOS INPUTS HIDDEN - QUIERES ASEGURAR LA MERCANCÍA **************************/
+      // ------------ ASIGNAR VALORES DE LOS INPUTS HIDDEN - QUIERES ASEGURAR LA MERCANCÍA 
       $("#res-insuremerch").val("NO");
       var valorfinalseguro = 0;
-      /************************** ASIGNAR AL VALOR DE LA VARIABLE LOCAL **************************/
+      // ------------ ASIGNAR AL VALOR DE LA VARIABLE LOCAL 
       valorfinalseguro = finalvaluefob * c_InsuranceDefault; //SIN FOB, VALOR POR DEFECTO
       localStorage.setItem("key_v-valueinsurance", roundToTwo(valorfinalseguro));
       /*
@@ -3365,9 +3363,9 @@ $(document).on("click", "#list-insuremerchandise a", function(){
 $(document).on("click", "#list-requirespickup a", function(){
   var trequirespickup = $(this).index();
   if(trequirespickup == 0){
-    /************************** ASIGNAR VALORES DE LOS INPUTS HIDDEN - NECESITAS TRANSPORTE **************************/
+    // ------------ ASIGNAR VALORES DE LOS INPUTS HIDDEN - NECESITAS TRANSPORTE 
     $("#opt-reqtransport").val("SI")
-    /************************** MOSTRAR EL SIGUIENTE PASO **************************/
+    // ------------ MOSTRAR EL SIGUIENTE PASO 
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-pickuplocation]").addClass("show");
     sectionsSteps.moveTo('step-pickuplocation', 1);
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-pickuplocation]").html(`
@@ -3402,12 +3400,12 @@ $(document).on("click", "#list-requirespickup a", function(){
     `);
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-requirespickup] .cont-MainCamelLog--c--contSteps--item--cBtnNextStep").html("");
   }else{
-    /************************** ASIGNAR VALORES DE LOS INPUTS HIDDEN - NECESITAS TRANSPORTE **************************/
+    // ------------ ASIGNAR VALORES DE LOS INPUTS HIDDEN - NECESITAS TRANSPORTE 
     $("#opt-reqtransport").val("NO")
-    /************************** OCULTAR EL SIGUIENTE PASO **************************/
+    // ------------ OCULTAR EL SIGUIENTE PASO 
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-pickuplocation]").removeClass("show");
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-pickuplocation]").html("");
-    /************************** MOSTRAR EL BOTÓN DE COTIZACIÓN **************************/
+    // ------------ MOSTRAR EL BOTÓN DE COTIZACIÓN 
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-requirespickup] .cont-MainCamelLog--c--contSteps--item--cBtnNextStep").html(`
       <button type="submit" class="cont-MainCamelLog--c--contSteps--item--cBtnNextStep--btnR" id="btn-NextStepTorequirespickup">
         <span>CALCULAR COTIZACIÓN</span>
@@ -3416,10 +3414,10 @@ $(document).on("click", "#list-requirespickup a", function(){
     `);
   }
 });
-/************************** LISTAR LOS DISTRITOS POR ID DE PAÍS **************************/
+// ------------ LISTAR LOS DISTRITOS POR ID DE PAÍS 
 function listrateLCLTransport(searchVal){
   if($("#loadTypeTranport").val() == "general")  {
-    /************************** LISTADO DE TARIFAS PARA TRANSPORTE INTERNO - TIPO GENERAL **************************/
+    // ------------ LISTADO DE TARIFAS PARA TRANSPORTE INTERNO - TIPO GENERAL 
     $.ajax({
       url: "controllers/list_zonasratelcltransport_general.php",
       method: "POST",
@@ -3453,7 +3451,7 @@ function listrateLCLTransport(searchVal){
         var g_20st_40nor = parseFloat(e.g_20st_40nor);
 
         if($("#loadTypeCharge").val() == "LCL"){
-          /************************** QUITAR LOS PUNTOS A EL VALOR DEL PESO **************************/
+          // ------------ QUITAR LOS PUNTOS A EL VALOR DEL PESO 
           var val_weighttotalstep = $("#n_weightcompare_ultstep").val();
           var val_finalweighttotalstep = val_weighttotalstep.replace(/\./g, '');
 
@@ -3495,7 +3493,7 @@ function listrateLCLTransport(searchVal){
                 </li>
               `;
             }else{
-              /************************** MOSTRAR EL MENSAJE DE ALERTA PERSONALIZADO **************************/
+              // ------------ MOSTRAR EL MENSAJE DE ALERTA PERSONALIZADO 
               $("#idMessageSteps-prcss").html(`
                 <div class="cntMessageSteps-prcss--cont">
                   <div class="cntMessageSteps-prcss--cont--c">
@@ -3505,7 +3503,7 @@ function listrateLCLTransport(searchVal){
                   </div>
                 </div>
               `)
-              /************************** CERRAR EL MODAL **************************/
+              // ------------ CERRAR EL MODAL 
               setTimeout(function(){
                 $("#idMessageSteps-prcss .cntMessageSteps-prcss--cont").remove();
               }, 8500)
@@ -3527,7 +3525,7 @@ function listrateLCLTransport(searchVal){
       }
     });
   }else if($("#loadTypeTranport").val() == "imo"){
-    /************************** LISTADO DE TARIFAS PARA TRANSPORTE INTERNO - TIPO IMO **************************/
+    // ------------ LISTADO DE TARIFAS PARA TRANSPORTE INTERNO - TIPO IMO 
     $.ajax({
       url: "controllers/list_zonasratelcltransport_imo.php",
       method: "POST",
@@ -3561,7 +3559,7 @@ function listrateLCLTransport(searchVal){
         var imo_20st_40nor = parseFloat(e.imo_20st_40nor);
 
         if($("#loadTypeCharge").val() == "LCL"){
-          /************************** QUITAR LOS PUNTOS A EL VALOR DEL PESO **************************/
+          // ------------ QUITAR LOS PUNTOS A EL VALOR DEL PESO 
           var val_weighttotalstep = $("#n_weightcompare_ultstep").val();
           var val_finalweighttotalstep = val_weighttotalstep.replace(/\./g, '');
 
@@ -3603,7 +3601,7 @@ function listrateLCLTransport(searchVal){
                 </li>
               `;
             }else{
-              /************************** MOSTRAR EL MENSAJE DE ALERTA PERSONALIZADO **************************/
+              // ------------ MOSTRAR EL MENSAJE DE ALERTA PERSONALIZADO 
               $("#idMessageSteps-prcss").html(`
                 <div class="cntMessageSteps-prcss--cont">
                   <div class="cntMessageSteps-prcss--cont--c">
@@ -3613,7 +3611,7 @@ function listrateLCLTransport(searchVal){
                   </div>
                 </div>
               `)
-              /************************** CERRAR EL MODAL **************************/
+              // ------------ CERRAR EL MODAL 
               setTimeout(function(){
                 $("#idMessageSteps-prcss .cntMessageSteps-prcss--cont").remove();
               }, 8500)
@@ -3634,7 +3632,7 @@ function listrateLCLTransport(searchVal){
       }
     });
   }else if($("#loadTypeTranport").val() == "refrigerado"){
-    /************************** LISTADO DE TARIFAS PARA TRANSPORTE INTERNO - TIPO REFRIGERADO **************************/
+    // ------------ LISTADO DE TARIFAS PARA TRANSPORTE INTERNO - TIPO REFRIGERADO 
     $.ajax({
       url: "controllers/list_zonasratelcltransport_refrigerado.php",
       method: "POST",
@@ -3668,7 +3666,7 @@ function listrateLCLTransport(searchVal){
         var refr_20st_40nor = parseFloat(e.refr_20st_40nor);
 
         if($("#loadTypeCharge").val() == "LCL"){
-          /************************** QUITAR LOS PUNTOS A EL VALOR DEL PESO **************************/
+          // ------------ QUITAR LOS PUNTOS A EL VALOR DEL PESO 
           var val_weighttotalstep = $("#n_weightcompare_ultstep").val();
           var val_finalweighttotalstep = val_weighttotalstep.replace(/\./g, '');
 
@@ -3710,7 +3708,7 @@ function listrateLCLTransport(searchVal){
                 </li>
               `;
             }else{
-              /************************** MOSTRAR EL MENSAJE DE ALERTA PERSONALIZADO **************************/
+              // ------------ MOSTRAR EL MENSAJE DE ALERTA PERSONALIZADO 
               $("#idMessageSteps-prcss").html(`
                 <div class="cntMessageSteps-prcss--cont">
                   <div class="cntMessageSteps-prcss--cont--c">
@@ -3720,7 +3718,7 @@ function listrateLCLTransport(searchVal){
                   </div>
                 </div>
               `)
-              /************************** CERRAR EL MODAL **************************/
+              // ------------ CERRAR EL MODAL 
               setTimeout(function(){
                 $("#idMessageSteps-prcss .cntMessageSteps-prcss--cont").remove();
               }, 8500)
@@ -3744,7 +3742,7 @@ function listrateLCLTransport(searchVal){
     //console.log("Por favor, elige un tipo de transporte para continuar");
   }
 }
-/************************** MOSTRAR EL LISTADO DE DISTRITO POR PAÍS DE DESTINO **************************/
+// ------------ MOSTRAR EL LISTADO DE DISTRITO POR PAÍS DE DESTINO 
 $(document).on("focus", "#ipt-valDistricByCountryNInterface", function(){
 	$("#m-listAllDistricsByCountry").addClass("show");
   listrateLCLTransport();
@@ -3764,31 +3762,31 @@ $(document).on("keyup", "#ipt-valDistricByCountryNInterface", function(){
     listrateLCLTransport();
   }
 });
-/************************** FIJAR EL VALOR DE ITEM EN EL INPUT - DISTRITO POR PAÍS DE DESTINO **************************/
+// ------------ FIJAR EL VALOR DE ITEM EN EL INPUT - DISTRITO POR PAÍS DE DESTINO 
 $(document).on("click", ".cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation--cC--cControl--cListChange--m--item", function(){
   $("#m-listAllDistricsByCountry").removeClass("show");
   $("#ipt-valDistricByCountryNInterface").attr("iddistrict", $(this).attr("id"));
   $("#ipt-valDistricByCountryNInterface").val($(this).find("span").text());
-  /************************** ASIGNAR VALORES DE LOS INPUTS HIDDEN - RECOGIDA UBICACIÓN **************************/
+  // ------------ ASIGNAR VALORES DE LOS INPUTS HIDDEN - RECOGIDA UBICACIÓN 
   $("#plc-pickuploc").val($(this).attr("namprovince")+" - "+$(this).find("span").text());
-  /************************** VARIABLE PARA CONTENEDORES - 20ST,40ST,40HQ Y 40NOR **************************/
+  // ------------ VARIABLE PARA CONTENEDORES - 20ST,40ST,40HQ Y 40NOR 
   var q_containerType = 0;
   if($("#loadTypeCharge").val() == "FCL"){
     if($("#ipt-qvalContainer20ST").val() != 0 && $("#ipt-qvalContainer20ST").val() != ""){
       q_containerType = $("#ipt-qvalContainer20ST").val();
-      /************************** ASIGNAR A LA VARIABLE LOCAL **************************/
+      // ------------ ASIGNAR A LA VARIABLE LOCAL 
       localStorage.setItem("key_v-valuetransport", q_containerType * $(this).attr("rateprice"));
     }else if($("#ipt-qvalContainer40ST").val() != 0 && $("#ipt-qvalContainer40ST").val() != ""){
       q_containerType = $("#ipt-qvalContainer40ST").val();
-      /************************** ASIGNAR A LA VARIABLE LOCAL **************************/
+      // ------------ ASIGNAR A LA VARIABLE LOCAL 
       localStorage.setItem("key_v-valuetransport", q_containerType * $(this).attr("rateprice"));
     }else if($("#ipt-qvalContainer40HQ").val() != 0 && $("#ipt-qvalContainer40HQ").val() != ""){
       q_containerType = $("#ipt-qvalContainer40HQ").val();
-      /************************** ASIGNAR A LA VARIABLE LOCAL **************************/
+      // ------------ ASIGNAR A LA VARIABLE LOCAL 
       localStorage.setItem("key_v-valuetransport", q_containerType * $(this).attr("rateprice"));
     }else if($("#ipt-qvalContainer40NOR").val() != 0 && $("#ipt-qvalContainer40NOR").val() != ""){
       q_containerType = $("#ipt-qvalContainer40NOR").val();
-      /************************** ASIGNAR A LA VARIABLE LOCAL **************************/
+      // ------------ ASIGNAR A LA VARIABLE LOCAL 
       localStorage.setItem("key_v-valuetransport", q_containerType * $(this).attr("rateprice"));
     }else{
       console.log('No se seleccionó ningún contenedor en FCL');
@@ -3796,7 +3794,7 @@ $(document).on("click", ".cont-MainCamelLog--c--contSteps--item--cStep--mFrmIpts
   }else{
     localStorage.setItem("key_v-valuetransport", $("#val-iptPackagesNInterface").val() * $(this).attr("rateprice"));
   }
-  /************************** MOSTRAR EL BOTÓN DE COTIZACIÓN **************************/
+  // ------------ MOSTRAR EL BOTÓN DE COTIZACIÓN 
   $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-pickuplocation] .cont-MainCamelLog--c--contSteps--item--cBtnNextStep").html(`
     <button type="submit" class="cont-MainCamelLog--c--contSteps--item--cBtnNextStep--btnR" id="btn-NextStepTopickuplocation">
       <span>CALCULAR COTIZACIÓN</span>
