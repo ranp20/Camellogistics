@@ -173,7 +173,7 @@ $(document).on("submit", "#c-formLoginU_Camel", function(e){
         }
         sessionStorage.setItem("sess_usercli", JSON.stringify(sessstorage_loguser));
         sessionStorage.setItem("sess_valuser", 1);
-        // ============== MOSTRAR EL NOMBRE/CORREO DEL USUARIO - DESKTOP ============== //
+        // ------------ MOSTRAR EL NOMBRE/CORREO DEL USUARIO - DESKTOP
         $("#s-loginsessuser-active-mb").html(`
 				<a href='javascript:void(0);' class='c-Htopbar--c--cMenu--m--link'>
           <span id='namUser_validSess' class='c-Htopbar--c--cMenu--m--link--sessUser'>${e.received.username}</span>
@@ -186,7 +186,7 @@ $(document).on("submit", "#c-formLoginU_Camel", function(e){
             </a>
           </li>
         </ul>`);
-        // ============== MOSTRAR EL NOMBRE/CORREO DEL USUARIO - MOBILE ============== //
+        // ------------ MOSTRAR EL NOMBRE/CORREO DEL USUARIO - MOBILE
         $("#s-loginsessuser-active-ms").html(`
 				<a href='javascript:void(0);' class='c-Htopbar--c--cMenu--m--link'>
           <span id='namUser_validSess' class='c-Htopbar--c--cMenu--m--link--sessUser'>${e.received.username}</span>
@@ -207,72 +207,87 @@ $(document).on("submit", "#c-formLoginU_Camel", function(e){
         // ------------ QUITAR EL LOADER 
         setTimeout(function(){
           $("#s-mssgloadSendAction .c-mssgloadSendAction--cloader").remove();
-        }, 1000);
+        }, 350);
         $("#cnt-modalFormSessLoginorRegister").removeClass("show");
         $('#c-formLoginU_Camel')[0].reset();
       }else if(e.response == "error_email"){
         // ------------ AGREGAR AL CONTROL DE VALIDACIÓN 
         $("#s_useregin-sistem").val("");
-        // ------------ MOSTRAR EL MENSAJE DE ALERTA PERSONALIZADO 
-        $("#s-mssgloadSendAction").html(`
-	      <div class="c-mssgloadSendAction--contalert">
-					<div class="c-mssgloadSendAction--contalert--c">
-						<span class="c-mssgloadSendAction--contalert--c--close" id="btncloseModalLorR"></span>
-						<div class="c-mssgloadSendAction--contalert--c--cmssg">
-							<h1 class="c-mssgloadSendAction--contalert--c--cmssg--title">Email Inválido</h1>
-							<p class="c-mssgloadSendAction--contalert--c--cmssg--desc">El correo electrónico ingresado no es válido.</p>
-						</div>
-					</div>
-				</div>`);
-        // ------------ CERRAR EL MODAL 
-        setTimeout(function(){
-          $("#s-mssgloadSendAction .c-mssgloadSendAction--contalert").remove();
-        }, 6500);
-        $("#btncloseModalLorR").on("click", function() {
-          $(this).parent().parent().remove();
-        });
+        Swal.fire({
+		      title: '',
+		      html: `<div class="alertSwal">
+			            <div class="alertSwal__cTitle">
+			              <h3>¡Email Inválido!</h3>
+			            </div>
+			            <div class="alertSwal__cText">
+			              <p>El correo electrónico ingresado no es válido.</p>
+			            </div>
+			            <button type="button" role="button" tabindex="0" class="SwalBtn1 customSwalBtn">Aceptar</button>
+			          </div>`,
+		      icon: 'error',
+		      showCancelButton: false,
+			    showConfirmButton: false,
+			    confirmButtonColor: '#3085d6',
+			    confirmButtonText: 'Aceptar',
+			    allowOutsideClick: false,
+			    allowEscapeKey:false,
+			    allowEnterKey:true
+		    });
+		    $(document).on('click', '.SwalBtn1', function() {
+			    swal.clickConfirm();
+			  });
       }else{
         // ------------ AGREGAR AL CONTROL DE VALIDACIÓN 
         $("#s_useregin-sistem").val("");
-        // ------------ MOSTRAR EL MENSAJE DE ALERTA PERSONALIZADO 
-        $("#s-mssgloadSendAction").html(`
-	      <div class="c-mssgloadSendAction--contalert">
-					<div class="c-mssgloadSendAction--contalert--c">
-						<span class="c-mssgloadSendAction--contalert--c--close" id="btncloseModalLorR"></span>
-						<div class="c-mssgloadSendAction--contalert--c--cmssg">
-							<h1 class="c-mssgloadSendAction--contalert--c--cmssg--title">Atención!</h1>
-							<p class="c-mssgloadSendAction--contalert--c--cmssg--desc">Los datos del usuario no coinciden y/o no existen.</p>
-						</div>
-					</div>
-				</div>`);
-        // ------------ CERRAR EL MODAL 
-        setTimeout(function(){
-          $("#s-mssgloadSendAction .c-mssgloadSendAction--contalert").remove();
-        }, 6500);
-        $("#btncloseModalLorR").on("click", function(){
-          $(this).parent().parent().remove();
-        });
+        Swal.fire({
+			    title: '',
+			    html: `<div class="alertSwal">
+			            <div class="alertSwal__cTitle">
+			              <h3>¡Error!</h3>
+			            </div>
+			            <div class="alertSwal__cText">
+			              <p>Los datos del usuario no coinciden o no existen.</p>
+			            </div>
+			            <button type="button" role="button" tabindex="0" class="SwalBtn1 customSwalBtn">Aceptar</button>
+			          </div>`,
+			    icon: 'error',
+			    showCancelButton: false,
+			    showConfirmButton: false,
+			    confirmButtonColor: '#3085d6',
+			    confirmButtonText: 'Aceptar',
+			    allowOutsideClick: false,
+			    allowEscapeKey:false,
+			    allowEnterKey:true
+			  });
+			  $(document).on('click', '.SwalBtn1', function() {
+			    swal.clickConfirm();
+			  });
       }
     });
-  } else {
-    // ------------ MOSTRAR EL MENSAJE DE ALERTA PERSONALIZADO 
-    $("#s-mssgloadSendAction").html(`
-      <div class="c-mssgloadSendAction--contalert">
-				<div class="c-mssgloadSendAction--contalert--c">
-					<span class="c-mssgloadSendAction--contalert--c--close" id="btncloseModalLorR"></span>
-					<div class="c-mssgloadSendAction--contalert--c--cmssg">
-						<h1 class="c-mssgloadSendAction--contalert--c--cmssg--title">Atención!</h1>
-						<p class="c-mssgloadSendAction--contalert--c--cmssg--desc">Debes completar los campos requeridos.</p>
-					</div>
-				</div>
-			</div>`);
-    // ------------ CERRAR EL MODAL 
-    setTimeout(function(){
-      $("#s-mssgloadSendAction .c-mssgloadSendAction--contalert").remove();
-    }, 6500);
-    $("#btncloseModalLorR").on("click", function(){
-      $(this).parent().parent().remove();
-    });
+  }else{
+    Swal.fire({
+	    title: '',
+	    html: `<div class="alertSwal">
+	            <div class="alertSwal__cTitle">
+	              <h3>¡Atención!</h3>
+	            </div>
+	            <div class="alertSwal__cText">
+	              <p>Debes completar los campos requeridos.</p>
+	            </div>
+	            <button type="button" role="button" tabindex="0" class="SwalBtn1 customSwalBtn">Aceptar</button>
+	          </div>`,
+	    icon: 'warning',
+	    showCancelButton: false,
+	    showConfirmButton: false,
+	    confirmButtonColor: '#3085d6',
+	    confirmButtonText: 'Aceptar',
+	    allowOutsideClick: false,
+	    allowEscapeKey:false,
+	    allowEnterKey:true
+	  });
+	  $(document).on('click', '.SwalBtn1', function() {
+	    swal.clickConfirm();
+	  });
   }
 });
 // ------------ REGISTRO DEL USUARIO 
@@ -291,6 +306,29 @@ $(document).on("submit", "#c-formRegisterU_Camel", function(e){
       data: form
     }).done((e) => {
       if(e.response == "true"){
+        Swal.fire({
+		      title: '',
+		      html: `<div class="alertSwal">
+			            <div class="alertSwal__cTitle">
+			              <h3>¡Éxito!</h3>
+			            </div>
+			            <div class="alertSwal__cText">
+			              <p>El usuario ha sido registrado.</strong></p>
+			            </div>
+			            <button type="button" role="button" tabindex="0" class="SwalBtn1 customSwalBtn">Aceptar</button>
+			          </div>`,
+		      icon: 'success',
+		      showCancelButton: false,
+			    showConfirmButton: false,
+			    confirmButtonColor: '#3085d6',
+			    confirmButtonText: 'Aceptar',
+			    allowOutsideClick: false,
+			    allowEscapeKey:false,
+			    allowEnterKey:true
+		    });
+		    $(document).on('click', '.SwalBtn1', function() {
+			    swal.clickConfirm();
+			  });
         // ------------ AGREGAR AL CONTROL DE VALIDACIÓN 
         $("#s_useregin-sistem").val(e.received.username);
         // ------------ ASIGNAR A LA VARIABLE DE SESIÓN LOCAL 
@@ -299,7 +337,7 @@ $(document).on("submit", "#c-formRegisterU_Camel", function(e){
         }
         sessionStorage.setItem("sess_usercli", JSON.stringify(sessstorage_loguser));
         sessionStorage.setItem("sess_valuser", 1);
-        // ============== MOSTRAR EL NOMBRE/CORREO DEL USUARIO - DESKTOP ============== //
+        // ------------ MOSTRAR EL NOMBRE/CORREO DEL USUARIO - DESKTOP
         $("#s-loginsessuser-active-mb").html(`
 				<a href='javascript:void(0);' class='c-Htopbar--c--cMenu--m--link'>
           <span id='namUser_validSess' class='c-Htopbar--c--cMenu--m--link--sessUser'>${e.received.username}</span>
@@ -312,7 +350,7 @@ $(document).on("submit", "#c-formRegisterU_Camel", function(e){
             </a>
           </li>
         </ul>`);
-        // ============== MOSTRAR EL NOMBRE/CORREO DEL USUARIO - MOBILE ============== //
+        // ------------ MOSTRAR EL NOMBRE/CORREO DEL USUARIO - MOBILE
         $("#s-loginsessuser-active-ms").html(`
 				<a href='javascript:void(0);' class='c-Htopbar--c--cMenu--m--link'>
           <span id='namUser_validSess' class='c-Htopbar--c--cMenu--m--link--sessUser'>${e.received.username}</span>
