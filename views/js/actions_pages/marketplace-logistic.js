@@ -6,18 +6,6 @@ $(() => {
 // ------------ CAMBIAR DE CONTROLES SEGÚN LA OPCIÓN SELECCIONADA 
 function changesTabsOperation(){
   // ------------ VARIABLES LOCALSTORAGE 
-  
-  //#1. SELECCIONAR EL TIPO DE SERVICIO + PAGES...
-  var selService = localStorage.setItem("key_v-type_service", ""); //TIPO DE SERVICIO...
-  //#2. CREAR LOS VALORES DE CÁLCULO...
-  var TotalPackages = localStorage.setItem("tot_packages", 0);
-  var TotalWeight = localStorage.setItem("tot_weight", 0);
-  var TotalVolume = localStorage.setItem("tot_volume", 0);
-  //#3. CREAR LA INFORMACIÓN DE PUERTOS DE ORIGEN Y DESTINO...
-  var portOriginId = localStorage.setItem("port_OId", 0);
-  var portDestinyId = localStorage.setItem("port_DId", 0);
-  var portOriginName = localStorage.setItem("port_OName", "");
-  var portDestinyName = localStorage.setItem("port_DName", "");
   //#4. REUNIR LA INFORMACIÓN DE LOS PASOS...
   var key_typeOperation = localStorage.setItem("key_typeOp", ""); //TIPO DE OPERACIÓN...
   var key_typeTransport = localStorage.setItem("key_typeTransp", ""); //TIPO DE TRANSPORTE...
@@ -39,8 +27,6 @@ function changesTabsOperation(){
   var key_valvaluestaxOnebyigv = localStorage.setItem("key_v-valuestaxOnebyigv", 0); //VALOR DE AD-VALOREN
   var key_valvaluestaxTwobyigv = localStorage.setItem("key_v-valuestaxTwobyigv", 0); //VALOR DE IMPUESTO SELECCTIVO
   var key_valvaluestaxThreebyigv = localStorage.setItem("key_v-valuestaxThreebyigv", 0); //VALOR DE ANTIDUMPING
-  // var key_typeCharge = localStorage.setItem("key_typeChrg", ""); //TIPO DE CARGA...
-  // var key_valbytotaldownload = localStorage.setItem("key_v-valbytotaldownload", 0); //VALOR DE DESCARGA
 
   // ------------ VARIABLES SESSIONSTORAGE 
   var sess_usercli = sessionStorage.setItem("sess_usercli", 0); //SESSION DE VARIABLE LOCAL PARA EL USUARIO
