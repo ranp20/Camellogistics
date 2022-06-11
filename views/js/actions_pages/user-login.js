@@ -132,23 +132,23 @@ $(document).on("click", "#btn-ChangeR", function(){
 });
 $(document).on("click", "#btn-ChangeIS", function(){
   $("#c-formLoginorRegisterU").html(`
-		<form method="POST" class="cnt-modalFormSessLoginorRegister--c--cForm" id="c-formLoginU_Camel">
-			<div class="cnt-modalFormSessLoginorRegister--c--cForm--cControl">
-				<label for="u-username" class="cnt-modalFormSessLoginorRegister--c--cForm--cControl--label">USUARIO</label>
-				<input type="text" id="u-username" name="u-username" class="cnt-modalFormSessLoginorRegister--c--cForm--cControl--input" placeholder="Usuario" maxlength="80">
-				<span id="mssg_alertcontrol_usr"></span>
-			</div>
-			<div class="cnt-modalFormSessLoginorRegister--c--cForm--cControl">
-				<label for="u-password" class="cnt-modalFormSessLoginorRegister--c--cForm--cControl--label">CONTRASEÑA</label>
-				<input type="password" id="u-password" name="u-password" class="cnt-modalFormSessLoginorRegister--c--cForm--cControl--input" placeholder="Contraseña" maxlength="80">
-				<span id="mssg_alertcontrol_pass"></span>
-			</div>
-			<div class="cnt-modalFormSessLoginorRegister--c--cForm--cBtnsLoginorRegisterOptions" id="cont-btnsLoginorRegisterOptions">
-				<button type="submit" class="cnt-modalFormSessLoginorRegister--c--cForm--cBtnsLoginorRegisterOptions--action">Iniciar Sesión</button>
-				<span>&nbsp;&nbsp;o&nbsp;&nbsp;</span>
-				<a href="javascript:void(0);" class="cnt-modalFormSessLoginorRegister--c--cForm--cBtnsLoginorRegisterOptions--link" id="btn-ChangeR">Regístrate</a>
-			</div>
-		</form>`);
+	<form method="POST" class="cnt-modalFormSessLoginorRegister--c--cForm" id="c-formLoginU_Camel">
+		<div class="cnt-modalFormSessLoginorRegister--c--cForm--cControl">
+			<label for="u-username" class="cnt-modalFormSessLoginorRegister--c--cForm--cControl--label">USUARIO</label>
+			<input type="text" id="u-username" name="u-username" class="cnt-modalFormSessLoginorRegister--c--cForm--cControl--input" placeholder="Usuario" maxlength="80">
+			<span id="mssg_alertcontrol_usr"></span>
+		</div>
+		<div class="cnt-modalFormSessLoginorRegister--c--cForm--cControl">
+			<label for="u-password" class="cnt-modalFormSessLoginorRegister--c--cForm--cControl--label">CONTRASEÑA</label>
+			<input type="password" id="u-password" name="u-password" class="cnt-modalFormSessLoginorRegister--c--cForm--cControl--input" placeholder="Contraseña" maxlength="80">
+			<span id="mssg_alertcontrol_pass"></span>
+		</div>
+		<div class="cnt-modalFormSessLoginorRegister--c--cForm--cBtnsLoginorRegisterOptions" id="cont-btnsLoginorRegisterOptions">
+			<button type="submit" class="cnt-modalFormSessLoginorRegister--c--cForm--cBtnsLoginorRegisterOptions--action">Iniciar Sesión</button>
+			<span>&nbsp;&nbsp;o&nbsp;&nbsp;</span>
+			<a href="javascript:void(0);" class="cnt-modalFormSessLoginorRegister--c--cForm--cBtnsLoginorRegisterOptions--link" id="btn-ChangeR">Regístrate</a>
+		</div>
+	</form>`);
 });
 // ------------ INICIO DE SESIÓN DEL USUARIO 
 $(document).on("submit", "#c-formLoginU_Camel", function(e){
@@ -164,9 +164,7 @@ $(document).on("submit", "#c-formLoginU_Camel", function(e){
       contentType: 'application/x-www-form-urlencoded;charset=UTF-8',
       data: form
     }).done((e) => {
-      console.log(e);
       if(e.response == "true"){
-        console.log('Usuario correcto');
         // ------------ AGREGAR AL CONTROL DE VALIDACIÓN 
         $("#s_useregin-sistem").val(e.received.username);
         // ------------ ASIGNAR A LA VARIABLE DE SESIÓN LOCAL 
@@ -339,130 +337,121 @@ $(document).on("submit", "#c-formRegisterU_Camel", function(e){
         $("#cnt-modalFormSessLoginorRegister").removeClass("show");
         $('#c-formRegisterU_Camel')[0].reset();
       }else if(e.response == "equals"){
-        // ------------ AGREGAR AL CONTROL DE VALIDACIÓN 
         $("#s_useregin-sistem").val("");
-        // ------------ MOSTRAR EL MENSAJE DE ALERTA PERSONALIZADO 
-        $("#s-mssgloadSendAction").html(`
-        <div class="c-mssgloadSendAction--contalert">
-					<div class="c-mssgloadSendAction--contalert--c">
-						<span class="c-mssgloadSendAction--contalert--c--close" id="btncloseModalLorR"></span>
-						<div class="c-mssgloadSendAction--contalert--c--cmssg">
-							<h1 class="c-mssgloadSendAction--contalert--c--cmssg--title"><b>Atención!</b></h1>
-							<p class="c-mssgloadSendAction--contalert--c--cmssg--desc">El usuario ingresado <b>ya se encuentra registrado, por favor inicie sesión.</b></p>
-						</div>
-					</div>
-				</div>`);
-        // ------------ CERRAR EL MODAL 
-        setTimeout(function(){
-          $("#s-mssgloadSendAction .c-mssgloadSendAction--contalert").remove();
-        }, 6500);
-        $("#btncloseModalLorR").on("click", function(){
-          $(this).parent().parent().remove();
-        });
-      }else if(e.response == "errinsert"){
-        // ------------ AGREGAR AL CONTROL DE VALIDACIÓN 
-        $("#s_useregin-sistem").val("");
-        // ------------ MOSTRAR EL MENSAJE DE ALERTA PERSONALIZADO 
-        $("#s-mssgloadSendAction").html(`
-        <div class="c-mssgloadSendAction--contalert">
-					<div class="c-mssgloadSendAction--contalert--c">
-						<span class="c-mssgloadSendAction--contalert--c--close" id="btncloseModalLorR"></span>
-						<div class="c-mssgloadSendAction--contalert--c--cmssg">
-							<h1 class="c-mssgloadSendAction--contalert--c--cmssg--title">Lo sentimos</h1>
-							<p class="c-mssgloadSendAction--contalert--c--cmssg--desc">Hubo un error al insertar el registro.</p>
-						</div>
-					</div>
-				</div>`);
-        // ------------ CERRAR EL MODAL 
-        setTimeout(function(){
-          $("#s-mssgloadSendAction .c-mssgloadSendAction--contalert").remove();
-        }, 6500);
-        $("#btncloseModalLorR").on("click", function(){
-          $(this).parent().parent().remove();
-        });
+        Swal.fire({
+		      title: '',
+		      html: `<div class="alertSwal">
+			            <div class="alertSwal__cTitle">
+			              <h3>¡Usuario ya existe!</h3>
+			            </div>
+			            <div class="alertSwal__cText">
+			              <p>El usuario ingresado <strong class="bold-pricolor">ya se encuentra registrado, por favor inicie sesión.</strong></p>
+			            </div>
+			            <button type="button" role="button" tabindex="0" class="SwalBtn1 customSwalBtn">Aceptar</button>
+			          </div>`,
+		      icon: 'warning',
+		      showCancelButton: false,
+			    showConfirmButton: false,
+			    confirmButtonColor: '#3085d6',
+			    confirmButtonText: 'Aceptar',
+			    allowOutsideClick: false,
+			    allowEscapeKey:false,
+			    allowEnterKey:true
+		    });
+		    $(document).on('click', '.SwalBtn1', function() {
+			    swal.clickConfirm();
+			  });
       }else if(e.response == "error_email"){
-        // ------------ AGREGAR AL CONTROL DE VALIDACIÓN 
+      	$("#s_useregin-sistem").val("");
+        Swal.fire({
+		      title: '',
+		      html: `<div class="alertSwal">
+			            <div class="alertSwal__cTitle">
+			              <h3>¡Email Inválido!</h3>
+			            </div>
+			            <div class="alertSwal__cText">
+			              <p>El correo electrónico ingresado no es válido.</p>
+			            </div>
+			            <button type="button" role="button" tabindex="0" class="SwalBtn1 customSwalBtn">Aceptar</button>
+			          </div>`,
+		      icon: 'error',
+		      showCancelButton: false,
+			    showConfirmButton: false,
+			    confirmButtonColor: '#3085d6',
+			    confirmButtonText: 'Aceptar',
+			    allowOutsideClick: false,
+			    allowEscapeKey:false,
+			    allowEnterKey:true
+		    });
+		    $(document).on('click', '.SwalBtn1', function() {
+			    swal.clickConfirm();
+			  });
+      } else if (e.response == "error_pass"){
+      	$("#s_useregin-sistem").val("");
+        Swal.fire({
+		      title: '',
+		      html: `<div class="alertSwal">
+			            <div class="alertSwal__cTitle">
+			              <h3>¡Contraseña Inválida!</h3>
+			            </div>
+			            <div class="alertSwal__cText">
+			              <p>La contraseña solo puede contener letras (a-b ó A-B) y números del 0 - 9.</p>
+			            </div>
+			            <button type="button" role="button" tabindex="0" class="SwalBtn1 customSwalBtn">Aceptar</button>
+			          </div>`,
+		      icon: 'error',
+		      showCancelButton: false,
+			    showConfirmButton: false,
+			    confirmButtonColor: '#3085d6',
+			    confirmButtonText: 'Aceptar',
+			    allowOutsideClick: false,
+			    allowEscapeKey:false,
+			    allowEnterKey:true
+		    });
+		    $(document).on('click', '.SwalBtn1', function() {
+			    swal.clickConfirm();
+			  });
+      }else if(e.response == "errinsert"){
         $("#s_useregin-sistem").val("");
-        // ------------ MOSTRAR EL MENSAJE DE ALERTA PERSONALIZADO 
-        $("#s-mssgloadSendAction").html(`
-        <div class="c-mssgloadSendAction--contalert">
-					<div class="c-mssgloadSendAction--contalert--c">
-						<span class="c-mssgloadSendAction--contalert--c--close" id="btncloseModalLorR"></span>
-						<div class="c-mssgloadSendAction--contalert--c--cmssg">
-							<h1 class="c-mssgloadSendAction--contalert--c--cmssg--title">Email Inválido</h1>
-							<p class="c-mssgloadSendAction--contalert--c--cmssg--desc">El correo electrónico ingresado no es válido.</p>
-						</div>
-					</div>
-				</div>`);
-        // ------------ CERRAR EL MODAL 
-        setTimeout(function(){
-          $("#s-mssgloadSendAction .c-mssgloadSendAction--contalert").remove();
-        }, 6500);
-        $("#btncloseModalLorR").on("click", function(){
-          $(this).parent().parent().remove();
-        });
-      } else if (e.response == "error_pass") {
-        // ------------ AGREGAR AL CONTROL DE VALIDACIÓN 
-        $("#s_useregin-sistem").val("");
-        // ------------ MOSTRAR EL MENSAJE DE ALERTA PERSONALIZADO 
-        $("#s-mssgloadSendAction").html(`
-        <div class="c-mssgloadSendAction--contalert">
-					<div class="c-mssgloadSendAction--contalert--c">
-						<span class="c-mssgloadSendAction--contalert--c--close" id="btncloseModalLorR"></span>
-						<div class="c-mssgloadSendAction--contalert--c--cmssg">
-							<h1 class="c-mssgloadSendAction--contalert--c--cmssg--title">Contraseña Inválida</h1>
-							<p class="c-mssgloadSendAction--contalert--c--cmssg--desc">La contraseña solo puede contener letras y números.</p>
-						</div>
-					</div>
-				</div>`);
-        // ------------ CERRAR EL MODAL 
-        setTimeout(function(){
-          $("#s-mssgloadSendAction .c-mssgloadSendAction--contalert").remove();
-        }, 6500);
-        $("#btncloseModalLorR").on("click", function(){
-          $(this).parent().parent().remove();
-        });
+        Swal.fire({
+		      title: 'Error!',
+		      html: `<span class='font-w-300'>Lo sentimos, hubo un error al procesar la información.</span>`,
+		      icon: 'error',
+		      confirmButtonText: 'Aceptar'
+		    });
       }else{
-        // ------------ AGREGAR AL CONTROL DE VALIDACIÓN 
-        $("#s_useregin-sistem").val("");
-        // ------------ MOSTRAR EL MENSAJE DE ALERTA PERSONALIZADO 
-        $("#s-mssgloadSendAction").html(`
-          <div class="c-mssgloadSendAction--contalert">
-						<div class="c-mssgloadSendAction--contalert--c">
-							<span class="c-mssgloadSendAction--contalert--c--close" id="btncloseModalLorR"></span>
-							<div class="c-mssgloadSendAction--contalert--c--cmssg">
-								<h1 class="c-mssgloadSendAction--contalert--c--cmssg--title">Error!</h1>
-								<p class="c-mssgloadSendAction--contalert--c--cmssg--desc">Lo sentimos, hubo un error al procesar el formulario.</p>
-							</div>
-						</div>
-					</div>`);
-        // ------------ CERRAR EL MODAL 
-        setTimeout(function(){
-          $("#s-mssgloadSendAction .c-mssgloadSendAction--contalert").remove();
-        }, 6500);
-        $("#btncloseModalLorR").on("click", function(){
-          $(this).parent().parent().remove();
-        });
+        Swal.fire({
+		      title: 'Error!',
+		      html: `<span class='font-w-300'>Lo sentimos, hubo un error al procesar la información.</span>`,
+		      icon: 'error',
+		      confirmButtonText: 'Aceptar'
+		    });
       }
     });
   }else{
-    // ------------ MOSTRAR EL MENSAJE DE ALERTA PERSONALIZADO 
-    $("#s-mssgloadSendAction").html(`
-    <div class="c-mssgloadSendAction--contalert">
-			<div class="c-mssgloadSendAction--contalert--c">
-				<span class="c-mssgloadSendAction--contalert--c--close" id="btncloseModalLorR"></span>
-				<div class="c-mssgloadSendAction--contalert--c--cmssg">
-					<h1 class="c-mssgloadSendAction--contalert--c--cmssg--title">Atención!</h1>
-					<p class="c-mssgloadSendAction--contalert--c--cmssg--desc">Debes completar los campos requeridos.</p>
-				</div>
-			</div>
-		</div>`);
-    // ------------ CERRAR EL MODAL 
-    setTimeout(function(){
-      $("#s-mssgloadSendAction .c-mssgloadSendAction--contalert").remove();
-    }, 6500);
-    $("#btncloseModalLorR").on("click", function(){
-      $(this).parent().parent().remove();
-    });
+  	$("#s_useregin-sistem").val("");
+	  Swal.fire({
+	    title: '',
+	    html: `<div class="alertSwal">
+	            <div class="alertSwal__cTitle">
+	              <h3>¡Atención!</h3>
+	            </div>
+	            <div class="alertSwal__cText">
+	              <p>Debes completar los campos requeridos.</p>
+	            </div>
+	            <button type="button" role="button" tabindex="0" class="SwalBtn1 customSwalBtn">Aceptar</button>
+	          </div>`,
+	    icon: 'warning',
+	    showCancelButton: false,
+	    showConfirmButton: false,
+	    confirmButtonColor: '#3085d6',
+	    confirmButtonText: 'Aceptar',
+	    allowOutsideClick: false,
+	    allowEscapeKey:false,
+	    allowEnterKey:true
+	  });
+	  $(document).on('click', '.SwalBtn1', function() {
+	    swal.clickConfirm();
+	  });
   }
 });

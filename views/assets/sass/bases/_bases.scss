@@ -39,6 +39,10 @@ img{
 	height: auto;
 }
 /* CLASS UTILITIES */
+.bold-pricolor{
+	color: $theme-clr-btns;
+	font-weight: bold;
+}
 input[f-hidden="aria-hidden"]{
 	width: 0;
 	height: 0;
@@ -588,4 +592,117 @@ input[f-hidden="aria-hidden"]{
 /* NOTIFICACIÓN - MENSAJES AL USUARIO */
 #notiMsgAlertCli{
 	@include notifiMsg-client(rgba(0,0,0,.2), #fff, $primary-color);
+}
+/* ESTILOS PARA SWEETALERT2 */
+.swal2-container.swal2-bottom, .swal2-container.swal2-center, .swal2-container.swal2-top{
+	z-index: 99999999;
+}
+.alertSwal{
+	padding: 1rem 0 0 0;
+	.txt-center{
+		text-align: center;
+	}
+	&__cIcon{
+		svg{
+			fill: $theme-clr-titles;
+		}
+	}
+	&__cTitle{
+		margin-bottom: 1.15rem;
+		color: $theme-clr-titles;
+		h1,h2,h3,h4,h5,h6,p{
+			font-size: 1.75rem;
+		}
+	}
+	&__cText{
+		margin-bottom: 1.65rem;
+	}
+	&__cM{
+		text-align: left;
+    padding: 0 0 0 40px;
+    margin-bottom: 1rem;
+		li{
+			background-image: url("../../../views/assets/img/svg/check-svg.f96b9692.svg");
+	    background-repeat: no-repeat;
+	    background-size: 15px;
+	    background-position: 0;
+	    padding-left: 25px;
+			color: #008000;
+			text-align: left;
+		}
+	}
+	&__cBtnsActions{
+		button{
+			opacity: 1;
+		  cursor: pointer;
+		  display: inline-block;
+		  width: 100%;
+		  margin-left: auto;
+		  margin-right: auto;
+		  border: none;
+		  padding: 1rem;
+		  border-radius: 5px;
+	  	&:first-child{
+	  		margin-bottom: 0.5rem;
+	  	}
+		  @media (min-width: 768px){
+		  	max-width: 200px;
+		  	width: 90%;
+		  	&:first-child{
+		  		margin-top: 0;
+		  		margin-bottom: 0;
+		  		margin-left: 0;
+		  		margin-right: 0;
+		  	}
+		  	&:last-child{
+		  		margin-top: 0;
+		  		margin-bottom: 0;
+		  		margin-left: 0.5rem;
+		  		margin-right: 0;
+		  	}
+		  }
+		  &.active{
+		  	opacity: 1;
+		  }
+			&.cust-cancel{
+				color: #fff;
+				background-color: red;	
+				&:hover{
+			  	background-color: darken(#dc3545, 5%);
+			  }
+			}
+			&.cust-confirm{
+		  	color: $theme-clr-btns-txt;
+		  	background-color: $theme-clr-btns;
+		  	transition: ease-out .2s;
+			  &:hover{
+			  	background-color: darken($theme-clr-btns, 10%);
+			  }
+			}
+		}
+	}
+}
+.SwalBtn1.customSwalBtn{
+	opacity: 1;
+  cursor: pointer;
+  display: inline-block;
+  max-width: 320px;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  border: none;
+  color: $theme-clr-btns-txt;
+  background-color: $theme-clr-btns;
+  padding: 1rem;
+  border-radius: 5px;
+  transition: ease-out .2s;
+  @media (min-width: 768px){
+  	width: 90%;
+  }
+  &.active{
+  	opacity: 1;
+  }
+  &:hover{
+  	background-color: darken($theme-clr-btns, 10%);
+  }
 }

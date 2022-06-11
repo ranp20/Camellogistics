@@ -7,7 +7,10 @@
 <html lang="es">
 <head>
   <title>Camel Logistics | Marketplace Logístico</title>
-  <?php require_once 'includes/inc_header-links.php'; ?>
+  <?php require_once 'includes/inc_header-links.php';?>
+  <!-- INCLUIR SWEET ALERT 2 -->
+  <link rel="stylesheet" href="node_modules/sweetalert2/dist/sweetalert2.min.css">
+  <script type="text/javascript" src="node_modules/sweetalert2/dist/sweetalert2.all.min.js"></script>
 </head>
 <body>
   <?php require_once 'includes/inc_header-top.php'; ?>
