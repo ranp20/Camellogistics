@@ -10,29 +10,8 @@ function twodecimals(n){
   return t.match(regex)[0];
 }
 // ------------ RETORNAR - PRIMERA LETRA EN MAYÚSCULA 
-function firstToUppercase(e) {
+function firstToUppercase(e){
   return e.charAt(0).toUpperCase() + e.slice(1);
-}
-// ------------ NOTIFICACIONES 
-function showNotification(typeNotify, titlemsg, descmsg){
-	var htmlNotify = "";
-	if(typeNotify == "true"){
-		htmlNotify = `<div id="notiMsgAlertCli">
-      <div class="c_notifyMsg toast--green">
-        <div class="c_notifyMsg__icon">
-          <svg version="1.1" class="c_notifyMsg__svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve"><g><g><path d="M504.502,75.496c-9.997-9.998-26.205-9.998-36.204,0L161.594,382.203L43.702,264.311c-9.997-9.998-26.205-9.997-36.204,0    c-9.998,9.997-9.998,26.205,0,36.203l135.994,135.992c9.994,9.997,26.214,9.99,36.204,0L504.502,111.7    C514.5,101.703,514.499,85.494,504.502,75.496z"></path></g></g></svg>
-        </div>
-        <div class="c_notifyMsg__content">
-          <p class="c_notifyMsg__type">${titlemsg}</p>
-          <p class="c_notifyMsg__message">${descmsg}</p>
-        </div>
-        <div class="c_notifyMsg__close">
-          <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.642 15.642" xmlns:xlink="http://www.w3.org/1999/xlink" enable-background="new 0 0 15.642 15.642"><path fill-rule="evenodd" d="M8.882,7.821l6.541-6.541c0.293-0.293,0.293-0.768,0-1.061  c-0.293-0.293-0.768-0.293-1.061,0L7.821,6.76L1.28,0.22c-0.293-0.293-0.768-0.293-1.061,0c-0.293,0.293-0.293,0.768,0,1.061  l6.541,6.541L0.22,14.362c-0.293,0.293-0.293,0.768,0,1.061c0.147,0.146,0.338,0.22,0.53,0.22s0.384-0.073,0.53-0.22l6.541-6.541  l6.541,6.541c0.147,0.146,0.338,0.22,0.53,0.22c0.192,0,0.384-0.073,0.53-0.22c0.293-0.293,0.293-0.768,0-1.061L8.882,7.821z"></path></svg>
-        </div>
-      </div>
-    </div>`;
-	}
-	return htmlNotify;
 }
 $("#btn-scrollingtTtB").on("click", function(){$("body, html").animate({scrollTop: '500'}, 350);}); //BOTÓN DE IR HACIA ABAJO
 $(document).ready(function(){
@@ -326,7 +305,7 @@ $(document).ready(function(){
 		  	var fvalfinal_com_agencia = 0;
 		  	var fvalfinal_gas_operativos = 0;
 		  	var val_defaultmin = 0.4 / 100;
-		  	if(localStorage.getItem("key_typeChrg") == "FCL"){
+		  	if(v_loadtypecharge == "FCL"){
 		  		fvalfinal_gas_operativos = gas_operativos_fcl;
 		  		if(sumbyCIF > 35000){
 		  			fval_com_agencia = sumbyCIF * val_defaultmin;
@@ -410,6 +389,49 @@ $(document).ready(function(){
 						if(rquotaiton[0].res != "exists"){
 							console.log("Cotización guardada");
 							$("#v_gencodexxx").text(rquotaiton[0].res);
+
+							// --------------- LISTAR DATOS PARA ENVIAR POR WHATSAPP
+							// ------------ CARGAR LOS VALORES E INCLUIRLOS EN EL TEXTO PARA EL BOTÓN DE WHATSAPP 
+							var idcodequote = $("#v_gencodexxx").text() + " - " + $("#v_loadtypecharge").val(), 
+									typeFleteService = $("#m-first-listresume").find("li:first-child").find("div").find("span:nth-child(2)").text(),
+									typeFleteContainer = $("#m-first-listresume").find("li:nth-child(2)").find("div").find("span:nth-child(2)").text(),
+									fleteportOrigin = $("#v-listportsOandD").find("span:first-child").text(),
+									fleteportDestiny = $("#v-listportsOandD").find("span:last-child").text(),
+									contentFlete = $("#m-first-listresume").find("li:nth-child(3)").find("div").find("p").find("span").text(),
+									valormercanciaFlete = $("#m-second-listresume").find("li:first-child").find("div").find("span:nth-child(2)").text(),
+									impuestosFlete = $("#m-second-listresume").find("li:nth-child(2)").find("div").find("span:nth-child(2)").text(),
+									transportFlete = $("#m-second-listresume").find("li:nth-child(3)").find("div").find("span:nth-child(2)").text();
+									seguroFlete = $("#m-second-listresume").find("li:nth-child(4)").find("div").find("span:nth-child(2)").text();
+
+							var objDataTxtWhatsapp = {
+								id: idcodequote,
+								tservice : typeFleteService,
+								tcontainer : typeFleteContainer,
+								fportorigin : fleteportOrigin,
+								fportdestiny : fleteportDestiny,
+								containtflete : contentFlete,
+								valmercanciaflete: valormercanciaFlete,
+								impuestosflete : impuestosFlete,
+								tranportflete : transportFlete,
+								seguroflete : seguroFlete
+							}
+
+							// ------------ AÑADIR LOS DATOS AL ENLACE DE WHATSAPP 
+							$("#d-link-messagecontact").attr("href", 
+						`https://api.whatsapp.com/send?phone=51989874368&text=Saludos,%20me%20gustaría%20cotizar%20
+							ID:${objDataTxtWhatsapp.id},%20
+							Tipo%20Flete:%20${objDataTxtWhatsapp.tservice},%20
+							Tipo%20Contenedor:%20${objDataTxtWhatsapp.tcontainer},%20
+							Flete%20Origen:%20${objDataTxtWhatsapp.fportorigin},%20
+							Flete%20Destino:%20${objDataTxtWhatsapp.fportdestiny},%20
+							Contenido%20Flete:%20${objDataTxtWhatsapp.containtflete},%20
+							Valor%20Flete:%202136,%20
+							gastos:%20${objDataTxtWhatsapp.valmercanciaflete},%20
+							Impuestos:%20${objDataTxtWhatsapp.impuestosflete},%20
+							Transporte:%20${objDataTxtWhatsapp.tranportflete},%20
+							Seguro:%20${objDataTxtWhatsapp.seguroflete},%20
+							ImpuestoAprox:%20${twodecimals_FinalTax}`);
+
 						}else if(rquotaiton[0].res == "exists"){
 							console.log("Esta cotización ya existe");
 							$.ajax({
@@ -477,9 +499,55 @@ $(document).ready(function(){
 								}else{partFinalDecimal_FTotal = partDecimal_FTotal[1];}
 								$("#totalval_quoteFinal").html(`<span>${separate_point_FTotal},<sup>${partFinalDecimal_FTotal}</sup> USD</span>`);
 
+								// --------------- LISTAR DATOS PARA ENVIAR POR WHATSAPP
+								// ------------ CARGAR LOS VALORES E INCLUIRLOS EN EL TEXTO PARA EL BOTÓN DE WHATSAPP 
+								var idcodequote = $("#v_gencodexxx").text() + " - " + $("#v_loadtypecharge").val(), 
+										typeFleteService = $("#m-first-listresume").find("li:first-child").find("div").find("span:nth-child(2)").text(),
+										typeFleteContainer = $("#m-first-listresume").find("li:nth-child(2)").find("div").find("span:nth-child(2)").text(),
+										fleteportOrigin = $("#v-listportsOandD").find("span:first-child").text(),
+										fleteportDestiny = $("#v-listportsOandD").find("span:last-child").text(),
+										contentFlete = $("#m-first-listresume").find("li:nth-child(3)").find("div").find("p").find("span").text(),
+										valormercanciaFlete = $("#m-second-listresume").find("li:first-child").find("div").find("span:nth-child(2)").text(),
+										impuestosFlete = $("#m-second-listresume").find("li:nth-child(2)").find("div").find("span:nth-child(2)").text(),
+										transportFlete = $("#m-second-listresume").find("li:nth-child(3)").find("div").find("span:nth-child(2)").text();
+										seguroFlete = $("#m-second-listresume").find("li:nth-child(4)").find("div").find("span:nth-child(2)").text();
+
+								var objDataTxtWhatsapp = {
+									id: idcodequote,
+									tservice : typeFleteService,
+									tcontainer : typeFleteContainer,
+									fportorigin : fleteportOrigin,
+									fportdestiny : fleteportDestiny,
+									containtflete : contentFlete,
+									valmercanciaflete: valormercanciaFlete,
+									impuestosflete : impuestosFlete,
+									tranportflete : transportFlete,
+									seguroflete : seguroFlete
+								}
+
+								// ------------ AÑADIR LOS DATOS AL ENLACE DE WHATSAPP 
+								$("#d-link-messagecontact").attr("href", 
+							`https://api.whatsapp.com/send?phone=51989874368&text=Saludos,%20me%20gustaría%20cotizar%20
+								ID:${objDataTxtWhatsapp.id},%20
+								Tipo%20Flete:%20${objDataTxtWhatsapp.tservice},%20
+								Tipo%20Contenedor:%20${objDataTxtWhatsapp.tcontainer},%20
+								Flete%20Origen:%20${objDataTxtWhatsapp.fportorigin},%20
+								Flete%20Destino:%20${objDataTxtWhatsapp.fportdestiny},%20
+								Contenido%20Flete:%20${objDataTxtWhatsapp.containtflete},%20
+								Valor%20Flete:%202136,%20
+								gastos:%20${objDataTxtWhatsapp.valmercanciaflete},%20
+								Impuestos:%20${objDataTxtWhatsapp.impuestosflete},%20
+								Transporte:%20${objDataTxtWhatsapp.tranportflete},%20
+								Seguro:%20${objDataTxtWhatsapp.seguroflete},%20
+								ImpuestoAprox:%20${twodecimals_FinalTax}`);
 						  });
 						}else{
-							console.log("Lo sentimos, hubo un error al guardar la cotización");
+							Swal.fire({
+					      title: 'Error!',
+					      html: `<span class='font-w-300'>Lo sentimos, hubo un error al procesar la información.</span>`,
+					      icon: 'error',
+					      confirmButtonText: 'Aceptar'
+					    });
 						}
 					});
 				}else if($("#s_useregin-sistem").val() != "" || $("#s_useregin-sistem").val() != undefined || $("#s_useregin-sistem").val() != 'undefined' || $("#s_useregin-sistem").val() != null || $("#s_useregin-sistem").val() != 'null'){
@@ -542,6 +610,47 @@ $(document).ready(function(){
 						if(rquotaiton[0].res != "exists"){
 							console.log("Cotización guardada");
 							$("#v_gencodexxx").text(rquotaiton[0].res);
+							// --------------- LISTAR DATOS PARA ENVIAR POR WHATSAPP
+							// ------------ CARGAR LOS VALORES E INCLUIRLOS EN EL TEXTO PARA EL BOTÓN DE WHATSAPP 
+							var idcodequote = $("#v_gencodexxx").text() + " - " + $("#v_loadtypecharge").val(), 
+									typeFleteService = $("#m-first-listresume").find("li:first-child").find("div").find("span:nth-child(2)").text(),
+									typeFleteContainer = $("#m-first-listresume").find("li:nth-child(2)").find("div").find("span:nth-child(2)").text(),
+									fleteportOrigin = $("#v-listportsOandD").find("span:first-child").text(),
+									fleteportDestiny = $("#v-listportsOandD").find("span:last-child").text(),
+									contentFlete = $("#m-first-listresume").find("li:nth-child(3)").find("div").find("p").find("span").text(),
+									valormercanciaFlete = $("#m-second-listresume").find("li:first-child").find("div").find("span:nth-child(2)").text(),
+									impuestosFlete = $("#m-second-listresume").find("li:nth-child(2)").find("div").find("span:nth-child(2)").text(),
+									transportFlete = $("#m-second-listresume").find("li:nth-child(3)").find("div").find("span:nth-child(2)").text();
+									seguroFlete = $("#m-second-listresume").find("li:nth-child(4)").find("div").find("span:nth-child(2)").text();
+
+							var objDataTxtWhatsapp = {
+								id: idcodequote,
+								tservice : typeFleteService,
+								tcontainer : typeFleteContainer,
+								fportorigin : fleteportOrigin,
+								fportdestiny : fleteportDestiny,
+								containtflete : contentFlete,
+								valmercanciaflete: valormercanciaFlete,
+								impuestosflete : impuestosFlete,
+								tranportflete : transportFlete,
+								seguroflete : seguroFlete
+							}
+
+							// ------------ AÑADIR LOS DATOS AL ENLACE DE WHATSAPP 
+							$("#d-link-messagecontact").attr("href", 
+						`https://api.whatsapp.com/send?phone=51989874368&text=Saludos,%20me%20gustaría%20cotizar%20
+							ID:${objDataTxtWhatsapp.id},%20
+							Tipo%20Flete:%20${objDataTxtWhatsapp.tservice},%20
+							Tipo%20Contenedor:%20${objDataTxtWhatsapp.tcontainer},%20
+							Flete%20Origen:%20${objDataTxtWhatsapp.fportorigin},%20
+							Flete%20Destino:%20${objDataTxtWhatsapp.fportdestiny},%20
+							Contenido%20Flete:%20${objDataTxtWhatsapp.containtflete},%20
+							Valor%20Flete:%202136,%20
+							gastos:%20${objDataTxtWhatsapp.valmercanciaflete},%20
+							Impuestos:%20${objDataTxtWhatsapp.impuestosflete},%20
+							Transporte:%20${objDataTxtWhatsapp.tranportflete},%20
+							Seguro:%20${objDataTxtWhatsapp.seguroflete},%20
+							ImpuestoAprox:%20${twodecimals_FinalTax}`);
 						}else if(rquotaiton[0].res == "exists"){
 							console.log("Esta cotización ya existe");
 							$.ajax({
@@ -608,15 +717,61 @@ $(document).ready(function(){
 								}else	if(partDecimal_FTotal[1].length < 2){partFinalDecimal_FTotal = partDecimal_FTotal[1]+'0';
 								}else{partFinalDecimal_FTotal = partDecimal_FTotal[1];}
 								$("#totalval_quoteFinal").html(`<span>${separate_point_FTotal},<sup>${partFinalDecimal_FTotal}</sup> USD</span>`);
+
+								// --------------- LISTAR DATOS PARA ENVIAR POR WHATSAPP
+								// ------------ CARGAR LOS VALORES E INCLUIRLOS EN EL TEXTO PARA EL BOTÓN DE WHATSAPP 
+								var idcodequote = $("#v_gencodexxx").text() + " - " + $("#v_loadtypecharge").val(), 
+										typeFleteService = $("#m-first-listresume").find("li:first-child").find("div").find("span:nth-child(2)").text(),
+										typeFleteContainer = $("#m-first-listresume").find("li:nth-child(2)").find("div").find("span:nth-child(2)").text(),
+										fleteportOrigin = $("#v-listportsOandD").find("span:first-child").text(),
+										fleteportDestiny = $("#v-listportsOandD").find("span:last-child").text(),
+										contentFlete = $("#m-first-listresume").find("li:nth-child(3)").find("div").find("p").find("span").text(),
+										valormercanciaFlete = $("#m-second-listresume").find("li:first-child").find("div").find("span:nth-child(2)").text(),
+										impuestosFlete = $("#m-second-listresume").find("li:nth-child(2)").find("div").find("span:nth-child(2)").text(),
+										transportFlete = $("#m-second-listresume").find("li:nth-child(3)").find("div").find("span:nth-child(2)").text();
+										seguroFlete = $("#m-second-listresume").find("li:nth-child(4)").find("div").find("span:nth-child(2)").text();
+
+								var objDataTxtWhatsapp = {
+									id: idcodequote,
+									tservice : typeFleteService,
+									tcontainer : typeFleteContainer,
+									fportorigin : fleteportOrigin,
+									fportdestiny : fleteportDestiny,
+									containtflete : contentFlete,
+									valmercanciaflete: valormercanciaFlete,
+									impuestosflete : impuestosFlete,
+									tranportflete : transportFlete,
+									seguroflete : seguroFlete
+								}
+
+								// ------------ AÑADIR LOS DATOS AL ENLACE DE WHATSAPP 
+								$("#d-link-messagecontact").attr("href", 
+							`https://api.whatsapp.com/send?phone=51989874368&text=Saludos,%20me%20gustaría%20cotizar%20
+								ID:${objDataTxtWhatsapp.id},%20
+								Tipo%20Flete:%20${objDataTxtWhatsapp.tservice},%20
+								Tipo%20Contenedor:%20${objDataTxtWhatsapp.tcontainer},%20
+								Flete%20Origen:%20${objDataTxtWhatsapp.fportorigin},%20
+								Flete%20Destino:%20${objDataTxtWhatsapp.fportdestiny},%20
+								Contenido%20Flete:%20${objDataTxtWhatsapp.containtflete},%20
+								Valor%20Flete:%202136,%20
+								gastos:%20${objDataTxtWhatsapp.valmercanciaflete},%20
+								Impuestos:%20${objDataTxtWhatsapp.impuestosflete},%20
+								Transporte:%20${objDataTxtWhatsapp.tranportflete},%20
+								Seguro:%20${objDataTxtWhatsapp.seguroflete},%20
+								ImpuestoAprox:%20${twodecimals_FinalTax}`);
 						  });
 						}else{
-							console.log("Lo sentimos, hubo un error al guardar la cotización");
+							Swal.fire({
+					      title: 'Error!',
+					      html: `<span class='font-w-300'>Lo sentimos, hubo un error al procesar la información.</span>`,
+					      icon: 'error',
+					      confirmButtonText: 'Aceptar'
+					    });
 						}
 					});
 				}else{
 					window.location.href = "marketplace-logistico";
 				}
-
 		  });
 
 	    // ------------ VALIDAR SI EXISTE UN USUARIO AL ABRIR EL MODAL - PRIMER BOTÓN 
@@ -1037,46 +1192,6 @@ $(document).ready(function(){
 					console.log('Hubo un error al generar el PDF');
 				}
 			});
-
-			// ------------ CARGAR LOS VALORES E INCLUIRLOS EN EL TEXTO PARA EL BOTÓN DE WHATSAPP 
-			var typeFleteService = $("#m-first-listresume").find("li:first-child").find("div").find("span:nth-child(2)").text(),
-					typeFleteContainer = $("#m-first-listresume").find("li:nth-child(2)").find("div").find("span:nth-child(2)").text(),
-					fleteportOrigin = $("#v-listportsOandD").find("span:first-child").text(),
-					fleteportDestiny = $("#v-listportsOandD").find("span:last-child").text(),
-					contentFlete = $("#m-first-listresume").find("li:nth-child(3)").find("div").find("p").find("span").text(),
-					valormercanciaFlete = $("#m-second-listresume").find("li:first-child").find("div").find("span:nth-child(2)").text(),
-					impuestosFlete = $("#m-second-listresume").find("li:nth-child(2)").find("div").find("span:nth-child(2)").text(),
-					transportFlete = $("#m-second-listresume").find("li:nth-child(3)").find("div").find("span:nth-child(2)").text();
-					seguroFlete = $("#m-second-listresume").find("li:nth-child(4)").find("div").find("span:nth-child(2)").text();
-
-			var objDataTxtWhatsapp = {
-				tservice : typeFleteService,
-				tcontainer : typeFleteContainer,
-				fportorigin : fleteportOrigin,
-				fportdestiny : fleteportDestiny,
-				containtflete : contentFlete,
-				valmercanciaflete: valormercanciaFlete,
-				impuestosflete : impuestosFlete,
-				tranportflete : transportFlete,
-				seguroflete : seguroFlete
-			}
-
-			// ------------ AÑADIR LOS DATOS AL ENLACE DE WHATSAPP 
-			$("#d-link-messagecontact").attr("href", 
-		`https://api.whatsapp.com/send?phone=51989874368&text=Saludos,%20me%20gustaría%20cotizar%20
-			ID:31798-LCL,%20
-			Tipo%20Flete:%20${objDataTxtWhatsapp.tservice},%20
-			Tipo%20Contenedor:%20${objDataTxtWhatsapp.tcontainer},%20
-			Flete%20Origen:%20${objDataTxtWhatsapp.fportorigin},%20
-			Flete%20Destino:%20${objDataTxtWhatsapp.fportdestiny},%20
-			Contenido%20Flete:%20${objDataTxtWhatsapp.containtflete},%20
-			Valor%20Flete:%202136,%20
-			gastos:%20${objDataTxtWhatsapp.valmercanciaflete},%20
-			Impuestos:%20${objDataTxtWhatsapp.impuestosflete},%20
-			Transporte:%20${objDataTxtWhatsapp.tranportflete},%20
-			Seguro:%20${objDataTxtWhatsapp.seguroflete},%20
-			ImpuestoAprox:%20${twodecimals_FinalTax}`);
-
 	  });
   });
 
@@ -1175,11 +1290,10 @@ $(document).ready(function(){
 				contentType: false,
         cache: false,
         processData: false
-			}).done(function(e){
+			}).done((e) => {
 				var resupdate = JSON.parse(e);
 				console.log(resupdate[0].res);
 				if(resupdate[0].res == "updated"){
-
 					var formdata = new FormData();
 					formdata.append("id_gencoderand", $("#v_idgencoderand").val());
 					formdata.append("code_quote", $("#v_gencodexxx").text());
@@ -1196,36 +1310,83 @@ $(document).ready(function(){
 						contentType: false,
 		        cache: false,
 		        processData: false
-					}).done(function(e){
-						var notifyMessage = e;
-						if(e == "true"){
+					}).done((upd) => {
+						if(upd == "true"){
+							console.log('Cotización guardada en unlogged');
 							$("#cnt-modalFormLoginyRegister").add($(".cnt-modalFormLoginyRegister--c")).removeClass("show");
 							$("#cUIMessageValid-user").html("");
-							console.log('Cotización guardada en unlogged');
 
-							$("#cUIMessageValid-user").html(showNotification(notifyMessage, "Éxito", "Proceda a descargar su cotización."));
-
-							$(document).on("click", ".c_notifyMsg__close", function(e){
-						    e.preventDefault();
-						    var parent = $(this).parent().parent("#notiMsgAlertCli");
-						    parent.fadeOut("slow", function() { 
-						    	$(this).remove(); 
-						   	});
+							Swal.fire({
+					      title: '',
+					      html: `<div class="alertSwal">
+						            <div class="alertSwal__cTitle">
+						              <h3>¡Éxito!</h3>
+						            </div>
+						            <div class="alertSwal__cText">
+						              <p>Proceda a descargar su cotización.</strong></p>
+						            </div>
+						            <button type="button" role="button" tabindex="0" class="SwalBtn1 customSwalBtn">Aceptar</button>
+						          </div>`,
+					      icon: 'success',
+					      showCancelButton: false,
+						    showConfirmButton: false,
+						    confirmButtonColor: '#3085d6',
+						    confirmButtonText: 'Aceptar',
+						    allowOutsideClick: false,
+						    allowEscapeKey:false,
+						    allowEnterKey:true
+					    });
+					    $(document).on('click', '.SwalBtn1', function() {
+						    swal.clickConfirm();
 						  });
-
 						}else{
-							console.log("Error al guardar la información");
+							$("#cUIMessageValid-user").html("");
+							Swal.fire({
+					      title: 'Error!',
+					      html: `<span class='font-w-300'>Lo sentimos, hubo un error al procesar la información.</span>`,
+					      icon: 'error',
+					      confirmButtonText: 'Aceptar'
+					    });
 						}
 					});
 				}else if(resupdate[0].res == "exists"){
+					$("#cUIMessageValid-user").html("");
 					console.log("El usuario ya actualizó en cotizaciones");
 				}else{
-					console.log("Lo sentimos, no se pudo procesar la petición.");
+					$("#cUIMessageValid-user").html("");
+					Swal.fire({
+			      title: 'Error!',
+			      html: `<span class='font-w-300'>Lo sentimos, hubo un error al procesar la información.</span>`,
+			      icon: 'error',
+			      confirmButtonText: 'Aceptar'
+			    });
 				}
 			});
 		}else{
-			console.log('Debes completar los campos requeridos');
-			alert("Debes completar los campos requeridos");
+			$("#cUIMessageValid-user").html("");
+			Swal.fire({
+		    title: '',
+		    html: `<div class="alertSwal">
+		            <div class="alertSwal__cTitle">
+		              <h3>¡Atención!</h3>
+		            </div>
+		            <div class="alertSwal__cText">
+		              <p>Debes completar los campos requeridos.</p>
+		            </div>
+		            <button type="button" role="button" tabindex="0" class="SwalBtn1 customSwalBtn">Aceptar</button>
+		          </div>`,
+		    icon: 'warning',
+		    showCancelButton: false,
+		    showConfirmButton: false,
+		    confirmButtonColor: '#3085d6',
+		    confirmButtonText: 'Aceptar',
+		    allowOutsideClick: false,
+		    allowEscapeKey:false,
+		    allowEnterKey:true
+		  });
+		  $(document).on('click', '.SwalBtn1', function() {
+		    swal.clickConfirm();
+		  });
 		}
 	});
 });
