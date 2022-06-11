@@ -71,11 +71,15 @@ const sectionsSteps = new fullpage('#fullpage', {
   responsiveWidth: 0,
   responsiveHeight: 0,
   responsiveSlides: false,
-  scrollOverflow: false
+  scrollOverflow: false,
+  // afterRender: function(){
+  //   $.fn.fullpage.setAllowScrolling(false, 'down');
+  // },
 });
 // ------------ OCULTAR LOS DEMÁS PASOS
 function hiddenAllNextSteps(){
   sectionsSteps.setKeyboardScrolling(false);
+  // sectionsSteps.setAllowScrolling(false, 'down');
 }
 // ------------ ASIGNAR EL ID DEL TIPO DE TRANSPORTE
 $(".cont-MainCamelLog--c--contResumeCalc--item[data-advlevel=d-typetransportnumb]").html(`
@@ -92,10 +96,7 @@ $(document).on("click", "#list-typeOperationItems a", function(){
   if(tTypeOperation == 0){
     localStorage.setItem("key_v-totalflette", 0);
     $(this).removeClass("active");
-    $(this).css({
-      "opacity" : "0.5",
-      "border" : "unset"
-    });
+    $(this).css({"opacity" : "0.5","border" : "unset"});
     // ------------ MOSTRAR EL MENSAJE DE ALERTA PERSONALIZADO
     $("#idMessageSteps-prcss").html(`
       <div class="cntMessageSteps-prcss--cont">
