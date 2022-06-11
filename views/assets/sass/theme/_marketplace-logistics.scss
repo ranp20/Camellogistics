@@ -38,11 +38,12 @@
 		&--cImg{
 			&--m{
 				&--item{
+					min-width: 142px;
+					max-width: 142px;
 					img{
-						min-width: 142px;
-						max-width: 142px;
 						width: 95%;
 						height: auto;
+						vertical-align: middle;
 					}
 				}
 			}
@@ -70,6 +71,7 @@
 						justify-content: center;
 						flex-direction: column;
 						svg{
+							display: table;
 							width: 40px;
 							height: 40px;
 							margin-bottom: 0.5rem;
@@ -179,6 +181,7 @@
 								    border-left: thin solid #ccc;
 								    border-right: thin solid transparent;
 					    			svg{
+					    				display: table;
 					    				width: 22px;
 					    				height: 22px;
 					    			}

@@ -78,7 +78,7 @@
 												<span>Recordar contraseña</span>
 											</div>
 											<div class='c-LoginAdm--cLoginF--cForm--form--cControl--cIptChk'>
-												<input type='checkbox' name='adm-remem-pass' id='adm-remem-pass' class='c-LoginAdm--cLoginF--cForm--form--cControl--cIptChk--input'>											
+												<input type='checkbox' name='adm-remem-pass' id='adm-remem-pass' class='c-LoginAdm--cLoginF--cForm--form--cControl--cIptChk--input' placeholder='Recordar contraseña'>											
 												<label for='adm-remem-pass' class='c-LoginAdm--cLoginF--cForm--form--cControl--cIptChk--cLabeltext'>
 												</label>
 											</div>
@@ -92,7 +92,7 @@
 												<span>Recordar contraseña</span>
 											</div>
 											<div class='c-LoginAdm--cLoginF--cForm--form--cControl--cIptChk'>
-												<input type='checkbox' name='adm-remem-pass' id='adm-remem-pass' class='c-LoginAdm--cLoginF--cForm--form--cControl--cIptChk--input'>											
+												<input type='checkbox' name='adm-remem-pass' id='adm-remem-pass' class='c-LoginAdm--cLoginF--cForm--form--cControl--cIptChk--input' placeholder='Recordar contraseña'>											
 												<label for='adm-remem-pass' class='c-LoginAdm--cLoginF--cForm--form--cControl--cIptChk--cLabeltext'>
 												</label>
 											</div>

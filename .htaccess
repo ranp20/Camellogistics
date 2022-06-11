@@ -15,7 +15,7 @@ RewriteRule logout?$ controllers/prcss_logout-user.php
 RewriteRule cfinalvalidation?$ controllers/c_finalvalidateuser.php
 
 ############ANTIGUO PROCEDIMIENTO
-RewriteRule calculadora?$ views/calculadora.php
+#RewriteRule calculadora?$ views/calculadora.php
 
 ############PAGES FOR THE ADMIN
 RewriteRule admin?$ admin/index.php

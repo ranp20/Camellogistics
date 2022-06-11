@@ -13,7 +13,6 @@
 	justify-content: center;
 	min-height: 100vh;
 	height: 100%;
-
 	@media (min-width: 960px){
 		display: grid;
 		flex-direction: row;
@@ -22,7 +21,6 @@
 		grid-template-columns: 425px auto;
 		grid-template-areas: "loginfrm loginbackground";
 	}
-
 	&--cLoginF{
 		grid-area: loginfrm;
 		text-align: center;
@@ -32,11 +30,9 @@
 		flex-flow: wrap column;
 		align-items: center;
 		justify-content: center;
-
 		@media (min-width: 960px){
 			width: 78%;
 		}
-
 		/* LOGOTIPO */
 		&--cLogo{
 			max-width: 215px;
@@ -44,16 +40,14 @@
 			margin-left: auto;
 			margin-right: auto;
 			margin-bottom: 1rem;
-
 			@media (min-width: 960px){
 				margin-bottom: 2rem;
 			}
-
 			img{
+				display: table;
 				width: 90%;
 			}
 		}
-
 		/* FORMULARIO */
 		&--cForm{
 			width: 100%;
@@ -65,7 +59,6 @@
 					color: $dashboard-color;
 				}
 			}
-
 			&--form{
 				&--cControl{
 					width: 100%;
@@ -85,7 +78,6 @@
 						line-height: 1.5;
 						font-size: 0.9rem;
 					}
-
 					&--input_chkset[type="text"],
 					&--input_chkset[type="email"],
 					&--input_chkset[type="password"]{
@@ -101,7 +93,6 @@
 				    background-color: #E8F0FE !important;
 				    color: #000 !important;	
 					}
-
 					&--cIcon{
 						position: absolute;
 				    right: 0;
@@ -114,14 +105,15 @@
 				    align-items: center;
 				    justify-content: center;
 						img{
+							display: table;
 							position: relative;
 							top: 2px;
 						}
 						svg{
+							display: table;
 							fill: #666;
 						}
 					}
-
 					&--cIptChk{
 						position: relative;
 						display: inline-block;
@@ -130,7 +122,6 @@
 							padding: 0;
 							line-height: initial;
 							margin: 0 0.2rem;
-							vertical-align: middle;
 							position: absolute;
 					    left: 0;
 					    top: 0;
@@ -143,15 +134,14 @@
 						&--cLabeltext{
 							margin-bottom: 0;
 							cursor: pointer;
-							vertical-align: middle;
 							width: 45px;
 					    height: 18px;
 					    background: #bbb;
 					    position: relative;
-					    display: inline-block;
+					    display: table;
+							vertical-align: middle;
 					    border-radius: 46px;
 					    transition: 0.3s;
-
 					    &:after{
 					    	content: '';
 						    position: absolute;
@@ -167,7 +157,6 @@
 						    background: #fff;
 					    }
 						}
-
 						&--input:hover + label:after{
 							box-shadow: 0 1px 9px 0 rgba(0, 0, 0, 0.2), 0 3px 8px 0 rgba(0, 0, 0, 0.15);
 						}
@@ -178,7 +167,6 @@
   						left: 24px;
 						}
 					}
-
 					&--cSpanText{
 						position: relative;
 						span{
@@ -189,7 +177,6 @@
 						}
 					}
 				}
-
 				&--btnLoginAdm{
 					cursor: pointer;
 					width: 100%;
@@ -203,8 +190,8 @@
 					display: flex;
 					align-items: center;
 					justify-content: center;
-
 					img{
+						display: table;
 						width: 0;
 						height: 27px;
 						margin-left: 0.65rem;
