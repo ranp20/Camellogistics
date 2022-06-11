@@ -241,7 +241,7 @@
 							width: auto;
 							height: auto;
 							img{
-								display: flex;
+								display: table;
 								margin-left: auto;
 								margin-right: auto;
 								width: 5.5rem;
@@ -1441,7 +1441,6 @@
 /* STYLES INTO PAGINATION */
 .cont_listpagination{
 	display: table;
-  right: 0;
   text-align: right;
   margin-left: auto;
   margin-top: 0.5rem;

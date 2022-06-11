@@ -185,9 +185,9 @@ input[f-hidden="aria-hidden"]{
 	  box-shadow: 0 0 10px 1px rgb(0 0 0 / 30%);
 
 	  img{
+		  display: table;
 			width: 40px;
 		  height: 40px;
-		  vertical-align: middle;
 		  position: relative;
 		  top: 4px;
 	  }
