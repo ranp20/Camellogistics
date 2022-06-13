@@ -89,8 +89,11 @@ $(document).ready(function(){
 	var v_typeserviceinit = $("#v_typeserviceinit").val();
 	var v_fnamecategprod = $("#v_fnamecategprod").val();
 	var v_ftaproxtransbycont = $("#v_ftaproxtransbycont").val();
+	var v_floadTypeTranport = $("#v_floadTypeTranport").val();
 	// ------------ VALORES PARA EL CÁLCULO
 	var val_ftotvalofdownload = $("#v_ftotvalofdownload").val();
+	var val_ftotalfleteprod = $("#v_ftotalfleteprod").val();
+	var val_plcpickuprateprov = $("#v-plcpickuprateprov").val();
 	// ------------ CÁLCULO DE IMPUESTOS 
 	var partInteger_Tax = 0;
 	var partDecimal_Tax = 0;
@@ -111,9 +114,9 @@ $(document).ready(function(){
 	var receiveddownload = val_ftotvalofdownload; //VALOR DE DESCARGA DESDE LOCALSTORAGE
 	var cutefobofpriceusd = receivedfob.split(" USD");
   var cutewithoutofpricefob = cutefobofpriceusd[0].replace(/\./g, '');
-	var totflete = parseFloat(localStorage.getItem("key_v-totalflette")); //TOTAL - SOLO FLETE
+	var totflete = parseFloat(val_ftotalfleteprod); //TOTAL - SOLO FLETE
 	var totalamountadditional = parseFloat(localStorage.getItem("key_v-totalammountadditional")); //MONTO ADICIONAL
-	var totaltransport = parseFloat(localStorage.getItem("key_v-valuetransport")); //TOTAL TRANSPORTE
+	var totaltransport = parseFloat(val_plcpickuprateprov); //TOTAL TRANSPORTE
 	var totalinsurance = parseFloat(localStorage.getItem("key_v-valueinsurance")); //TOTAL SEGURO
 	var totalimportprev = $("#v_previmports").text(); //TOTAL IMPORTACIÓN PREVIA
 	var totalvaluesquotation =  parseFloat(localStorage.getItem("key_v-valuesquotation")); //TOTAL SUMA DE VALORES DE COTIZACIÓN
@@ -147,7 +150,8 @@ $(document).ready(function(){
 			sumTotalFinalFleteandIGV = sumTotalFirstFlete + sumTotalbyIGV; //VALOR TOTAL FINAL DE LA COTIZACIÓN
 			sumbyCIF = totalfinalvaluefob + totflete + totalinsurance; //CIF FINAL
   	}
-	
+		
+		console.log(totaltransport + " - " + totalamountadditional + " - " + totalvaluesquotationbyIGV);
 		// ------------ LIMPIAR EL VALOR E IMPRIMIR EN EL TOTAL DEL SERVICIOS 
 		var totalNotround = twodecimals(sumTotalFirstFlete);
 		var n = Math.abs(totalNotround);
@@ -163,6 +167,7 @@ $(document).ready(function(){
 		}
 		$("#intdecval-quotefinal").html(`<span>${separate_point},<sup>${partFinalDecimal}</sup> USD</span>`);
 		// ------------ IMPRIMIR EL TOTAL DE SERVICIOS ENTRE EL IGV 18% 
+		console.log(sumTotalbyIGV);
 		var totalNotRountByIGV = twodecimals(sumTotalbyIGV);
 		var n_byIGV = Math.abs(totalNotRountByIGV);
 		var partInteger_byIGV = Math.trunc(n_byIGV);
@@ -344,7 +349,7 @@ $(document).ready(function(){
 					formdata.append("u_login", user_sessquote);
 					formdata.append("f_typetransendinitid", transsendinitbyid);
 					formdata.append("f_type_op", v_typeserviceinit);
-					formdata.append("f_type_transp", v_typeserviceinit);
+					formdata.append("f_type_transp", v_floadTypeTranport);
 					formdata.append("f_type_cont", v_loadtypecharge);
 					formdata.append("u_n_document", "No especificado");
 					formdata.append("u_enterprise", "No especificado");
@@ -565,7 +570,7 @@ $(document).ready(function(){
 					formdata.append("u_login", $("#s_useregin-sistem").val());
 					formdata.append("f_typetransendinitid", transsendinitbyid);
 					formdata.append("f_type_op", v_typeserviceinit);
-					formdata.append("f_type_transp", v_typeserviceinit);
+					formdata.append("f_type_transp", v_floadTypeTranport);
 					formdata.append("f_type_cont", v_loadtypecharge);
 					formdata.append("u_n_document", "No especificado");
 					formdata.append("u_enterprise", "No especificado");

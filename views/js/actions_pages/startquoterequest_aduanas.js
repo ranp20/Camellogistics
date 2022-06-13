@@ -38,10 +38,12 @@ function roundToTwo(num){
   return +(Math.round(num + "e+2")  + "e-2");
 }
 // ------------ FUNCIÓN - LIMITAR A DOS DECIMALES SIN REDONDEO
-function twodecimals(n) {
-  let t = n.toString();
-  let regex = /(\d*.\d{0,2})/;
-  return t.match(regex)[0];
+function twodecimals(n){
+  if(n != ""){
+    let t = n.toString();
+    let regex = /(\d*.\d{0,2})/;
+    return t.match(regex)[0];
+  }
 }
 // ------------ RETORNAR - PRIMERA LETRA EN MAYÚSCULA
 function firstToUppercase(e) {
@@ -94,7 +96,6 @@ $(".cont-MainCamelLog--c--contResumeCalc--item[data-advlevel=d-typetransportnumb
 $(document).on("click", "#list-typeOperationItems a", function(){
   var tTypeOperation = $(this).index();
   if(tTypeOperation == 0){
-    localStorage.setItem("key_v-totalflette", 0);
     $(this).removeClass("active");
     $(this).css({"opacity" : "0.5","border" : "unset"});
     // ------------ MOSTRAR EL MENSAJE DE ALERTA PERSONALIZADO
@@ -148,7 +149,6 @@ $(document).on("click", "#list-typeOperationItems a", function(){
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-pickuplocation]").removeClass("show");
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-pickuplocation]").html("");
   }else{
-    localStorage.setItem("key_v-totalflette", 0);
     localStorage.setItem("key_typeOp", $(this).find("li").find("p").text());
     // ------------ ASIGNAR A LA VARIABLE BLOBAL 
     v_TypeOp = $(this).find("li").find("p").text();
@@ -160,7 +160,6 @@ $(document).on("click", "#list-typeOperationItems a", function(){
     // ------------ MOSTRAR EL SIGUIENTE PASO 
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-chargeload]").addClass("show");    
     // ------------ RESETEAR EL VALOR FINAL DEL FLETE, SI SE REGRESA HASTA ESTE PUNTO 
-    localStorage.setItem("key_v-totalflette", 0);
     // ------------ MOSTRAR EL SIGUIENTE PASO 
     sectionsSteps.moveTo('step-chargeload', 1);
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-chargeload]").html(`
@@ -215,7 +214,6 @@ $(document).on("click", "#list-typeOperationItems a", function(){
 $(document).on("click", "#list-typeChargeLoadItems a", function(){
   var tTypeChargeLoad = $(this).index();
   if(tTypeChargeLoad == 0){
-    localStorage.setItem("key_v-totalflette", 0);
     // ------------ ASIGNAR A LAS VARIABLES GLOBALES 
     v_TypeChargeImgSrc = $(this).find("li").find("div").find("img").attr("src");
     v_TypeChargeName = $(this).find("li").find("p").text();
@@ -505,7 +503,6 @@ $(document).on("click", "#list-typeChargeLoadItems a", function(){
       </div>
     `);
   }else{
-    localStorage.setItem("key_v-totalflette", 0);
     // ------------ ASIGNAR A LAS VARIABLES GLOBALES 
     v_TypeChargeImgSrc = $(this).find("li").find("div").find("img").attr("src");
     v_TypeChargeName = $(this).find("li").find("p").text();
@@ -1676,7 +1673,6 @@ $(document).on("click", "#btn-NextStepTochargedata", function(){
 });
 // ------------ ADMITIR SOLO 2 DECIMALES COMO MÁXIMO (VALOR DEL FLETE 
 $(document).on("input","#val-iptPriceValNInterface",function(e){
-  //($(this).val() == "") ? $(this).val() : $(this).val(twodecimals(e.target.value));
   var val = e.target.value;
   if(isNaN(val)){
     val = val.replace(/[^0-9\.]/g,'');
@@ -1685,7 +1681,27 @@ $(document).on("input","#val-iptPriceValNInterface",function(e){
   }
   $(this).val(val);
   $("#val_valfleteprod").val(twodecimals(val));
-  //this.value = this.value.replace(/[^0-9,.-]/g, '').replace(/,/g, '.');
+  if(document.querySelector("#ipt-valCantOfAmountAdditional").contains(document.querySelector("#ipt-valQuantityAmAddProdNInterface"))){
+    if($("#ipt-valNameTypeProdNInterface").attr("idproduct") && $("#ipt-valPriceProdNInterface").val() != 0 && $("#ipt-valPriceProdNInterface").val() != "" && val != "" && val != 0){
+      $("#s-caseNextStepTomerchandisedata").html(`
+      <button type="button" class="cont-MainCamelLog--c--contSteps--item--cBtnNextStep--btn" id="btn-NextStepTomerchandisedata">
+        <span>Seguir</span>
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 100 125" enable-background="new 0 0 100 100" xml:space="preserve"><g><g><polygon points="19.318,43.363 19.318,61.189 49.497,95 79.675,61.189 79.675,43.363 49.497,77.174   "/><polygon points="50.504,38.811 20.326,5 20.326,24.872 49.497,60.537 79.675,24.872 80.682,5   "/></g></g></svg>
+      </button>`);
+    }else{
+      $("#s-caseNextStepTomerchandisedata").html("");
+    }
+  }else{
+    if(val != "" && val != 0 && $("#ipt-valPriceProdNInterface").val() != "" && $("#ipt-valPriceProdNInterface").val() != 0){
+      $("#s-caseNextStepTomerchandisedata").html(`
+      <button type="button" class="cont-MainCamelLog--c--contSteps--item--cBtnNextStep--btn" id="btn-NextStepTomerchandisedata">
+        <span>Seguir</span>
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 100 125" enable-background="new 0 0 100 100" xml:space="preserve"><g><g><polygon points="19.318,43.363 19.318,61.189 49.497,95 79.675,61.189 79.675,43.363 49.497,77.174   "/><polygon points="50.504,38.811 20.326,5 20.326,24.872 49.497,60.537 79.675,24.872 80.682,5   "/></g></g></svg>
+      </button>`);
+    }else{
+      $("#s-caseNextStepTomerchandisedata").html("");
+    }
+  }
 });
 // ------------ DEVOLVER EL VALOR DE LOS CONTROLES (DIMENSIONES DE CARGA) AL RESUMEN DEL PROCESO
 $(document).on("change input keyup", "#val-iptPackagesNInterface", function(e){
@@ -1893,7 +1909,7 @@ $(document).on("change input keyup", "#ipt-valPriceProdNInterface", function(e){
   }else{
     $("#MsgItemValueProdRequired").text("");
     if(document.querySelector("#ipt-valCantOfAmountAdditional").contains(document.querySelector("#ipt-valQuantityAmAddProdNInterface"))){
-      if($("#ipt-valNameTypeProdNInterface").attr("idproduct") && $("#ipt-valQuantityAmAddProdNInterface").val() != "" && $("#ipt-valQuantityAmAddProdNInterface").val() != 0){
+      if($("#ipt-valNameTypeProdNInterface").attr("idproduct") && $("#ipt-valQuantityAmAddProdNInterface").val() != "" && $("#ipt-valQuantityAmAddProdNInterface").val() != 0 && $("#val-iptPriceValNInterface").val() != "" && $("#val-iptPriceValNInterface").val() != 0){
         // ------------ AGREGAR A LA VARIABLE LOCAL 
         $.ajax({
           url: "controllers/list_insurancevalues.php",
@@ -1920,11 +1936,17 @@ $(document).on("change input keyup", "#ipt-valPriceProdNInterface", function(e){
             localStorage.setItem("key_v-valueinsurance", roundToTwo(valorfinalseguro));
           }
         });
+        $("#s-caseNextStepTomerchandisedata").html(`
+          <button type="button" class="cont-MainCamelLog--c--contSteps--item--cBtnNextStep--btn" id="btn-NextStepTomerchandisedata">
+            <span>Seguir</span>
+            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 100 125" enable-background="new 0 0 100 100" xml:space="preserve"><g><g><polygon points="19.318,43.363 19.318,61.189 49.497,95 79.675,61.189 79.675,43.363 49.497,77.174   "/><polygon points="50.504,38.811 20.326,5 20.326,24.872 49.497,60.537 79.675,24.872 80.682,5   "/></g></g></svg>
+          </button>
+        `);
       }else{
         $("#s-caseNextStepTomerchandisedata").html("");
       }
     }else{
-      if($("#ipt-valNameTypeProdNInterface").attr("idproduct")){
+      if($("#ipt-valNameTypeProdNInterface").attr("idproduct") && $("#val-iptPriceValNInterface").val() != "" && $("#val-iptPriceValNInterface").val() != 0){
         // ------------ AGREGAR A LA VARIABLE LOCAL 
         $.ajax({
           url: "controllers/list_insurancevalues.php",
@@ -1951,17 +1973,16 @@ $(document).on("change input keyup", "#ipt-valPriceProdNInterface", function(e){
             localStorage.setItem("key_v-valueinsurance", roundToTwo(valorfinalseguro));
           }
         });
+        $("#s-caseNextStepTomerchandisedata").html(`
+          <button type="button" class="cont-MainCamelLog--c--contSteps--item--cBtnNextStep--btn" id="btn-NextStepTomerchandisedata">
+            <span>Seguir</span>
+            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 100 125" enable-background="new 0 0 100 100" xml:space="preserve"><g><g><polygon points="19.318,43.363 19.318,61.189 49.497,95 79.675,61.189 79.675,43.363 49.497,77.174   "/><polygon points="50.504,38.811 20.326,5 20.326,24.872 49.497,60.537 79.675,24.872 80.682,5   "/></g></g></svg>
+          </button>
+        `);
       }else{
         $("#s-caseNextStepTomerchandisedata").html("");
       }
     }
-
-    $("#s-caseNextStepTomerchandisedata").html(`
-      <button type="button" class="cont-MainCamelLog--c--contSteps--item--cBtnNextStep--btn" id="btn-NextStepTomerchandisedata">
-        <span>Seguir</span>
-        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 100 125" enable-background="new 0 0 100 100" xml:space="preserve"><g><g><polygon points="19.318,43.363 19.318,61.189 49.497,95 79.675,61.189 79.675,43.363 49.497,77.174   "/><polygon points="50.504,38.811 20.326,5 20.326,24.872 49.497,60.537 79.675,24.872 80.682,5   "/></g></g></svg>
-      </button>
-    `);
   }
 });
 // ------------ FIJAR EL VALOR DE ITEM EN EL INPUT - TIPOS DE PRODUCTOS 
@@ -2008,7 +2029,7 @@ $(document).on("keyup keypress blur change", "#ipt-valQuantityAmAddProdNInterfac
     $("#s-caseNextStepTomerchandisedata").html("");
   }else{
     if(document.querySelector("#ipt-valCantOfAmountAdditional").contains(document.querySelector("#ipt-valQuantityAmAddProdNInterface"))){
-      if($("#ipt-valNameTypeProdNInterface").attr("idproduct") && $("#ipt-valPriceProdNInterface").val() != 0 && $("#ipt-valPriceProdNInterface").val() != ""){
+      if($("#ipt-valNameTypeProdNInterface").attr("idproduct") && $("#ipt-valPriceProdNInterface").val() != 0 && $("#ipt-valPriceProdNInterface").val() != "" && $("#val-iptPriceValNInterface").val() != "" && $("#val-iptPriceValNInterface").val() != 0){
         // ------------ AGREGAR A LA VARIABLE LOCAL 
         $.ajax({
           url: "controllers/list_insurancevalues.php",
@@ -2049,7 +2070,7 @@ $(document).on("keyup keypress blur change", "#ipt-valQuantityAmAddProdNInterfac
       }
 
     }else{
-      if($("#ipt-valNameTypeProdNInterface").attr("idproduct")){
+      if($("#ipt-valNameTypeProdNInterface").attr("idproduct") && $("#val-iptPriceValNInterface").val() != "" && $("#val-iptPriceValNInterface").val() != 0){
         // ------------ AGREGAR A LA VARIABLE LOCAL 
         $.ajax({
           url: "controllers/list_insurancevalues.php",
@@ -2258,110 +2279,6 @@ $(document).on("click", "#list-requirespickup a", function(){
     `);
   }
 });
-/*
-// ------------ IR AL SIGUIENTE PASO DESDE EL VALOR DEL FLETE
-$(document).on("click", "#btn-NextStepTofletevaldata", function(){
-  if($("#val-iptPriceValNInterface").val() != 0 && $("#val-iptPriceValNInterface").val() != ""){
-    // ------------ MOSTRAR EL SIGUIENTE PASO (TIPOS DE TRANSPORTE) 
-    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-typetransport]").addClass("show");
-    // ------------ MOSTRAR EL SIGUIENTE PASO 
-    sectionsSteps.moveTo('step-typetransport', 1);
-    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-typetransport]").html(`
-      <div class="cont-MainCamelLog--c--contSteps--item--cTitle">
-        <h3 class="cont-MainCamelLog--c--contSteps--item--cTitle--title">Tipo de Transporte</h3>
-        <span>
-          <span>
-            <input type="hidden" id="loadTypeTranport" name="loadTypeTranport" class="n-val-sd">
-          </span>
-        </span>
-      </div>
-      <div class="cont-MainCamelLog--c--contSteps--item--cStep">
-        <ul class="cont-MainCamelLog--c--contSteps--item--cStep--m" id="list-typeTransporteSelectItems">
-          <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem">
-            <li class="cont-MainCamelLog--c--contSteps--item--cStep--m--item">
-              <div class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem--cImg">
-                <img src="views/assets/img/steps/type_transport_06.png" alt="cml_type_transport_01" loading="lazy" width="100" height="100">
-              </div>
-              <p>GENERAL</p>
-            </li>
-          </a>
-          <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem">
-            <li class="cont-MainCamelLog--c--contSteps--item--cStep--m--item">
-              <div class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem--cImg">
-                <img src="views/assets/img/steps/type_transport_03.png" alt="cml_type_transport_02" loading="lazy" width="100" height="100">
-              </div>
-              <p>IMO</p>
-            </li>
-          </a>
-          <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem">
-            <li class="cont-MainCamelLog--c--contSteps--item--cStep--m--item">
-              <div class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem--cImg">
-                <img src="views/assets/img/steps/type_transport_05.png" alt="cml_type_transport_03" loading="lazy" width="100" height="100">
-              </div>
-              <p>REFRIGERADO</p>
-            </li>
-          </a>
-        </ul>
-      </div>
-    `);
-  }else{
-    // ------------ MOSTRAR EL MENSAJE DE ALERTA PERSONALIZADO
-    $("#idMessageSteps-prcss").html(`
-      <div class="cntMessageSteps-prcss--cont">
-        <div class="cntMessageSteps-prcss--cont--c">
-          <span class="cntMessageSteps-prcss--cont--c--btnclose" id="btnclose-modalMessage"></span>
-          <h3 class="cntMessageSteps-prcss--cont--c--title">Complete la información</h3>
-          <p class="cntMessageSteps-prcss--cont--c--text">Por favor, rellene el campo con el valor de <b>FLETE.</b></p>
-        </div>
-      </div>
-    `)
-    // ------------ CERRAR EL MODAL
-    setTimeout(function(){
-      $("#idMessageSteps-prcss .cntMessageSteps-prcss--cont").remove();
-    }, 6500)
-    $("#btnclose-modalMessage").on("click", function(){
-      $(this).parent().parent().remove();
-    });    
-  }
-});
-
-sectionsSteps.moveTo('step-fletevaldata', 1);
-$(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-fletevaldata]").html(`
-  <div class="cont-MainCamelLog--c--contSteps--item--cTitle">
-    <h3 class="cont-MainCamelLog--c--contSteps--item--cTitle--title">VALOR DE FLETE</h3>
-    <span>
-      <span>
-        <input type="text" id="val_valfleteprod" name="val_valfleteprod" class="n-val-sd" value="">
-      </span>
-    </span>
-  </div>
-  <div class="cont-MainCamelLog--c--contSteps--item--cStep">
-    <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControls">
-      <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControls--cC">
-        <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControls--cC--cControl">
-          <label for="val-iptPriceValNInterface" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControls--cC--cControl--label">FLETE</label>
-          <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControls--cC--cControl--cListChangeWIcon">
-            <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControls--cC--cControl--cListChangeWIcon--cIcon">
-              <svg xmlns="http://www.w3.org/2000/svg" data-name="Layer 1" viewBox="0 0 100 125" x="0px" y="0px"><title>dollar</title><path d="M44.38354,5V15.697c-10.549,2.19025-18.11077,10.34265-18.11077,19.681,0,10.004,7.56927,16.77643,22.49676,20.1286C62.49225,58.587,62.49225,63.167,62.49225,64.67181c0,4.88868-5.7204,9.019-12.49115,9.019-6.77191,0-12.49335-4.13031-12.49335-9.019V63.57428h-11.235v1.09753c0,9.33838,7.56176,17.48975,18.11077,19.67951V95h11.235V84.35132C66.1665,82.161,73.72723,74.0097,73.72723,64.67181c0-10.004-7.56823-16.77636-22.49566-20.12854-13.72382-3.08044-13.72382-7.6604-13.72382-9.16528,0-4.88971,5.72144-9.02057,12.49335-9.02057,6.77075,0,12.49115,4.13086,12.49115,9.02057v1.0976h11.235V35.378c0-9.33838-7.56073-17.49078-18.10864-19.681V5Z"/>
-              </svg>
-            </div>
-            <input type="number" id="val-iptPriceValNInterface" name="val-iptPriceValNInterface" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControls--cC--cControl--cListChangeWIcon--input" maxlength="13" autocomplete="off">
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="cont-MainCamelLog--c--contSteps--item--cBtnNextStep">
-    <button type="button" class="cont-MainCamelLog--c--contSteps--item--cBtnNextStep--btn" id="btn-NextStepTofletevaldata">
-      <span>Seguir</span>
-      <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 100 125" enable-background="new 0 0 100 100" xml:space="preserve"><g><g><polygon points="19.318,43.363 19.318,61.189 49.497,95 79.675,61.189 79.675,43.363 49.497,77.174   "/><polygon points="50.504,38.811 20.326,5 20.326,24.872 49.497,60.537 79.675,24.872 80.682,5   "/></g></g></svg>
-    </button>
-  </div>
-`);
-*/
-
-
-
 
 
 
@@ -2374,9 +2291,6 @@ $(document).on("click","#list-typeTransporteSelectItems a",function(){
   $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-pickuplocation]").addClass("show");
   var ttypeTransport = $(this).index();
   if(ttypeTransport == 0){
-    // ------------ AGREGAR A LAS VARIABLES LOCALES 
-    localStorage.setItem("key_v-totalflette", 0);
-    localStorage.setItem("key_typeTransp", "General");
     // ------------ ASIGNAR AL VALOR DEL INPUT DE ENVÍO POST 
     $("#loadTypeTranport").val("general");
     // ------------ MOSTRAR EN EL RESUMEN - LADO IZQUIERDO 
@@ -2422,9 +2336,6 @@ $(document).on("click","#list-typeTransporteSelectItems a",function(){
       <div class="cont-MainCamelLog--c--contSteps--item--cBtnNextStep"></div>
     `);
   }else if(ttypeTransport == 1){
-    // ------------ AGREGAR A LAS VARIABLES LOCALES 
-    localStorage.setItem("key_v-totalflette", 0);
-    localStorage.setItem("key_typeTransp", "Imo");
     // ------------ ASIGNAR AL VALOR DEL INPUT DE ENVÍO POST 
     $("#loadTypeTranport").val("imo");
     // ------------ MOSTRAR EN EL RESUMEN - LADO IZQUIERDO 
@@ -2470,9 +2381,6 @@ $(document).on("click","#list-typeTransporteSelectItems a",function(){
       <div class="cont-MainCamelLog--c--contSteps--item--cBtnNextStep"></div>
     `);
   }else{
-    // ------------ AGREGAR A LAS VARIABLES LOCALES 
-    localStorage.setItem("key_v-totalflette", 0);
-    localStorage.setItem("key_typeTransp", "Refrigerado");
     // ------------ ASIGNAR AL VALOR DEL INPUT DE ENVÍO POST 
     $("#loadTypeTranport").val("refrigerado");
     // ------------ MOSTRAR EN EL RESUMEN - LADO IZQUIERDO 
@@ -2888,7 +2796,6 @@ $(document).on("change input keyup", "#ipt-valDistricByCountryNInterface", funct
 });
 // ------------ FIJAR EL VALOR DE ITEM EN EL INPUT - DISTRITO POR PAÍS DE DESTINO 
 $(document).on("click", ".cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation--cC--cControl--cListChange--m--item", function(){
-  
   $("#m-listAllDistricsByCountry").removeClass("show");
   $("#ipt-valDistricByCountryNInterface").attr("iddistrict", $(this).attr("id"));
   $("#ipt-valDistricByCountryNInterface").val($(this).find("span").text());
