@@ -151,7 +151,10 @@ $(document).ready(function(){
 			sumbyCIF = totalfinalvaluefob + totflete + totalinsurance; //CIF FINAL
   	}
 		
-		console.log(totaltransport + " - " + totalamountadditional + " - " + totalvaluesquotationbyIGV);
+		console.log('Totaltarifatrans: '+totaltransport);
+		console.log('Totalmontoadicional: '+totalamountadditional);
+		console.log('TotalvalorIGV: '+totalvaluesquotationbyIGV);
+
 		// ------------ LIMPIAR EL VALOR E IMPRIMIR EN EL TOTAL DEL SERVICIOS 
 		var totalNotround = twodecimals(sumTotalFirstFlete);
 		var n = Math.abs(totalNotround);
