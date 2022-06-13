@@ -1,6 +1,14 @@
 <?php 
   $actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]";
+  // CONFIGURACIÓN LOCALHOST
   $url =  $actual_link . "/Camellogistics/views/";
+  $url_admin =  $actual_link . "/Camellogistics/admin/";
+  // CONFIGURACIÓN SERVIDOR
+  /*
+  $actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]";
+  $url =  $actual_link . "/views/";
+  $url_admin =  $actual_link . "/admin/";
+  */
 ?>
 <meta charset="UTF-8">
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
@@ -29,10 +37,6 @@
 <script type="text/javascript" src="<?= $url ?>js/plugins/bootstrap/js/bootstrap.min.js"></script>
 <!-- STYLESSHEET -->
 <link rel="stylesheet" href="<?= $url; ?>assets/css/styles.min.css">
-<!-- 
-<link rel="stylesheet" href="./css/styles.css">
-<link rel="stylesheet" href="./css/camel.css">
- -->
 <!-- GOOGLE FONTS -->
 <!-- 
 <link rel="preconnect" href="https://fonts.googleapis.com">

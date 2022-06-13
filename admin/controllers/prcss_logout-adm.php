@@ -6,5 +6,10 @@
 	setcookie("adm-email", json_encode($resadm_email), $cookie_expiration_time, '/', '', true, true);
 	setcookie("adm-password", json_encode($resadm_pass), $cookie_expiration_time, '/', '', true, true);
 	*/
+	// CONFIGURACIÓN LOCALHOST
 	header("Location: ../");
+	// CONFIGURACIÓN SERVIDOR
+	/*
+	header("Location: ../");
+	*/
 ?>

@@ -9,6 +9,7 @@ class Quotation_user extends Connection
     parent::__construct();
   }
 
+  // -------------- LISTAR COTIZACIÓN POR ID DE CÓDIGO RANDOM
   function get_by_idcodegenrand($id_codegenrand){
     try{
       $sql = "CALL sp_list_quotation_by_codegenrand(:id_gencode)";
@@ -17,6 +18,94 @@ class Quotation_user extends Connection
       $stm->execute();
       return $stm->fetchAll(PDO::FETCH_ASSOC);
     }catch(PDOEXception $e){
+      return $e->getMessage();
+    }
+  }
+  // -------------- VALIDAR SI EXISTE LA COTIZACIÓN
+  function valid_exist_quotation($id_gencode, $codegenerate){
+    try{
+      $sql = "CALL sp_validateexists_quotation_user(:id_gencode, :codegenerate)";
+      $stm = $this->con->prepare($sql);
+      $stm->bindValue(":id_gencode",$id_gencode);
+      $stm->bindValue(":codegenerate",$codegenerate);
+      $stm->execute();
+      return $stm->fetch(PDO::FETCH_ASSOC);
+    }catch(PDOEXception $e){
+      return $e->getMessage();
+    }
+  }
+  // -------------- GUARDAR LA INFORMACIÓN
+  function add_quotation_user($arr_userquotation){
+    try{
+      $sql = "CALL sp_add_quotation_user(
+      :id_codegenrand,
+      :codegenerate,
+      :u_login,
+      :f_typetransendinitid,
+      :f_type_op, 
+      :f_type_transp, 
+      :f_type_cont, 
+      :u_n_document,
+      :u_enterprise, 
+      :u_telephone, 
+      :u_service, 
+      :u_cont, 
+      :f_origen,
+      :f_destiny, 
+      :f_weight_v, 
+      :f_time_transit, 
+      :f_fob, 
+      :f_flete, 
+      :f_insurance, 
+      :f_cif,
+      :f_v_IGV,
+      :f_v_IPM,
+      :f_v_percepcion,
+      :f_v_ad_valoren,
+      :f_v_impuesto_selectivo,
+      :f_v_antidumping,
+      :f_percepcion,
+      :f_ad_valoren,
+      :f_impuesto_selectivo,
+      :f_antidumping,
+      :f_IGV,
+      :f_IPM,
+      :f_emision_BL,
+      :f_handling,
+      :f_visto_bueno,
+      :f_desconsolidacion,
+      :f_almacen_referencial,
+      :f_transporte_interno,
+      :f_aforo_fisico_y_previo,
+      :f_gremios_maritimos,
+      :f_THC,
+      :f_devolucion_contenedores,
+      :f_derechos_embarque,
+      :f_consolidacion,
+      :f_bohe_o_inspeccion,
+      :f_comision_agencia,
+      :f_gastos_operativos,
+      :f_estiba,
+      :f_totalservices,
+      :f_totalservicesIGV18,
+      :f_totalimpuestos,
+      :f_totalwithIGV,
+      :f_validdesde,
+      :f_validhasta
+      )";
+      $stm = $this->con->prepare($sql);
+      foreach ($arr_userquotation as $key => $value) {
+        $stm->bindValue($key, $value);
+      }
+      /*
+      $stm->execute();
+      $data = $stm->fetchAll(PDO::FETCH_ASSOC);
+      $res = json_encode($data);
+      return $res;
+      */
+      $stm->execute();
+      return $stm->rowCount() > 0 ? 'true' : 'false';
+    }catch(PDOException $e){
       return $e->getMessage();
     }
   }

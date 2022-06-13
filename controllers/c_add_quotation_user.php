@@ -1,4 +1,5 @@
 <?php 
+/*
 require_once 'c_list_ultimate_codegen.php';
 require_once '../models/db/connection.php';
 class Add_Quotation_User extends Connection{
@@ -138,3 +139,4 @@ class Add_Quotation_User extends Connection{
 }
 $add_quotationuser = new Add_Quotation_User();
 echo $add_quotationuser->add();
+*/

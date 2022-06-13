@@ -2,6 +2,17 @@
 	
 class Connection{
 
+	// CONFIGURACIÓN - SERVIDOR (SERVIDOR TEMPORAL)
+  /*
+  protected $con = null;
+	private $host = "207.7.82.106";
+	private $dbname = "grupopdg_camellogistics_db";
+	private $username = "grupopdg_camellogistics_user";
+	private $password = "A%,Q?%#U]N~K";
+	private $charset = "utf8";
+  */  
+
+  // CONFIGURACIÓN - LOCALHOST
 	protected $con = null;
 	private $host = "localhost";
 	private $dbname = "db_camellogistics";

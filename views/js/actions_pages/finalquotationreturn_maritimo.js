@@ -321,7 +321,7 @@ $(document).ready(function(){
 				formdata.append("f_validhasta", $("#v_datevalidhasta").val());
 
 				$.ajax({
-					url: 'controllers/c_add_quotation_user.php',
+					url: 'controllers/prcss_add-quotation-user.php',
 					method: 'POST',
 					datatype: "JSON",
 					data: formdata,
@@ -519,7 +519,7 @@ $(document).ready(function(){
 				formdata.append("f_validhasta", $("#v_datevalidhasta").val());
 
 				$.ajax({
-					url: 'controllers/c_add_quotation_user.php',
+					url: 'controllers/prcss_add-quotation-user.php',
 					method: 'POST',
 					datatype: "JSON",
 					data: formdata,

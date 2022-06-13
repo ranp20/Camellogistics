@@ -3,9 +3,7 @@
   $banners = new Banners();
   $get_banner_p = $banners->get_banner_p();
   
-  $actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]";
-  $urlpathImages =  $actual_link . "/Camellogistics/admin/";
-  $pathbannerp = $urlpathImages."views/assets/img/banner_principal/".$get_banner_p[0]['photo'];
+  $pathbannerp = $url_admin."views/assets/img/banner_principal/".$get_banner_p[0]['photo'];
 ?>
 <header class="h-heroImage-init mtop-headertop" id="h-heroImage-init" style="background-image: url(<?= $pathbannerp; ?>);">
   <div class="h-heroImage-init--c box-containerredux">

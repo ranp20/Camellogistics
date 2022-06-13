@@ -2,11 +2,13 @@
   //COMPRIMIR ARCHIVOS DE TEXTO...
   (substr_count($_SERVER["HTTP_ACCEPT_ENCODING"], "gzip")) ? ob_start("ob_gzhandler") : ob_start();
   session_start();
-
-  //VARIABLE URL...
   $actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]";
-  $url_defaultURL =  $actual_link . "/Camellogistics/";
-  $url_adm_assets =  $actual_link . "/Camellogistics/admin/";
+  // CONFIGURACIÓN LOCALHOST
+  $url =  $actual_link . "/Camellogistics/views/";
+  // CONFIGURACIÓN SERVIDOR
+  /*
+  $url =  $actual_link . "/views/";
+  */
   //VARIABLES DE USO EN EL PROCESO...
   $portOriginPOST = "";
   $portCountryOriginPOST = "";
@@ -113,7 +115,7 @@
                   <a href='javascript:void(0);' class='cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem'>
                     <li class='cont-MainCamelLog--c--contSteps--item--cStep--m--item'>
                       <div class='cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem--cImg'>
-                        <img src='{$url_defaultURL}views/assets/img/steps/export.png' alt='' loading='lazy' width='100' height='100'>
+                        <img src='{$url}assets/img/steps/export.png' alt='' loading='lazy' width='100' height='100'>
                       </div>
                       <p>Exportación</p>
                     </li>
@@ -121,7 +123,7 @@
                   <a href='javascript:void(0);' class='cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem'>
                     <li class='cont-MainCamelLog--c--contSteps--item--cStep--m--item'>
                       <div class='cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem--cImg'>
-                        <img src='{$url_defaultURL}views/assets/img/steps/import.png' alt='' loading='lazy' width='100' height='100'>
+                        <img src='{$url}assets/img/steps/import.png' alt='' loading='lazy' width='100' height='100'>
                       </div>
                       <p>Importación</p>
                     </li>
@@ -149,7 +151,7 @@
         </form>
       ";
 
-      $script_qbysteps = "<script src='{$url_defaultURL}views/js/actions_pages/startquoterequest_aduanas.js'></script>";
+      $script_qbysteps = "<script src='{$url}js/actions_pages/startquoterequest_aduanas.js'></script>";
     }else if($_POST['v_typetranspinit'] == 1){
       if(isset($_POST['v_iptportoriginpost']) && is_numeric($_POST['v_iptportoriginpost']) && 
          isset($_POST['v_iptcountryportoriginpost']) && is_numeric($_POST['v_iptcountryportoriginpost']) &&
@@ -252,7 +254,7 @@
                     <a href='javascript:void(0);' class='cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem'>
                       <li class='cont-MainCamelLog--c--contSteps--item--cStep--m--item'>
                         <div class='cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem--cImg'>
-                          <img src='{$url_defaultURL}views/assets/img/steps/export.png' alt='' loading='lazy' width='100' height='100'>
+                          <img src='{$url}assets/img/steps/export.png' alt='' loading='lazy' width='100' height='100'>
                         </div>
                         <p>Exportación</p>
                       </li>
@@ -260,7 +262,7 @@
                     <a href='javascript:void(0);' class='cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem'>
                       <li class='cont-MainCamelLog--c--contSteps--item--cStep--m--item'>
                         <div class='cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem--cImg'>
-                          <img src='{$url_defaultURL}views/assets/img/steps/import.png' alt='' loading='lazy' width='100' height='100'>
+                          <img src='{$url}assets/img/steps/import.png' alt='' loading='lazy' width='100' height='100'>
                         </div>
                         <p>Importación</p>
                       </li>
@@ -290,7 +292,7 @@
           </form>
         ";
 
-        $script_qbysteps = "<script src='{$url_defaultURL}views/js/actions_pages/startquoterequest_maritimo.js'></script>";
+        $script_qbysteps = "<script src='{$url}js/actions_pages/startquoterequest_maritimo.js'></script>";
 
       }else{
         header("Location: marketplace-logistico");
@@ -307,9 +309,9 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <title>Camel Logistics | Pasos de cotización</title>
   <?php require_once 'includes/inc_header-links.php';?>
-  <link rel="stylesheet" href="<?php echo $url_defaultURL;?>views/js/plugins/fullpage/fullpage.min.css">
+  <title>Camel Logistics | Pasos de cotización</title>
+  <link rel="stylesheet" href="<?php echo $url;?>js/plugins/fullpage/fullpage.min.css">
 </head>
 <body>
   <div id="idMessageSteps-prcss" class="cntMessageSteps-prcss"></div>
@@ -317,7 +319,7 @@
     <div class="c-Htopbar--c">
       <div class="c-Htopbar--c--cLogo">
         <a href="./">
-          <img src="<?= $url_defaultURL ?>views/assets/img/logos/logotipo-camel.png" alt="logo_camel" width="100" height="100" decoding="async">
+          <img src="<?= $url ?>assets/img/logos/logotipo-camel.png" alt="logo_camel" width="100" height="100" decoding="async">
         </a>
       </div>
       <button class="c-Htopbar--c--btnMobileNavbar" id="btn-resume-mobile-header" type="button" title="Menu">
@@ -334,8 +336,8 @@
   </main>
   <?php require_once 'includes/inc_form-calculator-flete.php';?>
   <div id="msgLoaderPage_start"></div>
-  <script type="text/javascript" src="<?php echo $url_defaultURL;?>views/js/plugins/fullpage/scrolloverflow.min.js"></script>
-  <script type="text/javascript" src="<?php echo $url_defaultURL;?>views/js/plugins/fullpage/fullpage.min.js"></script>
+  <script type="text/javascript" src="<?php echo $url;?>js/plugins/fullpage/scrolloverflow.min.js"></script>
+  <script type="text/javascript" src="<?php echo $url;?>js/plugins/fullpage/fullpage.min.js"></script>
   <?php echo $script_qbysteps;?>
 </body>
 </html>
