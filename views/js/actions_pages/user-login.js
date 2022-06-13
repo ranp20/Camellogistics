@@ -78,9 +78,9 @@ $(document).on("input keyup", "#u-username", function(e){
   }
 });
 $(document).on("input keyup", "#u-password", function(e){
-  if (e.target.value != "") {
+  if(e.target.value != ""){
     $("#mssg_alertcontrol_pass").text("");
-  } else {
+  }else{
     $("#mssg_alertcontrol_pass").text("Debes ingresar una contraseña");
   }
 });

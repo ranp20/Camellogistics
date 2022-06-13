@@ -34,11 +34,11 @@ function changesTabsOperation(){
   var sessval_loginuser = "";
 
   if($("#s_useregin-sistem").val() == "" || $("#s_useregin-sistem").val() == undefined || $("#s_useregin-sistem").val() == 'undefined' || $("#s_useregin-sistem").val() == null ||$("#s_useregin-sistem").val() == 'null'){
-    sessval_loginuser = { username: 'any' }
+    sessval_loginuser = { username: 'any' };
     sessionStorage.setItem("sess_usercli", JSON.stringify(sessval_loginuser));
     sessionStorage.setItem("sess_valuser", 0);
   }else{
-    sessval_loginuser = { username: $("#s_useregin-sistem").val() }
+    sessval_loginuser = { username: $("#s_useregin-sistem").val() };
     sessionStorage.setItem("sess_usercli", JSON.stringify(sessval_loginuser));
     sessionStorage.setItem("sess_valuser", 1);
   }
@@ -48,7 +48,6 @@ function changesTabsOperation(){
 	parentItems = $("#c-cTabsItem");
 	items = $(".cont-MainCamelLog--c--cOptionsMarket--f--cont--cTabsItem--item");
 	links.eq(1).add(items.eq(1)).addClass("active");
-  localStorage.setItem("key_v-type_service", links.eq(1).find("li").find("span:nth-child(2)").text());
 
   parentLinks.on("click", "a", function(){
 		var t = $(this);
@@ -57,7 +56,6 @@ function changesTabsOperation(){
     var typeService = "";
     if(ind == 1){
       typeService = t.find("li").find("span:nth-child(2)").text();
-      localStorage.setItem("key_v-type_service", typeService);
       $("#c-cTabsItem").html(`
         <div class="cont-MainCamelLog--c--cOptionsMarket--f--cont--cTabsItem--item">
           <input type="hidden" id="v_typeserviceinpinit" name="v_typeserviceinpinit" value="${typeService}">
@@ -95,7 +93,6 @@ function changesTabsOperation(){
       `);
     }else if(ind == 2){
       typeService = t.find("li").find("span:nth-child(2)").text();
-      localStorage.setItem("key_v-type_service", typeService);
       $("#c-cTabsItem").html(`
         <div class="cont-MainCamelLog--c--cOptionsMarket--f--cont--cTabsItem--item">
           <input type="hidden" id="v_typeserviceinpinit" name="v_typeserviceinpinit" value="${typeService}">
@@ -125,7 +122,6 @@ function changesTabsOperation(){
     }else{
       t.find("button").attr("type", "submit");
       typeService = t.eq(0).find("li").find("span:nth-child(2)").text();
-      localStorage.setItem("key_v-type_service", typeService);
       $("#c-cTabsItem").html(`
         <div class="cont-MainCamelLog--c--cOptionsMarket--f--cont--cTabsItem--item">
           <input type="hidden" id="v_typetranspinit" name="v_typetranspinit" value="${ind}">
@@ -158,38 +154,35 @@ function list_puertoOriginLCL(searchVal){
     datatype: "JSON",
     contentType: 'application/x-www-form-urlencoded;charset=UTF-8',
     data: {searchList : searchVal},
-  }).done( function (res) {
-    var response = JSON.parse(res);
-    var template = "";
-
-    if($("#ipt-valNamePortOrigin").val() == "" || response.length == 0){
-      template = `
-        <li class="cont-MainCamelLog--c--cOptionsMarket--f--cont--cTabsItem--item--cControl--control--cGroupIptsIcon--cInput--m--anyresults">
-          <span>No encontrado</span>
-        </li>
-      `;
-      $("#list-itemsNamePortsOrigin").html(template);
+  }).done((e) => {
+    var r = JSON.parse(e);
+    var tmpOList = "";
+    if($("#ipt-valNamePortOrigin").val() == "" || r.length == 0){
+      tmpOList = `
+      <li class="cont-MainCamelLog--c--cOptionsMarket--f--cont--cTabsItem--item--cControl--control--cGroupIptsIcon--cInput--m--anyresults">
+        <span>No encontrado</span>
+      </li>`;
+      $("#list-itemsNamePortsOrigin").html(tmpOList);
       setTimeout(function(){
         $("#list-itemsNamePortsOrigin").removeClass("show");
       }, 5000);
     }else{
-      response.forEach(e => {
-      template += `
+      $.each(r, function(i,e){
+        tmpOList += `
         <li class="cont-MainCamelLog--c--cOptionsMarket--f--cont--cTabsItem--item--cControl--control--cGroupIptsIcon--cInput--m--item" id="${e.idpuerto}" idpaisattr="${e.idpais}">
           <span>
             <svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="anchor" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" class="svg-inline--fa fa-anchor fa-w-18 fa-3x"><path fill="currentColor" d="M571.515 331.515l-67.029-67.029c-4.686-4.686-12.284-4.686-16.971 0l-67.029 67.029c-7.56 7.56-2.206 20.485 8.485 20.485h44.268C453.531 417.326 380.693 456.315 312 462.865V216h60c6.627 0 12-5.373 12-12v-24c0-6.627-5.373-12-12-12h-60v-11.668c32.456-10.195 56-40.512 56-76.332 0-44.183-35.817-80-80-80s-80 35.817-80 80c0 35.82 23.544 66.138 56 76.332V168h-60c-6.627 0-12 5.373-12 12v24c0 6.627 5.373 12 12 12h60v246.865C195.192 456.304 122.424 417.176 102.762 352h44.268c10.691 0 16.045-12.926 8.485-20.485l-67.029-67.029c-4.686-4.686-12.284-4.686-16.971 0l-67.03 67.029C-3.074 339.074 2.28 352 12.971 352h40.284C73.657 451.556 181.238 512 288 512c113.135 0 215.338-65.3 234.745-160h40.284c10.691 0 16.045-12.926 8.486-20.485zM288 48c17.645 0 32 14.355 32 32s-14.355 32-32 32-32-14.355-32-32 14.355-32 32-32z" class=""></path></svg>
             (Puerto)
           </span>
           <span>${e.puerto}, ${e.pais}</span>
-        </li>
-        `;
+        </li>`;
       });
-      $("#list-itemsNamePortsOrigin").html(template);
+      $("#list-itemsNamePortsOrigin").html(tmpOList);
     }
   });
 }
 // ------------ BUSQUEDA EN TIEMPO REAL DE PUERTO DE ORIGIN - LCL 
-$(document).on("keyup", "#ipt-valNamePortOrigin", function(){ 
+$(document).on("keypress keyup", "#ipt-valNamePortOrigin", function(){ 
   $("#list-itemsNamePortsOrigin").addClass("show");
   var searchVal = $(this).val();
   (searchVal != "") ? list_puertoOriginLCL(searchVal) : list_puertoOriginLCL();
@@ -203,9 +196,6 @@ $(document).on("click", "#list-itemsNamePortsOrigin .cont-MainCamelLog--c--cOpti
   // ------------ GUARDAR PARA ENVIAR POR POST 
   $("#v_iptportoriginpost").val($(this).attr("id"));
   $("#v_iptcountryportoriginpost").val($(this).attr("idpaisattr"));
-  // ------------ GUARDAR INFO. EN LOCALSTORAGE 
-  localStorage.setItem("port_OId", $(this).attr("id"));
-  localStorage.setItem("port_OName", $(this).find("span:nth-child(2)").text());
 });
 // ------------ VARIABLE DE PAÍS DE ORIGEN 
 var idCountryOrigin = 0;
@@ -215,49 +205,44 @@ $(document).on("click", "#list-itemsNamePortsOrigin .cont-MainCamelLog--c--cOpti
   return idCountryOrigin;
 });
 // ------------ MOSTRAR EL LISTADO DE PAÍSES O PUERTOS - ORIGEN 
-function list_puertoDestinyLCL(searchVal){ 
+function list_puertoDestinyLCL(searchVal){
   $.ajax({
     url: "controllers/list_puertoDestinyLCL.php",
     method: "POST",
     datatype: "JSON",
     contentType: 'application/x-www-form-urlencoded;charset=UTF-8',
     data: {searchList : searchVal, idpais : idCountryOrigin },
-  }).done( function (res) {
-    var response = JSON.parse(res);
-    var template = "";
-
-    if($("#ipt-valNamePortDestiny").val() == "" || $("#ipt-valNamePortDestiny").val() == 0 || response.length == 0){
-      template = `
-        <li class="cont-MainCamelLog--c--cOptionsMarket--f--cont--cTabsItem--item--cControl--control--cGroupIptsIcon--cInput--m--anyresults">
-          <span>No encontrado</span>
-        </li>
-      `;
-      $("#list-itemsNamePortsDestiny").html(template);
+  }).done((e) => {
+    var r = JSON.parse(e);
+    var tmpDList = "";
+    if($("#ipt-valNamePortDestiny").val() == "" || $("#ipt-valNamePortDestiny").val() == 0 || r.length == 0){
+      tmpDList = `
+      <li class="cont-MainCamelLog--c--cOptionsMarket--f--cont--cTabsItem--item--cControl--control--cGroupIptsIcon--cInput--m--anyresults">
+        <span>No encontrado</span>
+      </li>`;
+      $("#list-itemsNamePortsDestiny").html(tmpDList);
       setTimeout(function(){
         $("#list-itemsNamePortsDestiny").removeClass("show");
       }, 5000);
     }else{
-      response.forEach(e => {
-      
-      if(e.idpais != idCountryOrigin){
-        template += `
+      $.each(r, function(i,e){
+        if(e.idpais != idCountryOrigin){
+          tmpDList += `
           <li class="cont-MainCamelLog--c--cOptionsMarket--f--cont--cTabsItem--item--cControl--control--cGroupIptsIcon--cInput--m--item" id="${e.idpuerto}" idpaisattr="${e.idpais}">
             <span>
               <svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="anchor" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" class="svg-inline--fa fa-anchor fa-w-18 fa-3x"><path fill="currentColor" d="M571.515 331.515l-67.029-67.029c-4.686-4.686-12.284-4.686-16.971 0l-67.029 67.029c-7.56 7.56-2.206 20.485 8.485 20.485h44.268C453.531 417.326 380.693 456.315 312 462.865V216h60c6.627 0 12-5.373 12-12v-24c0-6.627-5.373-12-12-12h-60v-11.668c32.456-10.195 56-40.512 56-76.332 0-44.183-35.817-80-80-80s-80 35.817-80 80c0 35.82 23.544 66.138 56 76.332V168h-60c-6.627 0-12 5.373-12 12v24c0 6.627 5.373 12 12 12h60v246.865C195.192 456.304 122.424 417.176 102.762 352h44.268c10.691 0 16.045-12.926 8.485-20.485l-67.029-67.029c-4.686-4.686-12.284-4.686-16.971 0l-67.03 67.029C-3.074 339.074 2.28 352 12.971 352h40.284C73.657 451.556 181.238 512 288 512c113.135 0 215.338-65.3 234.745-160h40.284c10.691 0 16.045-12.926 8.486-20.485zM288 48c17.645 0 32 14.355 32 32s-14.355 32-32 32-32-14.355-32-32 14.355-32 32-32z" class=""></path></svg>
               (Puerto)
             </span>
             <span>${e.puerto}, ${e.pais}</span>
-          </li>
-        `;
-      }
+          </li>`;
+        }
       });
-
-      $("#list-itemsNamePortsDestiny").html(template);
+      $("#list-itemsNamePortsDestiny").html(tmpDList);
     }
   });
 }
 // ------------ BUSQUEDA EN TIEMPO REAL DE PUERTO DE DESTINO - LCL 
-$(document).on("keyup", "#ipt-valNamePortDestiny", function(){  
+$(document).on("keypress keyup", "#ipt-valNamePortDestiny", function(){  
   $("#list-itemsNamePortsDestiny").addClass("show");
   var searchVal = $(this).val();
   (searchVal != "") ? list_puertoDestinyLCL(searchVal) : list_puertoDestinyLCL();
@@ -271,7 +256,4 @@ $(document).on("click", "#list-itemsNamePortsDestiny .cont-MainCamelLog--c--cOpt
   // ------------ GUARDAR PARA ENVIAR POR POST 
   $("#v_iptportdestinypost").val($(this).attr("id"));
   $("#v_iptcountryportdestinypost").val($(this).attr("idpaisattr"));
-  // ------------ GUARDAR INFO. EN LOCALSTORAGE 
-  localStorage.setItem("port_DId", $(this).attr("id"));
-  localStorage.setItem("port_DName", $(this).find("span:nth-child(2)").text());
 });

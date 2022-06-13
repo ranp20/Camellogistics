@@ -99,18 +99,17 @@ $(document).on("click", "#list-typeOperationItems a", function(){
     $(this).css({"opacity" : "0.5","border" : "unset"});
     // ------------ MOSTRAR EL MENSAJE DE ALERTA PERSONALIZADO
     $("#idMessageSteps-prcss").html(`
-      <div class="cntMessageSteps-prcss--cont">
-        <div class="cntMessageSteps-prcss--cont--c">
-          <span class="cntMessageSteps-prcss--cont--c--btnclose" id="btnclose-modalMessage"></span>
-          <h3 class="cntMessageSteps-prcss--cont--c--title">No disponible</h3>
-          <p class="cntMessageSteps-prcss--cont--c--text">Esta opción aún no esta disponible. Por favor, pase a elegir <b>IMPORTACIÓN.</b></p>
-        </div>
+    <div class="cntMessageSteps-prcss--cont">
+      <div class="cntMessageSteps-prcss--cont--c">
+        <span class="cntMessageSteps-prcss--cont--c--btnclose" id="btnclose-modalMessage"></span>
+        <h3 class="cntMessageSteps-prcss--cont--c--title">No disponible</h3>
+        <p class="cntMessageSteps-prcss--cont--c--text">Esta opción aún no esta disponible. Por favor, pase a elegir <b>IMPORTACIÓN.</b></p>
       </div>
-    `)
+    </div>`);
     // ------------ CERRAR EL MODAL
     setTimeout(function(){
       $("#idMessageSteps-prcss .cntMessageSteps-prcss--cont").remove();
-    }, 6500)
+    }, 6500);
     $("#btnclose-modalMessage").on("click", function(){
       $(this).parent().parent().remove();
     });
