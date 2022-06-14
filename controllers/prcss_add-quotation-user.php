@@ -13,7 +13,7 @@ if(isset($_POST) && !empty($_POST)){
 	  'u_login' => $_POST['u_login'],
 	  'f_typetransendinitid' => (!isset($_POST['f_typetransendinitid']) || $_POST['f_typetransendinitid'] == "") ? "ID inválido" : $_POST['f_typetransendinitid'],
 	  'f_type_op' => $_POST['f_type_op'],
-	  'f_type_transp' => $_POST['f_type_transp'],
+	  'f_type_transp' => (!isset($_POST['f_type_transp']) || $_POST['f_type_transp'] == "") ? "No seleccinado" : $_POST['f_type_transp'],
 	  'f_type_cont' => $_POST['f_type_cont'],
 	  'u_n_document' => $_POST['u_n_document'],
 	  'u_enterprise' => $_POST['u_enterprise'],
