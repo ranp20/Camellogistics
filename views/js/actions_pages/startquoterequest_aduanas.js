@@ -57,17 +57,17 @@ const sectionsSteps = new fullpage('#fullpage', {
            'step-chargedata',
            'step-merchandisedata',
            'step-requirespickup',
-           //'step-fletevaldata',//
            'step-typetransport',
            'step-pickuplocation'],
-  verticalCentered: false,
   scrollingSpeed: 500,
   autoScrolling: true,
   keyboardScrolling: false,
-  //fixedElements: '#id-resumeLeftQuoteCamel',
   normalScrollElements: '#id-resumeLeftQuoteCamel, #m-listAllNamTypeProds',
-  //lockAnchors: true,
+  // lockAnchors: false,
   loopTop: false,
+  css3: true,
+  touchSensitivity: 15,
+  verticalCentered: false,
   loopBottom: false,
   scrollBar: false,
   responsiveWidth: 0,
@@ -77,11 +77,29 @@ const sectionsSteps = new fullpage('#fullpage', {
   // afterRender: function(){
   //   $.fn.fullpage.setAllowScrolling(false, 'down');
   // },
+  afterSlideLoad: function(anchorLink, index, slideAnchor, slideIndex) {
+    console.log(anchorLink);
+    console.log(index);
+    console.log(slideAnchor);
+    console.log(slideIndex);
+    if(anchorLink == 'step-typeoperation'){
+      $.fn.fullpage.setAllowScrolling(false, 'down');
+      $.fn.fullpage.setKeyboardScrolling(false, 'down');
+      $.fn.fullpage.setAllowScrolling(false, 'up');
+    }else if(anchorLink == 'step-chargeload'){
+      $.fn.fullpage.setAllowScrolling(false, 'down');
+      $.fn.fullpage.setKeyboardScrolling(false, 'down');
+      $.fn.fullpage.setAllowScrolling(true, 'up');
+      // console.log('Segundo paso');
+    }
+  },
+  onSlideLeave: function(anchorLink, index, slideIndex, direction, nextSlideIndex) {}
 });
 // ------------ OCULTAR LOS DEMÁS PASOS
 function hiddenAllNextSteps(){
-  sectionsSteps.setKeyboardScrolling(false);
-  // sectionsSteps.setAllowScrolling(false, 'down');
+  sectionsSteps.setKeyboardScrolling(false, 'down');
+  sectionsSteps.setAllowScrolling(false, 'down');
+  sectionsSteps.setAllowScrolling(false, 'up');
 }
 // ------------ ASIGNAR EL ID DEL TIPO DE TRANSPORTE
 $(".cont-MainCamelLog--c--contResumeCalc--item[data-advlevel=d-typetransportnumb]").html(`
@@ -149,6 +167,9 @@ $(document).on("click", "#list-typeOperationItems a", function(){
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-pickuplocation]").removeClass("show");
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-pickuplocation]").html("");
   }else{
+    // ------------ ACTIVAR EL SCROLL HACIA ARRIBA/ABAJO
+    sectionsSteps.setAllowScrolling(true, 'up');
+    sectionsSteps.setAllowScrolling(true, 'down');
     localStorage.setItem("key_typeOp", $(this).find("li").find("p").text());
     // ------------ ASIGNAR A LA VARIABLE BLOBAL 
     v_TypeOp = $(this).find("li").find("p").text();
@@ -1016,7 +1037,7 @@ $(document).on("click", "#btn-NextStepToSelOptResultExp", function(){
 // ================================================================================== //
 //                         3. AGREGAR LAS DIMENSIONES DE LA CARGA                        
 // ================================================================================== //
-// =================== RESPETAR EL MAX-LENGHT DEL INPUT ==================== //
+// ------------ RESPETAR EL MAX-LENGHT DEL INPUT
 $(document).on("keyup keypress blur change", "#val-iptWeightNInterface", function(e){
   if ($(this).val().length >= parseInt($(this).attr('maxlength')) && e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
     return false;
@@ -1047,26 +1068,18 @@ function list_measurement_units(){
     method: "POST",
     datatype: "JSON",
     contentType: 'application/x-www-form-urlencoded;charset=UTF-8',
-  }).done( function (res) {
-    var response = JSON.parse(res);
-
-    if(response.length == 0){
-      template = `
-        <option value="">No se encontraron resultados</option>
-      `;
+  }).done((e) => {
+    var r = JSON.parse(e);
+    if(r.length == 0){
+      template = `<option value="">No se encontraron resultados</option>`;
       $("#val-Lengthselitem").html(template);
       setTimeout(function(){
         $("#val-Lengthselitem").removeClass("show");
       }, 1000);
     }else{
-
-      $("#val-Lengthselitem").append(`
-        <option value="0">Elige una opción</option>
-      `);
-      response.forEach(e => {
-        $("#val-Lengthselitem").append(`
-          <option value="${e.id}" prefixunit="${e.prefix}">${e.unit}</option>
-        `);
+      $("#val-Lengthselitem").append(`<option value="0">Elige una opción</option>`);
+      $.each(r, function(i,e){
+        $("#val-Lengthselitem").append(`<option value="${e.id}" prefixunit="${e.prefix}">${e.unit}</option>`);
       });
     }
   });
@@ -1081,37 +1094,29 @@ $("#val-Lengthselitem").on("change", function(){
     $("#msgNounLengthvalue").text("Campo requerido");
     $(".cnt-modalFormCalculator--c--cForm--cBottom--cControls--control--c--cPrefixLong").find("span").text("");
   }
-
   // ------------ FIJAR EL PREFIJO PARA LAS UNIDADES DE MEDIDA
   var prefixunit = $("#val-Lengthselitem option:selected").attr("prefixunit");
   $(".cnt-modalFormCalculator--c--cForm--cBottom--cControls--control--c--cPrefixLong").find("span").text(prefixunit);
 });
-// =================== CARGAR - UNIDADES DE MEDIDA ============= //
+// ------------ CARGAR - UNIDADES DE MEDIDA
 function list_mass_units(){
   $.ajax({
     url: "controllers/list_mass_units.php",
     method: "POST",
     datatype: "JSON",
     contentType: 'application/x-www-form-urlencoded;charset=UTF-8',
-  }).done( function (res) {
-    var response = JSON.parse(res);
-    if(response.length == 0){
-      template = `
-        <option value="">No se encontraron resultados</option>
-      `;
+  }).done((e) => {
+    var r = JSON.parse(e);
+    if(r.length == 0){
+      template = `<option value="">No se encontraron resultados</option>`;
       $("#val-UnitWeightselitem").html(template);
       setTimeout(function(){
         $("#val-UnitWeightselitem").removeClass("show");
       }, 1000);
     }else{
-
-      $("#val-UnitWeightselitem").append(`
-        <option value="0">Elige una opción</option>
-      `);
-      response.forEach(e => {
-        $("#val-UnitWeightselitem").append(`
-          <option value="${e.id}" prefixunitWeight="${e.prefix}">${e.unit}</option>
-        `);
+      $("#val-UnitWeightselitem").append(`<option value="0">Elige una opción</option>`);
+      $.each(r, function(i,e){
+        $("#val-UnitWeightselitem").append(`<option value="${e.id}" prefixunitWeight="${e.prefix}">${e.unit}</option>`);
       });
     }
   });
@@ -1422,7 +1427,7 @@ $(document).on("click", "#btn-addCalcValueToCalculator", function(e){
     console.log('No hay registros a fijar');
   }
 });
-// =================== VALIDAR EL BOTÓN DE PASO SIGUIENTE DESDE - DIMENSIONES DE CARGA ================= //
+// ------------ VALIDAR EL BOTÓN DE PASO SIGUIENTE DESDE - DIMENSIONES DE CARGA
 $(document).on("click", "#btn-NextStepTochargedata", function(){
   if($("#val-iptPackagesNInterface").val() != 0 && $("#val-iptPackagesNInterface").val() != "" &&
      $("#val-iptWeightNInterface").val() != 0 && $("#val-iptWeightNInterface").val() != "" &&
@@ -1827,7 +1832,7 @@ $(document).on("keyup keydown", "#ipt-valNameTypeProdNInterface", function(e){
   }
 
   if(e.which == 8 || event.keyCode == 46){
-    // =================== OCULTAR EL SIGUIENTE PASO Y OTROS AJENOS ================= //
+    // ------------ OCULTAR EL SIGUIENTE PASO Y OTROS AJENOS
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-requirespickup]").removeClass("show");
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-requirespickup]").html("");
     /*

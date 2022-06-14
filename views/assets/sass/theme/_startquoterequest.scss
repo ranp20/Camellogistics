@@ -320,11 +320,13 @@
 						}
 
 						p{
-							font-size: 1.05rem;
+							font-size: 1rem;
+							font-weight: 500;
 							margin: 0;
 
 							@media (min-width: 991px){
 								font-size: 1.1rem;
+								font-weight: 600;
 							}
 						}
 					}
@@ -907,15 +909,20 @@
 						&--label{
 							color: $primary-color;
 							font-weight: 300;
-							padding-left: 1rem;
-							font-size: 0.85rem;
 							letter-spacing: .2rem;
+							padding-left: .5rem;
+							font-size: 0.65rem;
+
+							@media (min-width: 991px){
+								padding-left: 1rem;
+								font-size: 0.85rem;
+							}
 						}
 
 						&--input{
 							width: 100%;
 							border: thin solid $primary-color;
-							font-size: 1rem;
+							font-size: .7rem;
 							padding: 0.5rem;
 							line-height: 1.5;
 
@@ -926,6 +933,9 @@
 							}
 							&[type=number]{ 
 								-moz-appearance:textfield;
+							}
+							@media (min-width: 991px){
+								font-size: 1rem;
 							}
 						}
 					}
@@ -940,14 +950,16 @@
 						background-color: $primary-color;
 						color: #fff;
 						padding: 1rem 0.5rem;
-
 						&:hover{
 							color: #fff;
 							opacity: 0.6;
 						}
-
 						span{
-
+							font-size: 0.8rem;
+							font-weight: 600;
+						}
+						@media (min-width: 991px){
+							font-size: 1rem;
 						}
 					}
 				}
@@ -1522,12 +1534,11 @@
 			/* CONTENIDO - BOTÓN DE PASO SIGUIENTE */
 			&--cBtnNextStep{
 				position: absolute;
-		    bottom: 12%;
+		    bottom: 14%;
 		    left: 50%;
 		    transform: translateX(-50%);
 		    width: auto;
 		    margin: 0 auto;
-
 				/* BOTÓN CON ÍCONO ABAJO */
 				&--btn{
 					border: thin solid orange;
@@ -1539,31 +1550,27 @@
 			    align-items: center;
 			    justify-content: center;
 			    margin: 0 auto;
-			    padding: 0.5rem 2rem;
-
+			    padding: 0.25rem 2rem;
 			    &:hover{
 			    	background-color: orange;
 			    	color: #fff;
-
 			    	svg{
 			    		fill: #fff;
 			    		stroke: #fff;
 			    	}
 			    }
-
 			    span{
+			    	font-size: 0.8rem;
 			    	font-weight: 600;
 			    }
-
 					svg{
 						color: orange;
 						fill: orange;
 						stroke: orange;
-						width: 30px;
-						height: 30px;
+						width: 23px;
+						height: 23px;
 					}
 				}
-
 				/* BOTÓN CON ÍCONO A LA DERECHA */
 				&--btnR{
 					border: thin solid orange;
@@ -1575,22 +1582,18 @@
 			    margin: 0 auto;
 			    padding: .75rem 2rem;
 			    font-size: 1.1rem;
-
 			    &:hover{
 			    	background-color: orange;
 			    	color: #fff;
-
 			    	svg{
 			    		fill: #fff;
 			    		stroke: #fff;
 			    	}
 			    }
-
 			    span{
 			    	font-weight: 600;
 			    	vertical-align: middle;
 			    }
-
 					svg{
 				    color: orange;
 				    fill: orange;
@@ -1600,6 +1603,24 @@
 				    margin-left: 0.5rem;
 				    position: relative;
 				    top: 4px;
+					}
+				}
+				@media (min-width: 991px){
+					bottom: 12%;
+					button.cont-MainCamelLog--c--contSteps--item--cBtnNextStep--btn{
+						padding: 0.5rem 2rem;
+						span{
+							font-size: 1rem;
+						}
+						svg{
+							width: 30px;
+							height: 30px;
+						}
+					}
+					button.cont-MainCamelLog--c--contSteps--item--cBtnNextStep--btnR{
+						svg{
+
+						}
 					}
 				}
 			}

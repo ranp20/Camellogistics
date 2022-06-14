@@ -706,3 +706,30 @@ input[f-hidden="aria-hidden"]{
   	background-color: darken($theme-clr-btns, 10%);
   }
 }
+/* OCULTAR MARCA DE AGUA DE FULLPAGE.JS */
+.fp-warning, .fp-watermark{
+	display: none;
+	user-select: none;
+	visibility: hidden;
+	opacity: 0;
+	color: transparent;
+	background-color: transparent;
+	border: none;
+	line-height: unset;
+	width: 0;
+	height: 0;
+	overflow: hidden;
+}
+.fp-warning, .fp-watermark a{
+	display: none;
+	user-select: none;
+	visibility: hidden;
+	opacity: 0;
+	color: transparent;
+	background-color: transparent;
+	border: none;
+	line-height: unset;
+	width: 0;
+	height: 0;
+	overflow: hidden;
+}

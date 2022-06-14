@@ -311,6 +311,7 @@
 <head>
   <?php require_once 'includes/inc_header-links.php';?>
   <title>Camel Logistics | Pasos de cotización</title>
+  <!-- <link rel="stylesheet" href="node_modules/fullpage.js/dist/fullpage.min.css"> -->
   <link rel="stylesheet" href="<?php echo $url;?>js/plugins/fullpage/fullpage.min.css">
 </head>
 <body>
@@ -336,8 +337,13 @@
   </main>
   <?php require_once 'includes/inc_form-calculator-flete.php';?>
   <div id="msgLoaderPage_start"></div>
-  <script type="text/javascript" src="<?php echo $url;?>js/plugins/fullpage/scrolloverflow.min.js"></script>
+  <!-- 
+  <script type="text/javascript" src="node_modules/fullpage.js/dist/fullpage.min.js"></script>
+  <script type="text/javascript" src="node_modules/fullpage.js/vendors/easings.min.js"></script>
+  <script type="text/javascript" src="node_modules/fullpage.js/dist/fullpage.extensions.min.js"></script>
+  -->
   <script type="text/javascript" src="<?php echo $url;?>js/plugins/fullpage/fullpage.min.js"></script>
+  <script type="text/javascript" src="<?php echo $url;?>js/plugins/fullpage/scrolloverflow.min.js"></script>
   <?php echo $script_qbysteps;?>
 </body>
 </html>

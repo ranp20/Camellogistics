@@ -24,19 +24,6 @@ function refreshIdCodeGenRandom(){
 $(document).on("click", "#btn-resume-mobile-header", function(){
   $(".cont-MainCamelLog--c--contResumeCalc").toggleClass("show");
 });
-/*
-// ------------ CERRAR EL SIDEBARLEFT - MOBILE (PROCESO COTIZACIÓN)
-let containerSidebarLeft = document.querySelector("#c-mMobile-backdrop");
-containerSidebarLeft.addEventListener("click", (e) => {
-  if(e.target === containerSidebarLeft){
-    document.querySelector(".c-Htopbar--c--cMenu").classList.remove("show");
-  }
-});
-// ------------ CERRAR EL SIDEBARLEFT - MOBILE (PROCESO COTIZACIÓN)
-document.querySelector("#btn-sidebarl-close").addEventListener("click", (e) => {
-  document.querySelector(".c-Htopbar--c--cMenu").classList.remove("show");
-});
-*/
 ////OTRAS TAREAS - MEJORA DE UI Y UX
 /*- Mostrar al inicio solo los pasos a usar antes de cada elección, luego ir añadiendo o quitando de acuerdo a los elementos seleccionados*/
 // ------------ RECOGER LAS VARIABLES RECIBIDAS POR POST 
@@ -87,23 +74,47 @@ const sectionsSteps = new fullpage('#fullpage', {
   				 'step-insuremerchandise',
   				 'step-requirespickup',
   				 'step-pickuplocation'],
-  verticalCentered: false,
   scrollingSpeed: 500,
   autoScrolling: true,
   keyboardScrolling: false,
-  //fixedElements: '#id-resumeLeftQuoteCamel',
   normalScrollElements: '#id-resumeLeftQuoteCamel, #m-listAllNamTypeProds',
-  //lockAnchors: true,
+  // lockAnchors: false,
   loopTop: false,
+  css3: true,
+  touchSensitivity: 15,
+  verticalCentered: false,
   loopBottom: false,
-
+  scrollBar: false,
   responsiveWidth: 0,
   responsiveHeight: 0,
   responsiveSlides: false,
+  scrollOverflow: false,
+  // afterRender: function(){
+  //   $.fn.fullpage.setAllowScrolling(false, 'down');
+  // },
+  afterSlideLoad: function(anchorLink, index, slideAnchor, slideIndex) {
+    console.log(anchorLink);
+    console.log(index);
+    console.log(slideAnchor);
+    console.log(slideIndex);
+    if(anchorLink == 'step-typeoperation'){
+      $.fn.fullpage.setAllowScrolling(false, 'down');
+      $.fn.fullpage.setKeyboardScrolling(false, 'down');
+      $.fn.fullpage.setAllowScrolling(false, 'up');
+    }else if(anchorLink == 'step-typetransport'){
+      $.fn.fullpage.setAllowScrolling(false, 'down');
+      $.fn.fullpage.setKeyboardScrolling(false, 'down');
+      $.fn.fullpage.setAllowScrolling(true, 'up');
+      // console.log('Segundo paso');
+    }
+  },
+  onSlideLeave: function(anchorLink, index, slideIndex, direction, nextSlideIndex) {}
 });
 // ------------ OCULTAR LOS DEMÁS PASOS 
 function hiddenAllNextSteps(){
   sectionsSteps.setKeyboardScrolling(false);
+  sectionsSteps.setAllowScrolling(false, 'down');
+  sectionsSteps.setAllowScrolling(false, 'up');
 }
 // ------------ ASIGNAR EL ID DEL TIPO DE TRANSPORTE 
 $(".cont-MainCamelLog--c--contResumeCalc--item[data-advlevel=d-typetransportnumb]").html(`
@@ -216,6 +227,8 @@ $(document).on("click", "#list-typeOperationItems a", function(){
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-pickuplocation]").removeClass("show");
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-pickuplocation]").html("");
   }else{
+    sectionsSteps.setAllowScrolling(true, 'up');
+    sectionsSteps.setAllowScrolling(true, 'down');
     localStorage.setItem("key_v-totalflette", 0);
     localStorage.setItem("key_typeOp", $(this).find("li").find("p").text());
     // ------------ ASIGNAR A LA VARIABLE BLOBAL 
