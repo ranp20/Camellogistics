@@ -1,7 +1,7 @@
 $(() => {
-	changesTabsOperation(); // CAMBIAR ENTRE LOS TABS
-	list_puertoOriginLCL(); // LISTAR LOS PUERTOS DE ORIGEN LCL
-  list_puertoDestinyLCL(); // LISTAR LOS PUERTOS DE DESTINO LCL
+	changesTabsOperation();
+	list_puertoOriginLCL();
+  list_puertoDestinyLCL();
 });
 // ------------ CAMBIAR DE CONTROLES SEGÚN LA OPCIÓN SELECCIONADA 
 function changesTabsOperation(){

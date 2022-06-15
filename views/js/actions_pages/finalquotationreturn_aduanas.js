@@ -17,49 +17,44 @@ $("#btn-scrollingtTtB").on("click", function(){$("body, html").animate({scrollTo
 $(document).ready(function(){
 	// ------------ VALIDAR SI EXISTE UN USUARIO, DE LO CONTRARIO ASIGNAR EL USUARIO POR DEFECTO 
 	if($("#s_useregin-sistem").val() == "" || $("#s_useregin-sistem").val() == undefined || $("#s_useregin-sistem").val() == 'undefined' || $("#s_useregin-sistem").val() == null || $("#s_useregin-sistem").val() == 'null'){
-
 		sessval_loginuser = { username: 'Invitado' }
     sessionStorage.setItem("sess_usercli", JSON.stringify(sessval_loginuser));
     sessionStorage.setItem("sess_valuser", 0);
     var s_username_local = JSON.parse(sessionStorage.getItem("sess_usercli"));
 		// ------------ ACTUALIZAR EL HEADER TOP 
 		$("#s-loginsessuser-active").html(`
-			<a href='javascript:void(0);' class='c-Htopbar--c--cMenu--m--link'>
-	      <span id='namUser_validSess' class='c-Htopbar--c--cMenu--m--link--sessUser'>${s_username_local.username}</span>
-	    </a>
-	    <ul class='c-Htopbar--c--cMenu--m--item--subm'>
-	      <li class='c-Htopbar--c--cMenu--m--item--subm--subitem'>
-	        <a href='logout' class='c-Htopbar--c--cMenu--m--item--subm--sublink'>
-	      		<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#fff" viewBox="0 0 24 24"><path d="M8 9v-4l8 7-8 7v-4h-8v-6h8zm2-7v2h12v16h-12v2h14v-20h-14z"/></svg>
-	        	<span>Cerrar sesión</span>
-	        </a>
-	      </li>
-	    </ul>
-		`);
-			
+		<a href='javascript:void(0);' class='c-Htopbar--c--cMenu--m--link'>
+      <span id='namUser_validSess' class='c-Htopbar--c--cMenu--m--link--sessUser'>${s_username_local.username}</span>
+    </a>
+    <ul class='c-Htopbar--c--cMenu--m--item--subm'>
+      <li class='c-Htopbar--c--cMenu--m--item--subm--subitem'>
+        <a href='logout' class='c-Htopbar--c--cMenu--m--item--subm--sublink'>
+      		<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#fff" viewBox="0 0 24 24"><path d="M8 9v-4l8 7-8 7v-4h-8v-6h8zm2-7v2h12v16h-12v2h14v-20h-14z"/></svg>
+        	<span>Cerrar sesión</span>
+        </a>
+      </li>
+    </ul>`);
 		$.ajax({
 			url: 'controllers/prcss_login-user.php',
 			method: 'POST',
 			dataType: 'JSON',
 			contentType: 'application/x-www-form-urlencoded;charset=UTF-8',
 			data: { 'u-username' : s_username_local.username, 'u-typeorder' : sessionStorage.getItem("sess_valuser")}
-		}).done(function(e){
+		}).done((e) => {
 			// ------------ MOSTRAR EL NOMBRE/CORREO DEL USUARIO 
 			$("#s-loginsessuser-active").html(`
-				<a href='javascript:void(0);' class='c-Htopbar--c--cMenu--m--link'>
-          <span id='namUser_validSess' class='c-Htopbar--c--cMenu--m--link--sessUser'>${e.received.username}</span>
-        </a>
-        <ul class='c-Htopbar--c--cMenu--m--item--subm'>
-          <li class='c-Htopbar--c--cMenu--m--item--subm--subitem'>
-            <a href='logout' class='c-Htopbar--c--cMenu--m--item--subm--sublink'>
-            	<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#fff" viewBox="0 0 24 24"><path d="M8 9v-4l8 7-8 7v-4h-8v-6h8zm2-7v2h12v16h-12v2h14v-20h-14z"/></svg>
-      				<span>Cerrar sesión</span>
-            </a>
-          </li>
-        </ul>
-			`);
+			<a href='javascript:void(0);' class='c-Htopbar--c--cMenu--m--link'>
+        <span id='namUser_validSess' class='c-Htopbar--c--cMenu--m--link--sessUser'>${e.received.username}</span>
+      </a>
+      <ul class='c-Htopbar--c--cMenu--m--item--subm'>
+        <li class='c-Htopbar--c--cMenu--m--item--subm--subitem'>
+          <a href='logout' class='c-Htopbar--c--cMenu--m--item--subm--sublink'>
+          	<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#fff" viewBox="0 0 24 24"><path d="M8 9v-4l8 7-8 7v-4h-8v-6h8zm2-7v2h12v16h-12v2h14v-20h-14z"/></svg>
+    				<span>Cerrar sesión</span>
+          </a>
+        </li>
+      </ul>`);
 		});
-
 	}else{
 		sessval_loginuser = { username: $("#s_useregin-sistem").val() }
     sessionStorage.setItem("sess_usercli", JSON.stringify(sessval_loginuser));
@@ -67,20 +62,18 @@ $(document).ready(function(){
     var s_username_local = JSON.parse(sessionStorage.getItem("sess_usercli"));
 		// ------------ ACTUALIZAR EL HEADER TOP 
 		$("#s-loginsessuser-active").html(`
-			<a href='javascript:void(0);' class='c-Htopbar--c--cMenu--m--link'>
-	      <span id='namUser_validSess' class='c-Htopbar--c--cMenu--m--link--sessUser'>${s_username_local.username}</span>
-	    </a>
-	    <ul class='c-Htopbar--c--cMenu--m--item--subm'>
-	      <li class='c-Htopbar--c--cMenu--m--item--subm--subitem'>
-	        <a href='logout' class='c-Htopbar--c--cMenu--m--item--subm--sublink'>
-	      		<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#fff" viewBox="0 0 24 24"><path d="M8 9v-4l8 7-8 7v-4h-8v-6h8zm2-7v2h12v16h-12v2h14v-20h-14z"/></svg>
-	        	<span>Cerrar sesión</span>
-	        </a>
-	      </li>
-	    </ul>
-		`);
+		<a href='javascript:void(0);' class='c-Htopbar--c--cMenu--m--link'>
+      <span id='namUser_validSess' class='c-Htopbar--c--cMenu--m--link--sessUser'>${s_username_local.username}</span>
+    </a>
+    <ul class='c-Htopbar--c--cMenu--m--item--subm'>
+      <li class='c-Htopbar--c--cMenu--m--item--subm--subitem'>
+        <a href='logout' class='c-Htopbar--c--cMenu--m--item--subm--sublink'>
+      		<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#fff" viewBox="0 0 24 24"><path d="M8 9v-4l8 7-8 7v-4h-8v-6h8zm2-7v2h12v16h-12v2h14v-20h-14z"/></svg>
+        	<span>Cerrar sesión</span>
+        </a>
+      </li>
+    </ul>`);
 	}
-
 	// ------------ VALORES PARA LAS VALIDACIONES 
 	// ------------ VALORES DE TEXTO
 	var v_loadtypecharge = $("#v_loadtypecharge").val();
@@ -130,7 +123,7 @@ $(document).ready(function(){
     method: "POST",
     datatype: "JSON",
     contentType: 'application/x-www-form-urlencoded;charset=UTF-8',
-  }).done(function(e){
+  }).done((e) => {
   	var rinsurance = JSON.parse(e);
   	var insure_min25000 = parseFloat(rinsurance[0].data_value); //FOB MENOR A 25000
   	var insure_max25000 = parseFloat(rinsurance[1].data_value); //FOB MAYOR A 25000

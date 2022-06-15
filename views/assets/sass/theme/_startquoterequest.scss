@@ -6,7 +6,6 @@
   gap: .5rem;
   min-height: 100vh;
   height: auto;
-
   .n-val-sd{
   	border: none;
     background-color: unset;
@@ -33,27 +32,23 @@
     transform: translateX(-200%);
 		transition: .5s ease-in-out;
 		pointer-events: none;
-
 		&.show{
 			transform: translateX(0);
 			pointer-events: auto;
 			box-shadow: 0 0 90px 10px rgba(0, 0, 0, .6);
-
 			@media (min-width: 991px){
 				box-shadow: unset;				
 			}
 		}
-
     @media (min-width: 991px){
     	padding: 0.5rem;
-    	top: 4.5rem;
+    	top: calc($min-headertop + 0.4rem);
     	background-color: transparent;
     	z-index: 999;
     	pointer-events: auto;
 		  transform: translateX(0);
 		  box-shadow: unset;
     }
-
 		&--item{
 			/************************** TIPO DE TRANSPORTE **************************/
 			&[data-advlevel="d-typetransportcharge"]{
@@ -71,6 +66,11 @@
 					text-align: center;
 					span{
 						font-weight: 600;
+						font-size: 0.8rem;
+						vertical-align: super;
+						@media (min-width: 991px){
+							font-size: .9rem;
+						}
 					}
 				}
 			}
@@ -92,13 +92,11 @@
 				    align-items: center;
 				    justify-content: center;
 				    margin-bottom: 0;
-
 				    &[data-merchandise="rsm-qcontainer"]{
 					    display: grid;
 					    grid-template-columns: 1fr;
 					    align-items: flex-start;
 					    justify-content: center;
-
 					    div[data-merchandisetype="rsm-qcontainer20"],
 					    div[data-merchandisetype="rsm-qcontainer40"],
 					    div[data-merchandisetype="rsm-qcontainer40hq"],
@@ -110,7 +108,6 @@
 						    justify-content: flex-start;
 					    }
 				    }
-
 						&[data-merchandise="rsm-typecharge"] img{
 							width: auto;
 					    height: 35px;
@@ -119,7 +116,6 @@
 						span{
 							font-size: 0.9rem;
 						}
-
 						p{
 							margin-bottom: 0;
 						}
@@ -143,7 +139,6 @@
 					}
 				}
 			}
-
 			&--cardStep{
 				border-radius: 5px;
 				background-color: #2F363F;
@@ -157,9 +152,12 @@
 					justify-content: center;
 					span{
 						font-weight: 600;
+						font-size: 0.8rem;
+						@media (min-width: 991px){
+							font-size: .9rem;
+						}
 					}
 				}
-
 				/* NOMBRE DEL PAÍS DE ORIGEN/DESTINO */
 				&--cDescMap{
 					padding-top: 0.25rem;
@@ -167,10 +165,8 @@
 					align-items: center;
 					justify-content: center;
 					span{
-						
 					}
 				}
-
 				/* ÍCONO DEL TIPO DE OPERACIÓN */
 				&--cIcon{
 					max-width: 30px;
@@ -178,12 +174,9 @@
 			    height: auto;
 			    display: inline-block;
 			    margin-right: .5rem;
-			    
 					svg{
-
 					}
 				}
-
 				/* ÍCONO DEL TIPO DE TRANSPORTE */
 				&--cImgIcon{
 					max-width: 40px;
@@ -197,53 +190,43 @@
 			}
 		}
 	}
-
 	/* PASOS DE LA COTIZACIÓN - NUEVA INTERFAZ */
 	&--contSteps{
 		padding: 0.5rem;
 		height: 100%;
 		text-align: center;
-
 		@media (min-width: 991px){
 			padding: 0.5rem 0.5rem 0.5rem 250px;
 		}
-
 		&--item{
-			
 			&[data-anchor="step-typetransport"]{display: none;&.show{display: block;}}
-
 			&[data-anchor="step-chargeload"]{display: none;&.show{display: block;}}
-
 			&[data-anchor="step-qcontainers"]{display: none;&.show{display: block;}}
-
 			&[data-anchor="step-integservorfleteinte"]{display: none;&.show{display: block;}}
-
 			&[data-anchor="step-chargedata"]{display: none;&.show{display: block;}}
-
 			&[data-anchor="step-merchandisedata"]{display: none;&.show{display: block;flex-flow: wrap column;align-items: center;justify-content: flex-start;}}
-
 			&[data-anchor="step-insuremerchandise"]{display: none;&.show{display: block;}}
-
 			&[data-anchor="step-customsclearance"]{display: none;&.show{display: block;}}
-
 			&[data-anchor="step-requirespickup"]{display: none;&.show{display: block;}}
-
 			&[data-anchor="step-fletevaldata"]{display: none;&.show{display: block;}}			
-
 			&[data-anchor="step-pickuplocation"]{display: none;&.show{display: block;}}
-
 			/* CONTENIDO DEL TÍTULO */			
 			&--cTitle{
 				padding-top: 2rem;
 				margin-bottom: 2rem;
 				&--title{
 					font-weight: 300;
+					font-size: 1.2rem;
+					@media (min-width: 768px){
+						font-size: 1.35rem;
+					}
+					@media (min-width: 991px){
+						font-size: 1.6rem;
+					}
 				}
 			}
-
 			/* CONTENIDO DEL PASO */
 			&--cStep{
-
 				/* LISTADO DE ITEMS - CARDS */
 				&--m{
 					display: flex;
@@ -253,23 +236,19 @@
 					gap: 0.2rem 1rem;
 					width: 100%;
 					padding: 0;
-
 					@media (min-width: 501px){
 						gap: .5rem 2rem;
 				  }
-
 					@media (min-width: 768px){
 						gap: 1rem 2rem;
 					}
-
 					@media (min-width: 991px){
 						gap: 2rem 3rem;
 					}
-
 					&--item{
 					}
-	
 					&--cardItem{
+						text-decoration: none !important;
 						display: block;
 						color: #000;
 						font-weight: 600;
@@ -278,52 +257,42 @@
 						border: 1px solid transparent;
 					  opacity: 0.5;
 					  width: 47%;
-
 					  @media (min-width: 425px){
 					  	width: 39%;
 					  }
-
 					  @media (min-width: 501px){
 					  	width: 28%;
 					  	padding: 0.5rem;
 					  }
-
 					  @media (min-width: 768px){
 					  	padding: 0.5rem 1rem;
 					  }
-
 					  @media (min-width: 1200px){
 					  	width: auto;
 					  }
-
 						&.active,
 						&:hover{
 					  	color: #000;
 							border: 1px solid #000;
 							opacity: 1;
 						}
-
 						&--cImg{
 							max-width: 16rem;
 					    width: 100%;
 					    margin-bottom: 0;
 					    display: inline-block;
-
 					    @media (min-width: 768px){
 					    	margin-bottom: 1rem;
 					    }
-
 							img{
 								width: 100%;
 								height: 100%;
 							}
 						}
-
 						p{
 							font-size: 1rem;
 							font-weight: 500;
 							margin: 0;
-
 							@media (min-width: 991px){
 								font-size: 1.1rem;
 								font-weight: 600;
@@ -331,7 +300,6 @@
 						}
 					}
 				}
-
 				/* LISTADO DE ITEMS - INPUTS Y BUTTONS(SUM AND RES) */
 				&--mIptsItems{
 					display: flex;
@@ -479,6 +447,7 @@
 
 								&--cDetailsB{
 									&--m{
+										padding: 0;
 										display: grid;
 										grid-template-columns: repeat(3,1fr);
 										margin-bottom: 0.5rem;
@@ -1034,6 +1003,8 @@
 								}
 
 								&--m{
+									padding: 0;
+									margin: 0;
 									position: absolute;
 							    left: 0;
 							    width: 100%;
@@ -1384,6 +1355,8 @@
 								}
 
 								&--m{
+									padding: 0;
+									margin: 0;
 									position: absolute;
 							    left: 0;
 							    width: 100%;

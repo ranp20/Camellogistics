@@ -32,7 +32,7 @@
       <section class="cont-MainCamelLog--c--cOptionsMarket">
         <form action="startQuoteRequest" class="cont-MainCamelLog--c--cOptionsMarket--f" method="POST" id="f-cOptionsMarkLogistic">
           <div class="cont-MainCamelLog--c--cOptionsMarket--f--cont">
-            <ul class="cont-MainCamelLog--c--cOptionsMarket--f--cont--m" id="c-cOptionsMarket">
+            <div class="cont-MainCamelLog--c--cOptionsMarket--f--cont--m" id="c-cOptionsMarket">
               <a href="javascript:void(0);" class="cont-MainCamelLog--c--cOptionsMarket--f--cont--m--link">
                 <button type="button" class="cont-MainCamelLog--c--cOptionsMarket--f--cont--m--button">
                   <li class="cont-MainCamelLog--c--cOptionsMarket--f--cont--m--item">
@@ -57,7 +57,7 @@
                   </li>
                 </button>
               </a>
-            </ul>
+            </div>
             <div class="cont-MainCamelLog--c--cOptionsMarket--f--cont--cTabsItem" id="c-cTabsItem">
               <div class="cont-MainCamelLog--c--cOptionsMarket--f--cont--cTabsItem--item">
                 <input type="hidden" id="v_typeserviceinpinit" name="v_typeserviceinpinit" value="Transporte Marítimo">

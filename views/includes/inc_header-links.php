@@ -34,9 +34,6 @@
 <link rel="canonical" href="https://localhost/Camellogistics">
 <!-- JQUERY COMPRESSED -->
 <script type="text/javascript" src="<?= $url; ?>js/plugins/jquery/jquery-3.6.0.min.js"></script>
-<!-- BOOSTRAP DOWNLOADED -->
-<!-- <link rel="stylesheet" href="<?= $url ?>js/plugins/bootstrap/css/bootstrap.min.css">
-<script type="text/javascript" src="<?= $url ?>js/plugins/bootstrap/js/bootstrap.min.js"></script> -->
 <!-- STYLESSHEET -->
 <link rel="stylesheet" href="<?= $url; ?>assets/css/styles.min.css">
 <!-- GOOGLE FONTS -->

@@ -311,6 +311,10 @@
 <head>
   <?php require_once 'includes/inc_header-links.php';?>
   <title>Camel Logistics | Pasos de cotización</title>
+  <!-- INCLUIR BOOTSTRAP -->
+  <link rel="stylesheet" href="<?php echo $url;?>js/plugins/bootstrap/css/bootstrap.min.css">
+  <script type="text/javascript" src="<?php echo $url;?>js/plugins/bootstrap/js/bootstrap.min.js"></script>
+  <!-- INLCUIR FULLPAGE.JS -->
   <!-- <link rel="stylesheet" href="node_modules/fullpage.js/dist/fullpage.min.css"> -->
   <link rel="stylesheet" href="<?php echo $url;?>js/plugins/fullpage/fullpage.min.css">
 </head>
