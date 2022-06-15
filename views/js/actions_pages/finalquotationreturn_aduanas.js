@@ -867,429 +867,490 @@ $(document).ready(function(){
 					window.location.href = "marketplace-logistico";
 				}
 		  });
-
-	    // ------------ VALIDAR SI EXISTE UN USUARIO AL ABRIR EL MODAL - PRIMER BOTÓN 
-	    $(document).on("click","#btn-requireDownloadQuotaion_one",function(e){
-				e.preventDefault();	
-
-				if($("#s_useregin-sistem").val() == "" || $("#s_useregin-sistem").val() == undefined || $("#s_useregin-sistem").val() == 'undefined' || $("#s_useregin-sistem").val() == null || $("#s_useregin-sistem").val() == 'null'){
-					$("#cnt-modalFormLoginyRegister").add($(".cnt-modalFormLoginyRegister--c")).addClass("show");
-					console.log('Por favor, rellene sus datos.');
-				}else if($("#s_useregin-sistem").val() == 'Invitado'){
-					$("#cUIMessageValid-user").html(`<div id="msgAlertpreloader">
-						<div class="cont-loader--loader">
-							<span class="cont-loader--loader--circle"></span>
-							<span class="cont-loader--loader--circle"></span>
-							<span class="cont-loader--loader--circle"></span>
-							<span class="cont-loader--loader--circle"></span>
-						</div>
-						<p>Validando la información...</p>
-					</div>`);
-					//VALIDAR LA INFORMACIÓN DEL USUARIO...
-					user_sessquote = s_username_local.username;
-					var formdata = new FormData();
-					formdata.append("id_codegenrand", $("#v_idgencoderand").val());
-					formdata.append("code_quote", $("#v_gencodexxx").text());
-					formdata.append("u_login", user_sessquote);
-
-					$.ajax({
-						url: 'controllers/c_validation_by_idcodegenrand.php',
-						method: 'POST',
-						datatype: 'JSON',
-						data: formdata,
-						contentType: false,
-		        cache: false,
-		        processData: false
-					}).done(function(e){
-						console.log(e);
-						var rvalidpdf = JSON.parse(e);
-						if(rvalidpdf[0].res != "notexists"){
-							console.log("El usuario SI se registró previamente");
-							//generatePDF(queryresult.username);
-							$("#cUIMessageValid-user").html(`<div id="msgAlertpreloader">
-								<div class="cont-loader--loader">
-									<span class="cont-loader--loader--circle"></span>
-									<span class="cont-loader--loader--circle"></span>
-									<span class="cont-loader--loader--circle"></span>
-									<span class="cont-loader--loader--circle"></span>
-								</div>
-								<p>Preparando cotización...</p>
-							</div>`);
-
-							$.ajax({
-								type: 'POST',
-								url: 'controllers/c_generate-pdf-aduanas.php',
-								data: {
-									id_codegenrand : $("#v_idgencoderand").val(), 
-									code_quote : $("#v_gencodexxx").text(),
-									u_login : user_sessquote
-								},
-								xhrFields: {
-						      responseType: 'blob' // to avoid binary data being mangled on charset conversion
-						    },
-						    success: function(blob, status, xhr) {
-					        // check for a filename
-					        var filename = "";
-					        var disposition = xhr.getResponseHeader('Content-Disposition');
-					        if (disposition && disposition.indexOf('attachment') !== -1) {
-				            var filenameRegex = /filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/;
-				            var matches = filenameRegex.exec(disposition);
-				            if (matches != null && matches[1]) filename = matches[1].replace(/['"]/g, '');
-					        }
-
-					        if (typeof window.navigator.msSaveBlob !== 'undefined') {
-				            // IE workaround for "HTML7007: One or more blob URLs were revoked by closing the blob for which they were created. These URLs will no longer resolve as the data backing the URL has been freed."
-				            window.navigator.msSaveBlob(blob, filename);
-					        } else {
-				            var URL = window.URL || window.webkitURL;
-				            var downloadUrl = URL.createObjectURL(blob);
-
-				            if (filename) {
-			                // use HTML5 a[download] attribute to specify filename
-			                var a = document.createElement("a");
-			                // safari doesn't support this yet
-			                if (typeof a.download === 'undefined') {
-			                  window.location.href = downloadUrl;
-			                } else {
-		                    a.href = downloadUrl;
-		                    a.download = filename;
-		                    document.body.appendChild(a);
-		                    a.click();
-		                    $("#cUIMessageValid-user").html("");
-			                }
-				            } else {
-				              window.location.href = downloadUrl;
-				            }
-
-				            setTimeout(function () { URL.revokeObjectURL(downloadUrl); }, 100); // cleanup
-					        }
-						    }
-							});
-						}else if(rvalidpdf[0].res == "notexists"){
-							$("#cUIMessageValid-user").html("");
-							$("#cnt-modalFormLoginyRegister").add($(".cnt-modalFormLoginyRegister--c")).addClass("show");
-							console.log("El usuario aún NO registró sus datos");
-						}else{
-							console.log('lo sentimos, hubo un error');
-						}
-					});
-				}else if($("#s_useregin-sistem").val() != "" || $("#s_useregin-sistem").val() != undefined || $("#s_useregin-sistem").val() != 'undefined' || $("#s_useregin-sistem").val() != null || $("#s_useregin-sistem").val() != 'null' || $("#s_useregin-sistem").val() != 'Invitado'){
-					$("#cUIMessageValid-user").html(`<div id="msgAlertpreloader">
-						<div class="cont-loader--loader">
-							<span class="cont-loader--loader--circle"></span>
-							<span class="cont-loader--loader--circle"></span>
-							<span class="cont-loader--loader--circle"></span>
-							<span class="cont-loader--loader--circle"></span>
-						</div>
-						<p>Validando la información...</p>
-					</div>`);
-					//VALIDAR LA INFORMACIÓN DEL USUARIO...
-					user_sessquote = s_username_local.username;
-					var formdata = new FormData();
-					formdata.append("id_codegenrand", $("#v_idgencoderand").val());
-					formdata.append("code_quote", $("#v_gencodexxx").text());
-					formdata.append("u_login", user_sessquote);
-
-					$.ajax({
-						url: 'controllers/c_validation_by_idcodegenrand.php',
-						method: 'POST',
-						datatype: 'JSON',
-						data: formdata,
-						contentType: false,
-		        cache: false,
-		        processData: false
-					}).done(function(e){
-						console.log(e);
-						var rvalidpdf = JSON.parse(e);
-						if(rvalidpdf[0].res != "notexists"){
-							console.log("El usuario SI se registró previamente");
-							//generatePDF(queryresult.username);
-							$("#cUIMessageValid-user").html(`<div id="msgAlertpreloader">
-								<div class="cont-loader--loader">
-									<span class="cont-loader--loader--circle"></span>
-									<span class="cont-loader--loader--circle"></span>
-									<span class="cont-loader--loader--circle"></span>
-									<span class="cont-loader--loader--circle"></span>
-								</div>
-								<p>Preparando cotización...</p>
-							</div>`);
-
-							$.ajax({
-								type: 'POST',
-								url: 'controllers/c_generate-pdf-aduanas.php',
-								data: {
-									id_codegenrand : $("#v_idgencoderand").val(), 
-									code_quote : $("#v_gencodexxx").text(),
-									u_login : user_sessquote
-								},
-								xhrFields: {
-						      responseType: 'blob' // to avoid binary data being mangled on charset conversion
-						    },
-						    success: function(blob, status, xhr) {
-					        // check for a filename
-					        var filename = "";
-					        var disposition = xhr.getResponseHeader('Content-Disposition');
-					        if (disposition && disposition.indexOf('attachment') !== -1) {
-				            var filenameRegex = /filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/;
-				            var matches = filenameRegex.exec(disposition);
-				            if (matches != null && matches[1]) filename = matches[1].replace(/['"]/g, '');
-					        }
-
-					        if (typeof window.navigator.msSaveBlob !== 'undefined') {
-				            // IE workaround for "HTML7007: One or more blob URLs were revoked by closing the blob for which they were created. These URLs will no longer resolve as the data backing the URL has been freed."
-				            window.navigator.msSaveBlob(blob, filename);
-					        } else {
-				            var URL = window.URL || window.webkitURL;
-				            var downloadUrl = URL.createObjectURL(blob);
-
-				            if (filename) {
-			                // use HTML5 a[download] attribute to specify filename
-			                var a = document.createElement("a");
-			                // safari doesn't support this yet
-			                if (typeof a.download === 'undefined') {
-			                  window.location.href = downloadUrl;
-			                } else {
-		                    a.href = downloadUrl;
-		                    a.download = filename;
-		                    document.body.appendChild(a);
-		                    a.click();
-		                    $("#cUIMessageValid-user").html("");
-			                }
-				            } else {
-				              window.location.href = downloadUrl;
-				            }
-
-				            setTimeout(function () { URL.revokeObjectURL(downloadUrl); }, 100); // cleanup
-					        }
-						    }
-							});
-						}else if(rvalidpdf[0].res == "notexists"){
-							$("#cUIMessageValid-user").html("");
-							$("#cnt-modalFormLoginyRegister").add($(".cnt-modalFormLoginyRegister--c")).addClass("show");
-							console.log("El usuario aún NO registró sus datos");
-						}else{
-							console.log('lo sentimos, hubo un error');
-						}
-					});
-				}else{
-					$("#cnt-modalFormLoginyRegister").add($(".cnt-modalFormLoginyRegister--c")).addClass("show");
-					console.log('Hubo un error al generar el PDF');
-				}
-			});
-			// ------------ VALIDAR SI EXISTE UN USUARIO AL ABRIR EL MODAL - SEGUNDO BOTÓN 
-			$(document).on("click","#btn-requireDownloadQuotaion_two",function(e){
-				e.preventDefault();
-
-				if($("#s_useregin-sistem").val() == "" || $("#s_useregin-sistem").val() == undefined || $("#s_useregin-sistem").val() == 'undefined' || $("#s_useregin-sistem").val() == null || $("#s_useregin-sistem").val() == 'null'){
-					$("#cnt-modalFormLoginyRegister").add($(".cnt-modalFormLoginyRegister--c")).addClass("show");
-					console.log('Por favor, rellene sus datos.');
-				}else if($("#s_useregin-sistem").val() == "Invitado"){
-
-					$("#cUIMessageValid-user").html(`<div id="msgAlertpreloader">
-						<div class="cont-loader--loader">
-							<span class="cont-loader--loader--circle"></span>
-							<span class="cont-loader--loader--circle"></span>
-							<span class="cont-loader--loader--circle"></span>
-							<span class="cont-loader--loader--circle"></span>
-						</div>
-						<p>Validando la información...</p>
-					</div>`);
-
-					//VALIDAR LA INFORMACIÓN DEL USUARIO...
-					user_sessquote = s_username_local.username;
-					var formdata = new FormData();
-					formdata.append("id_codegenrand", $("#v_idgencoderand").val());
-					formdata.append("code_quote", $("#v_gencodexxx").text());
-					formdata.append("u_login", user_sessquote);
-
-					$.ajax({
-						url: 'controllers/c_validation_by_idcodegenrand.php',
-						method: 'POST',
-						datatype: 'JSON',
-						data: formdata,
-						contentType: false,
-		        cache: false,
-		        processData: false
-					}).done(function(e){
-						console.log(e);
-						var rvalidpdf = JSON.parse(e);
-						if(rvalidpdf[0].res != "notexists"){
-							console.log("El usuario SI se registró previamente");
-							//generatePDF(queryresult.username);
-							$("#cUIMessageValid-user").html(`<div id="msgAlertpreloader">
-								<div class="cont-loader--loader">
-									<span class="cont-loader--loader--circle"></span>
-									<span class="cont-loader--loader--circle"></span>
-									<span class="cont-loader--loader--circle"></span>
-									<span class="cont-loader--loader--circle"></span>
-								</div>
-								<p>Preparando cotización...</p>
-							</div>`);
-
-							$.ajax({
-								type: 'POST',
-								url: 'controllers/c_generate-pdf-aduanas.php',
-								data: {
-									id_codegenrand : $("#v_idgencoderand").val(), 
-									code_quote : $("#v_gencodexxx").text(),
-									u_login : user_sessquote
-								},
-								xhrFields: {
-						      responseType: 'blob' // to avoid binary data being mangled on charset conversion
-						    },
-						    success: function(blob, status, xhr) {
-					        // check for a filename
-					        var filename = "";
-					        var disposition = xhr.getResponseHeader('Content-Disposition');
-					        if (disposition && disposition.indexOf('attachment') !== -1) {
-				            var filenameRegex = /filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/;
-				            var matches = filenameRegex.exec(disposition);
-				            if (matches != null && matches[1]) filename = matches[1].replace(/['"]/g, '');
-					        }
-
-					        if (typeof window.navigator.msSaveBlob !== 'undefined') {
-				            // IE workaround for "HTML7007: One or more blob URLs were revoked by closing the blob for which they were created. These URLs will no longer resolve as the data backing the URL has been freed."
-				            window.navigator.msSaveBlob(blob, filename);
-					        } else {
-				            var URL = window.URL || window.webkitURL;
-				            var downloadUrl = URL.createObjectURL(blob);
-
-				            if (filename) {
-			                // use HTML5 a[download] attribute to specify filename
-			                var a = document.createElement("a");
-			                // safari doesn't support this yet
-			                if (typeof a.download === 'undefined') {
-			                  window.location.href = downloadUrl;
-			                } else {
-		                    a.href = downloadUrl;
-		                    a.download = filename;
-		                    document.body.appendChild(a);
-		                    a.click();
-		                    $("#cUIMessageValid-user").html("");
-			                }
-				            } else {
-				              window.location.href = downloadUrl;
-				            }
-
-				            setTimeout(function () { URL.revokeObjectURL(downloadUrl); }, 100); // cleanup
-					        }
-						    }
-							});
-						}else if(rvalidpdf[0].res == "notexists"){
-							$("#cUIMessageValid-user").html("");
-							$("#cnt-modalFormLoginyRegister").add($(".cnt-modalFormLoginyRegister--c")).addClass("show");
-							console.log("El usuario aún NO registró sus datos");
-						}else{
-							console.log('lo sentimos, hubo un error');
-						}
-					});
-				}else if($("#s_useregin-sistem").val() != "" || $("#s_useregin-sistem").val() != undefined || $("#s_useregin-sistem").val() != 'undefined' || $("#s_useregin-sistem").val() != null || $("#s_useregin-sistem").val() != 'null'){
-					$("#cUIMessageValid-user").html(`<div id="msgAlertpreloader">
-						<div class="cont-loader--loader">
-							<span class="cont-loader--loader--circle"></span>
-							<span class="cont-loader--loader--circle"></span>
-							<span class="cont-loader--loader--circle"></span>
-							<span class="cont-loader--loader--circle"></span>
-						</div>
-						<p>Validando la información...</p>
-					</div>`);
-					//VALIDAR LA INFORMACIÓN DEL USUARIO...
-					user_sessquote = s_username_local.username;
-					var formdata = new FormData();
-					formdata.append("id_codegenrand", $("#v_idgencoderand").val());
-					formdata.append("code_quote", $("#v_gencodexxx").text());
-					formdata.append("u_login", user_sessquote);
-
-					$.ajax({
-						url: 'controllers/c_validation_by_idcodegenrand.php',
-						method: 'POST',
-						datatype: 'JSON',
-						data: formdata,
-						contentType: false,
-		        cache: false,
-		        processData: false
-					}).done(function(e){
-						console.log(e);
-						var rvalidpdf = JSON.parse(e);
-						if(rvalidpdf[0].res != "notexists"){
-							console.log("El usuario SI se registró previamente");
-							//generatePDF(queryresult.username);
-							$("#cUIMessageValid-user").html(`<div id="msgAlertpreloader">
-								<div class="cont-loader--loader">
-									<span class="cont-loader--loader--circle"></span>
-									<span class="cont-loader--loader--circle"></span>
-									<span class="cont-loader--loader--circle"></span>
-									<span class="cont-loader--loader--circle"></span>
-								</div>
-								<p>Preparando cotización...</p>
-							</div>`);
-
-							$.ajax({
-								type: 'POST',
-								url: 'controllers/c_generate-pdf-aduanas.php',
-								data: {
-									id_codegenrand : $("#v_idgencoderand").val(), 
-									code_quote : $("#v_gencodexxx").text(),
-									u_login : user_sessquote
-								},
-								xhrFields: {
-						      responseType: 'blob' // to avoid binary data being mangled on charset conversion
-						    },
-						    success: function(blob, status, xhr) {
-					        // check for a filename
-					        var filename = "";
-					        var disposition = xhr.getResponseHeader('Content-Disposition');
-					        if (disposition && disposition.indexOf('attachment') !== -1) {
-				            var filenameRegex = /filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/;
-				            var matches = filenameRegex.exec(disposition);
-				            if (matches != null && matches[1]) filename = matches[1].replace(/['"]/g, '');
-					        }
-
-					        if (typeof window.navigator.msSaveBlob !== 'undefined') {
-				            // IE workaround for "HTML7007: One or more blob URLs were revoked by closing the blob for which they were created. These URLs will no longer resolve as the data backing the URL has been freed."
-				            window.navigator.msSaveBlob(blob, filename);
-					        } else {
-				            var URL = window.URL || window.webkitURL;
-				            var downloadUrl = URL.createObjectURL(blob);
-
-				            if (filename) {
-			                // use HTML5 a[download] attribute to specify filename
-			                var a = document.createElement("a");
-			                // safari doesn't support this yet
-			                if (typeof a.download === 'undefined') {
-			                  window.location.href = downloadUrl;
-			                } else {
-		                    a.href = downloadUrl;
-		                    a.download = filename;
-		                    document.body.appendChild(a);
-		                    a.click();
-		                    $("#cUIMessageValid-user").html("");
-			                }
-				            } else {
-				              window.location.href = downloadUrl;
-				            }
-
-				            setTimeout(function () { URL.revokeObjectURL(downloadUrl); }, 100); // cleanup
-					        }
-						    }
-							});
-						}else if(rvalidpdf[0].res == "notexists"){
-							$("#cUIMessageValid-user").html("");
-							$("#cnt-modalFormLoginyRegister").add($(".cnt-modalFormLoginyRegister--c")).addClass("show");
-							console.log("El usuario aún NO registró sus datos");
-						}else{
-							console.log('lo sentimos, hubo un error');
-						}
-					});
-				}else{
-					$("#cnt-modalFormLoginyRegister").add($(".cnt-modalFormLoginyRegister--c")).addClass("show");
-					console.log('Hubo un error al generar el PDF');
-				}
-			});
 	  });
   });
+  // ------------ VALIDAR SI EXISTE UN USUARIO AL ABRIR EL MODAL - PRIMER BOTÓN 
+  $(document).on("click","#btn-requireDownloadQuotaion_one",function(e){
+		e.preventDefault();	
+		if($("#s_useregin-sistem").val() == "" || $("#s_useregin-sistem").val() == undefined || $("#s_useregin-sistem").val() == 'undefined' || $("#s_useregin-sistem").val() == null || $("#s_useregin-sistem").val() == 'null'){
+			$("#cnt-modalFormLoginyRegister").add($(".cnt-modalFormLoginyRegister--c")).addClass("show");
+			console.log('Por favor, rellene sus datos.');
+		}else if($("#s_useregin-sistem").val() == 'Invitado'){
+			$("#cUIMessageValid-user").html(`<div id="msgAlertpreloader">
+				<div class="cont-loader--loader">
+					<span class="cont-loader--loader--circle"></span>
+					<span class="cont-loader--loader--circle"></span>
+					<span class="cont-loader--loader--circle"></span>
+					<span class="cont-loader--loader--circle"></span>
+				</div>
+				<p>Validando la información...</p>
+			</div>`);
+			//VALIDAR LA INFORMACIÓN DEL USUARIO...
+			user_sessquote = s_username_local.username;
+			var formdata = new FormData();
+			formdata.append("id_codegenrand", $("#v_idgencoderand").val());
+			formdata.append("code_quote", $("#v_gencodexxx").text());
+			formdata.append("u_login", user_sessquote);
 
-	
+			$.ajax({
+				url: 'controllers/c_validation_by_idcodegenrand.php',
+				method: 'POST',
+				datatype: 'JSON',
+				data: formdata,
+				contentType: false,
+        cache: false,
+        processData: false
+			}).done((e) => {
+				if(e != ""){
+					var rpdf = JSON.parse(e);
+					if(rpdf.res != "notexists"){
+						//generatePDF(queryresult.username);
+						$("#cUIMessageValid-user").html(`<div id="msgAlertpreloader">
+							<div class="cont-loader--loader">
+								<span class="cont-loader--loader--circle"></span>
+								<span class="cont-loader--loader--circle"></span>
+								<span class="cont-loader--loader--circle"></span>
+								<span class="cont-loader--loader--circle"></span>
+							</div>
+							<p>Preparando cotización...</p>
+						</div>`);
+
+						$.ajax({
+							type: 'POST',
+							url: 'controllers/c_generate-pdf-aduanas.php',
+							data: {
+								id_codegenrand : $("#v_idgencoderand").val(), 
+								code_quote : $("#v_gencodexxx").text(),
+								u_login : user_sessquote
+							},
+							xhrFields: {
+					      responseType: 'blob' // to avoid binary data being mangled on charset conversion
+					    },
+					    success: function(blob, status, xhr) {
+				        // check for a filename
+				        var filename = "";
+				        var disposition = xhr.getResponseHeader('Content-Disposition');
+				        if (disposition && disposition.indexOf('attachment') !== -1) {
+			            var filenameRegex = /filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/;
+			            var matches = filenameRegex.exec(disposition);
+			            if (matches != null && matches[1]) filename = matches[1].replace(/['"]/g, '');
+				        }
+
+				        if (typeof window.navigator.msSaveBlob !== 'undefined') {
+			            // IE workaround for "HTML7007: One or more blob URLs were revoked by closing the blob for which they were created. These URLs will no longer resolve as the data backing the URL has been freed."
+			            window.navigator.msSaveBlob(blob, filename);
+				        } else {
+			            var URL = window.URL || window.webkitURL;
+			            var downloadUrl = URL.createObjectURL(blob);
+
+			            if (filename) {
+		                // use HTML5 a[download] attribute to specify filename
+		                var a = document.createElement("a");
+		                // safari doesn't support this yet
+		                if (typeof a.download === 'undefined') {
+		                  window.location.href = downloadUrl;
+		                } else {
+	                    a.href = downloadUrl;
+	                    a.download = filename;
+	                    document.body.appendChild(a);
+	                    a.click();
+	                    $("#cUIMessageValid-user").html("");
+		                }
+			            } else {
+			              window.location.href = downloadUrl;
+			            }
+
+			            setTimeout(function () { URL.revokeObjectURL(downloadUrl); }, 100); // cleanup
+				        }
+					    }
+						});
+					}else if(rpdf.res == "notexists"){
+						$("#cUIMessageValid-user").html("");
+						$("#cnt-modalFormLoginyRegister").add($(".cnt-modalFormLoginyRegister--c")).addClass("show");
+						console.log("El usuario aún NO registró sus datos");
+					}else{
+						$("#cUIMessageValid-user").html("");
+						Swal.fire({
+				      title: 'Error!',
+				      html: `<span class='font-w-300'>Lo sentimos, hubo un error al procesar la información.</span>`,
+				      icon: 'error',
+				      confirmButtonText: 'Aceptar'
+				    });
+					}
+				}else{
+					$("#cUIMessageValid-user").html("");
+					Swal.fire({
+			      title: 'Error!',
+			      html: `<span class='font-w-300'>Lo sentimos, hubo un error al procesar la información.</span>`,
+			      icon: 'error',
+			      confirmButtonText: 'Aceptar'
+			    });
+				}
+			});
+		}else if($("#s_useregin-sistem").val() != "" || $("#s_useregin-sistem").val() != undefined || $("#s_useregin-sistem").val() != 'undefined' || $("#s_useregin-sistem").val() != null || $("#s_useregin-sistem").val() != 'null' || $("#s_useregin-sistem").val() != 'Invitado'){
+			$("#cUIMessageValid-user").html(`<div id="msgAlertpreloader">
+				<div class="cont-loader--loader">
+					<span class="cont-loader--loader--circle"></span>
+					<span class="cont-loader--loader--circle"></span>
+					<span class="cont-loader--loader--circle"></span>
+					<span class="cont-loader--loader--circle"></span>
+				</div>
+				<p>Validando la información...</p>
+			</div>`);
+			//VALIDAR LA INFORMACIÓN DEL USUARIO...
+			user_sessquote = s_username_local.username;
+			var formdata = new FormData();
+			formdata.append("id_codegenrand", $("#v_idgencoderand").val());
+			formdata.append("code_quote", $("#v_gencodexxx").text());
+			formdata.append("u_login", user_sessquote);
+
+			$.ajax({
+				url: 'controllers/c_validation_by_idcodegenrand.php',
+				method: 'POST',
+				datatype: 'JSON',
+				data: formdata,
+				contentType: false,
+        cache: false,
+        processData: false
+			}).done((e) => {
+				if(e != ""){
+					var rpdf = JSON.parse(e);
+					if(rpdf.res != "notexists"){
+						//generatePDF(queryresult.username);
+						$("#cUIMessageValid-user").html(`<div id="msgAlertpreloader">
+							<div class="cont-loader--loader">
+								<span class="cont-loader--loader--circle"></span>
+								<span class="cont-loader--loader--circle"></span>
+								<span class="cont-loader--loader--circle"></span>
+								<span class="cont-loader--loader--circle"></span>
+							</div>
+							<p>Preparando cotización...</p>
+						</div>`);
+
+						$.ajax({
+							type: 'POST',
+							url: 'controllers/c_generate-pdf-aduanas.php',
+							data: {
+								id_codegenrand : $("#v_idgencoderand").val(), 
+								code_quote : $("#v_gencodexxx").text(),
+								u_login : user_sessquote
+							},
+							xhrFields: {
+					      responseType: 'blob' // to avoid binary data being mangled on charset conversion
+					    },
+					    success: function(blob, status, xhr) {
+				        // check for a filename
+				        var filename = "";
+				        var disposition = xhr.getResponseHeader('Content-Disposition');
+				        if (disposition && disposition.indexOf('attachment') !== -1) {
+			            var filenameRegex = /filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/;
+			            var matches = filenameRegex.exec(disposition);
+			            if (matches != null && matches[1]) filename = matches[1].replace(/['"]/g, '');
+				        }
+
+				        if (typeof window.navigator.msSaveBlob !== 'undefined') {
+			            // IE workaround for "HTML7007: One or more blob URLs were revoked by closing the blob for which they were created. These URLs will no longer resolve as the data backing the URL has been freed."
+			            window.navigator.msSaveBlob(blob, filename);
+				        } else {
+			            var URL = window.URL || window.webkitURL;
+			            var downloadUrl = URL.createObjectURL(blob);
+
+			            if (filename) {
+		                // use HTML5 a[download] attribute to specify filename
+		                var a = document.createElement("a");
+		                // safari doesn't support this yet
+		                if (typeof a.download === 'undefined') {
+		                  window.location.href = downloadUrl;
+		                } else {
+	                    a.href = downloadUrl;
+	                    a.download = filename;
+	                    document.body.appendChild(a);
+	                    a.click();
+	                    $("#cUIMessageValid-user").html("");
+		                }
+			            } else {
+			              window.location.href = downloadUrl;
+			            }
+
+			            setTimeout(function () { URL.revokeObjectURL(downloadUrl); }, 100); // cleanup
+				        }
+					    }
+						});
+					}else if(rpdf.res == "notexists"){
+						$("#cUIMessageValid-user").html("");
+						$("#cnt-modalFormLoginyRegister").add($(".cnt-modalFormLoginyRegister--c")).addClass("show");
+						console.log("El usuario aún NO registró sus datos");
+					}else{
+						$("#cUIMessageValid-user").html("");
+						Swal.fire({
+				      title: 'Error!',
+				      html: `<span class='font-w-300'>Lo sentimos, hubo un error al procesar la información.</span>`,
+				      icon: 'error',
+				      confirmButtonText: 'Aceptar'
+				    });
+					}
+				}else{
+					$("#cUIMessageValid-user").html("");
+					Swal.fire({
+			      title: 'Error!',
+			      html: `<span class='font-w-300'>Lo sentimos, hubo un error al procesar la información.</span>`,
+			      icon: 'error',
+			      confirmButtonText: 'Aceptar'
+			    });
+				}
+			});
+		}else{
+			$("#cUIMessageValid-user").html("");
+			$("#cnt-modalFormLoginyRegister").add($(".cnt-modalFormLoginyRegister--c")).addClass("show");
+			Swal.fire({
+	      title: 'Error!',
+	      html: `<span class='font-w-300'>Lo sentimos, hubo un error al validar la información.</span>`,
+	      icon: 'error',
+	      confirmButtonText: 'Aceptar'
+	    });
+		}
+	});
+	// ------------ VALIDAR SI EXISTE UN USUARIO AL ABRIR EL MODAL - SEGUNDO BOTÓN 
+	$(document).on("click","#btn-requireDownloadQuotaion_two",function(e){
+		e.preventDefault();
+		if($("#s_useregin-sistem").val() == "" || $("#s_useregin-sistem").val() == undefined || $("#s_useregin-sistem").val() == 'undefined' || $("#s_useregin-sistem").val() == null || $("#s_useregin-sistem").val() == 'null'){
+			$("#cnt-modalFormLoginyRegister").add($(".cnt-modalFormLoginyRegister--c")).addClass("show");
+			console.log('Por favor, rellene sus datos.');
+		}else if($("#s_useregin-sistem").val() == "Invitado"){
+			$("#cUIMessageValid-user").html(`<div id="msgAlertpreloader">
+				<div class="cont-loader--loader">
+					<span class="cont-loader--loader--circle"></span>
+					<span class="cont-loader--loader--circle"></span>
+					<span class="cont-loader--loader--circle"></span>
+					<span class="cont-loader--loader--circle"></span>
+				</div>
+				<p>Validando la información...</p>
+			</div>`);
+			//VALIDAR LA INFORMACIÓN DEL USUARIO...
+			user_sessquote = s_username_local.username;
+			var formdata = new FormData();
+			formdata.append("id_codegenrand", $("#v_idgencoderand").val());
+			formdata.append("code_quote", $("#v_gencodexxx").text());
+			formdata.append("u_login", user_sessquote);
+
+			$.ajax({
+				url: 'controllers/c_validation_by_idcodegenrand.php',
+				method: 'POST',
+				datatype: 'JSON',
+				data: formdata,
+				contentType: false,
+        cache: false,
+        processData: false
+			}).done((e) => {
+				if(e != ""){
+					var rpdf = JSON.parse(e);
+					if(rpdf.res != "notexists"){
+						//generatePDF(queryresult.username);
+						$("#cUIMessageValid-user").html(`<div id="msgAlertpreloader">
+							<div class="cont-loader--loader">
+								<span class="cont-loader--loader--circle"></span>
+								<span class="cont-loader--loader--circle"></span>
+								<span class="cont-loader--loader--circle"></span>
+								<span class="cont-loader--loader--circle"></span>
+							</div>
+							<p>Preparando cotización...</p>
+						</div>`);
+
+						$.ajax({
+							type: 'POST',
+							url: 'controllers/c_generate-pdf-aduanas.php',
+							data: {
+								id_codegenrand : $("#v_idgencoderand").val(), 
+								code_quote : $("#v_gencodexxx").text(),
+								u_login : user_sessquote
+							},
+							xhrFields: {
+					      responseType: 'blob' // to avoid binary data being mangled on charset conversion
+					    },
+					    success: function(blob, status, xhr) {
+				        // check for a filename
+				        var filename = "";
+				        var disposition = xhr.getResponseHeader('Content-Disposition');
+				        if (disposition && disposition.indexOf('attachment') !== -1) {
+			            var filenameRegex = /filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/;
+			            var matches = filenameRegex.exec(disposition);
+			            if (matches != null && matches[1]) filename = matches[1].replace(/['"]/g, '');
+				        }
+
+				        if (typeof window.navigator.msSaveBlob !== 'undefined') {
+			            // IE workaround for "HTML7007: One or more blob URLs were revoked by closing the blob for which they were created. These URLs will no longer resolve as the data backing the URL has been freed."
+			            window.navigator.msSaveBlob(blob, filename);
+				        } else {
+			            var URL = window.URL || window.webkitURL;
+			            var downloadUrl = URL.createObjectURL(blob);
+
+			            if (filename) {
+		                // use HTML5 a[download] attribute to specify filename
+		                var a = document.createElement("a");
+		                // safari doesn't support this yet
+		                if (typeof a.download === 'undefined') {
+		                  window.location.href = downloadUrl;
+		                } else {
+	                    a.href = downloadUrl;
+	                    a.download = filename;
+	                    document.body.appendChild(a);
+	                    a.click();
+	                    $("#cUIMessageValid-user").html("");
+		                }
+			            } else {
+			              window.location.href = downloadUrl;
+			            }
+
+			            setTimeout(function () { URL.revokeObjectURL(downloadUrl); }, 100); // cleanup
+				        }
+					    }
+						});
+					}else if(rpdf.res == "notexists"){
+						$("#cUIMessageValid-user").html("");
+						$("#cnt-modalFormLoginyRegister").add($(".cnt-modalFormLoginyRegister--c")).addClass("show");
+						console.log("El usuario aún NO registró sus datos");
+					}else{
+						$("#cUIMessageValid-user").html("");
+						Swal.fire({
+				      title: 'Error!',
+				      html: `<span class='font-w-300'>Lo sentimos, hubo un error al procesar la información.</span>`,
+				      icon: 'error',
+				      confirmButtonText: 'Aceptar'
+				    });
+					}
+				}else{
+					$("#cUIMessageValid-user").html("");
+					Swal.fire({
+			      title: 'Error!',
+			      html: `<span class='font-w-300'>Lo sentimos, hubo un error al procesar la información.</span>`,
+			      icon: 'error',
+			      confirmButtonText: 'Aceptar'
+			    });
+				}
+			});
+		}else if($("#s_useregin-sistem").val() != "" || $("#s_useregin-sistem").val() != undefined || $("#s_useregin-sistem").val() != 'undefined' || $("#s_useregin-sistem").val() != null || $("#s_useregin-sistem").val() != 'null'){
+			$("#cUIMessageValid-user").html(`<div id="msgAlertpreloader">
+				<div class="cont-loader--loader">
+					<span class="cont-loader--loader--circle"></span>
+					<span class="cont-loader--loader--circle"></span>
+					<span class="cont-loader--loader--circle"></span>
+					<span class="cont-loader--loader--circle"></span>
+				</div>
+				<p>Validando la información...</p>
+			</div>`);
+			//VALIDAR LA INFORMACIÓN DEL USUARIO...
+			user_sessquote = s_username_local.username;
+			var formdata = new FormData();
+			formdata.append("id_codegenrand", $("#v_idgencoderand").val());
+			formdata.append("code_quote", $("#v_gencodexxx").text());
+			formdata.append("u_login", user_sessquote);
+
+			$.ajax({
+				url: 'controllers/c_validation_by_idcodegenrand.php',
+				method: 'POST',
+				datatype: 'JSON',
+				data: formdata,
+				contentType: false,
+        cache: false,
+        processData: false
+			}).done((e) => {
+				if(e != ""){
+					var rpdf = JSON.parse(e);
+					if(rpdf.res != "notexists"){
+						//generatePDF(queryresult.username);
+						$("#cUIMessageValid-user").html(`<div id="msgAlertpreloader">
+							<div class="cont-loader--loader">
+								<span class="cont-loader--loader--circle"></span>
+								<span class="cont-loader--loader--circle"></span>
+								<span class="cont-loader--loader--circle"></span>
+								<span class="cont-loader--loader--circle"></span>
+							</div>
+							<p>Preparando cotización...</p>
+						</div>`);
+
+						$.ajax({
+							type: 'POST',
+							url: 'controllers/c_generate-pdf-aduanas.php',
+							data: {
+								id_codegenrand : $("#v_idgencoderand").val(), 
+								code_quote : $("#v_gencodexxx").text(),
+								u_login : user_sessquote
+							},
+							xhrFields: {
+					      responseType: 'blob' // to avoid binary data being mangled on charset conversion
+					    },
+					    success: function(blob, status, xhr) {
+				        // check for a filename
+				        var filename = "";
+				        var disposition = xhr.getResponseHeader('Content-Disposition');
+				        if (disposition && disposition.indexOf('attachment') !== -1) {
+			            var filenameRegex = /filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/;
+			            var matches = filenameRegex.exec(disposition);
+			            if (matches != null && matches[1]) filename = matches[1].replace(/['"]/g, '');
+				        }
+
+				        if (typeof window.navigator.msSaveBlob !== 'undefined') {
+			            // IE workaround for "HTML7007: One or more blob URLs were revoked by closing the blob for which they were created. These URLs will no longer resolve as the data backing the URL has been freed."
+			            window.navigator.msSaveBlob(blob, filename);
+				        } else {
+			            var URL = window.URL || window.webkitURL;
+			            var downloadUrl = URL.createObjectURL(blob);
+
+			            if (filename) {
+		                // use HTML5 a[download] attribute to specify filename
+		                var a = document.createElement("a");
+		                // safari doesn't support this yet
+		                if (typeof a.download === 'undefined') {
+		                  window.location.href = downloadUrl;
+		                } else {
+	                    a.href = downloadUrl;
+	                    a.download = filename;
+	                    document.body.appendChild(a);
+	                    a.click();
+	                    $("#cUIMessageValid-user").html("");
+		                }
+			            } else {
+			              window.location.href = downloadUrl;
+			            }
+
+			            setTimeout(function () { URL.revokeObjectURL(downloadUrl); }, 100); // cleanup
+				        }
+					    }
+						});
+					}else if(rpdf.res == "notexists"){
+						$("#cUIMessageValid-user").html("");
+						$("#cnt-modalFormLoginyRegister").add($(".cnt-modalFormLoginyRegister--c")).addClass("show");
+						console.log("El usuario aún NO registró sus datos");
+					}else{
+						$("#cUIMessageValid-user").html("");
+						Swal.fire({
+				      title: 'Error!',
+				      html: `<span class='font-w-300'>Lo sentimos, hubo un error al procesar la información.</span>`,
+				      icon: 'error',
+				      confirmButtonText: 'Aceptar'
+				    });
+					}
+				}else{
+					$("#cUIMessageValid-user").html("");
+					Swal.fire({
+			      title: 'Error!',
+			      html: `<span class='font-w-300'>Lo sentimos, hubo un error al procesar la información.</span>`,
+			      icon: 'error',
+			      confirmButtonText: 'Aceptar'
+			    });
+				}
+			});
+		}else{
+			$("#cUIMessageValid-user").html("");
+			$("#cnt-modalFormLoginyRegister").add($(".cnt-modalFormLoginyRegister--c")).addClass("show");
+			Swal.fire({
+	      title: 'Error!',
+	      html: `<span class='font-w-300'>Lo sentimos, hubo un error al validar la información.</span>`,
+	      icon: 'error',
+	      confirmButtonText: 'Aceptar'
+	    });
+		}
+	});
 	// ------------ VALIDAR CUADRO DE TEXTO DE DOCUMENTO DE IDENTIDAD 
 	$(document).on("input keyup keypress blur change","#n_document_cli",function(e){
     if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
@@ -1349,15 +1410,10 @@ $(document).ready(function(){
 	// ------------ FORMULARIO DE DATOS DEL USUARIO - ANTES DE DESCARGAR SU COTIZACIÓN 
 	$(document).on("submit","#btngen_formDataUserQuotation",function(e){
 		e.preventDefault();
-
 		($("#n_document_cli").val() != "" || $("#n_document_cli").val() != 0) ? $("#msg-nounNumberDoc").text("") : $("#msg-nounNumberDoc").text("Ingrese un número de documento");
 		($("#msg-nounValidEmail").val() != "" || $("#msg-nounValidEmail").val() != 0) ? $("#msg-nounValidEmail").text("") : $("#msg-nounValidEmail").text("Ingrese un correo electrónico");
 
-		if($("#n_document_cli").val() != "" || $("#n_document_cli").val() != 0 &&
-			$("#name_enterprise_cli").val() != "" || $("#name_enterprise_cli").val() != 0 &&
-			$("#telephone_cli").val() != "" || $("#telephone_cli").val() != 0 &&
-			$("#msg-nounValidEmail").val() != "" || $("#msg-nounValidEmail").val() != 0){
-
+		if($("#n_document_cli").val() != "" || $("#n_document_cli").val() != 0 &&	$("#name_enterprise_cli").val() != "" || $("#name_enterprise_cli").val() != 0 && $("#telephone_cli").val() != "" || $("#telephone_cli").val() != 0 && $("#msg-nounValidEmail").val() != "" || $("#msg-nounValidEmail").val() != 0){
 			$("#cUIMessageValid-user").html(`<div id="msgAlertpreloader">
 				<div class="cont-loader--loader">
 					<span class="cont-loader--loader--circle"></span>
@@ -1367,17 +1423,14 @@ $(document).ready(function(){
 				</div>
 				<p>Procesando...</p>
 			</div>`);
-
 			var formdata = new FormData();
 			formdata.append("id_gencoderand", $("#v_idgencoderand").val());
 			formdata.append("code_quote", $("#v_gencodexxx").text());
 			formdata.append("ndoc_cli", $("#n_document_cli").val());
 			formdata.append("name_enterprise_cli", $("#name_enterprise_cli").val());
 			formdata.append("telephone_cli", $("#telephone_cli").val());
-			//formdata.append("username_cli", $("#email_cli").val());
-
 			$.ajax({
-				url: 'controllers/c_update_quotation_user.php',
+				url: 'controllers/prcss_update-quotation-user.php',
 				method: 'POST',
 				datatype: 'JSON',
 				data: formdata,
@@ -1385,67 +1438,82 @@ $(document).ready(function(){
         cache: false,
         processData: false
 			}).done((e) => {
-				var resupdate = JSON.parse(e);
-				console.log(resupdate[0].res);
-				if(resupdate[0].res == "updated"){
-					var formdata = new FormData();
-					formdata.append("id_gencoderand", $("#v_idgencoderand").val());
-					formdata.append("code_quote", $("#v_gencodexxx").text());
-					formdata.append("ndoc_cli", $("#n_document_cli").val());
-					formdata.append("name_enterprise_cli", $("#name_enterprise_cli").val());
-					formdata.append("telephone_cli", $("#telephone_cli").val());
-					formdata.append("email", $("#email_cli").val());
+				if(e != ""){
+					var r = JSON.parse(e);
+					if(r.res == "upd_quote"){
+						$("#cUIMessageValid-user").html("");
+						$("#cnt-modalFormLoginyRegister").add($(".cnt-modalFormLoginyRegister--c")).removeClass("show");
+						Swal.fire({
+				      title: '',
+				      html: `<div class="alertSwal">
+					            <div class="alertSwal__cTitle">
+					              <h3>¡Éxito!</h3>
+					            </div>
+					            <div class="alertSwal__cText">
+					              <p>Proceda a descargar su cotización.</strong></p>
+					            </div>
+					            <button type="button" role="button" tabindex="0" class="SwalBtn1 customSwalBtn">Aceptar</button>
+					          </div>`,
+				      icon: 'success',
+				      showCancelButton: false,
+					    showConfirmButton: false,
+					    confirmButtonColor: '#3085d6',
+					    confirmButtonText: 'Aceptar',
+					    allowOutsideClick: false,
+					    allowEscapeKey:false,
+					    allowEnterKey:true
+				    });
+				    $(document).on('click', '.SwalBtn1', function() {
+					    swal.clickConfirm();
+					  });
+						/*
+						var formdata = new FormData();
+						formdata.append("id_gencoderand", $("#v_idgencoderand").val());
+						formdata.append("code_quote", $("#v_gencodexxx").text());
+						formdata.append("ndoc_cli", $("#n_document_cli").val());
+						formdata.append("name_enterprise_cli", $("#name_enterprise_cli").val());
+						formdata.append("telephone_cli", $("#telephone_cli").val());
+						formdata.append("email", $("#email_cli").val());
 
-					$.ajax({
-						url: 'controllers/c_add_unlogged_user.php',
-						method: 'POST',
-						datatype: 'JSON',
-						data: formdata,
-						contentType: false,
-		        cache: false,
-		        processData: false
-					}).done((upd) => {
-						if(upd == "true"){
-							console.log('Cotización guardada en unlogged');
-							$("#cnt-modalFormLoginyRegister").add($(".cnt-modalFormLoginyRegister--c")).removeClass("show");
-							$("#cUIMessageValid-user").html("");
-
-							Swal.fire({
-					      title: '',
-					      html: `<div class="alertSwal">
-						            <div class="alertSwal__cTitle">
-						              <h3>¡Éxito!</h3>
-						            </div>
-						            <div class="alertSwal__cText">
-						              <p>Proceda a descargar su cotización.</strong></p>
-						            </div>
-						            <button type="button" role="button" tabindex="0" class="SwalBtn1 customSwalBtn">Aceptar</button>
-						          </div>`,
-					      icon: 'success',
-					      showCancelButton: false,
-						    showConfirmButton: false,
-						    confirmButtonColor: '#3085d6',
-						    confirmButtonText: 'Aceptar',
-						    allowOutsideClick: false,
-						    allowEscapeKey:false,
-						    allowEnterKey:true
-					    });
-					    $(document).on('click', '.SwalBtn1', function() {
-						    swal.clickConfirm();
-						  });
-						}else{
-							$("#cUIMessageValid-user").html("");
-							Swal.fire({
-					      title: 'Error!',
-					      html: `<span class='font-w-300'>Lo sentimos, hubo un error al procesar la información.</span>`,
-					      icon: 'error',
-					      confirmButtonText: 'Aceptar'
-					    });
-						}
-					});
-				}else if(resupdate[0].res == "exists"){
-					$("#cUIMessageValid-user").html("");
-					console.log("El usuario ya actualizó en cotizaciones");
+						$.ajax({
+							url: 'controllers/c_add_unlogged_user.php',
+							method: 'POST',
+							datatype: 'JSON',
+							data: formdata,
+							contentType: false,
+			        cache: false,
+			        processData: false
+						}).done((upd) => {
+							if(upd == "true"){
+								console.log('Cotización guardada en unlogged');
+							}else{
+								$("#cUIMessageValid-user").html("");
+								Swal.fire({
+						      title: 'Error!',
+						      html: `<span class='font-w-300'>Lo sentimos, hubo un error al procesar la información.</span>`,
+						      icon: 'error',
+						      confirmButtonText: 'Aceptar'
+						    });
+							}
+						});
+						*/
+					}else if(r.res == "already_update"){
+						$("#cUIMessageValid-user").html("");
+						Swal.fire({
+				      title: 'Atención!',
+				      html: `<span class='font-w-300'>Esta cotización ya se actualizó con la información del usuario.</span>`,
+				      icon: 'warning',
+				      confirmButtonText: 'Aceptar'
+				    });
+					}else{
+						$("#cUIMessageValid-user").html("");
+						Swal.fire({
+				      title: 'Error!',
+				      html: `<span class='font-w-300'>Lo sentimos, hubo un error al procesar la información.</span>`,
+				      icon: 'error',
+				      confirmButtonText: 'Aceptar'
+				    });
+					}
 				}else{
 					$("#cUIMessageValid-user").html("");
 					Swal.fire({

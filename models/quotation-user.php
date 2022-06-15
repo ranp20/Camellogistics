@@ -109,4 +109,31 @@ class Quotation_user extends Connection
       return $e->getMessage();
     }
   }
+  // -------------- VALIDAR SI EXISTE LA COTIZACIÓN
+  function valid_updatequotation($id_gencode, $codegenerate){
+    try{
+      $sql = "CALL sp_checkifupdated_userquotation(:id_gencode, :codegenerate)";
+      $stm = $this->con->prepare($sql);
+      $stm->bindValue(":id_gencode",$id_gencode);
+      $stm->bindValue(":codegenerate",$codegenerate);
+      $stm->execute();
+      return $stm->fetch(PDO::FETCH_ASSOC);
+    }catch(PDOEXception $e){
+      return $e->getMessage();
+    }
+  }
+  // -------------- ACTUALIZAR LA COTIZACIÓN CON LOS DATOS DEL USUARIO
+  function update_quotation_user($arr_updquotation){
+    try{
+      $sql = "CALL sp_onlyupdatequote_withoutvalidating(:id_gencoderand,:code_quote,:ndoc_cli,:name_enterprise_cli,:telephone_cli)";
+      $stm = $this->con->prepare($sql);
+      foreach($arr_updquotation as $key => $value){
+        $stm->bindValue($key,$value);
+      }
+      $stm->execute();
+      return $stm->rowCount() > 0 ? 'true' : 'false';
+    }catch(PDOEXception $e){
+      return $e->getMessage();
+    }
+  }
 }

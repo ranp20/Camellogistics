@@ -959,7 +959,9 @@
 							font-weight: 600;
 						}
 						@media (min-width: 991px){
-							font-size: 1rem;
+							span{
+								font-size: 1rem;
+							}
 						}
 					}
 				}
