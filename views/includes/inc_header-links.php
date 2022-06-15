@@ -30,11 +30,13 @@
 <meta property="og:description" name="twitter.description" content="¡Calcula el costo de tu importación en 4 simples pasos!"/>
 <meta property="og:image" name="twitter.image" content="<?= $url; ?>assets/img/logos/logotipo-camel.png"/>
 <link rel="icon" type="image/x-icon" href="views/assets/img/favicon/favicon-camel.png"/>
+<link rel="apple-touch-icon" href="views/assets/img/favicon/favicon-camel.png">
+<link rel="canonical" href="https://localhost/Camellogistics">
 <!-- JQUERY COMPRESSED -->
 <script type="text/javascript" src="<?= $url; ?>js/plugins/jquery/jquery-3.6.0.min.js"></script>
 <!-- BOOSTRAP DOWNLOADED -->
-<link rel="stylesheet" href="<?= $url ?>js/plugins/bootstrap/css/bootstrap.min.css">
-<script type="text/javascript" src="<?= $url ?>js/plugins/bootstrap/js/bootstrap.min.js"></script>
+<!-- <link rel="stylesheet" href="<?= $url ?>js/plugins/bootstrap/css/bootstrap.min.css">
+<script type="text/javascript" src="<?= $url ?>js/plugins/bootstrap/js/bootstrap.min.js"></script> -->
 <!-- STYLESSHEET -->
 <link rel="stylesheet" href="<?= $url; ?>assets/css/styles.min.css">
 <!-- GOOGLE FONTS -->
