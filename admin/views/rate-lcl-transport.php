@@ -11,6 +11,9 @@
 <head>
 	<?php require_once 'includes/adm-header-index.php'; ?>
 	<title>Admin - Tarifas Transporte Interno LCL</title>
+	<!-- INCLUIR SWEETALERTS2 -->
+	<link rel="stylesheet" href="../node_modules/sweetalert2/dist/sweetalert2.min.css">
+	<script type="text/javascript" src="../node_modules/sweetalert2/dist/sweetalert2.all.min.js"></script>
 </head>
 <body>
 	<div id="dash-contT">
@@ -28,32 +31,17 @@
 							</span>
 						</button>
 					</div>
-					<!--<div class="cont-dashCamel__inputsearch-table">
-						<input type="text" class="cont-dashCamel__inputsearch-table--input" name="searchbannerp" id="searchbannerp" maxlength="200" placeholder="Buscar reguladores...">
-					</div>-->
 					<div class="contain-table-responsive">
 						<table class="cont-dashCamel__list-results">
 							<thead>
 								<tr>
-									<th>Item</th>
-									<th>Utilidad</th>
-									<th></th>
+									<th class="center">Item</th>
+									<th class="center">Utilidad</th>
 								</tr>
 							</thead>
-							<tbody id="tbl_utilities_rate_lcl_transport">
-									
-							</tbody>
+							<tbody id="tbl_utilities_rate_lcl_transport"></tbody>
 						</table>
 					</div>
-					<!-- <div class="container-fluid">
-				    <div class="row">
-				      <div class="col-xs-12">
-				        <h2 class="text-center mb-4"> Listado de Usuarios </h2>
-				        <div id="loader" class="text-center"> <img src="<?= $url ?>assets/img/utilities/loader.gif"></div>
-				        <div class="outer_div"></div>
-				      </div>
-				    </div>
-				  </div> -->
 					<!-- MODAL - AGREGAR NUEVO ITEM -->
 					<div class="modal fade bootstrapmodal-custom" id="addspreadsheetlcltransportModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 					  <div class="modal-dialog" role="document">
@@ -75,16 +63,6 @@
 						        		<label for="utilitylcltransport" class="cont-modalbootstrap__form--control__label">Utilidad</label>
 						        		<input id="utilitylcltransport" class="cont-modalbootstrap__form--control__input" name="utilitylcltransport" type="number" maxlength="200" required placeholder="Ingrese un valor de utilidad">
 						        	</div>
-						        	<!--<div class="cont-group-form-controls">
-							        	<div class="cont-modalbootstrap__form--control cont-group-form-controls__control">
-							        		<label for="validdesdefcl" class="cont-modalbootstrap__form--control__label">Válido Desde</label>
-							        		<input id="validdesdefcl" class="cont-modalbootstrap__form--control__input" name="validdesdefcl" type="date" required placeholder="Selecciona una fecha">
-							        	</div>
-							        	<div class="cont-modalbootstrap__form--control cont-group-form-controls__control">
-							        		<label for="validhastafcl" class="cont-modalbootstrap__form--control__label">Válido Hasta</label>
-							        		<input id="validhastafcl" class="cont-modalbootstrap__form--control__input" name="validhastafcl" type="date" required placeholder="Selecciona una fecha">
-							        	</div>
-						        	</div>-->
 								      <div class="cont-modalbootstrap__footer">
 								        <button type="button" class="cont-modalbootstrap__footer--btncancel" data-dismiss="modal">CANCELAR</button>
 								        <button type="submit" class="cont-modalbootstrap__footer--btnadd" id="btnadd-spreadsheetlcltransport">
@@ -100,63 +78,6 @@
 					    </div>
 					  </div>
 					</div>
-					<!-- MODAL - EDITAR ITEM -->
-					<!--<div class="modal fade bootstrapmodalupdate-custom" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-					  <div class="modal-dialog" role="document">
-					    <div class="modal-content">
-					      <div class="modal-header">
-					        <h5 class="modal-title" id="update-modal-label">ACTUALIZAR BANNER PRINCIPAL</h5>
-					        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-					          <span aria-hidden="true">&times;</span>
-					        </button>
-					      </div>
-					      <div class="modal-body cont-total-update-items">
-					      	<div class="cont-modalbootstrapupdate">
-						        <form id="form-update-banner-p" method="POST" class="cont-modalbootstrapupdate__form" autocomplete="false">
-						        	<input type="hidden" id="idupdate-banner-p">
-						        	<div class="cont-modalbootstrapupdate__form--control">
-						        		<label for="imagen">Banner principal</label>
-						        		<input id="images" class="cont-modalbootstrapupdate__form--control__input-photo images-update" name="imagen[]" type="file" accept="img/*">
-						        	</div>
-						        	<div class="cont-modalbootstrapupdate__form--cpreviewImage" id="c-previewImg">
-						        		<img src="" alt="">
-						        	</div>
-								      <div class="cont-modalbootstrapupdate__footer">
-								        <button type="button" class="cont-modalbootstrapupdate__footer--btncancel" data-dismiss="modal">CANCELAR</button>
-								        <button type="submit" class="cont-modalbootstrapupdate__footer--btnupdate" id="btnupdate-banner-p">GUARDAR</button>
-								      </div>
-						        </form>
-					      	</div>
-					      </div>
-					    </div>
-					  </div>
-					</div>-->
-					<!-- MODAL - ELIMINAR ITEM -->
-					<!--<div class="modal fade bootstrapmodaldelete-custom" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-					  <div class="modal-dialog" role="document">
-					    <div class="modal-content">
-					      <div class="modal-header">
-					        <h5 class="modal-title" id="delete-modal-label">ELIMINAR BANNER PRINCIPAL</h5>
-					        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-					          <span aria-hidden="true">&times;</span>
-					        </button>
-					      </div>
-					      <div class="modal-body cont-total-update-items">
-						      <h2 class="text-message-modalAlt">¿Seguro que desea eliminar este registro?</h2>
-					      	<div class="cont-modalbootstrapupdate">
-						        <form id="form-delete-banner-principal" method="POST" class="cont-modalbootstrapupdate__form" autocomplete="false">
-						        	<input type="text" id="iddelete-banner-principal">
-								      <div class="cont-modalbootstrapupdate__footer">
-								        <button type="button" class="cont-modalbootstrapupdate__footer--btncancel" data-dismiss="modal">CANCELAR</button>
-								        <button type="submit" class="cont-modalbootstrapupdate__footer--btndelete" id="btndelete-banner-principal">ELIMINAR</button>
-								      </div>
-						        </form>
-					      	</div>
-					      </div>
-					    </div>
-					  </div>
-					</div>-->
-					<!-- FIN MODALS-->
 				</div>
 			</div>
 		</main>

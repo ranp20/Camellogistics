@@ -11,6 +11,9 @@
 <head>
 	<?php require_once 'includes/adm-header-index.php'; ?>
 	<title>Admin - Tarifas LCL</title>
+	<!-- INCLUIR SWEETALERTS2 -->
+	<link rel="stylesheet" href="../node_modules/sweetalert2/dist/sweetalert2.min.css">
+	<script type="text/javascript" src="../node_modules/sweetalert2/dist/sweetalert2.all.min.js"></script>
 </head>
 <body>
 	<div id="dash-contT">
@@ -28,9 +31,6 @@
 							</span>
 						</button>
 					</div>
-					<!--<div class="cont-dashCamel__inputsearch-table">
-						<input type="text" class="cont-dashCamel__inputsearch-table--input" name="searchbannerp" id="searchbannerp" maxlength="200" placeholder="Buscar reguladores...">
-					</div>-->
 					<div class="contain-table-responsive">
 						<table class="cont-dashCamel__list-results">
 							<thead>
@@ -39,23 +39,11 @@
 									<th class='center'>Utilidad</th>
 									<th class='center'>Vigencia desde</th>
 									<th class='center'>Vigencia Hasta</th>
-									<th></th>
 								</tr>
 							</thead>
-							<tbody id="tbl_utilities_rate_lcl">
-									
-							</tbody>
+							<tbody id="tbl_utilities_rate_lcl"></tbody>
 						</table>
 					</div>
-					<!-- <div class="container-fluid">
-				    <div class="row">
-				      <div class="col-xs-12">
-				        <h2 class="text-center mb-4"> Listado de Usuarios </h2>
-				        <div id="loader" class="text-center"> <img src="<?= $url ?>assets/img/utilities/loader.gif"></div>
-				        <div class="outer_div"></div>
-				      </div>
-				    </div>
-				  </div> -->
 					<!-- MODAL - AGREGAR NUEVO ITEM -->
 					<div class="modal fade bootstrapmodal-custom" id="addspreadsheetlclModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 					  <div class="modal-dialog" role="document">
@@ -101,65 +89,7 @@
 					      </div>
 					    </div>
 					  </div>
-					</div>
-					<!-- MODAL - EDITAR ITEM -->
-					<!--<div class="modal fade bootstrapmodalupdate-custom" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-					  <div class="modal-dialog" role="document">
-					    <div class="modal-content">
-					      <div class="modal-header">
-					        <h5 class="modal-title" id="update-modal-label">ACTUALIZAR BANNER PRINCIPAL</h5>
-					        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-					          <span aria-hidden="true">&times;</span>
-					        </button>
-					      </div>
-					      <div class="modal-body cont-total-update-items">
-					      	<div class="cont-modalbootstrapupdate">
-						        <form id="form-update-banner-p" method="POST" class="cont-modalbootstrapupdate__form" autocomplete="false">
-						        	<input type="hidden" id="idupdate-banner-p">
-						        	<div class="cont-modalbootstrapupdate__form--control">
-						        		<label for="imagen">Banner principal</label>
-						        		<input id="images" class="cont-modalbootstrapupdate__form--control__input-photo images-update" name="imagen[]" type="file" accept="img/*">
-						        	</div>
-						        	<div class="cont-modalbootstrapupdate__form--cpreviewImage" id="c-previewImg">
-						        		<img src="" alt="">
-						        	</div>
-								      <div class="cont-modalbootstrapupdate__footer">
-								        <button type="button" class="cont-modalbootstrapupdate__footer--btncancel" data-dismiss="modal">CANCELAR</button>
-								        <button type="submit" class="cont-modalbootstrapupdate__footer--btnupdate" id="btnupdate-banner-p">GUARDAR</button>
-								      </div>
-						        </form>
-					      	</div>
-					      </div>
-					    </div>
-					  </div>
-					</div>-->
-					<!-- MODAL - ELIMINAR ITEM -->
-					<!--<div class="modal fade bootstrapmodaldelete-custom" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-					  <div class="modal-dialog" role="document">
-					    <div class="modal-content">
-					      <div class="modal-header">
-					        <h5 class="modal-title" id="delete-modal-label">ELIMINAR BANNER PRINCIPAL</h5>
-					        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-					          <span aria-hidden="true">&times;</span>
-					        </button>
-					      </div>
-					      <div class="modal-body cont-total-update-items">
-						      <h2 class="text-message-modalAlt">¿Seguro que desea eliminar este registro?</h2>
-					      	<div class="cont-modalbootstrapupdate">
-						        <form id="form-delete-banner-principal" method="POST" class="cont-modalbootstrapupdate__form" autocomplete="false">
-						        	<input type="text" id="iddelete-banner-principal">
-								      <div class="cont-modalbootstrapupdate__footer">
-								        <button type="button" class="cont-modalbootstrapupdate__footer--btncancel" data-dismiss="modal">CANCELAR</button>
-								        <button type="submit" class="cont-modalbootstrapupdate__footer--btndelete" id="btndelete-banner-principal">ELIMINAR</button>
-								      </div>
-						        </form>
-					      	</div>
-					      </div>
-					    </div>
-					  </div>
-					</div>-->
-					<!-- FIN MODALS-->
-					
+					</div>					
 				</div>
 			</div>
 		</main>
