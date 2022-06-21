@@ -86,7 +86,7 @@ $(document).ready(function(){
 	// ------------ VALORES PARA EL CÁLCULO
 	var val_ftotvalofdownload = $("#v_ftotvalofdownload").val();
 	var val_ftotalfleteprod = $("#v_ftotalfleteprod").val();
-	var val_plcpickuprateprov = $("#v-plcpickuprateprov").val();
+	var val_plcpickuprateprov = $("#v-plcpickuprateprov").val(); // TRANSPORTE INTERNO
 	// ------------ CÁLCULO DE IMPUESTOS 
 	var partInteger_Tax = 0;
 	var partDecimal_Tax = 0;
@@ -124,18 +124,17 @@ $(document).ready(function(){
     datatype: "JSON",
     contentType: 'application/x-www-form-urlencoded;charset=UTF-8',
   }).done((e) => {
-  	var rinsurance = JSON.parse(e);
-  	var insure_min25000 = parseFloat(rinsurance[0].data_value); //FOB MENOR A 25000
-  	var insure_max25000 = parseFloat(rinsurance[1].data_value); //FOB MAYOR A 25000
-  	var insure_default = parseFloat(rinsurance[2].data_value); //SIN FOB/VALOR POR DEFECTO
-
-  	if($("#v_insurancemerch").text() != "NO"){
+  	var r = JSON.parse(e);
+  	var insure_min25000 = parseFloat(r[0].data_value); //FOB MENOR A 25000
+  	var insure_max25000 = parseFloat(r[1].data_value); //FOB MAYOR A 25000
+  	var insure_default = parseFloat(r[2].data_value); //SIN FOB/VALOR POR DEFECTO
+  	console.log(r);
+  	if($("#v_insurancemerch") != undefined && $("#v_insurancemerch") != null && $("#v_insurancemerch").text() != "NO"){
 			// ------------ TOTALES A IMPRIMIR - CON SEGURO 
 			sumTotalFirstFlete = totflete + totalamountadditional + totaltransport + totalinsurance + totalvaluesquotation + totalfinalvaluedownload; //FLETE FINAL
 			sumTotalbyIGV = (totaltransport + totalamountadditional + totalvaluesquotationbyIGV) * (18 / 100); //IGV (DEBAJO DEL FLETE FINAL)
 			sumTotalFinalFleteandIGV = sumTotalFirstFlete + sumTotalbyIGV; //VALOR TOTAL FINAL DE LA COTIZACIÓN
 			sumbyCIF = totalfinalvaluefob + totflete + totalinsurance; //CIF FINAL
-
   	}else{
   		// ------------ TOTALES A IMPRIMIR - SIN SEGURO 
 			sumTotalFirstFlete = totflete + totalamountadditional + totaltransport + totalvaluesquotation + totalfinalvaluedownload; //FLETE FINAL
