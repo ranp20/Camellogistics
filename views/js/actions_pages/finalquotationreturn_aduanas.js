@@ -119,16 +119,13 @@ $(document).ready(function(){
 
 	// LLAMAR A LOS VALORES DE SEGURO, METER LOS VALORES DENTRO DEL AJAX DE TAXATION O CREAR VARIABLES GLOBALES Y USARLAS
 	$.ajax({
-    url: "controllers/list_insurancevalues.php",
+    url: "controllers/list_insurancevalues-aduanas.php",
     method: "POST",
     datatype: "JSON",
     contentType: 'application/x-www-form-urlencoded;charset=UTF-8',
   }).done((e) => {
   	var r = JSON.parse(e);
-  	var insure_min25000 = parseFloat(r[0].data_value); //FOB MENOR A 25000
-  	var insure_max25000 = parseFloat(r[1].data_value); //FOB MAYOR A 25000
-  	var insure_default = parseFloat(r[2].data_value); //SIN FOB/VALOR POR DEFECTO
-  	console.log(r);
+  	var insure_default = parseFloat(r[0].data_value); //SIN FOB/VALOR POR DEFECTO
   	if($("#v_insurancemerch") != undefined && $("#v_insurancemerch") != null && $("#v_insurancemerch").text() != "NO"){
 			// ------------ TOTALES A IMPRIMIR - CON SEGURO 
 			sumTotalFirstFlete = totflete + totalamountadditional + totaltransport + totalinsurance + totalvaluesquotation + totalfinalvaluedownload; //FLETE FINAL
@@ -367,6 +364,7 @@ $(document).ready(function(){
 					formdata.append("f_percepcion", percepcioncalc_twodeci);
 					formdata.append("f_comision_agencia", fvalfinal_com_agencia);
 					formdata.append("f_gastos_operativos", fvalfinal_gas_operativos);
+					formdata.append("f_totalinsurance", totalinsurance);
 					formdata.append("f_totalservices", totalNotround);
 					formdata.append("f_totalservicesIGV18", totalNotRountByIGV);
 					formdata.append("f_totalimpuestos", twodecimals_FinalTax);
@@ -630,6 +628,7 @@ $(document).ready(function(){
 					formdata.append("f_percepcion", percepcioncalc_twodeci);
 					formdata.append("f_comision_agencia", fvalfinal_com_agencia);
 					formdata.append("f_gastos_operativos", fvalfinal_gas_operativos);
+					formdata.append("f_totalinsurance", totalinsurance);
 					formdata.append("f_totalservices", totalNotround);
 					formdata.append("f_totalservicesIGV18", totalNotRountByIGV);
 					formdata.append("f_totalimpuestos", twodecimals_FinalTax);

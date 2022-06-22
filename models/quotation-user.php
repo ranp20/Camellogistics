@@ -86,6 +86,7 @@ class Quotation_user extends Connection
       :f_comision_agencia,
       :f_gastos_operativos,
       :f_estiba,
+      :f_totalinsurance,
       :f_totalservices,
       :f_totalservicesIGV18,
       :f_totalimpuestos,

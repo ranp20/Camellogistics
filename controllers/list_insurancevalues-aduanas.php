@@ -1,9 +1,9 @@
 <?php 
 require_once '../models/db/connection.php';
-class list_InsuranceValues extends Connection{
+class list_InsuranceValues_aduanas extends Connection{
 	function list(){
 		try{
-			$sql = "SELECT * FROM tbl_insurance_values";
+			$sql = "SELECT * FROM tbl_insurance_values_aduanas";
 			$stm = $this->con->query($sql);
 			$stm->execute();
 			$data = $stm->fetchAll(PDO::FETCH_ASSOC); 
@@ -14,5 +14,5 @@ class list_InsuranceValues extends Connection{
 		}
 	}
 }
-$insurancevalues = new list_InsuranceValues();
+$insurancevalues = new list_InsuranceValues_aduanas();
 echo $insurancevalues->list();
