@@ -32,7 +32,7 @@
       <div class="box-container">
         <div class="c-FinalQuotation--contStep--cQuotation">
           <div class="c-FinalQuotation--contStep--cQuotation--cBtnDownload">
-            <a href="#" class="c-FinalQuotation--contStep--cQuotation--cBtnDownload--btn" id="btn-requireDownloadQuotaion_one">
+            <a href="javascript:void(0);" class="c-FinalQuotation--contStep--cQuotation--cBtnDownload--btn" id="btn-requireDownloadQuotaion_one" title="Descarga tu presupuesto">
               <span class="c-FinalQuotation--contStep--cQuotation--cBtnDownload--btn--cIcon">
                 <svg class="MuiSvgIcon-root" focusable="false" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"></path></svg>
               </span>
@@ -47,11 +47,11 @@
                 <div class="c-FinalQuotation--contStep--cQuotation--cTop--c--nOriginDestinyInfo--cImgInfo">
                   <?php
                     if($_POST['idtypetransportsendinit'] == 1){
-                      echo "<img src='{$url}assets/img/utilities/fleteMaritimo.png' alt='fletemaritimoicon_camel'>";
+                      echo "<img src='{$url}assets/img/utilities/fleteMaritimo.png' alt='fletemaritimoicon_camel' width='100' height='100'>";
                     }else if($_POST['idtypetransportsendinit'] == 2){
-                      echo "<img src='{$url}assets/img/utilities/fleteAereo.png' alt='fleteaereoicon_camel'>";
+                      echo "<img src='{$url}assets/img/utilities/fleteAereo.png' alt='fleteaereoicon_camel' width='100' height='100'>";
                     }else{
-                      echo "<img src='{$url}assets/img/logos/logotipo-camel.png' alt=''>";
+                      echo "<img src='{$url}assets/img/logos/logotipo-camel.png' alt='icon_camellogistics' width='100' height='100'>";
                     }
                   ?>
                   <?php 
@@ -274,9 +274,9 @@
                 <!--<p>¿Dudas? - <a href="#">Click Aquí</a></p>-->
               </div>
               <div class="c-FinalQuotation--contStep--cQuotation--cTop--c--cWhatsappContact">
-                <a href="#" target="_blank" class="c-FinalQuotation--contStep--cQuotation--cTop--c--cWhatsappContact--link" id="d-link-messagecontact">
+                <a href="#" target="_blank" class="c-FinalQuotation--contStep--cQuotation--cTop--c--cWhatsappContact--link" id="d-link-messagecontact" title="Enviar por whatsapp">
                   <span class="c-FinalQuotation--contStep--cQuotation--cTop--c--cWhatsappContact--link--cImg">
-                    <img src="<?= $url; ?>assets/img/utilities/whatsapp.svg" alt="">
+                    <img src="<?= $url; ?>assets/img/utilities/whatsapp.svg" alt="icon_whatsapp" width="100" height="100">
                   </span>
                   <h3>CONTACTAR A LA AGENCIA DE ADUANA</h3>
                 </a>
@@ -284,8 +284,7 @@
               <div class="c-FinalQuotation--contStep--cQuotation--cTop--c--cValidTimeQuotation">
                 <p>
                   <span>Validez de tarifa: </span>
-                  <span id="v_validratedate">
-                    <?= (!isset($_POST['val_validateratequote']) || $_POST['val_validateratequote'] == "") ? "No especificado" : $_POST['val_validateratequote'];?></span>
+                  <span id="v_validratedate"><?= (!isset($_POST['val_validateratequote']) || $_POST['val_validateratequote'] == "") ? "No especificado" : $_POST['val_validateratequote'];?></span>
                 </p>
               </div>
             </div>
@@ -309,7 +308,7 @@
                   </div>
                 </div>
                 <div class="c-FinalQuotation--contStep--cQuotation--cBottom--cImgInfoEnterprise">
-                  <img src="views/assets/img/logos/logotipo-camel.png" alt="">
+                  <img src="views/assets/img/logos/logotipo-camel.png" alt="icon_camellogistics-bottom" width="100" height="100">
                   <div class="c-FinalQuotation--contStep--cQuotation--cBottom--cImgInfoEnterprise--info">
                     <h3>SERVICIO LOGÍSTICO</h3>
                     <span>Valor FIJO</span>
@@ -415,7 +414,6 @@ echo $template_incserv.$template_notincserv;
             </div>
             <div class="c-FinalQuotation--contStep--cQuotation--cBottom--cAduanaImpst">
               <?php 
-
                 if(isset($_POST['opt-genfquotation']) && $_POST['opt-genfquotation'] == 'y-moreOpts'){
                   echo "
                     <div class='c-FinalQuotation--contStep--cQuotation--cBottom--cAduanaImpst--cTop'>
@@ -441,7 +439,6 @@ echo $template_incserv.$template_notincserv;
                 }else{
                   echo "";
                 }
-
               ?>
               <div class="c-FinalQuotation--contStep--cQuotation--cBottom--cAduanaImpst--cBottom">
                 <ul class="c-FinalQuotation--contStep--cQuotation--cBottom--cAduanaImpst--cBottom--m">
@@ -454,14 +451,14 @@ echo $template_incserv.$template_notincserv;
                 </ul>
               </div>
             </div>
-            <a href="javascript:void(0);" class="c-FinalQuotation--contStep--cQuotation--cBottom--cBtnMoveToDown" id="btn-scrollingtTtB">
+            <a href="javascript:void(0);" class="c-FinalQuotation--contStep--cQuotation--cBottom--cBtnMoveToDown" id="btn-scrollingtTtB" title="bajar">
               <span class="c-FinalQuotation--contStep--cQuotation--cBottom--cBtnMoveToDown--cIcon">
                 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 50 62.5" enable-background="new 0 0 50 50" xml:space="preserve"><path d="M48.677,11.975c-1.363-1.369-3.58-1.374-4.949-0.01L25,30.616L6.272,11.964c-1.369-1.363-3.584-1.359-4.95,0.01  c-1.364,1.37-1.359,3.585,0.01,4.95l21.185,21.099c0.001,0,0.001,0.001,0.002,0.002c0.001,0.001,0.001,0.001,0.002,0.002  l0.008,0.008c0.081,0.08,0.173,0.141,0.259,0.211c0.095,0.078,0.185,0.166,0.286,0.232c0.118,0.078,0.246,0.134,0.371,0.196  c0.08,0.039,0.155,0.091,0.236,0.124c0.161,0.065,0.328,0.106,0.495,0.147c0.052,0.012,0.101,0.035,0.153,0.045  c0.221,0.043,0.445,0.064,0.669,0.064s0.448-0.021,0.669-0.064c0.06-0.012,0.116-0.037,0.176-0.052  c0.159-0.04,0.319-0.078,0.473-0.141c0.073-0.029,0.14-0.076,0.211-0.11c0.134-0.065,0.271-0.126,0.397-0.21  c0.08-0.053,0.149-0.124,0.226-0.185c0.107-0.084,0.22-0.16,0.318-0.259l21.197-21.111C50.037,15.56,50.041,13.344,48.677,11.975z"/></svg>
               </span>
             </a>
           </div>
           <div class="c-FinalQuotation--contStep--cQuotation--cBtnDownload">
-            <a href="#" class="c-FinalQuotation--contStep--cQuotation--cBtnDownload--btn" id="btn-requireDownloadQuotaion_two">
+            <a href="javascript:void(0);" class="c-FinalQuotation--contStep--cQuotation--cBtnDownload--btn" id="btn-requireDownloadQuotaion_two" title="Descarga tu presupuesto">
               <span class="c-FinalQuotation--contStep--cQuotation--cBtnDownload--btn--cIcon">
                 <svg class="MuiSvgIcon-root" focusable="false" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"></path></svg>
               </span>

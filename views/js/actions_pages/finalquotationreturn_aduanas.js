@@ -39,6 +39,9 @@ $(document).ready(function(){
 	var encrypt_val_ftotalfleteprod = $("#v_ftotalfleteprod").val(encryptValuesIpts( $("#v_ftotalfleteprod").val()));
 	var encrypt_val_ftotalvalfobprod = $("#v_ftotvalProdquot").val(encryptValuesIpts( $("#v_ftotvalProdquot").val()));
 	var encrypt_val_plcpickuprateprov = $("#v-plcpickuprateprov").val(encryptValuesIpts($("#v-plcpickuprateprov").val()));
+	var encrypt_v_validdesde = $("#v_datevaliddesde").val(encryptValuesIpts($("#v_datevaliddesde").val()));
+	var encrypt_v_validhasta = $("#v_datevalidhasta").val(encryptValuesIpts($("#v_datevalidhasta").val()));
+	
 	/* DESENCRIPTACIÓN DE INPUTS */
 	// ------------ VALORES DE CAJAS DE TEXTO - TEXTO
 	var v_idgencoderand = decryptValuesIpts(encrypt_v_idgencoderand.val());
@@ -49,6 +52,8 @@ $(document).ready(function(){
 	var v_fnamecategprod = decryptValuesIpts(encrypt_v_fnamecategprod.val());
 	var v_ftaproxtransbycont = decryptValuesIpts(encrypt_v_ftaproxtransbycont.val());
 	var v_floadTypeTranport = decryptValuesIpts(encrypt_v_floadTypeTranport.val());
+	var v_validdesde = decryptValuesIpts(encrypt_v_validdesde.val());
+	var v_validhasta = decryptValuesIpts(encrypt_v_validhasta.val());
 	// ------------ VALORES DE CAJAS DE TEXTO - CÁLCULO
 	var val_ftotvalofdownload = decryptValuesIpts(encrypt_val_ftotvalofdownload.val());
 	var val_ftotalfleteprod = decryptValuesIpts(encrypt_val_ftotalfleteprod.val());
@@ -137,7 +142,7 @@ $(document).ready(function(){
 	var receivedI_selectivo = parseFloat(localStorage.getItem("key_v-valuestaxTwobyigv")); //IMPUESTO SELECTIVO
 	var received_antidumping = parseFloat(localStorage.getItem("key_v-valuestaxThreebyigv")); //ANTIDUMPING
 	var receivedfob = val_ftotalvalfobprod; //VALOR FOB
-	var receiveddownload = val_ftotvalofdownload; //VALOR DE DESCARGA DESDE LOCALSTORAGE
+	var receiveddownload = val_ftotvalofdownload; //VALOR DE DESCARGA
 	var cutefobofpriceusd = receivedfob.split(" USD");
   var cutewithoutofpricefob = cutefobofpriceusd[0].replace(/\./g, '');
 	var totflete = parseFloat(val_ftotalfleteprod); //TOTAL - SOLO FLETE
@@ -419,8 +424,8 @@ $(document).ready(function(){
 					formdata.append("f_totalservicesIGV18", totalNotRountByIGV);
 					formdata.append("f_totalimpuestos", twodecimals_FinalTax);
 					formdata.append("f_totalwithIGV", totalNotRoundFinal);
-					formdata.append("f_validdesde", $("#v_datevaliddesde").val());
-					formdata.append("f_validhasta", $("#v_datevalidhasta").val());
+					formdata.append("f_validdesde", v_validdesde);
+					formdata.append("f_validhasta", v_validhasta);
 
 					$.ajax({
 						url: 'controllers/prcss_add-quotation-user.php',
@@ -683,8 +688,8 @@ $(document).ready(function(){
 					formdata.append("f_totalservicesIGV18", totalNotRountByIGV);
 					formdata.append("f_totalimpuestos", twodecimals_FinalTax);
 					formdata.append("f_totalwithIGV", totalNotRoundFinal);
-					formdata.append("f_validdesde", $("#v_datevaliddesde").val());
-					formdata.append("f_validhasta", $("#v_datevalidhasta").val());
+					formdata.append("f_validdesde", v_validdesde);
+					formdata.append("f_validhasta", v_validhasta);
 
 					$.ajax({
 						url: 'controllers/prcss_add-quotation-user.php',
@@ -887,6 +892,7 @@ $(document).ready(function(){
 								Seguro:%20${objDataTxtWhatsapp.seguroflete},%20
 								ImpuestoAprox:%20${twodecimals_FinalTax}`);
 							}else{
+								console.log('Es aquí el error');
 								Swal.fire({
 						      title: 'Error!',
 						      html: `<span class='font-w-300'>Lo sentimos, hubo un error al procesar la información.</span>`,
@@ -895,6 +901,7 @@ $(document).ready(function(){
 						    });
 							}
 						}else{
+							console.log('Es aquí el error');
 							Swal.fire({
 					      title: 'Error!',
 					      html: `<span class='font-w-300'>Lo sentimos, hubo un error al procesar la información.</span>`,

@@ -274,7 +274,7 @@
               <div class="c-FinalQuotation--contStep--cQuotation--cTop--c--cWhatsappContact">
                 <a href="#" target="_blank" class="c-FinalQuotation--contStep--cQuotation--cTop--c--cWhatsappContact--link" id="d-link-messagecontact">
                   <span class="c-FinalQuotation--contStep--cQuotation--cTop--c--cWhatsappContact--link--cImg">
-                    <img src="<?= $url; ?>assets/img/utilities/whatsapp.svg" alt="">
+                    <img src="<?= $url; ?>assets/img/utilities/whatsapp.svg" alt="icon_whatsapp" width="100" height="100">
                   </span>
                   <h3>CONTACTAR A LA AGENCIA DE ADUANA</h3>
                 </a>

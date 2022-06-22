@@ -7,22 +7,21 @@ $(() => {
 function changesTabsOperation(){
   // ------------ VARIABLES LOCALSTORAGE 
   //#4. REUNIR LA INFORMACIÓN DE LOS PASOS...
-  var key_validaterate = localStorage.setItem("key_validaterate", ""); //TARIFA VALIDA DESDE - HASTA...
   var key_qContainers = localStorage.setItem("key_qContainers", 0); //CONTENEDORES...
   //# VALORES PARA EL CÁLCULO DEL FLETE...
-  var key_valflete = localStorage.setItem("key_v-totalflette", 0); //FCL Y LCL
-  var key_valttaproxbycont = localStorage.setItem("key_v-valttaproxbycontain", ""); //TIEMPO DE TRANSPORTE POR TIPO DE CONTENEDOR(LCL O FCL)
-  var key_valdbammountadditional = localStorage.setItem("key_v-dbammountadditional", 0); //VALOR DE MONTO ADICIONAL (DB)
-  var key_valnametypeproduct = localStorage.setItem("key_v-nametypeproduct", ""); //TIPO DE PRODUCTO
-  var key_valammountadditional = localStorage.setItem("key_v-ammountadditional", 0); //MONTO ADICIONAL DE ALGUNOS PRODUCTOS
-  var key_valvaluetransport = localStorage.setItem("key_v-valuetransport", 0); //VALOR FINAL DE TRANSPORTE
-  var key_valvaluesquotation = localStorage.setItem("key_v-valuesquotation", 0); //VALOR FINAL/SUMA DE VALORES PARA COTIZACIÓN (FCL/LCL)
-  var key_valtotalammountadditional = localStorage.setItem("key_v-totalammountadditional", 0); //TOTAL MONTO ADICIONAL DEL PRODUCTO
-  var key_valvaluesquotationbyigv = localStorage.setItem("key_v-valuesquotationbyigv", 0); //VALORES DE COTIZACIÓN PARA IGV
-  var key_valvaluestaxationimport = localStorage.setItem("key_v-valuestaxationimport", 0); //VALOR DE IMPORTACIÓN PREVIA
   var key_valvaluestaxOnebyigv = localStorage.setItem("key_v-valuestaxOnebyigv", 0); //VALOR DE AD-VALOREN
   var key_valvaluestaxTwobyigv = localStorage.setItem("key_v-valuestaxTwobyigv", 0); //VALOR DE IMPUESTO SELECCTIVO
   var key_valvaluestaxThreebyigv = localStorage.setItem("key_v-valuestaxThreebyigv", 0); //VALOR DE ANTIDUMPING
+  var key_valtotalammountadditional = localStorage.setItem("key_v-totalammountadditional", 0); //TOTAL MONTO ADICIONAL DEL PRODUCTO
+  var key_valvaluesquotation = localStorage.setItem("key_v-valuesquotation", 0); //VALOR FINAL/SUMA DE VALORES PARA COTIZACIÓN (FCL/LCL)
+  var key_valvaluesquotationbyigv = localStorage.setItem("key_v-valuesquotationbyigv", 0); //VALORES DE COTIZACIÓN PARA IGV
+  // var key_valflete = localStorage.setItem("key_v-totalflette", 0); //FCL Y LCL
+  // var key_valttaproxbycont = localStorage.setItem("key_v-valttaproxbycontain", ""); //TIEMPO DE TRANSPORTE POR TIPO DE CONTENEDOR(LCL O FCL)
+  // var key_valdbammountadditional = localStorage.setItem("key_v-dbammountadditional", 0); //VALOR DE MONTO ADICIONAL (DB)
+  // var key_valnametypeproduct = localStorage.setItem("key_v-nametypeproduct", ""); //TIPO DE PRODUCTO
+  // var key_valammountadditional = localStorage.setItem("key_v-ammountadditional", 0); //MONTO ADICIONAL DE ALGUNOS PRODUCTOS
+  // var key_valvaluetransport = localStorage.setItem("key_v-valuetransport", 0); //VALOR FINAL DE TRANSPORTE
+  // var key_valvaluestaxationimport = localStorage.setItem("key_v-valuestaxationimport", 0); //VALOR DE IMPORTACIÓN PREVIA
 
   // ------------ VARIABLES SESSIONSTORAGE 
   var sess_usercli = sessionStorage.setItem("sess_usercli", 0); //SESSION DE VARIABLE LOCAL PARA EL USUARIO
