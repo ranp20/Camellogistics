@@ -13,8 +13,48 @@ function twodecimals(n){
 function firstToUppercase(e){
   return e.charAt(0).toUpperCase() + e.slice(1);
 }
+// ------------ ENCRIPTAR DATOS DE INPUTS
+function encryptValuesIpts(valueipt){
+	let ciphertext = CryptoJS.AES.encrypt(valueipt, 'CML_KEYSYSTEM').toString();
+	return ciphertext;
+}
+// ------------ DESENCRIPTAR DATOS DE INPUTS
+function decryptValuesIpts(valueipt){
+	let bytes  = CryptoJS.AES.decrypt(valueipt, 'CML_KEYSYSTEM');
+	let originalText = bytes.toString(CryptoJS.enc.Utf8);
+	return originalText;
+}
 $("#btn-scrollingtTtB").on("click", function(){$("body, html").animate({scrollTop: '500'}, 350);}); //BOTÓN DE IR HACIA ABAJO
 $(document).ready(function(){
+	/* ENCRIPTACIÓN DE INPUTS */
+	var encrypt_v_idgencoderand = $("#v_idgencoderand").val(encryptValuesIpts($("#v_idgencoderand").val()));
+	var encrypt_v_loadtypecharge = $("#v_loadtypecharge").val(encryptValuesIpts($("#v_loadtypecharge").val()));
+	var encrypt_portOriginName = $("#v_fportorigname").val(encryptValuesIpts( $("#v_fportorigname").val()));
+	var encrypt_portDestinyName = $("#v_fportdestiname").val(encryptValuesIpts( $("#v_fportdestiname").val()));
+	var encrypt_v_typeserviceinit = $("#v_typeserviceinit").val(encryptValuesIpts( $("#v_typeserviceinit").val()));
+	var encrypt_v_fnamecategprod = $("#v_fnamecategprod").val(encryptValuesIpts( $("#v_fnamecategprod").val()));
+	var encrypt_v_ftaproxtransbycont = $("#v_ftaproxtransbycont").val(encryptValuesIpts( $("#v_ftaproxtransbycont").val()));
+	var encrypt_v_floadTypeTranport = $("#v_floadTypeTranport").val(encryptValuesIpts( $("#v_floadTypeTranport").val()));
+	var encrypt_val_ftotvalofdownload = $("#v_ftotvalofdownload").val(encryptValuesIpts( $("#v_ftotvalofdownload").val()));
+	var encrypt_val_ftotalfleteprod = $("#v_ftotalfleteprod").val(encryptValuesIpts( $("#v_ftotalfleteprod").val()));
+	var encrypt_val_ftotalvalfobprod = $("#v_ftotvalProdquot").val(encryptValuesIpts( $("#v_ftotvalProdquot").val()));
+	var encrypt_val_plcpickuprateprov = $("#v-plcpickuprateprov").val(encryptValuesIpts($("#v-plcpickuprateprov").val()));
+	/* DESENCRIPTACIÓN DE INPUTS */
+	// ------------ VALORES DE CAJAS DE TEXTO - TEXTO
+	var v_idgencoderand = decryptValuesIpts(encrypt_v_idgencoderand.val());
+	var v_loadtypecharge = decryptValuesIpts(encrypt_v_loadtypecharge.val());
+	var portOriginName = decryptValuesIpts(encrypt_portOriginName.val());
+	var portDestinyName = decryptValuesIpts(encrypt_portDestinyName.val());
+	var v_typeserviceinit = decryptValuesIpts(encrypt_v_typeserviceinit.val());
+	var v_fnamecategprod = decryptValuesIpts(encrypt_v_fnamecategprod.val());
+	var v_ftaproxtransbycont = decryptValuesIpts(encrypt_v_ftaproxtransbycont.val());
+	var v_floadTypeTranport = decryptValuesIpts(encrypt_v_floadTypeTranport.val());
+	// ------------ VALORES DE CAJAS DE TEXTO - CÁLCULO
+	var val_ftotvalofdownload = decryptValuesIpts(encrypt_val_ftotvalofdownload.val());
+	var val_ftotalfleteprod = decryptValuesIpts(encrypt_val_ftotalfleteprod.val());
+	var val_ftotalvalfobprod = decryptValuesIpts(encrypt_val_ftotalvalfobprod.val()); // VALOR FOB
+	var val_plcpickuprateprov = decryptValuesIpts(encrypt_val_plcpickuprateprov.val()); // TRANSPORTE INTERNO
+
 	// ------------ VALIDAR SI EXISTE UN USUARIO, DE LO CONTRARIO ASIGNAR EL USUARIO POR DEFECTO 
 	if($("#s_useregin-sistem").val() == "" || $("#s_useregin-sistem").val() == undefined || $("#s_useregin-sistem").val() == 'undefined' || $("#s_useregin-sistem").val() == null || $("#s_useregin-sistem").val() == 'null'){
 		sessval_loginuser = { username: 'Invitado' }
@@ -75,22 +115,15 @@ $(document).ready(function(){
     </ul>`);
 	}
 	// ------------ VALORES PARA LAS VALIDACIONES 
-	// ------------ VALORES DE TEXTO
-	var v_loadtypecharge = $("#v_loadtypecharge").val();
-	var portOriginName = $("#v_fportorigname").val();
-	var portDestinyName = $("#v_fportdestiname").val();
-	var v_typeserviceinit = $("#v_typeserviceinit").val();
-	var v_fnamecategprod = $("#v_fnamecategprod").val();
-	var v_ftaproxtransbycont = $("#v_ftaproxtransbycont").val();
-	var v_floadTypeTranport = $("#v_floadTypeTranport").val();
-	// ------------ VALORES PARA EL CÁLCULO
-	var val_ftotvalofdownload = $("#v_ftotvalofdownload").val();
-	var val_ftotalfleteprod = $("#v_ftotalfleteprod").val();
-	var val_plcpickuprateprov = $("#v-plcpickuprateprov").val(); // TRANSPORTE INTERNO
 	// ------------ CÁLCULO DE IMPUESTOS 
 	var partInteger_Tax = 0;
 	var partDecimal_Tax = 0;
 	var partFinalDecimal_Tax = 0;
+	// ------------ CÁLCULO SERVICIOS IGV 18%
+	var fval_com_agencia = 0;
+	var fvalfinal_com_agencia = 0;
+	var fvalfinal_gas_operativos = 0;
+	var val_defaultmin = 0.4 / 100;
 	// ------------ VARIABLES PARA LOS TOTALES A IMPRIMIR 
 	var sumTotalFirstFlete = 0;
 	var sumTotalbyIGV = 0;
@@ -103,14 +136,13 @@ $(document).ready(function(){
 	var receivedAd_valoren = parseFloat(localStorage.getItem("key_v-valuestaxOnebyigv")); //AD-VALOREN
 	var receivedI_selectivo = parseFloat(localStorage.getItem("key_v-valuestaxTwobyigv")); //IMPUESTO SELECTIVO
 	var received_antidumping = parseFloat(localStorage.getItem("key_v-valuestaxThreebyigv")); //ANTIDUMPING
-	var receivedfob = localStorage.getItem("key_v-valueproduct"); //VALOR FOB DESDE LOCALSTORAGE
+	var receivedfob = val_ftotalvalfobprod; //VALOR FOB
 	var receiveddownload = val_ftotvalofdownload; //VALOR DE DESCARGA DESDE LOCALSTORAGE
 	var cutefobofpriceusd = receivedfob.split(" USD");
   var cutewithoutofpricefob = cutefobofpriceusd[0].replace(/\./g, '');
 	var totflete = parseFloat(val_ftotalfleteprod); //TOTAL - SOLO FLETE
 	var totalamountadditional = parseFloat(localStorage.getItem("key_v-totalammountadditional")); //MONTO ADICIONAL
 	var totaltransport = parseFloat(val_plcpickuprateprov); //TOTAL TRANSPORTE
-	var totalinsurance = parseFloat(localStorage.getItem("key_v-valueinsurance")); //TOTAL SEGURO
 	var totalimportprev = $("#v_previmports").text(); //TOTAL IMPORTACIÓN PREVIA
 	var totalvaluesquotation =  parseFloat(localStorage.getItem("key_v-valuesquotation")); //TOTAL SUMA DE VALORES DE COTIZACIÓN
 	var totalvaluesquotationbyIGV =  parseFloat(localStorage.getItem("key_v-valuesquotationbyigv")); //TOTAL SUMA DE VALORES DE COTIZACIÓN IGV
@@ -125,201 +157,218 @@ $(document).ready(function(){
     contentType: 'application/x-www-form-urlencoded;charset=UTF-8',
   }).done((e) => {
   	var r = JSON.parse(e);
-  	var insure_default = parseFloat(r[0].data_value); //SIN FOB/VALOR POR DEFECTO
-  	if($("#v_insurancemerch") != undefined && $("#v_insurancemerch") != null && $("#v_insurancemerch").text() != "NO"){
-			// ------------ TOTALES A IMPRIMIR - CON SEGURO 
-			sumTotalFirstFlete = totflete + totalamountadditional + totaltransport + totalinsurance + totalvaluesquotation + totalfinalvaluedownload; //FLETE FINAL
-			sumTotalbyIGV = (totaltransport + totalamountadditional + totalvaluesquotationbyIGV) * (18 / 100); //IGV (DEBAJO DEL FLETE FINAL)
-			sumTotalFinalFleteandIGV = sumTotalFirstFlete + sumTotalbyIGV; //VALOR TOTAL FINAL DE LA COTIZACIÓN
-			sumbyCIF = totalfinalvaluefob + totflete + totalinsurance; //CIF FINAL
-  	}else{
-  		// ------------ TOTALES A IMPRIMIR - SIN SEGURO 
-			sumTotalFirstFlete = totflete + totalamountadditional + totaltransport + totalvaluesquotation + totalfinalvaluedownload; //FLETE FINAL
-			sumTotalbyIGV = (totaltransport + totalamountadditional + totalvaluesquotationbyIGV) * (18 / 100); //IGV (DEBAJO DEL FLETE FINAL)
-			sumTotalFinalFleteandIGV = sumTotalFirstFlete + sumTotalbyIGV; //VALOR TOTAL FINAL DE LA COTIZACIÓN
-			sumbyCIF = totalfinalvaluefob + totflete + totalinsurance; //CIF FINAL
-  	}
-		
-		console.log('Totaltarifatrans: '+totaltransport);
-		console.log('Totalmontoadicional: '+totalamountadditional);
-		console.log('TotalvalorIGV: '+totalvaluesquotationbyIGV);
+  	var insurance_default = parseFloat(r[0].data_value);
+  	var insureconvert_default = insurance_default / 100; //VALOR POR DEFECTO
+  	var initvalinsurance = 0;
+  	var finalinsurance = 0;
+  	var finalRoundinsurance = 0;
+    
+    if(totalfinalvaluefob > 25000){
+      finalinsurance = totalfinalvaluefob * insureconvert_default; //FOB ES MAYOR A 25000
+      initvalinsurance = insurance_default;
+      finalRoundinsurance = myRound(finalinsurance);
+    }else{
+      finalinsurance = insureconvert_default; //FOB ES MENOR A 25000
+      initvalinsurance = insurance_default;
+      finalRoundinsurance = myRound(finalinsurance);
+    }
 
-		// ------------ LIMPIAR EL VALOR E IMPRIMIR EN EL TOTAL DEL SERVICIOS 
-		var totalNotround = twodecimals(sumTotalFirstFlete);
-		var n = Math.abs(totalNotround);
-		partInteger = Math.trunc(n);
-		var separate_point = partInteger.toString().replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d)\.?)/g, ".");
-		partDecimal = totalNotround.toString().split('.');
-		if(partDecimal[1] == undefined || partDecimal[1] == 'undefined' || partDecimal[1] == ""){
-			partFinalDecimal = '00';
-		}else	if(partDecimal[1].length < 2){
-			partFinalDecimal = partDecimal[1]+'0';
-		}else{
-			partFinalDecimal = partDecimal[1];
-		}
-		$("#intdecval-quotefinal").html(`<span>${separate_point},<sup>${partFinalDecimal}</sup> USD</span>`);
-		// ------------ IMPRIMIR EL TOTAL DE SERVICIOS ENTRE EL IGV 18% 
-		console.log(sumTotalbyIGV);
-		var totalNotRountByIGV = twodecimals(sumTotalbyIGV);
-		var n_byIGV = Math.abs(totalNotRountByIGV);
-		var partInteger_byIGV = Math.trunc(n_byIGV);
-		var separate_point_byIGV = partInteger_byIGV.toString().replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d)\.?)/g, ".");
-		var part_decimalbyIGV = totalNotRountByIGV.toString().split('.');
-		var partFinal_decimal_byIGV = 0;
-		if(part_decimalbyIGV[1] == undefined || part_decimalbyIGV[1] == 'undefined' || part_decimalbyIGV[1] == ""){
-			partFinal_decimal_byIGV = '00';
-		}else	if(part_decimalbyIGV[1].length < 2){
-			partFinal_decimal_byIGV = part_decimalbyIGV[1]+'0';
-		}else{
-			partFinal_decimal_byIGV = part_decimalbyIGV[1];
-		}
-		$("#igvval-quotefinal").html(`<span>+ IGV 18% </span><span>${separate_point_byIGV},${partFinal_decimal_byIGV} USD</span>`);
-		// ------------ IMPRIMIR EL ÚLTIMO VALOR - SUMA DEL TOTAL DE FLETE Y EL TOTAL ENTRE EL IGV 
-		var partInteger_FTotal = 0;
-		var partDecimal_FTotal = 0;
-		var partFinalDecimal_FTotal = 0;
-		var totalNotRoundFinal = twodecimals(sumTotalFinalFleteandIGV);
-		var n_ftotal = Math.abs(totalNotRoundFinal);
-		partInteger_FTotal = Math.trunc(n_ftotal);
-		var separate_point_FTotal = partInteger_FTotal.toString().replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d)\.?)/g, ".");
-		partDecimal_FTotal = totalNotRoundFinal.toString().split('.');
-		if(partDecimal_FTotal[1] == undefined || partDecimal_FTotal[1] == 'undefined' || partDecimal_FTotal[1] == ""){
-			partFinalDecimal_FTotal = '00';
-		}else	if(partDecimal_FTotal[1].length < 2){
-			partFinalDecimal_FTotal = partDecimal_FTotal[1]+'0';
-		}else{
-			partFinalDecimal_FTotal = partDecimal_FTotal[1];
-		}
-		$("#totalval_quoteFinal").html(`<span>${separate_point_FTotal},<sup>${partFinalDecimal_FTotal}</sup> USD</span>`);
-
-		// ------------ LISTAR SERVICIOS PARA CALCULO CON IGV - FCL 
+    // ------------ LISTAR SERVICIOS PARA CALCULO CON IGV 18% - FCL y LCL 
 	  $.ajax({
-	    url: "controllers/list_taxation_values_byquotation.php",
+	    url: "controllers/list_quotation_values_calcservs_fcl_and_lcl.php",
 	    method: "POST",
 	    datatype: "JSON",
 	    contentType: 'application/x-www-form-urlencoded;charset=UTF-8',
 	  }).done((e) => {
-	    var restaxvalues = JSON.parse(e);
-	  	
-	    var res_IGV = parseFloat(restaxvalues[0].data_value);
-	    var res_IPM = parseFloat(restaxvalues[1].data_value);
-	    var res_Percepcion_YES = parseFloat(restaxvalues[2].data_value);
-	    var res_Percepcion_NO = parseFloat(restaxvalues[2].data_value_two);
+	  	var rqfclandlcl = JSON.parse(e);
+	  	var com_agencia_fcl = parseFloat(rqfclandlcl[0].com_agencia_fcl);
+	  	var com_agencia_lcl = parseFloat(rqfclandlcl[0].com_agencia_lcl);
+	  	var gas_operativos_fcl = parseFloat(rqfclandlcl[0].gas_operativos_fcl);
+	  	var gas_operativos_lcl = parseFloat(rqfclandlcl[0].gas_operativos_lcl);
 
-	    // ------------ VALORES - DE PORCENTAJES A DECIMALES 
-	    var percepcion_notfilter = "";
-	    var convert_IGV = res_IGV / 100; //VALOR I.G.V.
-	    var convert_IPM = res_IPM / 100; //VALOR I.P.M.
-	    var convert_Percepcion = 0; //VALOR PERCEPCIÓN
-	    var convert_Ad_Valoren = receivedAd_valoren / 100; //VALOR AD-VALOREN DE PRODUCTO
-	    var convert_I_selectivo = receivedI_selectivo / 100; //VALOR IMPUESTO SELECTIVO DE PROUCTO
-	    var convert_antidumping = received_antidumping / 100; //VALOR ANTIDUMPING
+	  	if(v_loadtypecharge == "FCL"){
+	  		fvalfinal_gas_operativos = gas_operativos_fcl;
+	  		if(sumbyCIF > 35000){
+	  			fval_com_agencia = sumbyCIF * val_defaultmin;
+	  			fvalfinal_com_agencia = myRound(fval_com_agencia);
+	  		}else{
+	  			fvalfinal_com_agencia = com_agencia_fcl;
+	  		}
+	  	}else{
+	  		fvalfinal_gas_operativos = gas_operativos_lcl;
+	  		if(sumbyCIF > 35000){
+	  			fval_com_agencia = sumbyCIF * val_defaultmin;
+	  			fvalfinal_com_agencia = myRound(fval_com_agencia);
+	  		}else{
+	  			fvalfinal_com_agencia = com_agencia_fcl;
+	  		}
+	  	}
 
-	    if(totalimportprev != "NO"){
-		    convert_Percepcion = res_Percepcion_YES / 100; /// 3.50
-		    percepcion_notfilter = restaxvalues[2].data_value;
-	    }else{
-	    	convert_Percepcion = res_Percepcion_NO / 100;///10
-	    	percepcion_notfilter = restaxvalues[2].data_value_two;
-	    }
+	  	if($("#v_insurancemerch") != undefined && $("#v_insurancemerch") != null && $("#v_insurancemerch").text() != "NO"){
+				// ------------ TOTALES A IMPRIMIR - CON SEGURO 
+				sumTotalFirstFlete = totaltransport + fvalfinal_com_agencia + fvalfinal_gas_operativos + totalamountadditional + totalvaluesquotationbyIGV; //FLETE FINAL
+				sumTotalbyIGV = (totaltransport + fvalfinal_com_agencia + fvalfinal_gas_operativos + totalamountadditional + totalvaluesquotationbyIGV) * (18 / 100); //IGV (DEBAJO DEL FLETE FINAL)
+				sumTotalFinalFleteandIGV = sumTotalFirstFlete + sumTotalbyIGV; //VALOR TOTAL FINAL DE LA COTIZACIÓN
+				sumbyCIF = totalfinalvaluefob + totflete + finalRoundinsurance; //CIF FINAL
+	  	}else{
+	  		// ------------ TOTALES A IMPRIMIR - SIN SEGURO 
+				sumTotalFirstFlete = totaltransport + fvalfinal_com_agencia + fvalfinal_gas_operativos + totalamountadditional + totalvaluesquotationbyIGV; //FLETE FINAL
+				sumTotalbyIGV = (totaltransport + fvalfinal_com_agencia + fvalfinal_gas_operativos + totalamountadditional + totalvaluesquotationbyIGV) * (18 / 100); //IGV (DEBAJO DEL FLETE FINAL)
+				sumTotalFinalFleteandIGV = sumTotalFirstFlete + sumTotalbyIGV; //VALOR TOTAL FINAL DE LA COTIZACIÓN
+				sumbyCIF = totalfinalvaluefob + totflete + finalRoundinsurance; //CIF FINAL
+	  	}
+			// console.log('TotalTransport: '+totaltransport);
+			// console.log('ComisiónAgencia: '+fvalfinal_com_agencia);
+			// console.log('GastosOperativos: '+fvalfinal_gas_operativos);
+			// console.log('TotalMontoAdicional: '+totalamountadditional);
+			// console.log('TotalValuesQuotationIGV:' +totalvaluesquotationbyIGV);
+			// console.log('TotalSERVICIOS: '+sumTotalFirstFlete);
+			
+			// console.log('Totaltarifatrans: '+totaltransport);
+			// console.log('Totalmontoadicional: '+totalamountadditional);
+			// console.log('TotalvalorIGV: '+totalvaluesquotationbyIGV);
+			// console.log("Total servicios IGV 18%: "+sumTotalbyIGV);
 
-	    // ------------ CALCULAR AD-VALOREN 
-	    var val_Ad_valoren = sumbyCIF * convert_Ad_Valoren;
-	    var twodecimal_Ad_valoren = twodecimals(val_Ad_valoren);
-	    var finalval_Ad_valoren = parseFloat(twodecimal_Ad_valoren);
-			// ------------ CALCULAR IMPUESTO SELECTIVO 
-			var val_i_selectivo = sumbyCIF * convert_I_selectivo;
-			var twodecimal_i_selectivo = twodecimals(val_i_selectivo);
-			var finalval_i_selectivo = parseFloat(twodecimal_i_selectivo);
-			// ------------ CALCULAR ANTIDUMPING 
-			var val_antidumping = sumbyCIF * convert_antidumping;
-			var twodecimal_antidumping = twodecimals(val_antidumping);
-			var finalval_antidumping = parseFloat(twodecimal_antidumping);
-	    // ------------ CALCULAR IGV 
-			var val_IGV = ( sumbyCIF + finalval_Ad_valoren ) * convert_IGV;
-			var twodecimal_IGV = twodecimals(val_IGV);
-			var finalval_IGV = parseFloat(twodecimal_IGV);
-			// ------------ CALCULAR IPM 
-			var val_IPM = ( sumbyCIF + finalval_Ad_valoren) * convert_IPM;
-			var twodecimal_IPM = twodecimals(val_IPM);
-			var finalval_IPM = parseFloat(twodecimal_IPM);
-			// ------------ CALCULAR PERCEPCIÓN 
-			var val_Percepcion = ( sumbyCIF + finalval_Ad_valoren + finalval_IGV + finalval_IPM ) * convert_Percepcion;
-			var twodecimal_percepcion = twodecimals(val_Percepcion);
-			var finalval_percepcion = parseFloat(twodecimal_percepcion);
 
-			// ------------ CALCULO FINAL DE IMPUESTOS 
-			var val_FinalTax = finalval_IGV + finalval_IPM + finalval_percepcion + finalval_Ad_valoren + finalval_i_selectivo + finalval_antidumping + totalinsurance;
-
-			var twodecimals_FinalTax = twodecimals(val_FinalTax);
-			var finalval_FinalTax = parseFloat(twodecimals_FinalTax);
-			var n_tax = Math.abs(finalval_FinalTax);
-			partInteger_Tax = Math.trunc(n_tax);
-			var separate_point_Tax = partInteger_Tax.toString().replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d)\.?)/g, ".");
-			partDecimal_Tax = finalval_FinalTax.toString().split('.');
-			if(partDecimal_Tax[1] == undefined || partDecimal_Tax[1] == 'undefined' || partDecimal_Tax[1] == ""){
-				partFinalDecimal_Tax = '00';
-			}else	if(partDecimal_Tax[1].length < 2){
-				partFinalDecimal_Tax = partDecimal_Tax[1]+'0';
+			// ------------ LIMPIAR EL VALOR E IMPRIMIR EN EL TOTAL DEL SERVICIOS 
+			var totalNotround = twodecimals(sumTotalFirstFlete);
+			var n = Math.abs(totalNotround);
+			partInteger = Math.trunc(n);
+			var separate_point = partInteger.toString().replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d)\.?)/g, ".");
+			partDecimal = totalNotround.toString().split('.');
+			if(partDecimal[1] == undefined || partDecimal[1] == 'undefined' || partDecimal[1] == ""){
+				partFinalDecimal = '00';
+			}else	if(partDecimal[1].length < 2){
+				partFinalDecimal = partDecimal[1]+'0';
 			}else{
-				partFinalDecimal_Tax = partDecimal_Tax[1];
+				partFinalDecimal = partDecimal[1];
 			}
-
-			// ------------ IMPRESIÓN DE LOS VALORES 
-			if(document.querySelector(".c-FinalQuotation--contStep--cQuotation--cBottom--cAduanaImpst").contains(document.querySelector("#taxval_quotefinal"))){			
-				$("#taxval_quotefinal").html(`<span>${separate_point_Tax},<sup>${partFinalDecimal_Tax}</sup> USD</span>`);
+			$("#intdecval-quotefinal").html(`<span>${separate_point},<sup>${partFinalDecimal}</sup> USD</span>`);
+			// ------------ IMPRIMIR EL TOTAL DE SERVICIOS ENTRE EL IGV 18% 
+			var totalNotRountByIGV = twodecimals(sumTotalbyIGV);
+			var n_byIGV = Math.abs(totalNotRountByIGV);
+			var partInteger_byIGV = Math.trunc(n_byIGV);
+			var separate_point_byIGV = partInteger_byIGV.toString().replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d)\.?)/g, ".");
+			var part_decimalbyIGV = totalNotRountByIGV.toString().split('.');
+			var partFinal_decimal_byIGV = 0;
+			if(part_decimalbyIGV[1] == undefined || part_decimalbyIGV[1] == 'undefined' || part_decimalbyIGV[1] == ""){
+				partFinal_decimal_byIGV = '00';
+			}else	if(part_decimalbyIGV[1].length < 2){
+				partFinal_decimal_byIGV = part_decimalbyIGV[1]+'0';
 			}else{
-				//console.log("No existe el elemento");
+				partFinal_decimal_byIGV = part_decimalbyIGV[1];
 			}
-
-			// ------------ VALIDAR EL VALOR DE TRANSPORTE DE INICIO 
-			var inittranpsendid = $("#v_typetranspsendinitid").val();
-			var transsendinitbyid = "";
-			if(inittranpsendid == 0){
-				transsendinitbyid = "S-ADU";
-			}else if(inittranpsendid == 1){
-				transsendinitbyid = "T-MAR";
-			}else if(inittranpsendid == 2){
-				transsendinitbyid = "T-AER";
+			$("#igvval-quotefinal").html(`<span>+ IGV 18% </span><span>${separate_point_byIGV},${partFinal_decimal_byIGV} USD</span>`);
+			// ------------ IMPRIMIR EL ÚLTIMO VALOR - SUMA DEL TOTAL DE FLETE Y EL TOTAL ENTRE EL IGV 
+			var partInteger_FTotal = 0;
+			var partDecimal_FTotal = 0;
+			var partFinalDecimal_FTotal = 0;
+			var totalNotRoundFinal = twodecimals(sumTotalFinalFleteandIGV);
+			var n_ftotal = Math.abs(totalNotRoundFinal);
+			partInteger_FTotal = Math.trunc(n_ftotal);
+			var separate_point_FTotal = partInteger_FTotal.toString().replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d)\.?)/g, ".");
+			partDecimal_FTotal = totalNotRoundFinal.toString().split('.');
+			if(partDecimal_FTotal[1] == undefined || partDecimal_FTotal[1] == 'undefined' || partDecimal_FTotal[1] == ""){
+				partFinalDecimal_FTotal = '00';
+			}else	if(partDecimal_FTotal[1].length < 2){
+				partFinalDecimal_FTotal = partDecimal_FTotal[1]+'0';
 			}else{
-				console.log('Inv-ID');
+				partFinalDecimal_FTotal = partDecimal_FTotal[1];
 			}
+			$("#totalval_quoteFinal").html(`<span>${separate_point_FTotal},<sup>${partFinalDecimal_FTotal}</sup> USD</span>`);
 
 			// ------------ LISTAR SERVICIOS PARA CALCULO CON IGV - FCL 
 		  $.ajax({
-		    url: "controllers/list_quotation_values_calcservs_fcl_and_lcl.php",
+		    url: "controllers/list_taxation_values_byquotation.php",
 		    method: "POST",
 		    datatype: "JSON",
 		    contentType: 'application/x-www-form-urlencoded;charset=UTF-8',
 		  }).done((e) => {
-		  	var rqfclandlcl = JSON.parse(e);
-		  	var com_agencia_fcl = parseFloat(rqfclandlcl[0].com_agencia_fcl);
-		  	var com_agencia_lcl = parseFloat(rqfclandlcl[0].com_agencia_lcl);
-		  	var gas_operativos_fcl = parseFloat(rqfclandlcl[0].gas_operativos_fcl);
-		  	var gas_operativos_lcl = parseFloat(rqfclandlcl[0].gas_operativos_lcl);
+		    var restaxvalues = JSON.parse(e);
+		  	
+		    var res_IGV = parseFloat(restaxvalues[0].data_value);
+		    var res_IPM = parseFloat(restaxvalues[1].data_value);
+		    var res_Percepcion_YES = parseFloat(restaxvalues[2].data_value);
+		    var res_Percepcion_NO = parseFloat(restaxvalues[2].data_value_two);
 
-		  	var fval_com_agencia = 0;
-		  	var fvalfinal_com_agencia = 0;
-		  	var fvalfinal_gas_operativos = 0;
-		  	var val_defaultmin = 0.4 / 100;
-		  	if(v_loadtypecharge == "FCL"){
-		  		fvalfinal_gas_operativos = gas_operativos_fcl;
-		  		if(sumbyCIF > 35000){
-		  			fval_com_agencia = sumbyCIF * val_defaultmin;
-		  			fvalfinal_com_agencia = myRound(fval_com_agencia);
-		  		}else{
-		  			fvalfinal_com_agencia = com_agencia_fcl;
-		  		}
-		  	}else{
-		  		fvalfinal_gas_operativos = gas_operativos_lcl;
-		  		if(sumbyCIF > 35000){
-		  			fval_com_agencia = sumbyCIF * val_defaultmin;
-		  			fvalfinal_com_agencia = myRound(fval_com_agencia);
-		  		}else{
-		  			fvalfinal_com_agencia = com_agencia_fcl;
-		  		}
-		  	}
+		    // ------------ VALORES - DE PORCENTAJES A DECIMALES 
+		    var percepcion_notfilter = "";
+		    var convert_IGV = res_IGV / 100; //VALOR I.G.V.
+		    var convert_IPM = res_IPM / 100; //VALOR I.P.M.
+		    var convert_Percepcion = 0; //VALOR PERCEPCIÓN
+		    var convert_Ad_Valoren = receivedAd_valoren / 100; //VALOR AD-VALOREN DE PRODUCTO
+		    var convert_I_selectivo = receivedI_selectivo / 100; //VALOR IMPUESTO SELECTIVO DE PROUCTO
+		    var convert_antidumping = received_antidumping / 100; //VALOR ANTIDUMPING
 
+		    if(totalimportprev != "NO"){
+			    convert_Percepcion = res_Percepcion_YES / 100; /// 3.50
+			    percepcion_notfilter = restaxvalues[2].data_value;
+		    }else{
+		    	convert_Percepcion = res_Percepcion_NO / 100;///10
+		    	percepcion_notfilter = restaxvalues[2].data_value_two;
+		    }
+
+		    // ------------ CALCULAR AD-VALOREN 
+		    var val_Ad_valoren = sumbyCIF * convert_Ad_Valoren;
+		    var twodecimal_Ad_valoren = twodecimals(val_Ad_valoren);
+		    var finalval_Ad_valoren = parseFloat(twodecimal_Ad_valoren);
+				// ------------ CALCULAR IMPUESTO SELECTIVO 
+				var val_i_selectivo = sumbyCIF * convert_I_selectivo;
+				var twodecimal_i_selectivo = twodecimals(val_i_selectivo);
+				var finalval_i_selectivo = parseFloat(twodecimal_i_selectivo);
+				// ------------ CALCULAR ANTIDUMPING 
+				var val_antidumping = sumbyCIF * convert_antidumping;
+				var twodecimal_antidumping = twodecimals(val_antidumping);
+				var finalval_antidumping = parseFloat(twodecimal_antidumping);
+		    // ------------ CALCULAR IGV 
+				var val_IGV = ( sumbyCIF + finalval_Ad_valoren ) * convert_IGV;
+				var twodecimal_IGV = twodecimals(val_IGV);
+				var finalval_IGV = parseFloat(twodecimal_IGV);
+				// ------------ CALCULAR IPM 
+				var val_IPM = ( sumbyCIF + finalval_Ad_valoren) * convert_IPM;
+				var twodecimal_IPM = twodecimals(val_IPM);
+				var finalval_IPM = parseFloat(twodecimal_IPM);
+				// ------------ CALCULAR PERCEPCIÓN 
+				var val_Percepcion = ( sumbyCIF + finalval_Ad_valoren + finalval_IGV + finalval_IPM ) * convert_Percepcion;
+				var twodecimal_percepcion = twodecimals(val_Percepcion);
+				var finalval_percepcion = parseFloat(twodecimal_percepcion);
+
+				// ------------ CALCULO FINAL DE IMPUESTOS 
+				var val_FinalTax = finalval_IGV + finalval_IPM + finalval_percepcion + finalval_Ad_valoren + finalval_i_selectivo + finalval_antidumping + finalRoundinsurance;
+
+				var twodecimals_FinalTax = twodecimals(val_FinalTax);
+				var finalval_FinalTax = parseFloat(twodecimals_FinalTax);
+				var n_tax = Math.abs(finalval_FinalTax);
+				partInteger_Tax = Math.trunc(n_tax);
+				var separate_point_Tax = partInteger_Tax.toString().replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d)\.?)/g, ".");
+				partDecimal_Tax = finalval_FinalTax.toString().split('.');
+				if(partDecimal_Tax[1] == undefined || partDecimal_Tax[1] == 'undefined' || partDecimal_Tax[1] == ""){
+					partFinalDecimal_Tax = '00';
+				}else	if(partDecimal_Tax[1].length < 2){
+					partFinalDecimal_Tax = partDecimal_Tax[1]+'0';
+				}else{
+					partFinalDecimal_Tax = partDecimal_Tax[1];
+				}
+
+				// ------------ IMPRESIÓN DE LOS VALORES 
+				if(document.querySelector(".c-FinalQuotation--contStep--cQuotation--cBottom--cAduanaImpst").contains(document.querySelector("#taxval_quotefinal"))){			
+					$("#taxval_quotefinal").html(`<span>${separate_point_Tax},<sup>${partFinalDecimal_Tax}</sup> USD</span>`);
+				}else{
+					//console.log("No existe el elemento");
+				}
+
+				// ------------ VALIDAR EL VALOR DE TRANSPORTE DE INICIO 
+				var inittranpsendid = $("#v_typetranspsendinitid").val();
+				var transsendinitbyid = "";
+				if(inittranpsendid == 0){
+					transsendinitbyid = "S-ADU";
+				}else if(inittranpsendid == 1){
+					transsendinitbyid = "T-MAR";
+				}else if(inittranpsendid == 2){
+					transsendinitbyid = "T-AER";
+				}else{
+					console.log('Inv-ID');
+				}
 		  	// ------------ VALIDAR EL VALOR DEL USUARIO 
 				var user_sessquote = "";
 				
@@ -337,7 +386,7 @@ $(document).ready(function(){
 					var percepcioncalc_twodeci = myRound(percepcion_calculate);
 
 					var formdata = new FormData();
-					formdata.append("id_codegenrand", $("#v_idgencoderand").val());
+					formdata.append("id_codegenrand", v_idgencoderand);
 					formdata.append("u_login", user_sessquote);
 					formdata.append("f_typetransendinitid", transsendinitbyid);
 					formdata.append("f_type_op", v_typeserviceinit);
@@ -354,7 +403,7 @@ $(document).ready(function(){
 					formdata.append("f_time_transit", v_ftaproxtransbycont);
 					formdata.append("f_fob", totalfinalvaluefob);
 					formdata.append("f_flete", totflete);
-					formdata.append("f_insurance", totalinsurance);
+					formdata.append("f_insurance", insurance_default);
 					formdata.append("f_cif", sumbyCIF);
 					formdata.append("f_v_IGV", restaxvalues[0].data_value);
 					formdata.append("f_v_IPM", restaxvalues[1].data_value);
@@ -362,16 +411,16 @@ $(document).ready(function(){
 					formdata.append("f_IGV", igvcalc_twodeci);
 					formdata.append("f_IPM", ipmcalc_twodeci);
 					formdata.append("f_percepcion", percepcioncalc_twodeci);
+					formdata.append("f_transporte_interno", totaltransport);
 					formdata.append("f_comision_agencia", fvalfinal_com_agencia);
 					formdata.append("f_gastos_operativos", fvalfinal_gas_operativos);
-					formdata.append("f_totalinsurance", totalinsurance);
+					formdata.append("f_totalinsurance", finalRoundinsurance);
 					formdata.append("f_totalservices", totalNotround);
 					formdata.append("f_totalservicesIGV18", totalNotRountByIGV);
 					formdata.append("f_totalimpuestos", twodecimals_FinalTax);
 					formdata.append("f_totalwithIGV", totalNotRoundFinal);
 					formdata.append("f_validdesde", $("#v_datevaliddesde").val());
 					formdata.append("f_validhasta", $("#v_datevalidhasta").val());
-					formdata.append("f_transporte_interno", $("#v-plcpickuprateprov").val());
 
 					$.ajax({
 						url: 'controllers/prcss_add-quotation-user.php',
@@ -441,7 +490,7 @@ $(document).ready(function(){
 								$("#totalval_quoteFinal").html(`<span>${separate_point_FTotal},<sup>${partFinalDecimal_FTotal}</sup> USD</span>`);
 
 								// --------------- LISTAR DATOS PARA ENVIAR POR WHATSAPP
-								var idcodequote = $("#v_gencodexxx").text() + " - " + $("#v_loadtypecharge").val(), 
+								var idcodequote = $("#v_gencodexxx").text() + " - " + v_loadtypecharge,
 										typeFleteService = $("#m-first-listresume").find("li:first-child").find("div").find("span:nth-child(2)").text(),
 										typeFleteContainer = $("#m-first-listresume").find("li:nth-child(2)").find("div").find("span:nth-child(2)").text(),
 										fleteportOrigin = $("#v-listportsOandD").find("span:first-child").text(),
@@ -534,7 +583,7 @@ $(document).ready(function(){
 								$("#totalval_quoteFinal").html(`<span>${separate_point_FTotal},<sup>${partFinalDecimal_FTotal}</sup> USD</span>`);
 
 								// --------------- LISTAR DATOS PARA ENVIAR POR WHATSAPP
-								var idcodequote = $("#v_gencodexxx").text() + " - " + $("#v_loadtypecharge").val(), 
+								var idcodequote = $("#v_gencodexxx").text() + " - " + v_loadtypecharge, 
 										typeFleteService = $("#m-first-listresume").find("li:first-child").find("div").find("span:nth-child(2)").text(),
 										typeFleteContainer = $("#m-first-listresume").find("li:nth-child(2)").find("div").find("span:nth-child(2)").text(),
 										fleteportOrigin = $("#v-listportsOandD").find("span:first-child").text(),
@@ -601,7 +650,7 @@ $(document).ready(function(){
 					var percepcioncalc_twodeci = myRound(percepcion_calculate);
 
 					var formdata = new FormData();
-					formdata.append("id_codegenrand", $("#v_idgencoderand").val());
+					formdata.append("id_codegenrand", v_idgencoderand);
 					formdata.append("u_login", $("#s_useregin-sistem").val());
 					formdata.append("f_typetransendinitid", transsendinitbyid);
 					formdata.append("f_type_op", v_typeserviceinit);
@@ -618,7 +667,7 @@ $(document).ready(function(){
 					formdata.append("f_time_transit", v_ftaproxtransbycont);
 					formdata.append("f_fob", totalfinalvaluefob);
 					formdata.append("f_flete", totflete);
-					formdata.append("f_insurance", totalinsurance);
+					formdata.append("f_insurance", insurance_default);
 					formdata.append("f_cif", sumbyCIF);
 					formdata.append("f_v_IGV", restaxvalues[0].data_value);
 					formdata.append("f_v_IPM", restaxvalues[1].data_value);
@@ -626,16 +675,16 @@ $(document).ready(function(){
 					formdata.append("f_IGV", igvcalc_twodeci);
 					formdata.append("f_IPM", ipmcalc_twodeci);
 					formdata.append("f_percepcion", percepcioncalc_twodeci);
+					formdata.append("f_transporte_interno", totaltransport);
 					formdata.append("f_comision_agencia", fvalfinal_com_agencia);
 					formdata.append("f_gastos_operativos", fvalfinal_gas_operativos);
-					formdata.append("f_totalinsurance", totalinsurance);
+					formdata.append("f_totalinsurance", finalRoundinsurance);
 					formdata.append("f_totalservices", totalNotround);
 					formdata.append("f_totalservicesIGV18", totalNotRountByIGV);
 					formdata.append("f_totalimpuestos", twodecimals_FinalTax);
 					formdata.append("f_totalwithIGV", totalNotRoundFinal);
 					formdata.append("f_validdesde", $("#v_datevaliddesde").val());
 					formdata.append("f_validhasta", $("#v_datevalidhasta").val());
-					formdata.append("f_transporte_interno", $("#v-plcpickuprateprov").val());
 
 					$.ajax({
 						url: 'controllers/prcss_add-quotation-user.php',
@@ -705,7 +754,7 @@ $(document).ready(function(){
 								$("#totalval_quoteFinal").html(`<span>${separate_point_FTotal},<sup>${partFinalDecimal_FTotal}</sup> USD</span>`);
 
 								// --------------- LISTAR DATOS PARA ENVIAR POR WHATSAPP
-								var idcodequote = $("#v_gencodexxx").text() + " - " + $("#v_loadtypecharge").val(), 
+								var idcodequote = $("#v_gencodexxx").text() + " - " + v_loadtypecharge, 
 										typeFleteService = $("#m-first-listresume").find("li:first-child").find("div").find("span:nth-child(2)").text(),
 										typeFleteContainer = $("#m-first-listresume").find("li:nth-child(2)").find("div").find("span:nth-child(2)").text(),
 										fleteportOrigin = $("#v-listportsOandD").find("span:first-child").text(),
@@ -798,7 +847,7 @@ $(document).ready(function(){
 								$("#totalval_quoteFinal").html(`<span>${separate_point_FTotal},<sup>${partFinalDecimal_FTotal}</sup> USD</span>`);
 
 								// --------------- LISTAR DATOS PARA ENVIAR POR WHATSAPP
-								var idcodequote = $("#v_gencodexxx").text() + " - " + $("#v_loadtypecharge").val(), 
+								var idcodequote = $("#v_gencodexxx").text() + " - " + v_loadtypecharge, 
 										typeFleteService = $("#m-first-listresume").find("li:first-child").find("div").find("span:nth-child(2)").text(),
 										typeFleteContainer = $("#m-first-listresume").find("li:nth-child(2)").find("div").find("span:nth-child(2)").text(),
 										fleteportOrigin = $("#v-listportsOandD").find("span:first-child").text(),
@@ -859,6 +908,7 @@ $(document).ready(function(){
 				}
 		  });
 	  });
+
   });
   // ------------ VALIDAR SI EXISTE UN USUARIO AL ABRIR EL MODAL - PRIMER BOTÓN 
   $(document).on("click","#btn-requireDownloadQuotaion_one",function(e){
@@ -879,7 +929,7 @@ $(document).ready(function(){
 			//VALIDAR LA INFORMACIÓN DEL USUARIO...
 			user_sessquote = s_username_local.username;
 			var formdata = new FormData();
-			formdata.append("id_codegenrand", $("#v_idgencoderand").val());
+			formdata.append("id_codegenrand", v_idgencoderand);
 			formdata.append("code_quote", $("#v_gencodexxx").text());
 			formdata.append("u_login", user_sessquote);
 
@@ -910,7 +960,7 @@ $(document).ready(function(){
 							type: 'POST',
 							url: 'controllers/c_generate-pdf-aduanas.php',
 							data: {
-								id_codegenrand : $("#v_idgencoderand").val(), 
+								id_codegenrand : v_idgencoderand, 
 								code_quote : $("#v_gencodexxx").text(),
 								u_login : user_sessquote
 							},
@@ -991,7 +1041,7 @@ $(document).ready(function(){
 			//VALIDAR LA INFORMACIÓN DEL USUARIO...
 			user_sessquote = s_username_local.username;
 			var formdata = new FormData();
-			formdata.append("id_codegenrand", $("#v_idgencoderand").val());
+			formdata.append("id_codegenrand", v_idgencoderand);
 			formdata.append("code_quote", $("#v_gencodexxx").text());
 			formdata.append("u_login", user_sessquote);
 
@@ -1022,7 +1072,7 @@ $(document).ready(function(){
 							type: 'POST',
 							url: 'controllers/c_generate-pdf-aduanas.php',
 							data: {
-								id_codegenrand : $("#v_idgencoderand").val(), 
+								id_codegenrand : v_idgencoderand, 
 								code_quote : $("#v_gencodexxx").text(),
 								u_login : user_sessquote
 							},
@@ -1120,7 +1170,7 @@ $(document).ready(function(){
 			//VALIDAR LA INFORMACIÓN DEL USUARIO...
 			user_sessquote = s_username_local.username;
 			var formdata = new FormData();
-			formdata.append("id_codegenrand", $("#v_idgencoderand").val());
+			formdata.append("id_codegenrand", v_idgencoderand);
 			formdata.append("code_quote", $("#v_gencodexxx").text());
 			formdata.append("u_login", user_sessquote);
 
@@ -1151,7 +1201,7 @@ $(document).ready(function(){
 							type: 'POST',
 							url: 'controllers/c_generate-pdf-aduanas.php',
 							data: {
-								id_codegenrand : $("#v_idgencoderand").val(), 
+								id_codegenrand : v_idgencoderand, 
 								code_quote : $("#v_gencodexxx").text(),
 								u_login : user_sessquote
 							},
@@ -1232,7 +1282,7 @@ $(document).ready(function(){
 			//VALIDAR LA INFORMACIÓN DEL USUARIO...
 			user_sessquote = s_username_local.username;
 			var formdata = new FormData();
-			formdata.append("id_codegenrand", $("#v_idgencoderand").val());
+			formdata.append("id_codegenrand", v_idgencoderand);
 			formdata.append("code_quote", $("#v_gencodexxx").text());
 			formdata.append("u_login", user_sessquote);
 
@@ -1263,7 +1313,7 @@ $(document).ready(function(){
 							type: 'POST',
 							url: 'controllers/c_generate-pdf-aduanas.php',
 							data: {
-								id_codegenrand : $("#v_idgencoderand").val(), 
+								id_codegenrand : v_idgencoderand, 
 								code_quote : $("#v_gencodexxx").text(),
 								u_login : user_sessquote
 							},
@@ -1415,7 +1465,7 @@ $(document).ready(function(){
 				<p>Procesando...</p>
 			</div>`);
 			var formdata = new FormData();
-			formdata.append("id_gencoderand", $("#v_idgencoderand").val());
+			formdata.append("id_gencoderand", v_idgencoderand);
 			formdata.append("code_quote", $("#v_gencodexxx").text());
 			formdata.append("ndoc_cli", $("#n_document_cli").val());
 			formdata.append("name_enterprise_cli", $("#name_enterprise_cli").val());
@@ -1459,7 +1509,7 @@ $(document).ready(function(){
 					  });
 						/*
 						var formdata = new FormData();
-						formdata.append("id_gencoderand", $("#v_idgencoderand").val());
+						formdata.append("id_gencoderand", v_idgencoderand);
 						formdata.append("code_quote", $("#v_gencodexxx").text());
 						formdata.append("ndoc_cli", $("#n_document_cli").val());
 						formdata.append("name_enterprise_cli", $("#name_enterprise_cli").val());

@@ -7,11 +7,6 @@ if(isset($_POST) && !empty($_POST)){
 	$codegen_auto = new List_ultimate_codegen();
   $ulti_codegenauto = $codegen_auto->list();
 
-  echo "<pre>";
-  print_r($_POST);
-  echo "</pre>";
-  exit();
-
 	$arr_userquotation = [
 	  'id_codegenrand' => $_POST['id_codegenrand'],
 	  'codegenerate' => $ulti_codegenauto[0]['res'],

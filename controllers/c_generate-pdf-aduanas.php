@@ -41,6 +41,7 @@ $f_time_transit = $listbyidcode[0]['f_time_transit'];
 $f_fob = $listbyidcode[0]['f_fob'];
 $f_flete = $listbyidcode[0]['f_flete'];
 $f_insurance = $listbyidcode[0]['f_insurance'];
+$f_totalinsurance = $listbyidcode[0]['f_totalinsurance'];
 $f_cif = $listbyidcode[0]['f_cif'];
 // VALORES PARA CALCULAR LOS IMPUESTOS...
 $f_v_IGV = $listbyidcode[0]['f_v_IGV'];
@@ -174,7 +175,7 @@ $name_quotation = "Presupuesto-".$_POST['code_quote']."-".$f_typecontainer;
 	      <div id="marc_dat3_cent1">
 	        <div class="item_por3_dat1"></div>
 	        <div class="item_por3_dat1"></div>
-	        <div class="item_por3_dat1">1.00 %</div>
+	        <div class="item_por3_dat1"><?php echo addTwoDecimals($f_insurance); ?> %</div>
 	        <div class="item_por3_dat1"></div>
 	      </div>
 	      <div id="marc_dat3_dollar">
@@ -186,7 +187,7 @@ $name_quotation = "Presupuesto-".$_POST['code_quote']."-".$f_typecontainer;
         <div id="marc_dat3_derr11">
 	        <div class="item_tpor3_dat1"><?php echo addTwoDecimals($f_fob); ?></div>
 	        <div class="item_tpor3_dat1"><?php echo addTwoDecimals($f_flete); ?></div>
-	        <div class="item_tpor3_dat1"><?php echo addTwoDecimals($f_insurance); ?></div>
+	        <div class="item_tpor3_dat1"><?php echo addTwoDecimals($f_totalinsurance); ?></div>
 	        <div class="item_tpor3_dat1"><?php echo addTwoDecimals($f_cif); ?></div>
 	      </div>
 	    </div>

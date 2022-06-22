@@ -15,8 +15,6 @@ function changesTabsOperation(){
   var key_valdbammountadditional = localStorage.setItem("key_v-dbammountadditional", 0); //VALOR DE MONTO ADICIONAL (DB)
   var key_valnametypeproduct = localStorage.setItem("key_v-nametypeproduct", ""); //TIPO DE PRODUCTO
   var key_valammountadditional = localStorage.setItem("key_v-ammountadditional", 0); //MONTO ADICIONAL DE ALGUNOS PRODUCTOS
-  var key_valvalueproduct = localStorage.setItem("key_v-valueproduct", 0); //VALOR FOB DE PRODUCTO
-  var key_valvalueinsurance = localStorage.setItem("key_v-valueinsurance", 0); //VALOR FINAL DEL SEGURO
   var key_valvaluetransport = localStorage.setItem("key_v-valuetransport", 0); //VALOR FINAL DE TRANSPORTE
   var key_valvaluesquotation = localStorage.setItem("key_v-valuesquotation", 0); //VALOR FINAL/SUMA DE VALORES PARA COTIZACIÓN (FCL/LCL)
   var key_valtotalammountadditional = localStorage.setItem("key_v-totalammountadditional", 0); //TOTAL MONTO ADICIONAL DEL PRODUCTO
