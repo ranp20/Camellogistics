@@ -35,6 +35,7 @@ if(isset($_POST) && !empty($_POST)){
 	  'f_cif' => $_POST['f_cif'],
 	  'f_v_IGV' => (!isset($_POST['f_v_IGV']) || $_POST['f_v_IGV'] == "") ? 0 : $_POST['f_v_IGV'],
 	  'f_v_IPM' => (!isset($_POST['f_v_IPM']) || $_POST['f_v_IPM'] == "") ? 0 : $_POST['f_v_IPM'],
+	  'f_importadoprev' => (!isset($_POST['f_importadoprev']) || $_POST['f_importadoprev'] == "") ? "No especificado" : $_POST['f_importadoprev'],
 	  'f_v_percepcion' => (!isset($_POST['f_v_percepcion']) || $_POST['f_v_percepcion'] == "") ? 0 : $_POST['f_v_percepcion'],
 	  'f_v_ad_valoren' => (!isset($_POST['f_v_ad_valoren']) || $_POST['f_v_ad_valoren'] == "") ? 0 : $_POST['f_v_ad_valoren'],
 	  'f_v_impuesto_selectivo' => (!isset($_POST['f_v_impuesto_selectivo']) || $_POST['f_v_impuesto_selectivo'] == "") ? 0 : $_POST['f_v_impuesto_selectivo'],

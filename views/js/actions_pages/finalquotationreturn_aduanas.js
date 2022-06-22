@@ -1,3 +1,7 @@
+// ------------ PREGUNTAR SI DESEA ABANDONAR LA PÁGINA - INPUTS
+window.onbeforeunload = function(event){
+  event.returnValue = "Es posible que no se guarden los cambios que ha hecho";
+};
 // ------------ DEJAR EN 2 DECIMALES POR DEFECTO 
 function myRound(num, dec){
   var exp = Math.pow(10, dec || 2); // 2 decimales por defecto
@@ -41,6 +45,7 @@ $(document).ready(function(){
 	var encrypt_val_plcpickuprateprov = $("#v-plcpickuprateprov").val(encryptValuesIpts($("#v-plcpickuprateprov").val()));
 	var encrypt_v_validdesde = $("#v_datevaliddesde").val(encryptValuesIpts($("#v_datevaliddesde").val()));
 	var encrypt_v_validhasta = $("#v_datevalidhasta").val(encryptValuesIpts($("#v_datevalidhasta").val()));
+	var encrypt_v_fprevimports = $("#v_fprevimports").val(encryptValuesIpts($("#v_fprevimports").val()));
 	
 	/* DESENCRIPTACIÓN DE INPUTS */
 	// ------------ VALORES DE CAJAS DE TEXTO - TEXTO
@@ -54,6 +59,7 @@ $(document).ready(function(){
 	var v_floadTypeTranport = decryptValuesIpts(encrypt_v_floadTypeTranport.val());
 	var v_validdesde = decryptValuesIpts(encrypt_v_validdesde.val());
 	var v_validhasta = decryptValuesIpts(encrypt_v_validhasta.val());
+	var v_fprevimports = decryptValuesIpts(encrypt_v_fprevimports.val());
 	// ------------ VALORES DE CAJAS DE TEXTO - CÁLCULO
 	var val_ftotvalofdownload = decryptValuesIpts(encrypt_val_ftotvalofdownload.val());
 	var val_ftotalfleteprod = decryptValuesIpts(encrypt_val_ftotalfleteprod.val());
@@ -148,7 +154,7 @@ $(document).ready(function(){
 	var totflete = parseFloat(val_ftotalfleteprod); //TOTAL - SOLO FLETE
 	var totalamountadditional = parseFloat(localStorage.getItem("key_v-totalammountadditional")); //MONTO ADICIONAL
 	var totaltransport = parseFloat(val_plcpickuprateprov); //TOTAL TRANSPORTE
-	var totalimportprev = $("#v_previmports").text(); //TOTAL IMPORTACIÓN PREVIA
+	var totalimportprev = v_fprevimports; // IMPORTACIÓN PREVIA
 	var totalvaluesquotation =  parseFloat(localStorage.getItem("key_v-valuesquotation")); //TOTAL SUMA DE VALORES DE COTIZACIÓN
 	var totalvaluesquotationbyIGV =  parseFloat(localStorage.getItem("key_v-valuesquotationbyigv")); //TOTAL SUMA DE VALORES DE COTIZACIÓN IGV
   var totalfinalvaluefob = parseFloat(twodecimals(cutewithoutofpricefob)); //TOTAL DE VALOR FOB
@@ -412,6 +418,7 @@ $(document).ready(function(){
 					formdata.append("f_cif", sumbyCIF);
 					formdata.append("f_v_IGV", restaxvalues[0].data_value);
 					formdata.append("f_v_IPM", restaxvalues[1].data_value);
+					formdata.append("f_importadoprev", v_fprevimports);
 					formdata.append("f_v_percepcion", percepcion_notfilter);
 					formdata.append("f_IGV", igvcalc_twodeci);
 					formdata.append("f_IPM", ipmcalc_twodeci);
@@ -676,6 +683,7 @@ $(document).ready(function(){
 					formdata.append("f_cif", sumbyCIF);
 					formdata.append("f_v_IGV", restaxvalues[0].data_value);
 					formdata.append("f_v_IPM", restaxvalues[1].data_value);
+					formdata.append("f_importadoprev", v_fprevimports);
 					formdata.append("f_v_percepcion", percepcion_notfilter);
 					formdata.append("f_IGV", igvcalc_twodeci);
 					formdata.append("f_IPM", ipmcalc_twodeci);

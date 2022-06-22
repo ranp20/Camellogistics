@@ -486,6 +486,7 @@ echo $template_incserv.$template_notincserv;
 <input tabindex="-1" placeholder="phdr-whidipts" type="hidden" width="0" height="0" autocomplete="off" spellcheck="false" f-hidden="aria-hidden" class="non-visvalipt h-alternative-shwnon s-fkeynone-step" id="v_ftotvalofdownload" value="<?= (isset($_POST['val_ftotvalofdownload']) && $_POST['val_ftotvalofdownload'] != "") ? $_POST['val_ftotvalofdownload'] : 0;?>">
 <input tabindex="-1" placeholder="phdr-whidipts" type="hidden" width="0" height="0" autocomplete="off" spellcheck="false" f-hidden="aria-hidden" class="non-visvalipt h-alternative-shwnon s-fkeynone-step" id="v_floadTypeTranport" value="<?= (isset($_POST['loadTypeTranport']) && $_POST['loadTypeTranport'] != "") ? $_POST['loadTypeTranport'] : "No seleccionado";?>">
 <input tabindex="-1" placeholder="phdr-whidipts" type="hidden" width="0" height="0" autocomplete="off" spellcheck="false" f-hidden="aria-hidden" class="non-visvalipt h-alternative-shwnon s-fkeynone-step" id="v_ftotalfleteprod" value="<?= (isset($_POST['val_valfleteprod']) && $_POST['val_valfleteprod'] != "") ? $_POST['val_valfleteprod'] : 0;?>">
+<input tabindex="-1" placeholder="phdr-whidipts" type="hidden" width="0" height="0" autocomplete="off" spellcheck="false" f-hidden="aria-hidden" class="non-visvalipt h-alternative-shwnon s-fkeynone-step" id="v_fprevimports" value="<?= (isset($_POST['val-prevImports']) && $_POST['val-prevImports'] != "") ? $_POST['val-prevImports'] : 0;?>">
 </div>
 </div>
   <?php

@@ -60,6 +60,7 @@ class Quotation_user extends Connection
       :f_cif,
       :f_v_IGV,
       :f_v_IPM,
+      :f_importadoprev,
       :f_v_percepcion,
       :f_v_ad_valoren,
       :f_v_impuesto_selectivo,
