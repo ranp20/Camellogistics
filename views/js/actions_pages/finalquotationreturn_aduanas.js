@@ -46,6 +46,7 @@ $(document).ready(function(){
 	var encrypt_v_validdesde = $("#v_datevaliddesde").val(encryptValuesIpts($("#v_datevaliddesde").val()));
 	var encrypt_v_validhasta = $("#v_datevalidhasta").val(encryptValuesIpts($("#v_datevalidhasta").val()));
 	var encrypt_v_fprevimports = $("#v_fprevimports").val(encryptValuesIpts($("#v_fprevimports").val()));
+	var encrypt_v_floadtypeope = $("#v_floadtypeope").val(encryptValuesIpts($("#v_floadtypeope").val()));
 	
 	/* DESENCRIPTACIÓN DE INPUTS */
 	// ------------ VALORES DE CAJAS DE TEXTO - TEXTO
@@ -60,6 +61,7 @@ $(document).ready(function(){
 	var v_validdesde = decryptValuesIpts(encrypt_v_validdesde.val());
 	var v_validhasta = decryptValuesIpts(encrypt_v_validhasta.val());
 	var v_fprevimports = decryptValuesIpts(encrypt_v_fprevimports.val());
+	var v_floadtypeope = decryptValuesIpts(encrypt_v_floadtypeope.val());
 	// ------------ VALORES DE CAJAS DE TEXTO - CÁLCULO
 	var val_ftotvalofdownload = decryptValuesIpts(encrypt_val_ftotvalofdownload.val());
 	var val_ftotalfleteprod = decryptValuesIpts(encrypt_val_ftotalfleteprod.val());
@@ -400,7 +402,8 @@ $(document).ready(function(){
 					formdata.append("id_codegenrand", v_idgencoderand);
 					formdata.append("u_login", user_sessquote);
 					formdata.append("f_typetransendinitid", transsendinitbyid);
-					formdata.append("f_type_op", v_typeserviceinit);
+					formdata.append("f_type_op", v_floadtypeope);
+					formdata.append("f_type_serv", v_typeserviceinit);
 					formdata.append("f_type_transp", v_floadTypeTranport);
 					formdata.append("f_type_cont", v_loadtypecharge);
 					formdata.append("u_n_document", "No especificado");
@@ -665,7 +668,8 @@ $(document).ready(function(){
 					formdata.append("id_codegenrand", v_idgencoderand);
 					formdata.append("u_login", $("#s_useregin-sistem").val());
 					formdata.append("f_typetransendinitid", transsendinitbyid);
-					formdata.append("f_type_op", v_typeserviceinit);
+					formdata.append("f_type_op", v_floadtypeope);
+					formdata.append("f_type_serv", v_typeserviceinit);
 					formdata.append("f_type_transp", v_floadTypeTranport);
 					formdata.append("f_type_cont", v_loadtypecharge);
 					formdata.append("u_n_document", "No especificado");

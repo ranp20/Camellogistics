@@ -34,7 +34,7 @@ $u_ndocument = $listbyidcode[0]['u_n_document'];
 $u_telephone = $listbyidcode[0]['u_telephone'];
 $u_contain = $listbyidcode[0]['u_contain'];
 $f_typetransendinitid = ($listbyidcode[0]['f_typetransendinitid'] == "S-ADU") ? "ADUANAS" : "Otro";
-$f_type_operation = strtoupper($listbyidcode[0]['f_type_operation']);
+$f_type_operation = strtoupper($listbyidcode[0]['f_type_service']);
 $f_typecontainer = $listbyidcode[0]['f_type_container'];
 $f_weight_volume = ($listbyidcode[0]['f_weight_volume'] == "No especificado" || $listbyidcode[0]['f_weight_volume'] == "") ? 0 : $listbyidcode[0]['f_weight_volume'];
 $f_time_transit = $listbyidcode[0]['f_time_transit'];

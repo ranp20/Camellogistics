@@ -171,7 +171,6 @@ $(document).on("click", "#list-typeOperationItems a", function(){
     // ------------ ACTIVAR EL SCROLL HACIA ARRIBA/ABAJO
     sectionsSteps.setAllowScrolling(true, 'up');
     sectionsSteps.setAllowScrolling(true, 'down');
-    localStorage.setItem("key_typeOp", $(this).find("li").find("p").text());
     // ------------ ASIGNAR A LA VARIABLE BLOBAL 
     v_TypeOp = $(this).find("li").find("p").text();
     // ------------ VALOR DEL TIPO DE OPERACIÓN 
