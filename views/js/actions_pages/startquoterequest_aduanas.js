@@ -1864,34 +1864,12 @@ $(document).on("click", "#chck-importpreview", function(){
     var yesImportPrev = $(this).parent().attr("switch-CFreeze");
     // ------------ ASIGNAR VALORES DE LOS INPUTS HIDDEN - MERCANCÍA 
     $("#val-prevImports").val(yesImportPrev);
-
-    $.ajax({
-      url: "controllers/list_taxation_values_byimport.php",
-      method: "POST",
-      datatype: "JSON",
-      contentType: 'application/x-www-form-urlencoded;charset=UTF-8'
-    }).done(function(e){
-      var resultTaximport = JSON.parse(e);
-      // ------------ ASIGNAR A LA VARIABLE LOCAL
-      localStorage.setItem("key_v-valuestaxationimport", resultTaximport[0].data_value);
-    });
   }else{
     $(this).parent().removeClass("active");
     $(this).parent().attr("switch-CFreeze", "NO");
     var notImportPrev = $(this).parent().attr("switch-CFreeze");
     // ------------ ASIGNAR VALORES DE LOS INPUTS HIDDEN - MERCANCÍA 
     $("#val-prevImports").val(notImportPrev);
-
-    $.ajax({
-      url: "controllers/list_taxation_values_byimport.php",
-      method: "POST",
-      datatype: "JSON",
-      contentType: 'application/x-www-form-urlencoded;charset=UTF-8'
-    }).done(function(e){
-      var resultTaximport = JSON.parse(e);
-      // ------------ ASIGNAR A LA VARIABLE LOCAL 
-      localStorage.setItem("key_v-valuestaxationimport", resultTaximport[0].data_value_two);
-    });
   }
 });
 // ------------ VALIDAR EL INPUT DE PRECIO DEL PRODUCTO 
@@ -1907,8 +1885,6 @@ $(document).on("keyup keypress", "#ipt-valPriceProdNInterface", function(e){
   });
   // ------------ ASIGNAR VALORES DE LOS INPUTS HIDDEN - MERCANCÍA 
   $("#val-valProdquot").val($(this).val());
-  // ------------ ASIGNAR A LA VARIABLE LOCAL 
-  localStorage.setItem("key_v-valueproduct", $(this).val());
   // ------------ VALIDAR SI CONTIENE ALGÚN VALOR NULO O 0 
   if(e.target.value == "" || e.target.value == 0 || $(this).val() == " USD" || $(this).val() == ".00" || $(this).val() == 0.00){
     $("#s-caseNextStepTomerchandisedata").html("");
@@ -1950,7 +1926,6 @@ $(document).on("click", ".cont-MainCamelLog--c--contSteps--item--cStep--mFrmIpts
   $("#ipt-valNameTypeProdNInterface").attr("idproduct", $(this).attr("id"));
   $("#ipt-valNameTypeProdNInterface").val($(this).find("p").text());
   // ------------ ASIGNAR A LA VARIABLE LOCAL 
-  localStorage.setItem("key_v-nametypeproduct", $(this).find("p").text()); //NOMBRE DEL TIPO DE PRODUCTO
   localStorage.setItem("key_v-dbammountadditional", $(this).attr("data-amountadditional")); //VALOR ADICIONAL DEL PRODUCTO
   // ------------ MOSTRAR/OCULTAR DE ACUERDO A EL VALOR DEL MONTO ADICIONAL 
   if($(this).attr("data-amountadditional") != 0 || $(this).attr("data-amountadditional") != 0.00){
