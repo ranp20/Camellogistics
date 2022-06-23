@@ -32,3 +32,7 @@ RewriteRule productos?$ admin/views/products.php
 RewriteRule ajustes-del-home?$ admin/views/home-settings.php
 RewriteRule banner-principal?$ admin/views/banner-principal.php
 RewriteRule quotation-users?$ admin/views/quotation-users.php
+
+############# MENSAJE DE ERROR PERSONALIZADO
+#RewriteRule 404?$ views/404.php
+ErrorDocument 404 /views/404.php
