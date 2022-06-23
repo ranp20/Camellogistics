@@ -414,7 +414,7 @@ echo $template_incserv.$template_notincserv;
             </div>
             <div class="c-FinalQuotation--contStep--cQuotation--cBottom--cAduanaImpst">
               <?php 
-                if(isset($_POST['opt-genfquotation']) && $_POST['opt-genfquotation'] == 'y-moreOpts'){
+                // if(isset($_POST['opt-genfquotation']) && $_POST['opt-genfquotation'] == 'y-moreOpts'){
                   echo "
                     <div class='c-FinalQuotation--contStep--cQuotation--cBottom--cAduanaImpst--cTop'>
                       <ul class='c-FinalQuotation--contStep--cQuotation--cBottom--cAduanaImpst--cTop--m'>
@@ -436,9 +436,9 @@ echo $template_incserv.$template_notincserv;
                       </ul>
                     </div>
                   ";
-                }else{
-                  echo "";
-                }
+                // }else{
+                //   echo "";
+                // }
               ?>
               <div class="c-FinalQuotation--contStep--cQuotation--cBottom--cAduanaImpst--cBottom">
                 <ul class="c-FinalQuotation--contStep--cQuotation--cBottom--cAduanaImpst--cBottom--m">

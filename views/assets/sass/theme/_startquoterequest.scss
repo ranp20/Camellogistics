@@ -309,61 +309,49 @@
 					padding: 0;
 					flex-wrap: wrap;
 					width: calc(100% * 2/2);
-
 					@media (min-width: 620px){
 						width: calc(100% * 3/3);
 						justify-content: center;
 					}
-
 					@media (min-width: 768px){
 						width: calc(100% * 4/4);
 						flex-wrap: nowrap;
 						justify-content: space-between;
 					}
-
 					/* ITEMS - CONTAINERS */
 					&--item{
 						width: 47%;
 						position: relative;
-
 						@media (min-width: 425px){
 							width: 47%;
 							padding: 0 1rem;
 						}
-
 						@media (min-width: 501px){
 							width: 38%;
 							padding: 0 .5rem;
 						}
-
 						@media (min-width: 620px){
 							width: 31%;
 						}
-
 						@media (min-width: 991px){
 							width: calc(100% * 1/4);
 						}
-
 						&--cImg{
 							cursor: pointer;
 							margin-bottom: 0.5rem;
 							img{
 							}
-
 							&:hover > img{
 								opacity: .4;
 							}
-
 							&:hover &--ctooltipR{
 								display: block;
 								pointer-events: auto;
 							}
-
 							&:hover &--ctooltipL{
 								display: block;
 								pointer-events: auto;
 							}
-
 							&--ctooltipR{
 								position: absolute;
 						    background-color: #fff;
@@ -385,32 +373,26 @@
 						    animation-duration: .4s;
 						    animation-timing-function: ease-in-out;
 						    animation-fill-mode: forwards;
-
 						    @keyframes moveToTopTooltip{
 						    	100%{
 						    		opacity: 1;
 						    		transform: translateY(0);	
 						    	}
 						    }
-
 								&--cTitle{
 									background-color: $primary-color;
 									color: #fff;
 									padding: .8rem .5rem;
-
 									&--title{
 										font-weight: 600;
 										font-size: 1rem;
 										margin: 0;
 									}
 								}
-
 								&--cImg{
 									img{
-
 									}
 								}
-
 								&--cDetailCont{
 									&--item{
 										display: grid;
@@ -419,32 +401,27 @@
 								    font-size: 0.75rem;
 								    grid-template-columns: 1fr 1fr;
 								    text-align: center;
-										
 										span{
 											margin: 0 auto;
 											text-align: center;
 											padding: 0.2rem;
 											color: #666;
 										}
-										
 										&:first-child{
 											background-color: #eeee;
 										}
 									}
 								}
-
 								&--cMediumText{
 									background-color: $primary-color;
 									font-size: 0.75rem;
 									font-weight: 500;
 									color: #fff;
 									padding: 0.5rem;
-
 									span{
 										letter-spacing: .1rem;
 									}
 								}
-
 								&--cDetailsB{
 									&--m{
 										padding: 0;
@@ -460,12 +437,10 @@
 												padding: 0.2rem;
 												color: #666;
 											}
-
 											span{
 												display: block;
 												padding: 0.2rem;
 												color: #666;
-
 												&:nth-child(2){
 													background-color: #eeee;
 												}
@@ -473,7 +448,6 @@
 										}
 									}
 								}
-
 								&--cNote{
 									background-color: red;
 									color: #fff;
@@ -485,7 +459,6 @@
 									}
 								}
 							}
-
 							&--ctooltipL{
 								position: absolute;
 						    background-color: #fff;
@@ -507,32 +480,26 @@
 						    animation-duration: .4s;
 						    animation-timing-function: ease-in-out;
 						    animation-fill-mode: forwards;
-
 						    @keyframes moveToTopTooltip{
 						    	100%{
 						    		opacity: 1;
 						    		transform: translateY(0);	
 						    	}
 						    }
-
 								&--cTitle{
 									background-color: $primary-color;
 									color: #fff;
 									padding: .8rem .5rem;
-
 									&--title{
 										font-weight: 600;
 										font-size: 1rem;
 										margin: 0;
 									}
 								}
-
 								&--cImg{
 									img{
-
 									}
 								}
-
 								&--cDetailCont{
 									&--item{
 										display: grid;
@@ -541,32 +508,27 @@
 								    font-size: 0.75rem;
 								    grid-template-columns: 1fr 1fr;
 								    text-align: center;
-										
 										span{
 											margin: 0 auto;
 											text-align: center;
 											padding: 0.2rem;
 											color: #666;
 										}
-										
 										&:first-child{
 											background-color: #eeee;
 										}
 									}
 								}
-
 								&--cMediumText{
 									background-color: $primary-color;
 									font-size: 0.75rem;
 									font-weight: 500;
 									color: #fff;
 									padding: 0.5rem;
-
 									span{
 										letter-spacing: .1rem;
 									}
 								}
-
 								&--cDetailsB{
 									&--m{
 										display: grid;
@@ -581,12 +543,10 @@
 												padding: 0.2rem;
 												color: #666;
 											}
-
 											span{
 												display: block;
 												padding: 0.2rem;
 												color: #666;
-
 												&:nth-child(2){
 													background-color: #eeee;
 												}
@@ -594,7 +554,6 @@
 										}
 									}
 								}
-
 								&--cNote{
 									background-color: red;
 									color: #fff;
@@ -607,7 +566,6 @@
 								}
 							}
 						}
-
 						&--cC{
 							&--label{
 								color: $primary-color;
@@ -619,7 +577,6 @@
 						    width: 95%;
 								margin: 0 auto .5rem auto;
 							}
-
 							&--control{
 								display: flex;
 								align-items: stretch;
@@ -633,12 +590,10 @@
 									color: #fff;
 									line-height: 1.5;
 									padding: 0.3rem 1rem;
-
 									@media (min-width: 768px){
 										padding: 0.3rem 1.5rem;
 									}
 								}
-
 								&--input{
 									border: thin solid transparent;
 									text-align: center;
@@ -646,7 +601,6 @@
 									width: 100%;
 									line-height: 1.5;
 									padding: 0.3rem 0.5rem;
-
 									&[type=number]::-webkit-inner-spin-button, 
 									&[type=number]::-webkit-outer-spin-button { 
 										-webkit-appearance: none;
@@ -660,7 +614,6 @@
 						}
 					}
 				}
-
 				/* SWITCH - CONTENEDORES REFRIGERADOS */
 				&--cBtnSwitch{
 					display: flex;
@@ -678,10 +631,8 @@
 						vertical-align: middle;
 						transition: .2s ease-in-out;
 						margin: 0 1rem 0 0;
-
 						&.active{
 							background-color: #70C767;
-
 							&:after{
 								content: "NO";
 								position: absolute;
@@ -695,7 +646,6 @@
 								align-items: center;
 								justify-content: center;
 							}
-
 							&:before{
 								content: "SÍ";
 								position: absolute;
@@ -710,13 +660,11 @@
 								justify-content: center;	
 							}
 						}
-
 						&--chck{
 							display: none;
 							opacity: 0;
 							visibility: hidden;
 						}
-						
 						&:after{
 							content: "NO";
 							position: absolute;
@@ -730,7 +678,6 @@
 							align-items: center;
 							justify-content: center;
 						}
-
 						&:before{
 							content: "SÍ";
 							position: absolute;
@@ -745,12 +692,10 @@
 							justify-content: center;
 						}
 					}
-
 					span{
 						vertical-align: middle;
 					}
 				}
-
 				/* FORMULARIO DE DATOS - CALCULADORA DE FLETE */
 				&--mFrmIptsControls{
 					display: flex;
@@ -760,7 +705,6 @@
 					max-width: 500px;
 					width: 95%;
 					margin: 0 auto;
-
 					/* CONTENEDOR DE CONTROLES Y LISTADOS */
 					&--cC{
 						width: 100%;
@@ -779,12 +723,10 @@
 								font-size: 0.85rem;
 								letter-spacing: .2rem;
 							}
-
 							/* CONTENIDO DE CONTROL CON ÍCONO */
 							&--cListChangeWIcon{
 								width: 100%;
 								position: relative;
-
 								&--cIcon{
 									position: absolute;
 									width: 2.5rem;
@@ -800,14 +742,12 @@
 								    fill: $primary-color;
 									}
 								}
-
 								&--input{
 									width: 100%;
 									border: thin solid $primary-color;
 									font-size: 1rem;
 									padding: 0.5rem 0.5rem 0.5rem 3rem;
 									line-height: 1.5;
-
 									&[type=number]::-webkit-inner-spin-button, 
 									&[type=number]::-webkit-outer-spin-button { 
 										-webkit-appearance: none;
@@ -817,7 +757,6 @@
 										-moz-appearance:textfield;
 									}
 								}
-
 								&--m{
 									position: absolute;
 							    left: 0;
@@ -832,7 +771,6 @@
 	  							display: none;
 	  							opacity: 0;
 	  							pointer-events: none;
-
 							    &.show{	    	
 							    	border-right: thin solid #ccc;
 							    	border-left: thin solid #ccc;
@@ -841,32 +779,25 @@
 	    							opacity: 1;
 	    							pointer-events: auto;
 							    }
-
 									&--item{
 										cursor: pointer;
 										padding: 0.5rem 1rem;
 										font-size: 0.9rem;
 										line-height: 1;
-
 										&:hover{
 											background-color: #000;
 											color: #fff;
 										}
-
 										p{
 											margin: 0;
 										}
-
 										small{
-
 										}
 									}
 								}
 							}
 						}
 					}
-
-
 					/* CONTENEDOR DE CONTROLES */
 					&--cControl{
 						width: 100%;
@@ -881,20 +812,17 @@
 							letter-spacing: .2rem;
 							padding-left: .5rem;
 							font-size: 0.65rem;
-
 							@media (min-width: 991px){
 								padding-left: 1rem;
 								font-size: 0.85rem;
 							}
 						}
-
 						&--input{
 							width: 100%;
 							border: thin solid $primary-color;
 							font-size: .7rem;
 							padding: 0.5rem;
 							line-height: 1.5;
-
 							&[type=number]::-webkit-inner-spin-button, 
 							&[type=number]::-webkit-outer-spin-button { 
 								-webkit-appearance: none;
@@ -908,7 +836,6 @@
 							}
 						}
 					}
-
 					/* BOTÓN - ABRIR MODAL DE CALCULADORA VOLUMÉTRICA */
 					&--cBtnModalCalculator{
 						width: 100%;
@@ -934,7 +861,6 @@
 						}
 					}
 				}
-
 				/* FORMULARIO DE DATOS - DATOS DE MERCANCÍA */
 				&--mFrmIptsControlsMerchandise{
 					display: flex;
@@ -944,7 +870,6 @@
 					max-width: 500px;
 					width: 95%;
 					margin: 0 auto;
-
 					/* CONTENEDOR DE CONTROLES Y LISTADOS */
 					&--cC{
 						width: 100%;
@@ -963,12 +888,10 @@
 								font-size: 0.85rem;
 								letter-spacing: .2rem;
 							}
-
 							/* CONTENIDO DE CONTROL SIN ÍCONO */
 							&--cListChange{
 								width: 100%;
 								position: relative;
-
 								&--cIcon{
 									position: absolute;
 									width: 2.5rem;
@@ -984,14 +907,12 @@
 								    fill: $primary-color;
 									}
 								}
-
 								&--input{
 									width: 100%;
 									border: thin solid $primary-color;
 									font-size: 1rem;
 									padding: 0.5rem;
 									line-height: 1.5;
-
 									&[type=number]::-webkit-inner-spin-button, 
 									&[type=number]::-webkit-outer-spin-button { 
 										-webkit-appearance: none;
@@ -1001,7 +922,6 @@
 										-moz-appearance:textfield;
 									}
 								}
-
 								&--m{
 									padding: 0;
 									margin: 0;
@@ -1018,7 +938,6 @@
     							display: none;
     							opacity: 0;
     							pointer-events: none;
-
 							    &.show{	    	
 							    	border-right: thin solid #ccc;
 							    	border-left: thin solid #ccc;
@@ -1027,34 +946,27 @@
 	    							opacity: 1;
 	    							pointer-events: auto;
 							    }
-
 									&--item{
 										cursor: pointer;
 										padding: 0.5rem 1rem;
 										font-size: 0.9rem;
 										line-height: 1;
-
 										&:hover{
 											background-color: #000;
 											color: #fff;
 										}
-
 										p{
 											margin: 0;
 										}
-
 										small{
-
 										}
 									}
 								}
 							}
-
 							/* CONTENIDO DE CONTROL CON ÍCONO */
 							&--cListChangeWIcon{
 								width: 100%;
 								position: relative;
-
 								&--cIcon{
 									position: absolute;
 									width: 2.5rem;
@@ -1070,14 +982,12 @@
 								    fill: $primary-color;
 									}
 								}
-
 								&--input{
 									width: 100%;
 									border: thin solid $primary-color;
 									font-size: 1rem;
 									padding: 0.5rem 0.5rem 0.5rem 3rem;
 									line-height: 1.5;
-
 									&[type=number]::-webkit-inner-spin-button, 
 									&[type=number]::-webkit-outer-spin-button { 
 										-webkit-appearance: none;
@@ -1087,7 +997,6 @@
 										-moz-appearance:textfield;
 									}
 								}
-
 								&--m{
 									position: absolute;
 							    left: 0;
@@ -1102,7 +1011,6 @@
     							display: none;
     							opacity: 0;
     							pointer-events: none;
-
 							    &.show{	    	
 							    	border-right: thin solid #ccc;
 							    	border-left: thin solid #ccc;
@@ -1111,31 +1019,25 @@
 	    							opacity: 1;
 	    							pointer-events: auto;
 							    }
-
 									&--item{
 										cursor: pointer;
 										padding: 0.5rem 1rem;
 										font-size: 0.9rem;
 										line-height: 1;
-
 										&:hover{
 											background-color: #000;
 											color: #fff;
 										}
-
 										p{
 											margin: 0;
 										}
-
 										small{
-
 										}
 									}
 								}
 							}
 						}
 					}
-
 					/* CONTENEDOR DEL SWITCH DE IMPORTACIONES PREVIAS */
 					&--cBottom{
 						display: flex;
@@ -1143,7 +1045,6 @@
 				    align-items: center;
 				    justify-content: flex-start;
 				    padding: 1rem 0 0 0;
-
 						&--cSwitch{
 							cursor: pointer;
 							background-color: #d74742;
@@ -1156,7 +1057,6 @@
 							vertical-align: middle;
 							transition: .2s ease-in-out;
 							margin: 0 1rem 0 0;
-
 							&:after{
 								content: "NO";
 								position: absolute;
@@ -1171,7 +1071,6 @@
 								justify-content: center;
 								transition: .2s ease-in-out;
 							}
-
 							&:before{
 								content: "SÍ";
 								position: absolute;
@@ -1186,7 +1085,6 @@
 								justify-content: center;
 								transition: .2s ease-in-out;
 							}
-
 							&.active{
 								background-color: #70C767;
 								&:after{
@@ -1204,7 +1102,6 @@
 									align-items: center;
 									justify-content: center;
 								}
-
 								&:before{
 									content: "NO";
 									position: absolute;
@@ -1222,16 +1119,13 @@
 									justify-content: center;
 								}
 							}
-
 							&--chck{
 								display: none;
 								opacity: 0;
 								visibility: hidden;
 							}
-
 							@media (min-width: 991px){
 								flex: 0 0 134px;
-
 								&:after{
 									content: "NO";
 									position: absolute;
@@ -1245,7 +1139,6 @@
 									align-items: center;
 									justify-content: center;
 								}
-
 								&:before{
 									content: "SÍ";
 									position: absolute;
@@ -1259,52 +1152,48 @@
 									align-items: center;
 									justify-content: center;
 								}
-
 								&.active{
-								background-color: #70C767;
-								&:after{
-									content: "SÍ";
-									position: absolute;
-									// background-color: transparent;
-									// color: #fff;
-									background-color: #fff;
-									color: #70C767;
-									left: 66px;
-									width: 65px;
-									height: 32px;
-									border-radius: .2rem;
-									display: flex;
-									align-items: center;
-									justify-content: center;
+									background-color: #70C767;
+									&:after{
+										content: "SÍ";
+										position: absolute;
+										// background-color: transparent;
+										// color: #fff;
+										background-color: #fff;
+										color: #70C767;
+										left: 66px;
+										width: 65px;
+										height: 32px;
+										border-radius: .2rem;
+										display: flex;
+										align-items: center;
+										justify-content: center;
+									}
+									&:before{
+										content: "NO";
+										position: absolute;
+										// background-color: #fff;
+										// color: #70C767;
+										background-color: transparent;
+										color: #fff;
+										// right: 50px;
+										left: 2px;
+										width: 65px;
+										height: 32px;
+										border-radius: .2rem;
+										display: flex;
+										align-items: center;
+										justify-content: center;
+									}
 								}
-
-								&:before{
-									content: "NO";
-									position: absolute;
-									// background-color: #fff;
-									// color: #70C767;
-									background-color: transparent;
-									color: #fff;
-									// right: 50px;
-									left: 2px;
-									width: 65px;
-									height: 32px;
-									border-radius: .2rem;
-									display: flex;
-									align-items: center;
-									justify-content: center;
-								}
-							}
 							}
 						}
-
 						span{
 							text-align: left;
 							word-break: break-word;
 						}
 					}
 				}
-
 				/* FORMULARIO DE DATOS - UBICACIÓN DE RECOGIDA */
 				&--mFrmIptsControlsPickupLocation{
 					display: flex;
@@ -1314,7 +1203,6 @@
 					max-width: 500px;
 					width: 95%;
 					margin: 0 auto;
-
 					/* CONTENEDOR DE CONTROLES Y LISTADOS */
 					&--cC{
 						width: 100%;
@@ -1333,7 +1221,6 @@
 								font-size: 0.85rem;
 								letter-spacing: .2rem;
 							}
-
 							&--cListChange{
 								width: 100%;
 								position: relative;
@@ -1343,7 +1230,6 @@
 									font-size: 1rem;
 									padding: 0.5rem;
 									line-height: 1.5;
-
 									&[type=number]::-webkit-inner-spin-button, 
 									&[type=number]::-webkit-outer-spin-button { 
 										-webkit-appearance: none;
@@ -1353,7 +1239,6 @@
 										-moz-appearance:textfield;
 									}
 								}
-
 								&--m{
 									padding: 0;
 									margin: 0;
@@ -1370,7 +1255,6 @@
     							display: none;
     							opacity: 0;
     							pointer-events: none;
-
 							    &.show{	    	
 							    	border-right: thin solid #ccc;
 							    	border-left: thin solid #ccc;
@@ -1379,42 +1263,33 @@
 	    							opacity: 1;
 	    							pointer-events: auto;
 							    }
-									
 									&--anyresult{
 										text-align: center;
 										background-color: #cccc;
 										padding: 0.3rem 1rem;
-
 										p{
 											margin: 0;
 										}
 									}
-
 									&--item{
 										cursor: pointer;
 										padding: 0.65rem 1rem;
 										font-size: 0.9rem;
 										line-height: 1;
-
-
 										&:hover{
 											background-color: #000;
 											color: #fff;
 										}
-
 										p{
 											margin: 0;
 										}
-
 										small{
-
 										}
 									}
 								}
 							}
 						}
 					}
-
 					/* CONTENEDOR DEL SWITCH DE IMPORTACIONES PREVIAS */
 					&--cBottom{
 						display: flex;
@@ -1422,7 +1297,6 @@
 				    align-items: center;
 				    justify-content: flex-start;
 				    padding: 1rem 0 0 0;
-
 						&--cSwitch{
 							cursor: pointer;
 							background-color: #d74742;
@@ -1435,10 +1309,8 @@
 							vertical-align: middle;
 							transition: .2s ease-in-out;
 							margin: 0 1rem 0 0;
-
 							&.active{
 								background-color: #70C767;
-
 								&:after{
 									content: "NO";
 									position: absolute;
@@ -1452,7 +1324,6 @@
 									align-items: center;
 									justify-content: center;
 								}
-
 								&:before{
 									content: "SÍ";
 									position: absolute;
@@ -1467,13 +1338,11 @@
 									justify-content: center;	
 								}
 							}
-
 							&--chck{
 								display: none;
 								opacity: 0;
 								visibility: hidden;
 							}
-							
 							&:after{
 								content: "NO";
 								position: absolute;
@@ -1487,7 +1356,6 @@
 								align-items: center;
 								justify-content: center;
 							}
-
 							&:before{
 								content: "SÍ";
 								position: absolute;
@@ -1505,7 +1373,6 @@
 					}	
 				}
 			}
-
 			/* CONTENIDO - BOTÓN DE PASO SIGUIENTE */
 			&--cBtnNextStep{
 				position: absolute;
@@ -1594,7 +1461,6 @@
 					}
 					button.cont-MainCamelLog--c--contSteps--item--cBtnNextStep--btnR{
 						svg{
-
 						}
 					}
 				}

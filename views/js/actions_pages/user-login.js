@@ -1,7 +1,6 @@
-// ------------ ABRIR EL MODAL DE LOGIN/REGISTER 
-$(document).on("click", "#s-formLoginOrRegister", function(){
-  $("#cnt-modalFormSessLoginorRegister").add($(".cnt-modalFormSessLoginorRegister--c")).addClass("show");
-});
+// ------------ ABRIR EL MODAL DE LOGIN/REGISTER
+$(document).on("click", "#s-formLoginOrRegister", function(){$("#cnt-modalFormSessLoginorRegister").add($(".cnt-modalFormSessLoginorRegister--c")).addClass("show");});
+$(document).on("click", "#s-formLoginOrRegistertoMobile", function(){$("#cnt-modalFormSessLoginorRegister").add($(".cnt-modalFormSessLoginorRegister--c")).addClass("show");});
 // ------------ CERRAR EL MODAL DE LOGIN/REGISTER 
 $(document).on("click", "#btn-closeiconFormLoginorRegister", function() {
   $("#cnt-modalFormSessLoginorRegister").removeClass("show");

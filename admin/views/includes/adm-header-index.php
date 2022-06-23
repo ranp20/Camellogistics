@@ -27,6 +27,9 @@
 <meta property="og:description" name="twitter.description" content="¡Calcula el costo de tu importación en 4 simples pasos!"/>
 <meta property="og:image" name="twitter.image" content="<?= $url; ?>assets/img/logos/logotipo-camel.png"/>
 <link rel="icon" type="image/x-icon" href="<?= $url; ?>assets/img/favicon/favicon-camel.png"/>
+<!-- PRELOADER FILES -->
+<link rel="preload" href="<?= $url; ?>assets/css/styles.min.css" as="style"/>
+<link rel="preload" href="<?= $url; ?>js/plugins/jquery/jquery-3.6.0.min.js" as="script"/>
 <!-- JQUERY COMPRESSED -->
 <script src="<?= $url; ?>js/plugins/jquery/jquery-3.6.0.min.js"></script>
 <!-- BOOTSTRAP UNCOMPRESSED -->

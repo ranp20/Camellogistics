@@ -33,6 +33,9 @@
 <link rel="icon" type="image/x-icon" href="views/assets/img/favicon/favicon-camel.png"/>
 <link rel="apple-touch-icon" href="views/assets/img/favicon/favicon-camel.png"/>
 <link rel="canonical" href="https://localhost/Camellogistics"/>
+<!-- PRELOADER FILES -->
+<link rel="preload" href="<?= $url ?>assets/css/styles.min.css" as="style"/>
+<link rel="preload" href="<?= $url ?>js/plugins/jquery/jquery-3.6.0.min.js" as="script"/>
 <!-- JQUERY COMPRESSED -->
 <script type="text/javascript" src="<?= $url; ?>js/plugins/jquery/jquery-3.6.0.min.js"></script>
 <!-- STYLESSHEET -->

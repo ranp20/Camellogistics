@@ -1,3 +1,6 @@
+#cont-MainCamelLog--cFinalDownloadQuoteReturn{
+	text-align: center;
+}
 .c-FinalQuotation--contStep{
 	text-align: center;
 	/* TÍTULO DEL PASO 4 */
@@ -22,7 +25,6 @@
 		    font-weight: 600;
 		    font-size: .9rem;
 		    color: $color-paragraph;
-
 		    @media (min-width: 768px){
 		    	color: #000;
 		    	font-size: .95rem;
@@ -393,11 +395,19 @@
 								flex: 50%;
 							}
 							&--cImg{
+						    display: none;
 								max-width: 9rem;
 						    position: absolute;
 						    top: .5rem;
 						    left: 1.1rem;
 								img{
+								}
+								@media (min-width: 991px){
+									max-width: 6.2rem;
+									display: block;
+								}
+								@media (min-width: 1280px){
+									max-width: 9rem;
 								}
 							}
 							&--cInfo{
@@ -407,19 +417,34 @@
 								}
 								h3{
 									margin-bottom: .25rem;
-							    font-size: 1.5rem;
+							    font-size: 1.05rem;
 							    font-weight: 800;
+							    @media (min-width: 768px){
+							    	font-size: 1.3rem;
+							    }
+							    @media (min-width: 1280px){
+							    	font-size: 1.5rem;
+							    }
 								}
 								h4{
-									font-size: 1.15rem;
+									font-size: .95rem;
 									color: #6F7375;
+									@media (min-width: 768px){
+							    	font-size: 1rem;
+							    }
+							    @media (min-width: 1280px){
+							    	font-size: 1.15rem;
+							    }
 									b{
 										color: red;
 									}
 								}
 								p{
-									font-size: 1.15rem;
+									font-size: 1.1rem;
 									font-weight: 800;
+									@media (min-width: 768px){
+							    	font-size: 1.2rem;
+							    }
 								}
 								span{
 									font-weight: 800;	
@@ -444,6 +469,8 @@
   						border: unset;
   						flex: 15%;
   						padding: 0.5rem;
+  						max-height: 53px;
+    					height: 53px;
   						@media (min-width: 768px) {
 								border-left: thin solid #fff;
 	  					}
@@ -457,7 +484,15 @@
 									display: inline-block;
 									width: auto;
 									border: unset;
-								}			
+								}		
+							}
+							&:nth-child(2){
+								p{
+									font-size: 1.1rem;
+									@media (min-width: 768px){
+										font-size: 1.2rem;
+									}
+								}
 							}
 							h3,	p{
 								margin-bottom: 0;

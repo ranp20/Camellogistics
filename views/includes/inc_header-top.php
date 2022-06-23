@@ -17,7 +17,7 @@
   <div class="c-Htopbar--c">
     <div class="c-Htopbar--c--cLogo">
       <a href="./" title="logo-camellogistics">
-        <img src="<?= $url ?>assets/img/logos/logotipo-camel.png" alt="logo_camel" width="100" height="100" decoding="async">
+        <img src="<?= $url;?>assets/img/logos/logotipo-camel.png" alt="logo_camel" width="100" height="100" decoding="async">
         <span>
           <span>
             <span>
@@ -79,7 +79,7 @@
                   </ul>";
               }else{
                 echo "
-                  <a href='javascript:void(0);' class='c-Htopbar--c--cMenu--Mmobile--m--link' id='s-formLoginOrRegister' title='log in'>
+                  <a href='javascript:void(0);' class='c-Htopbar--c--cMenu--Mmobile--m--link' id='s-formLoginOrRegistertoMobile' title='log in'>
                     <span>Log in</span>
                   </a>";
               }
