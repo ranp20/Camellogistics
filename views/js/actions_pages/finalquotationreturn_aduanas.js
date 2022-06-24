@@ -181,7 +181,7 @@ $(document).ready(function(){
       initvalinsurance = insurance_default;
       finalRoundinsurance = myRound(finalinsurance);
     }else{
-      finalinsurance = insureconvert_default; //FOB ES MENOR A 25000
+      finalinsurance = totalfinalvaluefob * insureconvert_default; //FOB ES MENOR A 25000
       initvalinsurance = insurance_default;
       finalRoundinsurance = myRound(finalinsurance);
     }
