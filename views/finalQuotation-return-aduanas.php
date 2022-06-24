@@ -499,7 +499,8 @@ echo $template_incserv.$template_notincserv;
 }else{ echo "0"; }?>">
 <input tabindex="-1" placeholder="phdr-whidipts" type="hidden" width="0" height="0" autocomplete="off" spellcheck="false" f-hidden="aria-hidden" class="non-visvalipt h-alternative-shwnon s-fkeynone-step" id="v_ftcomparweacbm" value="<?php if(isset($_POST['loadTypeCharge']) && $_POST['loadTypeCharge'] != ""){
   if($_POST['loadTypeCharge'] == "FCL"){
-    echo $withoutcomaStr;
+    $removapostrophe = preg_replace("/'/","",$withoutcomaStr);
+    echo strtoupper($removapostrophe);
   }else if($_POST['loadTypeCharge'] == "LCL"){
     $maxWeight = floatval(preg_replace("/[^-0-9\.]/","",$_POST['val_maxtotalweight']));
     $maxVolumen = floatval(preg_replace("/[^-0-9\.]/","",$_POST['val-iptVolumeNInterface']));
