@@ -36,7 +36,9 @@ $u_contain = $listbyidcode[0]['u_contain'];
 $f_typetransendinitid = ($listbyidcode[0]['f_typetransendinitid'] == "S-ADU") ? "ADUANAS" : "Otro";
 $f_type_operation = strtoupper($listbyidcode[0]['f_type_service']);
 $f_typecontainer = $listbyidcode[0]['f_type_container'];
+$f_desc_weightvolumen = $listbyidcode[0]['f_desc_weightvolumen'];
 $f_weight_volume = ($listbyidcode[0]['f_weight_volume'] == "No especificado" || $listbyidcode[0]['f_weight_volume'] == "") ? 0 : $listbyidcode[0]['f_weight_volume'];
+$f_transit_location = $listbyidcode[0]['f_transit_location'];
 $f_time_transit = $listbyidcode[0]['f_time_transit'];
 $f_fob = $listbyidcode[0]['f_fob'];
 $f_flete = $listbyidcode[0]['f_flete'];
@@ -115,7 +117,7 @@ $name_quotation = "Presupuesto-".$_POST['code_quote']."-".$f_typecontainer;
 	      <div id="marc_dat1_der">
 	        <div class="item_demp_dat1"><?php echo $u_nameenterprise; ?></div>
 	        <div class="item_demp_dat1"><?php echo $f_type_operation; ?></div>
-	        <div class="item_demp_dat1">-</div>
+	        <div class="item_demp_dat1"><?php echo $f_transit_location;?></div>
 	      </div>
 	      <div id="marc_dat1_derr1">
 	        <div class="item_demp_datt1">Ruc / DNI</div>
@@ -157,7 +159,7 @@ $name_quotation = "Presupuesto-".$_POST['code_quote']."-".$f_typecontainer;
 	        <div class="item_demp3_dat1"><?php echo $f_typetransendinitid; ?></div>
 	        <div class="item_demp3_dat1"><?php echo $u_contain; ?></div>
 	        <!-- <div class="item_demp3_dat1">FOB - QINGDAO - CHINA</div> -->
-	        <div class="item_demp3_dat1"><?php echo $f_weight_volume; ?></div>
+	        <div class="item_demp3_dat1"><?php echo $f_desc_weightvolumen; ?></div>
 	        <div class="item_demp3_dat1"><?php echo $f_time_transit; ?></div>
 	      </div>
 	      <div id="marc_dat3_derr1">

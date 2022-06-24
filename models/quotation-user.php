@@ -55,6 +55,7 @@ class Quotation_user extends Connection
       :f_destiny, 
       :f_desc_w_v,
       :f_weight_v, 
+      :f_translocation,
       :f_time_transit, 
       :f_fob, 
       :f_flete, 

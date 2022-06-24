@@ -49,6 +49,7 @@ $(document).ready(function(){
 	var encrypt_v_floadtypeope = $("#v_floadtypeope").val(encryptValuesIpts($("#v_floadtypeope").val()));
 	var encrypt_v_fpckgcontquant = $("#v_fpckgcontquant").val(encryptValuesIpts($("#v_fpckgcontquant").val()));
 	var encrypt_v_ftcomparweacbm = $("#v_ftcomparweacbm").val(encryptValuesIpts($("#v_ftcomparweacbm").val()));
+	var encrypt_v_fplctopckloc = $("#v_fplctopckloc").val(encryptValuesIpts($("#v_fplctopckloc").val()));
 	/* DESENCRIPTACIÓN DE INPUTS */
 	// ------------ VALORES DE CAJAS DE TEXTO - TEXTO
 	var v_idgencoderand = decryptValuesIpts(encrypt_v_idgencoderand.val());
@@ -65,6 +66,7 @@ $(document).ready(function(){
 	var v_floadtypeope = decryptValuesIpts(encrypt_v_floadtypeope.val());
 	var v_fpckgcontquant = decryptValuesIpts(encrypt_v_fpckgcontquant.val());
 	var v_ftcomparweacbm = decryptValuesIpts(encrypt_v_ftcomparweacbm.val());
+	var v_fplctopckloc = decryptValuesIpts(encrypt_v_fplctopckloc.val());
 	// ------------ VALORES DE CAJAS DE TEXTO - CÁLCULO
 	var val_ftotvalofdownload = decryptValuesIpts(encrypt_val_ftotvalofdownload.val());
 	var val_ftotalfleteprod = decryptValuesIpts(encrypt_val_ftotalfleteprod.val());
@@ -418,6 +420,7 @@ $(document).ready(function(){
 					formdata.append("f_destiny", portDestinyName);
 					formdata.append("f_desc_w_v", v_fpckgcontquant);
 					formdata.append("f_weight_v", v_ftcomparweacbm);
+					formdata.append("f_translocation", v_fplctopckloc);
 					formdata.append("f_time_transit", v_ftaproxtransbycont);
 					formdata.append("f_fob", totalfinalvaluefob);
 					formdata.append("f_flete", totflete);
@@ -685,6 +688,7 @@ $(document).ready(function(){
 					formdata.append("f_destiny", portDestinyName);
 					formdata.append("f_desc_w_v", v_fpckgcontquant);
 					formdata.append("f_weight_v", v_ftcomparweacbm);
+					formdata.append("f_translocation", v_fplctopckloc);
 					formdata.append("f_time_transit", v_ftaproxtransbycont);
 					formdata.append("f_fob", totalfinalvaluefob);
 					formdata.append("f_flete", totflete);
