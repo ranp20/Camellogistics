@@ -112,7 +112,7 @@ $(".cont-MainCamelLog--c--contResumeCalc--item[data-advlevel=d-typetransportnumb
 // ================================================================================== //
 //                        1. ELEGIR EL TIPO DE OPERACIÓN                             
 // ================================================================================== //
-$(document).on("click", "#list-typeOperationItems a", function(){
+$(document).on("click", "#list-typeOperationItems li", function(){
   var tTypeOperation = $(this).index();
   if(tTypeOperation == 0){
     $(this).removeClass("active");
@@ -167,12 +167,14 @@ $(document).on("click", "#list-typeOperationItems a", function(){
     // RECOGIDA - UBICACIÓN
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-pickuplocation]").removeClass("show");
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-pickuplocation]").html("");
+    // ------------ QUITAR DEL RESUMEN - LADO IZQUIERDO 
+    $(".cont-MainCamelLog--c--contResumeCalc--item[data-advlevel=d-chargeload]").html(``);
   }else{
     // ------------ ACTIVAR EL SCROLL HACIA ARRIBA/ABAJO
     sectionsSteps.setAllowScrolling(true, 'up');
     sectionsSteps.setAllowScrolling(true, 'down');
     // ------------ ASIGNAR A LA VARIABLE BLOBAL 
-    v_TypeOp = $(this).find("li").find("p").text();
+    v_TypeOp = $(this).find("a").find("p").text();
     // ------------ VALOR DEL TIPO DE OPERACIÓN 
     $("#val_loadTypeOpe").val(v_TypeOp);
     // ------------ OCULTAR AL LISTADO DE RESUMEN - ELIGE UN OPCIÓN 
@@ -191,39 +193,39 @@ $(document).on("click", "#list-typeOperationItems a", function(){
             <input type="hidden" id="loadTypeCharge" name="loadTypeCharge" class="n-val-sd">
             <input type="hidden" id="val-datevaliddesde" name="val-datevaliddesde" class="n-val-sd">
             <input type="hidden" id="val-datevalidhasta" name="val-datevalidhasta" class="n-val-sd">
+            <input type="hidden" id="val-timeaproxtransbycont" name="val-timeaproxtransbycont" class="n-val-sd">
           </span>
         </span>
       </div>
       <div class="cont-MainCamelLog--c--contSteps--item--cStep">
         <ul class="cont-MainCamelLog--c--contSteps--item--cStep--m" id="list-typeChargeLoadItems">
-          <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem">
-            <li class="cont-MainCamelLog--c--contSteps--item--cStep--m--item">
+          <li  class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem">
+            <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--m--item">
               <div class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem--cImg">
                 <img src="views/assets/img/steps/fcl.png" alt="" loading="lazy">
               </div>
               <p>FCL</p>
-            </li>
-          </a>
-          <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem">
-            <li class="cont-MainCamelLog--c--contSteps--item--cStep--m--item">
+            </a>
+          </li>
+          <li  class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem">
+            <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--m--item">
               <div class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem--cImg">
                 <img src="views/assets/img/steps/lcl.png" alt="" loading="lazy">
               </div>
               <p>LCL</p>
-            </li>
-          </a>
+            </a>
+          </li>
         </ul>
       </div>
     `);
     // ------------ MOSTRAR EN EL RESUMEN - LADO IZQUIERDO 
     $(".cont-MainCamelLog--c--contResumeCalc--item[data-advlevel=d-chargeload]").html(`
-      <div class="cont-MainCamelLog--c--contResumeCalc--item--cardStep">
-        <div class="cont-MainCamelLog--c--contResumeCalc--item--cardStep--cIcon">
-           <svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="anchor" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" class="svg-inline--fa fa-anchor fa-w-18 fa-3x"><path fill="currentColor" d="M571.515 331.515l-67.029-67.029c-4.686-4.686-12.284-4.686-16.971 0l-67.029 67.029c-7.56 7.56-2.206 20.485 8.485 20.485h44.268C453.531 417.326 380.693 456.315 312 462.865V216h60c6.627 0 12-5.373 12-12v-24c0-6.627-5.373-12-12-12h-60v-11.668c32.456-10.195 56-40.512 56-76.332 0-44.183-35.817-80-80-80s-80 35.817-80 80c0 35.82 23.544 66.138 56 76.332V168h-60c-6.627 0-12 5.373-12 12v24c0 6.627 5.373 12 12 12h60v246.865C195.192 456.304 122.424 417.176 102.762 352h44.268c10.691 0 16.045-12.926 8.485-20.485l-67.029-67.029c-4.686-4.686-12.284-4.686-16.971 0l-67.03 67.029C-3.074 339.074 2.28 352 12.971 352h40.284C73.657 451.556 181.238 512 288 512c113.135 0 215.338-65.3 234.745-160h40.284c10.691 0 16.045-12.926 8.486-20.485zM288 48c17.645 0 32 14.355 32 32s-14.355 32-32 32-32-14.355-32-32 14.355-32 32-32z" class=""></path></svg>
-         </div>
-        <span>`+v_TypeOp+`</span>
-      </div>
-    `);
+    <div class="cont-MainCamelLog--c--contResumeCalc--item--cardStep">
+      <div class="cont-MainCamelLog--c--contResumeCalc--item--cardStep--cIcon">
+         <svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="anchor" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" class="svg-inline--fa fa-anchor fa-w-18 fa-3x"><path fill="currentColor" d="M571.515 331.515l-67.029-67.029c-4.686-4.686-12.284-4.686-16.971 0l-67.029 67.029c-7.56 7.56-2.206 20.485 8.485 20.485h44.268C453.531 417.326 380.693 456.315 312 462.865V216h60c6.627 0 12-5.373 12-12v-24c0-6.627-5.373-12-12-12h-60v-11.668c32.456-10.195 56-40.512 56-76.332 0-44.183-35.817-80-80-80s-80 35.817-80 80c0 35.82 23.544 66.138 56 76.332V168h-60c-6.627 0-12 5.373-12 12v24c0 6.627 5.373 12 12 12h60v246.865C195.192 456.304 122.424 417.176 102.762 352h44.268c10.691 0 16.045-12.926 8.485-20.485l-67.029-67.029c-4.686-4.686-12.284-4.686-16.971 0l-67.03 67.029C-3.074 339.074 2.28 352 12.971 352h40.284C73.657 451.556 181.238 512 288 512c113.135 0 215.338-65.3 234.745-160h40.284c10.691 0 16.045-12.926 8.486-20.485zM288 48c17.645 0 32 14.355 32 32s-14.355 32-32 32-32-14.355-32-32 14.355-32 32-32z" class=""></path></svg>
+       </div>
+      <span>`+v_TypeOp+`</span>
+    </div>`);
   }
 });
 
@@ -233,12 +235,12 @@ $(document).on("click", "#list-typeOperationItems a", function(){
 // ================================================================================== //
 //                         2. ELEGIR EL TIPO DE CARGA                                
 // ================================================================================== //
-$(document).on("click", "#list-typeChargeLoadItems a", function(){
+$(document).on("click", "#list-typeChargeLoadItems li", function(){
   var tTypeChargeLoad = $(this).index();
   if(tTypeChargeLoad == 0){
     // ------------ ASIGNAR A LAS VARIABLES GLOBALES 
-    v_TypeChargeImgSrc = $(this).find("li").find("div").find("img").attr("src");
-    v_TypeChargeName = $(this).find("li").find("p").text();
+    v_TypeChargeImgSrc = $(this).find("a").find("div").find("img").attr("src");
+    v_TypeChargeName = $(this).find("a").find("p").text();
     // ------------ VALOR DEL TIPO DE CARGA 
     $("#loadTypeCharge").val(v_TypeChargeName);
     // ------------ OCULTAR AL LISTADO DE RESUMEN - ELIGE UN OPCIÓN 
@@ -526,8 +528,8 @@ $(document).on("click", "#list-typeChargeLoadItems a", function(){
     `);
   }else{
     // ------------ ASIGNAR A LAS VARIABLES GLOBALES 
-    v_TypeChargeImgSrc = $(this).find("li").find("div").find("img").attr("src");
-    v_TypeChargeName = $(this).find("li").find("p").text();
+    v_TypeChargeImgSrc = $(this).find("a").find("div").find("img").attr("src");
+    v_TypeChargeName = $(this).find("a").find("p").text();
     // ------------ LIMPIAR EL LISTADO DE RESUMEN IZQUIERDO - CONTENEDORES 
     // LIMIPIAR 20'
     $("div[data-merchandisetype=rsm-qcontainer20]").find("img").attr("src", "");
@@ -599,15 +601,15 @@ $(document).on("click", "#list-typeChargeLoadItems a", function(){
         <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControls">
           <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControls--cControl">
             <label for="val-iptPackagesNInterface" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControls--cControl--label">BULTOS</label>
-            <input type="number" id="val-iptPackagesNInterface" name="val-iptPackagesNInterface" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControls--cControl--input">
+            <input type="number" id="val-iptPackagesNInterface" name="val-iptPackagesNInterface" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControls--cControl--input" placeholder="Ingrese la cantidad de bultos">
           </div>
           <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControls--cControl">
             <label for="val-iptWeightNInterface" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControls--cControl--label">PESO (KG)</label>
-            <input type="text" id="val-iptWeightNInterface" name="val-iptWeightNInterface" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControls--cControl--input" maxlength="11">
+            <input type="text" id="val-iptWeightNInterface" name="val-iptWeightNInterface" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControls--cControl--input" maxlength="11" placeholder="Ingrese el peso">
           </div>
           <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControls--cControl">
             <label for="val-iptVolumeNInterface" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControls--cControl--label">VOLUMEN (M³)</label>
-            <input type="text" id="val-iptVolumeNInterface" name="val-iptVolumeNInterface" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControls--cControl--input" maxlength="13">
+            <input type="text" id="val-iptVolumeNInterface" name="val-iptVolumeNInterface" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControls--cControl--input" maxlength="13" placeholder="Ingrese el volumen en m3">
           </div>
           <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControls--cBtnModalCalculator" id="link-showModalCalcVolum">
             <span>AYUDA - ¡CALCULAR VOLUMEN (M³) AQUÍ!</span>
@@ -637,7 +639,6 @@ $(document).on("click", "#c-incdecBtns20 button", function(){
   var newValipt20 = $(this).parent().find("input").val();
   var val20inputhidden = $("#loadQContainer20").val();
   var val20inputhiddenNew = $("#loadQContainer20").val();
-  
   // ------------ VALIDAR SI OTRO CONTROL TIENE ALGÚN VALOR 
   if($("#ipt-qvalContainer40ST").val() > 0 || $("#ipt-qvalContainer40HQ").val() > 0 || $("#ipt-qvalContainer40NOR").val() > 0){
     // ------------ MOSTRAR EL MENSAJE DE ALERTA PERSONALIZADO 
@@ -659,7 +660,6 @@ $(document).on("click", "#c-incdecBtns20 button", function(){
     });
     $("#ipt-qvalContainer20ST").val(0);
   }else{
-
     if(tindBtn == 2){
       newValipt20 = parseInt(input20) + 1;
       $(this).parent().find("input").val(newValipt20);   
@@ -676,7 +676,6 @@ $(document).on("click", "#c-incdecBtns20 button", function(){
       $("div[data-merchandisetype=rsm-qcontainer20]").find("span").eq(0).text(val20inputhiddenNew);
       $("div[data-merchandisetype=rsm-qcontainer20]").find("span").eq(1).text("x");
       $("div[data-merchandisetype=rsm-qcontainer20]").find("span").eq(2).text(v_QContainersName20);
-
     }else if(tindBtn == 0){
       if(input20 > 0){
         newValipt20 = parseInt(input20) - 1;
@@ -718,14 +717,13 @@ $(document).on("click", "#c-incdecBtns40 button", function(){
   if($("#ipt-qvalContainer20ST").val() > 0 || $("#ipt-qvalContainer40HQ").val() > 0 || $("#ipt-qvalContainer40NOR").val() > 0){
     // ------------ MOSTRAR EL MENSAJE DE ALERTA PERSONALIZADO 
     $("#idMessageSteps-prcss").html(`
-      <div class="cntMessageSteps-prcss--cont">
-        <div class="cntMessageSteps-prcss--cont--c">
-          <span class="cntMessageSteps-prcss--cont--c--btnclose" id="btnclose-modalMessage"></span>
-          <h3 class="cntMessageSteps-prcss--cont--c--title">Un solo tipo</h3>
-          <p class="cntMessageSteps-prcss--cont--c--text">Por favor, elija <b>un solo tipo de contenedor.</b></p>
-        </div>
+    <div class="cntMessageSteps-prcss--cont">
+      <div class="cntMessageSteps-prcss--cont--c">
+        <span class="cntMessageSteps-prcss--cont--c--btnclose" id="btnclose-modalMessage"></span>
+        <h3 class="cntMessageSteps-prcss--cont--c--title">Un solo tipo</h3>
+        <p class="cntMessageSteps-prcss--cont--c--text">Por favor, elija <b>un solo tipo de contenedor.</b></p>
       </div>
-    `)
+    </div>`);
     // ------------ CERRAR EL MODAL 
     setTimeout(function(){
       $("#idMessageSteps-prcss .cntMessageSteps-prcss--cont").remove();
@@ -733,10 +731,8 @@ $(document).on("click", "#c-incdecBtns40 button", function(){
     $("#btnclose-modalMessage").on("click", function(){
       $(this).parent().parent().remove();
     });
-
     $("#ipt-qvalContainer40ST").val(0);
   }else{
-
     if(tindBtn == 2){
       newValipt40 = parseInt(input40) + 1;
       $(this).parent().find("input").val(newValipt40);
@@ -753,7 +749,6 @@ $(document).on("click", "#c-incdecBtns40 button", function(){
       $("div[data-merchandisetype=rsm-qcontainer40]").find("span").eq(0).text(val40inputhiddenNew);
       $("div[data-merchandisetype=rsm-qcontainer40]").find("span").eq(1).text("x");
       $("div[data-merchandisetype=rsm-qcontainer40]").find("span").eq(2).text(v_QContainersName40);
-
     }else if(tindBtn == 0){
       if(input40 > 0){
         newValipt40 = parseInt(input40) - 1;
@@ -791,19 +786,17 @@ $(document).on("click", "#c-incdecBtns40-hc button", function(){
   var newValipt40_hq = $(this).parent().find("input").val();
   var val40hqinputhidden = $("#loadQContainer40hq").val();
   var val40hqinputhiddenNew = $("#loadQContainer40hq").val();
-
   // ------------ VALIDAR SI OTRO CONTROL TIENE ALGÚN VALOR 
   if($("#ipt-qvalContainer20ST").val() > 0 || $("#ipt-qvalContainer40ST").val() > 0 || $("#ipt-qvalContainer40NOR").val() > 0){
     // ------------ MOSTRAR EL MENSAJE DE ALERTA PERSONALIZADO 
     $("#idMessageSteps-prcss").html(`
-      <div class="cntMessageSteps-prcss--cont">
-        <div class="cntMessageSteps-prcss--cont--c">
-          <span class="cntMessageSteps-prcss--cont--c--btnclose" id="btnclose-modalMessage"></span>
-          <h3 class="cntMessageSteps-prcss--cont--c--title">Un solo tipo</h3>
-          <p class="cntMessageSteps-prcss--cont--c--text">Por favor, elija <b>un solo tipo de contenedor.</b></p>
-        </div>
+    <div class="cntMessageSteps-prcss--cont">
+      <div class="cntMessageSteps-prcss--cont--c">
+        <span class="cntMessageSteps-prcss--cont--c--btnclose" id="btnclose-modalMessage"></span>
+        <h3 class="cntMessageSteps-prcss--cont--c--title">Un solo tipo</h3>
+        <p class="cntMessageSteps-prcss--cont--c--text">Por favor, elija <b>un solo tipo de contenedor.</b></p>
       </div>
-    `)
+    </div>`);
     // ------------ CERRAR EL MODAL 
     setTimeout(function(){
       $("#idMessageSteps-prcss .cntMessageSteps-prcss--cont").remove();
@@ -811,10 +804,8 @@ $(document).on("click", "#c-incdecBtns40-hc button", function(){
     $("#btnclose-modalMessage").on("click", function(){
       $(this).parent().parent().remove();
     });
-
     $("#ipt-qvalContainer40HQ").val(0);
   }else{
-    
     if(tindBtn == 2){
       newValipt40_hq = parseInt(input40_hq) + 1;
       $(this).parent().find("input").val(newValipt40_hq);
@@ -822,7 +813,6 @@ $(document).on("click", "#c-incdecBtns40-hc button", function(){
       v_QContainersName40_hq = $(this).parent().parent().find("label").text();
       v_QContainersImgSrc40_hq = $(this).parent().parent().parent().find("div").find("img").attr("src");
       v_QContainersValue40_hq = $(this).parent().find("input").val(newValipt40_hq);
-
       // ------------ ASIGNAR VALORES DE LOS INPUTS HIDDEN 
       $("#loadTypeContainer40hq").val("40' HIGH CUBE");
       val40hqinputhiddenNew = parseInt(val40hqinputhidden) + 1;
@@ -832,7 +822,6 @@ $(document).on("click", "#c-incdecBtns40-hc button", function(){
       $("div[data-merchandisetype=rsm-qcontainer40hq]").find("span").eq(0).text(val40hqinputhiddenNew);
       $("div[data-merchandisetype=rsm-qcontainer40hq]").find("span").eq(1).text("x");
       $("div[data-merchandisetype=rsm-qcontainer40hq]").find("span").eq(2).text(v_QContainersName40_hq);
-
     }else if(tindBtn == 0){
       if(input40_hq > 0){
         newValipt40_hq = parseInt(input40_hq) - 1;
@@ -870,19 +859,17 @@ $(document).on("click", "#c-incdecBtns40-nor button", function(){
   var newValipt40_nor = $(this).parent().find("input").val();
   var val40norinputhidden = $("#loadQContainer40nor").val();
   var val40norinputhiddenNew = $("#loadQContainer40nor").val();
-
   // ------------ VALIDAR SI OTRO CONTROL TIENE ALGÚN VALOR 
   if($("#ipt-qvalContainer20ST").val() > 0 || $("#ipt-qvalContainer40ST").val() > 0 || $("#ipt-qvalContainer40HQ").val() > 0){
     // ------------ MOSTRAR EL MENSAJE DE ALERTA PERSONALIZADO 
     $("#idMessageSteps-prcss").html(`
-      <div class="cntMessageSteps-prcss--cont">
-        <div class="cntMessageSteps-prcss--cont--c">
-          <span class="cntMessageSteps-prcss--cont--c--btnclose" id="btnclose-modalMessage"></span>
-          <h3 class="cntMessageSteps-prcss--cont--c--title">Un solo tipo</h3>
-          <p class="cntMessageSteps-prcss--cont--c--text">Por favor, elija <b>un solo tipo de contenedor.</b></p>
-        </div>
+    <div class="cntMessageSteps-prcss--cont">
+      <div class="cntMessageSteps-prcss--cont--c">
+        <span class="cntMessageSteps-prcss--cont--c--btnclose" id="btnclose-modalMessage"></span>
+        <h3 class="cntMessageSteps-prcss--cont--c--title">Un solo tipo</h3>
+        <p class="cntMessageSteps-prcss--cont--c--text">Por favor, elija <b>un solo tipo de contenedor.</b></p>
       </div>
-    `)
+    </div>`);
     // ------------ CERRAR EL MODAL 
     setTimeout(function(){
       $("#idMessageSteps-prcss .cntMessageSteps-prcss--cont").remove();
@@ -890,10 +877,8 @@ $(document).on("click", "#c-incdecBtns40-nor button", function(){
     $("#btnclose-modalMessage").on("click", function(){
       $(this).parent().parent().remove();
     });
-
     $("#ipt-qvalContainer40NOR").val(0);
   }else{
-
     if(tindBtn == 2){
       newValipt40_nor = parseInt(input40_nor) + 1;
       $(this).parent().find("input").val(newValipt40_nor);
@@ -901,7 +886,6 @@ $(document).on("click", "#c-incdecBtns40-nor button", function(){
       v_QContainersName40_nor = $(this).parent().parent().find("label").text();
       v_QContainersImgSrc40_nor = $(this).parent().parent().parent().find("div").find("img").attr("src");
       v_QContainersValue40_nor = $(this).parent().find("input").val(newValipt40_nor);
-
       // ------------ ASIGNAR VALORES DE LOS INPUTS HIDDEN 
       $("#loadTypeContainer40nor").val("40' NOR");
       val40norinputhiddenNew = parseInt(val40norinputhidden) + 1;
@@ -911,7 +895,6 @@ $(document).on("click", "#c-incdecBtns40-nor button", function(){
       $("div[data-merchandisetype=rsm-qcontainer40nor]").find("span").eq(0).text(val40norinputhiddenNew);
       $("div[data-merchandisetype=rsm-qcontainer40nor]").find("span").eq(1).text("x");
       $("div[data-merchandisetype=rsm-qcontainer40nor]").find("span").eq(2).text(v_QContainersName40_nor);
-
     }else if(tindBtn == 0){
       if(input40_nor > 0){
         newValipt40_nor = parseInt(input40_nor) - 1;
@@ -972,7 +955,7 @@ $(document).on("click", "#btn-NextStepToSelOptResultExp", function(){
             <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl">
               <label for="" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl--label">CATEGORÍA</label>
               <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl--cListChange">
-                <input type="text" id="ipt-valNameTypeProdNInterface" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl--cListChange--input" autocomplete="off">
+                <input type="text" id="ipt-valNameTypeProdNInterface" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl--cListChange--input" autocomplete="off" placeholder="Ingrese el nombre del producto">
                 <ul class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl--cListChange--m" id="m-listAllNamTypeProds"></ul>
               </div>
             </div>
@@ -986,7 +969,7 @@ $(document).on("click", "#btn-NextStepToSelOptResultExp", function(){
                   <svg xmlns="http://www.w3.org/2000/svg" data-name="Layer 1" viewBox="0 0 100 125" x="0px" y="0px"><title>dollar</title><path d="M44.38354,5V15.697c-10.549,2.19025-18.11077,10.34265-18.11077,19.681,0,10.004,7.56927,16.77643,22.49676,20.1286C62.49225,58.587,62.49225,63.167,62.49225,64.67181c0,4.88868-5.7204,9.019-12.49115,9.019-6.77191,0-12.49335-4.13031-12.49335-9.019V63.57428h-11.235v1.09753c0,9.33838,7.56176,17.48975,18.11077,19.67951V95h11.235V84.35132C66.1665,82.161,73.72723,74.0097,73.72723,64.67181c0-10.004-7.56823-16.77636-22.49566-20.12854-13.72382-3.08044-13.72382-7.6604-13.72382-9.16528,0-4.88971,5.72144-9.02057,12.49335-9.02057,6.77075,0,12.49115,4.13086,12.49115,9.02057v1.0976h11.235V35.378c0-9.33838-7.56073-17.49078-18.10864-19.681V5Z"/>
                   </svg>
                 </div>
-                <input type="text" id="ipt-valPriceProdNInterface" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl--cListChangeWIcon--input" maxlength="13" autocomplete="off">
+                <input type="text" id="ipt-valPriceProdNInterface" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl--cListChangeWIcon--input" maxlength="13" autocomplete="off" placeholder="Ingrese el valor de mercancía">
               </div>
             </div>
           </div>
@@ -998,7 +981,7 @@ $(document).on("click", "#btn-NextStepToSelOptResultExp", function(){
                   <svg xmlns="http://www.w3.org/2000/svg" data-name="Layer 1" viewBox="0 0 100 125" x="0px" y="0px"><title>dollar</title><path d="M44.38354,5V15.697c-10.549,2.19025-18.11077,10.34265-18.11077,19.681,0,10.004,7.56927,16.77643,22.49676,20.1286C62.49225,58.587,62.49225,63.167,62.49225,64.67181c0,4.88868-5.7204,9.019-12.49115,9.019-6.77191,0-12.49335-4.13031-12.49335-9.019V63.57428h-11.235v1.09753c0,9.33838,7.56176,17.48975,18.11077,19.67951V95h11.235V84.35132C66.1665,82.161,73.72723,74.0097,73.72723,64.67181c0-10.004-7.56823-16.77636-22.49566-20.12854-13.72382-3.08044-13.72382-7.6604-13.72382-9.16528,0-4.88971,5.72144-9.02057,12.49335-9.02057,6.77075,0,12.49115,4.13086,12.49115,9.02057v1.0976h11.235V35.378c0-9.33838-7.56073-17.49078-18.10864-19.681V5Z"/>
                   </svg>
                 </div>
-                <input type="text" id="val-iptPriceValNInterface" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl--cListChangeWIcon--input" maxlength="13" autocomplete="off">
+                <input type="text" id="val-iptPriceValNInterface" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl--cListChangeWIcon--input" maxlength="13" autocomplete="off" placeholder="Ingrese el valor del flete">
               </div>
             </div>
           </div>
@@ -1519,7 +1502,7 @@ $(document).on("click", "#btn-NextStepTochargedata", function(){
                 <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl">
                   <label for="" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl--label">CATEGORÍA</label>
                   <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl--cListChange">
-                    <input type="text" id="ipt-valNameTypeProdNInterface" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl--cListChange--input" autocomplete="off">
+                    <input type="text" id="ipt-valNameTypeProdNInterface" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl--cListChange--input" autocomplete="off" placeholder="Ingrese el nombre del producto">
                     <ul class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl--cListChange--m" id="m-listAllNamTypeProds"></ul>
                   </div>
                 </div>
@@ -1533,7 +1516,7 @@ $(document).on("click", "#btn-NextStepTochargedata", function(){
                       <svg xmlns="http://www.w3.org/2000/svg" data-name="Layer 1" viewBox="0 0 100 125" x="0px" y="0px"><title>dollar</title><path d="M44.38354,5V15.697c-10.549,2.19025-18.11077,10.34265-18.11077,19.681,0,10.004,7.56927,16.77643,22.49676,20.1286C62.49225,58.587,62.49225,63.167,62.49225,64.67181c0,4.88868-5.7204,9.019-12.49115,9.019-6.77191,0-12.49335-4.13031-12.49335-9.019V63.57428h-11.235v1.09753c0,9.33838,7.56176,17.48975,18.11077,19.67951V95h11.235V84.35132C66.1665,82.161,73.72723,74.0097,73.72723,64.67181c0-10.004-7.56823-16.77636-22.49566-20.12854-13.72382-3.08044-13.72382-7.6604-13.72382-9.16528,0-4.88971,5.72144-9.02057,12.49335-9.02057,6.77075,0,12.49115,4.13086,12.49115,9.02057v1.0976h11.235V35.378c0-9.33838-7.56073-17.49078-18.10864-19.681V5Z"/>
                       </svg>
                     </div>
-                    <input type="text" id="ipt-valPriceProdNInterface" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl--cListChangeWIcon--input" maxlength="13" autocomplete="off">
+                    <input type="text" id="ipt-valPriceProdNInterface" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl--cListChangeWIcon--input" maxlength="13" autocomplete="off" placeholder="Ingrese el valor de mercancía">
                   </div>
                 </div>
               </div>
@@ -1545,7 +1528,7 @@ $(document).on("click", "#btn-NextStepTochargedata", function(){
                       <svg xmlns="http://www.w3.org/2000/svg" data-name="Layer 1" viewBox="0 0 100 125" x="0px" y="0px"><title>dollar</title><path d="M44.38354,5V15.697c-10.549,2.19025-18.11077,10.34265-18.11077,19.681,0,10.004,7.56927,16.77643,22.49676,20.1286C62.49225,58.587,62.49225,63.167,62.49225,64.67181c0,4.88868-5.7204,9.019-12.49115,9.019-6.77191,0-12.49335-4.13031-12.49335-9.019V63.57428h-11.235v1.09753c0,9.33838,7.56176,17.48975,18.11077,19.67951V95h11.235V84.35132C66.1665,82.161,73.72723,74.0097,73.72723,64.67181c0-10.004-7.56823-16.77636-22.49566-20.12854-13.72382-3.08044-13.72382-7.6604-13.72382-9.16528,0-4.88971,5.72144-9.02057,12.49335-9.02057,6.77075,0,12.49115,4.13086,12.49115,9.02057v1.0976h11.235V35.378c0-9.33838-7.56073-17.49078-18.10864-19.681V5Z"/>
                       </svg>
                     </div>
-                    <input type="text" id="val-iptPriceValNInterface" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl--cListChangeWIcon--input" maxlength="13" autocomplete="off">
+                    <input type="text" id="val-iptPriceValNInterface" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl--cListChangeWIcon--input" maxlength="13" autocomplete="off" placeholder="Ingrese el valor del flete">
                   </div>
                 </div>
               </div>
@@ -1587,7 +1570,7 @@ $(document).on("click", "#btn-NextStepTochargedata", function(){
                 <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl">
                   <label for="" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl--label">CATEGORÍA</label>
                   <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl--cListChange">
-                    <input type="text" id="ipt-valNameTypeProdNInterface" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl--cListChange--input" autocomplete="off">
+                    <input type="text" id="ipt-valNameTypeProdNInterface" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl--cListChange--input" autocomplete="off" placeholder="Ingrese el nombre del producto">
                     <ul class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl--cListChange--m" id="m-listAllNamTypeProds"></ul>
                   </div>
                 </div>
@@ -1601,7 +1584,7 @@ $(document).on("click", "#btn-NextStepTochargedata", function(){
                       <svg xmlns="http://www.w3.org/2000/svg" data-name="Layer 1" viewBox="0 0 100 125" x="0px" y="0px"><title>dollar</title><path d="M44.38354,5V15.697c-10.549,2.19025-18.11077,10.34265-18.11077,19.681,0,10.004,7.56927,16.77643,22.49676,20.1286C62.49225,58.587,62.49225,63.167,62.49225,64.67181c0,4.88868-5.7204,9.019-12.49115,9.019-6.77191,0-12.49335-4.13031-12.49335-9.019V63.57428h-11.235v1.09753c0,9.33838,7.56176,17.48975,18.11077,19.67951V95h11.235V84.35132C66.1665,82.161,73.72723,74.0097,73.72723,64.67181c0-10.004-7.56823-16.77636-22.49566-20.12854-13.72382-3.08044-13.72382-7.6604-13.72382-9.16528,0-4.88971,5.72144-9.02057,12.49335-9.02057,6.77075,0,12.49115,4.13086,12.49115,9.02057v1.0976h11.235V35.378c0-9.33838-7.56073-17.49078-18.10864-19.681V5Z"/>
                       </svg>
                     </div>
-                    <input type="text" id="ipt-valPriceProdNInterface" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl--cListChangeWIcon--input" maxlength="13" autocomplete="off">
+                    <input type="text" id="ipt-valPriceProdNInterface" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl--cListChangeWIcon--input" maxlength="13" autocomplete="off" placeholder="Ingrese el valor de mercancía">
                   </div>
                 </div>
               </div>
@@ -1613,7 +1596,7 @@ $(document).on("click", "#btn-NextStepTochargedata", function(){
                       <svg xmlns="http://www.w3.org/2000/svg" data-name="Layer 1" viewBox="0 0 100 125" x="0px" y="0px"><title>dollar</title><path d="M44.38354,5V15.697c-10.549,2.19025-18.11077,10.34265-18.11077,19.681,0,10.004,7.56927,16.77643,22.49676,20.1286C62.49225,58.587,62.49225,63.167,62.49225,64.67181c0,4.88868-5.7204,9.019-12.49115,9.019-6.77191,0-12.49335-4.13031-12.49335-9.019V63.57428h-11.235v1.09753c0,9.33838,7.56176,17.48975,18.11077,19.67951V95h11.235V84.35132C66.1665,82.161,73.72723,74.0097,73.72723,64.67181c0-10.004-7.56823-16.77636-22.49566-20.12854-13.72382-3.08044-13.72382-7.6604-13.72382-9.16528,0-4.88971,5.72144-9.02057,12.49335-9.02057,6.77075,0,12.49115,4.13086,12.49115,9.02057v1.0976h11.235V35.378c0-9.33838-7.56073-17.49078-18.10864-19.681V5Z"/>
                       </svg>
                     </div>
-                    <input type="text" id="val-iptPriceValNInterface" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl--cListChangeWIcon--input" maxlength="13" autocomplete="off">
+                    <input type="text" id="val-iptPriceValNInterface" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl--cListChangeWIcon--input" maxlength="13" autocomplete="off" placeholder="Ingrese el valor del flete">
                   </div>
                 </div>
               </div>
@@ -1874,7 +1857,6 @@ $(document).on("click", "#chck-importpreview", function(){
 });
 // ------------ VALIDAR EL INPUT DE PRECIO DEL PRODUCTO 
 $(document).on("keyup keypress", "#ipt-valPriceProdNInterface", function(e){
-  console.log(e.target.value);
   if ((e.which != 8 && e.which != 0) && (e.which < 48 || e.which > 57) && $(this).val().length >= parseInt($(this).attr('maxlength'))){
     return false;
   }
@@ -2013,24 +1995,24 @@ $(document).on("click", "#btn-NextStepTomerchandisedata", function(){
           </span>
         </div>
         <div class="cont-MainCamelLog--c--contSteps--item--cStep">
-          <ul class="cont-MainCamelLog--c--contSteps--item--cStep--m" id="list-requirespickup">
-            <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem">
-              <li class="cont-MainCamelLog--c--contSteps--item--cStep--m--item">
+          <div class="cont-MainCamelLog--c--contSteps--item--cStep--m" id="list-requirespickup">
+            <li class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem">
+              <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--m--item">
                 <div class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem--cImg">
                   <img src="views/assets/img/steps/inland-trans.png" alt="" loading="lazy">
                 </div>
                 <p>SÍ</p>
-              </li>
-            </a>
-            <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem">
-              <li class="cont-MainCamelLog--c--contSteps--item--cStep--m--item">
+              </a>
+            </li>
+            <li class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem">
+              <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--m--item">
                 <div class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem--cImg">
                   <img src="views/assets/img/steps/no-inland-trans.png" alt="" loading="lazy">
                 </div>
                 <p>NO</p>
-              </li>
-            </a>
-          </ul>
+              </a>
+            </li>
+          </div>
         </div>
         <div class="cont-MainCamelLog--c--contSteps--item--cBtnNextStep"></div>
       `);
@@ -2086,7 +2068,7 @@ $(document).on("click", "#btn-NextStepTomerchandisedata", function(){
 // =================================================================================== //
 //                            6. INGRESAR EL VALOR DEL FLETE          
 // =================================================================================== //
-$(document).on("click", "#list-requirespickup a", function(){
+$(document).on("click", "#list-requirespickup li", function(){
   var trequirespickup = $(this).index();
   // ------------ MOSTRAR EL SIGUIENTE PASO (TIPOS DE TRANSPORTE) 
   if(trequirespickup == 0){
@@ -2105,32 +2087,32 @@ $(document).on("click", "#list-requirespickup a", function(){
         </span>
       </div>
       <div class="cont-MainCamelLog--c--contSteps--item--cStep">
-        <ul class="cont-MainCamelLog--c--contSteps--item--cStep--m" id="list-typeTransporteSelectItems">
-          <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem">
-            <li class="cont-MainCamelLog--c--contSteps--item--cStep--m--item">
+        <div class="cont-MainCamelLog--c--contSteps--item--cStep--m" id="list-typeTransporteSelectItems">
+          <li class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem">
+            <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--m--item">
               <div class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem--cImg">
                 <img src="views/assets/img/steps/type_transport_06.png" alt="cml_type_transport_01" loading="lazy" width="100" height="100">
               </div>
               <p>GENERAL</p>
-            </li>
-          </a>
-          <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem">
-            <li class="cont-MainCamelLog--c--contSteps--item--cStep--m--item">
+            </a>
+          </li>
+          <li class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem">
+            <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--m--item">
               <div class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem--cImg">
                 <img src="views/assets/img/steps/type_transport_03.png" alt="cml_type_transport_02" loading="lazy" width="100" height="100">
               </div>
               <p>IMO</p>
-            </li>
-          </a>
-          <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem">
-            <li class="cont-MainCamelLog--c--contSteps--item--cStep--m--item">
+            </a>
+          </li>
+          <li class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem">
+            <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--m--item">
               <div class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem--cImg">
                 <img src="views/assets/img/steps/type_transport_05.png" alt="cml_type_transport_03" loading="lazy" width="100" height="100">
               </div>
               <p>REFRIGERADO</p>
-            </li>
-          </a>
-        </ul>
+            </a>
+          </li>
+        </div>
       </div>
     `);
     // ------------ OCULTAR EL BOTÓN DE COTIZACIÓN 
@@ -2158,7 +2140,7 @@ $(document).on("click", "#list-requirespickup a", function(){
 // ================================================================================== //
 //         7. ELEGIR EL TIPO DE TRANSPORTE DE CARGA: GENERAL, IMO O REGRIGERADO          
 // ================================================================================== //
-$(document).on("click","#list-typeTransporteSelectItems a",function(){
+$(document).on("click","#list-typeTransporteSelectItems li",function(){
   // ------------ MOSTRAR EL SIGUENTE PASO 
   $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-pickuplocation]").addClass("show");
   var ttypeTransport = $(this).index();
@@ -2192,7 +2174,7 @@ $(document).on("click","#list-typeTransporteSelectItems a",function(){
             <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation--cC--cControl">
               <label for="" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation--cC--cControl--label">DISTRITO</label>
               <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation--cC--cControl--cListChange">
-                <input type="text" id="ipt-valDistricByCountryNInterface" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation--cC--cControl--cListChange--input" autocomplete="nope" spellcheck="false">
+                <input type="text" id="ipt-valDistricByCountryNInterface" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation--cC--cControl--cListChange--input" autocomplete="nope" spellcheck="false" placeholder="Ingrese el distrito de destino">
                 <ul class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation--cC--cControl--cListChange--m" id="m-listAllDistricsByCountry"></ul>
               </div>
             </div>
@@ -2237,7 +2219,7 @@ $(document).on("click","#list-typeTransporteSelectItems a",function(){
             <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation--cC--cControl">
               <label for="" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation--cC--cControl--label">DISTRITO</label>
               <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation--cC--cControl--cListChange">
-                <input type="text" id="ipt-valDistricByCountryNInterface" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation--cC--cControl--cListChange--input" autocomplete="nope" spellcheck="false">
+                <input type="text" id="ipt-valDistricByCountryNInterface" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation--cC--cControl--cListChange--input" autocomplete="nope" spellcheck="false" placeholder="Ingrese el distrito de destino">
                 <ul class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation--cC--cControl--cListChange--m" id="m-listAllDistricsByCountry"></ul>
               </div>
             </div>
@@ -2282,7 +2264,7 @@ $(document).on("click","#list-typeTransporteSelectItems a",function(){
             <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation--cC--cControl">
               <label for="" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation--cC--cControl--label">DISTRITO</label>
               <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation--cC--cControl--cListChange">
-                <input type="text" id="ipt-valDistricByCountryNInterface" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation--cC--cControl--cListChange--input" autocomplete="nope" spellcheck="false">
+                <input type="text" id="ipt-valDistricByCountryNInterface" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation--cC--cControl--cListChange--input" autocomplete="nope" spellcheck="false" placeholder="Ingrese el distrito de destino">
                 <ul class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation--cC--cControl--cListChange--m" id="m-listAllDistricsByCountry"></ul>
               </div>
             </div>

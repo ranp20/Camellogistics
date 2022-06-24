@@ -67,7 +67,7 @@
 					span{
 						font-weight: 600;
 						font-size: 0.8rem;
-						vertical-align: super;
+						vertical-align: middle;
 						@media (min-width: 991px){
 							font-size: .9rem;
 						}
@@ -246,6 +246,11 @@
 						gap: 2rem 3rem;
 					}
 					&--item{
+						display: table;
+						color: #000;
+						&:hover{
+							color: #000;
+						}
 					}
 					&--cardItem{
 						text-decoration: none !important;
@@ -609,6 +614,11 @@
 									&[type=number]{ 
 										-moz-appearance:textfield;
 									}
+									&::placeholder {
+									  color: #fff;
+									  background-color: #fff;
+									  opacity: 0;
+									}
 								}
 							}
 						}
@@ -756,6 +766,11 @@
 									&[type=number]{ 
 										-moz-appearance:textfield;
 									}
+									&::placeholder {
+									  color: #fff;
+									  background-color: #fff;
+									  opacity: 0;
+									}
 								}
 								&--m{
 									position: absolute;
@@ -830,6 +845,11 @@
 							}
 							&[type=number]{ 
 								-moz-appearance:textfield;
+							}
+							&::placeholder {
+							  color: #fff;
+							  background-color: #fff;
+							  opacity: 0;
 							}
 							@media (min-width: 991px){
 								font-size: 1rem;
@@ -921,6 +941,11 @@
 									&[type=number]{ 
 										-moz-appearance:textfield;
 									}
+									&::placeholder {
+									  color: #fff;
+									  background-color: #fff;
+									  opacity: 0;
+									}
 								}
 								&--m{
 									padding: 0;
@@ -995,6 +1020,11 @@
 									}
 									&[type=number]{ 
 										-moz-appearance:textfield;
+									}
+									&::placeholder {
+									  color: #fff;
+									  background-color: #fff;
+									  opacity: 0;
 									}
 								}
 								&--m{
@@ -1237,6 +1267,11 @@
 									}
 									&[type=number]{ 
 										-moz-appearance:textfield;
+									}
+									&::placeholder {
+									  color: #fff;
+									  background-color: #fff;
+									  opacity: 0;
 									}
 								}
 								&--m{

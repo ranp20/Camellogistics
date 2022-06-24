@@ -16,7 +16,6 @@ function changesTabsOperation(){
   var key_valvaluesquotation = localStorage.setItem("key_v-valuesquotation", 0); //VALOR FINAL/SUMA DE VALORES PARA COTIZACIÓN (FCL/LCL)
   var key_valvaluesquotationbyigv = localStorage.setItem("key_v-valuesquotationbyigv", 0); //VALORES DE COTIZACIÓN PARA IGV
   // var key_valflete = localStorage.setItem("key_v-totalflette", 0); //FCL Y LCL
-  // var key_valttaproxbycont = localStorage.setItem("key_v-valttaproxbycontain", ""); //TIEMPO DE TRANSPORTE POR TIPO DE CONTENEDOR(LCL O FCL)
   // var key_valdbammountadditional = localStorage.setItem("key_v-dbammountadditional", 0); //VALOR DE MONTO ADICIONAL (DB)
   // var key_valammountadditional = localStorage.setItem("key_v-ammountadditional", 0); //MONTO ADICIONAL DE ALGUNOS PRODUCTOS
   // var key_valvaluetransport = localStorage.setItem("key_v-valuetransport", 0); //VALOR FINAL DE TRANSPORTE

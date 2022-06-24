@@ -53,6 +53,7 @@ class Quotation_user extends Connection
       :u_cont, 
       :f_origen,
       :f_destiny, 
+      :f_desc_w_v,
       :f_weight_v, 
       :f_time_transit, 
       :f_fob, 

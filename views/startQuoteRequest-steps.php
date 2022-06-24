@@ -112,22 +112,22 @@
               </div>
               <div class='cont-MainCamelLog--c--contSteps--item--cStep'>
                 <ul class='cont-MainCamelLog--c--contSteps--item--cStep--m' id='list-typeOperationItems'>
-                  <a href='javascript:void(0);' class='cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem'>
-                    <li class='cont-MainCamelLog--c--contSteps--item--cStep--m--item'>
+                  <li class='cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem'>
+                    <a href='javascript:void(0);' class='cont-MainCamelLog--c--contSteps--item--cStep--m--item'>
                       <div class='cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem--cImg'>
                         <img src='{$url}assets/img/steps/export.png' alt='' loading='lazy' width='100' height='100'>
                       </div>
                       <p>Exportación</p>
-                    </li>
-                  </a>
-                  <a href='javascript:void(0);' class='cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem'>
-                    <li class='cont-MainCamelLog--c--contSteps--item--cStep--m--item'>
+                    </a>
+                  </li>
+                  <li class='cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem'>
+                    <a href='javascript:void(0);' class='cont-MainCamelLog--c--contSteps--item--cStep--m--item'>
                       <div class='cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem--cImg'>
                         <img src='{$url}assets/img/steps/import.png' alt='' loading='lazy' width='100' height='100'>
                       </div>
                       <p>Importación</p>
-                    </li>
-                  </a>
+                    </a>
+                  </li>
                 </ul>
               </div>
             </div>

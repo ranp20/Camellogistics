@@ -28,6 +28,7 @@ if(isset($_POST) && !empty($_POST)){
 	  'u_cont' => $_POST['u_cont'],
 	  'f_origen' => (!isset($_POST['f_origen']) || $_POST['f_origen'] == "") ? "No especificado" : $_POST['f_origen'],
 	  'f_destiny' => (!isset($_POST['f_destiny']) || $_POST['f_destiny'] == "") ? "No especificado" : $_POST['f_destiny'],
+	  'f_desc_w_v' => $_POST['f_desc_w_v'],
 	  'f_weight_v' => $_POST['f_weight_v'],
 	  'f_time_transit' => (!isset($_POST['f_time_transit']) || $_POST['f_time_transit'] == "") ? 0 : $_POST['f_time_transit'],
 	  'f_fob' => $_POST['f_fob'],
