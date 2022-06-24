@@ -78,10 +78,6 @@ const sectionsSteps = new fullpage('#fullpage', {
   //   $.fn.fullpage.setAllowScrolling(false, 'down');
   // },
   afterSlideLoad: function(anchorLink, index, slideAnchor, slideIndex) {
-    console.log(anchorLink);
-    console.log(index);
-    console.log(slideAnchor);
-    console.log(slideIndex);
     if(anchorLink == 'step-typeoperation'){
       $.fn.fullpage.setAllowScrolling(false, 'down');
       $.fn.fullpage.setKeyboardScrolling(false, 'down');
@@ -127,12 +123,8 @@ $(document).on("click", "#list-typeOperationItems li", function(){
       </div>
     </div>`);
     // ------------ CERRAR EL MODAL
-    setTimeout(function(){
-      $("#idMessageSteps-prcss .cntMessageSteps-prcss--cont").remove();
-    }, 6500);
-    $("#btnclose-modalMessage").on("click", function(){
-      $(this).parent().parent().remove();
-    });
+    setTimeout(function(){$("#idMessageSteps-prcss .cntMessageSteps-prcss--cont").remove();}, 6500);
+    $("#btnclose-modalMessage").on("click", function(){$(this).parent().parent().remove();});
     // ------------ OCULTAR AL LISTADO DE RESUMEN - ELIGE UN OPCIÓN
     $(".cont-MainCamelLog--c--contResumeCalc--item[data-advlevel=d-reqspeacialservs]").removeClass("show");
     $(".cont-MainCamelLog--c--contResumeCalc--item[data-advlevel=d-reqspeacialservs]").find("span").text("");
@@ -609,7 +601,7 @@ $(document).on("click", "#list-typeChargeLoadItems li", function(){
           </div>
           <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControls--cControl">
             <label for="val-iptVolumeNInterface" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControls--cControl--label">VOLUMEN (M³)</label>
-            <input type="text" id="val-iptVolumeNInterface" name="val-iptVolumeNInterface" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControls--cControl--input" maxlength="13" placeholder="Ingrese el volumen en m3">
+            <input type="text" id="val-iptVolumeNInterface" name="val-iptVolumeNInterface" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControls--cControl--input" maxlength="13" placeholder="Ingrese el volumen en M³">
           </div>
           <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControls--cBtnModalCalculator" id="link-showModalCalcVolum">
             <span>AYUDA - ¡CALCULAR VOLUMEN (M³) AQUÍ!</span>

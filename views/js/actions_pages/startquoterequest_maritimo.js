@@ -93,10 +93,6 @@ const sectionsSteps = new fullpage('#fullpage', {
   //   $.fn.fullpage.setAllowScrolling(false, 'down');
   // },
   afterSlideLoad: function(anchorLink, index, slideAnchor, slideIndex) {
-    console.log(anchorLink);
-    console.log(index);
-    console.log(slideAnchor);
-    console.log(slideIndex);
     if(anchorLink == 'step-typeoperation'){
       $.fn.fullpage.setAllowScrolling(false, 'down');
       $.fn.fullpage.setKeyboardScrolling(false, 'down');
@@ -172,37 +168,33 @@ function listPortOriginandDestiny(){
     });
 	});
 }
+
+
+
+
 /*====================================================================================
 =                         2. ELEGIR EL TIPO DE OPERACIÓN                             =
 ====================================================================================*/
-$(document).on("click", "#list-typeOperationItems a", function(){
+$(document).on("click", "#list-typeOperationItems li", function(){
   var tTypeOperation = $(this).index();
   if(tTypeOperation == 0){
     localStorage.setItem("key_v-totalflette", 0);
     $(this).removeClass("active");
-    $(this).css({
-      "opacity" : "0.5",
-      "border" : "unset"
-    });
+    $(this).css({"opacity" : "0.5","border" : "unset"});
     //alert("Esta opción aún no está disponible. Por favor, pase a elegir IMPORTACIÓN");
     // ------------ MOSTRAR EL MENSAJE DE ALERTA PERSONALIZADO 
     $("#idMessageSteps-prcss").html(`
-      <div class="cntMessageSteps-prcss--cont">
-        <div class="cntMessageSteps-prcss--cont--c">
-          <span class="cntMessageSteps-prcss--cont--c--btnclose" id="btnclose-modalMessage"></span>
-          <h3 class="cntMessageSteps-prcss--cont--c--title">No disponible</h3>
-          <p class="cntMessageSteps-prcss--cont--c--text">Esta opción aún no esta disponible. Por favor, pase a elegir <b>IMPORTACIÓN.</b></p>
-        </div>
+    <div class="cntMessageSteps-prcss--cont">
+      <div class="cntMessageSteps-prcss--cont--c">
+        <span class="cntMessageSteps-prcss--cont--c--btnclose" id="btnclose-modalMessage"></span>
+        <h3 class="cntMessageSteps-prcss--cont--c--title">No disponible</h3>
+        <p class="cntMessageSteps-prcss--cont--c--text">Esta opción aún no esta disponible. Por favor, pase a elegir <b>IMPORTACIÓN.</b></p>
       </div>
-    `)
+    </div>`);
     // ------------ CERRAR EL MODAL 
-    setTimeout(function(){
-      $("#idMessageSteps-prcss .cntMessageSteps-prcss--cont").remove();
-    }, 6500)
-    $("#btnclose-modalMessage").on("click", function(){
-      $(this).parent().parent().remove();
-    });
-    // ------------ OCULTAR AL LISTADO DE RESUMEN - ELIGE UN OPCIÓN 
+    setTimeout(function(){$("#idMessageSteps-prcss .cntMessageSteps-prcss--cont").remove();}, 6500);
+    $("#btnclose-modalMessage").on("click", function(){$(this).parent().parent().remove();});
+    // ------------ OCULTAR AL LISTADO DE RESUMEN - ELIGE UNA OPCIÓN 
     $(".cont-MainCamelLog--c--contResumeCalc--item[data-advlevel=d-reqspeacialservs]").removeClass("show");
     $(".cont-MainCamelLog--c--contResumeCalc--item[data-advlevel=d-reqspeacialservs]").find("span").text("");
     $(".cont-MainCamelLog--c--contResumeCalc--item[data-advlevel=d-typecontainer]").removeClass("show");
@@ -232,7 +224,7 @@ $(document).on("click", "#list-typeOperationItems a", function(){
     localStorage.setItem("key_v-totalflette", 0);
     localStorage.setItem("key_typeOp", $(this).find("li").find("p").text());
     // ------------ ASIGNAR A LA VARIABLE BLOBAL 
-    v_TypeOp = $(this).find("li").find("p").text();
+    v_TypeOp = $(this).find("a").find("p").text();
     // ------------ VALOR DEL TIPO DE OPERACIÓN 
     $("#val_loadTypeOpe").val(v_TypeOp);
     // ------------ OCULTAR AL LISTADO DE RESUMEN - ELIGE UN OPCIÓN 
@@ -291,6 +283,10 @@ $(document).on("click", "#list-typeOperationItems a", function(){
     `);
   }
 });
+
+
+
+
 /*==============================================================================================
 =            2.5. ELEGIR EL TIPO DE TRANSPORTE DE CARGA: GENERAL, IMO O REGRIGERADO            =
 ==============================================================================================*/
@@ -452,6 +448,10 @@ $(document).on("click","#list-typeTransporteSelectItems a",function(){
     `);
   }
 });
+
+
+
+
 /*=======================================================================================
 =            									3. ELEGIR EL TIPO DE CARGA            									  =
 =========================================================================================*/
@@ -795,6 +795,7 @@ $(document).on("click", "#list-typeChargeLoadItems a", function(){
             <input type="text" id="n_weightcompare_ultstep" class="n-val-sd" disabled>
             <input type="text" id="n_volumecompare_ultstep" class="n-val-sd" disabled>
             <input type="text" id="val_validateratequote" name="val_validateratequote" class="n-val-sd" value="">
+            <input type="text" id="val_maxtotalweight" name="val_maxtotalweight" class="n-val-sd" value="">
             <input type="text" id="val_ftotvalofdownload" name="val_ftotvalofdownload" class="n-val-sd" value="">
           </span>
         </span>
@@ -803,15 +804,15 @@ $(document).on("click", "#list-typeChargeLoadItems a", function(){
         <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControls">
           <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControls--cControl">
             <label for="val-iptPackagesNInterface" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControls--cControl--label">BULTOS</label>
-            <input type="number" id="val-iptPackagesNInterface" name="val-iptPackagesNInterface" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControls--cControl--input">
+            <input type="number" id="val-iptPackagesNInterface" name="val-iptPackagesNInterface" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControls--cControl--input" placeholder="Ingrese la cantidad de bultos">
           </div>
           <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControls--cControl">
             <label for="val-iptWeightNInterface" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControls--cControl--label">PESO (KG)</label>
-            <input type="text" id="val-iptWeightNInterface" name="val-iptWeightNInterface" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControls--cControl--input" maxlength="11">
+            <input type="text" id="val-iptWeightNInterface" name="val-iptWeightNInterface" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControls--cControl--input" maxlength="11" placeholder="Ingrese el peso">
           </div>
           <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControls--cControl">
             <label for="val-iptVolumeNInterface" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControls--cControl--label">VOLUMEN (M³)</label>
-            <input type="text" id="val-iptVolumeNInterface" name="val-iptVolumeNInterface" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControls--cControl--input" maxlength="13">
+            <input type="text" id="val-iptVolumeNInterface" name="val-iptVolumeNInterface" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControls--cControl--input" maxlength="13" placeholder="Ingrese el volumen en M³">
           </div>
           <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControls--cBtnModalCalculator" id="link-showModalCalcVolum">
             <span>AYUDA - ¡CALCULAR VOLUMEN (M³) AQUÍ!</span>
@@ -827,6 +828,10 @@ $(document).on("click", "#list-typeChargeLoadItems a", function(){
     `); 
 	}
 });
+
+
+
+
 /*========================================================================================
 =                          4. AÑADIR LA CANTIDAD DE CONTENEDORES                         =
 =========================================================================================*/
@@ -1574,7 +1579,7 @@ $(document).on("click", "#list-SelOptionResultExp a", function(){
             <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl">
               <label for="" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl--label">CATEGORÍA</label>
               <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl--cListChange">
-                <input type="text" id="ipt-valNameTypeProdNInterface" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl--cListChange--input" autocomplete="off">
+                <input type="text" id="ipt-valNameTypeProdNInterface" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl--cListChange--input" autocomplete="off" placeholder="Ingrese el nombre del producto">
                 <ul class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl--cListChange--m" id="m-listAllNamTypeProds"></ul>
               </div>
             </div>
@@ -1588,7 +1593,7 @@ $(document).on("click", "#list-SelOptionResultExp a", function(){
                   <svg xmlns="http://www.w3.org/2000/svg" data-name="Layer 1" viewBox="0 0 100 125" x="0px" y="0px"><title>dollar</title><path d="M44.38354,5V15.697c-10.549,2.19025-18.11077,10.34265-18.11077,19.681,0,10.004,7.56927,16.77643,22.49676,20.1286C62.49225,58.587,62.49225,63.167,62.49225,64.67181c0,4.88868-5.7204,9.019-12.49115,9.019-6.77191,0-12.49335-4.13031-12.49335-9.019V63.57428h-11.235v1.09753c0,9.33838,7.56176,17.48975,18.11077,19.67951V95h11.235V84.35132C66.1665,82.161,73.72723,74.0097,73.72723,64.67181c0-10.004-7.56823-16.77636-22.49566-20.12854-13.72382-3.08044-13.72382-7.6604-13.72382-9.16528,0-4.88971,5.72144-9.02057,12.49335-9.02057,6.77075,0,12.49115,4.13086,12.49115,9.02057v1.0976h11.235V35.378c0-9.33838-7.56073-17.49078-18.10864-19.681V5Z"/>
                   </svg>
                 </div>
-                <input type="text" id="ipt-valPriceProdNInterface" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl--cListChangeWIcon--input" maxlength="13" autocomplete="off">
+                <input type="text" id="ipt-valPriceProdNInterface" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl--cListChangeWIcon--input" maxlength="13" autocomplete="off" placeholder="Ingrese el valor de mercancía">
               </div>
             </div>
           </div>
@@ -1724,6 +1729,10 @@ $(document).on("click", "#list-SelOptionResultExp a", function(){
     `);
   }
 });
+
+
+
+
 /*=========================================================================================
 =            ELEGIR DE ACUERDO A SI ELIGE SI O NO EL SEGURO - SOLO DESEO FLETE            =
 ==========================================================================================*/
@@ -1754,7 +1763,7 @@ $(document).on("click","#list-insuremerchandise-notMoreOpts a",function(){
             <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl">
               <label for="" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl--label">CATEGORÍA</label>
               <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl--cListChange">
-                <input type="text" id="ipt-valNameTypeProdNInterface-notMoreOpts" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl--cListChange--input" autocomplete="off">
+                <input type="text" id="ipt-valNameTypeProdNInterface-notMoreOpts" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl--cListChange--input" autocomplete="off" placeholder="Ingrese el nombre del producto">
                 <ul class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl--cListChange--m" id="m-listAllNamTypeProds"></ul>
               </div>
             </div>
@@ -1768,7 +1777,7 @@ $(document).on("click","#list-insuremerchandise-notMoreOpts a",function(){
                   <svg xmlns="http://www.w3.org/2000/svg" data-name="Layer 1" viewBox="0 0 100 125" x="0px" y="0px"><title>dollar</title><path d="M44.38354,5V15.697c-10.549,2.19025-18.11077,10.34265-18.11077,19.681,0,10.004,7.56927,16.77643,22.49676,20.1286C62.49225,58.587,62.49225,63.167,62.49225,64.67181c0,4.88868-5.7204,9.019-12.49115,9.019-6.77191,0-12.49335-4.13031-12.49335-9.019V63.57428h-11.235v1.09753c0,9.33838,7.56176,17.48975,18.11077,19.67951V95h11.235V84.35132C66.1665,82.161,73.72723,74.0097,73.72723,64.67181c0-10.004-7.56823-16.77636-22.49566-20.12854-13.72382-3.08044-13.72382-7.6604-13.72382-9.16528,0-4.88971,5.72144-9.02057,12.49335-9.02057,6.77075,0,12.49115,4.13086,12.49115,9.02057v1.0976h11.235V35.378c0-9.33838-7.56073-17.49078-18.10864-19.681V5Z"/>
                   </svg>
                 </div>
-                <input type="text" id="ipt-valPriceProdNInterface-notMoreOpts" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl--cListChangeWIcon--input" maxlength="13" autocomplete="off">
+                <input type="text" id="ipt-valPriceProdNInterface-notMoreOpts" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl--cListChangeWIcon--input" maxlength="13" autocomplete="off" placeholder="Ingrese el valor de mercancía">
               </div>
             </div>
           </div>
@@ -2025,6 +2034,10 @@ $(document).on("keyup keypress blur change", "#ipt-valQuantityAmAddProdNInterfac
     }
   }
 });
+
+
+
+
 /*========================================================================================
 =           	 						5. AGREGAR LAS DIMENSIONES DE LA CARGA            						 =
 =========================================================================================*/
@@ -2543,6 +2556,8 @@ $(document).on("click", "#btn-NextStepTochargedata", function(){
           $("#val_validateratequote").val(val_dateValidDesde+" - "+val_dateValidHasta);
 
           if(v_ValTotalVolume <= 5){
+            // ------------ AGREGAR AL VALOR POST
+            $("#val_maxtotalweight").val(v_floatweightconvert);
             if(v_ValTotalVolume > v_ValDividedTotalWeight){
               totwithoutvalues = roundToTwo(twodecimal_rate_5cbm * v_ValTotalVolume);
               localStorage.setItem("key_v-totalflette", totwithoutvalues);
@@ -2589,6 +2604,8 @@ $(document).on("click", "#btn-NextStepTochargedata", function(){
               <div class="cont-MainCamelLog--c--contSteps--item--cBtnNextStep"></div>
             `);
           }else if(v_ValTotalVolume > 5 && v_ValTotalVolume <= 15){
+            // ------------ AGREGAR AL VALOR POST
+            $("#val_maxtotalweight").val(v_floatweightconvert);
             if(v_ValTotalVolume > v_ValDividedTotalWeight){
               totwithoutvalues = roundToTwo(twodecimal_rate_15cbm * v_ValTotalVolume);
               localStorage.setItem("key_v-totalflette", totwithoutvalues);
@@ -2884,6 +2901,10 @@ $(document).on("click", "#btn-NextStepTochargedata", function(){
     });
   }
 });
+
+
+
+
 /*=====================================================================================
 =            							6. AGREGAR LOS DATOS DE MERCANCÍA            								=
 ======================================================================================*/
@@ -3262,6 +3283,10 @@ $(document).on("click", "#btn-NextStepTomerchandisedata", function(){
     }
   }
 });
+
+
+
+
 /*===================================================================================
 =                     7. AGREGAR O NO SEGURO DE MERCANCÍA                           =
 ====================================================================================*/
@@ -3378,6 +3403,10 @@ $(document).on("click", "#list-insuremerchandise a", function(){
     }
   });
 });
+
+
+
+
 /*===================================================================================
 =                     9. AGREGAR - RECOGIDA                                         =
 ====================================================================================*/

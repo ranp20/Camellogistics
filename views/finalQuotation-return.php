@@ -21,6 +21,8 @@
   <!-- INCLUIR SWEET ALERT 2 -->
   <link rel="stylesheet" href="node_modules/sweetalert2/dist/sweetalert2.min.css">
   <script type="text/javascript" src="node_modules/sweetalert2/dist/sweetalert2.all.min.js"></script>
+  <!-- INCLUIR CRYPTO-JS -->
+  <script type="text/javascript" src="node_modules/crypto-js/crypto-js.js"></script>
 </head>
 <body>
   <div id="cUIMessageValid-user"></div>
@@ -137,6 +139,7 @@
                       <?php 
 
                         $templateQq = "";
+                        $tmpjoinLCL = "";
                         $textpackages = "";
                         $textContain20Std = "";
                         $textContain40Std = "";
@@ -161,14 +164,16 @@
                         }else{
                           if($_POST['val-iptPackagesNInterface'] > 1){
                             $textpackages = "Bultos";
+                            $tmpjoinLCL = "{$_POST['val-iptPackagesNInterface']} {$textpackages} de {$_POST['val-iptWeightNInterface']} Kg y {$_POST['val-iptVolumeNInterface']} M³";
                             $templateQq.="<p>
-                              <span>{$_POST['val-iptPackagesNInterface']} {$textpackages} de {$_POST['val-iptWeightNInterface']} Kg y {$_POST['val-iptVolumeNInterface']} M³</span>
+                              <span>{$tmpjoinLCL}</span>
                             </p>
                             ";
                           }else{
                             $textpackages = "Bulto";
+                            $templateQq = "{$_POST['val-iptPackagesNInterface']} {$textpackages} de {$_POST['val-iptWeightNInterface']} Kg y {$_POST['val-iptVolumeNInterface']} M³";
                             $templateQq.="<p>
-                              <span>{$_POST['val-iptPackagesNInterface']} {$textpackages} de {$_POST['val-iptWeightNInterface']} Kg y {$_POST['val-iptVolumeNInterface']} M³</span>
+                              <span>{$templateQq}</span>
                             </p>
                             ";
                           }
@@ -475,12 +480,45 @@ echo $template_incserv.$template_notincserv;
 <input tabindex="-1" placeholder="" type="hidden" width="0" height="0" autocomplete="off" spellcheck="false" f-hidden="aria-hidden" class="non-visvalipt h-alternative-shwnon s-fkeynone-step" id="v_datevalidhasta" value="<?= (isset($_POST['val-datevalidhasta']) && $_POST['val-datevalidhasta'] != "") ? $_POST['val-datevalidhasta'] : 0;?>">
 <input tabindex="-1" placeholder="" type="hidden" width="0" height="0" autocomplete="off" spellcheck="false" f-hidden="aria-hidden" class="non-visvalipt h-alternative-shwnon s-fkeynone-step" id="v_idgencoderand" value="<?php echo $_POST['ipt-vidcodgenrand'];?>">
 <input tabindex="-1" placeholder="" type="hidden" width="0" height="0" autocomplete="off" spellcheck="false" f-hidden="aria-hidden" class="non-visvalipt h-alternative-shwnon s-fkeynone-step" id="v_loadtypecharge" value="<?php echo $_POST['loadTypeCharge'];?>">
+<input tabindex="-1" placeholder="phdr-whidipts" type="hidden" width="0" height="0" autocomplete="off" spellcheck="false" f-hidden="aria-hidden" class="non-visvalipt h-alternative-shwnon s-fkeynone-step" id="v-plcpickuprateprov" value="<?= (isset($_POST['plc-pickuprate']) && $_POST['plc-pickuprate'] != "") ? $_POST['plc-pickuprate'] : 0;?>">
 <input tabindex="-1" placeholder="" type="hidden" width="0" height="0" autocomplete="off" spellcheck="false" f-hidden="aria-hidden" class="non-visvalipt h-alternative-shwnon s-fkeynone-step" id="v_typetranspsendinitid" value="<?php echo $_POST['idtypetransportsendinit'];?>">
 <input tabindex="-1" placeholder="" type="hidden" width="0" height="0" autocomplete="off" spellcheck="false" f-hidden="aria-hidden" class="non-visvalipt h-alternative-shwnon s-fkeynone-step" id="v_fportorigname" value="<?= (isset($_POST['val-originPortSend']) && $_POST['val-originPortSend'] != "") ? $_POST['val-originPortSend'] : "No especificado";?>">
 <input tabindex="-1" placeholder="" type="hidden" width="0" height="0" autocomplete="off" spellcheck="false" f-hidden="aria-hidden" class="non-visvalipt h-alternative-shwnon s-fkeynone-step" id="v_fportdestiname" value="<?= (isset($_POST['val-destinyPortSend']) && $_POST['val-destinyPortSend'] != "") ? $_POST['val-destinyPortSend'] : "No especificado";?>">
 <input tabindex="-1" placeholder="" type="hidden" width="0" height="0" autocomplete="off" spellcheck="false" f-hidden="aria-hidden" class="non-visvalipt h-alternative-shwnon s-fkeynone-step" id="v_fnamecategprod" value="<?php echo $_POST['val-categProdquot'];?>">
 <input tabindex="-1" placeholder="" type="hidden" width="0" height="0" autocomplete="off" spellcheck="false" f-hidden="aria-hidden" class="non-visvalipt h-alternative-shwnon s-fkeynone-step" id="v_ftaproxtransbycont" value="<?= (isset($_POST['val-timeaproxtransbycont']) && $_POST['val-timeaproxtransbycont'] != "") ? $_POST['val-timeaproxtransbycont'] : 0;?>">
+<input tabindex="-1" placeholder="phdr-whidipts" type="hidden" width="0" height="0" autocomplete="off" spellcheck="false" f-hidden="aria-hidden" class="non-visvalipt h-alternative-shwnon s-fkeynone-step" id="v_ftotvalProdquot" value="<?= (isset($_POST['val-valProdquot']) && $_POST['val-valProdquot'] != 0 && $_POST['val-valProdquot'] != null) ? $_POST['val-valProdquot'] : 0;?>">
 <input tabindex="-1" placeholder="" type="hidden" width="0" height="0" autocomplete="off" spellcheck="false" f-hidden="aria-hidden" class="non-visvalipt h-alternative-shwnon s-fkeynone-step" id="v_ftotvalofdownload" value="<?= (isset($_POST['val_ftotvalofdownload']) && $_POST['val_ftotvalofdownload'] != "") ? $_POST['val_ftotvalofdownload'] : 0;?>">
+<input tabindex="-1" placeholder="phdr-whidipts" type="hidden" width="0" height="0" autocomplete="off" spellcheck="false" f-hidden="aria-hidden" class="non-visvalipt h-alternative-shwnon s-fkeynone-step" id="v_floadTypeTranport" value="<?= (isset($_POST['loadTypeTranport']) && $_POST['loadTypeTranport'] != "") ? $_POST['loadTypeTranport'] : "No seleccionado";?>">
+<input tabindex="-1" placeholder="phdr-whidipts" type="hidden" width="0" height="0" autocomplete="off" spellcheck="false" f-hidden="aria-hidden" class="non-visvalipt h-alternative-shwnon s-fkeynone-step" id="v_ftotalfleteprod" value="<?= (isset($_POST['val_valfleteprod']) && $_POST['val_valfleteprod'] != "") ? $_POST['val_valfleteprod'] : 0;?>">
+<input tabindex="-1" placeholder="phdr-whidipts" type="hidden" width="0" height="0" autocomplete="off" spellcheck="false" f-hidden="aria-hidden" class="non-visvalipt h-alternative-shwnon s-fkeynone-step" id="v_fprevimports" value="<?= (isset($_POST['val-prevImports']) && $_POST['val-prevImports'] != "") ? $_POST['val-prevImports'] : 0;?>">
+<input tabindex="-1" placeholder="phdr-whidipts" type="hidden" width="0" height="0" autocomplete="off" spellcheck="false" f-hidden="aria-hidden" class="non-visvalipt h-alternative-shwnon s-fkeynone-step" id="v_floadtypeope" value="<?= (isset($_POST['val_loadTypeOpe']) && $_POST['val_loadTypeOpe'] != "") ? $_POST['val_loadTypeOpe'] : "Importación";?>">
+<input tabindex="-1" placeholder="phdr-whidipts" type="hidden" width="0" height="0" autocomplete="off" spellcheck="false" f-hidden="aria-hidden" class="non-visvalipt h-alternative-shwnon s-fkeynone-step" id="v_fplctopckloc" value="<?= (isset($_POST['plc-pickuploc']) && $_POST['plc-pickuploc'] != "") ? $_POST['plc-pickuploc'] : "No especificado";?>">
+<input tabindex="-1" placeholder="phdr-whidipts" type="hidden" width="0" height="0" autocomplete="off" spellcheck="false" f-hidden="aria-hidden" class="non-visvalipt h-alternative-shwnon s-fkeynone-step" id="v_fpckgcontquant" value="<?php if(isset($_POST['loadTypeCharge']) && $_POST['loadTypeCharge'] != ""){
+  if($_POST['loadTypeCharge'] == "FCL"){
+    echo $withoutcomaStr;
+  }else if($_POST['loadTypeCharge'] == "LCL"){
+    echo $tmpjoinLCL;
+  }else{
+    echo "No especificado";
+  }
+}else{ echo "0"; }?>">
+<input tabindex="-1" placeholder="phdr-whidipts" type="hidden" width="0" height="0" autocomplete="off" spellcheck="false" f-hidden="aria-hidden" class="non-visvalipt h-alternative-shwnon s-fkeynone-step" id="v_ftcomparweacbm" value="<?php if(isset($_POST['loadTypeCharge']) && $_POST['loadTypeCharge'] != ""){
+  if($_POST['loadTypeCharge'] == "FCL"){
+    $removapostrophe = preg_replace("/'/","",$withoutcomaStr);
+    echo strtoupper($removapostrophe);
+  }else if($_POST['loadTypeCharge'] == "LCL"){
+    $maxWeight = floatval(preg_replace("/[^-0-9\.]/","",$_POST['val_maxtotalweight']));
+    $maxVolumen = floatval(preg_replace("/[^-0-9\.]/","",$_POST['val-iptVolumeNInterface']));
+    $convertWeight = $maxWeight / 1000;
+    if($convertWeight > $maxVolumen){
+      echo $convertWeight." Kg";
+    }else{
+      echo $maxVolumen." CBM";
+    }
+  }else{
+    echo "No especificado";
+  }
+}else{ echo "0"; }?>">
 </div>
 </div>
   <?php

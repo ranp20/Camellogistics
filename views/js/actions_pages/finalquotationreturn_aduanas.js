@@ -158,10 +158,10 @@ $(document).ready(function(){
 	var receiveddownload = val_ftotvalofdownload; //VALOR DE DESCARGA
 	var cutefobofpriceusd = receivedfob.split(" USD");
   var cutewithoutofpricefob = cutefobofpriceusd[0].replace(/\./g, '');
-	var totflete = parseFloat(val_ftotalfleteprod); //TOTAL - SOLO FLETE
-	var totalamountadditional = parseFloat(localStorage.getItem("key_v-totalammountadditional")); //MONTO ADICIONAL
 	var totaltransport = parseFloat(val_plcpickuprateprov); //TOTAL TRANSPORTE
 	var totalimportprev = v_fprevimports; // IMPORTACIÓN PREVIA
+	var totflete = parseFloat(val_ftotalfleteprod); //TOTAL - SOLO FLETE
+	var totalamountadditional = parseFloat(localStorage.getItem("key_v-totalammountadditional")); //MONTO ADICIONAL
 	var totalvaluesquotation =  parseFloat(localStorage.getItem("key_v-valuesquotation")); //TOTAL SUMA DE VALORES DE COTIZACIÓN
 	var totalvaluesquotationbyIGV =  parseFloat(localStorage.getItem("key_v-valuesquotationbyigv")); //TOTAL SUMA DE VALORES DE COTIZACIÓN IGV
   var totalfinalvaluefob = parseFloat(twodecimals(cutewithoutofpricefob)); //TOTAL DE VALOR FOB

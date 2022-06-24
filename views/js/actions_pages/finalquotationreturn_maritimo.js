@@ -1,3 +1,7 @@
+// ------------ PREGUNTAR SI DESEA ABANDONAR LA PÁGINA - INPUTS
+window.onbeforeunload = function(event){
+  event.returnValue = "Es posible que no se guarden los cambios que ha hecho";
+};
 // ------------ DEJAR EN 2 DECIMALES POR DEFECTO 
 function myRound(num, dec){
   var exp = Math.pow(10, dec || 2); // 2 decimales por defecto
@@ -10,39 +14,91 @@ function twodecimals(n){
   return t.match(regex)[0];
 }
 // ------------ RETORNAR - PRIMERA LETRA EN MAYÚSCULA 
-function firstToUppercase(e) {
+function firstToUppercase(e){
   return e.charAt(0).toUpperCase() + e.slice(1);
+}
+// ------------ ENCRIPTAR DATOS DE INPUTS
+function encryptValuesIpts(valueipt){
+	let ciphertext = CryptoJS.AES.encrypt(valueipt, 'CML_KEYSYSTEM').toString();
+	return ciphertext;
+}
+// ------------ DESENCRIPTAR DATOS DE INPUTS
+function decryptValuesIpts(valueipt){
+	let bytes  = CryptoJS.AES.decrypt(valueipt, 'CML_KEYSYSTEM');
+	let originalText = bytes.toString(CryptoJS.enc.Utf8);
+	return originalText;
 }
 $("#btn-scrollingtTtB").on("click", function(){$("body, html").animate({scrollTop: '500'}, 350);}); //BOTÓN DE IR HACIA ABAJO
 $(document).ready(function(){
+	/* ENCRIPTACIÓN DE INPUTS */
+	var encrypt_v_idgencoderand = $("#v_idgencoderand").val(encryptValuesIpts($("#v_idgencoderand").val()));
+	var encrypt_v_loadtypecharge = $("#v_loadtypecharge").val(encryptValuesIpts($("#v_loadtypecharge").val()));
+	var encrypt_portOriginName = $("#v_fportorigname").val(encryptValuesIpts( $("#v_fportorigname").val()));
+	var encrypt_portDestinyName = $("#v_fportdestiname").val(encryptValuesIpts( $("#v_fportdestiname").val()));
+	var encrypt_v_typeserviceinit = $("#v_typeserviceinit").val(encryptValuesIpts( $("#v_typeserviceinit").val()));
+	var encrypt_v_fnamecategprod = $("#v_fnamecategprod").val(encryptValuesIpts( $("#v_fnamecategprod").val()));
+	var encrypt_v_ftaproxtransbycont = $("#v_ftaproxtransbycont").val(encryptValuesIpts( $("#v_ftaproxtransbycont").val()));
+	var encrypt_v_floadTypeTranport = $("#v_floadTypeTranport").val(encryptValuesIpts( $("#v_floadTypeTranport").val()));
+	var encrypt_val_ftotvalofdownload = $("#v_ftotvalofdownload").val(encryptValuesIpts( $("#v_ftotvalofdownload").val()));
+	var encrypt_val_ftotalfleteprod = $("#v_ftotalfleteprod").val(encryptValuesIpts( $("#v_ftotalfleteprod").val()));
+	var encrypt_val_ftotalvalfobprod = $("#v_ftotvalProdquot").val(encryptValuesIpts( $("#v_ftotvalProdquot").val()));
+	var encrypt_val_plcpickuprateprov = $("#v-plcpickuprateprov").val(encryptValuesIpts($("#v-plcpickuprateprov").val()));
+	var encrypt_v_validdesde = $("#v_datevaliddesde").val(encryptValuesIpts($("#v_datevaliddesde").val()));
+	var encrypt_v_validhasta = $("#v_datevalidhasta").val(encryptValuesIpts($("#v_datevalidhasta").val()));
+	var encrypt_v_fprevimports = $("#v_fprevimports").val(encryptValuesIpts($("#v_fprevimports").val()));
+	var encrypt_v_floadtypeope = $("#v_floadtypeope").val(encryptValuesIpts($("#v_floadtypeope").val()));
+	var encrypt_v_fpckgcontquant = $("#v_fpckgcontquant").val(encryptValuesIpts($("#v_fpckgcontquant").val()));
+	var encrypt_v_ftcomparweacbm = $("#v_ftcomparweacbm").val(encryptValuesIpts($("#v_ftcomparweacbm").val()));
+	var encrypt_v_fplctopckloc = $("#v_fplctopckloc").val(encryptValuesIpts($("#v_fplctopckloc").val()));
+	/* DESENCRIPTACIÓN DE INPUTS */
+	// ------------ VALORES DE CAJAS DE TEXTO - TEXTO
+	var v_idgencoderand = decryptValuesIpts(encrypt_v_idgencoderand.val());
+	var v_loadtypecharge = decryptValuesIpts(encrypt_v_loadtypecharge.val());
+	var portOriginName = decryptValuesIpts(encrypt_portOriginName.val());
+	var portDestinyName = decryptValuesIpts(encrypt_portDestinyName.val());
+	var v_typeserviceinit = decryptValuesIpts(encrypt_v_typeserviceinit.val());
+	var v_fnamecategprod = decryptValuesIpts(encrypt_v_fnamecategprod.val());
+	var v_ftaproxtransbycont = decryptValuesIpts(encrypt_v_ftaproxtransbycont.val());
+	var v_floadTypeTranport = decryptValuesIpts(encrypt_v_floadTypeTranport.val());
+	var v_validdesde = decryptValuesIpts(encrypt_v_validdesde.val());
+	var v_validhasta = decryptValuesIpts(encrypt_v_validhasta.val());
+	var v_fprevimports = decryptValuesIpts(encrypt_v_fprevimports.val());
+	var v_floadtypeope = decryptValuesIpts(encrypt_v_floadtypeope.val());
+	var v_fpckgcontquant = decryptValuesIpts(encrypt_v_fpckgcontquant.val());
+	var v_ftcomparweacbm = decryptValuesIpts(encrypt_v_ftcomparweacbm.val());
+	var v_fplctopckloc = decryptValuesIpts(encrypt_v_fplctopckloc.val());
+	// ------------ VALORES DE CAJAS DE TEXTO - CÁLCULO
+	var val_ftotvalofdownload = decryptValuesIpts(encrypt_val_ftotvalofdownload.val());
+	var val_ftotalfleteprod = decryptValuesIpts(encrypt_val_ftotalfleteprod.val());
+	var val_ftotalvalfobprod = decryptValuesIpts(encrypt_val_ftotalvalfobprod.val()); // VALOR FOB
+	var val_plcpickuprateprov = decryptValuesIpts(encrypt_val_plcpickuprateprov.val()); // TRANSPORTE INTERNO
+
 	// ------------ VALIDAR SI EXISTE UN USUARIO, DE LO CONTRARIO ASIGNAR EL USUARIO POR DEFECTO 
 	if($("#s_useregin-sistem").val() == "" || $("#s_useregin-sistem").val() == undefined || $("#s_useregin-sistem").val() == 'undefined' || $("#s_useregin-sistem").val() == null || $("#s_useregin-sistem").val() == 'null'){
-
 		sessval_loginuser = { username: 'Invitado' }
     sessionStorage.setItem("sess_usercli", JSON.stringify(sessval_loginuser));
     sessionStorage.setItem("sess_valuser", 0);
     var s_username_local = JSON.parse(sessionStorage.getItem("sess_usercli"));
 		// ------------ ACTUALIZAR EL HEADER TOP 
 		$("#s-loginsessuser-active").html(`
-			<a href='javascript:void(0);' class='c-Htopbar--c--cMenu--m--link'>
-	      <span id='namUser_validSess' class='c-Htopbar--c--cMenu--m--link--sessUser'>${s_username_local.username}</span>
-	    </a>
-	    <ul class='c-Htopbar--c--cMenu--m--item--subm'>
-	      <li class='c-Htopbar--c--cMenu--m--item--subm--subitem'>
-	        <a href='logout' class='c-Htopbar--c--cMenu--m--item--subm--sublink'>
-	      		<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#fff" viewBox="0 0 24 24"><path d="M8 9v-4l8 7-8 7v-4h-8v-6h8zm2-7v2h12v16h-12v2h14v-20h-14z"/></svg>
-	        	<span>Cerrar sesión</span>
-	        </a>
-	      </li>
-	    </ul>`);
-
+		<a href='javascript:void(0);' class='c-Htopbar--c--cMenu--m--link'>
+      <span id='namUser_validSess' class='c-Htopbar--c--cMenu--m--link--sessUser'>${s_username_local.username}</span>
+    </a>
+    <ul class='c-Htopbar--c--cMenu--m--item--subm'>
+      <li class='c-Htopbar--c--cMenu--m--item--subm--subitem'>
+        <a href='logout' class='c-Htopbar--c--cMenu--m--item--subm--sublink'>
+      		<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#fff" viewBox="0 0 24 24"><path d="M8 9v-4l8 7-8 7v-4h-8v-6h8zm2-7v2h12v16h-12v2h14v-20h-14z"/></svg>
+        	<span>Cerrar sesión</span>
+        </a>
+      </li>
+    </ul>`);
 		$.ajax({
 			url: 'controllers/prcss_login-user.php',
 			method: 'POST',
 			dataType: 'JSON',
 			contentType: 'application/x-www-form-urlencoded;charset=UTF-8',
 			data: { 'u-username' : s_username_local.username, 'u-typeorder' : sessionStorage.getItem("sess_valuser")}
-		}).done(function(e){
+		}).done((e) => {
 			// ------------ MOSTRAR EL NOMBRE/CORREO DEL USUARIO 
 			$("#s-loginsessuser-active").html(`
 			<a href='javascript:void(0);' class='c-Htopbar--c--cMenu--m--link'>
@@ -76,21 +132,16 @@ $(document).ready(function(){
       </li>
     </ul>`);
 	}
-
 	// ------------ VALORES PARA LAS VALIDACIONES 
-	// ------------ VALORES DESDE INPUTS
-	var v_loadtypecharge = $("#v_loadtypecharge").val();
-	var portOriginName = $("#v_fportorigname").val();
-	var portDestinyName = $("#v_fportdestiname").val();
-	var v_typeserviceinit = $("#v_typeserviceinit").val();
-	var v_fnamecategprod = $("#v_fnamecategprod").val();
-	var v_ftaproxtransbycont = $("#v_ftaproxtransbycont").val();
-	// ------------ VALORES PARA EL CÁLCULO
-	var val_ftotvalofdownload = $("#v_ftotvalofdownload").val();
 	// ------------ CÁLCULO DE IMPUESTOS 
 	var partInteger_Tax = 0;
 	var partDecimal_Tax = 0;
 	var partFinalDecimal_Tax = 0;
+	// ------------ CÁLCULO SERVICIOS IGV 18%
+	var fval_com_agencia = 0;
+	var fvalfinal_com_agencia = 0;
+	var fvalfinal_gas_operativos = 0;
+	var val_defaultmin = 0.4 / 100;
 	// ------------ VARIABLES PARA LOS TOTALES A IMPRIMIR 
 	var sumTotalFirstFlete = 0;
 	var sumTotalbyIGV = 0;
@@ -103,15 +154,15 @@ $(document).ready(function(){
 	var receivedAd_valoren = parseFloat(localStorage.getItem("key_v-valuestaxOnebyigv")); //AD-VALOREN
 	var receivedI_selectivo = parseFloat(localStorage.getItem("key_v-valuestaxTwobyigv")); //IMPUESTO SELECTIVO
 	var received_antidumping = parseFloat(localStorage.getItem("key_v-valuestaxThreebyigv")); //ANTIDUMPING
-	var receivedfob = localStorage.getItem("key_v-valueproduct"); //VALOR FOB DESDE LOCALSTORAGE
-	var receiveddownload = val_ftotvalofdownload; //VALOR DE DESCARGA DESDE LOCALSTORAGE
+	var receivedfob = val_ftotalvalfobprod; //VALOR FOB
+	var receiveddownload = val_ftotvalofdownload; //VALOR DE DESCARGA
 	var cutefobofpriceusd = receivedfob.split(" USD");
   var cutewithoutofpricefob = cutefobofpriceusd[0].replace(/\./g, '');
+	var totaltransport = parseFloat(val_plcpickuprateprov); //TOTAL TRANSPORTE
+	var totalimportprev = v_fprevimports; //TOTAL IMPORTACIÓN PREVIA
 	var totflete = parseFloat(localStorage.getItem("key_v-totalflette")); //TOTAL - SOLO FLETE
 	var totalamountadditional = parseFloat(localStorage.getItem("key_v-totalammountadditional")); //MONTO ADICIONAL
-	var totaltransport = parseFloat(localStorage.getItem("key_v-valuetransport")); //TOTAL TRANSPORTE
 	var totalinsurance = parseFloat(localStorage.getItem("key_v-valueinsurance")); //TOTAL SEGURO
-	var totalimportprev = $("#v_previmports").text(); //TOTAL IMPORTACIÓN PREVIA
 	var totalvaluesquotation =  parseFloat(localStorage.getItem("key_v-valuesquotation")); //TOTAL SUMA DE VALORES DE COTIZACIÓN
 	var totalvaluesquotationbyIGV =  parseFloat(localStorage.getItem("key_v-valuesquotationbyigv")); //TOTAL SUMA DE VALORES DE COTIZACIÓN IGV
   var totalfinalvaluefob = parseFloat(twodecimals(cutewithoutofpricefob)); //TOTAL DE VALOR FOB
@@ -123,19 +174,39 @@ $(document).ready(function(){
     method: "POST",
     datatype: "JSON",
     contentType: 'application/x-www-form-urlencoded;charset=UTF-8',
-  }).done(function(e){
+  }).done((e) => {
   	var rinsurance = JSON.parse(e);
+  	console.log(rinsurance);
   	var insure_min25000 = parseFloat(rinsurance[0].data_value); //FOB MENOR A 25000
   	var insure_max25000 = parseFloat(rinsurance[1].data_value); //FOB MAYOR A 25000
   	var insure_default = parseFloat(rinsurance[2].data_value); //SIN FOB/VALOR POR DEFECTO
+  	var initvalinsurance = 0;
+  	var finalinsurance = 0;
+  	var finalRoundinsurance = 0;
 
-  	if($("#v_insurancemerch").text() != "NO"){
+  	if(totalfinalvaluefob > 25000){
+      finalinsurance = totalfinalvaluefob * insure_max25000; //FOB ES MAYOR A 25000
+      initvalinsurance = insurance_default;
+      finalRoundinsurance = myRound(finalinsurance);
+    }else{
+      finalinsurance = totalfinalvaluefob * insure_min25000; //FOB ES MENOR A 25000
+      initvalinsurance = insurance_default;
+      finalRoundinsurance = myRound(finalinsurance);
+    }
+
+
+
+
+
+
+
+
+  	if($("#v_insurancemerch") != undefined && $("#v_insurancemerch") != null && $("#v_insurancemerch").text() != "NO"){
 			// ------------ TOTALES A IMPRIMIR - CON SEGURO 
 			sumTotalFirstFlete = totflete + totalamountadditional + totaltransport + totalinsurance + totalvaluesquotation + totalfinalvaluedownload; //FLETE FINAL
 			sumTotalbyIGV = (totaltransport + totalamountadditional + totalvaluesquotationbyIGV) * (18 / 100); //IGV (DEBAJO DEL FLETE FINAL)
 			sumTotalFinalFleteandIGV = sumTotalFirstFlete + sumTotalbyIGV; //VALOR TOTAL FINAL DE LA COTIZACIÓN
 			sumbyCIF = totalfinalvaluefob + totflete + totalinsurance; //CIF FINAL
-
   	}else{
   		// ------------ TOTALES A IMPRIMIR - SIN SEGURO 
 			sumTotalFirstFlete = totflete + totalamountadditional + totaltransport + totalvaluesquotation + totalfinalvaluedownload; //FLETE FINAL
@@ -317,8 +388,8 @@ $(document).ready(function(){
 				formdata.append("f_totalservicesIGV18", totalNotRountByIGV);
 				formdata.append("f_totalimpuestos", twodecimals_FinalTax);
 				formdata.append("f_totalwithIGV", totalNotRoundFinal);
-				formdata.append("f_validdesde", $("#v_datevaliddesde").val());
-				formdata.append("f_validhasta", $("#v_datevalidhasta").val());
+				formdata.append("f_validdesde", v_validdesde);
+				formdata.append("f_validhasta", v_validhasta);
 
 				$.ajax({
 					url: 'controllers/prcss_add-quotation-user.php',
@@ -563,8 +634,8 @@ $(document).ready(function(){
 				formdata.append("f_totalservicesIGV18", totalNotRountByIGV);
 				formdata.append("f_totalimpuestos", twodecimals_FinalTax);
 				formdata.append("f_totalwithIGV", totalNotRoundFinal);
-				formdata.append("f_validdesde", $("#v_datevaliddesde").val());
-				formdata.append("f_validhasta", $("#v_datevalidhasta").val());
+				formdata.append("f_validdesde", v_validdesde);
+				formdata.append("f_validhasta", v_validhasta);
 
 				$.ajax({
 					url: 'controllers/prcss_add-quotation-user.php',
