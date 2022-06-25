@@ -965,7 +965,6 @@ $(document).ready(function(){
 			formdata.append("id_codegenrand", v_idgencoderand);
 			formdata.append("code_quote", $("#v_gencodexxx").text());
 			formdata.append("u_login", user_sessquote);
-
 			$.ajax({
 				url: 'controllers/c_validation_by_idcodegenrand.php',
 				method: 'POST',
@@ -977,8 +976,7 @@ $(document).ready(function(){
 			}).done((e) => {
 				if(e != ""){
 					var rpdf = JSON.parse(e);
-					if(rpdf.res != "notexists"){
-						//generatePDF(queryresult.username);
+					if(rpdf.res == "exists"){
 						$("#cUIMessageValid-user").html(`<div id="msgAlertpreloader">
 							<div class="cont-loader--loader">
 								<span class="cont-loader--loader--circle"></span>
@@ -988,7 +986,6 @@ $(document).ready(function(){
 							</div>
 							<p>Preparando cotización...</p>
 						</div>`);
-
 						$.ajax({
 							type: 'POST',
 							url: 'controllers/c_generate-pdf-aduanas.php',
@@ -1041,7 +1038,6 @@ $(document).ready(function(){
 					}else if(rpdf.res == "notexists"){
 						$("#cUIMessageValid-user").html("");
 						$("#cnt-modalFormLoginyRegister").add($(".cnt-modalFormLoginyRegister--c")).addClass("show");
-						console.log("El usuario aún NO registró sus datos");
 					}else{
 						$("#cUIMessageValid-user").html("");
 						Swal.fire({
@@ -1089,8 +1085,7 @@ $(document).ready(function(){
 			}).done((e) => {
 				if(e != ""){
 					var rpdf = JSON.parse(e);
-					if(rpdf.res != "notexists"){
-						//generatePDF(queryresult.username);
+					if(rpdf.res == "exists"){
 						$("#cUIMessageValid-user").html(`<div id="msgAlertpreloader">
 							<div class="cont-loader--loader">
 								<span class="cont-loader--loader--circle"></span>
@@ -1100,7 +1095,6 @@ $(document).ready(function(){
 							</div>
 							<p>Preparando cotización...</p>
 						</div>`);
-
 						$.ajax({
 							type: 'POST',
 							url: 'controllers/c_generate-pdf-aduanas.php',
@@ -1206,7 +1200,6 @@ $(document).ready(function(){
 			formdata.append("id_codegenrand", v_idgencoderand);
 			formdata.append("code_quote", $("#v_gencodexxx").text());
 			formdata.append("u_login", user_sessquote);
-
 			$.ajax({
 				url: 'controllers/c_validation_by_idcodegenrand.php',
 				method: 'POST',
@@ -1218,8 +1211,7 @@ $(document).ready(function(){
 			}).done((e) => {
 				if(e != ""){
 					var rpdf = JSON.parse(e);
-					if(rpdf.res != "notexists"){
-						//generatePDF(queryresult.username);
+					if(rpdf.res == "exists"){
 						$("#cUIMessageValid-user").html(`<div id="msgAlertpreloader">
 							<div class="cont-loader--loader">
 								<span class="cont-loader--loader--circle"></span>
@@ -1229,7 +1221,6 @@ $(document).ready(function(){
 							</div>
 							<p>Preparando cotización...</p>
 						</div>`);
-
 						$.ajax({
 							type: 'POST',
 							url: 'controllers/c_generate-pdf-aduanas.php',
@@ -1282,7 +1273,6 @@ $(document).ready(function(){
 					}else if(rpdf.res == "notexists"){
 						$("#cUIMessageValid-user").html("");
 						$("#cnt-modalFormLoginyRegister").add($(".cnt-modalFormLoginyRegister--c")).addClass("show");
-						console.log("El usuario aún NO registró sus datos");
 					}else{
 						$("#cUIMessageValid-user").html("");
 						Swal.fire({
@@ -1318,7 +1308,6 @@ $(document).ready(function(){
 			formdata.append("id_codegenrand", v_idgencoderand);
 			formdata.append("code_quote", $("#v_gencodexxx").text());
 			formdata.append("u_login", user_sessquote);
-
 			$.ajax({
 				url: 'controllers/c_validation_by_idcodegenrand.php',
 				method: 'POST',
@@ -1330,8 +1319,7 @@ $(document).ready(function(){
 			}).done((e) => {
 				if(e != ""){
 					var rpdf = JSON.parse(e);
-					if(rpdf.res != "notexists"){
-						//generatePDF(queryresult.username);
+					if(rpdf.res == "exists"){
 						$("#cUIMessageValid-user").html(`<div id="msgAlertpreloader">
 							<div class="cont-loader--loader">
 								<span class="cont-loader--loader--circle"></span>
@@ -1341,7 +1329,6 @@ $(document).ready(function(){
 							</div>
 							<p>Preparando cotización...</p>
 						</div>`);
-
 						$.ajax({
 							type: 'POST',
 							url: 'controllers/c_generate-pdf-aduanas.php',
@@ -1394,7 +1381,6 @@ $(document).ready(function(){
 					}else if(rpdf.res == "notexists"){
 						$("#cUIMessageValid-user").html("");
 						$("#cnt-modalFormLoginyRegister").add($(".cnt-modalFormLoginyRegister--c")).addClass("show");
-						console.log("El usuario aún NO registró sus datos");
 					}else{
 						$("#cUIMessageValid-user").html("");
 						Swal.fire({

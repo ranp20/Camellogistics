@@ -71,7 +71,7 @@ $(document).ready(function(){
 	var v_fplctopckloc = decryptValuesIpts(encrypt_v_fplctopckloc.val());
 	var v_frselinsmerch = decryptValuesIpts(encrypt_v_frselinsmerch.val());
 	var v_foptgnfquotevl = decryptValuesIpts(encrypt_v_foptgnfquotevl.val());
-	
+
 	// ------------ VALORES DE CAJAS DE TEXTO - CÁLCULO
 	var val_ftotvalofdownload = decryptValuesIpts(encrypt_val_ftotvalofdownload.val());
 	var val_ftotalfleteprod = decryptValuesIpts(encrypt_val_ftotalfleteprod.val());
@@ -190,15 +190,41 @@ $(document).ready(function(){
   	var finalinsurance = 0;
   	var finalRoundinsurance = 0;
 
-  	if(totalfinalvaluefob > 25000){
-      finalinsurance = totalfinalvaluefob * insureconvert_max25000; //FOB ES MAYOR A 25000
-      initvalinsurance = insure_max25000;
-      finalRoundinsurance = myRound(finalinsurance);
-    }else{
-      finalinsurance = insure_min25000; //FOB ES MENOR A 25000
-      initvalinsurance = insure_min25000;
-      finalRoundinsurance = myRound(finalinsurance);
-    }
+  	if(v_foptgnfquotevl == "y-moreOpts" && v_frselinsmerch == "SI"){
+  		if(totalfinalvaluefob > 25000){
+	      finalinsurance = totalfinalvaluefob * insureconvert_max25000; //FOB ES MAYOR A 25000
+	      initvalinsurance = insure_max25000;
+	      finalRoundinsurance = myRound(finalinsurance);
+	    }else{
+	      finalinsurance = insure_min25000; //FOB ES MENOR A 25000
+	      initvalinsurance = insure_min25000;
+	      finalRoundinsurance = myRound(finalinsurance);
+	    }
+  	}else if(v_foptgnfquotevl == "not-moreOpts" && v_frselinsmerch == "SI"){
+  		if(totalfinalvaluefob > 25000){
+	      finalinsurance = totalfinalvaluefob * insureconvert_max25000; //FOB ES MAYOR A 25000
+	      initvalinsurance = insure_max25000;
+	      finalRoundinsurance = myRound(finalinsurance);
+	    }else{
+	      finalinsurance = insure_min25000; //FOB ES MENOR A 25000
+	      initvalinsurance = insure_min25000;
+	      finalRoundinsurance = myRound(finalinsurance);
+	    }
+  	}else if(v_foptgnfquotevl == "y-moreOpts" && v_frselinsmerch == "NO"){
+  		if(totalfinalvaluefob > 25000){
+	      finalinsurance = totalfinalvaluefob * insureconvert_max25000; //FOB ES MAYOR A 25000
+	      initvalinsurance = insure_max25000;
+	      finalRoundinsurance = myRound(finalinsurance);
+	    }else{
+	      finalinsurance = insure_min25000; //FOB ES MENOR A 25000
+	      initvalinsurance = insure_min25000;
+	      finalRoundinsurance = myRound(finalinsurance);
+	    }
+  	}else if(v_foptgnfquotevl == "not-moreOpts" && v_frselinsmerch == "NO"){
+	  	finalRoundinsurance = 0;
+  	}else{
+  		finalRoundinsurance = 0;
+  	}
 
     // ------------ LISTAR SERVICIOS PARA CALCULO CON IGV 18% - FCL y LCL 
 	  $.ajax({
@@ -968,9 +994,7 @@ $(document).ready(function(){
 			}).done((e) => {
 				if(e != ""){
 					var rpdf = JSON.parse(e);
-					if(rpdf.res != "notexists"){
-						console.log("El usuario SI se registró previamente");
-						//generatePDF(queryresult.username);
+					if(rpdf.res == "exists"){
 						$("#cUIMessageValid-user").html(`<div id="msgAlertpreloader">
 							<div class="cont-loader--loader">
 								<span class="cont-loader--loader--circle"></span>
@@ -980,7 +1004,6 @@ $(document).ready(function(){
 							</div>
 							<p>Preparando cotización...</p>
 						</div>`);
-
 						$.ajax({
 							type: 'POST',
 							url: 'controllers/c_generate-pdf-integral.php',
@@ -1033,7 +1056,6 @@ $(document).ready(function(){
 					}else if(rpdf.res == "notexists"){
 						$("#cUIMessageValid-user").html("");
 						$("#cnt-modalFormLoginyRegister").add($(".cnt-modalFormLoginyRegister--c")).addClass("show");
-						console.log("El usuario aún NO registró sus datos");
 					}else{
 						$("#cUIMessageValid-user").html("");
 						Swal.fire({
@@ -1069,7 +1091,6 @@ $(document).ready(function(){
 			formdata.append("id_codegenrand", v_idgencoderand);
 			formdata.append("code_quote", $("#v_gencodexxx").text());
 			formdata.append("u_login", user_sessquote);
-
 			$.ajax({
 				url: 'controllers/c_validation_by_idcodegenrand.php',
 				method: 'POST',
@@ -1081,8 +1102,7 @@ $(document).ready(function(){
 			}).done((e) => {
 				if(e != ""){
 					var rpdf = JSON.parse(e);
-					if(rpdf.res != "notexists"){
-						//generatePDF(queryresult.username);
+					if(rpdf.res == "exists"){
 						$("#cUIMessageValid-user").html(`<div id="msgAlertpreloader">
 							<div class="cont-loader--loader">
 								<span class="cont-loader--loader--circle"></span>
@@ -1092,7 +1112,6 @@ $(document).ready(function(){
 							</div>
 							<p>Preparando cotización...</p>
 						</div>`);
-
 						$.ajax({
 							type: 'POST',
 							url: 'controllers/c_generate-pdf-integral.php',
@@ -1145,7 +1164,6 @@ $(document).ready(function(){
 					}else if(rpdf.res == "notexists"){
 						$("#cUIMessageValid-user").html("");
 						$("#cnt-modalFormLoginyRegister").add($(".cnt-modalFormLoginyRegister--c")).addClass("show");
-						console.log("El usuario aún NO registró sus datos");
 					}else{
 						$("#cUIMessageValid-user").html("");
 						Swal.fire({
@@ -1198,7 +1216,6 @@ $(document).ready(function(){
 			formdata.append("id_codegenrand", v_idgencoderand);
 			formdata.append("code_quote", $("#v_gencodexxx").text());
 			formdata.append("u_login", user_sessquote);
-
 			$.ajax({
 				url: 'controllers/c_validation_by_idcodegenrand.php',
 				method: 'POST',
@@ -1210,8 +1227,7 @@ $(document).ready(function(){
 			}).done((e) => {
 				if(e != ""){
 					var rpdf = JSON.parse(e);
-					if(rpdf.res != "notexists"){
-						//generatePDF(queryresult.username);
+					if(rpdf.res == "exists"){
 						$("#cUIMessageValid-user").html(`<div id="msgAlertpreloader">
 							<div class="cont-loader--loader">
 								<span class="cont-loader--loader--circle"></span>
@@ -1221,7 +1237,6 @@ $(document).ready(function(){
 							</div>
 							<p>Preparando cotización...</p>
 						</div>`);
-
 						$.ajax({
 							type: 'POST',
 							url: 'controllers/c_generate-pdf-integral.php',
@@ -1274,7 +1289,6 @@ $(document).ready(function(){
 					}else if(rpdf.res == "notexists"){
 						$("#cUIMessageValid-user").html("");
 						$("#cnt-modalFormLoginyRegister").add($(".cnt-modalFormLoginyRegister--c")).addClass("show");
-						console.log("El usuario aún NO registró sus datos");
 					}else{
 						$("#cUIMessageValid-user").html("");
 						Swal.fire({
@@ -1310,7 +1324,6 @@ $(document).ready(function(){
 			formdata.append("id_codegenrand", v_idgencoderand);
 			formdata.append("code_quote", $("#v_gencodexxx").text());
 			formdata.append("u_login", user_sessquote);
-
 			$.ajax({
 				url: 'controllers/c_validation_by_idcodegenrand.php',
 				method: 'POST',
@@ -1322,8 +1335,7 @@ $(document).ready(function(){
 			}).done((e) => {
 				if(e != ""){
 					var rpdf = JSON.parse(e);
-					if(rpdf.res != "notexists"){
-						//generatePDF(queryresult.username);
+					if(rpdf.res == "exists"){
 						$("#cUIMessageValid-user").html(`<div id="msgAlertpreloader">
 							<div class="cont-loader--loader">
 								<span class="cont-loader--loader--circle"></span>
@@ -1333,7 +1345,6 @@ $(document).ready(function(){
 							</div>
 							<p>Preparando cotización...</p>
 						</div>`);
-
 						$.ajax({
 							type: 'POST',
 							url: 'controllers/c_generate-pdf-integral.php',
@@ -1386,7 +1397,6 @@ $(document).ready(function(){
 					}else if(rpdf.res == "notexists"){
 						$("#cUIMessageValid-user").html("");
 						$("#cnt-modalFormLoginyRegister").add($(".cnt-modalFormLoginyRegister--c")).addClass("show");
-						console.log("El usuario aún NO registró sus datos");
 					}else{
 						$("#cUIMessageValid-user").html("");
 						Swal.fire({
