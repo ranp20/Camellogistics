@@ -50,6 +50,7 @@ $(document).ready(function(){
 	var encrypt_v_fpckgcontquant = $("#v_fpckgcontquant").val(encryptValuesIpts($("#v_fpckgcontquant").val()));
 	var encrypt_v_ftcomparweacbm = $("#v_ftcomparweacbm").val(encryptValuesIpts($("#v_ftcomparweacbm").val()));
 	var encrypt_v_fplctopckloc = $("#v_fplctopckloc").val(encryptValuesIpts($("#v_fplctopckloc").val()));
+	var encrypt_v_frselinsmerch = $("#v_frselinsmerch").val(encryptValuesIpts($("#v_frselinsmerch").val()));
 	/* DESENCRIPTACIÓN DE INPUTS */
 	// ------------ VALORES DE CAJAS DE TEXTO - TEXTO
 	var v_idgencoderand = decryptValuesIpts(encrypt_v_idgencoderand.val());
@@ -67,6 +68,7 @@ $(document).ready(function(){
 	var v_fpckgcontquant = decryptValuesIpts(encrypt_v_fpckgcontquant.val());
 	var v_ftcomparweacbm = decryptValuesIpts(encrypt_v_ftcomparweacbm.val());
 	var v_fplctopckloc = decryptValuesIpts(encrypt_v_fplctopckloc.val());
+	var v_frselinsmerch = decryptValuesIpts(encrypt_v_frselinsmerch.val());
 	// ------------ VALORES DE CAJAS DE TEXTO - CÁLCULO
 	var val_ftotvalofdownload = decryptValuesIpts(encrypt_val_ftotvalofdownload.val());
 	var val_ftotalfleteprod = decryptValuesIpts(encrypt_val_ftotalfleteprod.val());
@@ -143,7 +145,7 @@ $(document).ready(function(){
 	var fvalfinal_gas_operativos = 0;
 	var val_defaultmin = 0.4 / 100;
 	// ------------ VARIABLES PARA LOS TOTALES A IMPRIMIR 
-	var sumTotalFirstFlete = 0;
+	var sumTotalServices = 0;
 	var sumTotalbyIGV = 0;
 	var sumTotalFinalFleteandIGV = 0;
 	var sumbyCIF = 0;
@@ -222,17 +224,17 @@ $(document).ready(function(){
 	  		}
 	  	}
 
-	  	if($("#v_insurancemerch") != undefined && $("#v_insurancemerch") != null && $("#v_insurancemerch").text() != "NO"){
+	  	if(v_frselinsmerch != undefined && v_frselinsmerch != null && v_frselinsmerch != "NO"){
 				// ------------ TOTALES A IMPRIMIR - CON SEGURO 
-				sumTotalFirstFlete = totaltransport + fvalfinal_com_agencia + fvalfinal_gas_operativos + totalamountadditional + totalvaluesquotationbyIGV; //FLETE FINAL
+				sumTotalServices = totaltransport + fvalfinal_com_agencia + fvalfinal_gas_operativos + totalamountadditional + totalvaluesquotationbyIGV; //FLETE FINAL
 				sumTotalbyIGV = (totaltransport + fvalfinal_com_agencia + fvalfinal_gas_operativos + totalamountadditional + totalvaluesquotationbyIGV) * (18 / 100); //IGV (DEBAJO DEL FLETE FINAL)
-				sumTotalFinalFleteandIGV = sumTotalFirstFlete + sumTotalbyIGV; //VALOR TOTAL FINAL DE LA COTIZACIÓN
+				sumTotalFinalFleteandIGV = sumTotalServices + sumTotalbyIGV; //VALOR TOTAL FINAL DE LA COTIZACIÓN
 				sumbyCIF = totalfinalvaluefob + totflete + finalRoundinsurance; //CIF FINAL
 	  	}else{
 	  		// ------------ TOTALES A IMPRIMIR - SIN SEGURO 
-				sumTotalFirstFlete = totaltransport + fvalfinal_com_agencia + fvalfinal_gas_operativos + totalamountadditional + totalvaluesquotationbyIGV; //FLETE FINAL
+				sumTotalServices = totaltransport + fvalfinal_com_agencia + fvalfinal_gas_operativos + totalamountadditional + totalvaluesquotationbyIGV; //FLETE FINAL
 				sumTotalbyIGV = (totaltransport + fvalfinal_com_agencia + fvalfinal_gas_operativos + totalamountadditional + totalvaluesquotationbyIGV) * (18 / 100); //IGV (DEBAJO DEL FLETE FINAL)
-				sumTotalFinalFleteandIGV = sumTotalFirstFlete + sumTotalbyIGV; //VALOR TOTAL FINAL DE LA COTIZACIÓN
+				sumTotalFinalFleteandIGV = sumTotalServices + sumTotalbyIGV; //VALOR TOTAL FINAL DE LA COTIZACIÓN
 				sumbyCIF = totalfinalvaluefob + totflete + finalRoundinsurance; //CIF FINAL
 	  	}
 			// console.log('TotalTransport: '+totaltransport);
@@ -240,16 +242,15 @@ $(document).ready(function(){
 			// console.log('GastosOperativos: '+fvalfinal_gas_operativos);
 			// console.log('TotalMontoAdicional: '+totalamountadditional);
 			// console.log('TotalValuesQuotationIGV:' +totalvaluesquotationbyIGV);
-			// console.log('TotalSERVICIOS: '+sumTotalFirstFlete);
+			// console.log('TotalSERVICIOS: '+sumTotalServices);
 			
 			// console.log('Totaltarifatrans: '+totaltransport);
 			// console.log('Totalmontoadicional: '+totalamountadditional);
 			// console.log('TotalvalorIGV: '+totalvaluesquotationbyIGV);
 			// console.log("Total servicios IGV 18%: "+sumTotalbyIGV);
 
-
 			// ------------ LIMPIAR EL VALOR E IMPRIMIR EN EL TOTAL DEL SERVICIOS 
-			var totalNotround = twodecimals(sumTotalFirstFlete);
+			var totalNotround = twodecimals(sumTotalServices);
 			var n = Math.abs(totalNotround);
 			partInteger = Math.trunc(n);
 			var separate_point = partInteger.toString().replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d)\.?)/g, ".");
@@ -424,7 +425,7 @@ $(document).ready(function(){
 					formdata.append("f_time_transit", v_ftaproxtransbycont);
 					formdata.append("f_fob", totalfinalvaluefob);
 					formdata.append("f_flete", totflete);
-					formdata.append("f_insurance", insurance_default);
+					formdata.append("f_insurance", initvalinsurance);
 					formdata.append("f_cif", sumbyCIF);
 					formdata.append("f_v_IGV", restaxvalues[0].data_value);
 					formdata.append("f_v_IPM", restaxvalues[1].data_value);
@@ -692,7 +693,7 @@ $(document).ready(function(){
 					formdata.append("f_time_transit", v_ftaproxtransbycont);
 					formdata.append("f_fob", totalfinalvaluefob);
 					formdata.append("f_flete", totflete);
-					formdata.append("f_insurance", insurance_default);
+					formdata.append("f_insurance", initvalinsurance);
 					formdata.append("f_cif", sumbyCIF);
 					formdata.append("f_v_IGV", restaxvalues[0].data_value);
 					formdata.append("f_v_IPM", restaxvalues[1].data_value);
@@ -936,7 +937,6 @@ $(document).ready(function(){
 				}
 		  });
 	  });
-
   });
   // ------------ VALIDAR SI EXISTE UN USUARIO AL ABRIR EL MODAL - PRIMER BOTÓN 
   $(document).on("click","#btn-requireDownloadQuotaion_one",function(e){

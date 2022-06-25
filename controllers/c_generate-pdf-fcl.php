@@ -46,7 +46,7 @@ $name_quotation = "Presupuesto-".$_POST['code_quote']."-".$f_typecontainer;
           <div id="title_fech_cot">FECHA</div>
 	      </div>
 	      <div id="marc_cab_der">
-	        <div id="corr_cot">CT 000000</div>
+	        <div id="corr_cot">FL 000000</div>
 	        <div id="fech_cot">21/09/2021</div>
 	      </div>
 	    </div>
