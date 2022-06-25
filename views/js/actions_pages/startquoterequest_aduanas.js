@@ -938,6 +938,10 @@ $(document).on("click", "#btn-NextStepToSelOptResultExp", function(){
             <input type="text" id="val_valfleteprod" name="val_valfleteprod" class="n-val-sd" value="">
             <input type="hidden" value="NO" id="val-prevImports" name="val-prevImports" class="n-val-sd">
             <input type="hidden" value="" id="val-quantityProdsAmmAdd" name="val-quantityProdsAmmAdd" class="n-val-sd">
+            <input type="hidden" value="" id="val-ammvthisprod" name="val-ammvthisprodcateg" class="n-val-sd">
+            <input type="hidden" value="" id="val-ammtthxvaone" name="val-ammtthxvaonepcatg" class="n-val-sd">
+            <input type="hidden" value="" id="val-ammtthxvatwo" name="val-ammtthxvatwopcatg" class="n-val-sd">
+            <input type="hidden" value="" id="val-ammtthxvathree" name="val-ammtthxvathreepcatg" class="n-val-sd">
           </span>
         </span>
       </div>
@@ -1485,6 +1489,10 @@ $(document).on("click", "#btn-NextStepTochargedata", function(){
                 <input type="text" id="val_valfleteprod" name="val_valfleteprod" class="n-val-sd" value="">
                 <input type="hidden" value="NO" id="val-prevImports" name="val-prevImports" class="n-val-sd">
                 <input type="hidden" value="" id="val-quantityProdsAmmAdd" name="val-quantityProdsAmmAdd" class="n-val-sd">
+                <input type="hidden" value="" id="val-ammvthisprod" name="val-ammvthisprodcateg" class="n-val-sd">
+                <input type="hidden" value="" id="val-ammtthxvaone" name="val-ammtthxvaonepcatg" class="n-val-sd">
+                <input type="hidden" value="" id="val-ammtthxvatwo" name="val-ammtthxvatwopcatg" class="n-val-sd">
+                <input type="hidden" value="" id="val-ammtthxvathree" name="val-ammtthxvathreepcatg" class="n-val-sd">
               </span>
             </span>
           </div>
@@ -1553,6 +1561,10 @@ $(document).on("click", "#btn-NextStepTochargedata", function(){
                 <input type="text" id="val_valfleteprod" name="val_valfleteprod" class="n-val-sd" value="">
                 <input type="hidden" value="NO" id="val-prevImports" name="val-prevImports" class="n-val-sd">
                 <input type="hidden" value="" id="val-quantityProdsAmmAdd" name="val-quantityProdsAmmAdd" class="n-val-sd">
+                <input type="hidden" value="" id="val-ammvthisprod" name="val-ammvthisprodcateg" class="n-val-sd">
+                <input type="hidden" value="" id="val-ammtthxvaone" name="val-ammtthxvaonepcatg" class="n-val-sd">
+                <input type="hidden" value="" id="val-ammtthxvatwo" name="val-ammtthxvatwopcatg" class="n-val-sd">
+                <input type="hidden" value="" id="val-ammtthxvathree" name="val-ammtthxvathreepcatg" class="n-val-sd">
               </span>
             </span>
           </div>
@@ -1894,23 +1906,29 @@ $(document).on("keyup keypress", "#ipt-valPriceProdNInterface", function(e){
     }
   }
 });
-// ------------ FIJAR EL VALOR DE ITEM EN EL INPUT - TIPOS DE PRODUCTOS 
+// ------------ FIJAR EL VALOR DEL ITEM EN EL INPUT - TIPOS DE PRODUCTOS 
 $(document).on("click", ".cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl--cListChange--m--item", function(){
   $("#m-listAllNamTypeProds").removeClass("show");
   $("#ipt-valNameTypeProdNInterface").attr("idproduct", $(this).attr("id"));
   $("#ipt-valNameTypeProdNInterface").val($(this).find("p").text());
-  // ------------ ASIGNAR A LA VARIABLE LOCAL 
-  localStorage.setItem("key_v-dbammountadditional", $(this).attr("data-amountadditional")); //VALOR ADICIONAL DEL PRODUCTO
+  var taxationOneVal = parseFloat($(this).attr("data-taxone"));
+  var taxationTwoVal = parseFloat($(this).attr("data-taxtwo"));
+  var taxationThreeVal = parseFloat($(this).attr("data-taxthree"));
+  // ------------ ASIGNAR A INPUTS DE ENVÍO
+  $("#val-ammtthxvaone").val(taxationOneVal); //VALOR DE AD-VALOREN
+  $("#val-ammtthxvatwo").val(taxationTwoVal); //VALOR DE IMPUESTO SELECCTIVO
+  $("#val-ammtthxvathree").val(taxationThreeVal); //VALOR DE ANTIDUMPING
+  // ------------ INPUT POST MONTO ADICIONAL DEL PRODUCTO
+  $("#val-ammvthisprod").val($(this).attr("data-amountadditional"));
   // ------------ MOSTRAR/OCULTAR DE ACUERDO A EL VALOR DEL MONTO ADICIONAL 
   if($(this).attr("data-amountadditional") != 0 || $(this).attr("data-amountadditional") != 0.00){
     $("#ipt-valCantOfAmountAdditional").html(`
-      <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl">
-        <label for="" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl--label">CANTIDAD</label>
-        <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl--cListChange">
-          <input type="text" id="ipt-valQuantityAmAddProdNInterface" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl--cListChange--input" maxlength="13" autocomplete="off">
-        </div>
+    <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl">
+      <label for="" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl--label">CANTIDAD</label>
+      <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl--cListChange">
+        <input type="text" id="ipt-valQuantityAmAddProdNInterface" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl--cListChange--input" maxlength="13" autocomplete="off">
       </div>
-    `);
+    </div>`);
   }else{
     $("#ipt-valCantOfAmountAdditional").html("");
   }
@@ -1919,7 +1937,6 @@ $(document).on("click", ".cont-MainCamelLog--c--contSteps--item--cStep--mFrmIpts
 });
 // ------------ VALIDAR INPUT - CANTIDAD DE PRODUCTOS CON MONTO ADICIONAL 
 $(document).on("keyup keypress", "#ipt-valQuantityAmAddProdNInterface", function(e){
-  console.log(e.target.value);
   if ((e.which != 8 && e.which != 0) && (e.which < 48 || e.which > 57) && $(this).val().length >= parseInt($(this).attr('maxlength'))) {
     return false;
   }
@@ -1930,9 +1947,6 @@ $(document).on("keyup keypress", "#ipt-valQuantityAmAddProdNInterface", function
   });
   // ------------ AGREGAR AL INPUT DE ENVÍO POST Y AGREGAR A LA VARIABLE LOCAL 
   $("#val-quantityProdsAmmAdd").val(e.target.value);
-  localStorage.setItem("key_v-ammountadditional", e.target.value);
-  // ------------ ASIGNAR A LA VARIABLE LOCAL 
-  localStorage.setItem("key_v-totalammountadditional", localStorage.getItem("key_v-dbammountadditional") * value);
   // ------------ VALIDAR SI CONTIENE ALGÚN VALOR NULO O 0 
   if(e.target.value == 0 && e.target.value == ""){
     $("#s-caseNextStepTomerchandisedata").html("");

@@ -2989,7 +2989,7 @@ $(document).on("keyup keydown", "#ipt-valNameTypeProdNInterface", function(e){
     //console.log('Con contenido');
   }
 });
-// ------------ FIJAR EL VALOR DE ITEM EN EL INPUT - TIPOS DE PRODUCTOS 
+// ------------ FIJAR EL VALOR DEL ITEM EN EL INPUT - TIPOS DE PRODUCTOS 
 $(document).on("click", ".cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl--cListChange--m--item", function(){
   $("#m-listAllNamTypeProds").removeClass("show");
   $("#ipt-valNameTypeProdNInterface").attr("idproduct", $(this).attr("id"));
