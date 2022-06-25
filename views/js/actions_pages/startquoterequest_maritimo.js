@@ -220,7 +220,6 @@ $(document).on("click", "#list-typeOperationItems li", function(){
     sectionsSteps.setAllowScrolling(true, 'up');
     sectionsSteps.setAllowScrolling(true, 'down');
     localStorage.setItem("key_v-totalflette", 0);
-    localStorage.setItem("key_typeOp", $(this).find("li").find("p").text());
     // ------------ ASIGNAR A LA VARIABLE BLOBAL 
     v_TypeOp = $(this).find("a").find("p").text();
     // ------------ VALOR DEL TIPO DE OPERACIÓN 
@@ -294,8 +293,6 @@ $(document).on("click","#list-typeTransporteSelectItems a",function(){
   if(ttypeTransport == 0){
     // ------------ RESETEAR EL VALOR FINAL DEL FLETE, SI SE REGRESA HASTA ESTE PUNTO 
     localStorage.setItem("key_v-totalflette", 0);
-    // ------------ AGREGAR A LA VARIABLE LOCAL 
-    localStorage.setItem("key_typeTransp", "General");
     // ------------ ASIGNAR AL VALOR DEL INPUT DE ENVÍO POST 
     $("#loadTypeTranport").val("general");
     // ------------ MOSTRAR EN EL RESUMEN - LADO IZQUIERDO 
@@ -343,8 +340,6 @@ $(document).on("click","#list-typeTransporteSelectItems a",function(){
   }else if(ttypeTransport == 1){
     // ------------ RESETEAR EL VALOR FINAL DEL FLETE, SI SE REGRESA HASTA ESTE PUNTO 
     localStorage.setItem("key_v-totalflette", 0);
-    // ------------ AGREGAR A LA VARIABLE LOCAL 
-    localStorage.setItem("key_typeTransp", "Imo");
     // ------------ ASIGNAR AL VALOR DEL INPUT DE ENVÍO POST 
     $("#loadTypeTranport").val("imo");
     // ------------ MOSTRAR EN EL RESUMEN - LADO IZQUIERDO 
@@ -394,8 +389,6 @@ $(document).on("click","#list-typeTransporteSelectItems a",function(){
   }else{
     // ------------ RESETEAR EL VALOR FINAL DEL FLETE, SI SE REGRESA HASTA ESTE PUNTO 
     localStorage.setItem("key_v-totalflette", 0);
-    // ------------ AGREGAR A LA VARIABLE LOCAL 
-    localStorage.setItem("key_typeTransp", "Refrigerado");
     // ------------ ASIGNAR AL VALOR DEL INPUT DE ENVÍO POST 
     $("#loadTypeTranport").val("refrigerado");
     // ------------ MOSTRAR EN EL RESUMEN - LADO IZQUIERDO 
@@ -869,7 +862,6 @@ $(document).on("click", "#c-incdecBtns20 button", function(){
     var val_dateValidDesde = separateDateValidDesde[0]+" "+"de"+" "+firstToUppercase(monthSeparatetoArrayDesde);
     var val_dateValidHasta = separateDateValidHasta[0]+" "+"de"+" "+firstToUppercase(monthSeparatetoArrayHasta);
     // ------------ ASIGNAR A LAS VARIABLES LOCALES 
-    localStorage.setItem("key_validaterate", val_dateValidDesde+" - "+val_dateValidHasta);
     // ------------ ASIGNAR AL VALOR DE ENVÍO 
     $("#val_validateratequote").val(val_dateValidDesde+" - "+val_dateValidHasta);
 
@@ -1002,7 +994,6 @@ $(document).on("click", "#c-incdecBtns40 button", function(){
     var val_dateValidDesde = separateDateValidDesde[0]+" "+"de"+" "+firstToUppercase(monthSeparatetoArrayDesde);
     var val_dateValidHasta = separateDateValidHasta[0]+" "+"de"+" "+firstToUppercase(monthSeparatetoArrayHasta);
     // ------------ ASIGNAR A LAS VARIABLES LOCALES 
-    localStorage.setItem("key_validaterate", val_dateValidDesde+" - "+val_dateValidHasta);
     // ------------ ASIGNAR AL VALOR DE ENVÍO 
     $("#val_validateratequote").val(val_dateValidDesde+" - "+val_dateValidHasta);
 
@@ -1133,7 +1124,6 @@ $(document).on("click", "#c-incdecBtns40-hc button", function(){
     var val_dateValidDesde = separateDateValidDesde[0]+" "+"de"+" "+firstToUppercase(monthSeparatetoArrayDesde);
     var val_dateValidHasta = separateDateValidHasta[0]+" "+"de"+" "+firstToUppercase(monthSeparatetoArrayHasta);
     // ------------ ASIGNAR A LAS VARIABLES LOCALES 
-    localStorage.setItem("key_validaterate", val_dateValidDesde+" - "+val_dateValidHasta);
     // ------------ ASIGNAR AL VALOR DE ENVÍO 
     $("#val_validateratequote").val(val_dateValidDesde+" - "+val_dateValidHasta);
 
@@ -1262,7 +1252,6 @@ $(document).on("click", "#c-incdecBtns40-nor button", function(){
     var val_dateValidDesde = separateDateValidDesde[0]+" "+"de"+" "+firstToUppercase(monthSeparatetoArrayDesde);
     var val_dateValidHasta = separateDateValidHasta[0]+" "+"de"+" "+firstToUppercase(monthSeparatetoArrayHasta);
     // ------------ ASIGNAR A LAS VARIABLES LOCALES 
-    localStorage.setItem("key_validaterate", val_dateValidDesde+" - "+val_dateValidHasta);
     // ------------ ASIGNAR AL VALOR DE ENVÍO 
     $("#val_validateratequote").val(val_dateValidDesde+" - "+val_dateValidHasta);
 
@@ -1532,17 +1521,6 @@ $(document).on("click", "#list-SelOptionResultExp a", function(){
         localStorage.setItem("key_v-valuesquotation", unitvaluesQuotes);
       });
     }
-    // ------------ LISTAR EL IMPUESTO DE IMPORTACIÓN PREVIA 
-    $.ajax({
-      url: "controllers/list_taxation_values_byimport.php",
-      method: "POST",
-      datatype: "JSON",
-      contentType: 'application/x-www-form-urlencoded;charset=UTF-8'
-    }).done(function(e){
-      var resultTaximport = JSON.parse(e);
-      // ------------ ASIGNAR A LA VARIABLE LOCAL DE PERCEPCIÓN 
-      localStorage.setItem("key_v-valuestaxationimport", resultTaximport[0].data_value_two);
-    });
     // ------------ OCULTAR LOS DEMÁS PASOS POSTERIORES 
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-insuremerchandise]").removeClass("show");
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-insuremerchandise]").html("");
@@ -1611,8 +1589,6 @@ $(document).on("click", "#list-SelOptionResultExp a", function(){
   }else{
     // ------------ ASIGNAR A LA VARIABLE LOCAL DE SEGURO 
     localStorage.setItem("key_v-valueinsurance", 0);
-    // ------------ ASIGNAR A LA VARIABLE LOCAL DE PERCEPCIÓN 
-    localStorage.setItem("key_v-valuestaxationimport", 0);
     if($("#loadTypeCharge").val() != "LCL"){
       // ------------ LISTAR SERVICIOS PARA CALCULO CON IGV - FCL 
       $.ajax({
@@ -1793,8 +1769,8 @@ $(document).on("click","#list-insuremerchandise-notMoreOpts a",function(){
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-requirespickup]").removeClass("show");
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-requirespickup]").html("");
     // ------------ MOSTRAR EL MODAL DE RELLENAR (FOB)
-    $("#cnt-modalFormNotInsurance").add($(".cnt-modalFormNotInsurance--c")).addClass("show");
-    /*
+    // $("#cnt-modalFormNotInsurance").add($(".cnt-modalFormNotInsurance--c")).addClass("show");
+    
     // ------------ MOSTRAR EL BOTÓN DE CALCULAR COTIZACIÓN 
     $("#s-quotationToNextStep").html(`
       <button type="submit" class="cont-MainCamelLog--c--contSteps--item--cBtnNextStep--btnR" id="btn-CalcQuoteToMerchandiseData-1">
@@ -1802,9 +1778,10 @@ $(document).on("click","#list-insuremerchandise-notMoreOpts a",function(){
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 125" x="0px" y="0px"><g data-name="13-Quotation"><path d="M53.47,77.72h.88a1.06,1.06,0,0,0,0-2.12H19.46V7.19H61.17V22.81a1.06,1.06,0,0,0,1.06,1.06H77.1V65.09a1.06,1.06,0,0,0,2.11,0V22.81s0,0,0-.07a2.38,2.38,0,0,0,0-.26l0-.1a1.17,1.17,0,0,0-.19-.3L63,5.41a1,1,0,0,0-.79-.32H18.41a1.05,1.05,0,0,0-1.06,1.06V75.6H6.11a1.06,1.06,0,0,0-1.05,1.06c0,7.43,5.29,13.47,11.79,13.47h37.5a1.06,1.06,0,1,0,0-2.12H16.85c-5,0-9.18-4.53-9.64-10.29H53.47ZM63.28,8.83l12.4,12.92H63.28Z"/><path d="M73.84,64V33.17a1.05,1.05,0,0,0-1.06-1.06h-49a1.05,1.05,0,0,0-1.06,1.06V64a1.05,1.05,0,0,0,1.06,1.06h49A1.05,1.05,0,0,0,73.84,64ZM71.73,38.29H39.25V34.22H71.73Zm-39.4,0V34.22h4.81v4.07Zm4.81,2.11V63H32.33V40.4ZM24.83,34.22h5.38v4.07H24.83Zm0,6.18h5.38V63H24.83ZM39.25,63V40.4H71.73V63Z"/><path d="M60.49,69.27a1.05,1.05,0,0,0-1.06-1.06H55.81a1.06,1.06,0,1,0,0,2.11h3.62A1.05,1.05,0,0,0,60.49,69.27Z"/><path d="M51.57,69.27a.95.95,0,1,0,1-1A.95.95,0,0,0,51.57,69.27Z"/><path d="M23,17.73H34.47a1.06,1.06,0,0,0,0-2.11H23a1.06,1.06,0,1,0,0,2.11Z"/><path d="M23,21.52H38.36a1.06,1.06,0,0,0,0-2.12H23a1.06,1.06,0,0,0,0,2.12Z"/><path d="M42.48,20.46a.95.95,0,1,0-.94.95A.95.95,0,0,0,42.48,20.46Z"/><path d="M71.47,75.84a2,2,0,0,1,2,2,1.06,1.06,0,0,0,1,1.1,1,1,0,0,0,1.09-1,4,4,0,0,0-3-4l0-.75a1.06,1.06,0,0,0-2.11-.08l0,.75a4,4,0,0,0-3.25,3.74,4,4,0,0,0,1.12,2.9,4.21,4.21,0,0,0,2.88,1.27,2.12,2.12,0,0,1,1.44.63,1.82,1.82,0,0,1,.53,1.35,2.05,2.05,0,0,1-4.09-.16,1.07,1.07,0,0,0-1-1.1,1,1,0,0,0-1.1,1,4,4,0,0,0,2.95,4l0,.68a1.05,1.05,0,0,0,1,1.1h0a1.06,1.06,0,0,0,1.05-1l0-.67a4,4,0,0,0,3.25-3.75,4,4,0,0,0-1.12-2.9,4.25,4.25,0,0,0-2.88-1.27A2.12,2.12,0,0,1,69.88,79a1.82,1.82,0,0,1-.53-1.35A2,2,0,0,1,71.47,75.84Z"/><path d="M83.67,92.54a1,1,0,0,0-1-.78,6.53,6.53,0,0,1-3.2-1,13.68,13.68,0,1,0-8.67,3.1A13.48,13.48,0,0,0,74,93.52,8.58,8.58,0,0,0,78.77,95a8.68,8.68,0,0,0,2.31-.31L83,94.15a1,1,0,0,0,.74-1.29Zm-6.67-1a8.39,8.39,0,0,0,1.88,1.32,6.37,6.37,0,0,1-4.07-1.34,1.08,1.08,0,0,0-.64-.22,1.26,1.26,0,0,0-.28,0,11.79,11.79,0,0,1-3.08.43,11.59,11.59,0,1,1,6.32-1.89,1.07,1.07,0,0,0-.47.8A1,1,0,0,0,77,91.56Z"/></g></svg>
       </button>
     `);
-    */
+    
   }
 });
+/*
 // ------------ CERRAR EL MODAL DE RELLENAR (FOB) 
 $(document).on("click","#btn-closeiconFormNotInsurance",function(){$("#cnt-modalFormNotInsurance").removeClass("show");});
 // ------------ VALIDAR EL INPUT DE (FOB) DEL PRODUCTO - NO DESEO SEGURO 
@@ -1829,6 +1806,7 @@ $(document).on("keyup keypress", "#v_valtofobnotinsurance", function(e){
     </button>`);
   }
 });
+*/
 // ------------ VALIDAR EL INPUT DE PRECIO DEL PRODUCTO - OPCIÓN 2 
 $(document).on("change input keyup", "#ipt-valPriceProdNInterface-notMoreOpts", function(e){
   if ((e.which != 8 && e.which != 0) && (e.which < 48 || e.which > 57) && $(this).val().length >= parseInt($(this).attr('maxlength'))){
@@ -1841,8 +1819,6 @@ $(document).on("change input keyup", "#ipt-valPriceProdNInterface-notMoreOpts", 
   });
   // ------------ ASIGNAR VALORES DE LOS INPUTS HIDDEN - MERCANCÍA 
   $("#val-valProdquot-noMoreOpts").val($(this).val());
-  // ------------ ASIGNAR A LA VARIABLE LOCAL 
-  localStorage.setItem("key_v-valueproduct", $(this).val());
   // ------------ VALIDAR SI CONTIENE ALGÚN VALOR NULO O 0 
   if(e.target.value == "" || e.target.value == 0 || $(this).val() == " USD" || $(this).val() == ".00" || $(this).val() == 0.00){
     $("#s-caseNextStepTomerchandisedata").html("");
@@ -1944,7 +1920,6 @@ $(document).on("click", ".cont-MainCamelLog--c--contSteps--item--cStep--mFrmIpts
   $("#ipt-valNameTypeProdNInterface-notMoreOpts").attr("idproduct", $(this).attr("id"));
   $("#ipt-valNameTypeProdNInterface-notMoreOpts").val($(this).find("p").text());
   // ------------ ASIGNAR A LA VARIABLE LOCAL 
-  localStorage.setItem("key_v-nametypeproduct", $(this).find("p").text()); //NOMBRE DEL TIPO DE PRODUCTO
   localStorage.setItem("key_v-dbammountadditional", $(this).attr("data-amountadditional")); //VALOR ADICIONAL DEL PRODUCTO
   // ------------ MOSTRAR/OCULTAR DE ACUERDO A EL VALOR DEL MONTO ADICIONAL 
   if($(this).attr("data-amountadditional") != 0 || $(this).attr("data-amountadditional") != 0.00){
@@ -2574,8 +2549,6 @@ $(document).on("click", "#btn-NextStepTochargedata", function(){
           var val_dateValidDesde = separateDateValidDesde[0]+" "+"de"+" "+firstToUppercase(monthSeparatetoArrayDesde);
           var val_dateValidHasta = separateDateValidHasta[0]+" "+"de"+" "+firstToUppercase(monthSeparatetoArrayHasta);
           // ------------ ASIGNAR A LAS VARIABLES LOCALES 
-          localStorage.setItem("key_validaterate", val_dateValidDesde+" - "+val_dateValidHasta);
-          localStorage.setItem("key_v-valttaproxbycontain", ratesorigin[0].tt_aprox);
           $("#val-timeaproxtransbycont").val(ratesorigin[0].tt_aprox);
           // ------------ ASIGNAR AL VALOR DE ENVÍO 
           $("#val_validateratequote").val(val_dateValidDesde+" - "+val_dateValidHasta);
@@ -2705,7 +2678,6 @@ $(document).on("click", "#btn-NextStepTochargedata", function(){
         }else if($("#loadTypeTranport").val() == "imo"){
           twodecimal_total_imo = roundToTwo(ratesorigin[0].total_imo);
           // ------------ ASIGNAR A LA VARIABLE LOCAL 
-          localStorage.setItem("key_v-valttaproxbycontain", ratesorigin[0].tt_aprox);
           $("#val-timeaproxtransbycont").val(ratesorigin[0].tt_aprox);
           if(v_ValTotalVolume > 15){
             // ------------ OCULTAR EL RESUMEN HASTA ESTE PASO 
@@ -2750,7 +2722,6 @@ $(document).on("click", "#btn-NextStepTochargedata", function(){
             var val_dateValidDesde = separateDateValidDesde[0]+" "+"de"+" "+firstToUppercase(monthSeparatetoArrayDesde);
             var val_dateValidHasta = separateDateValidHasta[0]+" "+"de"+" "+firstToUppercase(monthSeparatetoArrayHasta);
             // ------------ ASIGNAR A LAS VARIABLES LOCALES 
-            localStorage.setItem("key_validaterate", val_dateValidDesde+" - "+val_dateValidHasta);
             // ------------ ASIGNAR AL VALOR DE ENVÍO 
             $("#val_validateratequote").val(val_dateValidDesde+" - "+val_dateValidHasta);
             // ------------ VALIDAR EL VALOR MÁXIMO ENTRE PESO Y VOLUMEN 
@@ -2803,7 +2774,6 @@ $(document).on("click", "#btn-NextStepTochargedata", function(){
         }else{
           twodecimal_total_refrigerado = roundToTwo(ratesorigin[0].total_refrigerado);
           // ------------ ASIGNAR A LA VARIABLE LOCAL 
-          localStorage.setItem("key_v-valttaproxbycontain", ratesorigin[0].tt_aprox);
           $("#val-timeaproxtransbycont").val(ratesorigin[0].tt_aprox);
           if(v_ValTotalVolume > 15){
             // ------------ OCULTAR EL RESUMEN HASTA ESTE PASO 
@@ -2848,7 +2818,6 @@ $(document).on("click", "#btn-NextStepTochargedata", function(){
             var val_dateValidDesde = separateDateValidDesde[0]+" "+"de"+" "+firstToUppercase(monthSeparatetoArrayDesde);
             var val_dateValidHasta = separateDateValidHasta[0]+" "+"de"+" "+firstToUppercase(monthSeparatetoArrayHasta);
             // ------------ ASIGNAR A LAS VARIABLES LOCALES 
-            localStorage.setItem("key_validaterate", val_dateValidDesde+" - "+val_dateValidHasta);
             // ------------ ASIGNAR AL VALOR DE ENVÍO 
             $("#val_validateratequote").val(val_dateValidDesde+" - "+val_dateValidHasta);
             // ------------ VALIDAR EL VALOR MÁXIMO ENTRE PESO Y VOLUMEN 
@@ -3029,7 +2998,6 @@ $(document).on("click", ".cont-MainCamelLog--c--contSteps--item--cStep--mFrmIpts
   var taxationTwoVal = parseFloat($(this).attr("data-taxtwo"));
   var taxationThreeVal = parseFloat($(this).attr("data-taxthree"));
   // ------------ ASIGNAR A LA VARIABLE LOCAL DE IMPUESTOS DE PRODUCTO PARA IGV 
-  localStorage.setItem("key_v-nametypeproduct", $(this).find("p").text()); //NOMBRE DEL TIPO DE PRODUCTO
   localStorage.setItem("key_v-valuestaxOnebyigv", taxationOneVal); //VALOR DE AD-VALOREN
   localStorage.setItem("key_v-valuestaxTwobyigv", taxationTwoVal); //VALOR DE IMPUESTO SELECCTIVO
   localStorage.setItem("key_v-valuestaxThreebyigv", taxationThreeVal); //VALOR DE ANTIDUMPING
@@ -3091,8 +3059,6 @@ $(document).on("input", "#ipt-valPriceProdNInterface", function(e){
   });
   // ------------ ASIGNAR VALORES DE LOS INPUTS HIDDEN - MERCANCÍA 
   $("#val-valProdquot").val($(this).val());
-  // ------------ ASIGNAR A LA VARIABLE LOCAL 
-  localStorage.setItem("key_v-valueproduct", $(this).val());
   if(e.target.value == "" || e.target.value == 0){
     // ------------ OCULTAR EL SIGUIENTE PASO 
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-insuremerchandise]").removeClass("show");
@@ -3140,34 +3106,12 @@ $(document).on("click", "#chck-importpreview", function(){
     var yesImportPrev = $(this).parent().attr("switch-CFreeze");
     // ------------ ASIGNAR VALORES DE LOS INPUTS HIDDEN - MERCANCÍA 
     $("#val-prevImports").val(yesImportPrev);
-
-    $.ajax({
-      url: "controllers/list_taxation_values_byimport.php",
-      method: "POST",
-      datatype: "JSON",
-      contentType: 'application/x-www-form-urlencoded;charset=UTF-8'
-    }).done(function(e){
-      var resultTaximport = JSON.parse(e);
-      // ------------ ASIGNAR A LA VARIABLE LOCAL 
-      localStorage.setItem("key_v-valuestaxationimport", resultTaximport[0].data_value);
-    });
 	}else{
 		$(this).parent().removeClass("active");
 		$(this).parent().attr("switch-CFreeze", "NO");
     var notImportPrev = $(this).parent().attr("switch-CFreeze");
     // ------------ ASIGNAR VALORES DE LOS INPUTS HIDDEN - MERCANCÍA 
     $("#val-prevImports").val(notImportPrev);
-
-    $.ajax({
-      url: "controllers/list_taxation_values_byimport.php",
-      method: "POST",
-      datatype: "JSON",
-      contentType: 'application/x-www-form-urlencoded;charset=UTF-8'
-    }).done(function(e){
-      var resultTaximport = JSON.parse(e);
-      // ------------ ASIGNAR A LA VARIABLE LOCAL 
-      localStorage.setItem("key_v-valuestaxationimport", resultTaximport[0].data_value_two);
-    });
 	}
 });
 // ------------ VALIDAR EL BOTÓN DE PASOS SIGUIENTES DESDE - MERCANCÍA 

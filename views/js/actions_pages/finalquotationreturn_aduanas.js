@@ -322,12 +322,14 @@ $(document).ready(function(){
 		    var convert_I_selectivo = receivedI_selectivo / 100; //VALOR IMPUESTO SELECTIVO DE PROUCTO
 		    var convert_antidumping = received_antidumping / 100; //VALOR ANTIDUMPING
 
-		    if(totalimportprev != "NO"){
+		    if(totalimportprev == "SI" || totalimportprev == "SÍ"){
 			    convert_Percepcion = res_Percepcion_YES / 100; /// 3.50
 			    percepcion_notfilter = restaxvalues[2].data_value;
-		    }else{
-		    	convert_Percepcion = res_Percepcion_NO / 100;///10
+		    }else if(totalimportprev == "NO"){
+					convert_Percepcion = res_Percepcion_NO / 100;///10
 		    	percepcion_notfilter = restaxvalues[2].data_value_two;
+		    }else{
+		    	percepcion_notfilter = 0;
 		    }
 
 		    // ------------ CALCULAR AD-VALOREN 

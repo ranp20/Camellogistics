@@ -1835,7 +1835,7 @@ $(document).on("change input keyup", "#ipt-valNameTypeProdNInterface", function(
 $(document).on("click", "#chck-importpreview", function(){
   if($(this).is(":checked")){
     $(this).parent().addClass("active");
-    $(this).parent().attr("switch-CFreeze", "SÍ");
+    $(this).parent().attr("switch-CFreeze", "SI");
     var yesImportPrev = $(this).parent().attr("switch-CFreeze");
     // ------------ ASIGNAR VALORES DE LOS INPUTS HIDDEN - MERCANCÍA 
     $("#val-prevImports").val(yesImportPrev);

@@ -167,7 +167,6 @@ $(document).ready(function(){
 	var totalimportprev = v_fprevimports; //TOTAL IMPORTACIÓN PREVIA
 	var totflete = parseFloat(localStorage.getItem("key_v-totalflette")); //TOTAL - SOLO FLETE
 	var totalamountadditional = parseFloat(localStorage.getItem("key_v-totalammountadditional")); //MONTO ADICIONAL
-	var totalinsurance = parseFloat(localStorage.getItem("key_v-valueinsurance")); //TOTAL SEGURO
 	var totalvaluesquotation =  parseFloat(localStorage.getItem("key_v-valuesquotation")); //TOTAL SUMA DE VALORES DE COTIZACIÓN
 	var totalvaluesquotationbyIGV =  parseFloat(localStorage.getItem("key_v-valuesquotationbyigv")); //TOTAL SUMA DE VALORES DE COTIZACIÓN IGV
   var totalfinalvaluefob = parseFloat(twodecimals(cutewithoutofpricefob)); //TOTAL DE VALOR FOB
@@ -341,12 +340,14 @@ $(document).ready(function(){
 		    var convert_I_selectivo = receivedI_selectivo / 100; //VALOR IMPUESTO SELECTIVO DE PROUCTO
 		    var convert_antidumping = received_antidumping / 100; //VALOR ANTIDUMPING
 
-		    if(totalimportprev != "NO"){
+		    if(totalimportprev == "SI" || totalimportprev == "SÍ"){
 			    convert_Percepcion = res_Percepcion_YES / 100;
 			    percepcion_notfilter = restaxvalues[2].data_value;
-		    }else{
+		    }else if(totalimportprev == "NO"){
 		    	convert_Percepcion = res_Percepcion_NO / 100;
 		    	percepcion_notfilter = restaxvalues[2].data_value_two;
+		    }else{
+		    	percepcion_notfilter = 0;
 		    }
 
 		    // ------------ CALCULAR AD-VALOREN 
@@ -375,7 +376,7 @@ $(document).ready(function(){
 				var finalval_percepcion = parseFloat(twodecimal_percepcion);
 
 				// ------------ CALCULO FINAL DE IMPUESTOS 
-				var val_FinalTax = finalval_IGV + finalval_IPM + finalval_percepcion + finalval_Ad_valoren + finalval_i_selectivo + finalval_antidumping + totalinsurance;
+				var val_FinalTax = finalval_IGV + finalval_IPM + finalval_percepcion + finalval_Ad_valoren + finalval_i_selectivo + finalval_antidumping + finalRoundinsurance;
 
 				var twodecimals_FinalTax = twodecimals(val_FinalTax);
 				var finalval_FinalTax = parseFloat(twodecimals_FinalTax);
