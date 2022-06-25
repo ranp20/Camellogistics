@@ -364,7 +364,7 @@ $(document).ready(function(){
 				var finalval_percepcion = parseFloat(twodecimal_percepcion);
 
 				// ------------ CALCULO FINAL DE IMPUESTOS 
-				var val_FinalTax = finalval_IGV + finalval_IPM + finalval_percepcion + finalval_Ad_valoren + finalval_i_selectivo + finalval_antidumping + finalRoundinsurance;
+				var val_FinalTax = finalval_IGV + finalval_IPM + finalval_percepcion + finalval_Ad_valoren + finalval_i_selectivo + finalval_antidumping;
 
 				var twodecimals_FinalTax = twodecimals(val_FinalTax);
 				var finalval_FinalTax = parseFloat(twodecimals_FinalTax);
