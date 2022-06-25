@@ -11,6 +11,9 @@
 <head>
 	<?php require_once 'includes/adm-header-index.php'; ?>
 	<title>Admin - Seguro</title>
+	<!-- INCLUIR SWEETALERTS2 -->
+	<link rel="stylesheet" href="../node_modules/sweetalert2/dist/sweetalert2.min.css">
+	<script type="text/javascript" src="../node_modules/sweetalert2/dist/sweetalert2.all.min.js"></script>
 </head>
 <body>
 	<div id="dash-contT">
@@ -43,7 +46,7 @@
 					      	<div class="cont-modalbootstrapupdate">
 						        <form id="form-update-insurancevalues" method="POST" class="cont-modalbootstrapupdate__form" autocomplete="false">
 						        	<input type="hidden" id="idupdate-insurancevalues">
-						        	<div class="cont-modalbootstrapupdate__form--control">
+						        	<div class="cont-modalbootstrapupdate__form--control d-non hdd-control">
 						        		<label for="dataname-update" class="cont-modalbootstrapupdate__form--control__label complete">Nombre del Seguro</label>
 						        		<input id="dataname-update" class="cont-modalbootstrapupdate__form--control__input" name="dataname-update" type="text" maxlength="300" placeholder="Ingrese el nombre del valor">
 						        	</div>
@@ -87,7 +90,7 @@
 					      	<div class="cont-modalbootstrapupdate">
 						        <form id="form-update-insurancevalues-aduanas" method="POST" class="cont-modalbootstrapupdate__form" autocomplete="false">
 						        	<input type="hidden" id="idupdate-insurancevalues-aduanas">
-						        	<div class="cont-modalbootstrapupdate__form--control">
+						        	<div class="cont-modalbootstrapupdate__form--control d-non hdd-control">
 						        		<label for="dataname-update-aduanas" class="cont-modalbootstrapupdate__form--control__label complete">Nombre del Seguro</label>
 						        		<input id="dataname-update-aduanas" class="cont-modalbootstrapupdate__form--control__input" name="dataname-update-aduanas" type="text" maxlength="300" placeholder="Ingrese el nombre del valor">
 						        	</div>
