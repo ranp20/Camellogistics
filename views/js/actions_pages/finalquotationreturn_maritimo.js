@@ -424,7 +424,7 @@ $(document).ready(function(){
 						    var monthSeparatetoArrayHasta = separateDateValidHasta[2].slice(0, 3);
 						    var val_dateValidDesde = separateDateValidDesde[0]+" "+"de"+" "+firstToUppercase(monthSeparatetoArrayDesde);
 						    var val_dateValidHasta = separateDateValidHasta[0]+" "+"de"+" "+firstToUppercase(monthSeparatetoArrayHasta);
-						    $("#v_validratedate").text(val_dateValidDesde+" - "+val_dateValidHasta);
+						    $("#v_validratedate").text(" "+val_dateValidDesde+" - "+val_dateValidHasta);
 					  	}
 
 					  	// --------------- IMPRIMIR EL TOTAL - SERVICIOS
@@ -517,7 +517,7 @@ $(document).ready(function(){
 						    var monthSeparatetoArrayHasta = separateDateValidHasta[2].slice(0, 3);
 						    var val_dateValidDesde = separateDateValidDesde[0]+" "+"de"+" "+firstToUppercase(monthSeparatetoArrayDesde);
 						    var val_dateValidHasta = separateDateValidHasta[0]+" "+"de"+" "+firstToUppercase(monthSeparatetoArrayHasta);
-						    $("#v_validratedate").text(val_dateValidDesde+" - "+val_dateValidHasta);
+						    $("#v_validratedate").text(" "+val_dateValidDesde+" - "+val_dateValidHasta);
 					  	}
 
 					  	// --------------- IMPRIMIR EL TOTAL - SERVICIOS
@@ -670,7 +670,7 @@ $(document).ready(function(){
 						    var monthSeparatetoArrayHasta = separateDateValidHasta[2].slice(0, 3);
 						    var val_dateValidDesde = separateDateValidDesde[0]+" "+"de"+" "+firstToUppercase(monthSeparatetoArrayDesde);
 						    var val_dateValidHasta = separateDateValidHasta[0]+" "+"de"+" "+firstToUppercase(monthSeparatetoArrayHasta);
-						    $("#v_validratedate").text(val_dateValidDesde+" - "+val_dateValidHasta);
+						    $("#v_validratedate").text(" "+val_dateValidDesde+" - "+val_dateValidHasta);
 					  	}
 
 					  	// --------------- IMPRIMIR EL TOTAL - SERVICIOS
@@ -763,7 +763,7 @@ $(document).ready(function(){
 						    var monthSeparatetoArrayHasta = separateDateValidHasta[2].slice(0, 3);
 						    var val_dateValidDesde = separateDateValidDesde[0]+" "+"de"+" "+firstToUppercase(monthSeparatetoArrayDesde);
 						    var val_dateValidHasta = separateDateValidHasta[0]+" "+"de"+" "+firstToUppercase(monthSeparatetoArrayHasta);
-						    $("#v_validratedate").text(val_dateValidDesde+" - "+val_dateValidHasta);
+						    $("#v_validratedate").text(" "+val_dateValidDesde+" - "+val_dateValidHasta);
 					  	}
 
 					  	// --------------- IMPRIMIR EL TOTAL - SERVICIOS

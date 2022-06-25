@@ -682,6 +682,196 @@ input[f-hidden="aria-hidden"]{
 		}
 	}
 }
+.cnt-modalFormNotInsurance{
+	position: fixed;
+	width: 100%;
+	min-height: 100vh;
+	height: 100%;
+	overflow-y: auto;
+	background-color: rgba(0,0,0,.4);
+	z-index: 99999999;
+	padding: 0;
+	margin: 0;
+	top: 0;
+	left: 0;
+	display: none;
+	align-items: flex-start;
+	justify-content: center;
+	pointer-events: none;
+	&.show{
+		display: flex;
+		pointer-events: auto;
+	}
+	&--c{
+		background-color: #fff;
+		border-radius: .6rem;
+		padding-bottom: 1.25rem;
+		max-width: 450px;
+		width: 95%;
+		margin-top: 1rem;
+		overflow: hidden;
+		text-align: center;
+		animation-name: showForm;
+		animation-duration: .3s;
+		animation-timing-function: ease-in-out;
+		transform: translateY(-200%);
+		pointer-events: none;
+		&.show{
+			transform: translateY(0);
+			pointer-events: auto;
+		}
+		@keyframes showForm{
+			0%{
+				transform: translateY(-200%);
+			}
+			100%{
+				transform: translateY(0);
+			}
+		}
+		&--close{
+			width: 15px;
+			height: 15px;
+			background:
+				linear-gradient(45deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 43%, #fff 45%, #fff 55%, rgba(0, 0, 0, 0) 57%, rgba(0, 0, 0, 0) 100%), 
+				linear-gradient(135deg, #000 0%, #000 43%, #fff 45%, #fff 55%, #000 57%, #000 100%);
+			border-radius: 50%;
+			box-shadow: 0 0 0 1px #000, 0 0 0 4px #000, 0 0 0 7px #fff;
+			position: absolute;
+			top: 10px;
+			right: 10px;
+			cursor: pointer;
+		}
+		&--cTitle{
+			background-color: $primary-color;
+			color: #fff;
+			padding: 1rem .5rem;
+			h2{
+				font-size: 1.5rem;
+				margin: 0;
+			}
+		}
+		&--cForm{
+			padding: 1.25rem;
+			text-align: center;
+			&--cControl{
+		    width: 100%;
+		    display: flex;
+		    flex-direction: column;
+		    align-items: flex-start;
+		    justify-content: center;
+		    margin-bottom: 1rem;
+				&--label{
+					color: $primary-color;
+					font-weight: 300;
+					padding-left: 1rem;
+					font-size: 0.85rem;
+					letter-spacing: .2rem;
+				}
+				&--input{
+					/*outline: none;*/
+					display: block !important;
+					width: 100%;
+					font-size: 1rem;
+					line-height: 1.5;
+					padding: 0.5rem .8rem;
+					border: thin solid #ccc;
+					border-radius: .4rem !important;
+					text-align: center;
+
+					&:focus{
+						text-align: left;
+					}
+				}
+				&--input[type=number]::-webkit-inner-spin-button, 
+				&--input[type=number]::-webkit-outer-spin-button { 
+					-webkit-appearance: none;
+					margin: 0;
+				}
+				&--input[type=number]{ 
+					-moz-appearance:textfield;
+				}
+				&--cListChangeWIcon{
+					width: 100%;
+					position: relative;
+					&--cIcon{
+						position: absolute;
+						width: 2.5rem;
+						height: 100%;
+						left: 0;
+						padding: 0 .45rem;
+						border-right: thin solid $primary-color;
+						svg{
+							width: 86%;
+					    height: 86%;
+					    position: relative;
+					    top: 5px;
+					    fill: $primary-color;
+						}
+					}
+					&--input{
+						width: 100%;
+						border: thin solid $primary-color;
+						font-size: 1rem;
+						padding: 0.5rem 0.5rem 0.5rem 3rem;
+						line-height: 1.5;
+						&[type=number]::-webkit-inner-spin-button, 
+						&[type=number]::-webkit-outer-spin-button { 
+							-webkit-appearance: none;
+							margin: 0;
+						}
+						&[type=number]{ 
+							-moz-appearance:textfield;
+						}
+						&::placeholder {
+						  color: #fff;
+						  background-color: #fff;
+						  opacity: 0;
+						}
+					}
+				}
+			}
+			&--cBtnResolNotInsurance{
+				display: block;
+				margin-left: auto;
+				margin-right: auto;
+				text-align: center;
+		    &--action{
+					border: thin solid orange;
+			    background-color: transparent;
+			    color: orange;
+			    display: flex;
+			    align-items: center;
+			    justify-content: center;
+			    margin: 0 auto;
+			    padding: .75rem 2rem;
+			    font-size: 1.1rem;
+			    &:hover{
+			    	background-color: orange;
+			    	color: #fff;
+			    	svg{
+			    		fill: #fff;
+			    		stroke: #fff;
+			    	}
+			    }
+			    span{
+			    	font-weight: 600;
+			    	vertical-align: middle;
+			    }
+					svg{
+				    color: orange;
+				    fill: orange;
+				    stroke: orange;
+				    width: 36px;
+				    height: 36px;
+				    margin-left: 0.5rem;
+				    position: relative;
+				    top: 4px;
+					}
+		    }
+			}
+		}
+	}
+}
 .SwalBtn1.customSwalBtn{
 	opacity: 1;
   cursor: pointer;
