@@ -17,13 +17,17 @@ function cambiaf_mysql($date){
 
 function addTwoDecimals($number){
 	$output_final = "";
-	$output_num = explode(".", $number);
-	if(!isset($output_num[1]) || $output_num[1] == "undefined" || $output_num[1] == ""){
-		$output_final = number_format($number).".00";
-	}else	if(isset($output_num[1]) && strlen($output_num[1]) < 2){
-		$output_final = number_format($output_num[0]).".".$output_num[1]."0";
+	if($number != "0" || $number != 0){
+		$output_num = explode(".", $number);
+		if(!isset($output_num[1]) || $output_num[1] == "undefined" || $output_num[1] == ""){
+			$output_final = number_format($number).".00";
+		}else	if(isset($output_num[1]) && strlen($output_num[1]) < 2){
+			$output_final = number_format($output_num[0]).".".$output_num[1]."0";
+		}else{
+			$output_final = number_format($output_num[0]).".".$output_num[1];
+		}
 	}else{
-		$output_final = number_format($output_num[0]).".".$output_num[1];
+		$output_final = $number;
 	}
 	return $output_final;
 }
@@ -209,12 +213,12 @@ $name_quotation = "Presupuesto-".$_POST['code_quote']."-".$f_typecontainer;
           <div class="item_marc_det_imp1">ANTIDUMPING</div>
 	      </div>
 	      <div id="marc_porc_det_imp1">
-	        <div class="item_marc_porc_det_imp1"><?php echo $f_v_IGV; ?>%</div>
-	        <div class="item_marc_porc_det_imp1"><?php echo $f_v_IPM; ?>%</div>
-	        <div class="item_marc_porc_det_imp1"><?php echo $f_v_percepcion; ?>%</div>
-	        <div class="item_marc_porc_det_imp1"><?php echo $f_v_ad_valoren; ?>%</div>
-	        <div class="item_marc_porc_det_imp1"><?php echo $f_v_impuesto_selectivo; ?>%</div>
-          <div class="item_marc_porc_det_imp1"><?php echo $f_v_antidumping; ?>%</div>
+	        <div class="item_marc_porc_det_imp1"><?php echo addTwoDecimals($f_v_IGV); ?>%</div>
+	        <div class="item_marc_porc_det_imp1"><?php echo addTwoDecimals($f_v_IPM); ?>%</div>
+	        <div class="item_marc_porc_det_imp1"><?php echo addTwoDecimals($f_v_percepcion); ?>%</div>
+	        <div class="item_marc_porc_det_imp1"><?php echo addTwoDecimals($f_v_ad_valoren); ?>%</div>
+	        <div class="item_marc_porc_det_imp1"><?php echo addTwoDecimals($f_v_impuesto_selectivo); ?>%</div>
+          <div class="item_marc_porc_det_imp1"><?php echo addTwoDecimals($f_v_antidumping); ?>%</div>
 	      </div>
 	      <div id="marc_porc_det_imp1">
 	        <div class="item_marc_usd_det_imp1">$</div>

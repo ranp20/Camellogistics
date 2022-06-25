@@ -78,9 +78,9 @@ $(document).ready(function(){
 	var v_foptgnfquotevl = decryptValuesIpts(encrypt_v_foptgnfquotevl.val());
 	var v_fquaprcataadd = decryptValuesIpts(encrypt_v_fquaprcataadd.val());
 	var v_fammvthpcat = decryptValuesIpts(encrypt_v_fammvthpcat.val());
-	var v_fatthxyaonepcatg = decryptValuesIpts(encrypt_v_fatthxyaonepcatg.val());
-	var v_fatthxyatwopcatg = decryptValuesIpts(encrypt_v_fatthxyatwopcatg.val());
-	var v_fatthxyathreepcatg = decryptValuesIpts(encrypt_v_fatthxyathreepcatg.val());
+	var v_fatthxyaonepcatg = decryptValuesIpts(encrypt_v_fatthxyaonepcatg.val()); // AD-VALOREN
+	var v_fatthxyatwopcatg = decryptValuesIpts(encrypt_v_fatthxyatwopcatg.val()); // IMPUESTO SELECTIVO
+	var v_fatthxyathreepcatg = decryptValuesIpts(encrypt_v_fatthxyathreepcatg.val()); // ANTIDUMPING
 
 	// ------------ VALORES DE CAJAS DE TEXTO - CÁLCULO
 	var val_ftotvalofdownload = decryptValuesIpts(encrypt_val_ftotvalofdownload.val());
@@ -237,14 +237,14 @@ $(document).ready(function(){
 
 	  	if(v_frselinsmerch != undefined && v_frselinsmerch != null && v_frselinsmerch != "NO"){
 				// ------------ TOTALES A IMPRIMIR - CON SEGURO 
-				sumTotalServices = totaltransport + fvalfinal_com_agencia + fvalfinal_gas_operativos + totalamountadditional; //FLETE FINAL
-				sumTotalbyIGV = (totaltransport + fvalfinal_com_agencia + fvalfinal_gas_operativos + totalamountadditional) * (18 / 100); //IGV (DEBAJO DEL FLETE FINAL)
+				sumTotalServices = totaltransport + fvalfinal_com_agencia + fvalfinal_gas_operativos; //FLETE FINAL
+				sumTotalbyIGV = (totaltransport + fvalfinal_com_agencia + fvalfinal_gas_operativos) * (18 / 100); //IGV (DEBAJO DEL FLETE FINAL)
 				sumTotalFinalFleteandIGV = sumTotalServices + sumTotalbyIGV; //VALOR TOTAL FINAL DE LA COTIZACIÓN
 				sumbyCIF = totalfinalvaluefob + totflete + finalRoundinsurance; //CIF FINAL
 	  	}else{
 	  		// ------------ TOTALES A IMPRIMIR - SIN SEGURO 
-				sumTotalServices = totaltransport + fvalfinal_com_agencia + fvalfinal_gas_operativos + totalamountadditional; //FLETE FINAL
-				sumTotalbyIGV = (totaltransport + fvalfinal_com_agencia + fvalfinal_gas_operativos + totalamountadditional) * (18 / 100); //IGV (DEBAJO DEL FLETE FINAL)
+				sumTotalServices = totaltransport + fvalfinal_com_agencia + fvalfinal_gas_operativos; //FLETE FINAL
+				sumTotalbyIGV = (totaltransport + fvalfinal_com_agencia + fvalfinal_gas_operativos) * (18 / 100); //IGV (DEBAJO DEL FLETE FINAL)
 				sumTotalFinalFleteandIGV = sumTotalServices + sumTotalbyIGV; //VALOR TOTAL FINAL DE LA COTIZACIÓN
 				sumbyCIF = totalfinalvaluefob + totflete + finalRoundinsurance; //CIF FINAL
 	  	}
@@ -327,7 +327,7 @@ $(document).ready(function(){
 		    var convert_Ad_Valoren = receivedAd_valoren / 100; //VALOR AD-VALOREN DE PRODUCTO
 		    var convert_I_selectivo = receivedI_selectivo / 100; //VALOR IMPUESTO SELECTIVO DE PROUCTO
 		    var convert_antidumping = received_antidumping / 100; //VALOR ANTIDUMPING
-
+		    
 		    if(totalimportprev == "SI" || totalimportprev == "SÍ"){
 			    convert_Percepcion = res_Percepcion_YES / 100; /// 3.50
 			    percepcion_notfilter = restaxvalues[2].data_value;
@@ -443,9 +443,15 @@ $(document).ready(function(){
 					formdata.append("f_v_IPM", restaxvalues[1].data_value);
 					formdata.append("f_importadoprev", v_fprevimports);
 					formdata.append("f_v_percepcion", percepcion_notfilter);
+					formdata.append("f_v_ad_valoren", v_fatthxyaonepcatg);
+					formdata.append("f_v_impuesto_selectivo", v_fatthxyatwopcatg);
+					formdata.append("f_v_antidumping", v_fatthxyathreepcatg);
 					formdata.append("f_IGV", igvcalc_twodeci);
 					formdata.append("f_IPM", ipmcalc_twodeci);
 					formdata.append("f_percepcion", percepcioncalc_twodeci);
+					formdata.append("f_ad_valoren", finalval_Ad_valoren);
+					formdata.append("f_impuesto_selectivo", finalval_i_selectivo);
+					formdata.append("f_antidumping", finalval_antidumping);
 					formdata.append("f_transporte_interno", totaltransport);
 					formdata.append("f_comision_agencia", fvalfinal_com_agencia);
 					formdata.append("f_gastos_operativos", fvalfinal_gas_operativos);
@@ -712,9 +718,15 @@ $(document).ready(function(){
 					formdata.append("f_v_IPM", restaxvalues[1].data_value);
 					formdata.append("f_importadoprev", v_fprevimports);
 					formdata.append("f_v_percepcion", percepcion_notfilter);
+					formdata.append("f_v_ad_valoren", v_fatthxyaonepcatg);
+					formdata.append("f_v_impuesto_selectivo", v_fatthxyatwopcatg);
+					formdata.append("f_v_antidumping", v_fatthxyathreepcatg);
 					formdata.append("f_IGV", igvcalc_twodeci);
 					formdata.append("f_IPM", ipmcalc_twodeci);
 					formdata.append("f_percepcion", percepcioncalc_twodeci);
+					formdata.append("f_ad_valoren", finalval_Ad_valoren);
+					formdata.append("f_impuesto_selectivo", finalval_i_selectivo);
+					formdata.append("f_antidumping", finalval_antidumping);
 					formdata.append("f_transporte_interno", totaltransport);
 					formdata.append("f_comision_agencia", fvalfinal_com_agencia);
 					formdata.append("f_gastos_operativos", fvalfinal_gas_operativos);
