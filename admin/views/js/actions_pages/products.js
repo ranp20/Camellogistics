@@ -1,39 +1,15 @@
-$(function(){
+$(() => {
   listProducts();
-  //load(1);
 });
-/************************** FUNCIÓN - LIMITAR A DOS DECIMALES SIN REDONDEO **************************/
+// ------------ FUNCIÓN - LIMITAR A DOS DECIMALES SIN REDONDEO
 function twodecimals(n) {
   let t = n.toString();
   let regex = /(\d*.\d{0,2})/;
   return t.match(regex)[0];
 }
-/************************** LIMITAR A DOS DECIMALES CUALQUIER INPUT DE TIPO NÚMERO EN DONDE ESTÁ IMPORTADO ESTE ARCHIVO **************************/
-$(document).on("input","input[type=number]",function(e){
-  ($(this).val() == "") ? $(this).val() : $(this).val(twodecimals(e.target.value));
-});
-// /************************** PAGINACIÓN DE CONTENIDO **************************/
-// // function load(page){
-// //   var parametros = {"action": "filter","page": page};
-// //   $("#loader").fadeIn('slow');
-// //   $.ajax({
-// //     url:'../admin/controllers/pag_regulators.php',
-// //     method: 'POST',
-// //     data: parametros,
-// //     beforeSend: function(){
-// //       $("#loader").html("<img src='../admin/views/assets/img/Utilities/loader.gif'>");
-// //     },
-// //     success:function(data){
-// //       console.log(data);
-// //       $(".outer_div").html(data).fadeIn('slow');
-// //       $("#loader").html("");
-// //     }
-// //   });
-// // }
-/*=======================================================
-=            NOMBRE Y REGULADORES - PRODUCTO            =
-=======================================================*/
-/************************** MOSTRAR/OCULTAR DE ACUERDO AL CHECKBOX SELECCINADO - REGULADOR/NO REQUIERE **************************/
+// ------------ LIMITAR A DOS DECIMALES CUALQUIER INPUT DE TIPO NÚMERO EN DONDE ESTÁ IMPORTADO ESTE ARCHIVO
+$(document).on("input","input[type=number]",function(e){($(this).val() == "") ? $(this).val() : $(this).val(twodecimals(e.target.value));});
+// ------------ MOSTRAR/OCULTAR DE ACUERDO AL CHECKBOX SELECCINADO - REGULADOR/NO REQUIERE
 $(document).on("click", ".cont-modalbootstrap__form--controlRadios--c--control--input[name=sel-reornotreg]", function(){
   if($(this).attr("id") == "noun-required-reg"){
     $("#sel-optsRegulatorsMore").html("");
@@ -66,23 +42,22 @@ $(document).on("click", ".cont-modalbootstrap__form--controlRadios--c--control--
     `);
   }
 });
-/************************** VALIDAR SI EL NOMBRE DEL PRODUCTO ESTÁ VACÍO **************************/
+// ------------ VALIDAR SI EL NOMBRE DEL PRODUCTO ESTÁ VACÍO
 $(document).on("keyup", "#nameProduct", function(){
   ($(this).val() != 0) ? $("#msgErrNounNameProduct").text("") : $("#msgErrNounNameProduct").text("Debes ingresar un nombre");
 });
-/************************** VALIDAR SI ESTÁ MARCADO EL RADIOBUTTON - REGULADOR 1 **************************/
+// ------------ VALIDAR SI ESTÁ MARCADO EL RADIOBUTTON - REGULADOR 1
 $(document).on("click", "#required-reg", function(){
   ($(this).is(':checked')) ? $("#msgErrNounWithOrNotRegulator").text("") : $("#msgErrNounWithOrNotRegulator").text("Debes marcar una opción");
 });
-/************************** VALIDAR SI ESTÁ MARCADO EL RADIOBUTTON - REGULADOR 1 **************************/
+// ------------ VALIDAR SI ESTÁ MARCADO EL RADIOBUTTON - REGULADOR 1
 $(document).on("click", "#noun-required-reg", function(){
   ($(this).is(':checked')) ? $("#msgErrNounWithOrNotRegulator").text("") : $("#msgErrNounWithOrNotRegulator").text("Debes marcar una opción");
 });
-/************************** ABRIR/CERRAR EL LISTADO DE REGULADORES - AGREGAR 1 **************************/
+// ------------ ABRIR/CERRAR EL LISTADO DE REGULADORES - AGREGAR 1
 $(document).on("click", "#btn-FakeListRegulatorOne", function(){
   $("#c-listitems-regulatorOne").toggleClass("show");
   $(this).toggleClass("showList");
-
    $.ajax({
     url: "../admin/controllers/c_list_regulators.php",
     method: "POST",
@@ -92,20 +67,17 @@ $(document).on("click", "#btn-FakeListRegulatorOne", function(){
     var result = JSON.parse(res);
     var template = "";
     if(result.length > 0){
-      
       result.forEach( (e) => {
         template += `<li class="cont-modalbootstrap__form--controlSelect--m--item" id="${e.id}" regularone="${e.name}">${e.name}</li>`;
       });
-
       $("#c-listitems-regulatorOne").html(template);
     }else{
       template += `<li class="cont-modalbootstrap__form--controlSelect--m--item">No se encontraron datos</li>`;
-
       $("#c-listitems-regulatorOne").html(template);
     }
   });
 });
-/************************** FIJAR EL VALOR EN EL FAKE SELECT - AGREGAR 1 **************************/
+// ------------ FIJAR EL VALOR EN EL FAKE SELECT - AGREGAR 1
 $(document).on("click", "#c-listitems-regulatorOne .cont-modalbootstrap__form--controlSelect--m--item", function(){
   $("#msgErrNounReguladorOne").text("");
   $("#c-listitems-regulatorOne").removeClass("show");
@@ -114,11 +86,10 @@ $(document).on("click", "#c-listitems-regulatorOne .cont-modalbootstrap__form--c
   $("#SelectedItem-inputfakeselRegOne").attr("regularone", $(this).attr("regularone"));
   $("#SelectedItem-inputfakeselRegOne").attr("idtregularone", $(this).attr("id"));
 });
-/************************** ABRIR/CERRAR EL LISTADO DE REGULADORES - AGREGAR 2 **************************/
+// ------------ ABRIR/CERRAR EL LISTADO DE REGULADORES - AGREGAR 2
 $(document).on("click", "#btn-FakeListRegulatorTwo", function(){
   $("#c-listitems-regulatorTwo").toggleClass("show");
   $(this).toggleClass("showList");
-
    $.ajax({
     url: "../admin/controllers/c_list_regulators.php",
     method: "POST",
@@ -128,20 +99,17 @@ $(document).on("click", "#btn-FakeListRegulatorTwo", function(){
     var result = JSON.parse(res);
     var template = "";
     if(result.length > 0){
-      
       result.forEach( (e) => {
         template += `<li class="cont-modalbootstrap__form--controlSelect--m--item" id="${e.id}" regulartwo="${e.name}">${e.name}</li>`;
       });
-
       $("#c-listitems-regulatorTwo").html(template);
     }else{
       template += `<li class="cont-modalbootstrap__form--controlSelect--m--item">No se encontraron datos</li>`;
-
       $("#c-listitems-regulatorTwo").html(template);
     }
   });
 });
-/************************** FIJAR EL VALOR EN EL FAKE SELECT - AGREGAR 2 **************************/
+// ------------ FIJAR EL VALOR EN EL FAKE SELECT - AGREGAR 2
 $(document).on("click", "#c-listitems-regulatorTwo .cont-modalbootstrap__form--controlSelect--m--item", function(){
   $("#msgErrNounReguladorTwo").text("");
   $("#c-listitems-regulatorTwo").removeClass("show");
@@ -150,10 +118,7 @@ $(document).on("click", "#c-listitems-regulatorTwo .cont-modalbootstrap__form--c
   $("#SelectedItem-inputfakeselRegTwo").attr("regulartwo", $(this).attr("regulartwo"));
   $("#SelectedItem-inputfakeselRegTwo").attr("idtregulartwo", $(this).attr("id"));
 });
-/*==================================================
-=            MONTO ADICIONAL - PRODUCTO            =
-==================================================*/
-/************************** MOSTRAR/OCULTAR DE ACUERDO AL CHECKBOX SELECCIONADO - MONTO ADICIONAL(AGREGAR) **************************/
+// ------------ MOSTRAR/OCULTAR DE ACUERDO AL CHECKBOX SELECCIONADO - MONTO ADICIONAL(AGREGAR)
 $(document).on("click", ".cont-modalbootstrap__form--controlRadios--c--control--input[name=sel-addornotadd]", function(){
   if($(this).attr("id") == "noun-required-amountadditional"){
     $("#sel-optsAmountAdditionalMore").html("");
@@ -167,7 +132,7 @@ $(document).on("click", ".cont-modalbootstrap__form--controlRadios--c--control--
     `);
   }
 });
-/************************** MOSTRAR/OCULTAR DE ACUERDO AL CHECKBOX SELECCIONADO - MONTO ADICIONAL(ACTUALIZAR) **************************/
+// ------------ MOSTRAR/OCULTAR DE ACUERDO AL CHECKBOX SELECCIONADO - MONTO ADICIONAL(ACTUALIZAR)
 $(document).on("click", ".cont-modalbootstrapupdate__form--controlRadios--c--control--input[name=sel-addornotaddupdate]", function(){
   if($(this).attr("id") == "noun-required-amountadditionalupdate"){
     $("#sel-optsAmountAdditionalMoreUpdate").html("");
@@ -181,22 +146,19 @@ $(document).on("click", ".cont-modalbootstrapupdate__form--controlRadios--c--con
     `);
   }
 });
-/************************** VALIDAR SI EL MONTO ESTÁ VACÍO **************************/
+// ------------ VALIDAR SI EL MONTO ESTÁ VACÍO
 $(document).on("keyup", "#amountadditionalProduct", function(){
   ($(this).val() != 0) ? $("#msgErrNounAmountAdditionalProduct").text("") : $("#msgErrNounAmountAdditionalProduct").text("Debe colocar un monto");
 });
-/************************** VALIDAR SI ESTÁ MARCADO EL RADIOBUTTON - IZQUIERDA **************************/
+// ------------ VALIDAR SI ESTÁ MARCADO EL RADIOBUTTON - IZQUIERDA
 $(document).on("click", "#required-amountadditional", function(){
   ($(this).is(':checked')) ? $("#msgErrNounWithOrNotAmountAdditional").text("") : $("#msgErrNounWithOrNotAmountAdditional").text("Debes marcar una opción");
 });
-/************************** VALIDAR SI ESTÁ MARCADO EL RADIOBUTTON - DERECHA **************************/
+// ------------ VALIDAR SI ESTÁ MARCADO EL RADIOBUTTON - DERECHA
 $(document).on("click", "#noun-required-amountadditional", function(){
   ($(this).is(':checked')) ? $("#msgErrNounWithOrNotAmountAdditional").text("") : $("#msgErrNounWithOrNotAmountAdditional").text("Debes marcar una opción");
 });
-/*======================================================================
-=            IMPUESTOS ADICIONALES - LISTADO DE FAKESELECTS            =
-======================================================================*/
-/************************** LISTAR LOS IMPUESTOS ADICIONALES - AGREGAR 1 **************************/
+// ------------ LISTAR LOS IMPUESTOS ADICIONALES - AGREGAR 1
 $(document).on("click", ".cont-modalbootstrap__form--controlRadios--c--control--input[name=sel-taxornottax]", function(){
   if($(this).attr("id") == "noun-required-taxadditional"){
     $("#sel-optsTaxationAdditionalsMore").html("");
@@ -220,15 +182,13 @@ $(document).on("click", ".cont-modalbootstrap__form--controlRadios--c--control--
     `);
   }
 });
-/************************** VALIDAR LOS CONTROLES DE IMPUESTOS (SI) **************************/
+// ------------ VALIDAR LOS CONTROLES DE IMPUESTOS (SI)
 $(document).on("input keyup","#taxoneadditional",function(e){(e.target.value == 0 || e.target.value == "") ? $("#msgErrNounTaxOneAdditionalProduct").text("Debe colocar un monto") : $("#msgErrNounTaxOneAdditionalProduct").text("");});
 $(document).on("input keyup","#taxtwoadditional",function(e){(e.target.value == 0 || e.target.value == "") ? $("#msgErrNounTaxTwoAdditionalProduct").text("Debe colocar un monto") : $("#msgErrNounTaxTwoAdditionalProduct").text("");});
 $(document).on("input keyup","#taxthreeadditional",function(e){(e.target.value == 0 || e.target.value == "") ? $("#msgErrNounTaxThreeAdditionalProduct").text("Debe colocar un monto") : $("#msgErrNounTaxThreeAdditionalProduct").text("");});
-
-/************************** AGREGAR PRODUCTO **************************/
+// ------------ AGREGAR PRODUCTO
 $(document).on('submit', '#form-add-product', function(e){
   e.preventDefault();
-
   ($("#nameProduct").val() != 0) ? $("#msgErrNounNameProduct").text("") : $("#msgErrNounNameProduct").text("Debes ingresar un nombre");
   ($("#required-reg").is(":checked") || $("#noun-required-reg").is(":checked")) ? $("#msgErrNounWithOrNotRegulator").text("") : $("#msgErrNounWithOrNotRegulator").text("Debe marcar una opción"); 
   ($("#SelectedItem-inputfakeselRegOne").attr("idtregularOne")) ? $("#msgErrNounReguladorOne").text("") : $("#msgErrNounReguladorOne").text("Debe seleccionar un regulador");
@@ -236,7 +196,7 @@ $(document).on('submit', '#form-add-product', function(e){
   ($("#required-amountadditional").is(":checked") || $("#noun-required-amountadditional").is(":checked")) ? $("#msgErrNounWithOrNotAmountAdditional").text("") : $("#msgErrNounWithOrNotAmountAdditional").text("Debe marcar una opción"); 
   ($("#required-taxadditional").is(":checked") || $("#noun-required-taxadditional").is(":checked")) ? $("#msgErrNounWithOrNotTaxAdditional").text("") : $("#msgErrNounWithOrNotTaxAdditional").text("Debe marcar una opción"); 
 
-  /************************** CONDICIONAL 1 - (SI, SI, SI, SI) **************************/
+  // ------------ CONDICIONAL 1 - (SI, SI, SI, SI)
   if(($("#nameProduct").val() != 0 || $("#nameProduct").val() != "") && 
       $("#required-reg").is(":checked") && 
       $("#required-amountadditional").is(":checked") && 
@@ -284,7 +244,7 @@ $(document).on('submit', '#form-add-product', function(e){
     }else{
       console.log("Falta rellenar los campos");
     }
-  /************************** CONDICIONAL 2 - (SI, SI, NO, NO) **************************/
+  // ------------ CONDICIONAL 2 - (SI, SI, NO, NO)
   }else if(($("#nameProduct").val() != 0 || $("#nameProduct").val() != "") &&
             $("#required-reg").is(":checked") &&
             $("#noun-required-amountadditional").is(":checked") &&
@@ -324,7 +284,7 @@ $(document).on('submit', '#form-add-product', function(e){
     }else{
       console.log("Falta rellenar los campos");      
     }
-  /************************** CONDICIONAL 3 - (SI, NO, SI, NO) **************************/
+  // ------------ CONDICIONAL 3 - (SI, NO, SI, NO)
   }else if(($("#nameProduct").val() != 0 || $("#nameProduct").val() != "") &&
            $("#noun-required-reg").is(":checked") &&
            $("#required-amountadditional").is(":checked") &&
@@ -363,7 +323,7 @@ $(document).on('submit', '#form-add-product', function(e){
     }else{
       $("#msgErrNounAmountAdditionalProduct").text("Debe colocar un monto");
     }
-  /************************** CONDICIONAL 4 - (SI, SI, NO, SI) **************************/
+  // ------------ CONDICIONAL 4 - (SI, SI, NO, SI)
   }else if(($("#nameProduct").val() != 0 || $("#nameProduct").val() != "") && 
            $("#required-reg").is(":checked") && 
            $("#noun-required-amountadditional").is(":checked") && 
@@ -405,7 +365,7 @@ $(document).on('submit', '#form-add-product', function(e){
     }else{
       console.log("Falta rellenar los campos");      
     }
-  /************************** CONDICIONAL 5 - (SI, NO, SI, SI) **************************/
+  // ------------ CONDICIONAL 5 - (SI, NO, SI, SI)
   }else if(($("#nameProduct").val() != 0 || $("#nameProduct").val() != "") && 
            $("#noun-required-reg").is(":checked") && 
            $("#required-amountadditional").is(":checked") && 
@@ -447,7 +407,7 @@ $(document).on('submit', '#form-add-product', function(e){
     }else{
       $("#msgErrNounAmountAdditionalProduct").text("Debe colocar un monto");
     }
-  /************************** CONDICIONAL 6 - (SI, SI, SI, NO) **************************/
+  // ------------ CONDICIONAL 6 - (SI, SI, SI, NO)
   }else if(($("#nameProduct").val() != 0 || $("#nameProduct").val() != "") && 
           $("#required-reg").is(":checked") && 
           $("#required-amountadditional").is(":checked") && 
@@ -487,7 +447,7 @@ $(document).on('submit', '#form-add-product', function(e){
     }else{
       console.log("Falta rellenar los campos");
     }
-  /************************** CONDICIONAL 7 - (SI, NO, NO, SI) **************************/
+  // ------------ CONDICIONAL 7 - (SI, NO, NO, SI)
   }else if(($("#nameProduct").val() != 0 || $("#nameProduct").val() != "") && 
           $("#noun-required-reg").is(":checked") && 
           $("#noun-required-amountadditional").is(":checked") && 
@@ -526,7 +486,7 @@ $(document).on('submit', '#form-add-product', function(e){
     }else{
       console.log("Falta rellenar los campos");
     }
-  /************************** CONDICIONAL 8 - (SI, NO, NO, NO) **************************/
+  // ------------ CONDICIONAL 8 - (SI, NO, NO, NO)
   }else if(($("#nameProduct").val() != 0 || $("#nameProduct").val() != "") && 
             $("#noun-required-reg").is(":checked") && 
             $("#noun-required-amountadditional").is(":checked") && 
@@ -563,7 +523,7 @@ $(document).on('submit', '#form-add-product', function(e){
   }
 
 });
-// /************************** LISTAR PRODUCTOS **************************/
+// // ------------ LISTAR PRODUCTOS
 function listProducts(searchVal){ 
   $.ajax({
     url: "../admin/controllers/c_list_products.php",
@@ -606,33 +566,7 @@ function listProducts(searchVal){
         nounOneAndTwoRegs = e.reguladorOne;
       }else{
         nounOneAndTwoRegs = e.reguladorOne + " / " + e.reguladorTwo;
-      }      
-
-      // var nounTaxOne = "";
-      // var nounTaxTwo = "";
-      // var nounTaxThree = "";
-      // var nounOneAndMoreTaxs = "";
-
-      // (e.impuestoOne == null || e.impuestoOne == 'null' || e.impuestoOne == "") ? nounTaxOne = "" : nounTaxOne = e.impuestoOne;
-      // (e.impuestoTwo == null || e.impuestoTwo == 'null' || e.impuestoTwo == "") ? nounTaxTwo = "" : nounTaxTwo = e.impuestoTwo;
-      // (e.impuestoThree == null || e.impuestoThree == 'null' || e.impuestoThree == "") ? nounTaxThree = "" : nounTaxThree = e.impuestoThree;
-
-      // if((e.impuestoOne == null || e.impuestoOne == 'null' || e.impuestoOne == "") && 
-      //   (e.impuestoTwo == null || e.impuestoTwo == 'null' || e.impuestoTwo == "") && 
-      //   (e.impuestoThree == null || e.impuestoThree == 'null' || e.impuestoThree == "")){
-      //   nounOneAndMoreTaxs = "Ninguno";
-      // }else if((e.impuestoOne == null || e.impuestoOne == 'null' || e.impuestoOne == "") && (e.impuestoTwo == null || e.impuestoTwo == 'null' || e.impuestoTwo == "")){
-      //   nounOneAndMoreTaxs = nounTaxThree;
-      // }else if((e.impuestoTwo == null || e.impuestoTwo == 'null' || e.impuestoTwo == "") && (e.impuestoThree == null || e.impuestoThree == 'null' || e.impuestoThree == "")){
-      //   nounOneAndMoreTaxs = nounTaxOne;
-      // }else if((e.impuestoOne == null || e.impuestoOne == 'null' || e.impuestoOne == "") && (e.impuestoThree == null || e.impuestoThree == 'null' || e.impuestoThree == "")){
-      //   nounOneAndMoreTaxs = nounTaxTwo;
-      // }else{
-      //   nounOneAndMoreTaxs = nounTaxOne + " / " + nounTaxTwo + " / " + nounTaxThree;
-      // }
-
-      // var longNameProd = e.name_prod;
-      // var longlimitNameProd = (longNameProd.length >= 36) ? longNameProd.substring(36, 0) + '<b>...</b>' : longNameProd;
+      }
 
       template += `
         <tr id="item-${e.id_prod}">
@@ -673,7 +607,7 @@ function listProducts(searchVal){
 
   });
 }
-/************************** MOSTRAR EL CONTENIDO DENTRO DEL FORMULARIO DE ACTUALIZAR - IMPUESTOS ADICIONALES **************************/
+// ------------ MOSTRAR EL CONTENIDO DENTRO DEL FORMULARIO DE ACTUALIZAR - IMPUESTOS ADICIONALES
 $(document).on("click", ".cont-modalbootstrapupdate__form--controlRadios--c--control--input[name=sel-taxornottax]", function(){
   if($(this).attr("id") == "noun-required-taxadditionalupdate"){
     $("#sel-optsTaxationAdditionalsMoreUpdate").html("");
@@ -697,7 +631,7 @@ $(document).on("click", ".cont-modalbootstrapupdate__form--controlRadios--c--con
     `);
   }
 });
-/************************** BUSCADOR EN TIEMPO REAL **************************/
+// ------------ BUSCADOR EN TIEMPO REAL
 $(document).on('keyup', '#searchproducts', function() {
   var searchVal = $(this).val();
   if(searchVal != ""){
@@ -706,7 +640,7 @@ $(document).on('keyup', '#searchproducts', function() {
     listProducts();
   }
 });
-/************************** LISTAR DATOS EN EL MODAL - ACTUALIZAR **************************/
+// ------------ LISTAR DATOS EN EL MODAL - ACTUALIZAR
 $(document).on('click', '.btn-update-product', function(e){
   e.preventDefault();
   $.each($(this), function(i, v){
@@ -726,7 +660,7 @@ $(document).on('click', '.btn-update-product', function(e){
 
     console.log(item_data);
 
-    /************************** VALIDAR SI EL PRODUCTO CONTIENE REGULADORES - MOSTRAR LOS CONTROLES RESPECTIVOS **************************/
+    // ------------ VALIDAR SI EL PRODUCTO CONTIENE REGULADORES - MOSTRAR LOS CONTROLES RESPECTIVOS
     if(item_data['regulated'] == "NO"){
       $("#sel-optsRegulatorsMoreUpdate").addClass("hidden");
       $("#sel-optsRegulatorsMoreUpdate").attr("aria-expanded", true);
@@ -739,7 +673,7 @@ $(document).on('click', '.btn-update-product', function(e){
       ($("#required-reg").attr("checked")) ? $("#required-reg").attr("checked", true) : $("#noun-required-reg").attr("checked", false);
     }
 
-    /************************** ASIGNAR A LOS CONTROLES DEL MODAL DE ACTUALIZAR **************************/
+    // ------------ ASIGNAR A LOS CONTROLES DEL MODAL DE ACTUALIZAR
     $('#idupdate-product').val(item_data['id']);
     $('#name-update').val(item_data['name']);
     $('#required_regsoptupdate').val(item_data['regulated']);
@@ -750,7 +684,7 @@ $(document).on('click', '.btn-update-product', function(e){
     $("#selectedItem-fakeSelRegOneUpdate").text(item_data['regulatorone']);
     $("#selectedItem-fakeSelRegTwoUpdate").text(item_data['regulatortwo']);
 
-    /************************** MOSTRAR EL CONTROL DE MONTO ADICIONAL **************************/
+    // ------------ MOSTRAR EL CONTROL DE MONTO ADICIONAL
     if(item_data['amountadditional'] > 0 || item_data['amountadditional'] != 0.00){
       $("#sel-optsAmountAdditionalMoreUpdate").html(`
         <div class="cont-modalbootstrapupdate__form--control">
@@ -763,7 +697,7 @@ $(document).on('click', '.btn-update-product', function(e){
       $("#sel-optsAmountAdditionalMoreUpdate").html("");
     }
 
-    /************************** MOSTRAR LOS CONTROLES DE LOS IMPUESTOS **************************/
+    // ------------ MOSTRAR LOS CONTROLES DE LOS IMPUESTOS
     if((item_data['pricetadditional_one'] != 0 && item_data['pricetadditional_one'] != "" && item_data['pricetadditional_one'] != null) ||
       (item_data['pricetadditional_two'] != 0 && item_data['pricetadditional_two'] != "" && item_data['pricetadditional_two'] != null) ||
       (item_data['pricetadditional_three'] != 0 && item_data['pricetadditional_three'] != "" && item_data['pricetadditional_three'] != null)){
@@ -790,7 +724,7 @@ $(document).on('click', '.btn-update-product', function(e){
     }
   });
 });
-/************************** MOSTRAR/OCULTAR DATOS EN EL MODAL **************************/
+// ------------ MOSTRAR/OCULTAR DATOS EN EL MODAL
 $(document).on("click", ".cont-modalbootstrapupdate__form--controlRadios--c--control--input[name=sel-reornotregupdate]", function(){
   if($(this).attr("id") == "noun-required-regupdate"){
     $("#sel-optsRegulatorsMoreUpdate").addClass("hidden");
@@ -802,7 +736,7 @@ $(document).on("click", ".cont-modalbootstrapupdate__form--controlRadios--c--con
     $("#sel-optsRegulatorsMoreUpdate").attr("aria-visibility", "hidden");
   }
 });
-/************************** ABRIR/CERRAR EL LISTADO DE REGULADORES - ACTUALIZAR 1 **************************/
+// ------------ ABRIR/CERRAR EL LISTADO DE REGULADORES - ACTUALIZAR 1
 $(document).on("click", "#btn-FakeListRegulatorOneUpdate", function(){
   $("#c-listitems-regulatorOneUpdate").toggleClass("show");
   $(this).toggleClass("showList");
@@ -818,16 +752,14 @@ $(document).on("click", "#btn-FakeListRegulatorOneUpdate", function(){
       result.forEach( (e) => {
         template += `<li class="cont-modalbootstrapupdate__form--controlSelect--m--item" id="${e.id}" regularone="${e.name}">${e.name}</li>`;
       });
-
       $("#c-listitems-regulatorOneUpdate").html(template);
     }else{
       template += `<li class="cont-modalbootstrapupdate__form--controlSelect--m--item">No se encontraron datos</li>`;
-
       $("#c-listitems-regulatorOneUpdate").html(template);
     }
   });
 });
-/************************** FIJAR EL VALOR EN EL FAKE SELECT - ACTUALIZAR 1 **************************/
+// ------------ FIJAR EL VALOR EN EL FAKE SELECT - ACTUALIZAR 1
 $(document).on("click", "#c-listitems-regulatorOneUpdate .cont-modalbootstrapupdate__form--controlSelect--m--item", function(){
   $("#msgErrNounReguladorOneUpdate").text("");
   $("#c-listitems-regulatorOneUpdate").removeClass("show");
@@ -836,7 +768,7 @@ $(document).on("click", "#c-listitems-regulatorOneUpdate .cont-modalbootstrapupd
   $("#SelectedItem-inputfakeselRegOneUpdate").attr("regularone", $(this).attr("regularone"));
   $("#SelectedItem-inputfakeselRegOneUpdate").attr("idtregularone", $(this).attr("id"));
 });
-/************************** ABRIR/CERRAR EL LISTADO DE REGULADORES - ACTUALIZAR 2 **************************/
+// ------------ ABRIR/CERRAR EL LISTADO DE REGULADORES - ACTUALIZAR 2
 $(document).on("click", "#btn-FakeListRegulatorTwoUpdate", function(){
   $("#c-listitems-regulatorTwoUpdate").toggleClass("show");
   $(this).toggleClass("showList");
@@ -852,16 +784,14 @@ $(document).on("click", "#btn-FakeListRegulatorTwoUpdate", function(){
       result.forEach( (e) => {
         template += `<li class="cont-modalbootstrapupdate__form--controlSelect--m--item" id="${e.id}" regulartwo="${e.name}">${e.name}</li>`;
       });
-
       $("#c-listitems-regulatorTwoUpdate").html(template);
     }else{
       template += `<li class="cont-modalbootstrapupdate__form--controlSelect--m--item">No se encontraron datos</li>`;
-
       $("#c-listitems-regulatorTwoUpdate").html(template);
     }
   });
 });
-/************************** FIJAR EL VALOR EN EL FAKE SELECT - ACTUALIZAR 2 **************************/
+// ------------ FIJAR EL VALOR EN EL FAKE SELECT - ACTUALIZAR 2
 $(document).on("click", "#c-listitems-regulatorTwoUpdate .cont-modalbootstrapupdate__form--controlSelect--m--item", function(){
   $("#msgErrNounReguladorTwoUpdate").text("");
   $("#c-listitems-regulatorTwoUpdate").removeClass("show");
@@ -870,116 +800,13 @@ $(document).on("click", "#c-listitems-regulatorTwoUpdate .cont-modalbootstrapupd
   $("#SelectedItem-inputfakeselRegTwoUpdate").attr("regulartwo", $(this).attr("regulartwo"));
   $("#SelectedItem-inputfakeselRegTwoUpdate").attr("idtregulartwo", $(this).attr("id"));
 });
-/************************** ABRIR/CERRAR EL LISTADO DE IMPUESTOS - ACTUALIZAR 1 **************************/
-// $(document).on("click", "#btn-FakeListTaxationOneUpdate", function(){
-//   $("#c-listitems-taxationOneUpdate").toggleClass("show");
-//   $(this).toggleClass("showList");
-//    $.ajax({
-//     url: "../admin/controllers/c_list-taxation-values-by-product.php",
-//     method: "POST",
-//     datatype: "JSON",
-//     contentType: 'application/x-www-form-urlencoded;charset=UTF-8',
-//   }).done((res) => {
-//     var result = JSON.parse(res);
-//     var template = "";
-//     if(result.length > 0){
-//       result.forEach( (e) => {
-//         template += `<li class="cont-modalbootstrapupdate__form--controlSelect--m--item" id="${e.id}" taxationone="${e.data_name}">${e.data_name}</li>`;
-//       });
-
-//       $("#c-listitems-taxationOneUpdate").html(template);
-//     }else{
-//       template += `<li class="cont-modalbootstrapupdate__form--controlSelect--m--item">No se encontraron datos</li>`;
-
-//       $("#c-listitems-taxationOneUpdate").html(template);
-//     }
-//   });
-// });
-// /************************** ABRIR/CERRAR EL LISTADO DE IMPUESTOS - ACTUALIZAR 2 **************************/
-// $(document).on("click", "#btn-FakeListTaxationTwoUpdate", function(){
-//   $("#c-listitems-taxationTwoUpdate").toggleClass("show");
-//   $(this).toggleClass("showList");
-//    $.ajax({
-//     url: "../admin/controllers/c_list-taxation-values-by-product.php",
-//     method: "POST",
-//     datatype: "JSON",
-//     contentType: 'application/x-www-form-urlencoded;charset=UTF-8',
-//   }).done((res) => {
-//     var result = JSON.parse(res);
-//     var template = "";
-//     if(result.length > 0){
-//       result.forEach( (e) => {
-//         template += `<li class="cont-modalbootstrapupdate__form--controlSelect--m--item" id="${e.id}" taxationtwo="${e.data_name}">${e.data_name}</li>`;
-//       });
-
-//       $("#c-listitems-taxationTwoUpdate").html(template);
-//     }else{
-//       template += `<li class="cont-modalbootstrapupdate__form--controlSelect--m--item">No se encontraron datos</li>`;
-
-//       $("#c-listitems-taxationTwoUpdate").html(template);
-//     }
-//   });
-// });
-// /************************** ABRIR/CERRAR EL LISTADO DE IMPUESTOS - ACTUALIZAR 3 **************************/
-// $(document).on("click", "#btn-FakeListTaxationThreeUpdate", function(){
-//   $("#c-listitems-taxationThreeUpdate").toggleClass("show");
-//   $(this).toggleClass("showList");
-//    $.ajax({
-//     url: "../admin/controllers/c_list-taxation-values-by-product.php",
-//     method: "POST",
-//     datatype: "JSON",
-//     contentType: 'application/x-www-form-urlencoded;charset=UTF-8',
-//   }).done((res) => {
-//     var result = JSON.parse(res);
-//     var template = "";
-//     if(result.length > 0){
-//       result.forEach( (e) => {
-//         template += `<li class="cont-modalbootstrapupdate__form--controlSelect--m--item" id="${e.id}" taxationthree="${e.data_name}">${e.data_name}</li>`;
-//       });
-
-//       $("#c-listitems-taxationThreeUpdate").html(template);
-//     }else{
-//       template += `<li class="cont-modalbootstrapupdate__form--controlSelect--m--item">No se encontraron datos</li>`;
-
-//       $("#c-listitems-taxationThreeUpdate").html(template);
-//     }
-//   });
-// });
-// /************************** FIJAR EL VALOR DE IMPUESTO - ACTUALIZAR 1 **************************/
-// $(document).on("click", "#c-listitems-taxationOneUpdate .cont-modalbootstrapupdate__form--controlSelect--m--item", function(){
-//   $("#msgErrNounTaxationOneUpdate").text("");
-//   $("#c-listitems-taxationOneUpdate").removeClass("show");
-//   $("#btn-FakeListTaxationOneUpdate").removeClass("showList");
-//   $("#selectedItem-fakeSelTaxOneUpdate").text($(this).text());
-//   $("#SelectedItem-inputfakeselTaxOneUpdate").attr("taxone", $(this).attr("taxationone"));
-//   $("#SelectedItem-inputfakeselTaxOneUpdate").attr("idtaxationone", $(this).attr("id"));
-// });
-// /************************** FIJAR EL VALOR DE IMPUESTO - ACTUALIZAR 2 **************************/
-// $(document).on("click", "#c-listitems-taxationTwoUpdate .cont-modalbootstrapupdate__form--controlSelect--m--item", function(){
-//   $("#msgErrNounTaxationTwoUpdate").text("");
-//   $("#c-listitems-taxationTwoUpdate").removeClass("show");
-//   $("#btn-FakeListTaxationTwoUpdate").removeClass("showList");
-//   $("#selectedItem-fakeSelTaxTwoUpdate").text($(this).text());
-//   $("#SelectedItem-inputfakeselTaxTwoUpdate").attr("taxtwo", $(this).attr("taxationtwo"));
-//   $("#SelectedItem-inputfakeselTaxTwoUpdate").attr("idtaxationtwo", $(this).attr("id"));
-// });
-// /************************** FIJAR EL VALOR DE IMPUESTO - ACTUALIZAR 3 **************************/
-// $(document).on("click", "#c-listitems-taxationThreeUpdate .cont-modalbootstrapupdate__form--controlSelect--m--item", function(){
-//   $("#msgErrNounTaxationThreeUpdate").text("");
-//   $("#c-listitems-taxationThreeUpdate").removeClass("show");
-//   $("#btn-FakeListTaxationThreeUpdate").removeClass("showList");
-//   $("#selectedItem-fakeSelTaxThreeUpdate").text($(this).text());
-//   $("#SelectedItem-inputfakeselTaxThreeUpdate").attr("taxthree", $(this).attr("taxationthree"));
-//   $("#SelectedItem-inputfakeselTaxThreeUpdate").attr("idtaxationthree", $(this).attr("id"));
-// });
-/************************** VALIDAR SI EL NOMBRE DEL PRODUCTO ESTÁ VACÍO - ACTUALIZAR **************************/
+// ------------ VALIDAR SI EL NOMBRE DEL PRODUCTO ESTÁ VACÍO - ACTUALIZAR
 $(document).on("keyup", "#name-update", function(){
   ($(this).val() != 0 || $(this).val() != "") ? $("#msgErrNounNameProductUpdate").text("") : $("#msgErrNounNameProductUpdate").text("Debes ingresar un nombre");
 });
-/************************** ACTUALIZAR PRODUCTO POR ID **************************/
+// ------------ ACTUALIZAR PRODUCTO POR ID
 $(document).on('submit', '#form-update-product', function(e){
   e.preventDefault();
-
   ($('#name-update').val() != 0 || $('#name-update').val() != "") ? $("#msgErrNounNameProductUpdate").text("") : $("#msgErrNounNameProductUpdate").text("Debes ingresar un nombre");
 
   if($('#idupdate-product').val() != 0 || $('#idupdate-product').val() != ""){
@@ -1010,15 +837,14 @@ $(document).on('submit', '#form-update-product', function(e){
   }else{
     console.log('Falta rellenar los campos');
   }
-
 });
-/************************** LISTAR ID EN EL MODAL - ELIMINAR **************************/
+// ------------ LISTAR ID EN EL MODAL - ELIMINAR
 $(document).on('click', '.btn-delete-product', function(e){
   e.preventDefault();
   var id = $(this).attr('data-id');
   $('#iddelete-product').val(id);
 });
-/************************** ELIMINAR PAÍS **************************/
+// ------------ ELIMINAR PAÍS
 $(document).on('click', '#btndelete-product', function(e){
   e.preventDefault();
 	var id = $('#iddelete-product').val();

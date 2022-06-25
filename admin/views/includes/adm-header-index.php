@@ -2,9 +2,11 @@
   $actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]";
   // CONFIGURACIÓN LOCALHOST
   $url =  $actual_link . "/Camellogistics/admin/views/";
+  $urlCli =  $actual_link . "/" ."Camellogistics/";
   // CONFIGURACIÓN SERVIDOR
   /*
   $url =  $actual_link . "/admin/views/";
+  $urlCli =  $actual_link . "/";
   */
 ?>
 <meta charset="UTF-8">

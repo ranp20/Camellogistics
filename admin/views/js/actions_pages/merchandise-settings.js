@@ -97,7 +97,7 @@ $(document).on('submit', '#form-update-merchandisevalues', function(e){
         $('#updateModal').modal("hide");
         Swal.fire({
           title: 'Actualizado!',
-          html: `<span class='font-w-300'>Se ha actualizdo el valor.</span>`,
+          html: `<span class='font-w-300'>Se ha actualizado el valor.</span>`,
           icon: 'success',
           confirmButtonText: 'Aceptar'
         });

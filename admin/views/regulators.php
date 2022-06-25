@@ -11,6 +11,9 @@
 <head>
 	<?php require_once 'includes/adm-header-index.php'; ?>
 	<title>Admin - Reguladores</title>
+	<!-- INCLUIR SWEETALERTS2 -->
+	<link rel="stylesheet" href="../node_modules/sweetalert2/dist/sweetalert2.min.css">
+	<script type="text/javascript" src="../node_modules/sweetalert2/dist/sweetalert2.all.min.js"></script>
 </head>
 <body>
 	<div id="dash-contT">
