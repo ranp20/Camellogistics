@@ -21,6 +21,7 @@ if(isset($_POST) && !empty($_POST)){
 	  'f_type_serv' => $_POST['f_type_serv'],
 	  'f_type_transp' => (!isset($_POST['f_type_transp']) || $_POST['f_type_transp'] == "") ? "No seleccinado" : $_POST['f_type_transp'],
 	  'f_type_cont' => $_POST['f_type_cont'],
+	  'f_optgenfquot' => $_POST['f_optgenfquot'],
 	  'u_n_document' => $_POST['u_n_document'],
 	  'u_enterprise' => $_POST['u_enterprise'],
 	  'u_telephone' => $_POST['u_telephone'],

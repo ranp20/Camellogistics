@@ -51,6 +51,7 @@ $(document).ready(function(){
 	var encrypt_v_ftcomparweacbm = $("#v_ftcomparweacbm").val(encryptValuesIpts($("#v_ftcomparweacbm").val()));
 	var encrypt_v_fplctopckloc = $("#v_fplctopckloc").val(encryptValuesIpts($("#v_fplctopckloc").val()));
 	var encrypt_v_frselinsmerch = $("#v_frselinsmerch").val(encryptValuesIpts($("#v_frselinsmerch").val()));
+	var encrypt_v_foptgnfquotevl = $("#v_foptgnfquotevl").val(encryptValuesIpts($("#v_foptgnfquotevl").val()));
 	/* DESENCRIPTACIÓN DE INPUTS */
 	// ------------ VALORES DE CAJAS DE TEXTO - TEXTO
 	var v_idgencoderand = decryptValuesIpts(encrypt_v_idgencoderand.val());
@@ -69,6 +70,8 @@ $(document).ready(function(){
 	var v_ftcomparweacbm = decryptValuesIpts(encrypt_v_ftcomparweacbm.val());
 	var v_fplctopckloc = decryptValuesIpts(encrypt_v_fplctopckloc.val());
 	var v_frselinsmerch = decryptValuesIpts(encrypt_v_frselinsmerch.val());
+	var v_foptgnfquotevl = decryptValuesIpts(encrypt_v_foptgnfquotevl.val());
+
 	// ------------ VALORES DE CAJAS DE TEXTO - CÁLCULO
 	var val_ftotvalofdownload = decryptValuesIpts(encrypt_val_ftotvalofdownload.val());
 	var val_ftotalfleteprod = decryptValuesIpts(encrypt_val_ftotalfleteprod.val());
@@ -412,6 +415,7 @@ $(document).ready(function(){
 					formdata.append("f_type_serv", v_typeserviceinit);
 					formdata.append("f_type_transp", v_floadTypeTranport);
 					formdata.append("f_type_cont", v_loadtypecharge);
+					formdata.append("f_optgenfquot", v_foptgnfquotevl);
 					formdata.append("u_n_document", "No especificado");
 					formdata.append("u_enterprise", "No especificado");
 					formdata.append("u_telephone", "No especificado");
@@ -680,6 +684,7 @@ $(document).ready(function(){
 					formdata.append("f_type_serv", v_typeserviceinit);
 					formdata.append("f_type_transp", v_floadTypeTranport);
 					formdata.append("f_type_cont", v_loadtypecharge);
+					formdata.append("f_optgenfquot", v_foptgnfquotevl);
 					formdata.append("u_n_document", "No especificado");
 					formdata.append("u_enterprise", "No especificado");
 					formdata.append("u_telephone", "No especificado");

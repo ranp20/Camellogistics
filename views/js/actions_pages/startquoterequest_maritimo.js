@@ -1737,6 +1737,7 @@ $(document).on("click","#list-insuremerchandise-notMoreOpts a",function(){
   if(tinsuremerchandise == 0){
     // ------------ ASIGNAR AL INPUT DE ENVÍO POST 
     $("#res-insuremerch").val("SI");
+    $("#opt-genfquotation").val("y-moreOpts");
     // ------------ REMOVER EL BOTÓN DE CALCULAR COTIZACIÓN 
     $("#s-quotationToNextStep").html("");
     // ------------ MOSTRAR EL SIGUIENTE PASO - DATOS DE MERCANCÍA DESDE SEGURO 
@@ -1787,6 +1788,7 @@ $(document).on("click","#list-insuremerchandise-notMoreOpts a",function(){
     localStorage.setItem("key_v-valueinsurance", 0);
     // ------------ ASIGNAR AL INPUT DE ENVÍO POST 
     $("#res-insuremerch").val("NO");
+    $("#opt-genfquotation").val("not-moreOpts");
     // ------------ OCULTAR LOS PASOS ABIERTOS POSTERIORMENTE 
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-requirespickup]").removeClass("show");
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-requirespickup]").html("");
@@ -2531,7 +2533,6 @@ $(document).on("click", "#btn-NextStepTochargedata", function(){
           contentType: 'application/x-www-form-urlencoded;charset=UTF-8'
         }).done((e) => {
           var res = JSON.parse(e);
-          console.log(res);
           var valdownload_convert = parseFloat(res[0].data_value);
           var val_totaldownload = 0;
 
