@@ -176,7 +176,6 @@ function listPortOriginandDestiny(){
 $(document).on("click", "#list-typeOperationItems li", function(){
   var tTypeOperation = $(this).index();
   if(tTypeOperation == 0){
-    localStorage.setItem("key_v-totalflette", 0);
     $(this).removeClass("active");
     $(this).css({"opacity" : "0.5","border" : "unset"});
     //alert("Esta opción aún no está disponible. Por favor, pase a elegir IMPORTACIÓN");
@@ -219,7 +218,6 @@ $(document).on("click", "#list-typeOperationItems li", function(){
   }else{
     sectionsSteps.setAllowScrolling(true, 'up');
     sectionsSteps.setAllowScrolling(true, 'down');
-    localStorage.setItem("key_v-totalflette", 0);
     // ------------ ASIGNAR A LA VARIABLE BLOBAL 
     v_TypeOp = $(this).find("a").find("p").text();
     // ------------ VALOR DEL TIPO DE OPERACIÓN 
@@ -291,8 +289,6 @@ $(document).on("click","#list-typeTransporteSelectItems a",function(){
   $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-chargeload]").addClass("show");
   var ttypeTransport = $(this).index();
   if(ttypeTransport == 0){
-    // ------------ RESETEAR EL VALOR FINAL DEL FLETE, SI SE REGRESA HASTA ESTE PUNTO 
-    localStorage.setItem("key_v-totalflette", 0);
     // ------------ ASIGNAR AL VALOR DEL INPUT DE ENVÍO POST 
     $("#loadTypeTranport").val("general");
     // ------------ MOSTRAR EN EL RESUMEN - LADO IZQUIERDO 
@@ -338,8 +334,6 @@ $(document).on("click","#list-typeTransporteSelectItems a",function(){
         </ul>
       </div>`);
   }else if(ttypeTransport == 1){
-    // ------------ RESETEAR EL VALOR FINAL DEL FLETE, SI SE REGRESA HASTA ESTE PUNTO 
-    localStorage.setItem("key_v-totalflette", 0);
     // ------------ ASIGNAR AL VALOR DEL INPUT DE ENVÍO POST 
     $("#loadTypeTranport").val("imo");
     // ------------ MOSTRAR EN EL RESUMEN - LADO IZQUIERDO 
@@ -387,8 +381,6 @@ $(document).on("click","#list-typeTransporteSelectItems a",function(){
       </div>
     `);
   }else{
-    // ------------ RESETEAR EL VALOR FINAL DEL FLETE, SI SE REGRESA HASTA ESTE PUNTO 
-    localStorage.setItem("key_v-totalflette", 0);
     // ------------ ASIGNAR AL VALOR DEL INPUT DE ENVÍO POST 
     $("#loadTypeTranport").val("refrigerado");
     // ------------ MOSTRAR EN EL RESUMEN - LADO IZQUIERDO 
@@ -447,7 +439,6 @@ $(document).on("click","#list-typeTransporteSelectItems a",function(){
 $(document).on("click", "#list-typeChargeLoadItems a", function(){
 	var tTypeChargeLoad = $(this).index();
 	if(tTypeChargeLoad == 0){
-    localStorage.setItem("key_v-totalflette", 0);
     // ------------ ASIGNAR A LAS VARIABLES GLOBALES 
     v_TypeChargeImgSrc = $(this).find("li").find("div").find("img").attr("src");
     v_TypeChargeName = $(this).find("li").find("p").text();
@@ -498,6 +489,7 @@ $(document).on("click", "#list-typeChargeLoadItems a", function(){
             <input type="hidden" value="" id="loadTypeContainer40nor" name="loadTypeContainer40nor" class="n-val-sd">
             <input type="hidden" value="0" id="loadQContainer40nor" name="loadQContainer40nor" class="n-val-sd">
             <input type="hidden" value="" id="val_validateratequote" name="val_validateratequote" class="n-val-sd">
+            <input type="hidden" id="val_valfleteprod" name="val_valfleteprod" class="n-val-sd" value="">
           </span>
         </span>
       </div>
@@ -731,7 +723,6 @@ $(document).on("click", "#list-typeChargeLoadItems a", function(){
       </div>
 		`);
 	}else{
-    localStorage.setItem("key_v-totalflette", 0);
     // ------------ ASIGNAR A LAS VARIABLES GLOBALES 
     v_TypeChargeImgSrc = $(this).find("li").find("div").find("img").attr("src");
     v_TypeChargeName = $(this).find("li").find("p").text();
@@ -786,6 +777,7 @@ $(document).on("click", "#list-typeChargeLoadItems a", function(){
             <input type="text" id="val_validateratequote" name="val_validateratequote" class="n-val-sd" value="">
             <input type="text" id="val_maxtotalweight" name="val_maxtotalweight" class="n-val-sd" value="">
             <input type="text" id="val_ftotvalofdownload" name="val_ftotvalofdownload" class="n-val-sd" value="">
+            <input type="hidden" id="val_valfleteprod" name="val_valfleteprod" class="n-val-sd" value="">
           </span>
         </span>
       </div>
@@ -904,8 +896,8 @@ $(document).on("click", "#c-incdecBtns20 button", function(){
         $("#loadQContainer20").val(val20inputhiddenNew);
         // ------------ CALCULAR EL VALOR DEL TOTAL - 20ST 
         totalSend20ST = parseFloat(totalFCL[0].total) * $("#ipt-qvalContainer20ST").val();
-        // ------------ ASIGNAR A LA VARIABLE LOCAL - LOCALSTORAGE 
-        localStorage.setItem("key_v-totalflette", totalSend20ST);
+        // ------------ AGREGAR AL INPUT SEND
+        $("#val_valfleteprod").val(totalSend20ST);
 
         // ------------ RESUMEN DEL LISTADO - CONTENEDORES 20' 
         $("div[data-merchandisetype=rsm-qcontainer20]").find("img").attr("src", v_QContainersImgSrc20);
@@ -922,8 +914,8 @@ $(document).on("click", "#c-incdecBtns20 button", function(){
           $("#loadQContainer20").val(val20inputhiddenNew);
           // ------------ CALCULAR EL VALOR DEL TOTAL - 20ST 
           totalSend20ST = parseFloat(totalFCL[0].total) * $("#ipt-qvalContainer20ST").val();
-          // ------------ ASIGNAR A LA VARIABLE LOCAL - LOCALSTORAGE 
-          localStorage.setItem("key_v-totalflette", totalSend20ST);
+          // ------------ AGREGAR AL INPUT SEND
+          $("#val_valfleteprod").val(totalSend20ST);
           // ------------ RESUMEN DEL LISTADO - CONTENEDORES 20' 
           $("div[data-merchandisetype=rsm-qcontainer20]").find("img").attr("src", v_QContainersImgSrc20);
           $("div[data-merchandisetype=rsm-qcontainer20]").find("span").eq(0).text(val20inputhiddenNew);
@@ -938,8 +930,8 @@ $(document).on("click", "#c-incdecBtns20 button", function(){
           $("#loadQContainer20").val(0);
           // ------------ CALCULAR EL VALOR DEL TOTAL - 20ST 
           totalSend20ST = 0;
-          // ------------ ASIGNAR A LA VARIABLE LOCAL - LOCALSTORAGE 
-          localStorage.setItem("key_v-totalflette", 0);
+          // ------------ AGREGAR AL INPUT SEND
+          $("#val_valfleteprod").val(0);
           // ------------ RESUMEN DEL LISTADO - CONTENEDORES 20' 
           $("div[data-merchandisetype=rsm-qcontainer20]").find("img").attr("src", "");
           $("div[data-merchandisetype=rsm-qcontainer20]").find("span").eq(0).text("");
@@ -1029,8 +1021,8 @@ $(document).on("click", "#c-incdecBtns40 button", function(){
         $("#loadQContainer40").val(val40inputhiddenNew);
         // ------------ CALCULAR EL VALOR DEL TOTAL - 20ST 
         totalSend40ST = parseFloat(totalFCL[0].total) * $("#ipt-qvalContainer40ST").val();
-        // ------------ ASIGNAR A LA VARIABLE LOCAL - LOCALSTORAGE 
-        localStorage.setItem("key_v-totalflette", totalSend40ST);
+        // ------------ AGREGAR AL INPUT SEND
+        $("#val_valfleteprod").val(totalSend40ST);
         // ------------ RESUMEN DEL LISTADO - CONTENEDORES 40' 
         $("div[data-merchandisetype=rsm-qcontainer40]").find("img").attr("src", v_QContainersImgSrc40);
         $("div[data-merchandisetype=rsm-qcontainer40]").find("span").eq(0).text(val40inputhiddenNew);
@@ -1046,8 +1038,8 @@ $(document).on("click", "#c-incdecBtns40 button", function(){
           $("#loadQContainer40").val(val40inputhiddenNew);
           // ------------ CALCULAR EL VALOR DEL TOTAL - 20ST 
           totalSend40ST = parseFloat(totalFCL[0].total) * $("#ipt-qvalContainer40ST").val();
-          // ------------ ASIGNAR A LA VARIABLE LOCAL - LOCALSTORAGE 
-          localStorage.setItem("key_v-totalflette", totalSend40ST);
+          // ------------ AGREGAR AL INPUT SEND
+          $("#val_valfleteprod").val(totalSend40ST);
           // ------------ RESUMEN DEL LISTADO - CONTENEDORES 40' 
           $("div[data-merchandisetype=rsm-qcontainer40]").find("img").attr("src", v_QContainersImgSrc40);
           $("div[data-merchandisetype=rsm-qcontainer40]").find("span").eq(0).text(val40inputhiddenNew);
@@ -1062,8 +1054,8 @@ $(document).on("click", "#c-incdecBtns40 button", function(){
           $("#loadQContainer40").val(0);
           // ------------ CALCULAR EL VALOR DEL TOTAL - 20ST 
           totalSend40ST = 0;
-          // ------------ ASIGNAR A LA VARIABLE LOCAL - LOCALSTORAGE 
-          localStorage.setItem("key_v-totalflette", 0);
+          // ------------ AGREGAR AL INPUT SEND
+          $("#val_valfleteprod").val(0);
           // ------------ RESUMEN DEL LISTADO - CONTENEDORES 40' 
           $("div[data-merchandisetype=rsm-qcontainer40]").find("img").attr("src", "");
           $("div[data-merchandisetype=rsm-qcontainer40]").find("span").eq(0).text("");
@@ -1154,8 +1146,8 @@ $(document).on("click", "#c-incdecBtns40-hc button", function(){
         $("#loadQContainer40hq").val(val40hqinputhiddenNew);
         // ------------ CALCULAR EL VALOR DEL TOTAL - 20ST 
         totalSend40HQ = parseFloat(totalFCL[0].total) * $("#ipt-qvalContainer40HQ").val();
-        // ------------ ASIGNAR A LA VARIABLE LOCAL - LOCALSTORAGE 
-        localStorage.setItem("key_v-totalflette", totalSend40HQ);
+        // ------------ AGREGAR AL INPUT SEND
+        $("#val_valfleteprod").val(totalSend40HQ);
         // ------------ RESUMEN DEL LISTADO - CONTENEDORES 40hq' 
         $("div[data-merchandisetype=rsm-qcontainer40hq]").find("img").attr("src", v_QContainersImgSrc40_hq);
         $("div[data-merchandisetype=rsm-qcontainer40hq]").find("span").eq(0).text(val40hqinputhiddenNew);
@@ -1171,8 +1163,8 @@ $(document).on("click", "#c-incdecBtns40-hc button", function(){
           $("#loadQContainer40hq").val(val40hqinputhiddenNew);
           // ------------ CALCULAR EL VALOR DEL TOTAL - 20ST 
           totalSend40HQ = parseFloat(totalFCL[0].total) * $("#ipt-qvalContainer40HQ").val();
-          // ------------ ASIGNAR A LA VARIABLE LOCAL - LOCALSTORAGE 
-          localStorage.setItem("key_v-totalflette", totalSend40HQ);
+          // ------------ AGREGAR AL INPUT SEND
+          $("#val_valfleteprod").val(totalSend40HQ);
           // ------------ RESUMEN DEL LISTADO - CONTENEDORES 40hq' 
           $("div[data-merchandisetype=rsm-qcontainer40hq]").find("img").attr("src", v_QContainersImgSrc40_hq);
           $("div[data-merchandisetype=rsm-qcontainer40hq]").find("span").eq(0).text(val40hqinputhiddenNew);
@@ -1187,8 +1179,8 @@ $(document).on("click", "#c-incdecBtns40-hc button", function(){
           $("#loadQContainer40hq").val(0);
           // ------------ CALCULAR EL VALOR DEL TOTAL - 20ST 
           totalSend40HQ = 0;
-          // ------------ ASIGNAR A LA VARIABLE LOCAL - LOCALSTORAGE 
-          localStorage.setItem("key_v-totalflette", 0);
+          // ------------ AGREGAR AL INPUT SEND
+          $("#val_valfleteprod").val(0);
           // ------------ RESUMEN DEL LISTADO - CONTENEDORES 40hq' 
           $("div[data-merchandisetype=rsm-qcontainer40hq]").find("img").attr("src", "");
           $("div[data-merchandisetype=rsm-qcontainer40hq]").find("span").eq(0).text("");
@@ -1278,8 +1270,8 @@ $(document).on("click", "#c-incdecBtns40-nor button", function(){
         $("#loadQContainer40nor").val(val40norinputhiddenNew);
         // ------------ CALCULAR EL VALOR DEL TOTAL - 20ST 
         totalSend40NOR = parseFloat(totalFCL[0].total) * $("#ipt-qvalContainer40NOR").val();
-        // ------------ ASIGNAR A LA VARIABLE LOCAL - LOCALSTORAGE 
-        localStorage.setItem("key_v-totalflette", totalSend40NOR);
+        // ------------ AGREGAR AL INPUT SEND
+        $("#val_valfleteprod").val(totalSend40NOR);
         // ------------ RESUMEN DEL LISTADO - CONTENEDORES 40nor' 
         $("div[data-merchandisetype=rsm-qcontainer40nor]").find("img").attr("src", v_QContainersImgSrc40_nor);
         $("div[data-merchandisetype=rsm-qcontainer40nor]").find("span").eq(0).text(val40norinputhiddenNew);
@@ -1295,8 +1287,8 @@ $(document).on("click", "#c-incdecBtns40-nor button", function(){
           $("#loadQContainer40nor").val(val40norinputhiddenNew);
           // ------------ CALCULAR EL VALOR DEL TOTAL - 20ST 
           totalSend40NOR = parseFloat(totalFCL[0].total) * $("#ipt-qvalContainer40NOR").val();
-          // ------------ ASIGNAR A LA VARIABLE LOCAL - LOCALSTORAGE 
-          localStorage.setItem("key_v-totalflette", totalSend40NOR);
+          // ------------ AGREGAR AL INPUT SEND
+          $("#val_valfleteprod").val(totalSend40NOR);
           // ------------ RESUMEN DEL LISTADO - CONTENEDORES 40nor' 
           $("div[data-merchandisetype=rsm-qcontainer40nor]").find("img").attr("src", v_QContainersImgSrc40_nor);
           $("div[data-merchandisetype=rsm-qcontainer40nor]").find("span").eq(0).text(val40norinputhiddenNew);
@@ -1311,8 +1303,8 @@ $(document).on("click", "#c-incdecBtns40-nor button", function(){
           $("#loadQContainer40nor").val(0);
           // ------------ CALCULAR EL VALOR DEL TOTAL - 20ST 
           totalSend40NOR = 0;
-          // ------------ ASIGNAR A LA VARIABLE LOCAL - LOCALSTORAGE 
-          localStorage.setItem("key_v-totalflette", 0);
+          // ------------ AGREGAR AL INPUT SEND
+          $("#val_valfleteprod").val(0);
           // ------------ RESUMEN DEL LISTADO - CONTENEDORES 40nor' 
           $("div[data-merchandisetype=rsm-qcontainer40nor]").find("img").attr("src", "");
           $("div[data-merchandisetype=rsm-qcontainer40nor]").find("span").eq(0).text("");
@@ -1715,6 +1707,7 @@ $(document).on("click","#list-insuremerchandise-notMoreOpts a",function(){
             <input type="hidden" value="" id="val-ammtthxvaone-noMoreOpts" name="val-ammtthxvaonepcatg" class="n-val-sd">
             <input type="hidden" value="" id="val-ammtthxvatwo-noMoreOpts" name="val-ammtthxvatwopcatg" class="n-val-sd">
             <input type="hidden" value="" id="val-ammtthxvathree-noMoreOpts" name="val-ammtthxvathreepcatg" class="n-val-sd">
+            <input type="hidden" id="val_valfleteprod" name="val_valfleteprod" class="n-val-sd" value="">
           </span>
         </span>
       </div>
@@ -2548,10 +2541,10 @@ $(document).on("click", "#btn-NextStepTochargedata", function(){
             $("#val_maxtotalweight").val(v_floatweightconvert);
             if(v_ValTotalVolume > v_ValDividedTotalWeight){
               totwithoutvalues = roundToTwo(twodecimal_rate_5cbm * v_ValTotalVolume);
-              localStorage.setItem("key_v-totalflette", totwithoutvalues);
+              $("#val_valfleteprod").val(totwithoutvalues);
             }else{
               totwithoutvalues = roundToTwo(twodecimal_rate_5cbm * v_ValDividedTotalWeight);
-              localStorage.setItem("key_v-totalflette", totwithoutvalues);
+              $("#val_valfleteprod").val(totwithoutvalues);
             }
             // ------------ MOSTRAR EL RESUMEN HASTA ESTE PASO 
             $(".cont-MainCamelLog--c--contResumeCalc--item[data-advlevel=d-typecontainer]").addClass("show");
@@ -2596,10 +2589,10 @@ $(document).on("click", "#btn-NextStepTochargedata", function(){
             $("#val_maxtotalweight").val(v_floatweightconvert);
             if(v_ValTotalVolume > v_ValDividedTotalWeight){
               totwithoutvalues = roundToTwo(twodecimal_rate_15cbm * v_ValTotalVolume);
-              localStorage.setItem("key_v-totalflette", totwithoutvalues);
+              $("#val_valfleteprod").val(totwithoutvalues);
             }else{
               totwithoutvalues = roundToTwo(twodecimal_rate_15cbm * v_ValDividedTotalWeight);
-              localStorage.setItem("key_v-totalflette", totwithoutvalues);
+              $("#val_valfleteprod").val(totwithoutvalues);
             }
             // ------------ MOSTRAR EL RESUMEN HASTA ESTE PASO 
             $(".cont-MainCamelLog--c--contResumeCalc--item[data-advlevel=d-typecontainer]").addClass("show");
@@ -2709,10 +2702,10 @@ $(document).on("click", "#btn-NextStepTochargedata", function(){
             // ------------ VALIDAR EL VALOR MÁXIMO ENTRE PESO Y VOLUMEN 
             if(v_ValTotalVolume > v_ValDividedTotalWeight){
               totwithoutvalues = roundToTwo(twodecimal_total_imo * v_ValTotalVolume);
-              localStorage.setItem("key_v-totalflette", totwithoutvalues);
+              $("#val_valfleteprod").val(totwithoutvalues);
             }else{
               totwithoutvalues = roundToTwo(twodecimal_total_imo * v_ValDividedTotalWeight);
-              localStorage.setItem("key_v-totalflette", totwithoutvalues);
+              $("#val_valfleteprod").val(totwithoutvalues);
             }
             // ------------ MOSTRAR EL RESUMEN HASTA ESTE PASO 
             $(".cont-MainCamelLog--c--contResumeCalc--item[data-advlevel=d-typecontainer]").addClass("show");
@@ -2801,10 +2794,10 @@ $(document).on("click", "#btn-NextStepTochargedata", function(){
             // ------------ VALIDAR EL VALOR MÁXIMO ENTRE PESO Y VOLUMEN 
             if(v_ValTotalVolume > v_ValDividedTotalWeight){
               totwithoutvalues = roundToTwo(twodecimal_total_refrigerado * v_ValTotalVolume);
-              localStorage.setItem("key_v-totalflette", totwithoutvalues);
+              $("#val_valfleteprod").val(totwithoutvalues);
             }else{
               totwithoutvalues = roundToTwo(twodecimal_total_refrigerado * v_ValDividedTotalWeight);
-              localStorage.setItem("key_v-totalflette", totwithoutvalues);
+              $("#val_valfleteprod").val(totwithoutvalues);
             }
             // ------------ MOSTRAR EL RESUMEN HASTA ESTE PASO 
               $(".cont-MainCamelLog--c--contResumeCalc--item[data-advlevel=d-typecontainer]").addClass("show");
