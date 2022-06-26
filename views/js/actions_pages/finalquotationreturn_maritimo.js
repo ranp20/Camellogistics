@@ -52,6 +52,11 @@ $(document).ready(function(){
 	var encrypt_v_fplctopckloc = $("#v_fplctopckloc").val(encryptValuesIpts($("#v_fplctopckloc").val()));
 	var encrypt_v_frselinsmerch = $("#v_frselinsmerch").val(encryptValuesIpts($("#v_frselinsmerch").val()));
 	var encrypt_v_foptgnfquotevl = $("#v_foptgnfquotevl").val(encryptValuesIpts($("#v_foptgnfquotevl").val()));
+	var encrypt_v_fquaprcataadd = $("#v_fquaprcataadd").val(encryptValuesIpts($("#v_fquaprcataadd").val()));
+	var encrypt_v_fammvthpcat = $("#v_fammvthpcat").val(encryptValuesIpts($("#v_fammvthpcat").val()));
+	var encrypt_v_fatthxyaonepcatg = $("#v_fatthxyaonepcatg").val(encryptValuesIpts($("#v_fatthxyaonepcatg").val()));
+	var encrypt_v_fatthxyatwopcatg = $("#v_fatthxyatwopcatg").val(encryptValuesIpts($("#v_fatthxyatwopcatg").val()));
+	var encrypt_v_fatthxyathreepcatg = $("#v_fatthxyathreepcatg").val(encryptValuesIpts($("#v_fatthxyathreepcatg").val()));
 	/* DESENCRIPTACIÓN DE INPUTS */
 	// ------------ VALORES DE CAJAS DE TEXTO - TEXTO
 	var v_idgencoderand = decryptValuesIpts(encrypt_v_idgencoderand.val());
@@ -71,6 +76,11 @@ $(document).ready(function(){
 	var v_fplctopckloc = decryptValuesIpts(encrypt_v_fplctopckloc.val());
 	var v_frselinsmerch = decryptValuesIpts(encrypt_v_frselinsmerch.val());
 	var v_foptgnfquotevl = decryptValuesIpts(encrypt_v_foptgnfquotevl.val());
+	var v_fquaprcataadd = decryptValuesIpts(encrypt_v_fquaprcataadd.val());
+	var v_fammvthpcat = decryptValuesIpts(encrypt_v_fammvthpcat.val());
+	var v_fatthxyaonepcatg = decryptValuesIpts(encrypt_v_fatthxyaonepcatg.val()); // AD-VALOREN
+	var v_fatthxyatwopcatg = decryptValuesIpts(encrypt_v_fatthxyatwopcatg.val()); // IMPUESTO SELECTIVO
+	var v_fatthxyathreepcatg = decryptValuesIpts(encrypt_v_fatthxyathreepcatg.val()); // ANTIDUMPING
 
 	// ------------ VALORES DE CAJAS DE TEXTO - CÁLCULO
 	var val_ftotvalofdownload = decryptValuesIpts(encrypt_val_ftotvalofdownload.val());
@@ -156,9 +166,9 @@ $(document).ready(function(){
 	var partInteger = 0;
 	var partDecimal = 0;
 	var partFinalDecimal = 0;
-	var receivedAd_valoren = parseFloat(localStorage.getItem("key_v-valuestaxOnebyigv")); //AD-VALOREN
-	var receivedI_selectivo = parseFloat(localStorage.getItem("key_v-valuestaxTwobyigv")); //IMPUESTO SELECTIVO
-	var received_antidumping = parseFloat(localStorage.getItem("key_v-valuestaxThreebyigv")); //ANTIDUMPING
+	var receivedAd_valoren = parseFloat(v_fatthxyaonepcatg); //AD-VALOREN
+	var receivedI_selectivo = parseFloat(v_fatthxyatwopcatg); //IMPUESTO SELECTIVO
+	var received_antidumping = parseFloat(v_fatthxyathreepcatg); //ANTIDUMPING
 	var receivedfob = val_ftotalvalfobprod; //VALOR FOB
 	var receiveddownload = val_ftotvalofdownload; //VALOR DE DESCARGA
 	var cutefobofpriceusd = receivedfob.split(" USD");
@@ -166,9 +176,9 @@ $(document).ready(function(){
 	var totaltransport = parseFloat(val_plcpickuprateprov); //TOTAL TRANSPORTE
 	var totalimportprev = v_fprevimports; //TOTAL IMPORTACIÓN PREVIA
 	var totflete = parseFloat(localStorage.getItem("key_v-totalflette")); //TOTAL - SOLO FLETE
-	var totalamountadditional = parseFloat(localStorage.getItem("key_v-totalammountadditional")); //MONTO ADICIONAL
 	var totalvaluesquotation =  parseFloat(localStorage.getItem("key_v-valuesquotation")); //TOTAL SUMA DE VALORES DE COTIZACIÓN
 	var totalvaluesquotationbyIGV =  parseFloat(localStorage.getItem("key_v-valuesquotationbyigv")); //TOTAL SUMA DE VALORES DE COTIZACIÓN IGV
+	var totalamountadditional = parseInt(v_fquaprcataadd) * myRound(v_fammvthpcat); //MONTO ADICIONAL
   var totalfinalvaluefob = parseFloat(twodecimals(cutewithoutofpricefob)); //TOTAL DE VALOR FOB
   var totalfinalvaluedownload = parseFloat(twodecimals(receiveddownload)); //TOTAL DE VALOR DE DESCARGA
 

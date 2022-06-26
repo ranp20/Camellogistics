@@ -1544,6 +1544,10 @@ $(document).on("click", "#list-SelOptionResultExp a", function(){
             <input type="hidden" value="" id="val-valProdquot" name="val-valProdquot" class="n-val-sd">
             <input type="hidden" value="NO" id="val-prevImports" name="val-prevImports" class="n-val-sd">
             <input type="hidden" value="" id="val-quantityProdsAmmAdd" name="val-quantityProdsAmmAdd" class="n-val-sd">
+            <input type="hidden" value="" id="val-ammvthisprod" name="val-ammvthisprodcateg" class="n-val-sd">
+            <input type="hidden" value="" id="val-ammtthxvaone" name="val-ammtthxvaonepcatg" class="n-val-sd">
+            <input type="hidden" value="" id="val-ammtthxvatwo" name="val-ammtthxvatwopcatg" class="n-val-sd">
+            <input type="hidden" value="" id="val-ammtthxvathree" name="val-ammtthxvathreepcatg" class="n-val-sd">
           </span>
         </span>
       </div>
@@ -1727,6 +1731,10 @@ $(document).on("click","#list-insuremerchandise-notMoreOpts a",function(){
             <input type="hidden" value="" id="val-categProdquot-noMoreOpts" name="val-categProdquot" class="n-val-sd">
             <input type="hidden" value="" id="val-valProdquot-noMoreOpts" name="val-valProdquot" class="n-val-sd">
             <input type="hidden" value="" id="val-quantityProdsAmmAdd-noMoreOpts" name="val-quantityProdsAmmAdd" class="n-val-sd">
+            <input type="hidden" value="" id="val-ammvthisprod-noMoreOpts" name="val-ammvthisprodcateg" class="n-val-sd">
+            <input type="hidden" value="" id="val-ammtthxvaone-noMoreOpts" name="val-ammtthxvaonepcatg" class="n-val-sd">
+            <input type="hidden" value="" id="val-ammtthxvatwo-noMoreOpts" name="val-ammtthxvatwopcatg" class="n-val-sd">
+            <input type="hidden" value="" id="val-ammtthxvathree-noMoreOpts" name="val-ammtthxvathreepcatg" class="n-val-sd">
           </span>
         </span>
       </div>
@@ -1914,13 +1922,20 @@ $(document).on("keyup keydown", "#ipt-valNameTypeProdNInterface-notMoreOpts", fu
     listProductsUser();
   }
 });
-// ------------ FIJAR EL VALOR DE ITEM EN EL INPUT - TIPOS DE PRODUCTOS 
+// ------------ FIJAR EL VALOR DEL ITEM EN EL INPUT - TIPOS DE PRODUCTOS 
 $(document).on("click", ".cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl--cListChange--m--item", function(){
   $("#m-listAllNamTypeProds").removeClass("show");
   $("#ipt-valNameTypeProdNInterface-notMoreOpts").attr("idproduct", $(this).attr("id"));
   $("#ipt-valNameTypeProdNInterface-notMoreOpts").val($(this).find("p").text());
-  // ------------ ASIGNAR A LA VARIABLE LOCAL 
-  localStorage.setItem("key_v-dbammountadditional", $(this).attr("data-amountadditional")); //VALOR ADICIONAL DEL PRODUCTO
+  var taxationOneVal = parseFloat($(this).attr("data-taxone"));
+  var taxationTwoVal = parseFloat($(this).attr("data-taxtwo"));
+  var taxationThreeVal = parseFloat($(this).attr("data-taxthree"));
+  // ------------ ASIGNAR A INPUTS DE ENVÍO
+  $("#val-ammtthxvaone-noMoreOpts").val(taxationOneVal); //VALOR DE AD-VALOREN
+  $("#val-ammtthxvatwo-noMoreOpts").val(taxationTwoVal); //VALOR DE IMPUESTO SELECCTIVO
+  $("#val-ammtthxvathree-noMoreOpts").val(taxationThreeVal); //VALOR DE ANTIDUMPING
+  // ------------ INPUT POST MONTO ADICIONAL DEL PRODUCTO
+  $("#val-ammvthisprod-noMoreOpts").val($(this).attr("data-amountadditional"));
   // ------------ MOSTRAR/OCULTAR DE ACUERDO A EL VALOR DEL MONTO ADICIONAL 
   if($(this).attr("data-amountadditional") != 0 || $(this).attr("data-amountadditional") != 0.00){
     $("#ipt-valCantOfAmountAdditional-notMoreOpts").html(`
@@ -1949,9 +1964,6 @@ $(document).on("keyup keypress blur change", "#ipt-valQuantityAmAddProdNInterfac
   });
   // ------------ AGREGAR AL INPUT DE ENVÍO POST Y AGREGAR A LA VARIABLE LOCAL 
   $("#val-quantityProdsAmmAdd-noMoreOpts").val(e.target.value);
-  localStorage.setItem("key_v-ammountadditional", e.target.value);
-  // ------------ ASIGNAR A LA VARIABLE LOCAL 
-  localStorage.setItem("key_v-totalammountadditional", localStorage.getItem("key_v-dbammountadditional") * value);
   // ------------ VALIDAR SI CONTIENE ALGÚN VALOR NULO O 0 
   if(e.target.value == 0 && e.target.value == ""){
     $("#s-caseNextStepTomerchandisedata").html("");
@@ -2997,12 +3009,12 @@ $(document).on("click", ".cont-MainCamelLog--c--contSteps--item--cStep--mFrmIpts
   var taxationOneVal = parseFloat($(this).attr("data-taxone"));
   var taxationTwoVal = parseFloat($(this).attr("data-taxtwo"));
   var taxationThreeVal = parseFloat($(this).attr("data-taxthree"));
-  // ------------ ASIGNAR A LA VARIABLE LOCAL DE IMPUESTOS DE PRODUCTO PARA IGV 
-  localStorage.setItem("key_v-valuestaxOnebyigv", taxationOneVal); //VALOR DE AD-VALOREN
-  localStorage.setItem("key_v-valuestaxTwobyigv", taxationTwoVal); //VALOR DE IMPUESTO SELECCTIVO
-  localStorage.setItem("key_v-valuestaxThreebyigv", taxationThreeVal); //VALOR DE ANTIDUMPING
-  // ------------ ASIGNAR A LA VARIABLE LOCAL 
-  localStorage.setItem("key_v-dbammountadditional", $(this).attr("data-amountadditional"));
+  // ------------ ASIGNAR A INPUTS DE ENVÍO
+  $("#val-ammtthxvaone").val(taxationOneVal); //VALOR DE AD-VALOREN
+  $("#val-ammtthxvatwo").val(taxationTwoVal); //VALOR DE IMPUESTO SELECCTIVO
+  $("#val-ammtthxvathree").val(taxationThreeVal); //VALOR DE ANTIDUMPING
+  // ------------ INPUT POST MONTO ADICIONAL DEL PRODUCTO
+  $("#val-ammvthisprod").val($(this).attr("data-amountadditional"));
   // ------------ MOSTRAR/OCULTAR DE ACUERDO A EL VALOR DEL MONTO ADICIONAL 
   if($(this).attr("data-amountadditional") != 0 || $(this).attr("data-amountadditional") != 0.00){
     $("#ipt-valCantOfAmountAdditional").html(`
@@ -3037,9 +3049,6 @@ $(document).on("keyup keypress blur change", "#ipt-valQuantityAmAddProdNInterfac
   });
   // ------------ AGREGAR AL INPUT DE ENVÍO POST Y AGREGAR A LA VARIABLE LOCAL 
   $("#val-quantityProdsAmmAdd").val(e.target.value);
-  localStorage.setItem("key_v-ammountadditional", e.target.value);
-  // ------------ ASIGNAR A LA VARIABLE LOCAL 
-  localStorage.setItem("key_v-totalammountadditional", localStorage.getItem("key_v-dbammountadditional") * value);
 });
 // ------------ VALIDAR INPUT - VALOR DE PRODUCTO IMPORTADO 
 $(document).on("input", "#ipt-valPriceProdNInterface", function(e){
