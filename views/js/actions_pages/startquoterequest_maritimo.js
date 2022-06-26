@@ -3349,6 +3349,7 @@ $(document).on("click", "#list-requirespickup a", function(){
         <span>
           <span>
             <input type="hidden" value="" id="plc-pickuploc" name="plc-pickuploc" class="n-val-sd">
+            <input type="hidden" value="" id="plc-pickuprate" name="plc-pickuprate" class="n-val-sd">
           </span>
         </span>
       </div>
@@ -3731,25 +3732,21 @@ $(document).on("click", ".cont-MainCamelLog--c--contSteps--item--cStep--mFrmIpts
   if($("#loadTypeCharge").val() == "FCL"){
     if($("#ipt-qvalContainer20ST").val() != 0 && $("#ipt-qvalContainer20ST").val() != ""){
       q_containerType = $("#ipt-qvalContainer20ST").val();
-      // ------------ ASIGNAR A LA VARIABLE LOCAL 
-      localStorage.setItem("key_v-valuetransport", q_containerType * $(this).attr("rateprice"));
+      $("#plc-pickuprate").val(q_containerType * $(this).attr("rateprice"));
     }else if($("#ipt-qvalContainer40ST").val() != 0 && $("#ipt-qvalContainer40ST").val() != ""){
       q_containerType = $("#ipt-qvalContainer40ST").val();
-      // ------------ ASIGNAR A LA VARIABLE LOCAL 
-      localStorage.setItem("key_v-valuetransport", q_containerType * $(this).attr("rateprice"));
+      $("#plc-pickuprate").val(q_containerType * $(this).attr("rateprice"));
     }else if($("#ipt-qvalContainer40HQ").val() != 0 && $("#ipt-qvalContainer40HQ").val() != ""){
       q_containerType = $("#ipt-qvalContainer40HQ").val();
-      // ------------ ASIGNAR A LA VARIABLE LOCAL 
-      localStorage.setItem("key_v-valuetransport", q_containerType * $(this).attr("rateprice"));
+      $("#plc-pickuprate").val(q_containerType * $(this).attr("rateprice"));
     }else if($("#ipt-qvalContainer40NOR").val() != 0 && $("#ipt-qvalContainer40NOR").val() != ""){
       q_containerType = $("#ipt-qvalContainer40NOR").val();
-      // ------------ ASIGNAR A LA VARIABLE LOCAL 
-      localStorage.setItem("key_v-valuetransport", q_containerType * $(this).attr("rateprice"));
+      $("#plc-pickuprate").val(q_containerType * $(this).attr("rateprice"));
     }else{
       console.log('No se seleccionó ningún contenedor en FCL');
     }
   }else{
-    localStorage.setItem("key_v-valuetransport", $("#val-iptPackagesNInterface").val() * $(this).attr("rateprice"));
+    $("#plc-pickuprate").val($(this).attr("rateprice"));
   }
   // ------------ MOSTRAR EL BOTÓN DE COTIZACIÓN 
   $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-pickuplocation] .cont-MainCamelLog--c--contSteps--item--cBtnNextStep").html(`

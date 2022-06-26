@@ -644,12 +644,8 @@ $(document).on("click", "#c-incdecBtns20 button", function(){
       </div>
     `);
     // ------------ CERRAR EL MODAL 
-    setTimeout(function(){
-      $("#idMessageSteps-prcss .cntMessageSteps-prcss--cont").remove();
-    }, 6500);
-    $("#btnclose-modalMessage").on("click", function(){
-      $(this).parent().parent().remove();
-    });
+    setTimeout(function(){$("#idMessageSteps-prcss .cntMessageSteps-prcss--cont").remove();}, 6500);
+    $("#btnclose-modalMessage").on("click", function(){$(this).parent().parent().remove();});
     $("#ipt-qvalContainer20ST").val(0);
   }else{
     if(tindBtn == 2){
@@ -717,12 +713,8 @@ $(document).on("click", "#c-incdecBtns40 button", function(){
       </div>
     </div>`);
     // ------------ CERRAR EL MODAL 
-    setTimeout(function(){
-      $("#idMessageSteps-prcss .cntMessageSteps-prcss--cont").remove();
-    }, 6500);
-    $("#btnclose-modalMessage").on("click", function(){
-      $(this).parent().parent().remove();
-    });
+    setTimeout(function(){$("#idMessageSteps-prcss .cntMessageSteps-prcss--cont").remove();}, 6500);
+    $("#btnclose-modalMessage").on("click", function(){$(this).parent().parent().remove();});
     $("#ipt-qvalContainer40ST").val(0);
   }else{
     if(tindBtn == 2){
@@ -790,12 +782,8 @@ $(document).on("click", "#c-incdecBtns40-hc button", function(){
       </div>
     </div>`);
     // ------------ CERRAR EL MODAL 
-    setTimeout(function(){
-      $("#idMessageSteps-prcss .cntMessageSteps-prcss--cont").remove();
-    }, 6500);
-    $("#btnclose-modalMessage").on("click", function(){
-      $(this).parent().parent().remove();
-    });
+    setTimeout(function(){$("#idMessageSteps-prcss .cntMessageSteps-prcss--cont").remove();}, 6500);
+    $("#btnclose-modalMessage").on("click", function(){$(this).parent().parent().remove();});
     $("#ipt-qvalContainer40HQ").val(0);
   }else{
     if(tindBtn == 2){
@@ -863,12 +851,8 @@ $(document).on("click", "#c-incdecBtns40-nor button", function(){
       </div>
     </div>`);
     // ------------ CERRAR EL MODAL 
-    setTimeout(function(){
-      $("#idMessageSteps-prcss .cntMessageSteps-prcss--cont").remove();
-    }, 6500);
-    $("#btnclose-modalMessage").on("click", function(){
-      $(this).parent().parent().remove();
-    });
+    setTimeout(function(){$("#idMessageSteps-prcss .cntMessageSteps-prcss--cont").remove();}, 6500);
+    $("#btnclose-modalMessage").on("click", function(){$(this).parent().parent().remove();});
     $("#ipt-qvalContainer40NOR").val(0);
   }else{
     if(tindBtn == 2){
@@ -1004,12 +988,8 @@ $(document).on("click", "#btn-NextStepToSelOptResultExp", function(){
       </div>
     `);
     // ------------ CERRAR EL MODAL 
-    setTimeout(function(){
-      $("#idMessageSteps-prcss .cntMessageSteps-prcss--cont").remove();
-    }, 6500);
-    $("#btnclose-modalMessage").on("click", function(){
-      $(this).parent().parent().remove();
-    });
+    setTimeout(function(){$("#idMessageSteps-prcss .cntMessageSteps-prcss--cont").remove();}, 6500);
+    $("#btnclose-modalMessage").on("click", function(){$(this).parent().parent().remove();});
   }  
 });
 
@@ -1055,9 +1035,7 @@ function list_measurement_units(){
     if(r.length == 0){
       template = `<option value="">No se encontraron resultados</option>`;
       $("#val-Lengthselitem").html(template);
-      setTimeout(function(){
-        $("#val-Lengthselitem").removeClass("show");
-      }, 1000);
+      setTimeout(function(){$("#val-Lengthselitem").removeClass("show");}, 1000);
     }else{
       $("#val-Lengthselitem").append(`<option value="0">Elige una opción</option>`);
       $.each(r, function(i,e){
@@ -1092,9 +1070,7 @@ function list_mass_units(){
     if(r.length == 0){
       template = `<option value="">No se encontraron resultados</option>`;
       $("#val-UnitWeightselitem").html(template);
-      setTimeout(function(){
-        $("#val-UnitWeightselitem").removeClass("show");
-      }, 1000);
+      setTimeout(function(){$("#val-UnitWeightselitem").removeClass("show");}, 1000);
     }else{
       $("#val-UnitWeightselitem").append(`<option value="0">Elige una opción</option>`);
       $.each(r, function(i,e){
@@ -1441,12 +1417,8 @@ $(document).on("click", "#btn-NextStepTochargedata", function(){
         </div>
       `);
       // ------------ CERRAR EL MODAL 
-      setTimeout(function(){
-        $("#idMessageSteps-prcss .cntMessageSteps-prcss--cont").remove();
-      }, 6500)
-      $("#btnclose-modalMessage").on("click", function(){
-        $(this).parent().parent().remove();
-      });
+      setTimeout(function(){$("#idMessageSteps-prcss .cntMessageSteps-prcss--cont").remove();}, 6500);
+      $("#btnclose-modalMessage").on("click", function(){$(this).parent().parent().remove();});
     }else{
       // ------------ DEVOLVER EL CÁLCULO DE LA DESCARGA 
       $.ajax({
@@ -1632,12 +1604,8 @@ $(document).on("click", "#btn-NextStepTochargedata", function(){
           </div>
         `)
         // ------------ CERRAR EL MODAL 
-        setTimeout(function(){
-          $("#idMessageSteps-prcss .cntMessageSteps-prcss--cont").remove();
-        }, 8500);
-        $("#btnclose-modalMessage").on("click", function(){
-          $(this).parent().parent().remove();
-        });
+        setTimeout(function(){$("#idMessageSteps-prcss .cntMessageSteps-prcss--cont").remove();}, 8500);
+        $("#btnclose-modalMessage").on("click", function(){$(this).parent().parent().remove();});
       }else{
         console.log('Error de cálculo');
       }
@@ -1657,12 +1625,8 @@ $(document).on("click", "#btn-NextStepTochargedata", function(){
       </div>
     `)
     // ------------ CERRAR EL MODAL 
-    setTimeout(function(){
-      $("#idMessageSteps-prcss .cntMessageSteps-prcss--cont").remove();
-    }, 6500)
-    $("#btnclose-modalMessage").on("click", function(){
-      $(this).parent().parent().remove();
-    });
+    setTimeout(function(){$("#idMessageSteps-prcss .cntMessageSteps-prcss--cont").remove();}, 6500);
+    $("#btnclose-modalMessage").on("click", function(){$(this).parent().parent().remove();});
   }
 });
 // ------------ ADMITIR SOLO 2 DECIMALES COMO MÁXIMO (VALOR DEL FLETE 
@@ -1763,9 +1727,7 @@ function listProductsUser(searchVal){
         </li>
       `;
       $("#m-listAllNamTypeProds").html(template);
-      setTimeout(function(){
-        $("#m-listAllNamTypeProds").removeClass("show");
-      }, 4500);
+      setTimeout(function(){$("#m-listAllNamTypeProds").removeClass("show");}, 4500);
     }else{
       response.forEach(e => {
       var nounRegOne = "";
@@ -1815,9 +1777,7 @@ $(document).on("keyup keydown", "#ipt-valNameTypeProdNInterface", function(e){
     $("#ipt-valNameTypeProdNInterface").attr("idproduct", "");
     listProductsUser(searchVal);
   }else{
-    setTimeout(function(){
-      $("#m-listAllNamTypeProds").removeClass("show");
-    }, 4500);
+    setTimeout(function(){$("#m-listAllNamTypeProds").removeClass("show");}, 4500);
     listProductsUser();
   }
 
@@ -2035,14 +1995,10 @@ $(document).on("click", "#btn-NextStepTomerchandisedata", function(){
             <p class="cntMessageSteps-prcss--cont--c--text">Por favor, completa el campo correspondiente al <b>Flete Internacional.</b></p>
           </div>
         </div>
-      `)
+      `);
       // ------------ CERRAR EL MODAL 
-      setTimeout(function(){
-        $("#idMessageSteps-prcss .cntMessageSteps-prcss--cont").remove();
-      }, 6500)
-      $("#btnclose-modalMessage").on("click", function(){
-        $(this).parent().parent().remove();
-      });
+      setTimeout(function(){$("#idMessageSteps-prcss .cntMessageSteps-prcss--cont").remove();}, 6500);
+      $("#btnclose-modalMessage").on("click", function(){$(this).parent().parent().remove();});
     }
   }else{
     // ------------ OCULTAR EL SIGUIENTE PASO 
@@ -2057,14 +2013,10 @@ $(document).on("click", "#btn-NextStepTomerchandisedata", function(){
           <p class="cntMessageSteps-prcss--cont--c--text">Por favor, rellena todos los campos relativos a la <b>Mercancía.</b></p>
         </div>
       </div>
-    `)
+    `);
     // ------------ CERRAR EL MODAL 
-    setTimeout(function(){
-      $("#idMessageSteps-prcss .cntMessageSteps-prcss--cont").remove();
-    }, 6500)
-    $("#btnclose-modalMessage").on("click", function(){
-      $(this).parent().parent().remove();
-    });
+    setTimeout(function(){$("#idMessageSteps-prcss .cntMessageSteps-prcss--cont").remove();}, 6500);
+    $("#btnclose-modalMessage").on("click", function(){$(this).parent().parent().remove();});
   }
 });
 
@@ -2315,9 +2267,7 @@ function listrateLCLTransport(searchVal){
           </li>
         `;
         $("#m-listAllDistricsByCountry").html(template);
-        setTimeout(function(){
-          $("#m-listAllDistricsByCountry").removeClass("show");
-        }, 4500);
+        setTimeout(function(){$("#m-listAllDistricsByCountry").removeClass("show");}, 4500);
       }else{
 
         response.forEach(e => {
@@ -2383,14 +2333,10 @@ function listrateLCLTransport(searchVal){
                     <p class="cntMessageSteps-prcss--cont--c--text">Por favor, <b>contacte con el administrador para más información.</b></p>
                   </div>
                 </div>
-              `)
+              `);
               // ------------ CERRAR EL MODAL 
-              setTimeout(function(){
-                $("#idMessageSteps-prcss .cntMessageSteps-prcss--cont").remove();
-              }, 8500)
-              $("#btnclose-modalMessage").on("click", function(){
-                $(this).parent().parent().remove();
-              });
+              setTimeout(function(){$("#idMessageSteps-prcss .cntMessageSteps-prcss--cont").remove();}, 8500);
+              $("#btnclose-modalMessage").on("click", function(){$(this).parent().parent().remove();});
             }
           }
         }else{
@@ -2423,9 +2369,7 @@ function listrateLCLTransport(searchVal){
           </li>
         `;
         $("#m-listAllDistricsByCountry").html(template);
-        setTimeout(function(){
-          $("#m-listAllDistricsByCountry").removeClass("show");
-        }, 4500);
+        setTimeout(function(){$("#m-listAllDistricsByCountry").removeClass("show");}, 4500);
       }else{
         
         response.forEach(e => {
@@ -2491,14 +2435,10 @@ function listrateLCLTransport(searchVal){
                     <p class="cntMessageSteps-prcss--cont--c--text">Por favor, <b>contacte con el administrador para más información.</b></p>
                   </div>
                 </div>
-              `)
+              `);
               // ------------ CERRAR EL MODAL 
-              setTimeout(function(){
-                $("#idMessageSteps-prcss .cntMessageSteps-prcss--cont").remove();
-              }, 8500)
-              $("#btnclose-modalMessage").on("click", function(){
-                $(this).parent().parent().remove();
-              });
+              setTimeout(function(){$("#idMessageSteps-prcss .cntMessageSteps-prcss--cont").remove();}, 8500);
+              $("#btnclose-modalMessage").on("click", function(){$(this).parent().parent().remove();});
             }
           }
         }else{
@@ -2530,9 +2470,7 @@ function listrateLCLTransport(searchVal){
           </li>
         `;
         $("#m-listAllDistricsByCountry").html(template);
-        setTimeout(function(){
-          $("#m-listAllDistricsByCountry").removeClass("show");
-        }, 4500);
+        setTimeout(function(){$("#m-listAllDistricsByCountry").removeClass("show");}, 4500);
       }else{
         
         response.forEach(e => {
@@ -2598,14 +2536,10 @@ function listrateLCLTransport(searchVal){
                     <p class="cntMessageSteps-prcss--cont--c--text">Por favor, <b>contacte con el administrador para más información.</b></p>
                   </div>
                 </div>
-              `)
+              `);
               // ------------ CERRAR EL MODAL 
-              setTimeout(function(){
-                $("#idMessageSteps-prcss .cntMessageSteps-prcss--cont").remove();
-              }, 8500)
-              $("#btnclose-modalMessage").on("click", function(){
-                $(this).parent().parent().remove();
-              });
+              setTimeout(function(){$("#idMessageSteps-prcss .cntMessageSteps-prcss--cont").remove();}, 8500);
+              $("#btnclose-modalMessage").on("click", function(){$(this).parent().parent().remove();});
             }
           }
         }else{
