@@ -148,6 +148,10 @@ $(document).ready(function(){
     </ul>`);
 	}
 	// ------------ VALORES PARA LAS VALIDACIONES 
+	// ------------ CÁLCULOS DE SEGURO
+	var initvalinsurance = 0;
+	var finalinsurance = 0;
+	var finalRoundinsurance = 0;
 	// ------------ CÁLCULO DE IMPUESTOS 
 	var partInteger_Tax = 0;
 	var partDecimal_Tax = 0;
@@ -190,9 +194,6 @@ $(document).ready(function(){
   	var r = JSON.parse(e);
   	var insurance_default = parseFloat(r[0].data_value);
   	var insureconvert_default = insurance_default / 100; //VALOR POR DEFECTO
-  	var initvalinsurance = 0;
-  	var finalinsurance = 0;
-  	var finalRoundinsurance = 0;
     
   	// ------------ LISTAR EL VALOR FIJO DEL FOB
   	$.ajax({
@@ -217,7 +218,7 @@ $(document).ready(function(){
 
 		    // ------------ LISTAR SERVICIOS PARA CALCULO CON IGV 18% - FCL y LCL 
 			  $.ajax({
-			    url: "controllers/list_quotation_values_calcservs_fcl_and_lcl.php",
+			    url: "controllers/list_quotation_values_calcservs_fcl_and_lcl-aduanas.php",
 			    method: "POST",
 			    datatype: "JSON",
 			    contentType: 'application/x-www-form-urlencoded;charset=UTF-8',

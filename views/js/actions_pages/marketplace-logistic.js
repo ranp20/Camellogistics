@@ -11,7 +11,6 @@ function changesTabsOperation(){
   //# VALORES PARA EL CÁLCULO DEL FLETE...
   var key_valvaluesquotation = localStorage.setItem("key_v-valuesquotation", 0); //VALOR FINAL/SUMA DE VALORES PARA COTIZACIÓN (FCL/LCL)
   var key_valvaluesquotationbyigv = localStorage.setItem("key_v-valuesquotationbyigv", 0); //VALORES DE COTIZACIÓN PARA IGV
-  var key_valflete = localStorage.setItem("key_v-totalflette", 0); //FCL Y LCL
 
   // ------------ VARIABLES SESSIONSTORAGE 
   var sess_usercli = sessionStorage.setItem("sess_usercli", 0); //SESSION DE VARIABLE LOCAL PARA EL USUARIO

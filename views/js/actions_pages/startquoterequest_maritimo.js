@@ -1563,8 +1563,6 @@ $(document).on("click", "#list-SelOptionResultExp a", function(){
       </div>
     `);
   }else{
-    // ------------ ASIGNAR A LA VARIABLE LOCAL DE SEGURO 
-    localStorage.setItem("key_v-valueinsurance", 0);
     if($("#loadTypeCharge").val() != "LCL"){
       // ------------ LISTAR SERVICIOS PARA CALCULO CON IGV - FCL 
       $.ajax({
@@ -1741,8 +1739,6 @@ $(document).on("click","#list-insuremerchandise-notMoreOpts a",function(){
     </div>
     `);
   }else{
-    // ------------ ASIGNAR A LA VARIABLE LOCAL 
-    localStorage.setItem("key_v-valueinsurance", 0);
     // ------------ ASIGNAR AL INPUT DE ENVÍO POST 
     $("#res-insuremerch").val("NO");
     $("#opt-genfquotation").val("not-moreOpts");
@@ -1811,58 +1807,14 @@ $(document).on("change input keyup", "#ipt-valPriceProdNInterface-notMoreOpts", 
     if(document.querySelector("#ipt-valCantOfAmountAdditional-notMoreOpts").contains(document.querySelector("#ipt-valQuantityAmAddProdNInterface-notMoreOpts"))){
       if($("#ipt-valNameTypeProdNInterface-notMoreOpts").attr("idproduct") && $("#ipt-valQuantityAmAddProdNInterface-notMoreOpts").val() != "" && $("#ipt-valQuantityAmAddProdNInterface-notMoreOpts").val() != 0){
         // ------------ AGREGAR A LA VARIABLE LOCAL 
-        $.ajax({
-          url: "controllers/list_insurancevalues.php",
-          method: "POST",
-          datatype: "JSON",
-          contentType: 'application/x-www-form-urlencoded;charset=UTF-8'
-        }).done((e) => {
-          var resutlinsurance = JSON.parse(e);
-          var valfobproduct = $("#val-valProdquot-noMoreOpts").val();
-          var cutefobprice = valfobproduct.split(" USD");
-          var withoutpointsfob = cutefobprice[0].replace(/\./g, '');
-          var finalvaluefob = twodecimals(withoutpointsfob);
-          var c_InsuranceMenor = parseFloat(resutlinsurance[0].data_value);
-          var c_InsuranceMayor = parseFloat(resutlinsurance[1].data_value) / 100;
-
-          var valorfinalseguro = 0;
-          if(finalvaluefob > 25000){
-            valorfinalseguro = finalvaluefob * c_InsuranceMayor; //FOB ES MAYOR A 25000
-            localStorage.setItem("key_v-valueinsurance", roundToTwo(valorfinalseguro));
-          }else{
-            valorfinalseguro = c_InsuranceMenor; //FOB ES MENOR A 25000
-            localStorage.setItem("key_v-valueinsurance", roundToTwo(valorfinalseguro));
-          }
-        });
+        
       }else{
         $("#s-caseNextStepTomerchandisedata").html("");
       }
     }else{
       if($("#ipt-valNameTypeProdNInterface-notMoreOpts").attr("idproduct")){
         // ------------ AGREGAR A LA VARIABLE LOCAL 
-        $.ajax({
-          url: "controllers/list_insurancevalues.php",
-          method: "POST",
-          datatype: "JSON",
-          contentType: 'application/x-www-form-urlencoded;charset=UTF-8'
-        }).done((e) => {
-          var resutlinsurance = JSON.parse(e);
-          var valfobproduct = $("#val-valProdquot-noMoreOpts").val();
-          var cutefobprice = valfobproduct.split(" USD");
-          var withoutpointsfob = cutefobprice[0].replace(/\./g, '');
-          var finalvaluefob = twodecimals(withoutpointsfob);
-          var c_InsuranceMenor = parseFloat(resutlinsurance[0].data_value);
-          var c_InsuranceMayor = parseFloat(resutlinsurance[1].data_value) / 100;
-
-          var valorfinalseguro = 0;
-          if(finalvaluefob > 25000){
-            valorfinalseguro = finalvaluefob * c_InsuranceMayor; //FOB ES MAYOR A 25000
-            localStorage.setItem("key_v-valueinsurance", roundToTwo(valorfinalseguro));
-          }else{
-            valorfinalseguro = c_InsuranceMenor; //FOB ES MENOR A 25000
-            localStorage.setItem("key_v-valueinsurance", roundToTwo(valorfinalseguro));
-          }
-        });
+        
       }else{
         $("#s-caseNextStepTomerchandisedata").html("");
       }
@@ -1942,31 +1894,6 @@ $(document).on("keyup keypress blur change", "#ipt-valQuantityAmAddProdNInterfac
     if(document.querySelector("#ipt-valCantOfAmountAdditional-notMoreOpts").contains(document.querySelector("#ipt-valQuantityAmAddProdNInterface-notMoreOpts"))){
       if($("#ipt-valNameTypeProdNInterface-notMoreOpts").attr("idproduct") && $("#ipt-valPriceProdNInterface-notMoreOpts").val() != 0 && $("#ipt-valPriceProdNInterface-notMoreOpts").val() != ""){
         // ------------ AGREGAR A LA VARIABLE LOCAL 
-        $.ajax({
-          url: "controllers/list_insurancevalues.php",
-          method: "POST",
-          datatype: "JSON",
-          contentType: 'application/x-www-form-urlencoded;charset=UTF-8'
-        }).done((e) => {
-          var resutlinsurance = JSON.parse(e);
-          var valfobproduct = $("#val-valProdquot-noMoreOpts").val();
-          //var cutefobprice = valfobproduct.split(" USD");
-          var withoutpointsfob = valfobproduct[0].replace(/\./g, '');
-          console.log(withoutpointsfob);
-          var finalvaluefob = twodecimals(withoutpointsfob);
-          var c_InsuranceMenor = parseFloat(resutlinsurance[0].data_value);
-          var c_InsuranceMayor = parseFloat(resutlinsurance[1].data_value) / 100;
-
-          var valorfinalseguro = 0;
-          if(finalvaluefob > 25000){
-            valorfinalseguro = finalvaluefob * c_InsuranceMayor; //FOB ES MAYOR A 25000
-            localStorage.setItem("key_v-valueinsurance", roundToTwo(valorfinalseguro));
-          }else{
-            valorfinalseguro = c_InsuranceMenor; //FOB ES MENOR A 25000
-            localStorage.setItem("key_v-valueinsurance", roundToTwo(valorfinalseguro));
-          }
-        });
-
         $("#s-caseNextStepTomerchandisedata").html(`
           <button type="submit" class="cont-MainCamelLog--c--contSteps--item--cBtnNextStep--btnR" id="btn-CalcQuoteToMerchandiseData-3">
             <span>CALCULAR COTIZACIÓN</span>
@@ -1977,34 +1904,9 @@ $(document).on("keyup keypress blur change", "#ipt-valQuantityAmAddProdNInterfac
       }else{
         $("#s-caseNextStepTomerchandisedata").html("");
       }
-
     }else{
       if($("#ipt-valNameTypeProdNInterface-notMoreOpts").attr("idproduct")){
         // ------------ AGREGAR A LA VARIABLE LOCAL 
-        $.ajax({
-          url: "controllers/list_insurancevalues.php",
-          method: "POST",
-          datatype: "JSON",
-          contentType: 'application/x-www-form-urlencoded;charset=UTF-8'
-        }).done((e) => {
-          var resutlinsurance = JSON.parse(e);
-          var valfobproduct = $("#val-valProdquot-noMoreOpts").val();
-          var cutefobprice = valfobproduct.split(" USD");
-          var withoutpointsfob = cutefobprice[0].replace(/\./g, '');
-          var finalvaluefob = twodecimals(withoutpointsfob);
-          var c_InsuranceMenor = parseFloat(resutlinsurance[0].data_value);
-          var c_InsuranceMayor = parseFloat(resutlinsurance[1].data_value) / 100;
-
-          var valorfinalseguro = 0;
-          if(finalvaluefob > 25000){
-            valorfinalseguro = finalvaluefob * c_InsuranceMayor; //FOB ES MAYOR A 25000
-            localStorage.setItem("key_v-valueinsurance", roundToTwo(valorfinalseguro));
-          }else{
-            valorfinalseguro = c_InsuranceMenor; //FOB ES MENOR A 25000
-            localStorage.setItem("key_v-valueinsurance", roundToTwo(valorfinalseguro));
-          }
-        });
-
         $("#s-caseNextStepTomerchandisedata").html(`
           <button type="submit" class="cont-MainCamelLog--c--contSteps--item--cBtnNextStep--btnR" id="btn-CalcQuoteToMerchandiseData-4">
             <span>CALCULAR COTIZACIÓN</span>
@@ -3211,115 +3113,78 @@ $(document).on("click", "#btn-NextStepTomerchandisedata", function(){
 $(document).on("click", "#list-insuremerchandise a", function(){
   $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-requirespickup]").addClass("show");
   var tinsuremerchandise = $(this).index();
-  $.ajax({
-    url: "controllers/list_insurancevalues.php",
-    method: "POST",
-    datatype: "JSON",
-    contentType: 'application/x-www-form-urlencoded;charset=UTF-8'
-  }).done((e) => {
-    var resutlinsurance = JSON.parse(e);
-    var valfobproduct = $("#val-valProdquot").val();
-    var cutefobprice = valfobproduct.split(" USD");
-    var withoutpointsfob = cutefobprice[0].replace(/\./g, '');
-    var finalvaluefob = twodecimals(withoutpointsfob);
-    var c_InsuranceMenor = parseFloat(resutlinsurance[0].data_value);
-    var c_InsuranceMayor = parseFloat(resutlinsurance[1].data_value) / 100;
-    var c_InsuranceDefault = parseFloat(resutlinsurance[2].data_value) / 100;
-
-    if(tinsuremerchandise == 0){
-      // ------------ ASIGNAR VALORES DE LOS INPUTS HIDDEN - QUIERES ASEGURAR LA MERCANCÍA 
-      $("#res-insuremerch").val("SI");
-      var valorfinalseguro = 0;
-      if(finalvaluefob > 25000){
-        valorfinalseguro = finalvaluefob * c_InsuranceMayor; //FOB ES MAYOR A 25000
-        localStorage.setItem("key_v-valueinsurance", roundToTwo(valorfinalseguro));
-      }else{
-        valorfinalseguro = c_InsuranceMenor; //FOB ES MENOR A 25000
-        localStorage.setItem("key_v-valueinsurance", roundToTwo(valorfinalseguro));
-      }
-      // ------------ MOSTRAR EL SIGUIENTE PASO - ¿ NECESITAS TRANSPORTE ? 
-      sectionsSteps.moveTo('step-requirespickup', 1);
-      $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-requirespickup]").html(`
-        <div class="cont-MainCamelLog--c--contSteps--item--cTitle">
-          <h3 class="cont-MainCamelLog--c--contSteps--item--cTitle--title">¿Necesitas Transporte?</h3>
+  if(tinsuremerchandise == 0){
+    // ------------ ASIGNAR VALORES DE LOS INPUTS HIDDEN - QUIERES ASEGURAR LA MERCANCÍA 
+    $("#res-insuremerch").val("SI");
+    // ------------ MOSTRAR EL SIGUIENTE PASO - ¿ NECESITAS TRANSPORTE ? 
+    sectionsSteps.moveTo('step-requirespickup', 1);
+    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-requirespickup]").html(`
+      <div class="cont-MainCamelLog--c--contSteps--item--cTitle">
+        <h3 class="cont-MainCamelLog--c--contSteps--item--cTitle--title">¿Necesitas Transporte?</h3>
+        <span>
           <span>
-            <span>
-              <input type="hidden" value="" id="opt-reqtransport" name="opt-reqtransport" class="n-val-sd">
-            </span>
+            <input type="hidden" value="" id="opt-reqtransport" name="opt-reqtransport" class="n-val-sd">
           </span>
-        </div>
-        <div class="cont-MainCamelLog--c--contSteps--item--cStep">
-          <ul class="cont-MainCamelLog--c--contSteps--item--cStep--m" id="list-requirespickup">
-            <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem">
-              <li class="cont-MainCamelLog--c--contSteps--item--cStep--m--item">
-                <div class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem--cImg">
-                  <img src="views/assets/img/steps/inland-trans.png" alt="" loading="lazy">
-                </div>
-                <p>SÍ</p>
-              </li>
-            </a>
-            <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem">
-              <li class="cont-MainCamelLog--c--contSteps--item--cStep--m--item">
-                <div class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem--cImg">
-                  <img src="views/assets/img/steps/no-inland-trans.png" alt="" loading="lazy">
-                </div>
-                <p>NO</p>
-              </li>
-            </a>
-          </ul>
-        </div>
-        <div class="cont-MainCamelLog--c--contSteps--item--cBtnNextStep"></div>
-      `);
-    }else{
-      // ------------ ASIGNAR VALORES DE LOS INPUTS HIDDEN - QUIERES ASEGURAR LA MERCANCÍA 
-      $("#res-insuremerch").val("NO");
-      var valorfinalseguro = 0;
-      // ------------ ASIGNAR AL VALOR DE LA VARIABLE LOCAL 
-      valorfinalseguro = finalvaluefob * c_InsuranceDefault; //SIN FOB, VALOR POR DEFECTO
-      localStorage.setItem("key_v-valueinsurance", roundToTwo(valorfinalseguro));
-      /*
-      if(finalvaluefob > 25000){
-        valorfinalseguro = finalvaluefob * c_InsuranceMayor; //FOB ES MAYOR A 25000
-        localStorage.setItem("key_v-valueinsurance", roundToTwo(valorfinalseguro));
-      }else{
-        valorfinalseguro = c_InsuranceMenor; //FOB ES MENOR A 25000
-        localStorage.setItem("key_v-valueinsurance", roundToTwo(valorfinalseguro));
-      }
-      */
-      sectionsSteps.moveTo('step-requirespickup', 1);
-      $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-requirespickup]").html(`
-        <div class="cont-MainCamelLog--c--contSteps--item--cTitle">
-          <h3 class="cont-MainCamelLog--c--contSteps--item--cTitle--title">¿Necesitas Transporte?</h3>
+        </span>
+      </div>
+      <div class="cont-MainCamelLog--c--contSteps--item--cStep">
+        <ul class="cont-MainCamelLog--c--contSteps--item--cStep--m" id="list-requirespickup">
+          <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem">
+            <li class="cont-MainCamelLog--c--contSteps--item--cStep--m--item">
+              <div class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem--cImg">
+                <img src="views/assets/img/steps/inland-trans.png" alt="" loading="lazy">
+              </div>
+              <p>SÍ</p>
+            </li>
+          </a>
+          <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem">
+            <li class="cont-MainCamelLog--c--contSteps--item--cStep--m--item">
+              <div class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem--cImg">
+                <img src="views/assets/img/steps/no-inland-trans.png" alt="" loading="lazy">
+              </div>
+              <p>NO</p>
+            </li>
+          </a>
+        </ul>
+      </div>
+      <div class="cont-MainCamelLog--c--contSteps--item--cBtnNextStep"></div>
+    `);
+  }else{
+    // ------------ ASIGNAR VALORES DE LOS INPUTS HIDDEN - QUIERES ASEGURAR LA MERCANCÍA 
+    $("#res-insuremerch").val("NO");
+    sectionsSteps.moveTo('step-requirespickup', 1);
+    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-requirespickup]").html(`
+      <div class="cont-MainCamelLog--c--contSteps--item--cTitle">
+        <h3 class="cont-MainCamelLog--c--contSteps--item--cTitle--title">¿Necesitas Transporte?</h3>
+        <span>
           <span>
-            <span>
-              <input type="hidden" value="" id="opt-reqtransport" name="opt-reqtransport" class="n-val-sd">
-            </span>
+            <input type="hidden" value="" id="opt-reqtransport" name="opt-reqtransport" class="n-val-sd">
           </span>
-        </div>
-        <div class="cont-MainCamelLog--c--contSteps--item--cStep">
-          <ul class="cont-MainCamelLog--c--contSteps--item--cStep--m" id="list-requirespickup">
-            <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem">
-              <li class="cont-MainCamelLog--c--contSteps--item--cStep--m--item">
-                <div class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem--cImg">
-                  <img src="views/assets/img/steps/inland-trans.png" alt="" loading="lazy">
-                </div>
-                <p>SÍ</p>
-              </li>
-            </a>
-            <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem">
-              <li class="cont-MainCamelLog--c--contSteps--item--cStep--m--item">
-                <div class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem--cImg">
-                  <img src="views/assets/img/steps/no-inland-trans.png" alt="" loading="lazy">
-                </div>
-                <p>NO</p>
-              </li>
-            </a>
-          </ul>
-        </div>
-        <div class="cont-MainCamelLog--c--contSteps--item--cBtnNextStep"></div>
-      `);
-    }
-  });
+        </span>
+      </div>
+      <div class="cont-MainCamelLog--c--contSteps--item--cStep">
+        <ul class="cont-MainCamelLog--c--contSteps--item--cStep--m" id="list-requirespickup">
+          <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem">
+            <li class="cont-MainCamelLog--c--contSteps--item--cStep--m--item">
+              <div class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem--cImg">
+                <img src="views/assets/img/steps/inland-trans.png" alt="" loading="lazy">
+              </div>
+              <p>SÍ</p>
+            </li>
+          </a>
+          <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem">
+            <li class="cont-MainCamelLog--c--contSteps--item--cStep--m--item">
+              <div class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem--cImg">
+                <img src="views/assets/img/steps/no-inland-trans.png" alt="" loading="lazy">
+              </div>
+              <p>NO</p>
+            </li>
+          </a>
+        </ul>
+      </div>
+      <div class="cont-MainCamelLog--c--contSteps--item--cBtnNextStep"></div>
+    `);
+  }
 });
 
 
