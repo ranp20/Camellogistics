@@ -876,14 +876,10 @@ $(document).on("click", "#c-incdecBtns20 button", function(){
             <p class="cntMessageSteps-prcss--cont--c--text">Por favor, elija <b>un solo tipo de contenedor.</b></p>
           </div>
         </div>
-      `)
+      `);
       // ------------ CERRAR EL MODAL 
-      setTimeout(function(){
-        $("#idMessageSteps-prcss .cntMessageSteps-prcss--cont").remove();
-      }, 6500)
-      $("#btnclose-modalMessage").on("click", function(){
-        $(this).parent().parent().remove();
-      });
+      setTimeout(function(){$("#idMessageSteps-prcss .cntMessageSteps-prcss--cont").remove();}, 6500);
+      $("#btnclose-modalMessage").on("click", function(){$(this).parent().parent().remove();});
 
       $("#ipt-qvalContainer20ST").val(0);
       total20ST = 0;
@@ -1008,14 +1004,10 @@ $(document).on("click", "#c-incdecBtns40 button", function(){
             <p class="cntMessageSteps-prcss--cont--c--text">Por favor, elija <b>un solo tipo de contenedor.</b></p>
           </div>
         </div>
-      `)
+      `);
       // ------------ CERRAR EL MODAL 
-      setTimeout(function(){
-        $("#idMessageSteps-prcss .cntMessageSteps-prcss--cont").remove();
-      }, 6500)
-      $("#btnclose-modalMessage").on("click", function(){
-        $(this).parent().parent().remove();
-      });
+      setTimeout(function(){$("#idMessageSteps-prcss .cntMessageSteps-prcss--cont").remove();}, 6500);
+      $("#btnclose-modalMessage").on("click", function(){$(this).parent().parent().remove();});
 
       $("#ipt-qvalContainer40ST").val(0);
       total40ST = 0;
@@ -1138,14 +1130,10 @@ $(document).on("click", "#c-incdecBtns40-hc button", function(){
             <p class="cntMessageSteps-prcss--cont--c--text">Por favor, elija <b>un solo tipo de contenedor.</b></p>
           </div>
         </div>
-      `)
+      `);
       // ------------ CERRAR EL MODAL 
-      setTimeout(function(){
-        $("#idMessageSteps-prcss .cntMessageSteps-prcss--cont").remove();
-      }, 6500)
-      $("#btnclose-modalMessage").on("click", function(){
-        $(this).parent().parent().remove();
-      });
+      setTimeout(function(){$("#idMessageSteps-prcss .cntMessageSteps-prcss--cont").remove();}, 6500);
+      $("#btnclose-modalMessage").on("click", function(){$(this).parent().parent().remove();});
 
       $("#ipt-qvalContainer40HQ").val(0);
       total40HQ = 0;
@@ -1266,14 +1254,10 @@ $(document).on("click", "#c-incdecBtns40-nor button", function(){
             <p class="cntMessageSteps-prcss--cont--c--text">Por favor, elija <b>un solo tipo de contenedor.</b></p>
           </div>
         </div>
-      `)
+      `);
       // ------------ CERRAR EL MODAL 
-      setTimeout(function(){
-        $("#idMessageSteps-prcss .cntMessageSteps-prcss--cont").remove();
-      }, 6500)
-      $("#btnclose-modalMessage").on("click", function(){
-        $(this).parent().parent().remove();
-      });
+      setTimeout(function(){$("#idMessageSteps-prcss .cntMessageSteps-prcss--cont").remove();}, 6500);
+      $("#btnclose-modalMessage").on("click", function(){$(this).parent().parent().remove();});
 
       $("#ipt-qvalContainer40NOR").val(0);
       total40NOR = 0;
@@ -1438,14 +1422,10 @@ $(document).on("click", "#btn-NextStepToSelOptResultExp", function(){
           <p class="cntMessageSteps-prcss--cont--c--text">Por favor añade al menos un contenedor o selecciona LCL como tipo de carga.</p>
         </div>
       </div>
-    `)
+    `);
     // ------------ CERRAR EL MODAL 
-    setTimeout(function(){
-      $("#idMessageSteps-prcss .cntMessageSteps-prcss--cont").remove();
-    }, 6500)
-    $("#btnclose-modalMessage").on("click", function(){
-      $(this).parent().parent().remove();
-    });
+    setTimeout(function(){$("#idMessageSteps-prcss .cntMessageSteps-prcss--cont").remove();}, 6500);
+    $("#btnclose-modalMessage").on("click", function(){$(this).parent().parent().remove();});
   }  
 });
 // ------------ VALIDAR DE ACUERDO A LA OPCIÓN SELECCIONADA - ELIGE UNA OPCIÓN 
@@ -1916,9 +1896,7 @@ $(document).on("keyup keydown", "#ipt-valNameTypeProdNInterface-notMoreOpts", fu
     $("#ipt-valNameTypeProdNInterface-notMoreOpts").attr("idproduct", "");
     listProductsUser(searchVal);
   }else{
-    setTimeout(function(){
-      $("#m-listAllNamTypeProds").removeClass("show");
-    }, 4500);
+    setTimeout(function(){$("#m-listAllNamTypeProds").removeClass("show");}, 4500);
     listProductsUser();
   }
 });
@@ -2676,14 +2654,10 @@ $(document).on("click", "#btn-NextStepTochargedata", function(){
                   <p class="cntMessageSteps-prcss--cont--c--text">El <b>VOLUMEN</b> registrado no debe exceder los <b>15 M³</b>, seleccione <b>CONTENEDOR COMPLETO o contacte a un ASESOR +51 990 234 625.</b></p>
                 </div>
               </div>
-            `)
+            `);
             // ------------ CERRAR EL MODAL 
-            setTimeout(function(){
-              $("#idMessageSteps-prcss .cntMessageSteps-prcss--cont").remove();
-            }, 6500)
-            $("#btnclose-modalMessage").on("click", function(){
-              $(this).parent().parent().remove();
-            });
+            setTimeout(function(){$("#idMessageSteps-prcss .cntMessageSteps-prcss--cont").remove();}, 6500);
+            $("#btnclose-modalMessage").on("click", function(){$(this).parent().parent().remove();});
           }else{
             console.log('Error de cálculo');
           }
@@ -2708,12 +2682,8 @@ $(document).on("click", "#btn-NextStepTochargedata", function(){
               </div>
             `);
             // ------------ CERRAR EL MODAL 
-            setTimeout(function(){
-              $("#idMessageSteps-prcss .cntMessageSteps-prcss--cont").remove();
-            }, 6500)
-            $("#btnclose-modalMessage").on("click", function(){
-              $(this).parent().parent().remove();
-            });
+            setTimeout(function(){$("#idMessageSteps-prcss .cntMessageSteps-prcss--cont").remove();}, 6500);
+            $("#btnclose-modalMessage").on("click", function(){$(this).parent().parent().remove();});
           }else{
             // ------------ DEVOLVER LA FECHA DE VALIDEZ DE LA TARIFA A LA VARIABLE LOCAL 
             var validdesde_final = ratesorigin[0].validdesde;
@@ -2802,14 +2772,10 @@ $(document).on("click", "#btn-NextStepTochargedata", function(){
                   <p class="cntMessageSteps-prcss--cont--c--text">El <b>VOLUMEN</b> registrado no debe exceder los <b>15 M³</b>, seleccione <b>CONTENEDOR COMPLETO o contacte a un ASESOR +51 990 234 625.</b></p>
                 </div>
               </div>
-            `)
+            `);
             // ------------ CERRAR EL MODAL 
-            setTimeout(function(){
-              $("#idMessageSteps-prcss .cntMessageSteps-prcss--cont").remove();
-            }, 6500)
-            $("#btnclose-modalMessage").on("click", function(){
-              $(this).parent().parent().remove();
-            });
+            setTimeout(function(){$("#idMessageSteps-prcss .cntMessageSteps-prcss--cont").remove();}, 6500);
+            $("#btnclose-modalMessage").on("click", function(){$(this).parent().parent().remove();});
           }else{
             // ------------ DEVOLVER LA FECHA DE VALIDEZ DE LA TARIFA A LA VARIABLE LOCAL 
             var validdesde_final = ratesorigin[0].validdesde;
@@ -2882,29 +2848,22 @@ $(document).on("click", "#btn-NextStepTochargedata", function(){
         }
       }
     });
-
   }else{
-
     // ------------ OCULTAR EL PASO DE - ELIGE UNA OPCIÓN 
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-integservorfleteinte]").removeClass("show");
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-integservorfleteinte]").html("");
     // ------------ MOSTRAR EL MENSAJE DE ALERTA PERSONALIZADO 
     $("#idMessageSteps-prcss").html(`
-      <div class="cntMessageSteps-prcss--cont">
-        <div class="cntMessageSteps-prcss--cont--c">
-          <span class="cntMessageSteps-prcss--cont--c--btnclose" id="btnclose-modalMessage"></span>
-          <h3 class="cntMessageSteps-prcss--cont--c--title">No se completaron los datos de la carga</h3>
-          <p class="cntMessageSteps-prcss--cont--c--text">Por favor, rellena todos los campos relativos a las dimensiones de carga.</p>
-        </div>
+    <div class="cntMessageSteps-prcss--cont">
+      <div class="cntMessageSteps-prcss--cont--c">
+        <span class="cntMessageSteps-prcss--cont--c--btnclose" id="btnclose-modalMessage"></span>
+        <h3 class="cntMessageSteps-prcss--cont--c--title">No se completaron los datos de la carga</h3>
+        <p class="cntMessageSteps-prcss--cont--c--text">Por favor, rellena todos los campos relativos a las dimensiones de carga.</p>
       </div>
-    `)
+    </div>`);
     // ------------ CERRAR EL MODAL 
-    setTimeout(function(){
-      $("#idMessageSteps-prcss .cntMessageSteps-prcss--cont").remove();
-    }, 6500)
-    $("#btnclose-modalMessage").on("click", function(){
-      $(this).parent().parent().remove();
-    });
+    setTimeout(function(){$("#idMessageSteps-prcss .cntMessageSteps-prcss--cont").remove();}, 6500);
+    $("#btnclose-modalMessage").on("click", function(){$(this).parent().parent().remove();});
   }
 });
 
@@ -2933,9 +2892,7 @@ function listProductsUser(searchVal){
         </li>
       `;
       $("#m-listAllNamTypeProds").html(template);
-      setTimeout(function(){
-        $("#m-listAllNamTypeProds").removeClass("show");
-      }, 4500);
+      setTimeout(function(){$("#m-listAllNamTypeProds").removeClass("show");}, 4500);
     }else{
       response.forEach(e => {
       var nounRegOne = "";
@@ -2984,9 +2941,7 @@ $(document).on("keyup keydown", "#ipt-valNameTypeProdNInterface", function(e){
    	$("#ipt-valNameTypeProdNInterface").attr("idproduct", "");
     listProductsUser(searchVal);
   }else{
-    setTimeout(function(){
-      $("#m-listAllNamTypeProds").removeClass("show");
-    }, 4500);
+    setTimeout(function(){$("#m-listAllNamTypeProds").removeClass("show");}, 4500);
     listProductsUser();
   }
 
@@ -3183,14 +3138,10 @@ $(document).on("click", "#btn-NextStepTomerchandisedata", function(){
             <p class="cntMessageSteps-prcss--cont--c--text">Por favor rellena todos los campos que son necesarios.</p>
           </div>
         </div>
-      `)
+      `);
       // ------------ CERRAR EL MODAL 
-      setTimeout(function(){
-        $("#idMessageSteps-prcss .cntMessageSteps-prcss--cont").remove();
-      }, 6500)
-      $("#btnclose-modalMessage").on("click", function(){
-        $(this).parent().parent().remove();
-      });
+      setTimeout(function(){$("#idMessageSteps-prcss .cntMessageSteps-prcss--cont").remove();}, 6500);
+      $("#btnclose-modalMessage").on("click", function(){$(this).parent().parent().remove();});
     }
 
   }else{
@@ -3250,14 +3201,10 @@ $(document).on("click", "#btn-NextStepTomerchandisedata", function(){
             <p class="cntMessageSteps-prcss--cont--c--text">Por favor rellena todos los campos que son necesarios.</p>
           </div>
         </div>
-      `)
+      `);
       // ------------ CERRAR EL MODAL 
-      setTimeout(function(){
-        $("#idMessageSteps-prcss .cntMessageSteps-prcss--cont").remove();
-      }, 6500)
-      $("#btnclose-modalMessage").on("click", function(){
-        $(this).parent().parent().remove();
-      });
+      setTimeout(function(){$("#idMessageSteps-prcss .cntMessageSteps-prcss--cont").remove();}, 6500);
+      $("#btnclose-modalMessage").on("click", function(){$(this).parent().parent().remove();});
     }
   }
 });
@@ -3462,9 +3409,7 @@ function listrateLCLTransport(searchVal){
           </li>
         `;
         $("#m-listAllDistricsByCountry").html(template);
-        setTimeout(function(){
-          $("#m-listAllDistricsByCountry").removeClass("show");
-        }, 4500);
+        setTimeout(function(){$("#m-listAllDistricsByCountry").removeClass("show");}, 4500);
       }else{
 
         response.forEach(e => {
@@ -3532,12 +3477,8 @@ function listrateLCLTransport(searchVal){
                 </div>
               `)
               // ------------ CERRAR EL MODAL 
-              setTimeout(function(){
-                $("#idMessageSteps-prcss .cntMessageSteps-prcss--cont").remove();
-              }, 8500)
-              $("#btnclose-modalMessage").on("click", function(){
-                $(this).parent().parent().remove();
-              });
+              setTimeout(function(){$("#idMessageSteps-prcss .cntMessageSteps-prcss--cont").remove();}, 8500);
+              $("#btnclose-modalMessage").on("click", function(){$(this).parent().parent().remove();});
             }
           }
         }else{
@@ -3570,9 +3511,7 @@ function listrateLCLTransport(searchVal){
           </li>
         `;
         $("#m-listAllDistricsByCountry").html(template);
-        setTimeout(function(){
-          $("#m-listAllDistricsByCountry").removeClass("show");
-        }, 4500);
+        setTimeout(function(){$("#m-listAllDistricsByCountry").removeClass("show");}, 4500);
       }else{
         
         response.forEach(e => {
@@ -3640,12 +3579,8 @@ function listrateLCLTransport(searchVal){
                 </div>
               `)
               // ------------ CERRAR EL MODAL 
-              setTimeout(function(){
-                $("#idMessageSteps-prcss .cntMessageSteps-prcss--cont").remove();
-              }, 8500)
-              $("#btnclose-modalMessage").on("click", function(){
-                $(this).parent().parent().remove();
-              });
+              setTimeout(function(){$("#idMessageSteps-prcss .cntMessageSteps-prcss--cont").remove();}, 8500);
+              $("#btnclose-modalMessage").on("click", function(){$(this).parent().parent().remove();});
             }
           }
         }else{
@@ -3677,9 +3612,7 @@ function listrateLCLTransport(searchVal){
           </li>
         `;
         $("#m-listAllDistricsByCountry").html(template);
-        setTimeout(function(){
-          $("#m-listAllDistricsByCountry").removeClass("show");
-        }, 4500);
+        setTimeout(function(){$("#m-listAllDistricsByCountry").removeClass("show");}, 4500);
       }else{
         
         response.forEach(e => {
@@ -3747,12 +3680,8 @@ function listrateLCLTransport(searchVal){
                 </div>
               `)
               // ------------ CERRAR EL MODAL 
-              setTimeout(function(){
-                $("#idMessageSteps-prcss .cntMessageSteps-prcss--cont").remove();
-              }, 8500)
-              $("#btnclose-modalMessage").on("click", function(){
-                $(this).parent().parent().remove();
-              });
+              setTimeout(function(){$("#idMessageSteps-prcss .cntMessageSteps-prcss--cont").remove();}, 8500);
+              $("#btnclose-modalMessage").on("click", function(){$(this).parent().parent().remove();});
             }
           }
         }else{
