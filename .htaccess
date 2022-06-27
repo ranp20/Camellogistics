@@ -30,9 +30,10 @@ RewriteRule seguro?$ admin/views/insurance-settings.php
 RewriteRule mercancia?$ admin/views/merchandise-settings.php
 RewriteRule reguladores?$ admin/views/regulators.php
 RewriteRule productos?$ admin/views/products.php
-RewriteRule ajustes-del-home?$ admin/views/home-settings.php
+RewriteRule ajustes?$ admin/views/general-settings.php
 RewriteRule banner-principal?$ admin/views/banner-principal.php
 RewriteRule quotation-users?$ admin/views/quotation-users.php
+RewriteRule savesettings?$ admin/controllers/c_update_config.php
 
 ############# MENSAJE DE ERROR PERSONALIZADO
 #RewriteRule 404?$ views/404.php

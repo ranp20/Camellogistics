@@ -26,7 +26,7 @@ $(document).on("click", "#btn-sessuserAdm", function(e){
 // ------------ ITEM SELECCIONADO DEL MENÚ EN CADA PÁGINA - SIDEBARLEFT
 var url = window.location.pathname;
 var filename = url.substring(url.lastIndexOf('/')+1);
-if(filename == "ajustes-del-home" || filename == "banner-principal"){
+if(filename == "ajustes" || filename == "banner-principal"){
 	$(".nav-dashCamel--sidenav--c--cList--m--item a").removeClass("active");
 	$(".nav-dashCamel--sidenav--c--cList--mOthers--item a").eq(0).addClass('active');
 }else{

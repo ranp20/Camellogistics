@@ -4,6 +4,9 @@
 session_start();
 $actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]";
 $url         = $actual_link . "/Camellogistics/views/";
+require_once './models/settings.php';
+$call_config = new Settings_all();
+$g_setting = $call_config->get_config();
 ?>
 <!DOCTYPE html>
 <html lang="es">

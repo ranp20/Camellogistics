@@ -256,6 +256,7 @@ $(document).ready(function(){
 			  }).done((e) => {
 			  	var rqfclandlcl = JSON.parse(e);
 			  	// SERVICIOS - FCL
+			  	var emision_bl_fcl = rqfclandlcl[0].emision_bl_fcl; // EMISIÓN DE BL
 			  	var visto_bueno_fcl = rqfclandlcl[0].visto_bueno_fcl; // VISTO BUENO
 			  	var almacen_ref_fcl = rqfclandlcl[0].almacen_ref_fcl; // ALMACÉN REFERENCIAL
 			  	var gremios_maritimos_fcl = rqfclandlcl[0].gremios_maritimos_fcl; // GREMIOS MARÍTIMOS
@@ -264,6 +265,7 @@ $(document).ready(function(){
 			  	var com_agencia_fcl = parseFloat(rqfclandlcl[0].com_agencia_fcl); // COMISIÓN DE AGENCIA
 			  	var gas_operativos_fcl = parseFloat(rqfclandlcl[0].gas_operativos_fcl); // GASTOS OPERATIVOS
 			  	// SERVICIOS - LCL
+			  	var emision_bl_lcl = rqfclandlcl[0].emision_bl_lcl; // EMISIÓN DE BL
 			  	var handling_lcl = parseFloat(rqfclandlcl[0].handling_lcl); // HANDLING
 			  	var visto_bueno_lcl = parseFloat(rqfclandlcl[0].visto_bueno_lcl); // VISTO BUENO
 			  	var descarga_lcl = parseFloat(rqfclandlcl[0].descarga_lcl); // DESCARGA
@@ -274,12 +276,22 @@ $(document).ready(function(){
 		  		// EVALUAR SI SE SELCCIONÓ *TODOS LOS SERVICIOS* O *SOLO DESEO FLETE*
 		  		//  MODIFICAR SI ES NECESARIO EL CONTROLADOR.
 		  		//  SE VALIDA CON LA FINALIDAD DE RECOLECTAR TODOS LOS SERVICIOS QUE PROVENGAN DE DETERMINADO TIPO DE CARGA (FCL ó LCL)
-		  	 	if(v_foptgnfquotevl == "y-moreOpts" && v_loadtypecharge == "FCL"){
-		  	 		// SUMAR TODOS LOS VALORES DEL CONTROLADOR "list_quotation_values_fcl_by_igv"
-		  	 		console.log('Seleccionó *TODOS LOS SERVICIOS* y el tipo FCL');
-		  	 	}else if(v_foptgnfquotevl == "y-moreOpts" && v_loadtypecharge == "LCL"){
-		  	 		// SUMAR TODOS LOS VALORES DEL CONTROLADOR "list_quotation_values_lcl_by_igv"
-		  	 		console.log('Seleccionó *TODOS LOS SERVICIOS* y el tipo LCL');
+		  	 	if(v_foptgnfquotevl == "y-moreOpts"){
+		  	 		if(v_loadtypecharge == "FCL"){
+		  	 			console.log('Seleccionó *TODOS LOS SERVICIOS* y el tipo FCL');
+		  	 		}else if(v_loadtypecharge == "LCL"){
+		  	 			console.log('Seleccionó *TODOS LOS SERVICIOS* y el tipo LCL');
+		  	 		}else{
+		  	 			console.log('Lo sentimos, hubo un error al procesar la información.');
+		  	 		}
+		  	 	}else if(v_foptgnfquotevl == "not-moreOpts"){
+		  	 		if(v_loadtypecharge == "FCL"){
+		  	 			console.log('Seleccionó *SOLO FLETE* y el tipo FCL');
+		  	 		}else if(v_loadtypecharge == "LCL"){
+		  	 			console.log('Seleccionó *SOLO FLETE* y el tipo LCL');
+		  	 		}else{
+		  	 			console.log('Lo sentimos, hubo un error al procesar la información.');
+		  	 		}
 		  	 	}
 			  	 
 

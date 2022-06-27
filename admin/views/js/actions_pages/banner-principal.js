@@ -1,7 +1,7 @@
-$(function(){
+/*$(function(){
   listBanner_p();
 });
-/************************** LISTAR REGULADORES **************************/
+// ------------ LISTAR REGULADORES
 function listBanner_p(){ 
   $.ajax({
     url: "../admin/controllers/c_list-banner-principal.php",
@@ -58,7 +58,7 @@ function listBanner_p(){
 
   });
 }
-/************************** LISTAR DATOS EN EL MODAL - ACTUALIZAR **************************/
+// ------------ LISTAR DATOS EN EL MODAL - ACTUALIZAR
 $(document).on('click', '.btn-update-banner-p', function(e){
   e.preventDefault();
   $.each($(this), function(i, v){
@@ -71,7 +71,7 @@ $(document).on('click', '.btn-update-banner-p', function(e){
 
   });
 });
-/************************** ACTUALIZAR RESTAURANTE POR ID **************************/
+// ------------ ACTUALIZAR RESTAURANTE POR ID
 $(document).on('click', '#btnupdate-banner-p', function(e){
   e.preventDefault();
   
@@ -109,14 +109,14 @@ $("#images").on("change", function(e){
     $("#c-previewImg").find("img").attr("src", readerImg.result);
   }
 });
-/************************** LISTAR ID EN EL MODAL - ELIMINAR **************************/
+// ------------ LISTAR ID EN EL MODAL - ELIMINAR
 // $(document).on('click', '.btn-delete-banner-p', function(e){
 //   e.preventDefault();
 //   var id = $(this).attr('data-id');
 //   $('#iddelete-banner-principal').val(id);
 // });
 
-// /************************** ELIMINAR PAÍS **************************/
+// // ------------ ELIMINAR PAÍS
 // $(document).on('click', '#btndelete-banner-principal', function(e){
 //   e.preventDefault();
 // 	var id = $('#iddelete-banner-principal').val();
@@ -128,4 +128,4 @@ $("#images").on("change", function(e){
 //     $("#item-" + id).remove();
 //     $('#deleteModal').modal("hide");
 //   });
-// });
+// });*/
