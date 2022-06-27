@@ -24,7 +24,7 @@ $adm_config = $settings->list();
 		<main id="main-dashCamel">
 			<?php require_once 'includes/adm-header-top.php'; ?>
 			<div class="cont-dashCamel">
-				<div class="box-window-border non-box-shadow">
+				<div class="box-window-border non-box-shadow p-onlydesktop-1rm">
 					<div class="cont-dashCamel__addtitle">
 						<h2 class="cont-dashCamel__addtitle--title">AJUSTES</h2>
 					</div>				
@@ -35,7 +35,7 @@ $adm_config = $settings->list();
 									<div class="cont-dashCamel--cHSettings--containRight--cContain__cBody__cSettings__sideLinkAnchors__cLinks" id="c-Settings_linksAnchors">
 										<ul id="c-Settings_linksAnchors-m">
 											<li data-target="#anchor_settings_home">Home</li>
-											<li data-target="#anchor_settings_convert-divise">Conversiones</li>
+											<li data-target="#anchor_settings_convert-divise">Otros Valores</li>
 											<li data-target="#anchor_settings_banners">Banners</li>
 											<li data-target="#anchor_settings_logos">Logos</li>
 											<li data-target="#anchor_settings_about-us">Nosotros</li>
@@ -89,36 +89,48 @@ $adm_config = $settings->list();
 										<form action="" method="POST" class="cont-dashCamel--cHSettings--containRight--cContain__cBody__cSettings__sideContAnchors__cItemSetting--frm">
 											<div class="cont-dashCamel--cHSettings--containRight--cContain__cBody__cardBody">
 												<div class="cont-dashCamel--cHSettings--containRight--cContain__cBody__cardBody__cCardTitle">
-													<h4>Conversiones</h4>
+													<h4>Otros valores</h4>
 												</div>
 												<div class="cont-dashCamel--cHSettings--containRight--cContain__cBody__cardBody__cCardBody">
 													<div class="cont-dashCamel--cHSettings--containRight--cContain__cBody__cardBody__cCardBody__contCol">
-														<h3 class="cont-dashCamel--cHSettings--containRight--cContain__cBody__cardBody__cCardBody__contCol__cardTitle">Conversiones</h3>
+														<h3 class="cont-dashCamel--cHSettings--containRight--cContain__cBody__cardBody__cCardBody__contCol__cardTitle">Comisión de agencia</h3>
 													</div>
 													<div class="cont-dashCamel--cHSettings--containRight--cContain__cBody__cardBody__cCardBody__contCol__cardGrpControls">
 														<div class="cont-dashCamel--cHSettings--containRight--cContain__cBody__cardBody__cCardBody__contCol__cardGrpControls__ctrlItem w-100">
-										          <label for="maxAmountInConvertDivise" class="cont-dashCamel--cHSettings--containRight--cContain__cBody__cardBody__cCardBody__contCol__cardGrpControls__ctrlItem__label">Monto máximo en calculadora</label>
-										          <input type="text" id="maxAmountInConvertDivise" name="maxAmountInConvertDivise" data-valformat="withcomedecimal" class="cont-dashCamel--cHSettings--containRight--cContain__cBody__cardBody__cCardBody__contCol__cardGrpControls__ctrlItem__input md-w-control" value="<?php
-										          if(isset($adm_config('maxamountinconvertdivise_convertion')['setting_value'])){
-										          	echo number_format($adm_config('maxamountinconvertdivise_convertion')['setting_value'],2);
-										          }else{
-										          	echo "";
-										          }
-										        	?>" placeholder="Ejm: 5,000" maxlength="12">
-										        </div>
-														<div class="cont-dashCamel--cHSettings--containRight--cContain__cBody__cardBody__cCardBody__contCol__cardGrpControls__ctrlItem w-100">
-										          <label for="maxAmountSendReceived" class="cont-dashCamel--cHSettings--containRight--cContain__cBody__cardBody__cCardBody__contCol__cardGrpControls__ctrlItem__label">Montos mayores para cupón</label>
-										          <input type="text" id="maxAmountSendReceived" name="maxAmountSendReceived" data-valformat="withcomedecimal" class="cont-dashCamel--cHSettings--containRight--cContain__cBody__cardBody__cCardBody__contCol__cardGrpControls__ctrlItem__input md-w-control" value="<?php
-										          if(isset($adm_config('maxamount_convertion')['setting_value'])){
-										          	echo number_format($adm_config('maxamount_convertion')['setting_value'],2);
-										          }else{
-										          	echo "";
-										          }
+										          <label for="ammountCifValidation" class="cont-dashCamel--cHSettings--containRight--cContain__cBody__cardBody__cCardBody__contCol__cardGrpControls__ctrlItem__label">Montos mayores al valor CIF</label>
+										          <input type="text" id="ammountCifValidation" name="ammountCifValidation" data-valformat="withcomedecimal" class="cont-dashCamel--cHSettings--containRight--cContain__cBody__cardBody__cCardBody__contCol__cardGrpControls__ctrlItem__input md-w-control" value="<?php
+										          if(isset($adm_config('ammountcifvalidation_quotation')['setting_value'])){
+											          $ammountcifvalidation = $adm_config('ammountcifvalidation_quotation')['setting_value'];
+											          if($ammountcifvalidation != ""){
+											          	echo number_format($adm_config('ammountcifvalidation_quotation')['setting_value'],2);
+											          }else{
+											          	echo "";
+											          }
+									          	}else{
+									          		echo "";
+									          	}
 										        	?>" placeholder="Ejm: 5,000" maxlength="12">
 										        </div>
 													</div>
+													<div class="cont-dashCamel--cHSettings--containRight--cContain__cBody__cardBody__cCardBody__contCol__cardGrpControls">
+														<div class="cont-dashCamel--cHSettings--containRight--cContain__cBody__cardBody__cCardBody__contCol__cardGrpControls__ctrlItem w-100">
+										          <label for="ammountCifMaxValidation" class="cont-dashCamel--cHSettings--containRight--cContain__cBody__cardBody__cCardBody__contCol__cardGrpControls__ctrlItem__label">Valor para montos mayores al máximo CIF (%)</label>
+										          <input type="text" id="ammountCifMaxValidation" name="ammountCifMaxValidation" data-valformat="withtwodecimals" class="cont-dashCamel--cHSettings--containRight--cContain__cBody__cardBody__cCardBody__contCol__cardGrpControls__ctrlItem__input md-w-control" value="<?php
+										          if(isset($adm_config('ammountcifmaxvalidation_quotation')['setting_value'])){
+											          $ammountcifmaxvalidation = $adm_config('ammountcifmaxvalidation_quotation')['setting_value'];
+											          if($ammountcifmaxvalidation != ""){
+											          	echo number_format($adm_config('ammountcifmaxvalidation_quotation')['setting_value'],2);
+											          }else{
+											          	echo "";
+											          }
+									          	}else{
+									          		echo "";
+									          	}
+										        	?>" placeholder="Ejm: 0.5" maxlength="12">
+										        </div>
+													</div>
 													<div class="cont-dashCamel--cHSettings--containRight--cContain__cBody__cardBody__cCardBody__colElement ta-right">
-														<button name="convertions_settings" type="submit" class="cont-dashCamel--cHSettings--containRight--cContain__cBody__cardBody__cCardBody__colElement__btnFormAction">
+														<button name="quotation_settings" type="submit" class="cont-dashCamel--cHSettings--containRight--cContain__cBody__cardBody__cCardBody__colElement__btnFormAction">
 															<span>Guardar</span>
 														</button>
 													</div>
@@ -134,7 +146,7 @@ $adm_config = $settings->list();
 												</div>
 												<div class="cont-dashCamel--cHSettings--containRight--cContain__cBody__cardBody__cCardBody">
 													<div class="cont-dashCamel--cHSettings--containRight--cContain__cBody__cardBody__cCardBody__contCol">
-														<h3 class="cont-dashCamel--cHSettings--containRight--cContain__cBody__cardBody__cCardBody__contCol__cardTitle">Banners</h3>
+														<h3 class="cont-dashCamel--cHSettings--containRight--cContain__cBody__cardBody__cCardBody__contCol__cardTitle">Home</h3>
 													</div>
 													<div class="cont-dashCamel--cHSettings--containRight--cContain__cBody__cardBody__cCardBody__contCol__cardGrpControls">
 														<div class="cont-dashCamel--cHSettings--containRight--cContain__cBody__cardBody__cCardBody__contCol__cardGrpControls__ctrlItem w-100">

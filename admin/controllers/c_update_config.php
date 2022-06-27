@@ -20,15 +20,15 @@ if(isset($_GET['action']) && $_GET['action'] == "SaveChanges" && isset($_GET['as
 			);
 		}
 	}
-	// ------------ AJUSTES - CONVERTIONS
-	if($_GET['assoc'] == 'convertions_settings'){
+	// ------------ AJUSTES - COTIZACIONES
+	if($_GET['assoc'] == 'quotation_settings'){
 		if(isset($_POST) && count($_POST) > 0){
-			$maxamount_convertion = (isset($_POST['maxAmountSendReceived'])) ? str_replace(",", "", $_POST['maxAmountSendReceived']) : 0;
-			$maxamountinconvertdivise_convertion = (isset($_POST['maxAmountInConvertDivise'])) ? str_replace(",", "", $_POST['maxAmountInConvertDivise']) : 0;
+			$ammountcifvalidation_quotation = (isset($_POST['ammountcifvalidation_quotation'])) ? str_replace(",", "", $_POST['ammountcifvalidation_quotation']) : 0;
+			$ammountcifmaxvalidation_quotation = (isset($_POST['ammountcifmaxvalidation_quotation'])) ? str_replace(",", "", $_POST['ammountcifmaxvalidation_quotation']) : 0;
 
 			$arr_postSettings = [
-				"maxamount_convertion" => $maxamount_convertion,
-				"maxamountinconvertdivise_convertion" => $maxamountinconvertdivise_convertion
+				"ammountcifvalidation_quotation" => $ammountcifvalidation_quotation,
+				"ammountcifmaxvalidation_quotation" => $ammountcifmaxvalidation_quotation
 			];
 		}else{
 			$r = array(

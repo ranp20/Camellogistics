@@ -29,6 +29,17 @@ $(document).on("keyup", "input[data-valformat=withspacesforthreenumbers]", funct
 	let val = e.target.value;
   $(this).val(val.replace(/\D+/g, '').replace(/(\d{3})(\d{3})(\d{3})/, '$1 $2 $3'));
 });
+// ------------ FUNCIÓN - LIMITAR A DOS DECIMALES SIN REDONDEO
+function twodecimals(n) {
+}
+// ------------ LIMITAR A DOS DECIMALES CUALQUIER INPUT DE TIPO NÚMERO EN DONDE ESTÁ IMPORTADO ESTE ARCHIVO
+$(document).on("keyup","input[data-valformat=withtwodecimals]",function(e){
+  let val = e.target.value;
+  let t = val.toString();
+  let regex = /(\d*.\d{0,2})/;
+  let vl_twoformat = t.match(regex)[0];
+  $(this).val(vl_twoformat);
+});
 // ------------ FORMATO - SEPARADOR DE MILLAR Y PUNTO DECIMAL
 $(document).on("keyup", "input[data-valformat=withcomedecimal]", function(e){
 	let val = e.target.value;
@@ -58,6 +69,9 @@ $(document).on("submit",".cont-dashCamel--cHSettings--containRight--cContain__cB
 	if(nameSendPOST == "home_settings"){
 		formdata.append("whatsapp_phone", $("#whatsapp_phone").val());
 		formdata.append("whatsapp_text", $("#whatsapp_text").val());
+	}else if(nameSendPOST == "quotation_settings"){
+		formdata.append("ammountcifvalidation_quotation", $("#ammountCifValidation").val());
+		formdata.append("ammountcifmaxvalidation_quotation", $("#ammountCifMaxValidation").val());
 	}else if(nameSendPOST == "banners_settings"){
 		var filelength = $('.banner_principal-upload')[0].files.length;
 	  for (var i = 0;i < filelength; i ++) {
