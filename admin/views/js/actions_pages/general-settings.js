@@ -70,8 +70,9 @@ $(document).on("submit",".cont-dashCamel--cHSettings--containRight--cContain__cB
 		formdata.append("whatsapp_phone", $("#whatsapp_phone").val());
 		formdata.append("whatsapp_text", $("#whatsapp_text").val());
 	}else if(nameSendPOST == "quotation_settings"){
-		formdata.append("ammountcifvalidation_quotation", $("#ammountCifValidation").val());
-		formdata.append("ammountcifmaxvalidation_quotation", $("#ammountCifMaxValidation").val());
+		formdata.append("quotation_ammountcifvalidation", $("#ammountCifValidation").val());
+		formdata.append("quotation_ammountcifmaxvalidation", $("#ammountCifMaxValidation").val());
+		formdata.append("quotation_ammountcerticonformvalidation", $("#ammountCertiConformValidation").val());
 	}else if(nameSendPOST == "banners_settings"){
 		var filelength = $('.banner_principal-upload')[0].files.length;
 	  for (var i = 0;i < filelength; i ++) {

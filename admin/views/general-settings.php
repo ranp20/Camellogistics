@@ -93,16 +93,16 @@ $adm_config = $settings->list();
 												</div>
 												<div class="cont-dashCamel--cHSettings--containRight--cContain__cBody__cardBody__cCardBody">
 													<div class="cont-dashCamel--cHSettings--containRight--cContain__cBody__cardBody__cCardBody__contCol">
-														<h3 class="cont-dashCamel--cHSettings--containRight--cContain__cBody__cardBody__cCardBody__contCol__cardTitle">Comisión de agencia</h3>
+														<h3 class="cont-dashCamel--cHSettings--containRight--cContain__cBody__cardBody__cCardBody__contCol__cardTitle">COMISIÓN DE AGENCIA</h3>
 													</div>
 													<div class="cont-dashCamel--cHSettings--containRight--cContain__cBody__cardBody__cCardBody__contCol__cardGrpControls">
 														<div class="cont-dashCamel--cHSettings--containRight--cContain__cBody__cardBody__cCardBody__contCol__cardGrpControls__ctrlItem w-100">
 										          <label for="ammountCifValidation" class="cont-dashCamel--cHSettings--containRight--cContain__cBody__cardBody__cCardBody__contCol__cardGrpControls__ctrlItem__label">Montos mayores al valor CIF</label>
 										          <input type="text" id="ammountCifValidation" name="ammountCifValidation" data-valformat="withcomedecimal" class="cont-dashCamel--cHSettings--containRight--cContain__cBody__cardBody__cCardBody__contCol__cardGrpControls__ctrlItem__input md-w-control" value="<?php
-										          if(isset($adm_config('ammountcifvalidation_quotation')['setting_value'])){
-											          $ammountcifvalidation = $adm_config('ammountcifvalidation_quotation')['setting_value'];
+										          if(isset($adm_config('quotation_ammountcifvalidation')['setting_value'])){
+											          $ammountcifvalidation = $adm_config('quotation_ammountcifvalidation')['setting_value'];
 											          if($ammountcifvalidation != ""){
-											          	echo number_format($adm_config('ammountcifvalidation_quotation')['setting_value'],2);
+											          	echo number_format($adm_config('quotation_ammountcifvalidation')['setting_value'],2);
 											          }else{
 											          	echo "";
 											          }
@@ -116,10 +116,10 @@ $adm_config = $settings->list();
 														<div class="cont-dashCamel--cHSettings--containRight--cContain__cBody__cardBody__cCardBody__contCol__cardGrpControls__ctrlItem w-100">
 										          <label for="ammountCifMaxValidation" class="cont-dashCamel--cHSettings--containRight--cContain__cBody__cardBody__cCardBody__contCol__cardGrpControls__ctrlItem__label">Valor para montos mayores al máximo CIF (%)</label>
 										          <input type="text" id="ammountCifMaxValidation" name="ammountCifMaxValidation" data-valformat="withtwodecimals" class="cont-dashCamel--cHSettings--containRight--cContain__cBody__cardBody__cCardBody__contCol__cardGrpControls__ctrlItem__input md-w-control" value="<?php
-										          if(isset($adm_config('ammountcifmaxvalidation_quotation')['setting_value'])){
-											          $ammountcifmaxvalidation = $adm_config('ammountcifmaxvalidation_quotation')['setting_value'];
+										          if(isset($adm_config('quotation_ammountcifmaxvalidation')['setting_value'])){
+											          $ammountcifmaxvalidation = $adm_config('quotation_ammountcifmaxvalidation')['setting_value'];
 											          if($ammountcifmaxvalidation != ""){
-											          	echo number_format($adm_config('ammountcifmaxvalidation_quotation')['setting_value'],2);
+											          	echo number_format($adm_config('quotation_ammountcifmaxvalidation')['setting_value'],2);
 											          }else{
 											          	echo "";
 											          }
@@ -127,6 +127,26 @@ $adm_config = $settings->list();
 									          		echo "";
 									          	}
 										        	?>" placeholder="Ejm: 0.5" maxlength="12">
+										        </div>
+													</div>
+													<div class="cont-dashCamel--cHSettings--containRight--cContain__cBody__cardBody__cCardBody__contCol">
+														<h3 class="cont-dashCamel--cHSettings--containRight--cContain__cBody__cardBody__cCardBody__contCol__cardTitle">CERTIFICADO DE CONFORMIDAD</h3>
+													</div>
+													<div class="cont-dashCamel--cHSettings--containRight--cContain__cBody__cardBody__cCardBody__contCol__cardGrpControls">
+														<div class="cont-dashCamel--cHSettings--containRight--cContain__cBody__cardBody__cCardBody__contCol__cardGrpControls__ctrlItem w-100">
+										          <label for="ammountCertiConformValidation" class="cont-dashCamel--cHSettings--containRight--cContain__cBody__cardBody__cCardBody__contCol__cardGrpControls__ctrlItem__label">Monto a validar</label>
+										          <input type="text" id="ammountCertiConformValidation" name="ammountCertiConformValidation" data-valformat="withcomedecimal" class="cont-dashCamel--cHSettings--containRight--cContain__cBody__cardBody__cCardBody__contCol__cardGrpControls__ctrlItem__input md-w-control" value="<?php
+										          if(isset($adm_config('quotation_ammountcerticonformvalidation')['setting_value'])){
+											          $ammountcifvalidation = $adm_config('quotation_ammountcerticonformvalidation')['setting_value'];
+											          if($ammountcifvalidation != ""){
+											          	echo number_format($adm_config('quotation_ammountcerticonformvalidation')['setting_value'],2);
+											          }else{
+											          	echo "";
+											          }
+									          	}else{
+									          		echo "";
+									          	}
+										        	?>" placeholder="Ejm: 5,000" maxlength="12">
 										        </div>
 													</div>
 													<div class="cont-dashCamel--cHSettings--containRight--cContain__cBody__cardBody__cCardBody__colElement ta-right">
@@ -152,20 +172,27 @@ $adm_config = $settings->list();
 														<div class="cont-dashCamel--cHSettings--containRight--cContain__cBody__cardBody__cCardBody__contCol__cardGrpControls__ctrlItem w-100">
 										          <label for="home_banner_principal" class="cont-dashCamel--cHSettings--containRight--cContain__cBody__cardBody__cCardBody__contCol__cardGrpControls__ctrlItem__label">Banner principal</label>
 										          <div class="cont-dashCamel--cHSettings--containRight--cContain__cBody__cardBody__cCardBody__contCol__cardGrpControls__ctrlItem__cUploadPhoto mdesk-w-control">
-										          	<?php 
-										          		$pathbannerp = $adm_config("home_banner_principal")['setting_value'];
-										          		$path_banner_principal = "";
-										          		if($pathbannerp != ""){
-										          			$path_banner_principal = $url."assets/img/banner_principal/".$adm_config("home_banner_principal")['setting_value'];
-										          			echo "<div class='cont-dashCamel--cHSettings--containRight--cContain__cBody__cardBody__cCardBody__contCol__cardGrpControls__ctrlItem__cUploadPhoto__cImg mx-sz-big already-upload'>
-										          		<img src='{$path_banner_principal}' alt='home_banner_principal' class='cont-dashCamel--cHSettings--containRight--cContain__cBody__cardBody__cCardBody__contCol__cardGrpControls__ctrlItem__cUploadPhoto__cImg__imgUpload'>
-										          	</div>";
+										          	<?php
+										          		if(isset($adm_config("home_banner_principal")['setting_value'])){
+											          		$pathbannerp = $adm_config("home_banner_principal")['setting_value'];
+											          		$path_banner_principal = "";
+											          		if($pathbannerp != ""){
+											          			$path_banner_principal = $url."assets/img/banner_principal/".$adm_config("home_banner_principal")['setting_value'];
+											          			echo "<div class='cont-dashCamel--cHSettings--containRight--cContain__cBody__cardBody__cCardBody__contCol__cardGrpControls__ctrlItem__cUploadPhoto__cImg mx-sz-big already-upload'>
+											          		<img src='{$path_banner_principal}' alt='home_banner_principal' class='cont-dashCamel--cHSettings--containRight--cContain__cBody__cardBody__cCardBody__contCol__cardGrpControls__ctrlItem__cUploadPhoto__cImg__imgUpload'>
+											          	</div>";
+											          		}else{
+											          			$path_banner_principal = $url."assets/img/utilities/icon-upload.svg";
+											          			echo "<div class='cont-dashCamel--cHSettings--containRight--cContain__cBody__cardBody__cCardBody__contCol__cardGrpControls__ctrlItem__cUploadPhoto__cImg mx-sz-big'>
+											          		<img src='{$path_banner_principal}' alt='home_banner_principal' class='cont-dashCamel--cHSettings--containRight--cContain__cBody__cardBody__cCardBody__contCol__cardGrpControls__ctrlItem__cUploadPhoto__cImg__imgUpload'>
+											          	</div>";
+											          		};
 										          		}else{
 										          			$path_banner_principal = $url."assets/img/utilities/icon-upload.svg"; 
-										          			echo "<div class='cont-dashCamel--cHSettings--containRight--cContain__cBody__cardBody__cCardBody__contCol__cardGrpControls__ctrlItem__cUploadPhoto__cImg mx-sz-big'>
-										          		<img src='{$path_banner_principal}' alt='home_banner_principal' class='cont-dashCamel--cHSettings--containRight--cContain__cBody__cardBody__cCardBody__contCol__cardGrpControls__ctrlItem__cUploadPhoto__cImg__imgUpload'>
-										          	</div>";
-										          		};
+											          			echo "<div class='cont-dashCamel--cHSettings--containRight--cContain__cBody__cardBody__cCardBody__contCol__cardGrpControls__ctrlItem__cUploadPhoto__cImg mx-sz-big'>
+											          		<img src='{$path_banner_principal}' alt='home_banner_principal' class='cont-dashCamel--cHSettings--containRight--cContain__cBody__cardBody__cCardBody__contCol__cardGrpControls__ctrlItem__cUploadPhoto__cImg__imgUpload'>
+											          	</div>";
+										          		}
 										          	?>
 										          	<input type="file" id="home_banner_principal" name="home_banner_principal" class="cont-dashCamel--cHSettings--containRight--cContain__cBody__cardBody__cCardBody__contCol__cardGrpControls__ctrlItem__cUploadPhoto__input banner_principal-upload" value="" placeholder="Eleja el archivo a subir" accept="img/*">
 										          </div>

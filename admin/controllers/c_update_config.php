@@ -23,12 +23,14 @@ if(isset($_GET['action']) && $_GET['action'] == "SaveChanges" && isset($_GET['as
 	// ------------ AJUSTES - COTIZACIONES
 	if($_GET['assoc'] == 'quotation_settings'){
 		if(isset($_POST) && count($_POST) > 0){
-			$ammountcifvalidation_quotation = (isset($_POST['ammountcifvalidation_quotation'])) ? str_replace(",", "", $_POST['ammountcifvalidation_quotation']) : 0;
-			$ammountcifmaxvalidation_quotation = (isset($_POST['ammountcifmaxvalidation_quotation'])) ? str_replace(",", "", $_POST['ammountcifmaxvalidation_quotation']) : 0;
+			$quotation_ammountcifvalidation = (isset($_POST['quotation_ammountcifvalidation'])) ? str_replace(",", "", $_POST['quotation_ammountcifvalidation']) : 0;
+			$quotation_ammountcifmaxvalidation = (isset($_POST['quotation_ammountcifmaxvalidation'])) ? str_replace(",", "", $_POST['quotation_ammountcifmaxvalidation']) : 0;
+			$quotation_ammountcerticonformvalidation = (isset($_POST['quotation_ammountcerticonformvalidation'])) ? str_replace(",", "", $_POST['quotation_ammountcerticonformvalidation']) : 0;
 
 			$arr_postSettings = [
-				"ammountcifvalidation_quotation" => $ammountcifvalidation_quotation,
-				"ammountcifmaxvalidation_quotation" => $ammountcifmaxvalidation_quotation
+				"quotation_ammountcifvalidation" => $quotation_ammountcifvalidation,
+				"quotation_ammountcifmaxvalidation" => $quotation_ammountcifmaxvalidation,
+				"quotation_ammountcerticonformvalidation" => $quotation_ammountcerticonformvalidation
 			];
 		}else{
 			$r = array(
