@@ -1424,75 +1424,6 @@ $(document).on("click", "#btn-NextStepToSelOptResultExp", function(){
 $(document).on("click", "#list-SelOptionResultExp a", function(){
   var tItemSelOptExp = $(this).index();
   if(tItemSelOptExp == 0){
-    if($("#loadTypeCharge").val() != "LCL"){
-      // ------------ LISTAR SERVICIOS PARA CALCULO CON IGV - FCL 
-      $.ajax({
-        url: "controllers/list_quotation_values_fcl_by_igv.php",
-        method: "POST",
-        datatype: "JSON",
-        contentType: 'application/x-www-form-urlencoded;charset=UTF-8',
-      }).done((e) => {
-        var resbyigv = JSON.parse(e);
-        var unitvaluesQuotesbyIGV = 0;
-        $.each(resbyigv, function(i, e){
-          unitvaluesQuotesbyIGV+= parseFloat(e.data_value);
-        });
-        // ------------ AGREGAR A LA VARIABLE LOCAL 
-        localStorage.setItem("key_v-valuesquotationbyigv", unitvaluesQuotesbyIGV);
-      });
-
-      // ------------ LISTAR SERVICIOS DE ACUERDO A LA SELECCIÓN - FCL 
-      $.ajax({
-        url: "controllers/list_quotation_values_fcl.php",
-        method: "POST",
-        datatype: "JSON",
-        contentType: 'application/x-www-form-urlencoded;charset=UTF-8',
-        data: {require_servs : 'SI'}
-      }).done((e) => {
-        var res = JSON.parse(e);
-        var unitvaluesQuotes = 0;
-        $.each(res, function(i, e){
-          unitvaluesQuotes+= parseFloat(e.data_value);
-        });
-
-        // ------------ ASIGNAR A LA VARIABLE GLOBAL 
-        localStorage.setItem("key_v-valuesquotation", unitvaluesQuotes);
-      });
-    }else{
-      // ------------ LISTAR SERVICIOS PARA CALCULO CON IGV - FCL 
-      $.ajax({
-        url: "controllers/list_quotation_values_lcl_by_igv.php",
-        method: "POST",
-        datatype: "JSON",
-        contentType: 'application/x-www-form-urlencoded;charset=UTF-8',
-      }).done((e) => {
-        var resbyigv = JSON.parse(e);
-        var unitvaluesQuotesbyIGV = 0;
-        $.each(resbyigv, function(i, e){
-          unitvaluesQuotesbyIGV+= parseFloat(e.data_value);
-        });
-        // ------------ AGREGAR A LA VARIABLE LOCAL 
-        localStorage.setItem("key_v-valuesquotationbyigv", unitvaluesQuotesbyIGV);
-      });
-
-      // ------------ LISTAR SERVICIOS DE ACUERDO A LA SELECCIÓN - LCL 
-      $.ajax({
-        url: "controllers/list_quotation_values_lcl.php",
-        method: "POST",
-        datatype: "JSON",
-        contentType: 'application/x-www-form-urlencoded;charset=UTF-8',
-        data: {require_servs : 'SI'}
-      }).done((e) => {
-        var res = JSON.parse(e);
-        var unitvaluesQuotes = 0;
-        $.each(res, function(i, e){
-          unitvaluesQuotes+= parseFloat(e.data_value);
-        });
-
-        // ------------ ASIGNAR A LA VARIABLE GLOBAL 
-        localStorage.setItem("key_v-valuesquotation", unitvaluesQuotes);
-      });
-    }
     // ------------ OCULTAR LOS DEMÁS PASOS POSTERIORES 
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-insuremerchandise]").removeClass("show");
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-insuremerchandise]").html("");
@@ -1563,74 +1494,6 @@ $(document).on("click", "#list-SelOptionResultExp a", function(){
       </div>
     `);
   }else{
-    if($("#loadTypeCharge").val() != "LCL"){
-      // ------------ LISTAR SERVICIOS PARA CALCULO CON IGV - FCL 
-      $.ajax({
-        url: "controllers/list_quotation_values_fcl_by_igv.php",
-        method: "POST",
-        datatype: "JSON",
-        contentType: 'application/x-www-form-urlencoded;charset=UTF-8',
-      }).done((e) => {
-        var resbyigv = JSON.parse(e);
-        var unitvaluesQuotesbyIGV = 0;
-        $.each(resbyigv, function(i, e){
-          unitvaluesQuotesbyIGV+= parseFloat(e.data_value);
-        });
-        // ------------ AGREGAR A LA VARIABLE LOCAL 
-        localStorage.setItem("key_v-valuesquotationbyigv", unitvaluesQuotesbyIGV);
-      });
-
-      // ------------ LISTAR SERVICIOS DE ACUERDO A LA SELECCIÓN - FCL 
-      $.ajax({
-        url: "controllers/list_quotation_values_fcl.php",
-        method: "POST",
-        datatype: "JSON",
-        contentType: 'application/x-www-form-urlencoded;charset=UTF-8',
-        data: {require_servs : 'NO'}
-      }).done((e) => {
-        var res = JSON.parse(e);
-        var unitvaluesQuotes = 0;
-        $.each(res, function(i, e){
-          unitvaluesQuotes+= parseFloat(e.data_value);
-        });
-        // ------------ ASIGNAR A LA VARIABLE GLOBAL 
-        localStorage.setItem("key_v-valuesquotation", unitvaluesQuotes);
-      });
-    }else{
-      // ------------ LISTAR SERVICIOS PARA CALCULO CON IGV - FCL 
-      $.ajax({
-        url: "controllers/list_quotation_values_lcl_by_igv.php",
-        method: "POST",
-        datatype: "JSON",
-        contentType: 'application/x-www-form-urlencoded;charset=UTF-8',
-      }).done((e) => {
-        var resbyigv = JSON.parse(e);
-        var unitvaluesQuotesbyIGV = 0;
-        $.each(resbyigv, function(i, e){
-          unitvaluesQuotesbyIGV+= parseFloat(e.data_value);
-        });
-        // ------------ AGREGAR A LA VARIABLE LOCAL 
-        localStorage.setItem("key_v-valuesquotationbyigv", unitvaluesQuotesbyIGV);
-      });
-
-      // ------------ LISTAR SERVICIOS DE ACUERDO A LA SELECCIÓN - LCL 
-      $.ajax({
-        url: "controllers/list_quotation_values_lcl.php",
-        method: "POST",
-        datatype: "JSON",
-        contentType: 'application/x-www-form-urlencoded;charset=UTF-8',
-        data: {require_servs : 'NO'}
-      }).done((e) => {
-        var res = JSON.parse(e);
-        var unitvaluesQuotes = 0;
-        $.each(res, function(i, e){
-          unitvaluesQuotes+= parseFloat(e.data_value);
-        });
-        // ------------ ASIGNAR A LA VARIABLE GLOBAL 
-        localStorage.setItem("key_v-valuesquotation", unitvaluesQuotes);
-      });
-    }
-
     // ------------ ASIGNAR VALORES DE LOS INPUTS HIDDEN - ELIGE UNA OPCIÓN 
     $("#opt-genfquotation").val("not-moreOpts");
     // ------------ AGREGAR AL LISTADO DE RESUMEN - ELIGE UN OPCIÓN 
@@ -1687,7 +1550,6 @@ $(document).on("click","#list-insuremerchandise-notMoreOpts a",function(){
   if(tinsuremerchandise == 0){
     // ------------ ASIGNAR AL INPUT DE ENVÍO POST 
     $("#res-insuremerch").val("SI");
-    $("#opt-genfquotation").val("y-moreOpts");
     // ------------ REMOVER EL BOTÓN DE CALCULAR COTIZACIÓN 
     $("#s-quotationToNextStep").html("");
     // ------------ MOSTRAR EL SIGUIENTE PASO - DATOS DE MERCANCÍA DESDE SEGURO 
@@ -1741,7 +1603,6 @@ $(document).on("click","#list-insuremerchandise-notMoreOpts a",function(){
   }else{
     // ------------ ASIGNAR AL INPUT DE ENVÍO POST 
     $("#res-insuremerch").val("NO");
-    $("#opt-genfquotation").val("not-moreOpts");
     // ------------ OCULTAR LOS PASOS ABIERTOS POSTERIORMENTE 
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-requirespickup]").removeClass("show");
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-requirespickup]").html("");

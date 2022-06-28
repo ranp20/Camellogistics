@@ -180,8 +180,6 @@ $(document).ready(function(){
 	var totaltransport = parseFloat(val_plcpickuprateprov); //TOTAL TRANSPORTE
 	var totalimportprev = v_fprevimports; //TOTAL IMPORTACIÓN PREVIA
 	var totflete = parseFloat(val_ftotalfleteprod); //TOTAL - SOLO FLETE
-	var totalvaluesquotation =  parseFloat(localStorage.getItem("key_v-valuesquotation")); //TOTAL SUMA DE VALORES DE COTIZACIÓN
-	var totalvaluesquotationbyIGV =  parseFloat(localStorage.getItem("key_v-valuesquotationbyigv")); //TOTAL SUMA DE VALORES DE COTIZACIÓN IGV
 	var totalamountadditional = parseInt(v_fquaprcataadd) * myRound(v_fammvthpcat); //MONTO ADICIONAL
   var totalfinalvaluefob = parseFloat(twodecimals(cutewithoutofpricefob)); //TOTAL DE VALOR FOB
   var totalfinalvaluedownload = parseFloat(twodecimals(receiveddownload)); //TOTAL DE VALOR DE DESCARGA
@@ -247,6 +245,9 @@ $(document).ready(function(){
 		  		finalRoundinsurance = 0;
 		  	}
 
+		  	// VALOR TOTAL - CIF
+		  	sumbyCIF = totalfinalvaluefob + totflete + finalRoundinsurance; //CIF FINAL
+
 		    // ------------ LISTAR SERVICIOS PARA CALCULO CON IGV 18% - FCL y LCL 
 			  $.ajax({
 			    url: "controllers/list_quotation_values_calcservs_fcl_and_lcl.php",
@@ -256,16 +257,16 @@ $(document).ready(function(){
 			  }).done((e) => {
 			  	var rqfclandlcl = JSON.parse(e);
 			  	// SERVICIOS - FCL
-			  	var emision_bl_fcl = rqfclandlcl[0].emision_bl_fcl; // EMISIÓN DE BL
-			  	var visto_bueno_fcl = rqfclandlcl[0].visto_bueno_fcl; // VISTO BUENO
-			  	var almacen_ref_fcl = rqfclandlcl[0].almacen_ref_fcl; // ALMACÉN REFERENCIAL
-			  	var gremios_maritimos_fcl = rqfclandlcl[0].gremios_maritimos_fcl; // GREMIOS MARÍTIMOS
-			  	var thc_fcl = rqfclandlcl[0].thc_fcl; // THC
-			  	var devol_contenedor_fcl = rqfclandlcl[0].devol_contenedor_fcl // DEVOLUCIÓN DE CONTENEDOR
+			  	var emision_bl_fcl = parseFloat(rqfclandlcl[0].emision_bl_fcl); // EMISIÓN DE BL
+			  	var visto_bueno_fcl = parseFloat(rqfclandlcl[0].visto_bueno_fcl); // VISTO BUENO
+			  	var almacen_ref_fcl = parseFloat(rqfclandlcl[0].almacen_ref_fcl); // ALMACÉN REFERENCIAL
+			  	var gremios_maritimos_fcl = parseFloat(rqfclandlcl[0].gremios_maritimos_fcl); // GREMIOS MARÍTIMOS
+			  	var thc_fcl = parseFloat(rqfclandlcl[0].thc_fcl); // THC
+			  	var devol_contenedor_fcl = parseFloat(rqfclandlcl[0].devol_contenedor_fcl); // DEVOLUCIÓN DE CONTENEDOR
 			  	var com_agencia_fcl = parseFloat(rqfclandlcl[0].com_agencia_fcl); // COMISIÓN DE AGENCIA
 			  	var gas_operativos_fcl = parseFloat(rqfclandlcl[0].gas_operativos_fcl); // GASTOS OPERATIVOS
 			  	// SERVICIOS - LCL
-			  	var emision_bl_lcl = rqfclandlcl[0].emision_bl_lcl; // EMISIÓN DE BL
+			  	var emision_bl_lcl = parseFloat(rqfclandlcl[0].emision_bl_lcl); // EMISIÓN DE BL
 			  	var handling_lcl = parseFloat(rqfclandlcl[0].handling_lcl); // HANDLING
 			  	var visto_bueno_lcl = parseFloat(rqfclandlcl[0].visto_bueno_lcl); // VISTO BUENO
 			  	var descarga_lcl = parseFloat(rqfclandlcl[0].descarga_lcl); // DESCARGA
@@ -273,59 +274,61 @@ $(document).ready(function(){
 			  	var com_agencia_lcl = parseFloat(rqfclandlcl[0].com_agencia_lcl); // COMISIÓN DE AGENCIA
 			  	var gas_operativos_lcl = parseFloat(rqfclandlcl[0].gas_operativos_lcl); // GASTOS OPERATIVOS
 
-		  		// EVALUAR SI SE SELCCIONÓ *TODOS LOS SERVICIOS* O *SOLO DESEO FLETE*
-		  		//  MODIFICAR SI ES NECESARIO EL CONTROLADOR.
-		  		//  SE VALIDA CON LA FINALIDAD DE RECOLECTAR TODOS LOS SERVICIOS QUE PROVENGAN DE DETERMINADO TIPO DE CARGA (FCL ó LCL)
+		  		// EVALUAR SI SE SELECCIONÓ *TODOS LOS SERVICIOS* O *SOLO DESEO FLETE*
 		  	 	if(v_foptgnfquotevl == "y-moreOpts"){
 		  	 		if(v_loadtypecharge == "FCL"){
-		  	 			console.log('Seleccionó *TODOS LOS SERVICIOS* y el tipo FCL');
+		  	 			// VALIDAR EL VALOR DEL CIF - COMISIÓN DE AGENCIA
+		  	 			fvalfinal_gas_operativos = gas_operativos_fcl;
+		  	 			if(sumbyCIF > 35000){
+				  			fval_com_agencia = sumbyCIF * val_defaultmin;
+				  			fvalfinal_com_agencia = myRound(fval_com_agencia);
+				  		}else{
+				  			fvalfinal_com_agencia = com_agencia_fcl;
+				  		}
+		  	 			// SUMAR TODOS LOS SERVICIOS - FCL
+		  	 			var totalServiciosTODOS = emision_bl_fcl+visto_bueno_fcl+almacen_ref_fcl+gremios_maritimos_fcl+thc_fcl+devol_contenedor_fcl+fvalfinal_com_agencia+fvalfinal_gas_operativos;
+		  	 			sumTotalServices = totaltransport + totalamountadditional + totalServiciosTODOS; // VALOR TOTAL - SERVICIOS
+		  	 			sumTotalbyIGV = (totaltransport + totalamountadditional + totalServiciosTODOS) * (18 / 100); // VALOR TOTAL - SERVICIOS + IGV 18%
+		  	 			sumTotalFinalFleteandIGV = sumTotalServices + sumTotalbyIGV; // VALOR TOTAL FINAL DE LA COTIZACIÓN
 		  	 		}else if(v_loadtypecharge == "LCL"){
-		  	 			console.log('Seleccionó *TODOS LOS SERVICIOS* y el tipo LCL');
+		  	 			// VALIDAR EL VALOR DEL CIF - COMISIÓN DE AGENCIA
+		  	 			fvalfinal_gas_operativos = gas_operativos_lcl;
+		  	 			if(sumbyCIF > 35000){
+				  			fval_com_agencia = sumbyCIF * val_defaultmin;
+				  			fvalfinal_com_agencia = myRound(fval_com_agencia);
+				  		}else{
+				  			fvalfinal_com_agencia = com_agencia_fcl;
+				  		}
+				  		// SUMAR TODOS LOS SERVICIOS - LCL
+		  	 			var totalServiciosTODOS = emision_bl_lcl+handling_lcl+visto_bueno_lcl+descarga_lcl+almacen_ref_lcl+fvalfinal_com_agencia+fvalfinal_gas_operativos;
+		  	 			sumTotalServices = totaltransport + totalamountadditional + totalServiciosTODOS; // VALOR TOTAL - SERVICIOS
+		  	 			sumTotalbyIGV = (totaltransport + totalamountadditional + totalServiciosTODOS) * (18 / 100); // VALOR TOTAL - SERVICIOS + IGV 18%
+		  	 			sumTotalFinalFleteandIGV = sumTotalServices + sumTotalbyIGV; // VALOR TOTAL FINAL DE LA COTIZACIÓN
 		  	 		}else{
 		  	 			console.log('Lo sentimos, hubo un error al procesar la información.');
 		  	 		}
 		  	 	}else if(v_foptgnfquotevl == "not-moreOpts"){
 		  	 		if(v_loadtypecharge == "FCL"){
-		  	 			console.log('Seleccionó *SOLO FLETE* y el tipo FCL');
+		  	 			totalServiciosTODOS = thc_fcl;
+		  	 			sumTotalServices = totaltransport + totalamountadditional + totalServiciosTODOS; // VALOR TOTAL - SERVICIOS
+		  	 			sumTotalbyIGV = (totaltransport + totalamountadditional + totalServiciosTODOS) * (18 / 100); // VALOR TOTAL - SERVICIOS + IGV 18%
+		  	 			sumTotalFinalFleteandIGV = sumTotalServices + sumTotalbyIGV; // VALOR TOTAL FINAL DE LA COTIZACIÓN
 		  	 		}else if(v_loadtypecharge == "LCL"){
-		  	 			console.log('Seleccionó *SOLO FLETE* y el tipo LCL');
+		  	 			fvalfinal_gas_operativos = gas_operativos_lcl;
+		  	 			if(sumbyCIF > 35000){
+				  			fval_com_agencia = sumbyCIF * val_defaultmin;
+				  			fvalfinal_com_agencia = myRound(fval_com_agencia);
+				  		}else{
+				  			fvalfinal_com_agencia = com_agencia_fcl;
+				  		}
+				  		totalServiciosTODOS = almacen_ref_lcl+fvalfinal_gas_operativos+fvalfinal_com_agencia;
+				  		sumTotalServices = totaltransport + totalamountadditional + totalServiciosTODOS; // VALOR TOTAL - SERVICIOS
+		  	 			sumTotalbyIGV = (totaltransport + totalamountadditional + totalServiciosTODOS) * (18 / 100); // VALOR TOTAL - SERVICIOS + IGV 18%
+		  	 			sumTotalFinalFleteandIGV = sumTotalServices + sumTotalbyIGV; // VALOR TOTAL FINAL DE LA COTIZACIÓN
 		  	 		}else{
 		  	 			console.log('Lo sentimos, hubo un error al procesar la información.');
 		  	 		}
 		  	 	}
-			  	 
-
-			  	if(v_loadtypecharge == "FCL"){
-			  		fvalfinal_gas_operativos = gas_operativos_fcl;
-			  		if(sumbyCIF > 35000){
-			  			fval_com_agencia = sumbyCIF * val_defaultmin;
-			  			fvalfinal_com_agencia = myRound(fval_com_agencia);
-			  		}else{
-			  			fvalfinal_com_agencia = com_agencia_fcl;
-			  		}
-			  	}else{
-			  		fvalfinal_gas_operativos = gas_operativos_lcl;
-			  		if(sumbyCIF > 35000){
-			  			fval_com_agencia = sumbyCIF * val_defaultmin;
-			  			fvalfinal_com_agencia = myRound(fval_com_agencia);
-			  		}else{
-			  			fvalfinal_com_agencia = com_agencia_fcl;
-			  		}
-			  	}
-
-			  	if(v_frselinsmerch != undefined && v_frselinsmerch != null && v_frselinsmerch != "NO"){
-						// ------------ TOTALES A IMPRIMIR - CON SEGURO 
-						sumTotalServices = totaltransport + fvalfinal_com_agencia + fvalfinal_gas_operativos + totalamountadditional + totalvaluesquotationbyIGV; //FLETE FINAL
-						sumTotalbyIGV = (totaltransport + fvalfinal_com_agencia + fvalfinal_gas_operativos + totalamountadditional + totalvaluesquotationbyIGV) * (18 / 100); //IGV (DEBAJO DEL FLETE FINAL)
-						sumTotalFinalFleteandIGV = sumTotalServices + sumTotalbyIGV; //VALOR TOTAL FINAL DE LA COTIZACIÓN
-						sumbyCIF = totalfinalvaluefob + totflete + finalRoundinsurance; //CIF FINAL
-			  	}else{
-			  		// ------------ TOTALES A IMPRIMIR - SIN SEGURO 
-						sumTotalServices = totaltransport + fvalfinal_com_agencia + fvalfinal_gas_operativos + totalamountadditional + totalvaluesquotationbyIGV; //FLETE FINAL
-						sumTotalbyIGV = (totaltransport + fvalfinal_com_agencia + fvalfinal_gas_operativos + totalamountadditional + totalvaluesquotationbyIGV) * (18 / 100); //IGV (DEBAJO DEL FLETE FINAL)
-						sumTotalFinalFleteandIGV = sumTotalServices + sumTotalbyIGV; //VALOR TOTAL FINAL DE LA COTIZACIÓN
-						sumbyCIF = totalfinalvaluefob + totflete + finalRoundinsurance; //CIF FINAL
-			  	}
 				
 					// ------------ LIMPIAR EL VALOR E IMPRIMIR EN EL TOTAL DEL SERVICIOS 
 					var totalNotround = twodecimals(sumTotalServices);
