@@ -254,7 +254,7 @@ $(document).ready(function(){
 			    datatype: "JSON",
 			    contentType: 'application/x-www-form-urlencoded;charset=UTF-8',
 			  }).done((e) => {
-			  	if(e != ""){
+			  	if(e != "" && e != "[]"){
 			  		var rcomagencia = JSON.parse(e);
 			  		var comagencia_monto = parseFloat(rcomagencia[0].com_agencia_ammnt_value);
 			  		var comagencia_porcentaje = parseFloat(rcomagencia[0].com_agencia_ammnt_percent);
