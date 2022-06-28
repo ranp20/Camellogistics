@@ -1,19 +1,19 @@
 $(() => {
   listAllProducts();
 });
-// ------------ FUNCIÓN - LIMITAR A DOS DECIMALES SIN REDONDEO
-function twodecimals(n) {
-  let t = n.toString();
-  let regex = /(\d*.\d{0,2})/;
-  return t.match(regex)[0];
-}
 // ------------ LIMITAR A DOS DECIMALES CUALQUIER INPUT DE TIPO NÚMERO EN DONDE ESTÁ IMPORTADO ESTE ARCHIVO
-$(document).on("input","input[type=number]",function(e){($(this).val() == "") ? $(this).val() : $(this).val(twodecimals(e.target.value));});
+$(document).on("keyup","input[data-valformat=withtwodecimals]",function(e){
+  let val = e.target.value;
+  if(val != ""){
+    let t = val.toString();
+    let regex = /(\d*.\d{0,2})/;
+    let vl_twoformat = t.match(regex)[0];
+    $(this).val(vl_twoformat);
+  }
+});
 // ------------ MOSTRAR/OCULTAR DE ACUERDO AL CHECKBOX SELECCINADO - REGULADOR/NO REQUIERE
-$(document).on("click", ".cont-modalbootstrap__form--controlRadios--c--control--input[name=sel-reornotreg]", function(){
-  if($(this).attr("id") == "noun-required-reg"){
-    $("#sel-optsRegulatorsMore").html("");
-  }else{
+$(document).on("click","#chck_regulated",function(e){
+  if($(this).is(":checked")){
     $("#sel-optsRegulatorsMore").html(`
       <div class="cont-modalbootstrap__form--controlSelect">
         <label for="" class="cont-modalbootstrap__form--controlSelect--label">Regulador 1</label>
@@ -40,20 +40,18 @@ $(document).on("click", ".cont-modalbootstrap__form--controlRadios--c--control--
         <span id="msgErrNounReguladorTwo"></span>
       </div>
     `);
+    $(this).val("SI");
+    $("#txt-chck_regulated").text("SI");
+    $("#txt-chck_regulated").addClass("active");
+  }else{
+    $("#sel-optsRegulatorsMore").html("");
+    $(this).val("NO");
+    $("#txt-chck_regulated").text("NO");
+    $("#txt-chck_regulated").removeClass("active");
   }
 });
 // ------------ VALIDAR SI EL NOMBRE DEL PRODUCTO ESTÁ VACÍO
-$(document).on("keyup", "#nameProduct", function(){
-  ($(this).val() != 0) ? $("#msgErrNounNameProduct").text("") : $("#msgErrNounNameProduct").text("Debes ingresar un nombre");
-});
-// ------------ VALIDAR SI ESTÁ MARCADO EL RADIOBUTTON - REGULADOR 1
-$(document).on("click", "#required-reg", function(){
-  ($(this).is(':checked')) ? $("#msgErrNounWithOrNotRegulator").text("") : $("#msgErrNounWithOrNotRegulator").text("Debes marcar una opción");
-});
-// ------------ VALIDAR SI ESTÁ MARCADO EL RADIOBUTTON - REGULADOR 1
-$(document).on("click", "#noun-required-reg", function(){
-  ($(this).is(':checked')) ? $("#msgErrNounWithOrNotRegulator").text("") : $("#msgErrNounWithOrNotRegulator").text("Debes marcar una opción");
-});
+$(document).on("keyup", "#nameProduct", function(){($(this).val() != 0) ? $("#msgErrNounNameProduct").text("") : $("#msgErrNounNameProduct").text("Debes ingresar un nombre");});
 // ------------ ABRIR/CERRAR EL LISTADO DE REGULADORES - AGREGAR 1
 $(document).on("click", "#btn-FakeListRegulatorOne", function(){
   $("#c-listitems-regulatorOne").toggleClass("show");
@@ -63,17 +61,21 @@ $(document).on("click", "#btn-FakeListRegulatorOne", function(){
     method: "POST",
     datatype: "JSON",
     contentType: 'application/x-www-form-urlencoded;charset=UTF-8',
-  }).done((res) => {
-    var result = JSON.parse(res);
-    var template = "";
-    if(result.length > 0){
-      result.forEach( (e) => {
-        template += `<li class="cont-modalbootstrap__form--controlSelect--m--item" id="${e.id}" regularone="${e.name}">${e.name}</li>`;
-      });
-      $("#c-listitems-regulatorOne").html(template);
+  }).done((e) => {
+    if(e != ""){
+      var r = JSON.parse(e);
+      var template = "";
+      if(r.length > 0){
+        $.each(r, function(i,e){
+          template += `<li class="cont-modalbootstrap__form--controlSelect--m--item" id="${e.id}" regularone="${e.name}">${e.name}</li>`;
+        });
+        $("#c-listitems-regulatorOne").html(template);
+      }else{
+        template += `<li class="cont-modalbootstrap__form--controlSelect--m--item">No se encontraron datos</li>`;
+        $("#c-listitems-regulatorOne").html(template);
+      }
     }else{
-      template += `<li class="cont-modalbootstrap__form--controlSelect--m--item">No se encontraron datos</li>`;
-      $("#c-listitems-regulatorOne").html(template);
+      console.log('Lo sentimos, hubo un error al procesar la información.');
     }
   });
 });
@@ -95,17 +97,21 @@ $(document).on("click", "#btn-FakeListRegulatorTwo", function(){
     method: "POST",
     datatype: "JSON",
     contentType: 'application/x-www-form-urlencoded;charset=UTF-8',
-  }).done((res) => {
-    var result = JSON.parse(res);
-    var template = "";
-    if(result.length > 0){
-      result.forEach( (e) => {
-        template += `<li class="cont-modalbootstrap__form--controlSelect--m--item" id="${e.id}" regulartwo="${e.name}">${e.name}</li>`;
-      });
-      $("#c-listitems-regulatorTwo").html(template);
+  }).done((e) => {
+    if(e != ""){
+      var r = JSON.parse(e);
+      var template = "";
+      if(r.length > 0){
+        $.each(r, function(i,e){
+          template += `<li class="cont-modalbootstrap__form--controlSelect--m--item" id="${e.id}" regulartwo="${e.name}">${e.name}</li>`;
+        });
+        $("#c-listitems-regulatorTwo").html(template);
+      }else{
+        template += `<li class="cont-modalbootstrap__form--controlSelect--m--item">No se encontraron datos</li>`;
+        $("#c-listitems-regulatorTwo").html(template);
+      }
     }else{
-      template += `<li class="cont-modalbootstrap__form--controlSelect--m--item">No se encontraron datos</li>`;
-      $("#c-listitems-regulatorTwo").html(template);
+      console.log('Lo sentimos, hubo un error al procesar la información.');
     }
   });
 });
@@ -119,17 +125,23 @@ $(document).on("click", "#c-listitems-regulatorTwo .cont-modalbootstrap__form--c
   $("#SelectedItem-inputfakeselRegTwo").attr("idtregulartwo", $(this).attr("id"));
 });
 // ------------ MOSTRAR/OCULTAR DE ACUERDO AL CHECKBOX SELECCIONADO - MONTO ADICIONAL(AGREGAR)
-$(document).on("click", ".cont-modalbootstrap__form--controlRadios--c--control--input[name=sel-addornotadd]", function(){
-  if($(this).attr("id") == "noun-required-amountadditional"){
-    $("#sel-optsAmountAdditionalMore").html("");
-  }else{
+$(document).on("click","#chck_ammadditional",function(e){
+  if($(this).is(":checked")){
     $("#sel-optsAmountAdditionalMore").html(`
       <div class="cont-modalbootstrap__form--control">
         <label for="amountadditionalProduct" class="cont-modalbootstrap__form--control__label">Precio adicional</label>
-        <input id="amountadditionalProduct" class="cont-modalbootstrap__form--control__input" name="amountadditionalProduct" type="number" maxlength="300" placeholder="Ingrese el monto del producto" step="0.01">
+        <input id="amountadditionalProduct" class="cont-modalbootstrap__form--control__input" name="amountadditionalProduct" type="text" data-valformat="withtwodecimals" maxlength="300" placeholder="Ingrese el monto del producto" step="0.01">
         <span id="msgErrNounAmountAdditionalProduct"></span>
       </div>
     `);
+    $(this).val("SI");
+    $("#txt-chck_ammadditional").text("SI");
+    $("#txt-chck_ammadditional").addClass("active");
+  }else{
+    $("#sel-optsAmountAdditionalMore").html("");
+    $(this).val("NO");
+    $("#txt-chck_ammadditional").text("NO");
+    $("#txt-chck_ammadditional").removeClass("active");
   }
 });
 // ------------ MOSTRAR/OCULTAR DE ACUERDO AL CHECKBOX SELECCIONADO - MONTO ADICIONAL(ACTUALIZAR)
@@ -140,7 +152,7 @@ $(document).on("click", ".cont-modalbootstrapupdate__form--controlRadios--c--con
     $("#sel-optsAmountAdditionalMoreUpdate").html(`
       <div class="cont-modalbootstrapupdate__form--control">
         <label for="amountadditionalProduct-update" class="cont-modalbootstrapupdate__form--control__label">Precio adicional</label>
-        <input id="amountadditionalProduct-update" class="cont-modalbootstrapupdate__form--control__input" name="amountadditionalProduct-update" type="number" maxlength="300" placeholder="Ingrese el monto del producto" step="0.01">
+        <input id="amountadditionalProduct-update" class="cont-modalbootstrapupdate__form--control__input" name="amountadditionalProduct-update" type="text" data-valformat="withtwodecimals" maxlength="300" placeholder="Ingrese el monto del producto" step="0.01">
         <span id="msgErrNounAmountAdditionalProductUpdate"></span>
       </div>
     `);
@@ -148,32 +160,34 @@ $(document).on("click", ".cont-modalbootstrapupdate__form--controlRadios--c--con
 });
 // ------------ VALIDAR SI EL MONTO ESTÁ VACÍO
 $(document).on("keyup", "#amountadditionalProduct", function(){ ($(this).val() != 0) ? $("#msgErrNounAmountAdditionalProduct").text("") : $("#msgErrNounAmountAdditionalProduct").text("Debe colocar un monto");});
-// ------------ VALIDAR SI ESTÁ MARCADO EL RADIOBUTTON - IZQUIERDA
-$(document).on("click", "#required-amountadditional", function(){ ($(this).is(':checked')) ? $("#msgErrNounWithOrNotAmountAdditional").text("") : $("#msgErrNounWithOrNotAmountAdditional").text("Debes marcar una opción");});
-// ------------ VALIDAR SI ESTÁ MARCADO EL RADIOBUTTON - DERECHA
-$(document).on("click", "#noun-required-amountadditional", function(){ ($(this).is(':checked')) ? $("#msgErrNounWithOrNotAmountAdditional").text("") : $("#msgErrNounWithOrNotAmountAdditional").text("Debes marcar una opción");});
 // ------------ LISTAR LOS IMPUESTOS ADICIONALES - AGREGAR 1
-$(document).on("click", ".cont-modalbootstrap__form--controlRadios--c--control--input[name=sel-taxornottax]", function(){
-  if($(this).attr("id") == "noun-required-taxadditional"){
-    $("#sel-optsTaxationAdditionalsMore").html("");
-  }else{
+$(document).on("click","#chck_taxadditional",function(e){
+  if($(this).is(":checked")){
     $("#sel-optsTaxationAdditionalsMore").html(`
       <div class="cont-modalbootstrap__form--control">
         <label for="taxoneadditional" class="cont-modalbootstrap__form--control__label">Ad-Valoren</label>
-        <input id="taxoneadditional" class="cont-modalbootstrap__form--control__input" name="taxoneadditional" type="number" maxlength="300" placeholder="Ingrese el monto del impuesto" step="0.01">
+        <input id="taxoneadditional" class="cont-modalbootstrap__form--control__input" name="taxoneadditional" type="text" data-valformat="withtwodecimals" maxlength="300" placeholder="Ingrese el monto del impuesto" step="0.01">
         <span id="msgErrNounTaxOneAdditionalProduct"></span>
       </div>
       <div class="cont-modalbootstrap__form--control">
         <label for="taxtwoadditional" class="cont-modalbootstrap__form--control__label">Impuesto Selecctivo</label>
-        <input id="taxtwoadditional" class="cont-modalbootstrap__form--control__input" name="taxtwoadditional" type="number" maxlength="300" placeholder="Ingrese el monto del impuesto" step="0.01">
+        <input id="taxtwoadditional" class="cont-modalbootstrap__form--control__input" name="taxtwoadditional" type="text" data-valformat="withtwodecimals" maxlength="300" placeholder="Ingrese el monto del impuesto" step="0.01">
         <span id="msgErrNounTaxTwoAdditionalProduct"></span>
       </div>
       <div class="cont-modalbootstrap__form--control">
         <label for="taxthreeadditional" class="cont-modalbootstrap__form--control__label">ANTIDUMPING</label>
-        <input id="taxthreeadditional" class="cont-modalbootstrap__form--control__input" name="taxthreeadditional" type="number" maxlength="300" placeholder="Ingrese el monto del impuesto" step="0.01">
+        <input id="taxthreeadditional" class="cont-modalbootstrap__form--control__input" name="taxthreeadditional" type="text" data-valformat="withtwodecimals" maxlength="300" placeholder="Ingrese el monto del impuesto" step="0.01">
         <span id="msgErrNounTaxThreeAdditionalProduct"></span>
       </div>
     `);
+    $(this).val("SI");
+    $("#txt-chck_taxadditional").text("SI");
+    $("#txt-chck_taxadditional").addClass("active");
+  }else{
+    $("#sel-optsTaxationAdditionalsMore").html("");
+    $(this).val("NO");
+    $("#txt-chck_taxadditional").text("NO");
+    $("#txt-chck_taxadditional").removeClass("active");
   }
 });
 // ------------ VALIDAR LOS CONTROLES DE IMPUESTOS (SI)
@@ -184,338 +198,266 @@ $(document).on("input keyup","#taxthreeadditional",function(e){(e.target.value =
 $(document).on('submit', '#form-add-product', function(e){
   e.preventDefault();
   ($("#nameProduct").val() != 0) ? $("#msgErrNounNameProduct").text("") : $("#msgErrNounNameProduct").text("Debes ingresar un nombre");
-  ($("#required-reg").is(":checked") || $("#noun-required-reg").is(":checked")) ? $("#msgErrNounWithOrNotRegulator").text("") : $("#msgErrNounWithOrNotRegulator").text("Debe marcar una opción"); 
-  ($("#SelectedItem-inputfakeselRegOne").attr("idtregularOne")) ? $("#msgErrNounReguladorOne").text("") : $("#msgErrNounReguladorOne").text("Debe seleccionar un regulador");
-  ($("#SelectedItem-inputfakeselRegTwo").attr("idtregulartwo")) ? $("#msgErrNounReguladorTwo").text("") : $("#msgErrNounReguladorTwo").text("Debe seleccionar un regulador");
-  ($("#required-amountadditional").is(":checked") || $("#noun-required-amountadditional").is(":checked")) ? $("#msgErrNounWithOrNotAmountAdditional").text("") : $("#msgErrNounWithOrNotAmountAdditional").text("Debe marcar una opción"); 
-  ($("#required-taxadditional").is(":checked") || $("#noun-required-taxadditional").is(":checked")) ? $("#msgErrNounWithOrNotTaxAdditional").text("") : $("#msgErrNounWithOrNotTaxAdditional").text("Debe marcar una opción"); 
 
   // ------------ CONDICIONAL 1 - (SI, SI, SI, SI)
-  if(($("#nameProduct").val() != 0 || $("#nameProduct").val() != "") && 
-      $("#required-reg").is(":checked") && 
-      $("#required-amountadditional").is(":checked") && 
-      $("#required-taxadditional").is(":checked")){
-    
-    ($("#amountadditionalProduct").val() != 0 || $("#amountadditionalProduct").val() != "") ? $("#msgErrNounAmountAdditionalProduct").text("") : $("#msgErrNounAmountAdditionalProduct").text("Debe colocar un monto");
-    ($("#taxoneadditional").val() == 0 || $("#taxoneadditional").val() == "") ? $("#msgErrNounTaxOneAdditionalProduct").text("Debe colocar un monto") : $("#msgErrNounTaxOneAdditionalProduct").text("");
-    ($("#taxtwoadditional").val() == 0 || $("#taxtwoadditional").val() == "") ? $("#msgErrNounTaxTwoAdditionalProduct").text("Debe colocar un monto") : $("#msgErrNounTaxTwoAdditionalProduct").text("");
-    ($("#taxthreeadditional").val() == 0 || $("#taxthreeadditional").val() == "") ? $("#msgErrNounTaxThreeAdditionalProduct").text("Debe colocar un monto") : $("#msgErrNounTaxThreeAdditionalProduct").text("");
+  if($("#nameProduct").val() != 0 && $("#nameProduct").val() != ""){
+    if($("#chck_regulated").is(":checked")){
+      ($("#SelectedItem-inputfakeselRegOne").attr("idtregularOne")) ? $("#msgErrNounReguladorOne").text("") : $("#msgErrNounReguladorOne").text("Debe seleccionar un regulador");
+      ($("#SelectedItem-inputfakeselRegTwo").attr("idtregulartwo")) ? $("#msgErrNounReguladorTwo").text("") : $("#msgErrNounReguladorTwo").text("Debe seleccionar un regulador");
 
-    if(($("#SelectedItem-inputfakeselRegOne").attr("idtregularOne") || $("#SelectedItem-inputfakeselRegTwo").attr("idtregulartwo")) &&
-      ($("#amountadditionalProduct").val() != 0 && $("#amountadditionalProduct").val() != "") &&
-      (($("#taxoneadditional").val() != 0 || $("#taxoneadditional").val() != "") || 
-       ($("#taxtwoadditional").val() != 0 || $("#taxtwoadditional").val() != "") ||
-       ($("#taxthreeadditional").val() != 0 || $("#taxthreeadditional").val() != ""))){
-      
-      var formdata = new FormData();
-      formdata.append("name", $("#nameProduct").val());
-      formdata.append("regulate", $("#required-reg").parent().find("span").text());
-      formdata.append("id_regulatorone", ($("#SelectedItem-inputfakeselRegOne").attr("idtregularOne") || $("#SelectedItem-inputfakeselRegOne").attr("idtregularOne") != undefined) ? $("#SelectedItem-inputfakeselRegOne").attr("idtregularOne") : 0);
-      formdata.append("id_regulatortwo", ($("#SelectedItem-inputfakeselRegTwo").attr("idtregulartwo") || $("#SelectedItem-inputfakeselRegTwo").attr("idtregulartwo") != undefined) ? $("#SelectedItem-inputfakeselRegTwo").attr("idtregulartwo") : 0);
-      formdata.append("amount_additional", $("#amountadditionalProduct").val());
-      formdata.append("ad_valoren", $("#taxoneadditional").val());
-      formdata.append("impuesto_selectivo", $("#taxtwoadditional").val());
-      formdata.append("antidumping", $("#taxthreeadditional").val());
+      if($("#chck_regulated").is(":checked") && $("#chck_ammadditional").is(":checked")){
+        ($("#amountadditionalProduct").val() != 0 && $("#amountadditionalProduct").val() != "") ? $("#msgErrNounAmountAdditionalProduct").text("") : $("#msgErrNounAmountAdditionalProduct").text("Debe colocar un monto");
 
-      $.ajax({
-        url: "../admin/controllers/c_add-products.php",
-        method: "POST",
-        data: formdata,
-        contentType: false,
-        cache: false,
-        processData: false,
-      }).done((res) => {
-        if(res == "true"){
-          $('#form-add-product')[0].reset();
-          $("#sel-optsRegulatorsMore").html("");
-          $("#sel-optsAmountAdditionalMore").html("");
-          listProducts();
-          $('#addproductModal').modal("hide");
+        if($("#chck_regulated").is(":checked") && $("#chck_ammadditional").is(":checked") && $("#chck_taxadditional").is(":checked")){
+          ($("#SelectedItem-inputfakeselRegOne").attr("idtregularOne")) ? $("#msgErrNounReguladorOne").text("") : $("#msgErrNounReguladorOne").text("Debe seleccionar un regulador");
+          ($("#SelectedItem-inputfakeselRegTwo").attr("idtregulartwo")) ? $("#msgErrNounReguladorTwo").text("") : $("#msgErrNounReguladorTwo").text("Debe seleccionar un regulador");
+          ($("#amountadditionalProduct").val() != 0 || $("#amountadditionalProduct").val() != "") ? $("#msgErrNounAmountAdditionalProduct").text("") : $("#msgErrNounAmountAdditionalProduct").text("Debe colocar un monto");
+          ($("#taxoneadditional").val() == 0 || $("#taxoneadditional").val() == "") ? $("#msgErrNounTaxOneAdditionalProduct").text("Debe colocar un monto") : $("#msgErrNounTaxOneAdditionalProduct").text("");
+          ($("#taxtwoadditional").val() == 0 || $("#taxtwoadditional").val() == "") ? $("#msgErrNounTaxTwoAdditionalProduct").text("Debe colocar un monto") : $("#msgErrNounTaxTwoAdditionalProduct").text("");
+          ($("#taxthreeadditional").val() == 0 || $("#taxthreeadditional").val() == "") ? $("#msgErrNounTaxThreeAdditionalProduct").text("Debe colocar un monto") : $("#msgErrNounTaxThreeAdditionalProduct").text("");
+
+          if(($("#SelectedItem-inputfakeselRegOne").attr("idtregularOne") || $("#SelectedItem-inputfakeselRegTwo").attr("idtregulartwo")) && ($("#amountadditionalProduct").val() != 0 && $("#amountadditionalProduct").val() != "") && (($("#taxoneadditional").val() != 0 || $("#taxoneadditional").val() != "") && ($("#taxtwoadditional").val() != 0 || $("#taxtwoadditional").val() != "") && ($("#taxthreeadditional").val() != 0 || $("#taxthreeadditional").val() != ""))){
+            var formdata = new FormData();
+            formdata.append("name", $("#nameProduct").val());
+            formdata.append("sel_regulated", $("#chck_regulated").val());
+            formdata.append("sel_ammadditional", $("#chck_ammadditional").val());
+            formdata.append("sel_taxadditional", $("#chck_taxadditional").val());
+            formdata.append("id_regulatorone", ($("#SelectedItem-inputfakeselRegOne").attr("idtregularOne") || $("#SelectedItem-inputfakeselRegOne").attr("idtregularOne") != undefined) ? $("#SelectedItem-inputfakeselRegOne").attr("idtregularOne") : 0);
+            formdata.append("id_regulatortwo", ($("#SelectedItem-inputfakeselRegTwo").attr("idtregulartwo") || $("#SelectedItem-inputfakeselRegTwo").attr("idtregulartwo") != undefined) ? $("#SelectedItem-inputfakeselRegTwo").attr("idtregulartwo") : 0);
+            formdata.append("amount_additional", $("#amountadditionalProduct").val());
+            formdata.append("ad_valoren", $("#taxoneadditional").val());
+            formdata.append("impuesto_selectivo", $("#taxtwoadditional").val());
+            formdata.append("antidumping", $("#taxthreeadditional").val());
+
+            $.ajax({
+              url: "../admin/controllers/c_add-products.php",
+              method: "POST",
+              data: formdata,
+              contentType: false,
+              cache: false,
+              processData: false,
+            }).done((e) => {
+              if(e != "" && e != "[]"){
+                if(e == "true"){
+                  $('#form-add-product')[0].reset();
+                  $("#sel-optsRegulatorsMore").html("");
+                  $("#sel-optsAmountAdditionalMore").html("");
+                  listAllProducts();
+                  $('#addproductModal').modal("hide");
+                  Swal.fire({
+                    title: 'Agregado!',
+                    html: `<span class='font-w-300'>Se ha agregado el producto.</span>`,
+                    icon: 'success',
+                    confirmButtonText: 'Aceptar'
+                  });
+                }else{
+                  Swal.fire({
+                    title: 'Error!',
+                    html: `<span class='font-w-300'>Lo sentimos, hubo un error al guardar la información.</span>`,
+                    icon: 'error',
+                    confirmButtonText: 'Aceptar'
+                  });
+                }
+              }else{
+                Swal.fire({
+                  title: 'Error!',
+                  html: `<span class='font-w-300'>Lo sentimos, hubo un error al procesar la información.</span>`,
+                  icon: 'error',
+                  confirmButtonText: 'Aceptar'
+                });
+              }
+            });
+          }else{
+            Swal.fire({
+              title: 'Atención!',
+              html: `<span class='font-w-300'>Faltan rellenar algunos campos.</span>`,
+              icon: 'warning',
+              confirmButtonText: 'Aceptar'
+            });
+          }
         }else{
-          console.log('Lo sentimos, ocurrió un error al agregar el registro');
+          if(($("#SelectedItem-inputfakeselRegOne").attr("idtregularOne") || $("#SelectedItem-inputfakeselRegTwo").attr("idtregulartwo")) && 
+            ($("#amountadditionalProduct").val() != 0 && $("#amountadditionalProduct").val() != "")){
+            var formdata = new FormData();
+            formdata.append("name", $("#nameProduct").val());
+            formdata.append("sel_regulated", $("#chck_regulated").val());
+            formdata.append("sel_ammadditional", $("#chck_ammadditional").val());
+            formdata.append("sel_taxadditional", $("#chck_taxadditional").val());
+            formdata.append("id_regulatorone", ($("#SelectedItem-inputfakeselRegOne").attr("idtregularOne") || $("#SelectedItem-inputfakeselRegOne").attr("idtregularOne") != undefined) ? $("#SelectedItem-inputfakeselRegOne").attr("idtregularOne") : 0);
+            formdata.append("id_regulatortwo", ($("#SelectedItem-inputfakeselRegTwo").attr("idtregulartwo") || $("#SelectedItem-inputfakeselRegTwo").attr("idtregulartwo") != undefined) ? $("#SelectedItem-inputfakeselRegTwo").attr("idtregulartwo") : 0);
+            formdata.append("amount_additional", $("#amountadditionalProduct").val());
+            formdata.append("ad_valoren", $("#taxoneadditional").val());
+            formdata.append("impuesto_selectivo", $("#taxtwoadditional").val());
+            formdata.append("antidumping", $("#taxthreeadditional").val());
+
+            $.ajax({
+              url: "../admin/controllers/c_add-products.php",
+              method: "POST",
+              data: formdata,
+              contentType: false,
+              cache: false,
+              processData: false,
+            }).done((e) => {
+              if(e != "" && e != "[]"){
+                if(e == "true"){
+                  $('#form-add-product')[0].reset();
+                  $("#sel-optsRegulatorsMore").html("");
+                  $("#sel-optsAmountAdditionalMore").html("");
+                  listAllProducts();
+                  $('#addproductModal').modal("hide");
+                  Swal.fire({
+                    title: 'Agregado!',
+                    html: `<span class='font-w-300'>Se ha agregado el producto.</span>`,
+                    icon: 'success',
+                    confirmButtonText: 'Aceptar'
+                  });
+                }else{
+                  Swal.fire({
+                    title: 'Error!',
+                    html: `<span class='font-w-300'>Lo sentimos, hubo un error al guardar la información.</span>`,
+                    icon: 'error',
+                    confirmButtonText: 'Aceptar'
+                  });
+                }
+              }else{
+                Swal.fire({
+                  title: 'Error!',
+                  html: `<span class='font-w-300'>Lo sentimos, hubo un error al procesar la información.</span>`,
+                  icon: 'error',
+                  confirmButtonText: 'Aceptar'
+                });
+              }
+            });
+          }else{
+            Swal.fire({
+              title: 'Atención!',
+              html: `<span class='font-w-300'>Faltan rellenar algunos campos.</span>`,
+              icon: 'warning',
+              confirmButtonText: 'Aceptar'
+            });
+          }
         }
-      });
-    }else{
-      console.log("Falta rellenar los campos");
-    }
-  // ------------ CONDICIONAL 2 - (SI, SI, NO, NO)
-  }else if(($("#nameProduct").val() != 0 || $("#nameProduct").val() != "") &&
-            $("#required-reg").is(":checked") &&
-            $("#noun-required-amountadditional").is(":checked") &&
-            $("#noun-required-taxadditional").is(":checked")){
-
-    if($("#SelectedItem-inputfakeselRegOne").attr("idtregularOne") || $("#SelectedItem-inputfakeselRegTwo").attr("idtregulartwo")){
-      
-      var formdata = new FormData();
-      formdata.append("name", $("#nameProduct").val());
-      formdata.append("regulate", $("#required-reg").parent().find("span").text());
-      formdata.append("id_regulatorone", $("#SelectedItem-inputfakeselRegOne").attr("idtregularOne"));
-      formdata.append("id_regulatortwo", $("#SelectedItem-inputfakeselRegTwo").attr("idtregulartwo"));
-      formdata.append("amount_additional", 0);
-      formdata.append("ad_valoren", 0);
-      formdata.append("impuesto_selectivo", 0);
-      formdata.append("antidumping", 0);
-
-      $.ajax({
-        url: "../admin/controllers/c_add-products.php",
-        method: "POST",
-        data: formdata,
-        contentType: false,
-        cache: false,
-        processData: false,
-      }).done((res) => {
-        if(res == "true"){
-          $('#form-add-product')[0].reset();
-          $("#sel-optsRegulatorsMore").html("");
-          $("#sel-optsAmountAdditionalMore").html("");
-          listProducts();
-          $('#addproductModal').modal("hide");
-        }else{
-          console.log('Lo sentimos, ocurrió un error al agregar el registro');
-        }
-      });
-
-    }else{
-      console.log("Falta rellenar los campos");      
-    }
-  // ------------ CONDICIONAL 3 - (SI, NO, SI, NO)
-  }else if(($("#nameProduct").val() != 0 || $("#nameProduct").val() != "") &&
-           $("#noun-required-reg").is(":checked") &&
-           $("#required-amountadditional").is(":checked") &&
-           $("#noun-required-taxadditional").is(":checked")){
-
-    if($("#amountadditionalProduct").val() != 0 || $("#amountadditionalProduct").val() != ""){
-      $("#msgErrNounAmountAdditionalProduct").text("");
-
-      var formdata = new FormData();
-      formdata.append("name", $("#nameProduct").val());
-      formdata.append("regulate", $("#noun-required-reg").parent().find("span").text());
-      formdata.append("id_regulatorone", 0);
-      formdata.append("id_regulatortwo", 0);
-      formdata.append("amount_additional", $("#amountadditionalProduct").val());
-      formdata.append("ad_valoren", 0);
-      formdata.append("impuesto_selectivo", 0);
-      formdata.append("antidumping", 0);
-
-      $.ajax({
-        url: "../admin/controllers/c_add-products.php",
-        method: "POST",
-        data: formdata,
-        contentType: false,
-        cache: false,
-        processData: false,
-      }).done((res) => {
-        if(res == "true"){
-          $('#form-add-product')[0].reset();
-          $("#sel-optsAmountAdditionalMore").html("");
-          listProducts();
-          $('#addproductModal').modal("hide");
-        }else{
-          console.log('Lo sentimos, ocurrió un error al agregar el registro');
-        }
-      });
-    }else{
-      $("#msgErrNounAmountAdditionalProduct").text("Debe colocar un monto");
-    }
-  // ------------ CONDICIONAL 4 - (SI, SI, NO, SI)
-  }else if(($("#nameProduct").val() != 0 || $("#nameProduct").val() != "") && 
-           $("#required-reg").is(":checked") && 
-           $("#noun-required-amountadditional").is(":checked") && 
-           $("#required-taxadditional").is(":checked")){
-
-    if(($("#SelectedItem-inputfakeselRegOne").attr("idtregularOne") || $("#SelectedItem-inputfakeselRegTwo").attr("idtregulartwo")) &&
-      (($("#taxoneadditional").val() != 0 || $("#taxoneadditional").val() != "") || 
-       ($("#taxtwoadditional").val() != 0 || $("#taxtwoadditional").val() != "") ||
-       ($("#taxthreeadditional").val() != 0 || $("#taxthreeadditional").val() != ""))){
-      
-      var formdata = new FormData();
-      formdata.append("name", $("#nameProduct").val());
-      formdata.append("regulate", $("#required-reg").parent().find("span").text());
-      formdata.append("id_regulatorone", ($("#SelectedItem-inputfakeselRegOne").attr("idtregularOne") || $("#SelectedItem-inputfakeselRegOne").attr("idtregularOne") != undefined) ? $("#SelectedItem-inputfakeselRegOne").attr("idtregularOne") : 0);
-      formdata.append("id_regulatortwo", ($("#SelectedItem-inputfakeselRegTwo").attr("idtregulartwo") || $("#SelectedItem-inputfakeselRegTwo").attr("idtregulartwo") != undefined) ? $("#SelectedItem-inputfakeselRegTwo").attr("idtregulartwo") : 0);
-      formdata.append("amount_additional", 0);
-      formdata.append("ad_valoren", $("#taxoneadditional").val());
-      formdata.append("impuesto_selectivo", $("#taxtwoadditional").val());
-      formdata.append("antidumping", $("#taxthreeadditional").val());
-
-      $.ajax({
-        url: "../admin/controllers/c_add-products.php",
-        method: "POST",
-        data: formdata,
-        contentType: false,
-        cache: false,
-        processData: false,
-      }).done((res) => {
-        if(res == "true"){
-          $('#form-add-product')[0].reset();
-          $("#sel-optsRegulatorsMore").html("");
-          $("#sel-optsAmountAdditionalMore").html("");
-          listProducts();
-          $('#addproductModal').modal("hide");
-        }else{
-          console.log('Lo sentimos, ocurrió un error al agregar el registro');
-        }
-      });
-    }else{
-      console.log("Falta rellenar los campos");      
-    }
-  // ------------ CONDICIONAL 5 - (SI, NO, SI, SI)
-  }else if(($("#nameProduct").val() != 0 || $("#nameProduct").val() != "") && 
-           $("#noun-required-reg").is(":checked") && 
-           $("#required-amountadditional").is(":checked") && 
-           $("#required-taxadditional").is(":checked")){
-    
-    if(($("#amountadditionalProduct").val() != 0 || $("#amountadditionalProduct").val() != "") &&
-      (($("#taxoneadditional").val() != 0 || $("#taxoneadditional").val() != "") || 
-       ($("#taxtwoadditional").val() != 0 || $("#taxtwoadditional").val() != "") ||
-       ($("#taxthreeadditional").val() != 0 || $("#taxthreeadditional").val() != ""))){
-      $("#msgErrNounAmountAdditionalProduct").text("");
-
-      var formdata = new FormData();
-      formdata.append("name", $("#nameProduct").val());
-      formdata.append("regulate", $("#noun-required-reg").parent().find("span").text());
-      formdata.append("id_regulatorone", 0);
-      formdata.append("id_regulatortwo", 0);
-      formdata.append("amount_additional", $("#amountadditionalProduct").val());
-      formdata.append("ad_valoren", $("#taxoneadditional").val());
-      formdata.append("impuesto_selectivo", $("#taxtwoadditional").val());
-      formdata.append("antidumping", $("#taxthreeadditional").val());
-
-      $.ajax({
-        url: "../admin/controllers/c_add-products.php",
-        method: "POST",
-        data: formdata,
-        contentType: false,
-        cache: false,
-        processData: false,
-      }).done((res) => {
-        if(res == "true"){
-          $('#form-add-product')[0].reset();
-          $("#sel-optsAmountAdditionalMore").html("");
-          listProducts();
-          $('#addproductModal').modal("hide");
-        }else{
-          console.log('Lo sentimos, ocurrió un error al agregar el registro');
-        }
-      });
-    }else{
-      $("#msgErrNounAmountAdditionalProduct").text("Debe colocar un monto");
-    }
-  // ------------ CONDICIONAL 6 - (SI, SI, SI, NO)
-  }else if(($("#nameProduct").val() != 0 || $("#nameProduct").val() != "") && 
-          $("#required-reg").is(":checked") && 
-          $("#required-amountadditional").is(":checked") && 
-          $("#noun-required-taxadditional").is(":checked")){
-
-    if(($("#SelectedItem-inputfakeselRegOne").attr("idtregularOne") || $("#SelectedItem-inputfakeselRegTwo").attr("idtregulartwo")) &&
-      $("#amountadditionalProduct").val() != 0 && $("#amountadditionalProduct").val() != ""){
-      
-      var formdata = new FormData();
-      formdata.append("name", $("#nameProduct").val());
-      formdata.append("regulate", $("#required-reg").parent().find("span").text());
-      formdata.append("id_regulatorone", ($("#SelectedItem-inputfakeselRegOne").attr("idtregularOne") || $("#SelectedItem-inputfakeselRegOne").attr("idtregularOne") != undefined) ? $("#SelectedItem-inputfakeselRegOne").attr("idtregularOne") : 0);
-      formdata.append("id_regulatortwo", ($("#SelectedItem-inputfakeselRegTwo").attr("idtregulartwo") || $("#SelectedItem-inputfakeselRegTwo").attr("idtregulartwo") != undefined) ? $("#SelectedItem-inputfakeselRegTwo").attr("idtregulartwo") : 0);
-      formdata.append("amount_additional", $("#amountadditionalProduct").val());
-      formdata.append("ad_valoren", 0);
-      formdata.append("impuesto_selectivo", 0);
-      formdata.append("antidumping", 0);
-
-      $.ajax({
-        url: "../admin/controllers/c_add-products.php",
-        method: "POST",
-        data: formdata,
-        contentType: false,
-        cache: false,
-        processData: false,
-      }).done((res) => {
-        if(res == "true"){
-          $('#form-add-product')[0].reset();
-          $("#sel-optsRegulatorsMore").html("");
-          $("#sel-optsAmountAdditionalMore").html("");
-          listProducts();
-          $('#addproductModal').modal("hide");
-        }else{
-          console.log('Lo sentimos, ocurrió un error al agregar el registro');
-        }
-      });
-    }else{
-      console.log("Falta rellenar los campos");
-    }
-  // ------------ CONDICIONAL 7 - (SI, NO, NO, SI)
-  }else if(($("#nameProduct").val() != 0 || $("#nameProduct").val() != "") && 
-          $("#noun-required-reg").is(":checked") && 
-          $("#noun-required-amountadditional").is(":checked") && 
-          $("#required-taxadditional").is(":checked")){
-
-    if(($("#taxoneadditional").val() != 0 || $("#taxoneadditional").val() != "") || 
-       ($("#taxtwoadditional").val() != 0 || $("#taxtwoadditional").val() != "") ||
-       ($("#taxthreeadditional").val() != 0 || $("#taxthreeadditional").val() != "")){
-
-      var formdata = new FormData();
-      formdata.append("name", $("#nameProduct").val());
-      formdata.append("regulate", $("#noun-required-reg").parent().find("span").text());
-      formdata.append("id_regulatorone", 0);
-      formdata.append("id_regulatortwo", 0);
-      formdata.append("amount_additional", 0);
-      formdata.append("ad_valoren", $("#taxoneadditional").val());
-      formdata.append("impuesto_selectivo", $("#taxtwoadditional").val());
-      formdata.append("antidumping", $("#taxthreeadditional").val());
-
-      $.ajax({
-        url: "../admin/controllers/c_add-products.php",
-        method: "POST",
-        data: formdata,
-        contentType: false,
-        cache: false,
-        processData: false,
-      }).done((res) => {
-        if(res == "true"){
-          $('#form-add-product')[0].reset();
-          listProducts();
-          $('#addproductModal').modal("hide");
-        }else{
-          console.log('Lo sentimos, ocurrió un error al agregar el registro');
-        }
-      });
-    }else{
-      console.log("Falta rellenar los campos");
-    }
-  // ------------ CONDICIONAL 8 - (SI, NO, NO, NO)
-  }else if(($("#nameProduct").val() != 0 || $("#nameProduct").val() != "") && 
-            $("#noun-required-reg").is(":checked") && 
-            $("#noun-required-amountadditional").is(":checked") && 
-            $("#noun-required-taxadditional").is(":checked")){
-
-    var formdata = new FormData();
-    formdata.append("name", $("#nameProduct").val());
-    formdata.append("regulate", $("#noun-required-reg").parent().find("span").text());
-    formdata.append("id_regulatorone", 0);
-    formdata.append("id_regulatortwo", 0);
-    formdata.append("amount_additional", 0);
-    formdata.append("ad_valoren", 0);
-    formdata.append("impuesto_selectivo", 0);
-    formdata.append("antidumping", 0);
-
-    $.ajax({
-      url: "../admin/controllers/c_add-products.php",
-      method: "POST",
-      data: formdata,
-      contentType: false,
-      cache: false,
-      processData: false,
-    }).done((res) => {
-      if(res == "true"){
-        $('#form-add-product')[0].reset();
-        listProducts();
-        $('#addproductModal').modal("hide");
       }else{
-        console.log('Lo sentimos, ocurrió un error al agregar el registro');
-      }
-    });
-  }else{
-    console.log("Falta rellenar los campos");
-  }
+        if(($("#SelectedItem-inputfakeselRegOne").attr("idtregularOne") || $("#SelectedItem-inputfakeselRegTwo").attr("idtregulartwo"))){
+          var formdata = new FormData();
+          formdata.append("name", $("#nameProduct").val());
+          formdata.append("sel_regulated", $("#chck_regulated").val());
+          formdata.append("sel_ammadditional", $("#chck_ammadditional").val());
+          formdata.append("sel_taxadditional", $("#chck_taxadditional").val());
+          formdata.append("id_regulatorone", ($("#SelectedItem-inputfakeselRegOne").attr("idtregularOne") || $("#SelectedItem-inputfakeselRegOne").attr("idtregularOne") != undefined) ? $("#SelectedItem-inputfakeselRegOne").attr("idtregularOne") : 0);
+          formdata.append("id_regulatortwo", ($("#SelectedItem-inputfakeselRegTwo").attr("idtregulartwo") || $("#SelectedItem-inputfakeselRegTwo").attr("idtregulartwo") != undefined) ? $("#SelectedItem-inputfakeselRegTwo").attr("idtregulartwo") : 0);
+          formdata.append("amount_additional", $("#amountadditionalProduct").val());
+          formdata.append("ad_valoren", $("#taxoneadditional").val());
+          formdata.append("impuesto_selectivo", $("#taxtwoadditional").val());
+          formdata.append("antidumping", $("#taxthreeadditional").val());
 
+          $.ajax({
+            url: "../admin/controllers/c_add-products.php",
+            method: "POST",
+            data: formdata,
+            contentType: false,
+            cache: false,
+            processData: false,
+          }).done((e) => {
+            if(e != "" && e != "[]"){
+              if(e == "true"){
+                $('#form-add-product')[0].reset();
+                $("#sel-optsRegulatorsMore").html("");
+                $("#sel-optsAmountAdditionalMore").html("");
+                listAllProducts();
+                $('#addproductModal').modal("hide");
+                Swal.fire({
+                  title: 'Agregado!',
+                  html: `<span class='font-w-300'>Se ha agregado el producto.</span>`,
+                  icon: 'success',
+                  confirmButtonText: 'Aceptar'
+                });
+              }else{
+                Swal.fire({
+                  title: 'Error!',
+                  html: `<span class='font-w-300'>Lo sentimos, hubo un error al guardar la información.</span>`,
+                  icon: 'error',
+                  confirmButtonText: 'Aceptar'
+                });
+              }
+            }else{
+              Swal.fire({
+                title: 'Error!',
+                html: `<span class='font-w-300'>Lo sentimos, hubo un error al procesar la información.</span>`,
+                icon: 'error',
+                confirmButtonText: 'Aceptar'
+              });
+            }
+          });
+        }else{
+          Swal.fire({
+            title: 'Atención!',
+            html: `<span class='font-w-300'>Faltan rellenar algunos campos.</span>`,
+            icon: 'warning',
+            confirmButtonText: 'Aceptar'
+          });
+        }
+      }
+    }else{
+      var formdata = new FormData();
+      formdata.append("name", $("#nameProduct").val());
+      formdata.append("sel_regulated", $("#chck_regulated").val());
+      formdata.append("sel_ammadditional", $("#chck_ammadditional").val());
+      formdata.append("sel_taxadditional", $("#chck_taxadditional").val());
+      formdata.append("id_regulatorone", ($("#SelectedItem-inputfakeselRegOne").attr("idtregularOne") || $("#SelectedItem-inputfakeselRegOne").attr("idtregularOne") != undefined) ? $("#SelectedItem-inputfakeselRegOne").attr("idtregularOne") : 0);
+      formdata.append("id_regulatortwo", ($("#SelectedItem-inputfakeselRegTwo").attr("idtregulartwo") || $("#SelectedItem-inputfakeselRegTwo").attr("idtregulartwo") != undefined) ? $("#SelectedItem-inputfakeselRegTwo").attr("idtregulartwo") : 0);
+      formdata.append("amount_additional", $("#amountadditionalProduct").val());
+      formdata.append("ad_valoren", $("#taxoneadditional").val());
+      formdata.append("impuesto_selectivo", $("#taxtwoadditional").val());
+      formdata.append("antidumping", $("#taxthreeadditional").val());
+
+      $.ajax({
+        url: "../admin/controllers/c_add-products.php",
+        method: "POST",
+        data: formdata,
+        contentType: false,
+        cache: false,
+        processData: false,
+      }).done((e) => {
+        if(e != "" && e != "[]"){
+          if(e == "true"){
+            $('#form-add-product')[0].reset();
+            $("#sel-optsRegulatorsMore").html("");
+            $("#sel-optsAmountAdditionalMore").html("");
+            listAllProducts();
+            $('#addproductModal').modal("hide");
+            Swal.fire({
+              title: 'Agregado!',
+              html: `<span class='font-w-300'>Se ha agregado el producto.</span>`,
+              icon: 'success',
+              confirmButtonText: 'Aceptar'
+            });
+          }else{
+            Swal.fire({
+              title: 'Error!',
+              html: `<span class='font-w-300'>Lo sentimos, hubo un error al guardar la información.</span>`,
+              icon: 'error',
+              confirmButtonText: 'Aceptar'
+            });
+          }
+        }else{
+          Swal.fire({
+            title: 'Error!',
+            html: `<span class='font-w-300'>Lo sentimos, hubo un error al procesar la información.</span>`,
+            icon: 'error',
+            confirmButtonText: 'Aceptar'
+          });
+        }
+      });
+    }
+  }else{
+    Swal.fire({
+      title: 'Atención!',
+      html: `<span class='font-w-300'>Faltan rellenar algunos campos.</span>`,
+      icon: 'warning',
+      confirmButtonText: 'Aceptar'
+    });
+  }
 });
 // // ------------ LISTAR PRODUCTOS
 var listAllProducts = () => {
@@ -529,7 +471,7 @@ var listAllProducts = () => {
     "columns":[
       {"data":"id_prod"},
       {"data":"name_prod"},
-      {"data":"regulated"},
+      {"data":"sel_regulated"},
       {"data":"reguladorOne",
         "render": function ( data, type, row ){
           var nounRegOne = "";
@@ -567,10 +509,12 @@ var listAllProducts = () => {
           (row.reguladorTwo == null || row.reguladorTwo == "") ? nounRegTwo = "NO REQUIERE" : nounRegTwo = row.reguladorTwo;
 
           tmpBtnDetail += `<div class="cont-btn-details center">
-            <a class="btn-update-product" data-toggle="modal" data-target="#updateModal"  href="#" 
+            <a class="btn-update-detail" data-toggle="modal" data-target="#updateModal"  href="#" 
                data-id="${row.id_prod}"
                data-name="${row.name_prod}"
-               data-regulated="${row.regulated}"
+               data-sel_regulated="${row.sel_regulated}"
+               data-sel_ammadditional="${row.sel_ammadditional}"
+               data-sel_taxadditional="${row.sel_taxadditional}"
                data-idregulator="${row.id_regulator}"
                data-idregulatortwo="${row.id_regulator_two}"
                data-regulatorone="${nounRegOne}"
@@ -595,7 +539,7 @@ var listAllProducts = () => {
             <a class="btn-delete-product" data-toggle="modal" data-target="#deleteModal" href="#"
                data-id="${row.id_prod}">
               <span>
-                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="27px" height="27px" version="1.1" viewBox="0 0 700 700"><g xmlns="http://www.w3.org/2000/svg"><path d="m495.6 43.512h-291.2c-16.336 0-32.004 6.4922-43.555 18.043-11.555 11.551-18.043 27.219-18.043 43.559v349.77c0 16.34 6.4883 32.008 18.043 43.559 11.551 11.551 27.219 18.043 43.555 18.043h291.2c16.336 0 32.004-6.4922 43.555-18.043 11.555-11.551 18.043-27.219 18.043-43.559v-349.77c0-16.34-6.4883-32.008-18.043-43.559-11.551-11.551-27.219-18.043-43.555-18.043zm28 411.38c0 7.4258-2.9531 14.551-8.2031 19.801s-12.371 8.1992-19.797 8.1992h-291.2c-7.4258 0-14.547-2.9492-19.797-8.1992s-8.2031-12.375-8.2031-19.801v-349.77c0-7.4258 2.9531-14.551 8.2031-19.801s12.371-8.1992 19.797-8.1992h291.2c7.4258 0 14.547 2.9492 19.797 8.1992s8.2031 12.375 8.2031 19.801z"/><path d="m251.16 266h-27.719c-6.0039 0-11.551 3.2031-14.551 8.3984-3 5.1992-3 11.605 0 16.801 3 5.1992 8.5469 8.4023 14.551 8.4023h27.719c6 0 11.547-3.2031 14.551-8.4023 3-5.1953 3-11.602 0-16.801-3.0039-5.1953-8.5508-8.3984-14.551-8.3984z"/><path d="m476.56 266h-164.13c-6.0039 0-11.551 3.2031-14.551 8.3984-3 5.1992-3 11.605 0 16.801 3 5.1992 8.5469 8.4023 14.551 8.4023h164.13c6.0039 0 11.551-3.2031 14.551-8.4023 3-5.1953 3-11.602 0-16.801-3-5.1953-8.5469-8.3984-14.551-8.3984z"/><path d="m251.16 165.2h-27.719c-6.0039 0-11.551 3.2031-14.551 8.4023-3 5.1953-3 11.602 0 16.797 3 5.1992 8.5469 8.4023 14.551 8.4023h27.719c6 0 11.547-3.2031 14.551-8.4023 3-5.1953 3-11.602 0-16.797-3.0039-5.1992-8.5508-8.4023-14.551-8.4023z"/><path d="m476.56 165.2h-164.13c-6.0039 0-11.551 3.2031-14.551 8.4023-3 5.1953-3 11.602 0 16.797 3 5.1992 8.5469 8.4023 14.551 8.4023h164.13c6.0039 0 11.551-3.2031 14.551-8.4023 3-5.1953 3-11.602 0-16.797-3-5.1992-8.5469-8.4023-14.551-8.4023z"/><path d="m251.16 366.8h-27.719c-6.0039 0-11.551 3.2031-14.551 8.3984-3 5.1992-3 11.602 0 16.801s8.5469 8.3984 14.551 8.3984h27.719c6 0 11.547-3.1992 14.551-8.3984 3-5.1992 3-11.602 0-16.801-3.0039-5.1953-8.5508-8.3984-14.551-8.3984z"/><path d="m476.56 366.8h-164.13c-6.0039 0-11.551 3.2031-14.551 8.3984-3 5.1992-3 11.602 0 16.801s8.5469 8.3984 14.551 8.3984h164.13c6.0039 0 11.551-3.1992 14.551-8.3984s3-11.602 0-16.801c-3-5.1953-8.5469-8.3984-14.551-8.3984z"/></g></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="27px" height="27px" version="1.1" viewBox="0 0 700 700"><g xmlns="http://www.w3.org/2000/svg"><path d="m256.65 425.39c5.1016 0 9.9961-2.0078 13.629-5.5898 3.6328-3.582 5.7109-8.4492 5.7812-13.551v-155.91c0-6.9336-3.6992-13.344-9.707-16.809-6.0039-3.4688-13.402-3.4688-19.41 0-6.0039 3.4648-9.7031 9.875-9.7031 16.809v155.91c0.070312 5.1016 2.1484 9.9688 5.7812 13.551 3.6289 3.582 8.5273 5.5898 13.629 5.5898z"/><path d="m350 425.39c5.1016 0 9.9961-2.0078 13.629-5.5898 3.6328-3.582 5.7109-8.4492 5.7812-13.551v-155.91c0-6.9336-3.6992-13.344-9.707-16.809-6.0039-3.4688-13.402-3.4688-19.406 0-6.0078 3.4648-9.707 9.875-9.707 16.809v155.91c0.070312 5.1016 2.1484 9.9688 5.7812 13.551 3.6328 3.582 8.5273 5.5898 13.629 5.5898z"/><path d="m443.35 425.39c5.1016 0 10-2.0078 13.629-5.5898 3.6328-3.582 5.7109-8.4492 5.7812-13.551v-155.91c0-6.9336-3.6992-13.344-9.7031-16.809-6.0078-3.4688-13.406-3.4688-19.41 0-6.0078 3.4648-9.707 9.875-9.707 16.809v155.91c0.070312 5.1016 2.1484 9.9688 5.7812 13.551 3.6328 3.582 8.5273 5.5898 13.629 5.5898z"/><path d="m583.37 93.98h-124.22l-15.98-53.535c-3.5391-11.633-10.703-21.832-20.449-29.109-9.7422-7.2734-21.559-11.246-33.719-11.336h-77.91c-12.16 0.089844-23.973 4.0625-33.719 11.336-9.7422 7.2773-16.91 17.477-20.449 29.109l-15.98 53.535h-124.31c-6.9336 0-13.344 3.6992-16.809 9.7031-3.4688 6.0078-3.4688 13.406 0 19.41 3.4648 6.0078 9.875 9.707 16.809 9.707h23.113v373.66c0.09375 14.145 5.7734 27.676 15.801 37.652 10.027 9.9766 23.59 15.59 37.734 15.613h314.08c14.191-0.023438 27.793-5.6719 37.828-15.707 10.035-10.035 15.684-23.637 15.707-37.828v-374.03h22.48c5.1484 0 10.086-2.043 13.727-5.6836 3.6367-3.6406 5.6836-8.5781 5.6836-13.727-0.023438-5.082-2.0938-9.9414-5.75-13.477-3.6523-3.5352-8.5781-5.4453-13.66-5.3008zm-288.89-42.43h-0.003907c1.1055-3.5859 3.2969-6.7383 6.2734-9.0195 2.9805-2.2812 6.5938-3.5781 10.34-3.7109h78.453c3.8359-0.03125 7.5742 1.207 10.629 3.5273 3.0547 2.3203 5.2539 5.5898 6.2539 9.293l12.457 42.34h-137.86zm227.59 458.89h-1.3555 0.003906c-1.0117 2.9023-2.8867 5.4219-5.3711 7.2305-2.4844 1.8086-5.4609 2.8125-8.5352 2.8789h-313.54c-3.9375-0.070313-7.6914-1.6758-10.457-4.4766-2.7656-2.8008-4.3281-6.5703-4.3516-10.508v-373.39h343.6z"/></g></svg>
               </span>
             </a>
           </div>`;
@@ -816,30 +760,32 @@ $(document).on("click", ".cont-modalbootstrapupdate__form--controlRadios--c--con
     $("#sel-optsTaxationAdditionalsMoreUpdate").html(`
       <div class="cont-modalbootstrapupdate__form--control">
         <label for="taxoneadditional-update" class="cont-modalbootstrapupdate__form--control__label">Ad-Valoren</label>
-        <input id="taxoneadditional-update" class="cont-modalbootstrapupdate__form--control__input" name="taxoneadditional-update" type="number" maxlength="300" placeholder="Ingrese el monto del impuesto" step="0.01">
+        <input id="taxoneadditional-update" class="cont-modalbootstrapupdate__form--control__input" name="taxoneadditional-update" type="text" data-valformat="withtwodecimals" maxlength="300" placeholder="Ingrese el monto del impuesto" step="0.01">
         <span id="msgErrNounTaxOneAdditionalProductUpdate"></span>
       </div>
       <div class="cont-modalbootstrapupdate__form--control">
         <label for="taxtwoadditional-update" class="cont-modalbootstrapupdate__form--control__label">Impuesto Selecctivo</label>
-        <input id="taxtwoadditional-update" class="cont-modalbootstrapupdate__form--control__input" name="taxtwoadditional-update" type="number" maxlength="300" placeholder="Ingrese el monto del impuesto" step="0.01">
+        <input id="taxtwoadditional-update" class="cont-modalbootstrapupdate__form--control__input" name="taxtwoadditional-update" type="text" data-valformat="withtwodecimals" maxlength="300" placeholder="Ingrese el monto del impuesto" step="0.01">
         <span id="msgErrNounTaxTwoAdditionalProductUpdate"></span>
       </div>
       <div class="cont-modalbootstrapupdate__form--control">
         <label for="taxthreeadditional-update" class="cont-modalbootstrapupdate__form--control__label">ANTIDUMPING</label>
-        <input id="taxthreeadditional-update" class="cont-modalbootstrapupdate__form--control__input" name="taxthreeadditional-update" type="number" maxlength="300" placeholder="Ingrese el monto del impuesto" step="0.01">
+        <input id="taxthreeadditional-update" class="cont-modalbootstrapupdate__form--control__input" name="taxthreeadditional-update" type="text" data-valformat="withtwodecimals" maxlength="300" placeholder="Ingrese el monto del impuesto" step="0.01">
         <span id="msgErrNounTaxThreeAdditionalProductUpdate"></span>
       </div>
     `);
   }
 });
 // ------------ LISTAR DATOS EN EL MODAL - ACTUALIZAR
-$(document).on('click', '.btn-update-product', function(e){
+$(document).on('click', '.btn-update-detail', function(e){
   e.preventDefault();
   $.each($(this), function(i, v){
     var item_data = {
       id: $(this).attr('data-id'),
       name: $(this).attr('data-name'),
-      regulated: $(this).attr('data-regulated'),
+      sel_regulated: $(this).attr('data-sel_regulated'),
+      sel_ammadditional: $(this).attr('data-sel_ammadditional'),
+      sel_taxadditional: $(this).attr('data-sel_taxadditional'),
       idregulator: $(this).attr('data-idregulator'),
       idregulatortwo: $(this).attr('data-idregulatortwo'),
       regulatorone: $(this).attr('data-regulatorone'),
@@ -849,26 +795,26 @@ $(document).on('click', '.btn-update-product', function(e){
       pricetadditional_two: $(this).attr('data-pricetadditional_two'),
       pricetadditional_three: $(this).attr('data-pricetadditional_three')
     };
-
     console.log(item_data);
-
     // ------------ VALIDAR SI EL PRODUCTO CONTIENE REGULADORES - MOSTRAR LOS CONTROLES RESPECTIVOS
-    if(item_data['regulated'] == "NO"){
+    if(item_data['sel_regulated'] == "NO"){
       $("#sel-optsRegulatorsMoreUpdate").addClass("hidden");
       $("#sel-optsRegulatorsMoreUpdate").attr("aria-expanded", true);
       $("#sel-optsRegulatorsMoreUpdate").attr("aria-visibility", "show");
-      ($("#noun-required-reg").attr("checked")) ? $("#noun-required-reg").attr("checked", true) : $("#noun-required-reg").attr("checked", false);
+      $("#noun-required-regupdate").attr("checked", "checked");
     }else{
       $("#sel-optsRegulatorsMoreUpdate").removeClass("hidden");
       $("#sel-optsRegulatorsMoreUpdate").attr("aria-expanded", false);
       $("#sel-optsRegulatorsMoreUpdate").attr("aria-visibility", "hidden");
-      ($("#required-reg").attr("checked")) ? $("#required-reg").attr("checked", true) : $("#noun-required-reg").attr("checked", false);
+      $("#required-regupdate").attr("checked", "checked");
     }
 
     // ------------ ASIGNAR A LOS CONTROLES DEL MODAL DE ACTUALIZAR
     $('#idupdate-product').val(item_data['id']);
     $('#name-update').val(item_data['name']);
-    $('#required_regsoptupdate').val(item_data['regulated']);
+    $('#required_regsoptupdate').val(item_data['sel_regulated']);
+    $('#required_ammadditionalupdate').val(item_data['sel_ammadditional']);
+    $('#required_taxadditionalupdate').val(item_data['sel_taxadditional']);
     $('#SelectedItem-inputfakeselRegOneUpdate').attr("idtregularone", item_data['idregulator']);
     $('#SelectedItem-inputfakeselRegOneUpdate').attr("regularone", item_data['regulatorone']);
     $('#SelectedItem-inputfakeselRegTwoUpdate').attr("idtregulartwo", item_data['idregulatortwo']);
@@ -877,7 +823,7 @@ $(document).on('click', '.btn-update-product', function(e){
     $("#selectedItem-fakeSelRegTwoUpdate").text(item_data['regulatortwo']);
 
     // ------------ MOSTRAR EL CONTROL DE MONTO ADICIONAL
-    if(item_data['amountadditional'] > 0 || item_data['amountadditional'] != 0.00){
+    if(item_data['sel_ammadditional'] != "NO" && item_data['sel_ammadditional'] != "" && item_data['sel_ammadditional'] != "undefined"){
       $("#sel-optsAmountAdditionalMoreUpdate").html(`
         <div class="cont-modalbootstrapupdate__form--control">
           <label for="amountadditionalProduct-update" class="cont-modalbootstrapupdate__form--control__label">Precio adicional</label>
@@ -885,34 +831,34 @@ $(document).on('click', '.btn-update-product', function(e){
           <span id="msgErrNounAmountAdditionalProductUpdate"></span>
         </div>
       `);
+      $("#required-amountadditionalupdate").attr("checked", "checked");
     }else{
+      $("#noun-required-amountadditionalupdate").attr("checked", "checked");
       $("#sel-optsAmountAdditionalMoreUpdate").html("");
     }
-
     // ------------ MOSTRAR LOS CONTROLES DE LOS IMPUESTOS
-    if((item_data['pricetadditional_one'] != 0 && item_data['pricetadditional_one'] != "" && item_data['pricetadditional_one'] != null) ||
-      (item_data['pricetadditional_two'] != 0 && item_data['pricetadditional_two'] != "" && item_data['pricetadditional_two'] != null) ||
-      (item_data['pricetadditional_three'] != 0 && item_data['pricetadditional_three'] != "" && item_data['pricetadditional_three'] != null)){
-
+    if(item_data['sel_taxadditional'] != "NO" && item_data['sel_taxadditional'] != "" && item_data['sel_taxadditional'] != "undefined"){
       $("#sel-optsTaxationAdditionalsMoreUpdate").html(`
         <div class="cont-modalbootstrapupdate__form--control">
           <label for="taxoneadditional-update" class="cont-modalbootstrapupdate__form--control__label">Ad-Valoren</label>
-          <input id="taxoneadditional-update" class="cont-modalbootstrapupdate__form--control__input" name="taxoneadditional-update" type="number" value="${item_data['pricetadditional_one']}" maxlength="300" placeholder="Ingrese el monto del impuesto" step="0.01">
+          <input id="taxoneadditional-update" class="cont-modalbootstrapupdate__form--control__input" name="taxoneadditional-update" type="text" data-valformat="withtwodecimals" value="${item_data['pricetadditional_one']}" maxlength="300" placeholder="Ingrese el monto del impuesto" step="0.01">
           <span id="msgErrNounTaxOneAdditionalProductUpdate"></span>
         </div>
         <div class="cont-modalbootstrapupdate__form--control">
           <label for="taxtwoadditional-update" class="cont-modalbootstrapupdate__form--control__label">Impuesto Selecctivo</label>
-          <input id="taxtwoadditional-update" class="cont-modalbootstrapupdate__form--control__input" name="taxtwoadditional-update" type="number" value="${item_data['pricetadditional_two']}" maxlength="300" placeholder="Ingrese el monto del impuesto" step="0.01">
+          <input id="taxtwoadditional-update" class="cont-modalbootstrapupdate__form--control__input" name="taxtwoadditional-update" type="text" data-valformat="withtwodecimals" value="${item_data['pricetadditional_two']}" maxlength="300" placeholder="Ingrese el monto del impuesto" step="0.01">
           <span id="msgErrNounTaxTwoAdditionalProductUpdate"></span>
         </div>
         <div class="cont-modalbootstrapupdate__form--control">
           <label for="taxthreeadditional-update" class="cont-modalbootstrapupdate__form--control__label">ANTIDUMPING</label>
-          <input id="taxthreeadditional-update" class="cont-modalbootstrapupdate__form--control__input" name="taxthreeadditional-update" type="number" value="${item_data['pricetadditional_three']}" maxlength="300" placeholder="Ingrese el monto del impuesto" step="0.01">
+          <input id="taxthreeadditional-update" class="cont-modalbootstrapupdate__form--control__input" name="taxthreeadditional-update" type="text" data-valformat="withtwodecimals" value="${item_data['pricetadditional_three']}" maxlength="300" placeholder="Ingrese el monto del impuesto" step="0.01">
           <span id="msgErrNounTaxThreeAdditionalProductUpdate"></span>
         </div>
       `);
+      $("#required-taxadditionalupdate").attr("checked","checked");
     }else{
       $("#sel-optsTaxationAdditionalsMoreUpdate").html("");
+      $("#noun-required-taxadditionalupdate").attr("checked","checked");
     }
   });
 });
@@ -937,17 +883,21 @@ $(document).on("click", "#btn-FakeListRegulatorOneUpdate", function(){
     method: "POST",
     datatype: "JSON",
     contentType: 'application/x-www-form-urlencoded;charset=UTF-8',
-  }).done((res) => {
-    var result = JSON.parse(res);
-    var template = "";
-    if(result.length > 0){   
-      result.forEach( (e) => {
-        template += `<li class="cont-modalbootstrapupdate__form--controlSelect--m--item" id="${e.id}" regularone="${e.name}">${e.name}</li>`;
-      });
-      $("#c-listitems-regulatorOneUpdate").html(template);
+  }).done((e) => {
+    if(e != ""){
+      var r = JSON.parse(e);
+      var template = "";
+      if(r.length > 0){   
+        $.each(r, function(i,e){
+          template += `<li class="cont-modalbootstrapupdate__form--controlSelect--m--item" id="${e.id}" regularone="${e.name}">${e.name}</li>`;
+        });
+        $("#c-listitems-regulatorOneUpdate").html(template);
+      }else{
+        template += `<li class="cont-modalbootstrapupdate__form--controlSelect--m--item">No se encontraron datos</li>`;
+        $("#c-listitems-regulatorOneUpdate").html(template);
+      }
     }else{
-      template += `<li class="cont-modalbootstrapupdate__form--controlSelect--m--item">No se encontraron datos</li>`;
-      $("#c-listitems-regulatorOneUpdate").html(template);
+      console.log('Lo sentimos, hubo un error al procesar la información.');
     }
   });
 });
@@ -969,17 +919,21 @@ $(document).on("click", "#btn-FakeListRegulatorTwoUpdate", function(){
     method: "POST",
     datatype: "JSON",
     contentType: 'application/x-www-form-urlencoded;charset=UTF-8',
-  }).done((res) => {
-    var result = JSON.parse(res);
-    var template = "";
-    if(result.length > 0){
-      result.forEach( (e) => {
-        template += `<li class="cont-modalbootstrapupdate__form--controlSelect--m--item" id="${e.id}" regulartwo="${e.name}">${e.name}</li>`;
-      });
-      $("#c-listitems-regulatorTwoUpdate").html(template);
+  }).done((e) => {
+    if(e != ""){
+      var r = JSON.parse(e);
+      var template = "";
+      if(r.length > 0){
+        $.each(r, function(i,e){
+          template += `<li class="cont-modalbootstrapupdate__form--controlSelect--m--item" id="${e.id}" regulartwo="${e.name}">${e.name}</li>`;
+        });
+        $("#c-listitems-regulatorTwoUpdate").html(template);
+      }else{
+        template += `<li class="cont-modalbootstrapupdate__form--controlSelect--m--item">No se encontraron datos</li>`;
+        $("#c-listitems-regulatorTwoUpdate").html(template);
+      }
     }else{
-      template += `<li class="cont-modalbootstrapupdate__form--controlSelect--m--item">No se encontraron datos</li>`;
-      $("#c-listitems-regulatorTwoUpdate").html(template);
+      console.log('Lo sentimos, hubo un error al procesar la información.');
     }
   });
 });
@@ -993,9 +947,7 @@ $(document).on("click", "#c-listitems-regulatorTwoUpdate .cont-modalbootstrapupd
   $("#SelectedItem-inputfakeselRegTwoUpdate").attr("idtregulartwo", $(this).attr("id"));
 });
 // ------------ VALIDAR SI EL NOMBRE DEL PRODUCTO ESTÁ VACÍO - ACTUALIZAR
-$(document).on("keyup", "#name-update", function(){
-  ($(this).val() != 0 || $(this).val() != "") ? $("#msgErrNounNameProductUpdate").text("") : $("#msgErrNounNameProductUpdate").text("Debes ingresar un nombre");
-});
+$(document).on("keyup", "#name-update", function(){($(this).val() != 0 || $(this).val() != "") ? $("#msgErrNounNameProductUpdate").text("") : $("#msgErrNounNameProductUpdate").text("Debes ingresar un nombre");});
 // ------------ ACTUALIZAR PRODUCTO POR ID
 $(document).on('submit', '#form-update-product', function(e){
   e.preventDefault();
@@ -1023,7 +975,7 @@ $(document).on('submit', '#form-update-product', function(e){
       processData: false
     }).done((res) => {
       //console.log(res);
-      listProducts();
+      listAllProducts();
       $('#updateModal').modal("hide");
     });
   }else{

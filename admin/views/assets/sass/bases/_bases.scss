@@ -262,10 +262,20 @@ img{
     			a{
     				border-color: $theme-clr-btns;
     				background-color: $theme-clr-btns;
+    				color: $theme-clr-btns-txt;
     			}
     		}
     		&.previous{
     			&.disabled{
+    				cursor: not-allowed;
+    				a{
+    					color: #6c757d;
+    				}	
+    			}
+    		}
+    		&.next{
+    			&.disabled{
+    				cursor: not-allowed;
     				a{
     					color: #6c757d;
     				}	
@@ -340,5 +350,32 @@ img{
 		tr:last-child{
 			border-radius: 0 0 6px 6px;
 		}
+	}
+}
+/* BOTONES DENTRO DE TABLAS */
+.cont-btn-details{
+	padding: 8px;
+	margin: auto;
+	text-align: center;
+	a{
+		svg{
+			fill: #fff;
+		}
+
+		&:hover{
+			opacity: .6;
+		}
+	}
+	a.btn-update-detail{
+		color: #fff;
+		padding: 0.5rem;
+		border-radius: 5px;
+		background-color: $btn-color-blue;
+	}
+	a.btn-delete-product{
+		color: #fff;
+		padding: 0.5rem;
+		border-radius: 5px;
+		background-color: $btn-color-red;
 	}
 }

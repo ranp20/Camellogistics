@@ -29,9 +29,6 @@
 						<h2 class="cont-dashCamel__addtitle--title">PRODUCTOS</h2>
 						<button type="button" href="#" id="add-regulator" class="cont-dashCamel__addtitle--btn-add" data-toggle="modal" data-target="#addproductModal"><span class="cont-dashCamel__addtitle--btn-add__hidden">Agregar&nbsp;</span>+</button>
 					</div>
-<!-- 					<div class="cont-dashCamel__inputsearch-table">
-						<input type="text" class="cont-dashCamel__inputsearch-table--input" name="searchproducts" id="searchproducts" maxlength="100" placeholder="Buscar productos...">
-					</div> -->
 					<div class="contain-table-responsive">
 						<table id="tbl_products" class="cont-dashCamel__list-results" cellpadding="0" width="100%">
 							<thead>
@@ -71,49 +68,43 @@
 						        		<input id="nameProduct" class="cont-modalbootstrap__form--control__input" name="nameProduct" type="text" maxlength="300" placeholder="Ingrese el nombre del producto">
 						        		<span id="msgErrNounNameProduct"></span>
 						        	</div>
-						        	<div class="cont-modalbootstrap__form--controlRadios">
-						        		<p class="cont-modalbootstrap__form--controlRadios--title">Reguladores</p>
-						        		<div class="cont-modalbootstrap__form--controlRadios--c">
-							        		<label for="required-reg" class="cont-modalbootstrap__form--controlRadios--c--control">
-							        			<input type="radio" id="required-reg" name="sel-reornotreg" class="cont-modalbootstrap__form--controlRadios--c--control--input">
-							        			<span class="cont-modalbootstrap__form--controlRadios--c--control--fakelabel">SI</span>
-							        		</label>
-							        		<label for="noun-required-reg" class="cont-modalbootstrap__form--controlRadios--c--control">
-							        			<input type="radio" id="noun-required-reg" name="sel-reornotreg" class="cont-modalbootstrap__form--controlRadios--c--control--input">
-							        			<span class="cont-modalbootstrap__form--controlRadios--c--control--fakelabel">NO</span>
-							        		</label>
+						        	<div class="cont-modalbootstrap__form__cControlSwitch">
+						        		<span for="" class="cont-modalbootstrap__form__cControlSwitch__label">Reguladores</span>
+						        		<div class="cont-modalbootstrap__form__cControlSwitch__cSwitch">
+						        			<div class="cont-modalbootstrap__form__cControlSwitch__cSwitch__c">
+						        				<div class="cont-modalbootstrap__form__cControlSwitch__cSwitch__c__chckCont">
+						        					<input type="checkbox" id="chck_regulated" class="cont-modalbootstrap__form__cControlSwitch__cSwitch__c__chckCont__input" name="activation" value="NO">
+						        					<label for="chck_regulated" class="cont-modalbootstrap__form__cControlSwitch__cSwitch__c__chckCont__label"></label>
+						        				</div>
+						        			</div>
+						        			<label for="" class="cont-modalbootstrap__form__cControlSwitch__cSwitch__label" id="txt-chck_regulated">NO</label>
 						        		</div>
-						        		<span id="msgErrNounWithOrNotRegulator"></span>
 						        	</div>
 						        	<div id="sel-optsRegulatorsMore"></div>
-						        	<div class="cont-modalbootstrap__form--controlRadios">
-						        		<p class="cont-modalbootstrap__form--controlRadios--title">Monto adicional del Producto</p>
-						        		<div class="cont-modalbootstrap__form--controlRadios--c">
-							        		<label for="required-amountadditional" class="cont-modalbootstrap__form--controlRadios--c--control">
-							        			<input type="radio" id="required-amountadditional" name="sel-addornotadd" class="cont-modalbootstrap__form--controlRadios--c--control--input">
-							        			<span class="cont-modalbootstrap__form--controlRadios--c--control--fakelabel">SI</span>
-							        		</label>
-							        		<label for="noun-required-amountadditional" class="cont-modalbootstrap__form--controlRadios--c--control">
-							        			<input type="radio" id="noun-required-amountadditional" name="sel-addornotadd" class="cont-modalbootstrap__form--controlRadios--c--control--input">
-							        			<span class="cont-modalbootstrap__form--controlRadios--c--control--fakelabel">NO</span>
-							        		</label>
+						        	<div class="cont-modalbootstrap__form__cControlSwitch">
+						        		<span for="" class="cont-modalbootstrap__form__cControlSwitch__label">Monto adicional</span>
+						        		<div class="cont-modalbootstrap__form__cControlSwitch__cSwitch">
+						        			<div class="cont-modalbootstrap__form__cControlSwitch__cSwitch__c">
+						        				<div class="cont-modalbootstrap__form__cControlSwitch__cSwitch__c__chckCont">
+						        					<input type="checkbox" id="chck_ammadditional" class="cont-modalbootstrap__form__cControlSwitch__cSwitch__c__chckCont__input" name="activation" value="NO">
+						        					<label for="chck_ammadditional" class="cont-modalbootstrap__form__cControlSwitch__cSwitch__c__chckCont__label"></label>
+						        				</div>
+						        			</div>
+						        			<label for="" class="cont-modalbootstrap__form__cControlSwitch__cSwitch__label" id="txt-chck_ammadditional">NO</label>
 						        		</div>
-						        		<span id="msgErrNounWithOrNotAmountAdditional"></span>
 						        	</div>
 						        	<div id="sel-optsAmountAdditionalMore"></div>
-						        	<div class="cont-modalbootstrap__form--controlRadios">
-						        		<p class="cont-modalbootstrap__form--controlRadios--title">Impuesto Adicional del Producto</p>
-						        		<div class="cont-modalbootstrap__form--controlRadios--c">
-							        		<label for="required-taxadditional" class="cont-modalbootstrap__form--controlRadios--c--control">
-							        			<input type="radio" id="required-taxadditional" name="sel-taxornottax" class="cont-modalbootstrap__form--controlRadios--c--control--input">
-							        			<span class="cont-modalbootstrap__form--controlRadios--c--control--fakelabel">SI</span>
-							        		</label>
-							        		<label for="noun-required-taxadditional" class="cont-modalbootstrap__form--controlRadios--c--control">
-							        			<input type="radio" id="noun-required-taxadditional" name="sel-taxornottax" class="cont-modalbootstrap__form--controlRadios--c--control--input">
-							        			<span class="cont-modalbootstrap__form--controlRadios--c--control--fakelabel">NO</span>
-							        		</label>
+						        	<div class="cont-modalbootstrap__form__cControlSwitch">
+						        		<span for="" class="cont-modalbootstrap__form__cControlSwitch__label">Impuesto adicional</span>
+						        		<div class="cont-modalbootstrap__form__cControlSwitch__cSwitch">
+						        			<div class="cont-modalbootstrap__form__cControlSwitch__cSwitch__c">
+						        				<div class="cont-modalbootstrap__form__cControlSwitch__cSwitch__c__chckCont">
+						        					<input type="checkbox" id="chck_taxadditional" class="cont-modalbootstrap__form__cControlSwitch__cSwitch__c__chckCont__input" name="activation" value="NO">
+						        					<label for="chck_taxadditional" class="cont-modalbootstrap__form__cControlSwitch__cSwitch__c__chckCont__label"></label>
+						        				</div>
+						        			</div>
+						        			<label for="" class="cont-modalbootstrap__form__cControlSwitch__cSwitch__label" id="txt-chck_taxadditional">NO</label>
 						        		</div>
-						        		<span id="msgErrNounWithOrNotTaxAdditional"></span>
 						        	</div>
 						        	<div id="sel-optsTaxationAdditionalsMore"></div>
 								      <div class="cont-modalbootstrap__footer">
@@ -142,13 +133,13 @@
 						        	<span>
 						        		<span>
 						        			<span>
-									        	<input type="hidden" id="idupdate-product">
-									        	<input type="hidden" id="required_regsoptupdate">
+									        	<input type="text" id="idupdate-product">
+									        	<input type="text" id="required_regsoptupdate">
+									        	<input type="text" id="required_ammadditionalupdate">
+									        	<input type="text" id="required_taxadditionalupdate">
 						        			</span>
 						        		</span>
 						        	</span>
-						        	<!--<input type="hidden" id="idupdate-regulatorone" name="idupdate-regulatorone">
-						        	<input type="hidden" id="idupdate-regulatortwo" name="idupdate-regulatortwo">-->
 						        	<div class="cont-modalbootstrapupdate__form--control">
 						        		<label for="name-update" class="cont-modalbootstrapupdate__form--control__label complete">Nombre del producto</label>
 						        		<input id="name-update" class="cont-modalbootstrapupdate__form--control__input" name="name-update" type="text" maxlength="300" placeholder="Ingrese el nombre del producto">
