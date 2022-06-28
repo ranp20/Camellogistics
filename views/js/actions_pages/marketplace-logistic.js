@@ -5,13 +5,6 @@ $(() => {
 });
 // ------------ CAMBIAR DE CONTROLES SEGÚN LA OPCIÓN SELECCIONADA 
 function changesTabsOperation(){
-  // ------------ VARIABLES LOCALSTORAGE 
-  //#4. REUNIR LA INFORMACIÓN DE LOS PASOS...
-  var key_qContainers = localStorage.setItem("key_qContainers", 0); //CONTENEDORES...
-  //# VALORES PARA EL CÁLCULO DEL FLETE...
-  var key_valvaluesquotation = localStorage.setItem("key_v-valuesquotation", 0); //VALOR FINAL/SUMA DE VALORES PARA COTIZACIÓN (FCL/LCL)
-  var key_valvaluesquotationbyigv = localStorage.setItem("key_v-valuesquotationbyigv", 0); //VALORES DE COTIZACIÓN PARA IGV
-
   // ------------ VARIABLES SESSIONSTORAGE 
   var sess_usercli = sessionStorage.setItem("sess_usercli", 0); //SESSION DE VARIABLE LOCAL PARA EL USUARIO
   var sess_valuser = sessionStorage.setItem("sess_valuser", 0); //VALOR DEL TIPO DE USUARIO: 0 = NINGUNO Y 1 = INVITADO O REGISTRADO
