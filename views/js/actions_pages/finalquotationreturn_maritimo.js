@@ -160,7 +160,7 @@ $(document).ready(function(){
 	var fval_com_agencia = 0;
 	var fvalfinal_com_agencia = 0;
 	var fvalfinal_gas_operativos = 0;
-	var val_defaultmin = 0.4 / 100;
+	var val_defaultmin = 0;
 	// ------------ VARIABLES PARA LOS TOTALES A IMPRIMIR 
 	var sumTotalServices = 0;
 	var sumTotalbyIGV = 0;
@@ -248,777 +248,795 @@ $(document).ready(function(){
 		  	// VALOR TOTAL - CIF
 		  	sumbyCIF = totalfinalvaluefob + totflete + finalRoundinsurance; //CIF FINAL
 
-		    // ------------ LISTAR SERVICIOS PARA CALCULO CON IGV 18% - FCL y LCL 
-			  $.ajax({
-			    url: "controllers/list_quotation_values_calcservs_fcl_and_lcl.php",
+		  	$.ajax({
+			    url: "controllers/c_list_validation_comisionagencia.php",
 			    method: "POST",
 			    datatype: "JSON",
 			    contentType: 'application/x-www-form-urlencoded;charset=UTF-8',
 			  }).done((e) => {
-			  	var rqfclandlcl = JSON.parse(e);
-			  	// SERVICIOS - FCL
-			  	var emision_bl_fcl = parseFloat(rqfclandlcl[0].emision_bl_fcl); // EMISIÓN DE BL
-			  	var visto_bueno_fcl = parseFloat(rqfclandlcl[0].visto_bueno_fcl); // VISTO BUENO
-			  	var almacen_ref_fcl = parseFloat(rqfclandlcl[0].almacen_ref_fcl); // ALMACÉN REFERENCIAL
-			  	var gremios_maritimos_fcl = parseFloat(rqfclandlcl[0].gremios_maritimos_fcl); // GREMIOS MARÍTIMOS
-			  	var thc_fcl = parseFloat(rqfclandlcl[0].thc_fcl); // THC
-			  	var devol_contenedor_fcl = parseFloat(rqfclandlcl[0].devol_contenedor_fcl); // DEVOLUCIÓN DE CONTENEDOR
-			  	var com_agencia_fcl = parseFloat(rqfclandlcl[0].com_agencia_fcl); // COMISIÓN DE AGENCIA
-			  	var gas_operativos_fcl = parseFloat(rqfclandlcl[0].gas_operativos_fcl); // GASTOS OPERATIVOS
-			  	// SERVICIOS - LCL
-			  	var emision_bl_lcl = parseFloat(rqfclandlcl[0].emision_bl_lcl); // EMISIÓN DE BL
-			  	var handling_lcl = parseFloat(rqfclandlcl[0].handling_lcl); // HANDLING
-			  	var visto_bueno_lcl = parseFloat(rqfclandlcl[0].visto_bueno_lcl); // VISTO BUENO
-			  	var descarga_lcl = parseFloat(rqfclandlcl[0].descarga_lcl); // DESCARGA
-			  	var almacen_ref_lcl = parseFloat(rqfclandlcl[0].almacen_ref_lcl); // ALMACÉN REFERENCIAL
-			  	var com_agencia_lcl = parseFloat(rqfclandlcl[0].com_agencia_lcl); // COMISIÓN DE AGENCIA
-			  	var gas_operativos_lcl = parseFloat(rqfclandlcl[0].gas_operativos_lcl); // GASTOS OPERATIVOS
+			  	if(e != ""){
+			  		var rcomagencia = JSON.parse(e);
+			  		var comagencia_monto = parseFloat(rcomagencia[0].com_agencia_ammnt_value);
+			  		var comagencia_porcentaje = parseFloat(rcomagencia[0].com_agencia_ammnt_percent);
+			  		var comagencia_porcentaje_cvrt = comagencia_porcentaje / 100;
+			  		val_defaultmin = comagencia_porcentaje_cvrt;
+			  		
+			  		// ------------ LISTAR SERVICIOS PARA CALCULO CON IGV 18% - FCL y LCL 
+					  $.ajax({
+					    url: "controllers/list_quotation_values_calcservs_fcl_and_lcl.php",
+					    method: "POST",
+					    datatype: "JSON",
+					    contentType: 'application/x-www-form-urlencoded;charset=UTF-8',
+					  }).done((e) => {
+					  	var rqfclandlcl = JSON.parse(e);
+					  	// SERVICIOS - FCL
+					  	var emision_bl_fcl = parseFloat(rqfclandlcl[0].emision_bl_fcl); // EMISIÓN DE BL
+					  	var visto_bueno_fcl = parseFloat(rqfclandlcl[0].visto_bueno_fcl); // VISTO BUENO
+					  	var almacen_ref_fcl = parseFloat(rqfclandlcl[0].almacen_ref_fcl); // ALMACÉN REFERENCIAL
+					  	var gremios_maritimos_fcl = parseFloat(rqfclandlcl[0].gremios_maritimos_fcl); // GREMIOS MARÍTIMOS
+					  	var thc_fcl = parseFloat(rqfclandlcl[0].thc_fcl); // THC
+					  	var devol_contenedor_fcl = parseFloat(rqfclandlcl[0].devol_contenedor_fcl); // DEVOLUCIÓN DE CONTENEDOR
+					  	var com_agencia_fcl = parseFloat(rqfclandlcl[0].com_agencia_fcl); // COMISIÓN DE AGENCIA
+					  	var gas_operativos_fcl = parseFloat(rqfclandlcl[0].gas_operativos_fcl); // GASTOS OPERATIVOS
+					  	// SERVICIOS - LCL
+					  	var emision_bl_lcl = parseFloat(rqfclandlcl[0].emision_bl_lcl); // EMISIÓN DE BL
+					  	var handling_lcl = parseFloat(rqfclandlcl[0].handling_lcl); // HANDLING
+					  	var visto_bueno_lcl = parseFloat(rqfclandlcl[0].visto_bueno_lcl); // VISTO BUENO
+					  	var descarga_lcl = parseFloat(rqfclandlcl[0].descarga_lcl); // DESCARGA
+					  	var almacen_ref_lcl = parseFloat(rqfclandlcl[0].almacen_ref_lcl); // ALMACÉN REFERENCIAL
+					  	var com_agencia_lcl = parseFloat(rqfclandlcl[0].com_agencia_lcl); // COMISIÓN DE AGENCIA
+					  	var gas_operativos_lcl = parseFloat(rqfclandlcl[0].gas_operativos_lcl); // GASTOS OPERATIVOS
 
-		  		// EVALUAR SI SE SELECCIONÓ *TODOS LOS SERVICIOS* O *SOLO DESEO FLETE*
-		  	 	if(v_foptgnfquotevl == "y-moreOpts"){
-		  	 		if(v_loadtypecharge == "FCL"){
-		  	 			// VALIDAR EL VALOR DEL CIF - COMISIÓN DE AGENCIA
-		  	 			fvalfinal_gas_operativos = gas_operativos_fcl;
-		  	 			if(sumbyCIF > 35000){
-				  			fval_com_agencia = sumbyCIF * val_defaultmin;
-				  			fvalfinal_com_agencia = myRound(fval_com_agencia);
-				  		}else{
-				  			fvalfinal_com_agencia = com_agencia_fcl;
-				  		}
-		  	 			// SUMAR TODOS LOS SERVICIOS - FCL
-		  	 			var totalServiciosTODOS = emision_bl_fcl+visto_bueno_fcl+almacen_ref_fcl+gremios_maritimos_fcl+thc_fcl+devol_contenedor_fcl+fvalfinal_com_agencia+fvalfinal_gas_operativos;
-		  	 			sumTotalServices = totaltransport + totalamountadditional + totalServiciosTODOS; // VALOR TOTAL - SERVICIOS
-		  	 			sumTotalbyIGV = (totaltransport + totalamountadditional + totalServiciosTODOS) * (18 / 100); // VALOR TOTAL - SERVICIOS + IGV 18%
-		  	 			sumTotalFinalFleteandIGV = sumTotalServices + sumTotalbyIGV; // VALOR TOTAL FINAL DE LA COTIZACIÓN
-		  	 		}else if(v_loadtypecharge == "LCL"){
-		  	 			// VALIDAR EL VALOR DEL CIF - COMISIÓN DE AGENCIA
-		  	 			fvalfinal_gas_operativos = gas_operativos_lcl;
-		  	 			if(sumbyCIF > 35000){
-				  			fval_com_agencia = sumbyCIF * val_defaultmin;
-				  			fvalfinal_com_agencia = myRound(fval_com_agencia);
-				  		}else{
-				  			fvalfinal_com_agencia = com_agencia_fcl;
-				  		}
-				  		// SUMAR TODOS LOS SERVICIOS - LCL
-		  	 			var totalServiciosTODOS = emision_bl_lcl+handling_lcl+visto_bueno_lcl+descarga_lcl+almacen_ref_lcl+fvalfinal_com_agencia+fvalfinal_gas_operativos;
-		  	 			sumTotalServices = totaltransport + totalamountadditional + totalServiciosTODOS; // VALOR TOTAL - SERVICIOS
-		  	 			sumTotalbyIGV = (totaltransport + totalamountadditional + totalServiciosTODOS) * (18 / 100); // VALOR TOTAL - SERVICIOS + IGV 18%
-		  	 			sumTotalFinalFleteandIGV = sumTotalServices + sumTotalbyIGV; // VALOR TOTAL FINAL DE LA COTIZACIÓN
-		  	 		}else{
-		  	 			console.log('Lo sentimos, hubo un error al procesar la información.');
-		  	 		}
-		  	 	}else if(v_foptgnfquotevl == "not-moreOpts"){
-		  	 		if(v_loadtypecharge == "FCL"){
-		  	 			totalServiciosTODOS = thc_fcl;
-		  	 			sumTotalServices = totaltransport + totalamountadditional + totalServiciosTODOS; // VALOR TOTAL - SERVICIOS
-		  	 			sumTotalbyIGV = (totaltransport + totalamountadditional + totalServiciosTODOS) * (18 / 100); // VALOR TOTAL - SERVICIOS + IGV 18%
-		  	 			sumTotalFinalFleteandIGV = sumTotalServices + sumTotalbyIGV; // VALOR TOTAL FINAL DE LA COTIZACIÓN
-		  	 		}else if(v_loadtypecharge == "LCL"){
-		  	 			fvalfinal_gas_operativos = gas_operativos_lcl;
-		  	 			if(sumbyCIF > 35000){
-				  			fval_com_agencia = sumbyCIF * val_defaultmin;
-				  			fvalfinal_com_agencia = myRound(fval_com_agencia);
-				  		}else{
-				  			fvalfinal_com_agencia = com_agencia_fcl;
-				  		}
-				  		totalServiciosTODOS = almacen_ref_lcl+fvalfinal_gas_operativos+fvalfinal_com_agencia;
-				  		sumTotalServices = totaltransport + totalamountadditional + totalServiciosTODOS; // VALOR TOTAL - SERVICIOS
-		  	 			sumTotalbyIGV = (totaltransport + totalamountadditional + totalServiciosTODOS) * (18 / 100); // VALOR TOTAL - SERVICIOS + IGV 18%
-		  	 			sumTotalFinalFleteandIGV = sumTotalServices + sumTotalbyIGV; // VALOR TOTAL FINAL DE LA COTIZACIÓN
-		  	 		}else{
-		  	 			console.log('Lo sentimos, hubo un error al procesar la información.');
-		  	 		}
-		  	 	}
-				
-					// ------------ LIMPIAR EL VALOR E IMPRIMIR EN EL TOTAL DEL SERVICIOS 
-					var totalNotround = twodecimals(sumTotalServices);
-					var n = Math.abs(totalNotround);
-					partInteger = Math.trunc(n);
-					var separate_point = partInteger.toString().replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d)\.?)/g, ".");
-					partDecimal = totalNotround.toString().split('.');
-					if(partDecimal[1] == undefined || partDecimal[1] == 'undefined' || partDecimal[1] == ""){
-						partFinalDecimal = '00';
-					}else	if(partDecimal[1].length < 2){
-						partFinalDecimal = partDecimal[1]+'0';
-					}else{
-						partFinalDecimal = partDecimal[1];
-					}
-					$("#intdecval-quotefinal").html(`<span>${separate_point},<sup>${partFinalDecimal}</sup> USD</span>`);
-					// ------------ IMPRIMIR EL TOTAL DE SERVICIOS ENTRE EL IGV 18% 
-					var totalNotRountByIGV = twodecimals(sumTotalbyIGV);
-					var n_byIGV = Math.abs(totalNotRountByIGV);
-					var partInteger_byIGV = Math.trunc(n_byIGV);
-					var separate_point_byIGV = partInteger_byIGV.toString().replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d)\.?)/g, ".");
-					var part_decimalbyIGV = totalNotRountByIGV.toString().split('.');
-					var partFinal_decimal_byIGV = 0;
-					if(part_decimalbyIGV[1] == undefined || part_decimalbyIGV[1] == 'undefined' || part_decimalbyIGV[1] == ""){
-						partFinal_decimal_byIGV = '00';
-					}else	if(part_decimalbyIGV[1].length < 2){
-						partFinal_decimal_byIGV = part_decimalbyIGV[1]+'0';
-					}else{
-						partFinal_decimal_byIGV = part_decimalbyIGV[1];
-					}
-					$("#igvval-quotefinal").html(`<span>+ IGV 18% </span><span>${separate_point_byIGV},${partFinal_decimal_byIGV} USD</span>`);
-					// ------------ IMPRIMIR EL ÚLTIMO VALOR - SUMA DEL TOTAL DE FLETE Y EL TOTAL ENTRE EL IGV 
-					var partInteger_FTotal = 0;
-					var partDecimal_FTotal = 0;
-					var partFinalDecimal_FTotal = 0;
-					var totalNotRoundFinal = twodecimals(sumTotalFinalFleteandIGV);
-					var n_ftotal = Math.abs(totalNotRoundFinal);
-					partInteger_FTotal = Math.trunc(n_ftotal);
-					var separate_point_FTotal = partInteger_FTotal.toString().replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d)\.?)/g, ".");
-					partDecimal_FTotal = totalNotRoundFinal.toString().split('.');
-					if(partDecimal_FTotal[1] == undefined || partDecimal_FTotal[1] == 'undefined' || partDecimal_FTotal[1] == ""){
-						partFinalDecimal_FTotal = '00';
-					}else	if(partDecimal_FTotal[1].length < 2){
-						partFinalDecimal_FTotal = partDecimal_FTotal[1]+'0';
-					}else{
-						partFinalDecimal_FTotal = partDecimal_FTotal[1];
-					}
-					$("#totalval_quoteFinal").html(`<span>${separate_point_FTotal},<sup>${partFinalDecimal_FTotal}</sup> USD</span>`);
+				  		// EVALUAR SI SE SELECCIONÓ *TODOS LOS SERVICIOS* O *SOLO DESEO FLETE*
+				  	 	if(v_foptgnfquotevl == "y-moreOpts"){
+				  	 		if(v_loadtypecharge == "FCL"){
+				  	 			// VALIDAR EL VALOR DEL CIF - COMISIÓN DE AGENCIA
+				  	 			fvalfinal_gas_operativos = gas_operativos_fcl;
+				  	 			if(sumbyCIF > comagencia_monto){
+						  			fval_com_agencia = sumbyCIF * val_defaultmin;
+						  			fvalfinal_com_agencia = myRound(fval_com_agencia);
+						  		}else{
+						  			fvalfinal_com_agencia = com_agencia_fcl;
+						  		}
+				  	 			// SUMAR TODOS LOS SERVICIOS - FCL
+				  	 			var totalServiciosTODOS = emision_bl_fcl+visto_bueno_fcl+almacen_ref_fcl+gremios_maritimos_fcl+thc_fcl+devol_contenedor_fcl+fvalfinal_com_agencia+fvalfinal_gas_operativos;
+				  	 			sumTotalServices = totaltransport + totalamountadditional + totalServiciosTODOS; // VALOR TOTAL - SERVICIOS
+				  	 			sumTotalbyIGV = (totaltransport + totalamountadditional + totalServiciosTODOS) * (18 / 100); // VALOR TOTAL - SERVICIOS + IGV 18%
+				  	 			sumTotalFinalFleteandIGV = sumTotalServices + sumTotalbyIGV; // VALOR TOTAL FINAL DE LA COTIZACIÓN
+				  	 		}else if(v_loadtypecharge == "LCL"){
+				  	 			// VALIDAR EL VALOR DEL CIF - COMISIÓN DE AGENCIA
+				  	 			fvalfinal_gas_operativos = gas_operativos_lcl;
+				  	 			if(sumbyCIF > comagencia_monto){
+						  			fval_com_agencia = sumbyCIF * val_defaultmin;
+						  			fvalfinal_com_agencia = myRound(fval_com_agencia);
+						  		}else{
+						  			fvalfinal_com_agencia = com_agencia_fcl;
+						  		}
+						  		// SUMAR TODOS LOS SERVICIOS - LCL
+				  	 			var totalServiciosTODOS = emision_bl_lcl+handling_lcl+visto_bueno_lcl+descarga_lcl+almacen_ref_lcl+fvalfinal_com_agencia+fvalfinal_gas_operativos;
+				  	 			sumTotalServices = totaltransport + totalamountadditional + totalServiciosTODOS; // VALOR TOTAL - SERVICIOS
+				  	 			sumTotalbyIGV = (totaltransport + totalamountadditional + totalServiciosTODOS) * (18 / 100); // VALOR TOTAL - SERVICIOS + IGV 18%
+				  	 			sumTotalFinalFleteandIGV = sumTotalServices + sumTotalbyIGV; // VALOR TOTAL FINAL DE LA COTIZACIÓN
+				  	 		}else{
+				  	 			console.log('Lo sentimos, hubo un error al procesar la información.');
+				  	 		}
+				  	 	}else if(v_foptgnfquotevl == "not-moreOpts"){
+				  	 		if(v_loadtypecharge == "FCL"){
+				  	 			totalServiciosTODOS = thc_fcl;
+				  	 			sumTotalServices = totaltransport + totalamountadditional + totalServiciosTODOS; // VALOR TOTAL - SERVICIOS
+				  	 			sumTotalbyIGV = (totaltransport + totalamountadditional + totalServiciosTODOS) * (18 / 100); // VALOR TOTAL - SERVICIOS + IGV 18%
+				  	 			sumTotalFinalFleteandIGV = sumTotalServices + sumTotalbyIGV; // VALOR TOTAL FINAL DE LA COTIZACIÓN
+				  	 		}else if(v_loadtypecharge == "LCL"){
+				  	 			fvalfinal_gas_operativos = gas_operativos_lcl;
+				  	 			if(sumbyCIF > comagencia_monto){
+						  			fval_com_agencia = sumbyCIF * val_defaultmin;
+						  			fvalfinal_com_agencia = myRound(fval_com_agencia);
+						  		}else{
+						  			fvalfinal_com_agencia = com_agencia_fcl;
+						  		}
+						  		totalServiciosTODOS = almacen_ref_lcl+fvalfinal_gas_operativos+fvalfinal_com_agencia;
+						  		sumTotalServices = totaltransport + totalamountadditional + totalServiciosTODOS; // VALOR TOTAL - SERVICIOS
+				  	 			sumTotalbyIGV = (totaltransport + totalamountadditional + totalServiciosTODOS) * (18 / 100); // VALOR TOTAL - SERVICIOS + IGV 18%
+				  	 			sumTotalFinalFleteandIGV = sumTotalServices + sumTotalbyIGV; // VALOR TOTAL FINAL DE LA COTIZACIÓN
+				  	 		}else{
+				  	 			console.log('Lo sentimos, hubo un error al procesar la información.');
+				  	 		}
+				  	 	}
+						
+							// ------------ LIMPIAR EL VALOR E IMPRIMIR EN EL TOTAL DEL SERVICIOS 
+							var totalNotround = twodecimals(sumTotalServices);
+							var n = Math.abs(totalNotround);
+							partInteger = Math.trunc(n);
+							var separate_point = partInteger.toString().replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d)\.?)/g, ".");
+							partDecimal = totalNotround.toString().split('.');
+							if(partDecimal[1] == undefined || partDecimal[1] == 'undefined' || partDecimal[1] == ""){
+								partFinalDecimal = '00';
+							}else	if(partDecimal[1].length < 2){
+								partFinalDecimal = partDecimal[1]+'0';
+							}else{
+								partFinalDecimal = partDecimal[1];
+							}
+							$("#intdecval-quotefinal").html(`<span>${separate_point},<sup>${partFinalDecimal}</sup> USD</span>`);
+							// ------------ IMPRIMIR EL TOTAL DE SERVICIOS ENTRE EL IGV 18% 
+							var totalNotRountByIGV = twodecimals(sumTotalbyIGV);
+							var n_byIGV = Math.abs(totalNotRountByIGV);
+							var partInteger_byIGV = Math.trunc(n_byIGV);
+							var separate_point_byIGV = partInteger_byIGV.toString().replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d)\.?)/g, ".");
+							var part_decimalbyIGV = totalNotRountByIGV.toString().split('.');
+							var partFinal_decimal_byIGV = 0;
+							if(part_decimalbyIGV[1] == undefined || part_decimalbyIGV[1] == 'undefined' || part_decimalbyIGV[1] == ""){
+								partFinal_decimal_byIGV = '00';
+							}else	if(part_decimalbyIGV[1].length < 2){
+								partFinal_decimal_byIGV = part_decimalbyIGV[1]+'0';
+							}else{
+								partFinal_decimal_byIGV = part_decimalbyIGV[1];
+							}
+							$("#igvval-quotefinal").html(`<span>+ IGV 18% </span><span>${separate_point_byIGV},${partFinal_decimal_byIGV} USD</span>`);
+							// ------------ IMPRIMIR EL ÚLTIMO VALOR - SUMA DEL TOTAL DE FLETE Y EL TOTAL ENTRE EL IGV 
+							var partInteger_FTotal = 0;
+							var partDecimal_FTotal = 0;
+							var partFinalDecimal_FTotal = 0;
+							var totalNotRoundFinal = twodecimals(sumTotalFinalFleteandIGV);
+							var n_ftotal = Math.abs(totalNotRoundFinal);
+							partInteger_FTotal = Math.trunc(n_ftotal);
+							var separate_point_FTotal = partInteger_FTotal.toString().replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d)\.?)/g, ".");
+							partDecimal_FTotal = totalNotRoundFinal.toString().split('.');
+							if(partDecimal_FTotal[1] == undefined || partDecimal_FTotal[1] == 'undefined' || partDecimal_FTotal[1] == ""){
+								partFinalDecimal_FTotal = '00';
+							}else	if(partDecimal_FTotal[1].length < 2){
+								partFinalDecimal_FTotal = partDecimal_FTotal[1]+'0';
+							}else{
+								partFinalDecimal_FTotal = partDecimal_FTotal[1];
+							}
+							$("#totalval_quoteFinal").html(`<span>${separate_point_FTotal},<sup>${partFinalDecimal_FTotal}</sup> USD</span>`);
 
-					// ------------ LISTAR SERVICIOS PARA CALCULO CON IGV - FCL 
-				  $.ajax({
-				    url: "controllers/list_taxation_values_byquotation.php",
-				    method: "POST",
-				    datatype: "JSON",
-				    contentType: 'application/x-www-form-urlencoded;charset=UTF-8',
-				  }).done((e) => {
-				    var restaxvalues = JSON.parse(e);
+							// ------------ LISTAR SERVICIOS PARA CALCULO CON IGV - FCL 
+						  $.ajax({
+						    url: "controllers/list_taxation_values_byquotation.php",
+						    method: "POST",
+						    datatype: "JSON",
+						    contentType: 'application/x-www-form-urlencoded;charset=UTF-8',
+						  }).done((e) => {
+						    var restaxvalues = JSON.parse(e);
 
-				    var res_IGV = parseFloat(restaxvalues[0].data_value);
-				    var res_IPM = parseFloat(restaxvalues[1].data_value);
-				    var res_Percepcion_YES = parseFloat(restaxvalues[2].data_value);
-				    var res_Percepcion_NO = parseFloat(restaxvalues[2].data_value_two);
+						    var res_IGV = parseFloat(restaxvalues[0].data_value);
+						    var res_IPM = parseFloat(restaxvalues[1].data_value);
+						    var res_Percepcion_YES = parseFloat(restaxvalues[2].data_value);
+						    var res_Percepcion_NO = parseFloat(restaxvalues[2].data_value_two);
 
-				    // ------------ VALORES - DE PORCENTAJES A DECIMALES
-				    var percepcion_notfilter = "";
-				    var convert_IGV = res_IGV / 100; //VALOR I.G.V.
-				    var convert_IPM = res_IPM / 100; //VALOR I.P.M.
-				    var convert_Percepcion = 0; //VALOR PERCEPCIÓN
-				    var convert_Ad_Valoren = receivedAd_valoren / 100; //VALOR AD-VALOREN DE PRODUCTO
-				    var convert_I_selectivo = receivedI_selectivo / 100; //VALOR IMPUESTO SELECTIVO DE PROUCTO
-				    var convert_antidumping = received_antidumping / 100; //VALOR ANTIDUMPING
+						    // ------------ VALORES - DE PORCENTAJES A DECIMALES
+						    var percepcion_notfilter = "";
+						    var convert_IGV = res_IGV / 100; //VALOR I.G.V.
+						    var convert_IPM = res_IPM / 100; //VALOR I.P.M.
+						    var convert_Percepcion = 0; //VALOR PERCEPCIÓN
+						    var convert_Ad_Valoren = receivedAd_valoren / 100; //VALOR AD-VALOREN DE PRODUCTO
+						    var convert_I_selectivo = receivedI_selectivo / 100; //VALOR IMPUESTO SELECTIVO DE PROUCTO
+						    var convert_antidumping = received_antidumping / 100; //VALOR ANTIDUMPING
 
-				    if(totalimportprev == "SI" || totalimportprev == "SÍ"){
-					    convert_Percepcion = res_Percepcion_YES / 100;
-					    percepcion_notfilter = restaxvalues[2].data_value;
-				    }else if(totalimportprev == "NO"){
-				    	convert_Percepcion = res_Percepcion_NO / 100;
-				    	percepcion_notfilter = restaxvalues[2].data_value_two;
-				    }else{
-				    	percepcion_notfilter = 0;
-				    }
+						    if(totalimportprev == "SI" || totalimportprev == "SÍ"){
+							    convert_Percepcion = res_Percepcion_YES / 100;
+							    percepcion_notfilter = restaxvalues[2].data_value;
+						    }else if(totalimportprev == "NO"){
+						    	convert_Percepcion = res_Percepcion_NO / 100;
+						    	percepcion_notfilter = restaxvalues[2].data_value_two;
+						    }else{
+						    	percepcion_notfilter = 0;
+						    }
 
-				    // ------------ CALCULAR AD-VALOREN 
-				    var val_Ad_valoren = sumbyCIF * convert_Ad_Valoren;
-				    var twodecimal_Ad_valoren = twodecimals(val_Ad_valoren);
-				    var finalval_Ad_valoren = parseFloat(twodecimal_Ad_valoren);
-						// ------------ CALCULAR IMPUESTO SELECTIVO 
-						var val_i_selectivo = sumbyCIF * convert_I_selectivo;
-						var twodecimal_i_selectivo = twodecimals(val_i_selectivo);
-						var finalval_i_selectivo = parseFloat(twodecimal_i_selectivo);
-						// ------------ CALCULAR ANTIDUMPING 
-						var val_antidumping = sumbyCIF * convert_antidumping;
-						var twodecimal_antidumping = twodecimals(val_antidumping);
-						var finalval_antidumping = parseFloat(twodecimal_antidumping);
-				    // ------------ CALCULAR IGV 
-						var val_IGV = ( sumbyCIF + finalval_Ad_valoren ) * convert_IGV;
-						var twodecimal_IGV = twodecimals(val_IGV);
-						var finalval_IGV = parseFloat(twodecimal_IGV);
-						// ------------ CALCULAR IPM 
-						var val_IPM = ( sumbyCIF + finalval_Ad_valoren) * convert_IPM;
-						var twodecimal_IPM = twodecimals(val_IPM);
-						var finalval_IPM = parseFloat(twodecimal_IPM);
-						// ------------ CALCULAR PERCEPCIÓN 
-						var val_Percepcion = ( sumbyCIF + finalval_Ad_valoren + finalval_IGV + finalval_IPM ) * convert_Percepcion;
-						var twodecimal_percepcion = twodecimals(val_Percepcion);
-						var finalval_percepcion = parseFloat(twodecimal_percepcion);
+						    // ------------ CALCULAR AD-VALOREN 
+						    var val_Ad_valoren = sumbyCIF * convert_Ad_Valoren;
+						    var twodecimal_Ad_valoren = twodecimals(val_Ad_valoren);
+						    var finalval_Ad_valoren = parseFloat(twodecimal_Ad_valoren);
+								// ------------ CALCULAR IMPUESTO SELECTIVO 
+								var val_i_selectivo = sumbyCIF * convert_I_selectivo;
+								var twodecimal_i_selectivo = twodecimals(val_i_selectivo);
+								var finalval_i_selectivo = parseFloat(twodecimal_i_selectivo);
+								// ------------ CALCULAR ANTIDUMPING 
+								var val_antidumping = sumbyCIF * convert_antidumping;
+								var twodecimal_antidumping = twodecimals(val_antidumping);
+								var finalval_antidumping = parseFloat(twodecimal_antidumping);
+						    // ------------ CALCULAR IGV 
+								var val_IGV = ( sumbyCIF + finalval_Ad_valoren ) * convert_IGV;
+								var twodecimal_IGV = twodecimals(val_IGV);
+								var finalval_IGV = parseFloat(twodecimal_IGV);
+								// ------------ CALCULAR IPM 
+								var val_IPM = ( sumbyCIF + finalval_Ad_valoren) * convert_IPM;
+								var twodecimal_IPM = twodecimals(val_IPM);
+								var finalval_IPM = parseFloat(twodecimal_IPM);
+								// ------------ CALCULAR PERCEPCIÓN 
+								var val_Percepcion = ( sumbyCIF + finalval_Ad_valoren + finalval_IGV + finalval_IPM ) * convert_Percepcion;
+								var twodecimal_percepcion = twodecimals(val_Percepcion);
+								var finalval_percepcion = parseFloat(twodecimal_percepcion);
 
-						// ------------ CALCULO FINAL DE IMPUESTOS 
-						var val_FinalTax = finalval_IGV + finalval_IPM + finalval_percepcion + finalval_Ad_valoren + finalval_i_selectivo + finalval_antidumping + finalRoundinsurance;
+								// ------------ CALCULO FINAL DE IMPUESTOS 
+								var val_FinalTax = finalval_IGV + finalval_IPM + finalval_percepcion + finalval_Ad_valoren + finalval_i_selectivo + finalval_antidumping + finalRoundinsurance;
 
-						var twodecimals_FinalTax = twodecimals(val_FinalTax);
-						var finalval_FinalTax = parseFloat(twodecimals_FinalTax);
-						var n_tax = Math.abs(finalval_FinalTax);
-						partInteger_Tax = Math.trunc(n_tax);
-						var separate_point_Tax = partInteger_Tax.toString().replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d)\.?)/g, ".");
-						partDecimal_Tax = finalval_FinalTax.toString().split('.');
-						if(partDecimal_Tax[1] == undefined || partDecimal_Tax[1] == 'undefined' || partDecimal_Tax[1] == ""){
-							partFinalDecimal_Tax = '00';
-						}else	if(partDecimal_Tax[1].length < 2){
-							partFinalDecimal_Tax = partDecimal_Tax[1]+'0';
-						}else{
-							partFinalDecimal_Tax = partDecimal_Tax[1];
-						}
-
-						// ------------ IMPRESIÓN DE LOS VALORES 
-						if(document.querySelector(".c-FinalQuotation--contStep--cQuotation--cBottom--cAduanaImpst").contains(document.querySelector("#taxval_quotefinal"))){			
-							$("#taxval_quotefinal").html(`<span>${separate_point_Tax},<sup>${partFinalDecimal_Tax}</sup> USD</span>`);
-						}else{
-							//console.log("No existe el elemento");
-						}
-
-						// ------------ VALIDAR EL VALOR DE TRANSPORTE DE INICIO 
-						var inittranpsendid = $("#v_typetranspsendinitid").val();
-						var transsendinitbyid = "";
-						if(inittranpsendid == 0){
-							transsendinitbyid = "S-ADU";
-						}else if(inittranpsendid == 1){
-							transsendinitbyid = "T-MAR";
-						}else if(inittranpsendid == 2){
-							transsendinitbyid = "T-AER";
-						}else{
-							console.log('Inv-ID');
-						}
-
-						// ------------ VALIDAR EL VALOR DEL USUARIO 
-						var user_sessquote = "";
-						// ------------ INSERTAR EN LA TABLA DE COTIZACIONES 
-						if($("#s_useregin-sistem").val() == "" || $("#s_useregin-sistem").val() == undefined || $("#s_useregin-sistem").val() == 'undefined' || $("#s_useregin-sistem").val() == null || $("#s_useregin-sistem").val() == 'null'){
-
-							user_sessquote = s_username_local.username;
-
-							var igv_calculate = convert_IGV * sumbyCIF;
-							var ipm_calculate = sumbyCIF * convert_IPM;
-							var impuestosel_calculate = 0;
-							var igvcalc_twodeci = myRound(igv_calculate);
-							var ipmcalc_twodeci = myRound(ipm_calculate);
-							var percepcion_calculate = (sumbyCIF + igvcalc_twodeci + ipmcalc_twodeci + impuestosel_calculate) * convert_Percepcion;
-							var percepcioncalc_twodeci = myRound(percepcion_calculate);
-
-							var formdata = new FormData();
-							formdata.append("id_codegenrand", v_idgencoderand);
-							formdata.append("u_login", user_sessquote);
-							formdata.append("f_typetransendinitid", transsendinitbyid);
-							formdata.append("f_type_op", v_floadtypeope);
-							formdata.append("f_type_serv", v_typeserviceinit);
-							formdata.append("f_type_transp", v_floadTypeTranport);
-							formdata.append("f_type_cont", v_loadtypecharge);
-							formdata.append("f_optgenfquot", v_foptgnfquotevl);
-							formdata.append("u_n_document", "No especificado");
-							formdata.append("u_enterprise", "No especificado");
-							formdata.append("u_telephone", "No especificado");
-							formdata.append("u_service", "No especificado");
-							formdata.append("u_cont", v_fnamecategprod);
-							formdata.append("f_origen", portOriginName);
-							formdata.append("f_destiny", portDestinyName);
-							formdata.append("f_desc_w_v", v_fpckgcontquant);
-							formdata.append("f_weight_v", v_ftcomparweacbm);
-							formdata.append("f_translocation", v_fplctopckloc);
-							formdata.append("f_time_transit", v_ftaproxtransbycont);
-							formdata.append("f_fob", totalfinalvaluefob);
-							formdata.append("f_flete", totflete);
-							formdata.append("f_insurance", initvalinsurance);
-							formdata.append("f_cif", sumbyCIF);
-							formdata.append("f_v_IGV", restaxvalues[0].data_value);
-							formdata.append("f_v_IPM", restaxvalues[1].data_value);
-							formdata.append("f_importadoprev", v_fprevimports);
-							formdata.append("f_v_percepcion", percepcion_notfilter);
-							formdata.append("f_IGV", igvcalc_twodeci);
-							formdata.append("f_IPM", ipmcalc_twodeci);
-							formdata.append("f_percepcion", percepcioncalc_twodeci);
-							formdata.append("f_transporte_interno", totaltransport);
-							formdata.append("f_comision_agencia", fvalfinal_com_agencia);
-							formdata.append("f_gastos_operativos", fvalfinal_gas_operativos);
-							formdata.append("f_totalinsurance", finalRoundinsurance);
-							formdata.append("f_totalservices", totalNotround);
-							formdata.append("f_totalservicesIGV18", totalNotRountByIGV);
-							formdata.append("f_totalimpuestos", twodecimals_FinalTax);
-							formdata.append("f_totalwithIGV", totalNotRoundFinal);
-							formdata.append("f_validdesde", v_validdesde);
-							formdata.append("f_validhasta", v_validhasta);
-
-							$.ajax({
-								url: 'controllers/prcss_add-quotation-user.php',
-								method: 'POST',
-								datatype: "JSON",
-								data: formdata,
-								contentType: false,
-					      cache: false,
-					      processData: false
-							}).done((e) => {
-								if(e != ""){
-									var r = JSON.parse(e);
-									// --------------- TOTALES EN RE-MOSTRADO DE INFORMACÍON...
-							  	var partFinalDecimal = 0;
-							  	var partFinalDecimal_FTotal = 0;
-									if(r.res == "non_existent"){
-										// --------------- IMPRIMIR EL CÓDIGO AUTOGENERADO DE LA COTIZACIÓN
-								  	$("#v_gencodexxx").text(r.received[0].code_quote);
-								  	// --------------- IMPRIMIR LA VALIDEZ DE LA COTIZACIÓN
-								  	if(r.received[0].f_validdesde == 0 || r.received[0].f_validhasta == 0 || r.received[0].f_validdesde == "0000-00-00 00:00:00" || r.received[0].f_validhasta == "0000-00-00 00:00:00"){
-								  		$("#v_validratedate").text('No especificado');
-								  	}else{
-									  	var convertOneDATE =  new Date(Date.parse(r.received[0].f_validdesde.replace(/-/g, '/')));
-									    var convertTwoDATE =  new Date(Date.parse(r.received[0].f_validhasta.replace(/[-]/g,'/')));
-									    //var options = { year: 'numeric', month: '2-digit', day: 'numeric' };
-									    var options = { year: 'numeric', month: 'long', day: 'numeric' };
-									    var convertDateValidDesde = convertOneDATE.toLocaleDateString("es-ES", options);
-									    var convertDateValidHasta = convertTwoDATE.toLocaleDateString("es-ES", options);
-									    var separateDateValidDesde = convertDateValidDesde.split(" ");
-									    var separateDateValidHasta = convertDateValidHasta.split(" ");
-									    var monthSeparatetoArrayDesde = separateDateValidDesde[2].slice(0, 3);
-									    var monthSeparatetoArrayHasta = separateDateValidHasta[2].slice(0, 3);
-									    var val_dateValidDesde = separateDateValidDesde[0]+" "+"de"+" "+firstToUppercase(monthSeparatetoArrayDesde);
-									    var val_dateValidHasta = separateDateValidHasta[0]+" "+"de"+" "+firstToUppercase(monthSeparatetoArrayHasta);
-									    $("#v_validratedate").text(" "+val_dateValidDesde+" - "+val_dateValidHasta);
-								  	}
-
-								  	// --------------- IMPRIMIR EL TOTAL - SERVICIOS
-								  	var n = Math.abs(r.received[0].f_totalservices);
-										partInteger = Math.trunc(n);
-										var separate_point = partInteger.toString().replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d)\.?)/g, ".");
-										partDecimal = totalNotround.toString().split('.');
-										if(partDecimal[1] == undefined || partDecimal[1] == 'undefined' || partDecimal[1] == ""){partFinalDecimal = '00';
-										}else	if(partDecimal[1].length < 2){partFinalDecimal = partDecimal[1]+'0';
-										}else{partFinalDecimal = partDecimal[1];}
-										$("#intdecval-quotefinal").html(`<span>${separate_point},<sup>${partFinalDecimal}</sup> USD</span>`);
-
-										// --------------- IMPRIMIR EL TOTAL ENTRE EL IGV
-										var n_byIGV = Math.abs(r.received[0].f_totalservicesIGV18);
-										var partInteger_byIGV = Math.trunc(n_byIGV);
-										var separate_point_byIGV = partInteger_byIGV.toString().replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d)\.?)/g, ".");
-										var part_decimalbyIGV = totalNotRountByIGV.toString().split('.');
-										var partFinal_decimal_byIGV = 0;
-										if(part_decimalbyIGV[1] == undefined || part_decimalbyIGV[1] == 'undefined' || part_decimalbyIGV[1] == ""){partFinal_decimal_byIGV = '00';
-										}else	if(part_decimalbyIGV[1].length < 2){partFinal_decimal_byIGV = part_decimalbyIGV[1]+'0';
-										}else{partFinal_decimal_byIGV = part_decimalbyIGV[1];}
-										$("#igvval-quotefinal").html(`<span>+ IGV 18% </span><span>${separate_point_byIGV},${partFinal_decimal_byIGV} USD</span>`);
-
-										// ---------------- IMPRIMIR EL ÚLTIMO VALOR - SUMA DEL TOTAL DE FLETE Y EL TOTAL ENTRE EL IGV
-										var n_ftotal = Math.abs(r.received[0].f_totalwithIGV);
-										partInteger_FTotal = Math.trunc(n_ftotal);
-										var separate_point_FTotal = partInteger_FTotal.toString().replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d)\.?)/g, ".");
-										partDecimal_FTotal = totalNotRoundFinal.toString().split('.');
-										if(partDecimal_FTotal[1] == undefined || partDecimal_FTotal[1] == 'undefined' || partDecimal_FTotal[1] == ""){partFinalDecimal_FTotal = '00';
-										}else	if(partDecimal_FTotal[1].length < 2){partFinalDecimal_FTotal = partDecimal_FTotal[1]+'0';
-										}else{partFinalDecimal_FTotal = partDecimal_FTotal[1];}
-										$("#totalval_quoteFinal").html(`<span>${separate_point_FTotal},<sup>${partFinalDecimal_FTotal}</sup> USD</span>`);
-
-										// --------------- LISTAR DATOS PARA ENVIAR POR WHATSAPP
-										var idcodequote = $("#v_gencodexxx").text() + " - " + $("#v_loadtypecharge").val(), 
-												typeFleteService = $("#m-first-listresume").find("li:first-child").find("div").find("span:nth-child(2)").text(),
-												typeFleteContainer = $("#m-first-listresume").find("li:nth-child(2)").find("div").find("span:nth-child(2)").text(),
-												fleteportOrigin = $("#v-listportsOandD").find("span:first-child").text(),
-												fleteportDestiny = $("#v-listportsOandD").find("span:last-child").text(),
-												contentFlete = $("#m-first-listresume").find("li:nth-child(3)").find("div").find("p").find("span").text(),
-												valormercanciaFlete = $("#m-second-listresume").find("li:first-child").find("div").find("span:nth-child(2)").text(),
-												impuestosFlete = $("#m-second-listresume").find("li:nth-child(2)").find("div").find("span:nth-child(2)").text(),
-												transportFlete = $("#m-second-listresume").find("li:nth-child(3)").find("div").find("span:nth-child(2)").text();
-												seguroFlete = $("#m-second-listresume").find("li:nth-child(4)").find("div").find("span:nth-child(2)").text();
-
-										var objDataTxtWhatsapp = {
-											id: idcodequote,
-											tservice : typeFleteService,
-											tcontainer : typeFleteContainer,
-											fportorigin : fleteportOrigin,
-											fportdestiny : fleteportDestiny,
-											containtflete : contentFlete,
-											valmercanciaflete: valormercanciaFlete,
-											impuestosflete : impuestosFlete,
-											tranportflete : transportFlete,
-											seguroflete : seguroFlete
-										}
-
-										// ------------ AÑADIR LOS DATOS AL ENLACE DE WHATSAPP 
-										$("#d-link-messagecontact").attr("href", 
-									`https://api.whatsapp.com/send?phone=51989874368&text=Saludos,%20me%20gustaría%20cotizar%20
-										ID:${objDataTxtWhatsapp.id},%20
-										Tipo%20Flete:%20${objDataTxtWhatsapp.tservice},%20
-										Tipo%20Contenedor:%20${objDataTxtWhatsapp.tcontainer},%20
-										Flete%20Origen:%20${objDataTxtWhatsapp.fportorigin},%20
-										Flete%20Destino:%20${objDataTxtWhatsapp.fportdestiny},%20
-										Contenido%20Flete:%20${objDataTxtWhatsapp.containtflete},%20
-										Valor%20Flete:%202136,%20
-										gastos:%20${objDataTxtWhatsapp.valmercanciaflete},%20
-										Impuestos:%20${objDataTxtWhatsapp.impuestosflete},%20
-										Transporte:%20${objDataTxtWhatsapp.tranportflete},%20
-										Seguro:%20${objDataTxtWhatsapp.seguroflete},%20
-										ImpuestoAprox:%20${twodecimals_FinalTax}`);
-									}else if(r.res == "already_exists"){
-								  	// --------------- IMPRIMIR EL CÓDIGO AUTOGENERADO DE LA COTIZACIÓN
-								  	$("#v_gencodexxx").text(r.received[0].code_quote);
-								  	// --------------- IMPRIMIR LA VALIDEZ DE LA COTIZACIÓN
-								  	if(r.received[0].f_validdesde == 0 || r.received[0].f_validhasta == 0 || r.received[0].f_validdesde == "0000-00-00 00:00:00" || r.received[0].f_validhasta == "0000-00-00 00:00:00"){
-								  		$("#v_validratedate").text('No especificado');
-								  	}else{
-									  	var convertOneDATE =  new Date(Date.parse(r.received[0].f_validdesde.replace(/-/g, '/')));
-									    var convertTwoDATE =  new Date(Date.parse(r.received[0].f_validhasta.replace(/[-]/g,'/')));
-									    //var options = { year: 'numeric', month: '2-digit', day: 'numeric' };
-									    var options = { year: 'numeric', month: 'long', day: 'numeric' };
-									    var convertDateValidDesde = convertOneDATE.toLocaleDateString("es-ES", options);
-									    var convertDateValidHasta = convertTwoDATE.toLocaleDateString("es-ES", options);
-									    var separateDateValidDesde = convertDateValidDesde.split(" ");
-									    var separateDateValidHasta = convertDateValidHasta.split(" ");
-									    var monthSeparatetoArrayDesde = separateDateValidDesde[2].slice(0, 3);
-									    var monthSeparatetoArrayHasta = separateDateValidHasta[2].slice(0, 3);
-									    var val_dateValidDesde = separateDateValidDesde[0]+" "+"de"+" "+firstToUppercase(monthSeparatetoArrayDesde);
-									    var val_dateValidHasta = separateDateValidHasta[0]+" "+"de"+" "+firstToUppercase(monthSeparatetoArrayHasta);
-									    $("#v_validratedate").text(" "+val_dateValidDesde+" - "+val_dateValidHasta);
-								  	}
-
-								  	// --------------- IMPRIMIR EL TOTAL - SERVICIOS
-								  	var n = Math.abs(r.received[0].f_totalservices);
-										partInteger = Math.trunc(n);
-										var separate_point = partInteger.toString().replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d)\.?)/g, ".");
-										partDecimal = totalNotround.toString().split('.');
-										if(partDecimal[1] == undefined || partDecimal[1] == 'undefined' || partDecimal[1] == ""){partFinalDecimal = '00';
-										}else	if(partDecimal[1].length < 2){partFinalDecimal = partDecimal[1]+'0';
-										}else{partFinalDecimal = partDecimal[1];}
-										$("#intdecval-quotefinal").html(`<span>${separate_point},<sup>${partFinalDecimal}</sup> USD</span>`);
-
-										// --------------- IMPRIMIR EL TOTAL ENTRE EL IGV
-										var n_byIGV = Math.abs(r.received[0].f_totalservicesIGV18);
-										var partInteger_byIGV = Math.trunc(n_byIGV);
-										var separate_point_byIGV = partInteger_byIGV.toString().replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d)\.?)/g, ".");
-										var part_decimalbyIGV = totalNotRountByIGV.toString().split('.');
-										var partFinal_decimal_byIGV = 0;
-										if(part_decimalbyIGV[1] == undefined || part_decimalbyIGV[1] == 'undefined' || part_decimalbyIGV[1] == ""){partFinal_decimal_byIGV = '00';
-										}else	if(part_decimalbyIGV[1].length < 2){partFinal_decimal_byIGV = part_decimalbyIGV[1]+'0';
-										}else{partFinal_decimal_byIGV = part_decimalbyIGV[1];}
-										$("#igvval-quotefinal").html(`<span>+ IGV 18% </span><span>${separate_point_byIGV},${partFinal_decimal_byIGV} USD</span>`);
-
-										// ---------------- IMPRIMIR EL ÚLTIMO VALOR - SUMA DEL TOTAL DE FLETE Y EL TOTAL ENTRE EL IGV
-										var n_ftotal = Math.abs(r.received[0].f_totalwithIGV);
-										partInteger_FTotal = Math.trunc(n_ftotal);
-										var separate_point_FTotal = partInteger_FTotal.toString().replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d)\.?)/g, ".");
-										partDecimal_FTotal = totalNotRoundFinal.toString().split('.');
-										if(partDecimal_FTotal[1] == undefined || partDecimal_FTotal[1] == 'undefined' || partDecimal_FTotal[1] == ""){partFinalDecimal_FTotal = '00';
-										}else	if(partDecimal_FTotal[1].length < 2){partFinalDecimal_FTotal = partDecimal_FTotal[1]+'0';
-										}else{partFinalDecimal_FTotal = partDecimal_FTotal[1];}
-										$("#totalval_quoteFinal").html(`<span>${separate_point_FTotal},<sup>${partFinalDecimal_FTotal}</sup> USD</span>`);
-
-										// --------------- LISTAR DATOS PARA ENVIAR POR WHATSAPP
-										var idcodequote = $("#v_gencodexxx").text() + " - " + $("#v_loadtypecharge").val(), 
-												typeFleteService = $("#m-first-listresume").find("li:first-child").find("div").find("span:nth-child(2)").text(),
-												typeFleteContainer = $("#m-first-listresume").find("li:nth-child(2)").find("div").find("span:nth-child(2)").text(),
-												fleteportOrigin = $("#v-listportsOandD").find("span:first-child").text(),
-												fleteportDestiny = $("#v-listportsOandD").find("span:last-child").text(),
-												contentFlete = $("#m-first-listresume").find("li:nth-child(3)").find("div").find("p").find("span").text(),
-												valormercanciaFlete = $("#m-second-listresume").find("li:first-child").find("div").find("span:nth-child(2)").text(),
-												impuestosFlete = $("#m-second-listresume").find("li:nth-child(2)").find("div").find("span:nth-child(2)").text(),
-												transportFlete = $("#m-second-listresume").find("li:nth-child(3)").find("div").find("span:nth-child(2)").text();
-												seguroFlete = $("#m-second-listresume").find("li:nth-child(4)").find("div").find("span:nth-child(2)").text();
-
-										var objDataTxtWhatsapp = {
-											id: idcodequote,
-											tservice : typeFleteService,
-											tcontainer : typeFleteContainer,
-											fportorigin : fleteportOrigin,
-											fportdestiny : fleteportDestiny,
-											containtflete : contentFlete,
-											valmercanciaflete: valormercanciaFlete,
-											impuestosflete : impuestosFlete,
-											tranportflete : transportFlete,
-											seguroflete : seguroFlete
-										}
-
-										// ------------ AÑADIR LOS DATOS AL ENLACE DE WHATSAPP 
-										$("#d-link-messagecontact").attr("href", 
-									`https://api.whatsapp.com/send?phone=51989874368&text=Saludos,%20me%20gustaría%20cotizar%20
-										ID:${objDataTxtWhatsapp.id},%20
-										Tipo%20Flete:%20${objDataTxtWhatsapp.tservice},%20
-										Tipo%20Contenedor:%20${objDataTxtWhatsapp.tcontainer},%20
-										Flete%20Origen:%20${objDataTxtWhatsapp.fportorigin},%20
-										Flete%20Destino:%20${objDataTxtWhatsapp.fportdestiny},%20
-										Contenido%20Flete:%20${objDataTxtWhatsapp.containtflete},%20
-										Valor%20Flete:%202136,%20
-										gastos:%20${objDataTxtWhatsapp.valmercanciaflete},%20
-										Impuestos:%20${objDataTxtWhatsapp.impuestosflete},%20
-										Transporte:%20${objDataTxtWhatsapp.tranportflete},%20
-										Seguro:%20${objDataTxtWhatsapp.seguroflete},%20
-										ImpuestoAprox:%20${twodecimals_FinalTax}`);
-									}else{
-										Swal.fire({
-								      title: 'Error!',
-								      html: `<span class='font-w-300'>Lo sentimos, hubo un error al procesar la información.</span>`,
-								      icon: 'error',
-								      confirmButtonText: 'Aceptar'
-								    });
-									}
+								var twodecimals_FinalTax = twodecimals(val_FinalTax);
+								var finalval_FinalTax = parseFloat(twodecimals_FinalTax);
+								var n_tax = Math.abs(finalval_FinalTax);
+								partInteger_Tax = Math.trunc(n_tax);
+								var separate_point_Tax = partInteger_Tax.toString().replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d)\.?)/g, ".");
+								partDecimal_Tax = finalval_FinalTax.toString().split('.');
+								if(partDecimal_Tax[1] == undefined || partDecimal_Tax[1] == 'undefined' || partDecimal_Tax[1] == ""){
+									partFinalDecimal_Tax = '00';
+								}else	if(partDecimal_Tax[1].length < 2){
+									partFinalDecimal_Tax = partDecimal_Tax[1]+'0';
 								}else{
-									Swal.fire({
-							      title: 'Error!',
-							      html: `<span class='font-w-300'>Lo sentimos, hubo un error al procesar la información.</span>`,
-							      icon: 'error',
-							      confirmButtonText: 'Aceptar'
-							    });
+									partFinalDecimal_Tax = partDecimal_Tax[1];
 								}
-							});
-						}else if($("#s_useregin-sistem").val() != "" || $("#s_useregin-sistem").val() != undefined || $("#s_useregin-sistem").val() != 'undefined' || $("#s_useregin-sistem").val() != null || $("#s_useregin-sistem").val() != 'null'){
 
-							var igv_calculate = convert_IGV * sumbyCIF;
-							var ipm_calculate = sumbyCIF * convert_IPM;
-							var impuestosel_calculate = 0;
-							var igvcalc_twodeci = myRound(igv_calculate);
-							var ipmcalc_twodeci = myRound(ipm_calculate);
-							var percepcion_calculate = (sumbyCIF + igvcalc_twodeci + ipmcalc_twodeci + impuestosel_calculate) * convert_Percepcion;
-							var percepcioncalc_twodeci = myRound(percepcion_calculate);
-							
-							var formdata = new FormData();
-							formdata.append("id_codegenrand", v_idgencoderand);
-							formdata.append("u_login", $("#s_useregin-sistem").val());
-							formdata.append("f_typetransendinitid", transsendinitbyid);
-							formdata.append("f_type_op", v_floadtypeope);
-							formdata.append("f_type_serv", v_typeserviceinit);
-							formdata.append("f_type_transp", v_floadTypeTranport);
-							formdata.append("f_type_cont", v_loadtypecharge);
-							formdata.append("f_optgenfquot", v_foptgnfquotevl);
-							formdata.append("u_n_document", "No especificado");
-							formdata.append("u_enterprise", "No especificado");
-							formdata.append("u_telephone", "No especificado");
-							formdata.append("u_service", "No especificado");
-							formdata.append("u_cont", v_fnamecategprod);
-							formdata.append("f_origen", portOriginName);
-							formdata.append("f_destiny", portDestinyName);
-							formdata.append("f_desc_w_v", v_fpckgcontquant);
-							formdata.append("f_weight_v", v_ftcomparweacbm);
-							formdata.append("f_translocation", v_fplctopckloc);
-							formdata.append("f_time_transit", v_ftaproxtransbycont);
-							formdata.append("f_fob", totalfinalvaluefob);
-							formdata.append("f_flete", totflete);
-							formdata.append("f_insurance", initvalinsurance);
-							formdata.append("f_cif", sumbyCIF);
-							formdata.append("f_v_IGV", restaxvalues[0].data_value);
-							formdata.append("f_v_IPM", restaxvalues[1].data_value);
-							formdata.append("f_importadoprev", v_fprevimports);
-							formdata.append("f_v_percepcion", percepcion_notfilter);
-							formdata.append("f_IGV", igvcalc_twodeci);
-							formdata.append("f_IPM", ipmcalc_twodeci);
-							formdata.append("f_percepcion", percepcioncalc_twodeci);
-							formdata.append("f_transporte_interno", totaltransport);
-							formdata.append("f_comision_agencia", fvalfinal_com_agencia);
-							formdata.append("f_gastos_operativos", fvalfinal_gas_operativos);
-							formdata.append("f_totalinsurance", finalRoundinsurance);
-							formdata.append("f_totalservices", totalNotround);
-							formdata.append("f_totalservicesIGV18", totalNotRountByIGV);
-							formdata.append("f_totalimpuestos", twodecimals_FinalTax);
-							formdata.append("f_totalwithIGV", totalNotRoundFinal);
-							formdata.append("f_validdesde", v_validdesde);
-							formdata.append("f_validhasta", v_validhasta);
-
-							$.ajax({
-								url: 'controllers/prcss_add-quotation-user.php',
-								method: 'POST',
-								datatype: "JSON",
-								data: formdata,
-								contentType: false,
-					      cache: false,
-					      processData: false
-							}).done((e) => {
-								if(e != ""){
-									var r = JSON.parse(e);
-									// --------------- TOTALES EN RE-MOSTRADO DE INFORMACÍON...
-							  	var partFinalDecimal = 0;
-							  	var partFinalDecimal_FTotal = 0;
-									if(r.res == "non_existent"){
-										// --------------- IMPRIMIR EL CÓDIGO AUTOGENERADO DE LA COTIZACIÓN
-								  	$("#v_gencodexxx").text(r.received[0].code_quote);
-								  	// --------------- IMPRIMIR LA VALIDEZ DE LA COTIZACIÓN
-								  	if(r.received[0].f_validdesde == 0 || r.received[0].f_validhasta == 0 || r.received[0].f_validdesde == "0000-00-00 00:00:00" || r.received[0].f_validhasta == "0000-00-00 00:00:00"){
-								  		$("#v_validratedate").text('No especificado');
-								  	}else{
-									  	var convertOneDATE =  new Date(Date.parse(r.received[0].f_validdesde.replace(/-/g, '/')));
-									    var convertTwoDATE =  new Date(Date.parse(r.received[0].f_validhasta.replace(/[-]/g,'/')));
-									    //var options = { year: 'numeric', month: '2-digit', day: 'numeric' };
-									    var options = { year: 'numeric', month: 'long', day: 'numeric' };
-									    var convertDateValidDesde = convertOneDATE.toLocaleDateString("es-ES", options);
-									    var convertDateValidHasta = convertTwoDATE.toLocaleDateString("es-ES", options);
-									    var separateDateValidDesde = convertDateValidDesde.split(" ");
-									    var separateDateValidHasta = convertDateValidHasta.split(" ");
-									    var monthSeparatetoArrayDesde = separateDateValidDesde[2].slice(0, 3);
-									    var monthSeparatetoArrayHasta = separateDateValidHasta[2].slice(0, 3);
-									    var val_dateValidDesde = separateDateValidDesde[0]+" "+"de"+" "+firstToUppercase(monthSeparatetoArrayDesde);
-									    var val_dateValidHasta = separateDateValidHasta[0]+" "+"de"+" "+firstToUppercase(monthSeparatetoArrayHasta);
-									    $("#v_validratedate").text(" "+val_dateValidDesde+" - "+val_dateValidHasta);
-								  	}
-
-								  	// --------------- IMPRIMIR EL TOTAL - SERVICIOS
-								  	var n = Math.abs(r.received[0].f_totalservices);
-										partInteger = Math.trunc(n);
-										var separate_point = partInteger.toString().replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d)\.?)/g, ".");
-										partDecimal = totalNotround.toString().split('.');
-										if(partDecimal[1] == undefined || partDecimal[1] == 'undefined' || partDecimal[1] == ""){partFinalDecimal = '00';
-										}else	if(partDecimal[1].length < 2){partFinalDecimal = partDecimal[1]+'0';
-										}else{partFinalDecimal = partDecimal[1];}
-										$("#intdecval-quotefinal").html(`<span>${separate_point},<sup>${partFinalDecimal}</sup> USD</span>`);
-
-										// --------------- IMPRIMIR EL TOTAL ENTRE EL IGV
-										var n_byIGV = Math.abs(r.received[0].f_totalservicesIGV18);
-										var partInteger_byIGV = Math.trunc(n_byIGV);
-										var separate_point_byIGV = partInteger_byIGV.toString().replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d)\.?)/g, ".");
-										var part_decimalbyIGV = totalNotRountByIGV.toString().split('.');
-										var partFinal_decimal_byIGV = 0;
-										if(part_decimalbyIGV[1] == undefined || part_decimalbyIGV[1] == 'undefined' || part_decimalbyIGV[1] == ""){partFinal_decimal_byIGV = '00';
-										}else	if(part_decimalbyIGV[1].length < 2){partFinal_decimal_byIGV = part_decimalbyIGV[1]+'0';
-										}else{partFinal_decimal_byIGV = part_decimalbyIGV[1];}
-										$("#igvval-quotefinal").html(`<span>+ IGV 18% </span><span>${separate_point_byIGV},${partFinal_decimal_byIGV} USD</span>`);
-
-										// ---------------- IMPRIMIR EL ÚLTIMO VALOR - SUMA DEL TOTAL DE FLETE Y EL TOTAL ENTRE EL IGV
-										var n_ftotal = Math.abs(r.received[0].f_totalwithIGV);
-										partInteger_FTotal = Math.trunc(n_ftotal);
-										var separate_point_FTotal = partInteger_FTotal.toString().replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d)\.?)/g, ".");
-										partDecimal_FTotal = totalNotRoundFinal.toString().split('.');
-										if(partDecimal_FTotal[1] == undefined || partDecimal_FTotal[1] == 'undefined' || partDecimal_FTotal[1] == ""){partFinalDecimal_FTotal = '00';
-										}else	if(partDecimal_FTotal[1].length < 2){partFinalDecimal_FTotal = partDecimal_FTotal[1]+'0';
-										}else{partFinalDecimal_FTotal = partDecimal_FTotal[1];}
-										$("#totalval_quoteFinal").html(`<span>${separate_point_FTotal},<sup>${partFinalDecimal_FTotal}</sup> USD</span>`);
-
-										// --------------- LISTAR DATOS PARA ENVIAR POR WHATSAPP
-										var idcodequote = $("#v_gencodexxx").text() + " - " + $("#v_loadtypecharge").val(), 
-												typeFleteService = $("#m-first-listresume").find("li:first-child").find("div").find("span:nth-child(2)").text(),
-												typeFleteContainer = $("#m-first-listresume").find("li:nth-child(2)").find("div").find("span:nth-child(2)").text(),
-												fleteportOrigin = $("#v-listportsOandD").find("span:first-child").text(),
-												fleteportDestiny = $("#v-listportsOandD").find("span:last-child").text(),
-												contentFlete = $("#m-first-listresume").find("li:nth-child(3)").find("div").find("p").find("span").text(),
-												valormercanciaFlete = $("#m-second-listresume").find("li:first-child").find("div").find("span:nth-child(2)").text(),
-												impuestosFlete = $("#m-second-listresume").find("li:nth-child(2)").find("div").find("span:nth-child(2)").text(),
-												transportFlete = $("#m-second-listresume").find("li:nth-child(3)").find("div").find("span:nth-child(2)").text();
-												seguroFlete = $("#m-second-listresume").find("li:nth-child(4)").find("div").find("span:nth-child(2)").text();
-
-										var objDataTxtWhatsapp = {
-											id: idcodequote,
-											tservice : typeFleteService,
-											tcontainer : typeFleteContainer,
-											fportorigin : fleteportOrigin,
-											fportdestiny : fleteportDestiny,
-											containtflete : contentFlete,
-											valmercanciaflete: valormercanciaFlete,
-											impuestosflete : impuestosFlete,
-											tranportflete : transportFlete,
-											seguroflete : seguroFlete
-										}
-
-										// ------------ AÑADIR LOS DATOS AL ENLACE DE WHATSAPP 
-										$("#d-link-messagecontact").attr("href", 
-									`https://api.whatsapp.com/send?phone=51989874368&text=Saludos,%20me%20gustaría%20cotizar%20
-										ID:${objDataTxtWhatsapp.id},%20
-										Tipo%20Flete:%20${objDataTxtWhatsapp.tservice},%20
-										Tipo%20Contenedor:%20${objDataTxtWhatsapp.tcontainer},%20
-										Flete%20Origen:%20${objDataTxtWhatsapp.fportorigin},%20
-										Flete%20Destino:%20${objDataTxtWhatsapp.fportdestiny},%20
-										Contenido%20Flete:%20${objDataTxtWhatsapp.containtflete},%20
-										Valor%20Flete:%202136,%20
-										gastos:%20${objDataTxtWhatsapp.valmercanciaflete},%20
-										Impuestos:%20${objDataTxtWhatsapp.impuestosflete},%20
-										Transporte:%20${objDataTxtWhatsapp.tranportflete},%20
-										Seguro:%20${objDataTxtWhatsapp.seguroflete},%20
-										ImpuestoAprox:%20${twodecimals_FinalTax}`);
-									}else if(r.res == "already_exists"){
-								  	// --------------- IMPRIMIR EL CÓDIGO AUTOGENERADO DE LA COTIZACIÓN
-								  	$("#v_gencodexxx").text(r.received[0].code_quote);
-								  	// --------------- IMPRIMIR LA VALIDEZ DE LA COTIZACIÓN
-								  	if(r.received[0].f_validdesde == 0 || r.received[0].f_validhasta == 0 || r.received[0].f_validdesde == "0000-00-00 00:00:00" || r.received[0].f_validhasta == "0000-00-00 00:00:00"){
-								  		$("#v_validratedate").text('No especificado');
-								  	}else{
-									  	var convertOneDATE =  new Date(Date.parse(r.received[0].f_validdesde.replace(/-/g, '/')));
-									    var convertTwoDATE =  new Date(Date.parse(r.received[0].f_validhasta.replace(/[-]/g,'/')));
-									    //var options = { year: 'numeric', month: '2-digit', day: 'numeric' };
-									    var options = { year: 'numeric', month: 'long', day: 'numeric' };
-									    var convertDateValidDesde = convertOneDATE.toLocaleDateString("es-ES", options);
-									    var convertDateValidHasta = convertTwoDATE.toLocaleDateString("es-ES", options);
-									    var separateDateValidDesde = convertDateValidDesde.split(" ");
-									    var separateDateValidHasta = convertDateValidHasta.split(" ");
-									    var monthSeparatetoArrayDesde = separateDateValidDesde[2].slice(0, 3);
-									    var monthSeparatetoArrayHasta = separateDateValidHasta[2].slice(0, 3);
-									    var val_dateValidDesde = separateDateValidDesde[0]+" "+"de"+" "+firstToUppercase(monthSeparatetoArrayDesde);
-									    var val_dateValidHasta = separateDateValidHasta[0]+" "+"de"+" "+firstToUppercase(monthSeparatetoArrayHasta);
-									    $("#v_validratedate").text(" "+val_dateValidDesde+" - "+val_dateValidHasta);
-								  	}
-
-								  	// --------------- IMPRIMIR EL TOTAL - SERVICIOS
-								  	var n = Math.abs(r.received[0].f_totalservices);
-										partInteger = Math.trunc(n);
-										var separate_point = partInteger.toString().replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d)\.?)/g, ".");
-										partDecimal = totalNotround.toString().split('.');
-										if(partDecimal[1] == undefined || partDecimal[1] == 'undefined' || partDecimal[1] == ""){partFinalDecimal = '00';
-										}else	if(partDecimal[1].length < 2){partFinalDecimal = partDecimal[1]+'0';
-										}else{partFinalDecimal = partDecimal[1];}
-										$("#intdecval-quotefinal").html(`<span>${separate_point},<sup>${partFinalDecimal}</sup> USD</span>`);
-
-										// --------------- IMPRIMIR EL TOTAL ENTRE EL IGV
-										var n_byIGV = Math.abs(r.received[0].f_totalservicesIGV18);
-										var partInteger_byIGV = Math.trunc(n_byIGV);
-										var separate_point_byIGV = partInteger_byIGV.toString().replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d)\.?)/g, ".");
-										var part_decimalbyIGV = totalNotRountByIGV.toString().split('.');
-										var partFinal_decimal_byIGV = 0;
-										if(part_decimalbyIGV[1] == undefined || part_decimalbyIGV[1] == 'undefined' || part_decimalbyIGV[1] == ""){partFinal_decimal_byIGV = '00';
-										}else	if(part_decimalbyIGV[1].length < 2){partFinal_decimal_byIGV = part_decimalbyIGV[1]+'0';
-										}else{partFinal_decimal_byIGV = part_decimalbyIGV[1];}
-										$("#igvval-quotefinal").html(`<span>+ IGV 18% </span><span>${separate_point_byIGV},${partFinal_decimal_byIGV} USD</span>`);
-
-										// ---------------- IMPRIMIR EL ÚLTIMO VALOR - SUMA DEL TOTAL DE FLETE Y EL TOTAL ENTRE EL IGV
-										var n_ftotal = Math.abs(r.received[0].f_totalwithIGV);
-										partInteger_FTotal = Math.trunc(n_ftotal);
-										var separate_point_FTotal = partInteger_FTotal.toString().replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d)\.?)/g, ".");
-										partDecimal_FTotal = totalNotRoundFinal.toString().split('.');
-										if(partDecimal_FTotal[1] == undefined || partDecimal_FTotal[1] == 'undefined' || partDecimal_FTotal[1] == ""){partFinalDecimal_FTotal = '00';
-										}else	if(partDecimal_FTotal[1].length < 2){partFinalDecimal_FTotal = partDecimal_FTotal[1]+'0';
-										}else{partFinalDecimal_FTotal = partDecimal_FTotal[1];}
-										$("#totalval_quoteFinal").html(`<span>${separate_point_FTotal},<sup>${partFinalDecimal_FTotal}</sup> USD</span>`);
-
-										// --------------- LISTAR DATOS PARA ENVIAR POR WHATSAPP
-										var idcodequote = $("#v_gencodexxx").text() + " - " + $("#v_loadtypecharge").val(), 
-												typeFleteService = $("#m-first-listresume").find("li:first-child").find("div").find("span:nth-child(2)").text(),
-												typeFleteContainer = $("#m-first-listresume").find("li:nth-child(2)").find("div").find("span:nth-child(2)").text(),
-												fleteportOrigin = $("#v-listportsOandD").find("span:first-child").text(),
-												fleteportDestiny = $("#v-listportsOandD").find("span:last-child").text(),
-												contentFlete = $("#m-first-listresume").find("li:nth-child(3)").find("div").find("p").find("span").text(),
-												valormercanciaFlete = $("#m-second-listresume").find("li:first-child").find("div").find("span:nth-child(2)").text(),
-												impuestosFlete = $("#m-second-listresume").find("li:nth-child(2)").find("div").find("span:nth-child(2)").text(),
-												transportFlete = $("#m-second-listresume").find("li:nth-child(3)").find("div").find("span:nth-child(2)").text();
-												seguroFlete = $("#m-second-listresume").find("li:nth-child(4)").find("div").find("span:nth-child(2)").text();
-
-										var objDataTxtWhatsapp = {
-											id: idcodequote,
-											tservice : typeFleteService,
-											tcontainer : typeFleteContainer,
-											fportorigin : fleteportOrigin,
-											fportdestiny : fleteportDestiny,
-											containtflete : contentFlete,
-											valmercanciaflete: valormercanciaFlete,
-											impuestosflete : impuestosFlete,
-											tranportflete : transportFlete,
-											seguroflete : seguroFlete
-										}
-
-										// ------------ AÑADIR LOS DATOS AL ENLACE DE WHATSAPP 
-										$("#d-link-messagecontact").attr("href", 
-									`https://api.whatsapp.com/send?phone=51989874368&text=Saludos,%20me%20gustaría%20cotizar%20
-										ID:${objDataTxtWhatsapp.id},%20
-										Tipo%20Flete:%20${objDataTxtWhatsapp.tservice},%20
-										Tipo%20Contenedor:%20${objDataTxtWhatsapp.tcontainer},%20
-										Flete%20Origen:%20${objDataTxtWhatsapp.fportorigin},%20
-										Flete%20Destino:%20${objDataTxtWhatsapp.fportdestiny},%20
-										Contenido%20Flete:%20${objDataTxtWhatsapp.containtflete},%20
-										Valor%20Flete:%202136,%20
-										gastos:%20${objDataTxtWhatsapp.valmercanciaflete},%20
-										Impuestos:%20${objDataTxtWhatsapp.impuestosflete},%20
-										Transporte:%20${objDataTxtWhatsapp.tranportflete},%20
-										Seguro:%20${objDataTxtWhatsapp.seguroflete},%20
-										ImpuestoAprox:%20${twodecimals_FinalTax}`);
-									}else{
-										Swal.fire({
-								      title: 'Error!',
-								      html: `<span class='font-w-300'>Lo sentimos, hubo un error al procesar la información.</span>`,
-								      icon: 'error',
-								      confirmButtonText: 'Aceptar'
-								    });
-									}
+								// ------------ IMPRESIÓN DE LOS VALORES 
+								if(document.querySelector(".c-FinalQuotation--contStep--cQuotation--cBottom--cAduanaImpst").contains(document.querySelector("#taxval_quotefinal"))){			
+									$("#taxval_quotefinal").html(`<span>${separate_point_Tax},<sup>${partFinalDecimal_Tax}</sup> USD</span>`);
 								}else{
-									Swal.fire({
-							      title: 'Error!',
-							      html: `<span class='font-w-300'>Lo sentimos, hubo un error al procesar la información.</span>`,
-							      icon: 'error',
-							      confirmButtonText: 'Aceptar'
-							    });
+									//console.log("No existe el elemento");
 								}
-							});
-						}else{
-							window.location.href = "marketplace-logistico";
-						}
-				  });
+
+								// ------------ VALIDAR EL VALOR DE TRANSPORTE DE INICIO 
+								var inittranpsendid = $("#v_typetranspsendinitid").val();
+								var transsendinitbyid = "";
+								if(inittranpsendid == 0){
+									transsendinitbyid = "S-ADU";
+								}else if(inittranpsendid == 1){
+									transsendinitbyid = "T-MAR";
+								}else if(inittranpsendid == 2){
+									transsendinitbyid = "T-AER";
+								}else{
+									console.log('Inv-ID');
+								}
+
+								// ------------ VALIDAR EL VALOR DEL USUARIO 
+								var user_sessquote = "";
+								// ------------ INSERTAR EN LA TABLA DE COTIZACIONES 
+								if($("#s_useregin-sistem").val() == "" || $("#s_useregin-sistem").val() == undefined || $("#s_useregin-sistem").val() == 'undefined' || $("#s_useregin-sistem").val() == null || $("#s_useregin-sistem").val() == 'null'){
+
+									user_sessquote = s_username_local.username;
+
+									var igv_calculate = convert_IGV * sumbyCIF;
+									var ipm_calculate = sumbyCIF * convert_IPM;
+									var impuestosel_calculate = 0;
+									var igvcalc_twodeci = myRound(igv_calculate);
+									var ipmcalc_twodeci = myRound(ipm_calculate);
+									var percepcion_calculate = (sumbyCIF + igvcalc_twodeci + ipmcalc_twodeci + impuestosel_calculate) * convert_Percepcion;
+									var percepcioncalc_twodeci = myRound(percepcion_calculate);
+
+									var formdata = new FormData();
+									formdata.append("id_codegenrand", v_idgencoderand);
+									formdata.append("u_login", user_sessquote);
+									formdata.append("f_typetransendinitid", transsendinitbyid);
+									formdata.append("f_type_op", v_floadtypeope);
+									formdata.append("f_type_serv", v_typeserviceinit);
+									formdata.append("f_type_transp", v_floadTypeTranport);
+									formdata.append("f_type_cont", v_loadtypecharge);
+									formdata.append("f_optgenfquot", v_foptgnfquotevl);
+									formdata.append("u_n_document", "No especificado");
+									formdata.append("u_enterprise", "No especificado");
+									formdata.append("u_telephone", "No especificado");
+									formdata.append("u_service", "No especificado");
+									formdata.append("u_cont", v_fnamecategprod);
+									formdata.append("f_origen", portOriginName);
+									formdata.append("f_destiny", portDestinyName);
+									formdata.append("f_desc_w_v", v_fpckgcontquant);
+									formdata.append("f_weight_v", v_ftcomparweacbm);
+									formdata.append("f_translocation", v_fplctopckloc);
+									formdata.append("f_time_transit", v_ftaproxtransbycont);
+									formdata.append("f_fob", totalfinalvaluefob);
+									formdata.append("f_flete", totflete);
+									formdata.append("f_insurance", initvalinsurance);
+									formdata.append("f_cif", sumbyCIF);
+									formdata.append("f_v_IGV", restaxvalues[0].data_value);
+									formdata.append("f_v_IPM", restaxvalues[1].data_value);
+									formdata.append("f_importadoprev", v_fprevimports);
+									formdata.append("f_v_percepcion", percepcion_notfilter);
+									formdata.append("f_IGV", igvcalc_twodeci);
+									formdata.append("f_IPM", ipmcalc_twodeci);
+									formdata.append("f_percepcion", percepcioncalc_twodeci);
+									formdata.append("f_transporte_interno", totaltransport);
+									formdata.append("f_comision_agencia", fvalfinal_com_agencia);
+									formdata.append("f_gastos_operativos", fvalfinal_gas_operativos);
+									formdata.append("f_totalinsurance", finalRoundinsurance);
+									formdata.append("f_totalservices", totalNotround);
+									formdata.append("f_totalservicesIGV18", totalNotRountByIGV);
+									formdata.append("f_totalimpuestos", twodecimals_FinalTax);
+									formdata.append("f_totalwithIGV", totalNotRoundFinal);
+									formdata.append("f_validdesde", v_validdesde);
+									formdata.append("f_validhasta", v_validhasta);
+
+									$.ajax({
+										url: 'controllers/prcss_add-quotation-user.php',
+										method: 'POST',
+										datatype: "JSON",
+										data: formdata,
+										contentType: false,
+							      cache: false,
+							      processData: false
+									}).done((e) => {
+										if(e != ""){
+											var r = JSON.parse(e);
+											// --------------- TOTALES EN RE-MOSTRADO DE INFORMACÍON...
+									  	var partFinalDecimal = 0;
+									  	var partFinalDecimal_FTotal = 0;
+											if(r.res == "non_existent"){
+												// --------------- IMPRIMIR EL CÓDIGO AUTOGENERADO DE LA COTIZACIÓN
+										  	$("#v_gencodexxx").text(r.received[0].code_quote);
+										  	// --------------- IMPRIMIR LA VALIDEZ DE LA COTIZACIÓN
+										  	if(r.received[0].f_validdesde == 0 || r.received[0].f_validhasta == 0 || r.received[0].f_validdesde == "0000-00-00 00:00:00" || r.received[0].f_validhasta == "0000-00-00 00:00:00"){
+										  		$("#v_validratedate").text('No especificado');
+										  	}else{
+											  	var convertOneDATE =  new Date(Date.parse(r.received[0].f_validdesde.replace(/-/g, '/')));
+											    var convertTwoDATE =  new Date(Date.parse(r.received[0].f_validhasta.replace(/[-]/g,'/')));
+											    //var options = { year: 'numeric', month: '2-digit', day: 'numeric' };
+											    var options = { year: 'numeric', month: 'long', day: 'numeric' };
+											    var convertDateValidDesde = convertOneDATE.toLocaleDateString("es-ES", options);
+											    var convertDateValidHasta = convertTwoDATE.toLocaleDateString("es-ES", options);
+											    var separateDateValidDesde = convertDateValidDesde.split(" ");
+											    var separateDateValidHasta = convertDateValidHasta.split(" ");
+											    var monthSeparatetoArrayDesde = separateDateValidDesde[2].slice(0, 3);
+											    var monthSeparatetoArrayHasta = separateDateValidHasta[2].slice(0, 3);
+											    var val_dateValidDesde = separateDateValidDesde[0]+" "+"de"+" "+firstToUppercase(monthSeparatetoArrayDesde);
+											    var val_dateValidHasta = separateDateValidHasta[0]+" "+"de"+" "+firstToUppercase(monthSeparatetoArrayHasta);
+											    $("#v_validratedate").text(" "+val_dateValidDesde+" - "+val_dateValidHasta);
+										  	}
+
+										  	// --------------- IMPRIMIR EL TOTAL - SERVICIOS
+										  	var n = Math.abs(r.received[0].f_totalservices);
+												partInteger = Math.trunc(n);
+												var separate_point = partInteger.toString().replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d)\.?)/g, ".");
+												partDecimal = totalNotround.toString().split('.');
+												if(partDecimal[1] == undefined || partDecimal[1] == 'undefined' || partDecimal[1] == ""){partFinalDecimal = '00';
+												}else	if(partDecimal[1].length < 2){partFinalDecimal = partDecimal[1]+'0';
+												}else{partFinalDecimal = partDecimal[1];}
+												$("#intdecval-quotefinal").html(`<span>${separate_point},<sup>${partFinalDecimal}</sup> USD</span>`);
+
+												// --------------- IMPRIMIR EL TOTAL ENTRE EL IGV
+												var n_byIGV = Math.abs(r.received[0].f_totalservicesIGV18);
+												var partInteger_byIGV = Math.trunc(n_byIGV);
+												var separate_point_byIGV = partInteger_byIGV.toString().replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d)\.?)/g, ".");
+												var part_decimalbyIGV = totalNotRountByIGV.toString().split('.');
+												var partFinal_decimal_byIGV = 0;
+												if(part_decimalbyIGV[1] == undefined || part_decimalbyIGV[1] == 'undefined' || part_decimalbyIGV[1] == ""){partFinal_decimal_byIGV = '00';
+												}else	if(part_decimalbyIGV[1].length < 2){partFinal_decimal_byIGV = part_decimalbyIGV[1]+'0';
+												}else{partFinal_decimal_byIGV = part_decimalbyIGV[1];}
+												$("#igvval-quotefinal").html(`<span>+ IGV 18% </span><span>${separate_point_byIGV},${partFinal_decimal_byIGV} USD</span>`);
+
+												// ---------------- IMPRIMIR EL ÚLTIMO VALOR - SUMA DEL TOTAL DE FLETE Y EL TOTAL ENTRE EL IGV
+												var n_ftotal = Math.abs(r.received[0].f_totalwithIGV);
+												partInteger_FTotal = Math.trunc(n_ftotal);
+												var separate_point_FTotal = partInteger_FTotal.toString().replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d)\.?)/g, ".");
+												partDecimal_FTotal = totalNotRoundFinal.toString().split('.');
+												if(partDecimal_FTotal[1] == undefined || partDecimal_FTotal[1] == 'undefined' || partDecimal_FTotal[1] == ""){partFinalDecimal_FTotal = '00';
+												}else	if(partDecimal_FTotal[1].length < 2){partFinalDecimal_FTotal = partDecimal_FTotal[1]+'0';
+												}else{partFinalDecimal_FTotal = partDecimal_FTotal[1];}
+												$("#totalval_quoteFinal").html(`<span>${separate_point_FTotal},<sup>${partFinalDecimal_FTotal}</sup> USD</span>`);
+
+												// --------------- LISTAR DATOS PARA ENVIAR POR WHATSAPP
+												var idcodequote = $("#v_gencodexxx").text() + " - " + $("#v_loadtypecharge").val(), 
+														typeFleteService = $("#m-first-listresume").find("li:first-child").find("div").find("span:nth-child(2)").text(),
+														typeFleteContainer = $("#m-first-listresume").find("li:nth-child(2)").find("div").find("span:nth-child(2)").text(),
+														fleteportOrigin = $("#v-listportsOandD").find("span:first-child").text(),
+														fleteportDestiny = $("#v-listportsOandD").find("span:last-child").text(),
+														contentFlete = $("#m-first-listresume").find("li:nth-child(3)").find("div").find("p").find("span").text(),
+														valormercanciaFlete = $("#m-second-listresume").find("li:first-child").find("div").find("span:nth-child(2)").text(),
+														impuestosFlete = $("#m-second-listresume").find("li:nth-child(2)").find("div").find("span:nth-child(2)").text(),
+														transportFlete = $("#m-second-listresume").find("li:nth-child(3)").find("div").find("span:nth-child(2)").text();
+														seguroFlete = $("#m-second-listresume").find("li:nth-child(4)").find("div").find("span:nth-child(2)").text();
+
+												var objDataTxtWhatsapp = {
+													id: idcodequote,
+													tservice : typeFleteService,
+													tcontainer : typeFleteContainer,
+													fportorigin : fleteportOrigin,
+													fportdestiny : fleteportDestiny,
+													containtflete : contentFlete,
+													valmercanciaflete: valormercanciaFlete,
+													impuestosflete : impuestosFlete,
+													tranportflete : transportFlete,
+													seguroflete : seguroFlete
+												}
+
+												// ------------ AÑADIR LOS DATOS AL ENLACE DE WHATSAPP 
+												$("#d-link-messagecontact").attr("href", 
+											`https://api.whatsapp.com/send?phone=51989874368&text=Saludos,%20me%20gustaría%20cotizar%20
+												ID:${objDataTxtWhatsapp.id},%20
+												Tipo%20Flete:%20${objDataTxtWhatsapp.tservice},%20
+												Tipo%20Contenedor:%20${objDataTxtWhatsapp.tcontainer},%20
+												Flete%20Origen:%20${objDataTxtWhatsapp.fportorigin},%20
+												Flete%20Destino:%20${objDataTxtWhatsapp.fportdestiny},%20
+												Contenido%20Flete:%20${objDataTxtWhatsapp.containtflete},%20
+												Valor%20Flete:%202136,%20
+												gastos:%20${objDataTxtWhatsapp.valmercanciaflete},%20
+												Impuestos:%20${objDataTxtWhatsapp.impuestosflete},%20
+												Transporte:%20${objDataTxtWhatsapp.tranportflete},%20
+												Seguro:%20${objDataTxtWhatsapp.seguroflete},%20
+												ImpuestoAprox:%20${twodecimals_FinalTax}`);
+											}else if(r.res == "already_exists"){
+										  	// --------------- IMPRIMIR EL CÓDIGO AUTOGENERADO DE LA COTIZACIÓN
+										  	$("#v_gencodexxx").text(r.received[0].code_quote);
+										  	// --------------- IMPRIMIR LA VALIDEZ DE LA COTIZACIÓN
+										  	if(r.received[0].f_validdesde == 0 || r.received[0].f_validhasta == 0 || r.received[0].f_validdesde == "0000-00-00 00:00:00" || r.received[0].f_validhasta == "0000-00-00 00:00:00"){
+										  		$("#v_validratedate").text('No especificado');
+										  	}else{
+											  	var convertOneDATE =  new Date(Date.parse(r.received[0].f_validdesde.replace(/-/g, '/')));
+											    var convertTwoDATE =  new Date(Date.parse(r.received[0].f_validhasta.replace(/[-]/g,'/')));
+											    //var options = { year: 'numeric', month: '2-digit', day: 'numeric' };
+											    var options = { year: 'numeric', month: 'long', day: 'numeric' };
+											    var convertDateValidDesde = convertOneDATE.toLocaleDateString("es-ES", options);
+											    var convertDateValidHasta = convertTwoDATE.toLocaleDateString("es-ES", options);
+											    var separateDateValidDesde = convertDateValidDesde.split(" ");
+											    var separateDateValidHasta = convertDateValidHasta.split(" ");
+											    var monthSeparatetoArrayDesde = separateDateValidDesde[2].slice(0, 3);
+											    var monthSeparatetoArrayHasta = separateDateValidHasta[2].slice(0, 3);
+											    var val_dateValidDesde = separateDateValidDesde[0]+" "+"de"+" "+firstToUppercase(monthSeparatetoArrayDesde);
+											    var val_dateValidHasta = separateDateValidHasta[0]+" "+"de"+" "+firstToUppercase(monthSeparatetoArrayHasta);
+											    $("#v_validratedate").text(" "+val_dateValidDesde+" - "+val_dateValidHasta);
+										  	}
+
+										  	// --------------- IMPRIMIR EL TOTAL - SERVICIOS
+										  	var n = Math.abs(r.received[0].f_totalservices);
+												partInteger = Math.trunc(n);
+												var separate_point = partInteger.toString().replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d)\.?)/g, ".");
+												partDecimal = totalNotround.toString().split('.');
+												if(partDecimal[1] == undefined || partDecimal[1] == 'undefined' || partDecimal[1] == ""){partFinalDecimal = '00';
+												}else	if(partDecimal[1].length < 2){partFinalDecimal = partDecimal[1]+'0';
+												}else{partFinalDecimal = partDecimal[1];}
+												$("#intdecval-quotefinal").html(`<span>${separate_point},<sup>${partFinalDecimal}</sup> USD</span>`);
+
+												// --------------- IMPRIMIR EL TOTAL ENTRE EL IGV
+												var n_byIGV = Math.abs(r.received[0].f_totalservicesIGV18);
+												var partInteger_byIGV = Math.trunc(n_byIGV);
+												var separate_point_byIGV = partInteger_byIGV.toString().replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d)\.?)/g, ".");
+												var part_decimalbyIGV = totalNotRountByIGV.toString().split('.');
+												var partFinal_decimal_byIGV = 0;
+												if(part_decimalbyIGV[1] == undefined || part_decimalbyIGV[1] == 'undefined' || part_decimalbyIGV[1] == ""){partFinal_decimal_byIGV = '00';
+												}else	if(part_decimalbyIGV[1].length < 2){partFinal_decimal_byIGV = part_decimalbyIGV[1]+'0';
+												}else{partFinal_decimal_byIGV = part_decimalbyIGV[1];}
+												$("#igvval-quotefinal").html(`<span>+ IGV 18% </span><span>${separate_point_byIGV},${partFinal_decimal_byIGV} USD</span>`);
+
+												// ---------------- IMPRIMIR EL ÚLTIMO VALOR - SUMA DEL TOTAL DE FLETE Y EL TOTAL ENTRE EL IGV
+												var n_ftotal = Math.abs(r.received[0].f_totalwithIGV);
+												partInteger_FTotal = Math.trunc(n_ftotal);
+												var separate_point_FTotal = partInteger_FTotal.toString().replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d)\.?)/g, ".");
+												partDecimal_FTotal = totalNotRoundFinal.toString().split('.');
+												if(partDecimal_FTotal[1] == undefined || partDecimal_FTotal[1] == 'undefined' || partDecimal_FTotal[1] == ""){partFinalDecimal_FTotal = '00';
+												}else	if(partDecimal_FTotal[1].length < 2){partFinalDecimal_FTotal = partDecimal_FTotal[1]+'0';
+												}else{partFinalDecimal_FTotal = partDecimal_FTotal[1];}
+												$("#totalval_quoteFinal").html(`<span>${separate_point_FTotal},<sup>${partFinalDecimal_FTotal}</sup> USD</span>`);
+
+												// --------------- LISTAR DATOS PARA ENVIAR POR WHATSAPP
+												var idcodequote = $("#v_gencodexxx").text() + " - " + $("#v_loadtypecharge").val(), 
+														typeFleteService = $("#m-first-listresume").find("li:first-child").find("div").find("span:nth-child(2)").text(),
+														typeFleteContainer = $("#m-first-listresume").find("li:nth-child(2)").find("div").find("span:nth-child(2)").text(),
+														fleteportOrigin = $("#v-listportsOandD").find("span:first-child").text(),
+														fleteportDestiny = $("#v-listportsOandD").find("span:last-child").text(),
+														contentFlete = $("#m-first-listresume").find("li:nth-child(3)").find("div").find("p").find("span").text(),
+														valormercanciaFlete = $("#m-second-listresume").find("li:first-child").find("div").find("span:nth-child(2)").text(),
+														impuestosFlete = $("#m-second-listresume").find("li:nth-child(2)").find("div").find("span:nth-child(2)").text(),
+														transportFlete = $("#m-second-listresume").find("li:nth-child(3)").find("div").find("span:nth-child(2)").text();
+														seguroFlete = $("#m-second-listresume").find("li:nth-child(4)").find("div").find("span:nth-child(2)").text();
+
+												var objDataTxtWhatsapp = {
+													id: idcodequote,
+													tservice : typeFleteService,
+													tcontainer : typeFleteContainer,
+													fportorigin : fleteportOrigin,
+													fportdestiny : fleteportDestiny,
+													containtflete : contentFlete,
+													valmercanciaflete: valormercanciaFlete,
+													impuestosflete : impuestosFlete,
+													tranportflete : transportFlete,
+													seguroflete : seguroFlete
+												}
+
+												// ------------ AÑADIR LOS DATOS AL ENLACE DE WHATSAPP 
+												$("#d-link-messagecontact").attr("href", 
+											`https://api.whatsapp.com/send?phone=51989874368&text=Saludos,%20me%20gustaría%20cotizar%20
+												ID:${objDataTxtWhatsapp.id},%20
+												Tipo%20Flete:%20${objDataTxtWhatsapp.tservice},%20
+												Tipo%20Contenedor:%20${objDataTxtWhatsapp.tcontainer},%20
+												Flete%20Origen:%20${objDataTxtWhatsapp.fportorigin},%20
+												Flete%20Destino:%20${objDataTxtWhatsapp.fportdestiny},%20
+												Contenido%20Flete:%20${objDataTxtWhatsapp.containtflete},%20
+												Valor%20Flete:%202136,%20
+												gastos:%20${objDataTxtWhatsapp.valmercanciaflete},%20
+												Impuestos:%20${objDataTxtWhatsapp.impuestosflete},%20
+												Transporte:%20${objDataTxtWhatsapp.tranportflete},%20
+												Seguro:%20${objDataTxtWhatsapp.seguroflete},%20
+												ImpuestoAprox:%20${twodecimals_FinalTax}`);
+											}else{
+												Swal.fire({
+										      title: 'Error!',
+										      html: `<span class='font-w-300'>Lo sentimos, hubo un error al procesar la información.</span>`,
+										      icon: 'error',
+										      confirmButtonText: 'Aceptar'
+										    });
+											}
+										}else{
+											Swal.fire({
+									      title: 'Error!',
+									      html: `<span class='font-w-300'>Lo sentimos, hubo un error al procesar la información.</span>`,
+									      icon: 'error',
+									      confirmButtonText: 'Aceptar'
+									    });
+										}
+									});
+								}else if($("#s_useregin-sistem").val() != "" || $("#s_useregin-sistem").val() != undefined || $("#s_useregin-sistem").val() != 'undefined' || $("#s_useregin-sistem").val() != null || $("#s_useregin-sistem").val() != 'null'){
+
+									var igv_calculate = convert_IGV * sumbyCIF;
+									var ipm_calculate = sumbyCIF * convert_IPM;
+									var impuestosel_calculate = 0;
+									var igvcalc_twodeci = myRound(igv_calculate);
+									var ipmcalc_twodeci = myRound(ipm_calculate);
+									var percepcion_calculate = (sumbyCIF + igvcalc_twodeci + ipmcalc_twodeci + impuestosel_calculate) * convert_Percepcion;
+									var percepcioncalc_twodeci = myRound(percepcion_calculate);
+									
+									var formdata = new FormData();
+									formdata.append("id_codegenrand", v_idgencoderand);
+									formdata.append("u_login", $("#s_useregin-sistem").val());
+									formdata.append("f_typetransendinitid", transsendinitbyid);
+									formdata.append("f_type_op", v_floadtypeope);
+									formdata.append("f_type_serv", v_typeserviceinit);
+									formdata.append("f_type_transp", v_floadTypeTranport);
+									formdata.append("f_type_cont", v_loadtypecharge);
+									formdata.append("f_optgenfquot", v_foptgnfquotevl);
+									formdata.append("u_n_document", "No especificado");
+									formdata.append("u_enterprise", "No especificado");
+									formdata.append("u_telephone", "No especificado");
+									formdata.append("u_service", "No especificado");
+									formdata.append("u_cont", v_fnamecategprod);
+									formdata.append("f_origen", portOriginName);
+									formdata.append("f_destiny", portDestinyName);
+									formdata.append("f_desc_w_v", v_fpckgcontquant);
+									formdata.append("f_weight_v", v_ftcomparweacbm);
+									formdata.append("f_translocation", v_fplctopckloc);
+									formdata.append("f_time_transit", v_ftaproxtransbycont);
+									formdata.append("f_fob", totalfinalvaluefob);
+									formdata.append("f_flete", totflete);
+									formdata.append("f_insurance", initvalinsurance);
+									formdata.append("f_cif", sumbyCIF);
+									formdata.append("f_v_IGV", restaxvalues[0].data_value);
+									formdata.append("f_v_IPM", restaxvalues[1].data_value);
+									formdata.append("f_importadoprev", v_fprevimports);
+									formdata.append("f_v_percepcion", percepcion_notfilter);
+									formdata.append("f_IGV", igvcalc_twodeci);
+									formdata.append("f_IPM", ipmcalc_twodeci);
+									formdata.append("f_percepcion", percepcioncalc_twodeci);
+									formdata.append("f_transporte_interno", totaltransport);
+									formdata.append("f_comision_agencia", fvalfinal_com_agencia);
+									formdata.append("f_gastos_operativos", fvalfinal_gas_operativos);
+									formdata.append("f_totalinsurance", finalRoundinsurance);
+									formdata.append("f_totalservices", totalNotround);
+									formdata.append("f_totalservicesIGV18", totalNotRountByIGV);
+									formdata.append("f_totalimpuestos", twodecimals_FinalTax);
+									formdata.append("f_totalwithIGV", totalNotRoundFinal);
+									formdata.append("f_validdesde", v_validdesde);
+									formdata.append("f_validhasta", v_validhasta);
+
+									$.ajax({
+										url: 'controllers/prcss_add-quotation-user.php',
+										method: 'POST',
+										datatype: "JSON",
+										data: formdata,
+										contentType: false,
+							      cache: false,
+							      processData: false
+									}).done((e) => {
+										if(e != ""){
+											var r = JSON.parse(e);
+											// --------------- TOTALES EN RE-MOSTRADO DE INFORMACÍON...
+									  	var partFinalDecimal = 0;
+									  	var partFinalDecimal_FTotal = 0;
+											if(r.res == "non_existent"){
+												// --------------- IMPRIMIR EL CÓDIGO AUTOGENERADO DE LA COTIZACIÓN
+										  	$("#v_gencodexxx").text(r.received[0].code_quote);
+										  	// --------------- IMPRIMIR LA VALIDEZ DE LA COTIZACIÓN
+										  	if(r.received[0].f_validdesde == 0 || r.received[0].f_validhasta == 0 || r.received[0].f_validdesde == "0000-00-00 00:00:00" || r.received[0].f_validhasta == "0000-00-00 00:00:00"){
+										  		$("#v_validratedate").text('No especificado');
+										  	}else{
+											  	var convertOneDATE =  new Date(Date.parse(r.received[0].f_validdesde.replace(/-/g, '/')));
+											    var convertTwoDATE =  new Date(Date.parse(r.received[0].f_validhasta.replace(/[-]/g,'/')));
+											    //var options = { year: 'numeric', month: '2-digit', day: 'numeric' };
+											    var options = { year: 'numeric', month: 'long', day: 'numeric' };
+											    var convertDateValidDesde = convertOneDATE.toLocaleDateString("es-ES", options);
+											    var convertDateValidHasta = convertTwoDATE.toLocaleDateString("es-ES", options);
+											    var separateDateValidDesde = convertDateValidDesde.split(" ");
+											    var separateDateValidHasta = convertDateValidHasta.split(" ");
+											    var monthSeparatetoArrayDesde = separateDateValidDesde[2].slice(0, 3);
+											    var monthSeparatetoArrayHasta = separateDateValidHasta[2].slice(0, 3);
+											    var val_dateValidDesde = separateDateValidDesde[0]+" "+"de"+" "+firstToUppercase(monthSeparatetoArrayDesde);
+											    var val_dateValidHasta = separateDateValidHasta[0]+" "+"de"+" "+firstToUppercase(monthSeparatetoArrayHasta);
+											    $("#v_validratedate").text(" "+val_dateValidDesde+" - "+val_dateValidHasta);
+										  	}
+
+										  	// --------------- IMPRIMIR EL TOTAL - SERVICIOS
+										  	var n = Math.abs(r.received[0].f_totalservices);
+												partInteger = Math.trunc(n);
+												var separate_point = partInteger.toString().replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d)\.?)/g, ".");
+												partDecimal = totalNotround.toString().split('.');
+												if(partDecimal[1] == undefined || partDecimal[1] == 'undefined' || partDecimal[1] == ""){partFinalDecimal = '00';
+												}else	if(partDecimal[1].length < 2){partFinalDecimal = partDecimal[1]+'0';
+												}else{partFinalDecimal = partDecimal[1];}
+												$("#intdecval-quotefinal").html(`<span>${separate_point},<sup>${partFinalDecimal}</sup> USD</span>`);
+
+												// --------------- IMPRIMIR EL TOTAL ENTRE EL IGV
+												var n_byIGV = Math.abs(r.received[0].f_totalservicesIGV18);
+												var partInteger_byIGV = Math.trunc(n_byIGV);
+												var separate_point_byIGV = partInteger_byIGV.toString().replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d)\.?)/g, ".");
+												var part_decimalbyIGV = totalNotRountByIGV.toString().split('.');
+												var partFinal_decimal_byIGV = 0;
+												if(part_decimalbyIGV[1] == undefined || part_decimalbyIGV[1] == 'undefined' || part_decimalbyIGV[1] == ""){partFinal_decimal_byIGV = '00';
+												}else	if(part_decimalbyIGV[1].length < 2){partFinal_decimal_byIGV = part_decimalbyIGV[1]+'0';
+												}else{partFinal_decimal_byIGV = part_decimalbyIGV[1];}
+												$("#igvval-quotefinal").html(`<span>+ IGV 18% </span><span>${separate_point_byIGV},${partFinal_decimal_byIGV} USD</span>`);
+
+												// ---------------- IMPRIMIR EL ÚLTIMO VALOR - SUMA DEL TOTAL DE FLETE Y EL TOTAL ENTRE EL IGV
+												var n_ftotal = Math.abs(r.received[0].f_totalwithIGV);
+												partInteger_FTotal = Math.trunc(n_ftotal);
+												var separate_point_FTotal = partInteger_FTotal.toString().replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d)\.?)/g, ".");
+												partDecimal_FTotal = totalNotRoundFinal.toString().split('.');
+												if(partDecimal_FTotal[1] == undefined || partDecimal_FTotal[1] == 'undefined' || partDecimal_FTotal[1] == ""){partFinalDecimal_FTotal = '00';
+												}else	if(partDecimal_FTotal[1].length < 2){partFinalDecimal_FTotal = partDecimal_FTotal[1]+'0';
+												}else{partFinalDecimal_FTotal = partDecimal_FTotal[1];}
+												$("#totalval_quoteFinal").html(`<span>${separate_point_FTotal},<sup>${partFinalDecimal_FTotal}</sup> USD</span>`);
+
+												// --------------- LISTAR DATOS PARA ENVIAR POR WHATSAPP
+												var idcodequote = $("#v_gencodexxx").text() + " - " + $("#v_loadtypecharge").val(), 
+														typeFleteService = $("#m-first-listresume").find("li:first-child").find("div").find("span:nth-child(2)").text(),
+														typeFleteContainer = $("#m-first-listresume").find("li:nth-child(2)").find("div").find("span:nth-child(2)").text(),
+														fleteportOrigin = $("#v-listportsOandD").find("span:first-child").text(),
+														fleteportDestiny = $("#v-listportsOandD").find("span:last-child").text(),
+														contentFlete = $("#m-first-listresume").find("li:nth-child(3)").find("div").find("p").find("span").text(),
+														valormercanciaFlete = $("#m-second-listresume").find("li:first-child").find("div").find("span:nth-child(2)").text(),
+														impuestosFlete = $("#m-second-listresume").find("li:nth-child(2)").find("div").find("span:nth-child(2)").text(),
+														transportFlete = $("#m-second-listresume").find("li:nth-child(3)").find("div").find("span:nth-child(2)").text();
+														seguroFlete = $("#m-second-listresume").find("li:nth-child(4)").find("div").find("span:nth-child(2)").text();
+
+												var objDataTxtWhatsapp = {
+													id: idcodequote,
+													tservice : typeFleteService,
+													tcontainer : typeFleteContainer,
+													fportorigin : fleteportOrigin,
+													fportdestiny : fleteportDestiny,
+													containtflete : contentFlete,
+													valmercanciaflete: valormercanciaFlete,
+													impuestosflete : impuestosFlete,
+													tranportflete : transportFlete,
+													seguroflete : seguroFlete
+												}
+
+												// ------------ AÑADIR LOS DATOS AL ENLACE DE WHATSAPP 
+												$("#d-link-messagecontact").attr("href", 
+											`https://api.whatsapp.com/send?phone=51989874368&text=Saludos,%20me%20gustaría%20cotizar%20
+												ID:${objDataTxtWhatsapp.id},%20
+												Tipo%20Flete:%20${objDataTxtWhatsapp.tservice},%20
+												Tipo%20Contenedor:%20${objDataTxtWhatsapp.tcontainer},%20
+												Flete%20Origen:%20${objDataTxtWhatsapp.fportorigin},%20
+												Flete%20Destino:%20${objDataTxtWhatsapp.fportdestiny},%20
+												Contenido%20Flete:%20${objDataTxtWhatsapp.containtflete},%20
+												Valor%20Flete:%202136,%20
+												gastos:%20${objDataTxtWhatsapp.valmercanciaflete},%20
+												Impuestos:%20${objDataTxtWhatsapp.impuestosflete},%20
+												Transporte:%20${objDataTxtWhatsapp.tranportflete},%20
+												Seguro:%20${objDataTxtWhatsapp.seguroflete},%20
+												ImpuestoAprox:%20${twodecimals_FinalTax}`);
+											}else if(r.res == "already_exists"){
+										  	// --------------- IMPRIMIR EL CÓDIGO AUTOGENERADO DE LA COTIZACIÓN
+										  	$("#v_gencodexxx").text(r.received[0].code_quote);
+										  	// --------------- IMPRIMIR LA VALIDEZ DE LA COTIZACIÓN
+										  	if(r.received[0].f_validdesde == 0 || r.received[0].f_validhasta == 0 || r.received[0].f_validdesde == "0000-00-00 00:00:00" || r.received[0].f_validhasta == "0000-00-00 00:00:00"){
+										  		$("#v_validratedate").text('No especificado');
+										  	}else{
+											  	var convertOneDATE =  new Date(Date.parse(r.received[0].f_validdesde.replace(/-/g, '/')));
+											    var convertTwoDATE =  new Date(Date.parse(r.received[0].f_validhasta.replace(/[-]/g,'/')));
+											    //var options = { year: 'numeric', month: '2-digit', day: 'numeric' };
+											    var options = { year: 'numeric', month: 'long', day: 'numeric' };
+											    var convertDateValidDesde = convertOneDATE.toLocaleDateString("es-ES", options);
+											    var convertDateValidHasta = convertTwoDATE.toLocaleDateString("es-ES", options);
+											    var separateDateValidDesde = convertDateValidDesde.split(" ");
+											    var separateDateValidHasta = convertDateValidHasta.split(" ");
+											    var monthSeparatetoArrayDesde = separateDateValidDesde[2].slice(0, 3);
+											    var monthSeparatetoArrayHasta = separateDateValidHasta[2].slice(0, 3);
+											    var val_dateValidDesde = separateDateValidDesde[0]+" "+"de"+" "+firstToUppercase(monthSeparatetoArrayDesde);
+											    var val_dateValidHasta = separateDateValidHasta[0]+" "+"de"+" "+firstToUppercase(monthSeparatetoArrayHasta);
+											    $("#v_validratedate").text(" "+val_dateValidDesde+" - "+val_dateValidHasta);
+										  	}
+
+										  	// --------------- IMPRIMIR EL TOTAL - SERVICIOS
+										  	var n = Math.abs(r.received[0].f_totalservices);
+												partInteger = Math.trunc(n);
+												var separate_point = partInteger.toString().replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d)\.?)/g, ".");
+												partDecimal = totalNotround.toString().split('.');
+												if(partDecimal[1] == undefined || partDecimal[1] == 'undefined' || partDecimal[1] == ""){partFinalDecimal = '00';
+												}else	if(partDecimal[1].length < 2){partFinalDecimal = partDecimal[1]+'0';
+												}else{partFinalDecimal = partDecimal[1];}
+												$("#intdecval-quotefinal").html(`<span>${separate_point},<sup>${partFinalDecimal}</sup> USD</span>`);
+
+												// --------------- IMPRIMIR EL TOTAL ENTRE EL IGV
+												var n_byIGV = Math.abs(r.received[0].f_totalservicesIGV18);
+												var partInteger_byIGV = Math.trunc(n_byIGV);
+												var separate_point_byIGV = partInteger_byIGV.toString().replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d)\.?)/g, ".");
+												var part_decimalbyIGV = totalNotRountByIGV.toString().split('.');
+												var partFinal_decimal_byIGV = 0;
+												if(part_decimalbyIGV[1] == undefined || part_decimalbyIGV[1] == 'undefined' || part_decimalbyIGV[1] == ""){partFinal_decimal_byIGV = '00';
+												}else	if(part_decimalbyIGV[1].length < 2){partFinal_decimal_byIGV = part_decimalbyIGV[1]+'0';
+												}else{partFinal_decimal_byIGV = part_decimalbyIGV[1];}
+												$("#igvval-quotefinal").html(`<span>+ IGV 18% </span><span>${separate_point_byIGV},${partFinal_decimal_byIGV} USD</span>`);
+
+												// ---------------- IMPRIMIR EL ÚLTIMO VALOR - SUMA DEL TOTAL DE FLETE Y EL TOTAL ENTRE EL IGV
+												var n_ftotal = Math.abs(r.received[0].f_totalwithIGV);
+												partInteger_FTotal = Math.trunc(n_ftotal);
+												var separate_point_FTotal = partInteger_FTotal.toString().replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d)\.?)/g, ".");
+												partDecimal_FTotal = totalNotRoundFinal.toString().split('.');
+												if(partDecimal_FTotal[1] == undefined || partDecimal_FTotal[1] == 'undefined' || partDecimal_FTotal[1] == ""){partFinalDecimal_FTotal = '00';
+												}else	if(partDecimal_FTotal[1].length < 2){partFinalDecimal_FTotal = partDecimal_FTotal[1]+'0';
+												}else{partFinalDecimal_FTotal = partDecimal_FTotal[1];}
+												$("#totalval_quoteFinal").html(`<span>${separate_point_FTotal},<sup>${partFinalDecimal_FTotal}</sup> USD</span>`);
+
+												// --------------- LISTAR DATOS PARA ENVIAR POR WHATSAPP
+												var idcodequote = $("#v_gencodexxx").text() + " - " + $("#v_loadtypecharge").val(), 
+														typeFleteService = $("#m-first-listresume").find("li:first-child").find("div").find("span:nth-child(2)").text(),
+														typeFleteContainer = $("#m-first-listresume").find("li:nth-child(2)").find("div").find("span:nth-child(2)").text(),
+														fleteportOrigin = $("#v-listportsOandD").find("span:first-child").text(),
+														fleteportDestiny = $("#v-listportsOandD").find("span:last-child").text(),
+														contentFlete = $("#m-first-listresume").find("li:nth-child(3)").find("div").find("p").find("span").text(),
+														valormercanciaFlete = $("#m-second-listresume").find("li:first-child").find("div").find("span:nth-child(2)").text(),
+														impuestosFlete = $("#m-second-listresume").find("li:nth-child(2)").find("div").find("span:nth-child(2)").text(),
+														transportFlete = $("#m-second-listresume").find("li:nth-child(3)").find("div").find("span:nth-child(2)").text();
+														seguroFlete = $("#m-second-listresume").find("li:nth-child(4)").find("div").find("span:nth-child(2)").text();
+
+												var objDataTxtWhatsapp = {
+													id: idcodequote,
+													tservice : typeFleteService,
+													tcontainer : typeFleteContainer,
+													fportorigin : fleteportOrigin,
+													fportdestiny : fleteportDestiny,
+													containtflete : contentFlete,
+													valmercanciaflete: valormercanciaFlete,
+													impuestosflete : impuestosFlete,
+													tranportflete : transportFlete,
+													seguroflete : seguroFlete
+												}
+
+												// ------------ AÑADIR LOS DATOS AL ENLACE DE WHATSAPP 
+												$("#d-link-messagecontact").attr("href", 
+											`https://api.whatsapp.com/send?phone=51989874368&text=Saludos,%20me%20gustaría%20cotizar%20
+												ID:${objDataTxtWhatsapp.id},%20
+												Tipo%20Flete:%20${objDataTxtWhatsapp.tservice},%20
+												Tipo%20Contenedor:%20${objDataTxtWhatsapp.tcontainer},%20
+												Flete%20Origen:%20${objDataTxtWhatsapp.fportorigin},%20
+												Flete%20Destino:%20${objDataTxtWhatsapp.fportdestiny},%20
+												Contenido%20Flete:%20${objDataTxtWhatsapp.containtflete},%20
+												Valor%20Flete:%202136,%20
+												gastos:%20${objDataTxtWhatsapp.valmercanciaflete},%20
+												Impuestos:%20${objDataTxtWhatsapp.impuestosflete},%20
+												Transporte:%20${objDataTxtWhatsapp.tranportflete},%20
+												Seguro:%20${objDataTxtWhatsapp.seguroflete},%20
+												ImpuestoAprox:%20${twodecimals_FinalTax}`);
+											}else{
+												Swal.fire({
+										      title: 'Error!',
+										      html: `<span class='font-w-300'>Lo sentimos, hubo un error al procesar la información.</span>`,
+										      icon: 'error',
+										      confirmButtonText: 'Aceptar'
+										    });
+											}
+										}else{
+											Swal.fire({
+									      title: 'Error!',
+									      html: `<span class='font-w-300'>Lo sentimos, hubo un error al procesar la información.</span>`,
+									      icon: 'error',
+									      confirmButtonText: 'Aceptar'
+									    });
+										}
+									});
+								}else{
+									window.location.href = "marketplace-logistico";
+								}
+						  });
+					  });
+
+			  	}else{
+			  		console.log('Lo sentimos, hubo un error al procesar la información.');
+			  	}
 			  });
 	  	}else{
 	  		console.log('Lo sentimos hubo un error al procesar la información');
