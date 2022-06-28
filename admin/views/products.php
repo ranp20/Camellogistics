@@ -29,11 +29,11 @@
 						<h2 class="cont-dashCamel__addtitle--title">PRODUCTOS</h2>
 						<button type="button" href="#" id="add-regulator" class="cont-dashCamel__addtitle--btn-add" data-toggle="modal" data-target="#addproductModal"><span class="cont-dashCamel__addtitle--btn-add__hidden">Agregar&nbsp;</span>+</button>
 					</div>
-					<div class="cont-dashCamel__inputsearch-table">
+<!-- 					<div class="cont-dashCamel__inputsearch-table">
 						<input type="text" class="cont-dashCamel__inputsearch-table--input" name="searchproducts" id="searchproducts" maxlength="100" placeholder="Buscar productos...">
-					</div>
+					</div> -->
 					<div class="contain-table-responsive">
-						<table class="cont-dashCamel__list-results">
+						<table id="tbl_products" class="cont-dashCamel__list-results" cellpadding="0" width="100%">
 							<thead>
 								<tr>
 									<th>ID</th>
@@ -48,20 +48,11 @@
 									<th></th>
 								</tr>
 							</thead>
-							<tbody id="tbl_products">
+							<tbody>
 									
 							</tbody>
 						</table>
 					</div>
-					<!-- <div class="container-fluid">
-				    <div class="row">
-				      <div class="col-xs-12">
-				        <h2 class="text-center mb-4"> Listado de Usuarios </h2>
-				        <div id="loader" class="text-center"> <img src="<?= $url ?>assets/img/utilities/loader.gif"></div>
-				        <div class="outer_div"></div>
-				      </div>
-				    </div>
-				  </div> -->
 					<!-- MODAL - AGREGAR NUEVO ITEM -->
 					<div class="modal fade bootstrapmodal-custom" id="addproductModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 					  <div class="modal-dialog" role="document">

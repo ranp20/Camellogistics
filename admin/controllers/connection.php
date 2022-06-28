@@ -15,7 +15,7 @@ $password = "";
 $charset = "utf8";
 
 try {
-  $con = new PDO("mysql:host=$servidor;dbname=$dbname",$usuario,$password,array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES $charset"));
+  $con = new PDO("mysql:host=$servidor;dbname=$dbname;charset=$charset",$usuario,$password,array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES $charset"));
   $con->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 }catch(PDOException $e){
   echo "La conexión ha fallado: " . $e->getMessage();
