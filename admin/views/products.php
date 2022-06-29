@@ -218,7 +218,7 @@ $adm_config = $settings->list();
 						        		</div>
 						        	</div>
 						        	<div id="sel-optsTaxationAdditionalsMoreUpdate"></div>
-						        	<div class="cont-modalbootstrapupdate__form__cControlSwitch">
+						        	<div class="cont-modalbootstrapupdate__form__cControlSwitch mgt-05rem">
 						        		<span for="" class="cont-modalbootstrapupdate__form__cControlSwitch__label">FICHA TÉCNICA Y CERTIFICADO DE CONFORMIDAD</span>
 						        		<div class="cont-modalbootstrapupdate__form__cControlSwitch__cSwitch">
 						        			<div class="cont-modalbootstrapupdate__form__cControlSwitch__cSwitch__c">
