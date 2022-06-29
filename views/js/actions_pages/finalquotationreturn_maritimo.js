@@ -185,6 +185,7 @@ $(document).ready(function(){
 	var totalamountadditional = parseInt(v_fquaprcataadd) * myRound(v_fammvthpcat); //MONTO ADICIONAL
   var totalfinalvaluefob = parseFloat(twodecimals(cutewithoutofpricefob)); //TOTAL DE VALOR FOB
   var totalfinalvaluedownload = parseFloat(twodecimals(receiveddownload)); //TOTAL DE VALOR DE DESCARGA
+  var totalftecycertconform = parseFloat(v_fftecycertconformpcatg); // TOTAL FICHA TÉCNICA Y CERTIFICADO DE CONFORMIDAD
 
 	// LLAMAR A LOS VALORES DE ASEGURAMIENTO, METER LOS VALORES DENTRO DEL AJAX DE TAXATION O CREAR VARIABLES GLOBALES Y USARLAS
 	$.ajax({
@@ -301,7 +302,7 @@ $(document).ready(function(){
 						  			fvalfinal_com_agencia = com_agencia_fcl;
 						  		}
 				  	 			// SUMAR TODOS LOS SERVICIOS - FCL
-				  	 			var totalServiciosTODOS = emision_bl_fcl+visto_bueno_fcl+almacen_ref_fcl+gremios_maritimos_fcl+thc_fcl+devol_contenedor_fcl+fvalfinal_com_agencia+fvalfinal_gas_operativos;
+				  	 			var totalServiciosTODOS = emision_bl_fcl+visto_bueno_fcl+almacen_ref_fcl+gremios_maritimos_fcl+thc_fcl+devol_contenedor_fcl+fvalfinal_com_agencia+fvalfinal_gas_operativos+totalftecycertconform;
 				  	 			sumTotalServices = totaltransport + totalamountadditional + totalServiciosTODOS; // VALOR TOTAL - SERVICIOS
 				  	 			sumTotalbyIGV = (totaltransport + totalamountadditional + totalServiciosTODOS) * (18 / 100); // VALOR TOTAL - SERVICIOS + IGV 18%
 				  	 			sumTotalFinalFleteandIGV = sumTotalServices + sumTotalbyIGV; // VALOR TOTAL FINAL DE LA COTIZACIÓN
@@ -315,7 +316,7 @@ $(document).ready(function(){
 						  			fvalfinal_com_agencia = com_agencia_fcl;
 						  		}
 						  		// SUMAR TODOS LOS SERVICIOS - LCL
-				  	 			var totalServiciosTODOS = emision_bl_lcl+handling_lcl+visto_bueno_lcl+descarga_lcl+almacen_ref_lcl+fvalfinal_com_agencia+fvalfinal_gas_operativos;
+				  	 			var totalServiciosTODOS = emision_bl_lcl+handling_lcl+visto_bueno_lcl+descarga_lcl+almacen_ref_lcl+fvalfinal_com_agencia+fvalfinal_gas_operativos+totalftecycertconform;
 				  	 			sumTotalServices = totaltransport + totalamountadditional + totalServiciosTODOS; // VALOR TOTAL - SERVICIOS
 				  	 			sumTotalbyIGV = (totaltransport + totalamountadditional + totalServiciosTODOS) * (18 / 100); // VALOR TOTAL - SERVICIOS + IGV 18%
 				  	 			sumTotalFinalFleteandIGV = sumTotalServices + sumTotalbyIGV; // VALOR TOTAL FINAL DE LA COTIZACIÓN
@@ -324,7 +325,7 @@ $(document).ready(function(){
 				  	 		}
 				  	 	}else if(v_foptgnfquotevl == "not-moreOpts"){
 				  	 		if(v_loadtypecharge == "FCL"){
-				  	 			totalServiciosTODOS = thc_fcl;
+				  	 			var totalServiciosTODOS = thc_fcl+totalftecycertconform;
 				  	 			sumTotalServices = totaltransport + totalamountadditional + totalServiciosTODOS; // VALOR TOTAL - SERVICIOS
 				  	 			sumTotalbyIGV = (totaltransport + totalamountadditional + totalServiciosTODOS) * (18 / 100); // VALOR TOTAL - SERVICIOS + IGV 18%
 				  	 			sumTotalFinalFleteandIGV = sumTotalServices + sumTotalbyIGV; // VALOR TOTAL FINAL DE LA COTIZACIÓN
@@ -336,7 +337,7 @@ $(document).ready(function(){
 						  		}else{
 						  			fvalfinal_com_agencia = com_agencia_fcl;
 						  		}
-						  		totalServiciosTODOS = almacen_ref_lcl+fvalfinal_gas_operativos+fvalfinal_com_agencia;
+						  		var totalServiciosTODOS = almacen_ref_lcl+fvalfinal_gas_operativos+fvalfinal_com_agencia+totalftecycertconform;
 						  		sumTotalServices = totaltransport + totalamountadditional + totalServiciosTODOS; // VALOR TOTAL - SERVICIOS
 				  	 			sumTotalbyIGV = (totaltransport + totalamountadditional + totalServiciosTODOS) * (18 / 100); // VALOR TOTAL - SERVICIOS + IGV 18%
 				  	 			sumTotalFinalFleteandIGV = sumTotalServices + sumTotalbyIGV; // VALOR TOTAL FINAL DE LA COTIZACIÓN
@@ -536,6 +537,7 @@ $(document).ready(function(){
 									formdata.append("f_transporte_interno", totaltransport);
 									formdata.append("f_comision_agencia", fvalfinal_com_agencia);
 									formdata.append("f_gastos_operativos", fvalfinal_gas_operativos);
+									formdata.append("f_fichatecnicaycertconform", v_fftecycertconformpcatg);
 									formdata.append("f_totalinsurance", finalRoundinsurance);
 									formdata.append("f_totalservices", totalNotround);
 									formdata.append("f_totalservicesIGV18", totalNotRountByIGV);
@@ -805,6 +807,7 @@ $(document).ready(function(){
 									formdata.append("f_transporte_interno", totaltransport);
 									formdata.append("f_comision_agencia", fvalfinal_com_agencia);
 									formdata.append("f_gastos_operativos", fvalfinal_gas_operativos);
+									formdata.append("f_fichatecnicaycertconform", v_fftecycertconformpcatg);
 									formdata.append("f_totalinsurance", finalRoundinsurance);
 									formdata.append("f_totalservices", totalNotround);
 									formdata.append("f_totalservicesIGV18", totalNotRountByIGV);

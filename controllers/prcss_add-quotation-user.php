@@ -66,6 +66,7 @@ if(isset($_POST) && !empty($_POST)){
 	  'f_comision_agencia' => (!isset($_POST['f_comision_agencia']) || $_POST['f_comision_agencia'] == "" || $_POST['f_comision_agencia'] == 0) ? 0 : $_POST['f_comision_agencia'],
 	  'f_gastos_operativos' => (!isset($_POST['f_gastos_operativos']) || $_POST['f_gastos_operativos'] == "" || $_POST['f_gastos_operativos'] == 0) ? 0 : $_POST['f_gastos_operativos'],
 	  'f_estiba' => 0,
+	  'f_fichatecnicaycertconform' => (!isset($_POST['f_fichatecnicaycertconform']) || $_POST['f_fichatecnicaycertconform'] == "" || $_POST['f_fichatecnicaycertconform'] == 0) ? 0 : $_POST['f_fichatecnicaycertconform'],
 	  'f_totalinsurance' => $_POST['f_totalinsurance'],
 	  'f_totalservices' => $_POST['f_totalservices'],
 	  'f_totalservicesIGV18' => $_POST['f_totalservicesIGV18'],

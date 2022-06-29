@@ -91,6 +91,7 @@ class Quotation_user extends Connection
       :f_comision_agencia,
       :f_gastos_operativos,
       :f_estiba,
+      :f_fichatecnicaycertconform,
       :f_totalinsurance,
       :f_totalservices,
       :f_totalservicesIGV18,
@@ -103,12 +104,6 @@ class Quotation_user extends Connection
       foreach ($arr_userquotation as $key => $value) {
         $stm->bindValue($key, $value);
       }
-      /*
-      $stm->execute();
-      $data = $stm->fetchAll(PDO::FETCH_ASSOC);
-      $res = json_encode($data);
-      return $res;
-      */
       $stm->execute();
       return $stm->rowCount() > 0 ? 'true' : 'false';
     }catch(PDOException $e){
