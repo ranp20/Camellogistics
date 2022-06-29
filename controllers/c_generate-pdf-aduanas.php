@@ -8,13 +8,11 @@ require_once '../models/quotation-user.php';
 $quotebyidcode = new Quotation_user();
 $listbyidcode = $quotebyidcode->get_by_idcodegenrand($_POST['id_codegenrand']);
 // print_r($listbyidcode);
-
 function cambiaf_mysql($date){
   $originalDate = $date;
 	$newDate = date("d/m/Y", strtotime($originalDate));
 	return $newDate;
 }
-
 function addTwoDecimals($number){
 	$output_final = "";
 	if($number != "0" || $number != 0){
@@ -30,6 +28,15 @@ function addTwoDecimals($number){
 		$output_final = $number;
 	}
 	return $output_final;
+}
+function maxcharacters($string, $maxletters){
+	$output_strg = "";
+	if(strlen($string) > $maxletters){
+		$output_strg = substr($string, 0, $maxletters) . "...";
+	}else{
+		$output_strg = $string;
+	}
+	return $output_strg;
 }
 //VARIABLES A USAR EN EL MOSTRADO DE INFORMACIÓN DENTRO DEL PDF
 $creation_date = $listbyidcode[0]['creation_date'];
@@ -63,20 +70,18 @@ $f_percepcion = $listbyidcode[0]['f_percepcion'];
 $f_ad_valoren = $listbyidcode[0]['f_ad_valoren'];
 $f_impuesto_selectivo = $listbyidcode[0]['f_impuesto_selectivo'];
 $f_antidumping = $listbyidcode[0]['f_antidumping'];
-$ftotal_taxation = $f_IGV + $f_IPM + $f_percepcion + $f_ad_valoren + $f_impuesto_selectivo + $f_antidumping;
-$ftotal_taxation_roundTwo = bcdiv($ftotal_taxation, '1', 2);
+$f_totalimpuestos = $listbyidcode[0]['f_totalimpuestos'];
 // VALORES CALCULADOS DE SERVICIOS
 $f_comision_agencia = $listbyidcode[0]['f_comision_agencia'];
 $f_gastos_operativos = $listbyidcode[0]['f_gastos_operativos'];
 $f_transporte_interno = $listbyidcode[0]['f_transporte_interno'];
-$ftotal_services = $f_comision_agencia + $f_gastos_operativos + $f_transporte_interno;
-$ftotal_services_roundTwo = bcdiv($ftotal_services, '1', 2);
-$ftotal_IGV_services = ($f_comision_agencia + $f_gastos_operativos + $f_transporte_interno) * (18 / 100);
-$ftotal_IGV_services_roundtwo = bcdiv($ftotal_IGV_services, '1', 2);
-$ftotal_proforma = $ftotal_services + $ftotal_IGV_services;
-$ftotal_proforma_roundTwo = bcdiv($ftotal_proforma, '1', 2);
+$f_fichatecnicaycertconform = $listbyidcode[0]['f_fichatecnicaycertconform'];
+$f_total_services = $listbyidcode[0]['f_totalservices'];
+$f_totalservicesIGV18 = $listbyidcode[0]['f_totalservicesIGV18'];
+$f_totalwithIGV = $listbyidcode[0]['f_totalwithIGV'];
 //NOMBRE DE LA COTIZACIÓN
 $name_quotation = "Presupuesto-".$_POST['code_quote']."-".$f_typecontainer;
+
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -161,7 +166,7 @@ $name_quotation = "Presupuesto-".$_POST['code_quote']."-".$f_typecontainer;
 	      </div>
 	      <div id="marc_dat3_der">
 	        <div class="item_demp3_dat1"><?php echo $f_typetransendinitid; ?></div>
-	        <div class="item_demp3_dat1"><?php echo $u_contain; ?></div>
+	        <div class="item_demp3_dat1"><?php echo maxcharacters($u_contain, 32); ?></div>
 	        <!-- <div class="item_demp3_dat1">FOB - QINGDAO - CHINA</div> -->
 	        <div class="item_demp3_dat1"><?php echo $f_desc_weightvolumen; ?></div>
 	        <div class="item_demp3_dat1"><?php echo $f_time_transit; ?></div>
@@ -275,7 +280,7 @@ $name_quotation = "Presupuesto-".$_POST['code_quote']."-".$f_typecontainer;
 	          <div class="item_marc_tot_ser pt-02">-</div>
 	          <div class="item_marc_tot_ser pt-02 text-red">-</div>
 	          <div class="item_marc_tot_ser pt-02 text-red">-</div>
-	          <div class="item_marc_tot_ser h-25 pt-05">-</div>
+	          <div class="item_marc_tot_ser h-25 pt-05"><?php echo addTwoDecimals($f_fichatecnicaycertconform); ?></div>
 	          <div class="item_marc_tot_ser pt-02">-</div>
 	          <div class="item_marc_tot_ser pt-02 text-red">-</div>
 	          <div class="item_marc_tot_ser pt-02"><?php echo addTwoDecimals($f_comision_agencia); ?></div>
@@ -290,7 +295,7 @@ $name_quotation = "Presupuesto-".$_POST['code_quote']."-".$f_typecontainer;
 	          <div class="item_marc_usd_det_ser1">$</div>
 	        </div>
 	        <div id="ammount_serv_first_camel1">
-	          <div class="item_marc_tot_ser"><?php echo addTwoDecimals($ftotal_services_roundTwo); ?></div>
+	          <div class="item_marc_tot_ser"><?php echo addTwoDecimals($f_total_services); ?></div>
 	        </div>
 	      </div>
 	      <div id="marc_det_inf2_log">
@@ -301,7 +306,7 @@ $name_quotation = "Presupuesto-".$_POST['code_quote']."-".$f_typecontainer;
 	          <div class="item_marc_usd_det_ser1">$</div>
 	        </div>
 	        <div id="ammount_serv_first_camel2">
-	          <div class="item_marc_tot_ser"><?php echo addTwoDecimals($ftotal_IGV_services_roundtwo); ?></div>
+	          <div class="item_marc_tot_ser"><?php echo addTwoDecimals($f_totalservicesIGV18); ?></div>
 	        </div>     
 	      </div>
 	    </div>
@@ -318,7 +323,7 @@ $name_quotation = "Presupuesto-".$_POST['code_quote']."-".$f_typecontainer;
 		      <div class="item_marc_usd_det_ser11"><strong>$</strong></div>
 	      </div>
 	      <div id="ammount_serv_ulti_camel1">
-	        <div class="item_marc_tot_ser11"><strong><?php echo addTwoDecimals($ftotal_taxation_roundTwo); ?></strong></div>
+	        <div class="item_marc_tot_ser11"><strong><?php echo addTwoDecimals($f_totalimpuestos); ?></strong></div>
 	      </div>        
 	    </div>
 	    <div id="marc_des_monto">
@@ -332,7 +337,7 @@ $name_quotation = "Presupuesto-".$_POST['code_quote']."-".$f_typecontainer;
 	        <div class="item_marc_usd_det_ser11"><strong>$</strong></div>
 	      </div>
 	      <div id="ammount_serv_ulti_camel2">
-	        <div class="item_marc_tot_ser11"><strong><?php echo addTwoDecimals($ftotal_proforma_roundTwo); ?></strong></div>
+	        <div class="item_marc_tot_ser11"><strong><?php echo addTwoDecimals($f_totalwithIGV); ?></strong></div>
 	      </div>     
 	    </div>
 	  </div>
