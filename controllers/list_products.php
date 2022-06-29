@@ -7,7 +7,7 @@ class Products extends Connection{
 			$sql = "SELECT
 								tbp.id as 'id_prod',
 								tbp.name as 'name_prod',
-								tbp.regulated,
+								tbp.sel_regulated,
 								tbp.id_regulator,
 								tbp.id_regulator_two,
 								(SELECT tbr.name FROM tbl_regulators tbr WHERE tbr.id = tbp.id_regulator) as 'reguladorOne',
@@ -15,7 +15,8 @@ class Products extends Connection{
 								tbp.amount_additional as 'montoadd',
 								tbp.ad_valoren as 'ad_valoren',
 								tbp.impuesto_selectivo as 'impuesto_selectivo',
-								tbp.antidumping as 'antidumping'
+								tbp.antidumping as 'antidumping',
+								tbp.fichatecycertconform as 'ftecycertconform'
 							FROM tbl_products tbp
 							ORDER BY tbp.id ASC";
 
@@ -24,7 +25,7 @@ class Products extends Connection{
 				$sql = "SELECT
 									tbp.id as 'id_prod',
 									tbp.name as 'name_prod',
-									tbp.regulated,
+									tbp.sel_regulated,
 									tbp.id_regulator,
 									tbp.id_regulator_two,
 									(SELECT tbr.name FROM tbl_regulators tbr WHERE tbr.id = tbp.id_regulator) as 'reguladorOne',
@@ -32,10 +33,11 @@ class Products extends Connection{
 									tbp.amount_additional as 'montoadd',
 									tbp.ad_valoren as 'ad_valoren',
 									tbp.impuesto_selectivo as 'impuesto_selectivo',
-									tbp.antidumping as 'antidumping'
+									tbp.antidumping as 'antidumping',
+									tbp.fichatecycertconform as 'ftecycertconform'
 								FROM tbl_products tbp
 								WHERE tbp.name LIKE '%".$search."%' OR
-											tbp.regulated LIKE '%".$search."%'
+											tbp.sel_regulated LIKE '%".$search."%'
 								ORDER BY tbp.id ASC";
 			}
 

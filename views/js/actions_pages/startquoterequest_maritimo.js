@@ -1451,6 +1451,7 @@ $(document).on("click", "#list-SelOptionResultExp a", function(){
             <input type="hidden" value="" id="val-ammtthxvaone" name="val-ammtthxvaonepcatg" class="n-val-sd">
             <input type="hidden" value="" id="val-ammtthxvatwo" name="val-ammtthxvatwopcatg" class="n-val-sd">
             <input type="hidden" value="" id="val-ammtthxvathree" name="val-ammtthxvathreepcatg" class="n-val-sd">
+            <input type="hidden" value="" id="val-ftecycertconform" name="val-ftecycertconformpcatg" class="n-val-sd">
           </span>
         </span>
       </div>
@@ -1568,6 +1569,7 @@ $(document).on("click","#list-insuremerchandise-notMoreOpts a",function(){
             <input type="hidden" value="" id="val-ammtthxvatwo-noMoreOpts" name="val-ammtthxvatwopcatg" class="n-val-sd">
             <input type="hidden" value="" id="val-ammtthxvathree-noMoreOpts" name="val-ammtthxvathreepcatg" class="n-val-sd">
             <input type="hidden" id="val_valfleteprod" name="val_valfleteprod" class="n-val-sd" value="">
+            <input type="hidden" value="" id="val-ftecycertconform-noMoreOpts" name="val-ftecycertconformpcatg" class="n-val-sd">
           </span>
         </span>
       </div>
@@ -1714,10 +1716,12 @@ $(document).on("click", ".cont-MainCamelLog--c--contSteps--item--cStep--mFrmIpts
   var taxationOneVal = parseFloat($(this).attr("data-taxone"));
   var taxationTwoVal = parseFloat($(this).attr("data-taxtwo"));
   var taxationThreeVal = parseFloat($(this).attr("data-taxthree"));
+  var fichatecycertconform = parseFloat($(this).attr("data-fichatecycertconform"));
   // ------------ ASIGNAR A INPUTS DE ENVÍO
   $("#val-ammtthxvaone-noMoreOpts").val(taxationOneVal); //VALOR DE AD-VALOREN
   $("#val-ammtthxvatwo-noMoreOpts").val(taxationTwoVal); //VALOR DE IMPUESTO SELECCTIVO
   $("#val-ammtthxvathree-noMoreOpts").val(taxationThreeVal); //VALOR DE ANTIDUMPING
+  $("#val-ftecycertconform-noMoreOpts").val(fichatecycertconform); // VALOR DE FICHA TÉCNICA Y CERTIFICADO DE CONFORMIDAD
   // ------------ INPUT POST MONTO ADICIONAL DEL PRODUCTO
   $("#val-ammvthisprod-noMoreOpts").val($(this).attr("data-amountadditional"));
   // ------------ MOSTRAR/OCULTAR DE ACUERDO A EL VALOR DEL MONTO ADICIONAL 
@@ -2637,10 +2641,10 @@ function listProductsUser(searchVal){
     datatype: "JSON",
     contentType: 'application/x-www-form-urlencoded;charset=UTF-8',
     data: {searchList : searchVal},
-  }).done( function (res) {
-    var response = JSON.parse(res);
+  }).done((e) => {
+    var r = JSON.parse(e);
     var template = "";
-    if(response.length == 0){
+    if(r.length == 0){
       template = `
         <li class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl--cListChange--m--item">
           <p>No encontado</p>
@@ -2650,36 +2654,37 @@ function listProductsUser(searchVal){
       $("#m-listAllNamTypeProds").html(template);
       setTimeout(function(){$("#m-listAllNamTypeProds").removeClass("show");}, 4500);
     }else{
-      response.forEach(e => {
-      var nounRegOne = "";
-      var nounRegTwo = "";
-      var nounOneAndTwoRegs = "";
+      $.each(r,function(i,e){
+        var nounRegOne = "";
+        var nounRegTwo = "";
+        var nounOneAndTwoRegs = "";
 
-      (e.reguladorOne == null || e.reguladorOne == "") ? nounRegOne = "NO REQUIERE" : nounRegOne = e.reguladorOne;
-      (e.reguladorTwo == null || e.reguladorTwo == "") ? nounRegTwo = "NO REQUIERE" : nounRegTwo = e.reguladorTwo;
-      if(e.reguladorOne == null || e.reguladorOne == "" && e.reguladorTwo == null || e.reguladorTwo == ""){
-        nounOneAndTwoRegs = "NO REQUIERE";
-      }else if(e.reguladorOne == null || e.reguladorOne == ""){
-        nounOneAndTwoRegs = ""+ e.reguladorTwo;
-      }else if(e.reguladorTwo == null || e.reguladorTwo == ""){
-        nounOneAndTwoRegs = ""+ e.reguladorOne;
-      }else{
-        nounOneAndTwoRegs = e.reguladorOne + " / " + e.reguladorTwo;
-      }
-      
-      template += `
-        <li class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl--cListChange--m--item" id="${e.id_prod}" 
-          data-amountadditional="${e.montoadd}"
-          data-taxone="${e.ad_valoren}"
-          data-taxtwo="${e.impuesto_selectivo}"
-          data-taxthree="${e.antidumping}">
-          <p>${e.name_prod}</p>
-          <small>
-            <span>Regulador: </span>
-            <span>${nounOneAndTwoRegs}</span>
-          </small>
-        </li>
-      `;
+        (e.reguladorOne == null || e.reguladorOne == "") ? nounRegOne = "NO REQUIERE" : nounRegOne = e.reguladorOne;
+        (e.reguladorTwo == null || e.reguladorTwo == "") ? nounRegTwo = "NO REQUIERE" : nounRegTwo = e.reguladorTwo;
+        if(e.reguladorOne == null || e.reguladorOne == "" && e.reguladorTwo == null || e.reguladorTwo == ""){
+          nounOneAndTwoRegs = "NO REQUIERE";
+        }else if(e.reguladorOne == null || e.reguladorOne == ""){
+          nounOneAndTwoRegs = ""+ e.reguladorTwo;
+        }else if(e.reguladorTwo == null || e.reguladorTwo == ""){
+          nounOneAndTwoRegs = ""+ e.reguladorOne;
+        }else{
+          nounOneAndTwoRegs = e.reguladorOne + " / " + e.reguladorTwo;
+        }
+        
+        template += `
+          <li class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl--cListChange--m--item" id="${e.id_prod}" 
+            data-amountadditional="${e.montoadd}"
+            data-taxone="${e.ad_valoren}"
+            data-taxtwo="${e.impuesto_selectivo}"
+            data-taxthree="${e.antidumping}"
+            data-fichatecycertconform="${e.ftecycertconform}">
+            <p>${e.name_prod}</p>
+            <small>
+              <span>Regulador: </span>
+              <span>${nounOneAndTwoRegs}</span>
+            </small>
+          </li>
+        `;
       });
       $("#m-listAllNamTypeProds").html(template);
     }
@@ -2720,10 +2725,12 @@ $(document).on("click", ".cont-MainCamelLog--c--contSteps--item--cStep--mFrmIpts
   var taxationOneVal = parseFloat($(this).attr("data-taxone"));
   var taxationTwoVal = parseFloat($(this).attr("data-taxtwo"));
   var taxationThreeVal = parseFloat($(this).attr("data-taxthree"));
+  var fichatecycertconform = parseFloat($(this).attr("data-fichatecycertconform"));
   // ------------ ASIGNAR A INPUTS DE ENVÍO
   $("#val-ammtthxvaone").val(taxationOneVal); //VALOR DE AD-VALOREN
   $("#val-ammtthxvatwo").val(taxationTwoVal); //VALOR DE IMPUESTO SELECCTIVO
   $("#val-ammtthxvathree").val(taxationThreeVal); //VALOR DE ANTIDUMPING
+  $("#val-ftecycertconform").val(fichatecycertconform); // VALOR DE FICHA TÉCNICA Y CERTIFICADO DE CONFORMIDAD
   // ------------ INPUT POST MONTO ADICIONAL DEL PRODUCTO
   $("#val-ammvthisprod").val($(this).attr("data-amountadditional"));
   // ------------ MOSTRAR/OCULTAR DE ACUERDO A EL VALOR DEL MONTO ADICIONAL 
