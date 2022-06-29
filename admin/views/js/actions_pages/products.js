@@ -144,20 +144,6 @@ $(document).on("click","#chck_ammadditional",function(e){
     $("#txt-chck_ammadditional").removeClass("active");
   }
 });
-// ------------ MOSTRAR/OCULTAR DE ACUERDO AL CHECKBOX SELECCIONADO - MONTO ADICIONAL(ACTUALIZAR)
-$(document).on("click", ".cont-modalbootstrapupdate__form--controlRadios--c--control--input[name=sel-addornotaddupdate]", function(){
-  if($(this).attr("id") == "noun-required-amountadditionalupdate"){
-    $("#sel-optsAmountAdditionalMoreUpdate").html("");
-  }else{
-    $("#sel-optsAmountAdditionalMoreUpdate").html(`
-      <div class="cont-modalbootstrapupdate__form--control">
-        <label for="amountadditionalProduct-update" class="cont-modalbootstrapupdate__form--control__label">Precio adicional</label>
-        <input id="amountadditionalProduct-update" class="cont-modalbootstrapupdate__form--control__input" name="amountadditionalProduct-update" type="text" data-valformat="withtwodecimals" maxlength="300" placeholder="Ingrese el monto del producto" step="0.01">
-        <span id="msgErrNounAmountAdditionalProductUpdate"></span>
-      </div>
-    `);
-  }
-});
 // ------------ VALIDAR SI EL MONTO ESTÁ VACÍO
 $(document).on("keyup", "#amountadditionalProduct", function(){ ($(this).val() != 0) ? $("#msgErrNounAmountAdditionalProduct").text("") : $("#msgErrNounAmountAdditionalProduct").text("Debe colocar un monto");});
 // ------------ LISTAR LOS IMPUESTOS ADICIONALES - AGREGAR 1
@@ -751,7 +737,123 @@ var listAllProducts = () => {
     ]
   });
 };
-
+// ------------ REGULADORES - ACTUALIZAR
+$(document).on("click","#chck_regulated-update",function(e){
+  var upd_id = $('#idupdate-product').val();
+  var upd_idregone = $("#required_idregulatorupdate").val();
+  var upd_nameregone = $("#required_regulatorupdate").val();
+  var upd_idregtwo = $("#required_idregulator_twoupdate").val();
+  var upd_nameregtwo = $("#required_regulator_twoupdate").val();
+  if($(this).is(":checked")){
+    $("#sel-optsRegulatorsMoreUpdate").html(`
+      <div class="cont-modalbootstrapupdate__form--controlSelect">
+        <label for="" class="cont-modalbootstrapupdate__form--controlSelect--label">Regulador 1</label>
+        <div class="cont-modalbootstrapupdate__form--controlSelect--cFakeSelect" id="btn-FakeListRegulatorOneUpdate">
+          <span class="cont-modalbootstrapupdate__form--controlSelect--cFakeSelect--txtitemsel" id="selectedItem-fakeSelRegOneUpdate">${upd_nameregone}</span>
+          <input type="text" readonly id="SelectedItem-inputfakeselRegOneUpdate" regularone="${upd_nameregone}" idtregularone="${upd_idregone}">
+          <svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M1 1.08298L5 5L9 1" stroke="#999" stroke-width="1.25727" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <ul class="cont-modalbootstrapupdate__form--controlSelect--m" id="c-listitems-regulatorOneUpdate"></ul>
+        <span id="msgErrNounReguladorOneUpdate"></span>
+      </div>
+      <div class="cont-modalbootstrapupdate__form--controlSelect">
+        <label for="" class="cont-modalbootstrapupdate__form--controlSelect--label">Regulador 2</label>
+        <div class="cont-modalbootstrapupdate__form--controlSelect--cFakeSelect" id="btn-FakeListRegulatorTwoUpdate">
+          <span class="cont-modalbootstrapupdate__form--controlSelect--cFakeSelect--txtitemsel" id="selectedItem-fakeSelRegTwoUpdate">${upd_nameregtwo}</span>
+          <input type="text" readonly id="SelectedItem-inputfakeselRegTwoUpdate" regulartwo="${upd_nameregtwo}" idtregulartwo="${upd_idregtwo}">
+          <svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M1 1.08298L5 5L9 1" stroke="#999" stroke-width="1.25727" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <ul class="cont-modalbootstrapupdate__form--controlSelect--m" id="c-listitems-regulatorTwoUpdate"></ul>
+        <span id="msgErrNounReguladorTwoUpdate"></span>
+      </div>
+    `);
+    $("#chck_regulated-update").attr("checked", "checked");
+    $("#chck_regulated-update").val("SI");
+    $("#txt-chck_regulated-update").text("SI");
+    $("#txt-chck_regulated-update").addClass("active");
+  }else{
+    $("#chck_regulated-update").attr("checked", false);
+    $("#chck_regulated-update").val("NO");
+    $("#txt-chck_regulated-update").text("NO");
+    $("#txt-chck_regulated-update").removeClass("active");
+    $("#sel-optsRegulatorsMoreUpdate").html("");
+  }
+});
+// ------------ MONTO ADICIONAL - ACTUALIZAR
+$(document).on("click","#chck_ammadditional-update",function(e){
+  var upd_ammadditionalval = $("#required_ammountadditinalupdate").val();
+  if($(this).is(":checked")){
+    $("#sel-optsAmountAdditionalMoreUpdate").html(`
+      <div class="cont-modalbootstrapupdate__form--control">
+        <label for="amountadditionalProduct-update" class="cont-modalbootstrapupdate__form--control__label">Precio adicional</label>
+        <input id="amountadditionalProduct-update" class="cont-modalbootstrapupdate__form--control__input" name="amountadditionalProduct-update" type="text" data-valformat="withtwodecimals" maxlength="300" placeholder="Ingrese el monto del producto" step="0.01" value="${upd_ammadditionalval}">
+        <span id="msgErrNounAmountAdditionalProductUpdate"></span>
+      </div>
+    `);
+    $("#chck_ammadditional-update").attr("checked", "checked");
+    $("#chck_ammadditional-update").val("SI");
+    $("#txt-chck_ammadditional-update").text("SI");
+    $("#txt-chck_ammadditional-update").addClass("active");
+  }else{
+    $("#sel-optsAmountAdditionalMoreUpdate").html("");
+    $("#chck_ammadditional-update").attr("checked", false);
+    $("#chck_ammadditional-update").val("NO");
+    $("#txt-chck_ammadditional-update").text("NO");
+    $("#txt-chck_ammadditional-update").removeClass("active");
+  }
+});
+$(document).on("click","#chck_taxadditional-update",function(e){
+  var upd_advalorenval = $("#required_advalorenupdate").val();
+  var upd_imselectivoval = $("#required_impuestoselectivoupdate").val();
+  var upd_antidumpingval = $("#required_antidumpingupdate").val();
+  if($(this).is(":checked")){
+    $("#sel-optsTaxationAdditionalsMoreUpdate").html(`
+      <div class="cont-modalbootstrapupdate__form--control">
+        <label for="taxoneadditional-update" class="cont-modalbootstrapupdate__form--control__label">Ad-Valoren</label>
+        <input id="taxoneadditional-update" class="cont-modalbootstrapupdate__form--control__input" name="taxoneadditional-update" type="text" data-valformat="withtwodecimals" value="${upd_advalorenval}" maxlength="300" placeholder="Ingrese el monto del impuesto" step="0.01">
+        <span id="msgErrNounTaxOneAdditionalProductUpdate"></span>
+      </div>
+      <div class="cont-modalbootstrapupdate__form--control">
+        <label for="taxtwoadditional-update" class="cont-modalbootstrapupdate__form--control__label">Impuesto Selecctivo</label>
+        <input id="taxtwoadditional-update" class="cont-modalbootstrapupdate__form--control__input" name="taxtwoadditional-update" type="text" data-valformat="withtwodecimals" value="${upd_imselectivoval}" maxlength="300" placeholder="Ingrese el monto del impuesto" step="0.01">
+        <span id="msgErrNounTaxTwoAdditionalProductUpdate"></span>
+      </div>
+      <div class="cont-modalbootstrapupdate__form--control">
+        <label for="taxthreeadditional-update" class="cont-modalbootstrapupdate__form--control__label">ANTIDUMPING</label>
+        <input id="taxthreeadditional-update" class="cont-modalbootstrapupdate__form--control__input" name="taxthreeadditional-update" type="text" data-valformat="withtwodecimals" value="${upd_antidumpingval}" maxlength="300" placeholder="Ingrese el monto del impuesto" step="0.01">
+        <span id="msgErrNounTaxThreeAdditionalProductUpdate"></span>
+      </div>
+    `);
+    $("#chck_taxadditional-update").attr("checked", "checked");
+    $("#chck_taxadditional-update").val("SI");
+    $("#txt-chck_taxadditional-update").text("SI");
+    $("#txt-chck_taxadditional-update").addClass("active");
+  }else{
+    $("#sel-optsTaxationAdditionalsMoreUpdate").html("");
+    $("#chck_taxadditional-update").attr("checked", false);
+    $("#chck_taxadditional-update").val("NO");
+    $("#txt-chck_taxadditional-update").text("NO");
+    $("#txt-chck_taxadditional-update").removeClass("active");
+  }
+});
+// ------------ MOSTRAR/OCULTAR DE ACUERDO AL CHECKBOX SELECCIONADO - MONTO ADICIONAL(ACTUALIZAR)
+$(document).on("click", ".cont-modalbootstrapupdate__form--controlRadios--c--control--input[name=sel-addornotaddupdate]", function(){
+  if($(this).attr("id") == "noun-required-amountadditionalupdate"){
+    $("#sel-optsAmountAdditionalMoreUpdate").html("");
+  }else{
+    $("#sel-optsAmountAdditionalMoreUpdate").html(`
+      <div class="cont-modalbootstrapupdate__form--control">
+        <label for="amountadditionalProduct-update" class="cont-modalbootstrapupdate__form--control__label">Precio adicional</label>
+        <input id="amountadditionalProduct-update" class="cont-modalbootstrapupdate__form--control__input" name="amountadditionalProduct-update" type="text" data-valformat="withtwodecimals" maxlength="300" placeholder="Ingrese el monto del producto" step="0.01">
+        <span id="msgErrNounAmountAdditionalProductUpdate"></span>
+      </div>
+    `);
+  }
+});
 // ------------ MOSTRAR EL CONTENIDO DENTRO DEL FORMULARIO DE ACTUALIZAR - IMPUESTOS ADICIONALES
 $(document).on("click", ".cont-modalbootstrapupdate__form--controlRadios--c--control--input[name=sel-taxornottax]", function(){
   if($(this).attr("id") == "noun-required-taxadditionalupdate"){
@@ -796,32 +898,60 @@ $(document).on('click', '.btn-update-detail', function(e){
       pricetadditional_three: $(this).attr('data-pricetadditional_three')
     };
     console.log(item_data);
-    // ------------ VALIDAR SI EL PRODUCTO CONTIENE REGULADORES - MOSTRAR LOS CONTROLES RESPECTIVOS
-    if(item_data['sel_regulated'] == "NO"){
-      $("#sel-optsRegulatorsMoreUpdate").addClass("hidden");
-      $("#sel-optsRegulatorsMoreUpdate").attr("aria-expanded", true);
-      $("#sel-optsRegulatorsMoreUpdate").attr("aria-visibility", "show");
-      $("#noun-required-regupdate").attr("checked", "checked");
-    }else{
-      $("#sel-optsRegulatorsMoreUpdate").removeClass("hidden");
-      $("#sel-optsRegulatorsMoreUpdate").attr("aria-expanded", false);
-      $("#sel-optsRegulatorsMoreUpdate").attr("aria-visibility", "hidden");
-      $("#required-regupdate").attr("checked", "checked");
-    }
-
     // ------------ ASIGNAR A LOS CONTROLES DEL MODAL DE ACTUALIZAR
     $('#idupdate-product').val(item_data['id']);
     $('#name-update').val(item_data['name']);
     $('#required_regsoptupdate').val(item_data['sel_regulated']);
     $('#required_ammadditionalupdate').val(item_data['sel_ammadditional']);
     $('#required_taxadditionalupdate').val(item_data['sel_taxadditional']);
-    $('#SelectedItem-inputfakeselRegOneUpdate').attr("idtregularone", item_data['idregulator']);
-    $('#SelectedItem-inputfakeselRegOneUpdate').attr("regularone", item_data['regulatorone']);
-    $('#SelectedItem-inputfakeselRegTwoUpdate').attr("idtregulartwo", item_data['idregulatortwo']);
-    $('#SelectedItem-inputfakeselRegTwoUpdate').attr("regulartwo", item_data['regulatortwo']);
-    $("#selectedItem-fakeSelRegOneUpdate").text(item_data['regulatorone']);
-    $("#selectedItem-fakeSelRegTwoUpdate").text(item_data['regulatortwo']);
-
+    $("#required_idregulatorupdate").val(item_data['idregulator']);
+    $("#required_regulatorupdate").val(item_data['regulatorone']);
+    $("#required_idregulator_twoupdate").val(item_data['idregulatortwo']);
+    $("#required_regulator_twoupdate").val(item_data['regulatortwo']);
+    $("#required_ammountadditinalupdate").val(item_data['amountadditional']);
+    $("#required_advalorenupdate").val(item_data['pricetadditional_one']);
+    $("#required_impuestoselectivoupdate").val(item_data['pricetadditional_two']);
+    $("#required_antidumpingupdate").val(item_data['pricetadditional_three']);
+    
+    // ------------ VALIDAR SI EL PRODUCTO CONTIENE REGULADORES - MOSTRAR LOS CONTROLES RESPECTIVOS
+    if(item_data['sel_regulated'] == "NO"){
+      $("#chck_regulated-update").attr("checked", false);
+      $("#chck_regulated-update").val("NO");
+      $("#txt-chck_regulated-update").text("NO");
+      $("#txt-chck_regulated-update").removeClass("active");
+      $("#sel-optsRegulatorsMoreUpdate").html("");
+    }else{
+      $("#chck_regulated-update").attr("checked", "checked");
+      $("#chck_regulated-update").val("SI");
+      $("#txt-chck_regulated-update").text("SI");
+      $("#txt-chck_regulated-update").addClass("active");
+      $("#sel-optsRegulatorsMoreUpdate").html(`
+      <div class="cont-modalbootstrapupdate__form--controlSelect">
+        <label for="" class="cont-modalbootstrapupdate__form--controlSelect--label">Regulador 1</label>
+        <div class="cont-modalbootstrapupdate__form--controlSelect--cFakeSelect" id="btn-FakeListRegulatorOneUpdate">
+          <span class="cont-modalbootstrapupdate__form--controlSelect--cFakeSelect--txtitemsel" id="selectedItem-fakeSelRegOneUpdate">${item_data['regulatorone']}</span>
+          <input type="text" readonly id="SelectedItem-inputfakeselRegOneUpdate" regularone="${item_data['regulatorone']}" idtregularone="${item_data['idregulator']}">
+          <svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M1 1.08298L5 5L9 1" stroke="#999" stroke-width="1.25727" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <ul class="cont-modalbootstrapupdate__form--controlSelect--m" id="c-listitems-regulatorOneUpdate"></ul>
+        <span id="msgErrNounReguladorOneUpdate"></span>
+      </div>
+      <div class="cont-modalbootstrapupdate__form--controlSelect">
+        <label for="" class="cont-modalbootstrapupdate__form--controlSelect--label">Regulador 2</label>
+        <div class="cont-modalbootstrapupdate__form--controlSelect--cFakeSelect" id="btn-FakeListRegulatorTwoUpdate">
+          <span class="cont-modalbootstrapupdate__form--controlSelect--cFakeSelect--txtitemsel" id="selectedItem-fakeSelRegTwoUpdate">${item_data['regulatortwo']}</span>
+          <input type="text" readonly id="SelectedItem-inputfakeselRegTwoUpdate" regulartwo="${item_data['regulatortwo']}" idtregulartwo="${item_data['idregulatortwo']}">
+          <svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M1 1.08298L5 5L9 1" stroke="#999" stroke-width="1.25727" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <ul class="cont-modalbootstrapupdate__form--controlSelect--m" id="c-listitems-regulatorTwoUpdate"></ul>
+        <span id="msgErrNounReguladorTwoUpdate"></span>
+      </div>
+    `);
+    }
     // ------------ MOSTRAR EL CONTROL DE MONTO ADICIONAL
     if(item_data['sel_ammadditional'] != "NO" && item_data['sel_ammadditional'] != "" && item_data['sel_ammadditional'] != "undefined"){
       $("#sel-optsAmountAdditionalMoreUpdate").html(`
@@ -831,10 +961,16 @@ $(document).on('click', '.btn-update-detail', function(e){
           <span id="msgErrNounAmountAdditionalProductUpdate"></span>
         </div>
       `);
-      $("#required-amountadditionalupdate").attr("checked", "checked");
+      $("#chck_ammadditional-update").attr("checked", "checked");
+      $("#chck_ammadditional-update").val("SI");
+      $("#txt-chck_ammadditional-update").text("SI");
+      $("#txt-chck_ammadditional-update").addClass("active");
     }else{
-      $("#noun-required-amountadditionalupdate").attr("checked", "checked");
       $("#sel-optsAmountAdditionalMoreUpdate").html("");
+      $("#chck_ammadditional-update").attr("checked", false);
+      $("#chck_ammadditional-update").val("NO");
+      $("#txt-chck_ammadditional-update").text("NO");
+      $("#txt-chck_ammadditional-update").removeClass("active");
     }
     // ------------ MOSTRAR LOS CONTROLES DE LOS IMPUESTOS
     if(item_data['sel_taxadditional'] != "NO" && item_data['sel_taxadditional'] != "" && item_data['sel_taxadditional'] != "undefined"){
@@ -855,24 +991,18 @@ $(document).on('click', '.btn-update-detail', function(e){
           <span id="msgErrNounTaxThreeAdditionalProductUpdate"></span>
         </div>
       `);
-      $("#required-taxadditionalupdate").attr("checked","checked");
+      $("#chck_taxadditional-update").attr("checked", "checked");
+      $("#chck_taxadditional-update").val("SI");
+      $("#txt-chck_taxadditional-update").text("SI");
+      $("#txt-chck_taxadditional-update").addClass("active");
     }else{
       $("#sel-optsTaxationAdditionalsMoreUpdate").html("");
-      $("#noun-required-taxadditionalupdate").attr("checked","checked");
+      $("#chck_taxadditional-update").attr("checked", false);
+      $("#chck_taxadditional-update").val("NO");
+      $("#txt-chck_taxadditional-update").text("NO");
+      $("#txt-chck_taxadditional-update").removeClass("active");
     }
   });
-});
-// ------------ MOSTRAR/OCULTAR DATOS EN EL MODAL
-$(document).on("click", ".cont-modalbootstrapupdate__form--controlRadios--c--control--input[name=sel-reornotregupdate]", function(){
-  if($(this).attr("id") == "noun-required-regupdate"){
-    $("#sel-optsRegulatorsMoreUpdate").addClass("hidden");
-    $("#sel-optsRegulatorsMoreUpdate").attr("aria-expanded", true);
-    $("#sel-optsRegulatorsMoreUpdate").attr("aria-visibility", "show");
-  }else{
-    $("#sel-optsRegulatorsMoreUpdate").removeClass("hidden");
-    $("#sel-optsRegulatorsMoreUpdate").attr("aria-expanded", false);
-    $("#sel-optsRegulatorsMoreUpdate").attr("aria-visibility", "hidden");
-  }
 });
 // ------------ ABRIR/CERRAR EL LISTADO DE REGULADORES - ACTUALIZAR 1
 $(document).on("click", "#btn-FakeListRegulatorOneUpdate", function(){
@@ -952,12 +1082,12 @@ $(document).on("keyup", "#name-update", function(){($(this).val() != 0 || $(this
 $(document).on('submit', '#form-update-product', function(e){
   e.preventDefault();
   ($('#name-update').val() != 0 || $('#name-update').val() != "") ? $("#msgErrNounNameProductUpdate").text("") : $("#msgErrNounNameProductUpdate").text("Debes ingresar un nombre");
-
   if($('#idupdate-product').val() != 0 || $('#idupdate-product').val() != ""){
-    
     var formdata = new FormData();
     formdata.append("name", $('#name-update').val());
-    formdata.append("regulated", $('#required_regsoptupdate').val());
+    formdata.append("sel_regulated", $("#chck_regulated-update").val());
+    formdata.append("sel_ammadditional", $("#chck_ammadditional-update").val());
+    formdata.append("sel_taxadditional", $("#chck_taxadditional-update").val());
     formdata.append("id_regulator", ($("#SelectedItem-inputfakeselRegOneUpdate").attr("idtregularone") || $("#SelectedItem-inputfakeselRegOneUpdate").attr("idtregularone") != null) ? $("#SelectedItem-inputfakeselRegOneUpdate").attr("idtregularone") : 0);
     formdata.append("id_regulatortwo", ($("#SelectedItem-inputfakeselRegTwoUpdate").attr("idtregulartwo") || $("#SelectedItem-inputfakeselRegTwoUpdate").attr("idtregulartwo") != null) ? $("#SelectedItem-inputfakeselRegTwoUpdate").attr("idtregulartwo") : 0);
     formdata.append("amount_additional", ($("#amountadditionalProduct-update").val() != undefined && $("#amountadditionalProduct-update").val() != 0 && $("#amountadditionalProduct-update").val() != "") ? $("#amountadditionalProduct-update").val() : 0);
@@ -965,7 +1095,6 @@ $(document).on('submit', '#form-update-product', function(e){
     formdata.append("impuesto_selectivo", ($("#taxtwoadditional-update").val() != undefined && $("#taxtwoadditional-update").val() != 0 && $("#taxtwoadditional-update").val() != "") ? $("#taxtwoadditional-update").val() : 0);
     formdata.append("antidumping", ($("#taxthreeadditional-update").val() != undefined && $("#taxthreeadditional-update").val() != 0 && $("#taxthreeadditional-update").val() != "") ? $("#taxthreeadditional-update").val() : 0);
     formdata.append("id", $('#idupdate-product').val());
-
     $.ajax({
       url: "../admin/controllers/c_update-product.php",
       method: "POST",
@@ -973,10 +1102,33 @@ $(document).on('submit', '#form-update-product', function(e){
       contentType: false,
       cache: false,
       processData: false
-    }).done((res) => {
-      //console.log(res);
-      listAllProducts();
-      $('#updateModal').modal("hide");
+    }).done((e) => {
+      if(e != "" && e != "[]"){
+        if(e == "true"){
+          listAllProducts();
+          $('#updateModal').modal("hide");
+          Swal.fire({
+            title: 'Actualizado!',
+            html: `<span class='font-w-300'>Se ha actualizado el producto.</span>`,
+            icon: 'success',
+            confirmButtonText: 'Aceptar'
+          });
+        }else{
+          Swal.fire({
+            title: 'Error!',
+            html: `<span class='font-w-300'>Lo sentimos, hubo un error al guardar la información.</span>`,
+            icon: 'error',
+            confirmButtonText: 'Aceptar'
+          });
+        }
+      }else{
+        Swal.fire({
+          title: 'Error!',
+          html: `<span class='font-w-300'>Lo sentimos, hubo un error al procesar la información.</span>`,
+          icon: 'error',
+          confirmButtonText: 'Aceptar'
+        });
+      }
     });
   }else{
     console.log('Falta rellenar los campos');

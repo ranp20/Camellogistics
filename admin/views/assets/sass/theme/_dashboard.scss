@@ -922,17 +922,13 @@
 					line-height: 1.2 !important;
 				}
 				.close{
-
 				}
 			}
-
 			.modal-body{
-
 				.text-message-modalAlt{
 					font-size: 1.4rem;
 					margin-bottom: 1rem;
 				}
-
 				.cont-modalbootstrapupdate{
 					&__form{
 						/* CONTROLES - INPUT */
@@ -941,25 +937,21 @@
 							flex-direction: column;
 							margin-bottom: 1.2rem;
 							position: relative;
-
 							/* MENSAJE DE ALERTA  - NOMBRE DE REGULADOR */
 							#msgErrNounNombBank-update{
 								color: red;
 								padding-left: 0.65rem;
 							}
-
 							/* MENSAJE DE ALERTA - MONTO DE PRODUCTO */
 							#msgErrNounAmountAdditionalProductUpdate{
 								color: red;
 								padding-left: 0.65rem;
 							}
-
 							/* MENSAJE DE ALERTA - NOMBRE DEL PRODUCTO */
 							#msgErrNounNameProductUpdate{
 								color: red;
 								padding-left: 0.65rem;
 							}
-
 							&__contIconLeft{
 								position: relative;
 						    display: flex;
@@ -967,7 +959,6 @@
 						    justify-content: center;
 						    border: thin solid #767676;
 						    border-radius: .6rem .5rem .5rem .6rem;
-
 								&--icon{
 									position: absolute;
 							    display: flex;
@@ -981,26 +972,22 @@
 							    box-shadow: 0 0 0 1px #ccc;
 							    border-radius: .5rem 0 0 .5rem;
 								}
-
 								input{
 									border: none;
 									padding-left: 3.8rem;
 								}
 							}
-
 							&__continputs{
 								display: flex;
 								align-items: center;
 								justify-content: space-between;
-								margin-bottom: 0.5rem;
-								
+								margin-bottom: 0.5rem;	
 								&--controls{
 									display: flex;
 									flex-direction: column;
 									justify-content: flex-start;
 									width: 48%;
 									position: relative;
-
 									&__label{
 										margin: 0;
 								    padding: 0;
@@ -1012,7 +999,6 @@
 								    padding: 0 .3rem;
 								    color: #777;
 									}
-
 									&__input{
 										width: 100%;
 								    border: thin solid #767676;
@@ -1024,7 +1010,6 @@
 								    border-radius: .3rem;
 								    padding-left: .3rem;
 								    padding-right: .3rem;
-
 								    &[type=number]::-webkit-inner-spin-button, &[type=number]::-webkit-outer-spin-button { 
 								    	-webkit-appearance: none;
 								    	margin: 0;
@@ -1035,17 +1020,14 @@
 									}
 								}
 							}
-
 							&__maps{
 								width: 100%;
 								height: 250px;
 								border: 1px solid #ccc;
 							}
-
 							&__linkphoto{
 								font-size: 0.9rem;
 							}
-							
 							&__label{
 								display: flex;
 						    font-size: 0.9rem;
@@ -1054,12 +1036,10 @@
 						    top: 0;
 						    color: #000;
 						    margin: 0 0 .25rem 0;
-
 						    @media (min-width: 991px){
 						    	font-size: 1.05rem;
 						    }
 							}
-
 							&__input{
 								border: thin solid $border-bottom-input;
 								width: 100%;
@@ -1069,7 +1049,6 @@
 								font-size: 0.9rem;
 								padding: 0.4rem 0.5rem;
 								border-radius: 5px;
-
 								&[type=number]::-webkit-inner-spin-button, &[type=number]::-webkit-outer-spin-button { 
 						    	-webkit-appearance: none;
 						    	margin: 0;
@@ -1077,27 +1056,22 @@
 								&[type=number]{ 
 									-moz-appearance:textfield;
 								}
-
 								&.focus{
 									border: 1px solid red;
 								}
-
 								&.complete{
 									border: 1px solid green;
 								}
-
 								&.disabled{
 									cursor: not-allowed;
 									background-color: #ccc;
 								}
-
 								@media (min-width: 991px){
 							    font-size: 1rem;
 							    padding: 0.5rem 0.8rem 0.4rem 0.8rem;
 							    line-height: 1.5;
 								}
 							}
-
 							&__input-photo{
 								padding: .5rem;
 						    border: thin solid $border-bottom-input;
@@ -1105,41 +1079,34 @@
 						    cursor: pointer;
 							}
 						}
-
 						/* CONTROLES - SELECT */
 						&--controlSelect{
 						  position: relative;
-							
 							/* MENSAJE DE ALERTA  - REGULADOR ONE*/
 							#msgErrNounReguladorOneUpdate{
 								color: red;
 								padding-left: 0.65rem;
 							}
-
 							/* MENSAJE DE ALERTA  - REGULADOR TWO*/
 							#msgErrNounReguladorTwoUpdate{
 								color: red;
 								padding-left: 0.65rem;
 							}
-
 							/* MENSAJE DE ALERTA - IMPUESTO ADICIONAL ONE */
 							#msgErrNounTaxationOneUpdate{
 								color: red;
 								padding-left: 0.65rem;
 							}
-
 							/* MENSAJE DE ALERTA - IMPUESTO ADICIONAL TWO */
 							#msgErrNounTaxationTwoUpdate{
 								color: red;
 								padding-left: 0.65rem;
 							}
-
 							/* MENSAJE DE ALERTA - IMPUESTO ADICIONAL THREE */
 							#msgErrNounTaxationThreeUpdate{
 								color: red;
 								padding-left: 0.65rem;
 							}
-
 							&--cFakeSelect{
 						    cursor: pointer;
 						    outline: none;
@@ -1151,23 +1118,18 @@
 						    border-radius: 5px;
 						    padding: 0.5rem 0.8rem 0.4rem 0.8rem;
 						    line-height: 1.5;
-
 								span{
 									color: #666;
 								}
-
 								input{
 									outline: none;
 									width: 0;
 									border: none;
 									background-color: transparent;
 								}
-
 								img{
-
 								}
 							}
-
 							&--m{
 								position: absolute;
 						    left: 0;
@@ -1185,15 +1147,12 @@
 						    border-left: thin solid #767676;
 						    border-right: thin solid #767676;
 						    border-top: none;
-
 						    @media (min-width: 1200px){
 						    	max-height: 175px;
 						    }
-
 						    &.show{
 						    	display: block;	
 						    }
-
 								&--item{
 									cursor: pointer;
     							padding: .5rem 1rem;
@@ -1210,7 +1169,6 @@
 								}
 							}
 						}
-
 						/* SHOW/HIDDEN CONTAINER REGULATORS */
 						#sel-optsRegulatorsMoreUpdate{
 							&.hidden{
@@ -1219,7 +1177,6 @@
 								opacity: 0;
 							}
 						}
-
 						/* CONTROLES - RADIO */
 						&--controlRadios{
 							margin-bottom: 1rem;
@@ -1229,11 +1186,9 @@
 								text-align: center;
 								padding-right: .5rem;
 							}
-
 							&--title{
 								margin-bottom: 0.5rem;
 							}
-
 							&--c{
 								text-align: center;
 								display: flex;
@@ -1246,32 +1201,111 @@
 									align-items: center;
 									justify-content: center;
 									padding-right: 1rem;
-
 									&:nth-child(2){
 										margin-left: 0.25rem;
 									}
-
 									&--input{
 										margin-right: 0.5rem;
 									}
-
-									// &--fakespan{
-								 //    width: 13px;
-								 //    height: 13px;
-								 //    border-radius: 50%;
-								 //    background-color: #fff;
-								 //    border: thin solid #ccc;
-								 //    position: relative;
-								 //    left: -10px;
-									// }
-
 									&--input:checked ~ &--fakelabel{
 										color: green;
 									}
 								}
 							}
 						}
+						/* CONTROLRES - SWITCH */
+						&__cControlSwitch{
+							display: flex;
+							align-items: center;
+							justify-content: space-between;
+							flex-flow: wrap row;
+							&__label{
+								font-size: 0.9rem;
+								margin-right: 0.5rem;
+								@media (min-width: 991px){
+									font-size: 1.05rem;
+								}
+							}
+							&__cSwitch{
+								display: block;
+								position: relative;
+								left: 0;
+								top: 5px;
+								text-align: left;
+								padding: 0.25rem;
+								&__label{
+									display: inline-block;
+									color: #bbb;
+									font-size: 0.9rem;
+									@media (min-width: 991px){
+										font-size: 1.05rem;
+									}
+									&.active{
+										color: green;
+									}
+								}
+								&__c{
+									display: inline-block;
+									margin-right: 0.5rem;
+									&__chckCont{
+										position: relative;
+										display: inline-block;
+										&__input[type="checkbox"]{
+											outline: none;
+											padding: 0;
+											line-height: initial;
+											margin: 0 0.2rem;
+											vertical-align: middle;
+											position: absolute;
+									    left: 0;
+									    top: 0;
+									    width: 100%;
+									    height: 100%;
+									    z-index: 5;
+									    opacity: 0;
+									    cursor: pointer;
+										}
+										&__label{
+											margin-bottom: 0;
+											cursor: pointer;
+											vertical-align: middle;
+											width: 45px;
+									    height: 18px;
+									    background: #bbb;
+									    position: relative;
+									    display: inline-block;
+									    border-radius: 46px;
+									    transition: 0.3s;
 
+									    &:after{
+									    	content: '';
+										    position: absolute;
+										    border-radius: 100%;
+										    left: -2px;
+										    top: -3px;
+										    width: 24px;
+										    height: 24px;
+										    z-index: 2;
+										    background: #fff;
+										    box-shadow: 0 0 5px rgb(0 0 0 / 20%);
+										    transition: 0.3s;
+										    background: #fff;
+									    }
+										}
+
+										&__input:hover + label:after{
+											box-shadow: 0 1px 9px 0 rgba(0, 0, 0, 0.2), 0 3px 8px 0 rgba(0, 0, 0, 0.15);
+										}
+										&__input:checked + label{
+											background-color: #4BD865;
+										}
+										&__input:checked + label:after{
+				  						left: 24px;
+										}
+									}
+								}
+							}
+						}
 						/* CONTROLES - CONTENEDOR PREVISUALIZADOR DE IMAGEN */
 						&--cpreviewImage{
 							width: 100%;
@@ -1282,7 +1316,6 @@
 							margin-bottom: 1rem;
 							border-radius: .4rem;
 							overflow: hidden;
-
 							img{
 								width: 100%;
 						    height: 100%;
@@ -1291,13 +1324,11 @@
 							}
 						}
 					}
-
 					&__footer{
 						display: flex;
 						align-items: center;
 						justify-content: flex-end;
 						flex-wrap: wrap;
-
 						&--btncancel{
 					    border: thin solid $color-paragraph;
 					    background-color: #fff;
@@ -1310,18 +1341,15 @@
 					    font-size: 0.9rem;
 					    font-weight: 500;
 					    transition: .2s ease-in-out;
-
 					    &:hover{
 					    	background-color: #eee;
 					    }
-
 					    @media (min-width: 480px){
 					    	width: 38%;
 					    	padding: 0.5rem 1rem;
 					    	line-height: 1.8;
 					    }
 						}
-
 						&--btnupdate{
 					    border: thin solid transparent;
 					    padding: .4rem 1rem;
@@ -1335,11 +1363,9 @@
 					    background-color: $dashboard-color;
 					    color: #fff;
 					    transition: .2s ease-in-out;
-
 					    &:hover{
 					    	opacity: .5;
 					    }
-
 					    @media (min-width: 480px){
 					    	width: 38%;
 					    	padding: 0.5rem 1rem;

@@ -133,10 +133,18 @@
 						        	<span>
 						        		<span>
 						        			<span>
-									        	<input type="text" id="idupdate-product">
-									        	<input type="text" id="required_regsoptupdate">
-									        	<input type="text" id="required_ammadditionalupdate">
-									        	<input type="text" id="required_taxadditionalupdate">
+									        	<input type="hidden" id="idupdate-product">
+									        	<input type="hidden" id="required_regsoptupdate">
+									        	<input type="hidden" id="required_ammadditionalupdate">
+									        	<input type="hidden" id="required_taxadditionalupdate">
+									        	<input type="hidden" id="required_idregulatorupdate">
+									        	<input type="hidden" id="required_regulatorupdate">
+									        	<input type="hidden" id="required_idregulator_twoupdate">
+									        	<input type="hidden" id="required_regulator_twoupdate">
+									        	<input type="hidden" id="required_ammountadditinalupdate">
+									        	<input type="hidden" id="required_advalorenupdate">
+									        	<input type="hidden" id="required_impuestoselectivoupdate">
+									        	<input type="hidden" id="required_antidumpingupdate">
 						        			</span>
 						        		</span>
 						        	</span>
@@ -145,76 +153,43 @@
 						        		<input id="name-update" class="cont-modalbootstrapupdate__form--control__input" name="name-update" type="text" maxlength="300" placeholder="Ingrese el nombre del producto">
 						        		<span id="msgErrNounNameProductUpdate"></span>
 						        	</div>
-						        	<div class="cont-modalbootstrapupdate__form--controlRadios">
-						        		<p class="cont-modalbootstrapupdate__form--controlRadios--title">Reguladores</p>
-						        		<div class="cont-modalbootstrapupdate__form--controlRadios--c">
-							        		<label for="required-regupdate" class="cont-modalbootstrapupdate__form--controlRadios--c--control">
-							        			<input type="radio" id="required-regupdate" name="sel-reornotregupdate" class="cont-modalbootstrapupdate__form--controlRadios--c--control--input">
-							        			<span class="cont-modalbootstrapupdate__form--controlRadios--c--control--fakespan"></span>
-							        			<span class="cont-modalbootstrapupdate__form--controlRadios--c--control--fakelabel">SI</span>
-							        		</label>
-							        		<label for="noun-required-regupdate" class="cont-modalbootstrapupdate__form--controlRadios--c--control">
-							        			<input type="radio" id="noun-required-regupdate" name="sel-reornotregupdate" class="cont-modalbootstrapupdate__form--controlRadios--c--control--input">
-							        			<span class="cont-modalbootstrapupdate__form--controlRadios--c--control--fakespan"></span>
-							        			<span class="cont-modalbootstrapupdate__form--controlRadios--c--control--fakelabel">NO</span>
-							        		</label>
+						        	<div class="cont-modalbootstrapupdate__form__cControlSwitch">
+						        		<span for="" class="cont-modalbootstrapupdate__form__cControlSwitch__label">Reguladores</span>
+						        		<div class="cont-modalbootstrapupdate__form__cControlSwitch__cSwitch">
+						        			<div class="cont-modalbootstrapupdate__form__cControlSwitch__cSwitch__c">
+						        				<div class="cont-modalbootstrapupdate__form__cControlSwitch__cSwitch__c__chckCont">
+						        					<input type="checkbox" id="chck_regulated-update" class="cont-modalbootstrapupdate__form__cControlSwitch__cSwitch__c__chckCont__input" name="activation" value="NO">
+						        					<label for="chck_regulated-update" class="cont-modalbootstrapupdate__form__cControlSwitch__cSwitch__c__chckCont__label"></label>
+						        				</div>
+						        			</div>
+						        			<label for="" class="cont-modalbootstrapupdate__form__cControlSwitch__cSwitch__label" id="txt-chck_regulated-update">NO</label>
 						        		</div>
-						        		<span id="msgErrNounWithOrNotRegulator"></span>
 						        	</div>
-						        	<div id="sel-optsRegulatorsMoreUpdate">
-						       	    <div class="cont-modalbootstrapupdate__form--controlSelect">
-									        <label for="" class="cont-modalbootstrapupdate__form--controlSelect--label">Regulador 1</label>
-									        <div class="cont-modalbootstrapupdate__form--controlSelect--cFakeSelect" id="btn-FakeListRegulatorOneUpdate">
-									          <span class="cont-modalbootstrapupdate__form--controlSelect--cFakeSelect--txtitemsel" id="selectedItem-fakeSelRegOneUpdate">Selecciona un regulador</span>
-									          <input type="text" readonly id="SelectedItem-inputfakeselRegOneUpdate">
-									          <svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
-									          <path d="M1 1.08298L5 5L9 1" stroke="#999" stroke-width="1.25727" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-									          </svg>
-									        </div>
-									        <ul class="cont-modalbootstrapupdate__form--controlSelect--m" id="c-listitems-regulatorOneUpdate"></ul>
-									        <span id="msgErrNounReguladorOneUpdate"></span>
-									      </div>
-									      <div class="cont-modalbootstrapupdate__form--controlSelect">
-									        <label for="" class="cont-modalbootstrapupdate__form--controlSelect--label">Regulador 2</label>
-									        <div class="cont-modalbootstrapupdate__form--controlSelect--cFakeSelect" id="btn-FakeListRegulatorTwoUpdate">
-									          <span class="cont-modalbootstrapupdate__form--controlSelect--cFakeSelect--txtitemsel" id="selectedItem-fakeSelRegTwoUpdate">Selecciona un regulador</span>
-									          <input type="text" readonly id="SelectedItem-inputfakeselRegTwoUpdate">
-									          <svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
-									          <path d="M1 1.08298L5 5L9 1" stroke="#999" stroke-width="1.25727" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-									          </svg>
-									        </div>
-									        <ul class="cont-modalbootstrapupdate__form--controlSelect--m" id="c-listitems-regulatorTwoUpdate"></ul>
-									        <span id="msgErrNounReguladorTwoUpdate"></span>
-									      </div>
-						        	</div>
-						        	<div class="cont-modalbootstrapupdate__form--controlRadios">
-						        		<p class="cont-modalbootstrapupdate__form--controlRadios--title">Monto adicional del Producto</p>
-						        		<div class="cont-modalbootstrapupdate__form--controlRadios--c">
-							        		<label for="required-amountadditionalupdate" class="cont-modalbootstrapupdate__form--controlRadios--c--control">
-							        			<input type="radio" id="required-amountadditionalupdate" name="sel-addornotaddupdate" class="cont-modalbootstrapupdate__form--controlRadios--c--control--input">
-							        			<span class="cont-modalbootstrapupdate__form--controlRadios--c--control--fakelabel">SI</span>
-							        		</label>
-							        		<label for="noun-required-amountadditionalupdate" class="cont-modalbootstrapupdate__form--controlRadios--c--control">
-							        			<input type="radio" id="noun-required-amountadditionalupdate" name="sel-addornotaddupdate" class="cont-modalbootstrapupdate__form--controlRadios--c--control--input">
-							        			<span class="cont-modalbootstrapupdate__form--controlRadios--c--control--fakelabel">NO</span>
-							        		</label>
+						        	<div id="sel-optsRegulatorsMoreUpdate"></div>
+						        	<div class="cont-modalbootstrapupdate__form__cControlSwitch">
+						        		<span for="" class="cont-modalbootstrapupdate__form__cControlSwitch__label">Monto adicional</span>
+						        		<div class="cont-modalbootstrapupdate__form__cControlSwitch__cSwitch">
+						        			<div class="cont-modalbootstrapupdate__form__cControlSwitch__cSwitch__c">
+						        				<div class="cont-modalbootstrapupdate__form__cControlSwitch__cSwitch__c__chckCont">
+						        					<input type="checkbox" id="chck_ammadditional-update" class="cont-modalbootstrapupdate__form__cControlSwitch__cSwitch__c__chckCont__input" name="activation" value="NO">
+						        					<label for="chck_ammadditional-update" class="cont-modalbootstrapupdate__form__cControlSwitch__cSwitch__c__chckCont__label"></label>
+						        				</div>
+						        			</div>
+						        			<label for="" class="cont-modalbootstrapupdate__form__cControlSwitch__cSwitch__label" id="txt-chck_ammadditional-update">NO</label>
 						        		</div>
-						        		<span id="msgErrNounWithOrNotAmountAdditional"></span>
 						        	</div>
 						        	<div id="sel-optsAmountAdditionalMoreUpdate"></div>
-						        	<div class="cont-modalbootstrapupdate__form--controlRadios">
-						        		<p class="cont-modalbootstrapupdate__form--controlRadios--title">Impuesto adicional del Producto</p>
-						        		<div class="cont-modalbootstrapupdate__form--controlRadios--c">
-							        		<label for="required-taxadditionalupdate" class="cont-modalbootstrapupdate__form--controlRadios--c--control">
-							        			<input type="radio" id="required-taxadditionalupdate" name="sel-taxornottax" class="cont-modalbootstrapupdate__form--controlRadios--c--control--input">
-							        			<span class="cont-modalbootstrapupdate__form--controlRadios--c--control--fakelabel">SI</span>
-							        		</label>
-							        		<label for="noun-required-taxadditionalupdate" class="cont-modalbootstrapupdate__form--controlRadios--c--control">
-							        			<input type="radio" id="noun-required-taxadditionalupdate" name="sel-taxornottax" class="cont-modalbootstrapupdate__form--controlRadios--c--control--input">
-							        			<span class="cont-modalbootstrapupdate__form--controlRadios--c--control--fakelabel">NO</span>
-							        		</label>
+						        	<div class="cont-modalbootstrapupdate__form__cControlSwitch">
+						        		<span for="" class="cont-modalbootstrapupdate__form__cControlSwitch__label">Impuesto adicional</span>
+						        		<div class="cont-modalbootstrapupdate__form__cControlSwitch__cSwitch">
+						        			<div class="cont-modalbootstrapupdate__form__cControlSwitch__cSwitch__c">
+						        				<div class="cont-modalbootstrapupdate__form__cControlSwitch__cSwitch__c__chckCont">
+						        					<input type="checkbox" id="chck_taxadditional-update" class="cont-modalbootstrapupdate__form__cControlSwitch__cSwitch__c__chckCont__input" name="activation" value="NO">
+						        					<label for="chck_taxadditional-update" class="cont-modalbootstrapupdate__form__cControlSwitch__cSwitch__c__chckCont__label"></label>
+						        				</div>
+						        			</div>
+						        			<label for="" class="cont-modalbootstrapupdate__form__cControlSwitch__cSwitch__label" id="txt-chck_taxadditional-update">NO</label>
 						        		</div>
-						        		<span id="msgErrNounWithOrNotAmountAdditional"></span>
 						        	</div>
 						        	<div id="sel-optsTaxationAdditionalsMoreUpdate"></div>
 								      <div class="cont-modalbootstrapupdate__footer">
