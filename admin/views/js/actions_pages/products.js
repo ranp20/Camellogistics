@@ -455,7 +455,13 @@ var listAllProducts = () => {
       "type": "POST",
     },
     "columns":[
-      {"data":"id_prod"},
+      {"data":"id_prod",
+        "render": function(data,type,row){
+          var tmpid = "";
+          tmpid += `<span id="item-${row.id_prod}">${row.id_prod}</span>`;
+          return tmpid;
+        }
+      },
       {"data":"name_prod"},
       {"data":"sel_regulated"},
       {"data":"reguladorOne",
@@ -897,7 +903,6 @@ $(document).on('click', '.btn-update-detail', function(e){
       pricetadditional_two: $(this).attr('data-pricetadditional_two'),
       pricetadditional_three: $(this).attr('data-pricetadditional_three')
     };
-    console.log(item_data);
     // ------------ ASIGNAR A LOS CONTROLES DEL MODAL DE ACTUALIZAR
     $('#idupdate-product').val(item_data['id']);
     $('#name-update').val(item_data['name']);
@@ -1149,8 +1154,31 @@ $(document).on('click', '#btndelete-product', function(e){
     method: "POST",
     data: {id : id},
   }).done((e) => {
-    $("#item-" + id).remove();
-    $("#deleteModal").modal('hide');//PRIMERA SOLUCIÓN...
-    //$("#deleteModal .close").click();//SEGUNDA SOLUCIÓN...
+    if(e != ""){
+      if(e == "true"){
+        $("#item-" + id).parent().parent().remove();
+        $("#deleteModal").modal('hide');//PRIMERA SOLUCIÓN...
+        Swal.fire({
+          title: 'Eliminado!',
+          html: `<span class='font-w-300'>Se eliminó el registro.</span>`,
+          icon: 'success',
+          confirmButtonText: 'Aceptar'
+        });
+      }else{
+        Swal.fire({
+          title: 'Error!',
+          html: `<span class='font-w-300'>Lo sentimos, hubo un error al eliminar el registro.</span>`,
+          icon: 'error',
+          confirmButtonText: 'Aceptar'
+        });
+      }
+    }else{
+      Swal.fire({
+        title: 'Error!',
+        html: `<span class='font-w-300'>Lo sentimos, hubo un error al procesar la información.</span>`,
+        icon: 'error',
+        confirmButtonText: 'Aceptar'
+      });
+    }
   });
 });

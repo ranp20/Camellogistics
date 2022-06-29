@@ -45,9 +45,7 @@
 									<th></th>
 								</tr>
 							</thead>
-							<tbody>
-									
-							</tbody>
+							<tbody></tbody>
 						</table>
 					</div>
 					<!-- MODAL - AGREGAR NUEVO ITEM -->
