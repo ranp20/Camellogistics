@@ -7,6 +7,7 @@
 						tbp.sel_regulated,
 						tbp.sel_ammadditional,
 						tbp.sel_taxadditional,
+						tbp.sel_fichatecycertconform,
 						tbp.id_regulator, 
 						tbp.id_regulator_two, 
 						(SELECT tbr.name FROM tbl_regulators tbr WHERE tbr.id = tbp.id_regulator) as 'reguladorOne', 
@@ -14,7 +15,8 @@
 						tbp.amount_additional as 'montoadd',
 						tbp.ad_valoren as 'ad_valoren',
 						tbp.impuesto_selectivo as 'impuesto_selectivo',
-						tbp.antidumping as 'antidumping' 
+						tbp.antidumping as 'antidumping',
+						tbp.fichatecycertconform as 'fichatecycertconform'
 					FROM tbl_products tbp ORDER BY tbp.id DESC";
 
 	require_once 'connection.php';

@@ -1,20 +1,19 @@
 <?php 	
-	//COMPRIMIR ARCHIVOS DE TEXTO...
-  (substr_count($_SERVER["HTTP_ACCEPT_ENCODING"], "gzip")) ? ob_start("ob_gzhandler") : ob_start();
-	session_start();
-	if(!isset($_SESSION['admin_camel'])){
-		header("Location: ../admin");
-	}
+//COMPRIMIR ARCHIVOS DE TEXTO...
+(substr_count($_SERVER["HTTP_ACCEPT_ENCODING"], "gzip")) ? ob_start("ob_gzhandler") : ob_start();
+session_start();
+if(!isset($_SESSION['admin_camel'])){
+	header("Location: ../admin");
+}
 
-	require_once '../controllers/c_pagination_quotationusers.php';
-	$pagination_qusers = new Pagination_quotationusers();
-	$quotation_users = $pagination_qusers->buscar();
+require_once '../controllers/c_pagination_quotationusers.php';
+$pagination_qusers = new Pagination_quotationusers();
+$quotation_users = $pagination_qusers->buscar();
 
-	require_once '../controllers/c_paginatelinks_function.php';
-	$currpage = 1;
-	$totalpages = $quotation_users['paginas'];
-	$adjacents = 3;
-	
+require_once '../controllers/c_paginatelinks_function.php';
+$currpage = 1;
+$totalpages = $quotation_users['paginas'];
+$adjacents = 3;
 ?>
 <!DOCTYPE html>
 <html lang="es">

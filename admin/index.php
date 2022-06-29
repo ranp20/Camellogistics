@@ -1,12 +1,12 @@
 <?php 
-	//COMPRIMIR ARCHIVOS DE TEXTO...
-  (substr_count($_SERVER["HTTP_ACCEPT_ENCODING"], "gzip")) ? ob_start("ob_gzhandler") : ob_start();
-	session_start();
-	if(isset($_SESSION['admin_camel'])){
-		header("Location: dashboard");
-	}
-  $actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]";
-  $url =  $actual_link . "/Camellogistics/admin/views/";
+//COMPRIMIR ARCHIVOS DE TEXTO...
+(substr_count($_SERVER["HTTP_ACCEPT_ENCODING"], "gzip")) ? ob_start("ob_gzhandler") : ob_start();
+session_start();
+if(isset($_SESSION['admin_camel'])){
+	header("Location: dashboard");
+}
+$actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]";
+$url =  $actual_link . "/Camellogistics/admin/views/";
 ?>
 <!DOCTYPE html>
 <html lang="es">

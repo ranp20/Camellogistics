@@ -1,10 +1,13 @@
 <?php
-	//COMPRIMIR ARCHIVOS DE TEXTO...
-  (substr_count($_SERVER["HTTP_ACCEPT_ENCODING"], "gzip")) ? ob_start("ob_gzhandler") : ob_start();
-	session_start();
-	if(!isset($_SESSION['admin_camel'])){
-		header("Location: ../admin");
-	}
+//COMPRIMIR ARCHIVOS DE TEXTO...
+(substr_count($_SERVER["HTTP_ACCEPT_ENCODING"], "gzip")) ? ob_start("ob_gzhandler") : ob_start();
+session_start();
+if(!isset($_SESSION['admin_camel'])){
+	header("Location: ../admin");
+}
+require_once '../controllers/config.php';
+$settings = new List_Settings();
+$adm_config = $settings->list();
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -105,6 +108,29 @@
 						        		</div>
 						        	</div>
 						        	<div id="sel-optsTaxationAdditionalsMore"></div>
+						        	<div class="cont-modalbootstrap__form__cControlSwitch mgt-05rem">
+						        		<span for="" class="cont-modalbootstrap__form__cControlSwitch__label">FICHA TÉCNICA Y CERTIFICADO DE CONFORMIDAD</span>
+						        		<div class="cont-modalbootstrap__form__cControlSwitch__cSwitch">
+						        			<div class="cont-modalbootstrap__form__cControlSwitch__cSwitch__c">
+						        				<div class="cont-modalbootstrap__form__cControlSwitch__cSwitch__c__chckCont">
+						        					<input type="checkbox" id="chck_fichatecycertconform" class="cont-modalbootstrap__form__cControlSwitch__cSwitch__c__chckCont__input" data-fichatecycertconform="<?php
+										          if(isset($adm_config('quotation_ammountcerticonformvalidation')['setting_value'])){
+											          $ammountcifvalidation = $adm_config('quotation_ammountcerticonformvalidation')['setting_value'];
+											          if($ammountcifvalidation != ""){
+											          	echo number_format($adm_config('quotation_ammountcerticonformvalidation')['setting_value'],2);
+											          }else{
+											          	echo "";
+											          }
+									          	}else{
+									          		echo "";
+									          	}
+										        	?>" data-fichatecycertconformsend="" name="activation" value="NO">
+						        					<label for="chck_fichatecycertconform" class="cont-modalbootstrap__form__cControlSwitch__cSwitch__c__chckCont__label"></label>
+						        				</div>
+						        			</div>
+						        			<label for="" class="cont-modalbootstrap__form__cControlSwitch__cSwitch__label" id="txt-chck_fichatecycertconform">NO</label>
+						        		</div>
+						        	</div>
 								      <div class="cont-modalbootstrap__footer">
 								        <button type="button" class="cont-modalbootstrap__footer--btncancel" data-dismiss="modal">CANCELAR</button>
 								        <button type="submit" class="cont-modalbootstrap__footer--btnadd" id="btnadd-product">GUARDAR</button>
@@ -135,6 +161,7 @@
 									        	<input type="hidden" id="required_regsoptupdate">
 									        	<input type="hidden" id="required_ammadditionalupdate">
 									        	<input type="hidden" id="required_taxadditionalupdate">
+									        	<input type="hidden" id="required_sel_fichatecycertconform">
 									        	<input type="hidden" id="required_idregulatorupdate">
 									        	<input type="hidden" id="required_regulatorupdate">
 									        	<input type="hidden" id="required_idregulator_twoupdate">
@@ -143,6 +170,7 @@
 									        	<input type="hidden" id="required_advalorenupdate">
 									        	<input type="hidden" id="required_impuestoselectivoupdate">
 									        	<input type="hidden" id="required_antidumpingupdate">
+									        	<input type="hidden" id="required_fichatecycertconform">
 						        			</span>
 						        		</span>
 						        	</span>
@@ -190,6 +218,29 @@
 						        		</div>
 						        	</div>
 						        	<div id="sel-optsTaxationAdditionalsMoreUpdate"></div>
+						        	<div class="cont-modalbootstrapupdate__form__cControlSwitch">
+						        		<span for="" class="cont-modalbootstrapupdate__form__cControlSwitch__label">FICHA TÉCNICA Y CERTIFICADO DE CONFORMIDAD</span>
+						        		<div class="cont-modalbootstrapupdate__form__cControlSwitch__cSwitch">
+						        			<div class="cont-modalbootstrapupdate__form__cControlSwitch__cSwitch__c">
+						        				<div class="cont-modalbootstrapupdate__form__cControlSwitch__cSwitch__c__chckCont">
+						        					<input type="checkbox" id="chck_fichatecycertconform-update" class="cont-modalbootstrapupdate__form__cControlSwitch__cSwitch__c__chckCont__input" data-fichatecycertconform="<?php
+										          if(isset($adm_config('quotation_ammountcerticonformvalidation')['setting_value'])){
+											          $ammountcifvalidation = $adm_config('quotation_ammountcerticonformvalidation')['setting_value'];
+											          if($ammountcifvalidation != ""){
+											          	echo number_format($adm_config('quotation_ammountcerticonformvalidation')['setting_value'],2);
+											          }else{
+											          	echo "";
+											          }
+									          	}else{
+									          		echo "";
+									          	}
+										        	?>" data-fichatecycertconformsend="" name="activation" value="NO">
+						        					<label for="chck_fichatecycertconform-update" class="cont-modalbootstrapupdate__form__cControlSwitch__cSwitch__c__chckCont__label"></label>
+						        				</div>
+						        			</div>
+						        			<label for="" class="cont-modalbootstrapupdate__form__cControlSwitch__cSwitch__label" id="txt-chck_fichatecycertconform-update">NO</label>
+						        		</div>
+						        	</div>
 								      <div class="cont-modalbootstrapupdate__footer">
 								        <button type="button" class="cont-modalbootstrapupdate__footer--btncancel" data-dismiss="modal">CANCELAR</button>
 								        <button type="submit" class="cont-modalbootstrapupdate__footer--btnupdate" id="btnupdate-product">GUARDAR</button>
