@@ -104,6 +104,7 @@ $f_totalimpuestos = $listbyidcode[0]['f_totalimpuestos'];
 // VALORES CALCULADOS DE SERVICIOS
 $f_transporte_interno = $listbyidcode[0]['f_transporte_interno'];
 $f_fichatecnicaycertconform = $listbyidcode[0]['f_fichatecnicaycertconform'];
+$f_totalinsurance = $listbyidcode[0]['f_totalinsurance'];
 $f_total_services = $listbyidcode[0]['f_totalservices'];
 $f_totalservicesIGV18 = $listbyidcode[0]['f_totalservicesIGV18'];
 $f_totalwithIGV = $listbyidcode[0]['f_totalwithIGV'];
@@ -242,6 +243,11 @@ $name_quotation = "Presupuesto-".$_POST['code_quote']."-".$f_typecontainer;
             <div class="item_marc_det_uniqueserv h-18">Handling</div>
             <div class="item_marc_det_uniqueserv h-18">Visto Bueno</div>
             <div class="item_marc_det_uniqueserv h-18">Desconsolidación</div>
+            <?php
+            	if(isset($f_totalinsurance) && $f_totalinsurance != "" && $f_totalinsurance != 0){
+            		echo "<div class='item_marc_det_uniqueserv h-18'>Seguro</div>";
+            	}
+            ?>
           </div>
           <div id="marc_usd_det_uniqueser">
             <div class="item_marc_usd_det_uniqueser h-15 pt-02 text-fw-bold">$</div>
@@ -250,6 +256,11 @@ $name_quotation = "Presupuesto-".$_POST['code_quote']."-".$f_typecontainer;
             <div class="item_marc_usd_det_uniqueser h-15 pt-02">$</div>
             <div class="item_marc_usd_det_uniqueser h-15 pt-02">$</div>
             <div class="item_marc_usd_det_uniqueser h-15 pt-02">$</div>
+            <?php
+            	if(isset($f_totalinsurance) && $f_totalinsurance != "" && $f_totalinsurance != 0){
+            		echo "<div class='item_marc_usd_det_uniqueser h-15 pt-02'>$</div>";
+            	}
+            ?>
           </div>
           <div id="marc_tot_uniqueser">
             <div class="item_marc_tot_uniqueser pt-02 text-fw-bold">-</div>
@@ -258,6 +269,12 @@ $name_quotation = "Presupuesto-".$_POST['code_quote']."-".$f_typecontainer;
             <div class="item_marc_tot_uniqueser pt-02"><?php echo addTwoDecimalsOrGuion($f_handling); ?></div>
             <div class="item_marc_tot_uniqueser pt-02"><?php echo addTwoDecimalsOrGuion($f_visto_bueno); ?></div>
             <div class="item_marc_tot_uniqueser pt-02">-</div>
+            <?php
+            	if(isset($f_totalinsurance) && $f_totalinsurance != "" && $f_totalinsurance != 0){
+            		$insurance = addTwoDecimalsOrGuion($f_totalinsurance);
+            		echo "<div class='item_marc_tot_uniqueser pt-02'>{$insurance}</div>";
+            	}
+            ?>
           </div>
         </div>
       </div>
