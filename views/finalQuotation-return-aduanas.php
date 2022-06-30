@@ -515,7 +515,7 @@ echo $template_incserv.$template_notincserv;
     $maxVolumen = floatval(preg_replace("/[^-0-9\.]/","",$_POST['val-iptVolumeNInterface']));
     $convertWeight = $maxWeight / 1000;
     if($convertWeight > $maxVolumen){
-      echo $convertWeight." Kg";
+      echo $maxWeight." Kg";
     }else{
       echo $maxVolumen." CBM";
     }
