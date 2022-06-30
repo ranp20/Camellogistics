@@ -62,7 +62,18 @@ $u_telephone = $listbyidcode[0]['u_telephone'];
 $u_contain = $listbyidcode[0]['u_contain'];
 $f_origen = strtoupper($listbyidcode[0]['f_origen']);
 $f_destiny = strtoupper($listbyidcode[0]['f_destiny']);
-$f_typetransendinitid = ($listbyidcode[0]['f_typetransendinitid'] == "S-ADU") ? "ADUANAS" : "Otro";
+$f_typetransendinitid = "";
+if($listbyidcode[0]['f_typetransendinitid'] == "S-ADU"){
+	$f_typetransendinitid = "ADUANAS";
+}else if($listbyidcode[0]['f_typetransendinitid'] == "T-MAR"){
+	if($listbyidcode[0]['f_optgenfquotation'] == "y-moreOpts"){
+		$f_typetransendinitid = "Flete internacional";
+	}else{
+		$f_typetransendinitid = "FLETE INTERNACIONAL";
+	}
+}else{
+	$f_typetransendinitid = "FLETE INTERNACIONAL";
+}
 $f_type_operation = strtoupper($listbyidcode[0]['f_type_service']);
 $f_typecontainer = $listbyidcode[0]['f_type_container'];
 $f_desc_weightvolumen = $listbyidcode[0]['f_desc_weightvolumen'];
