@@ -311,7 +311,7 @@ $name_quotation = "Presupuesto-".$_POST['code_quote']."-".$f_typecontainer;
 	          <div class="item_marc_usd_det_ser1">$</div>
 	        </div>
 	        <div id="marc_tot_ser">
-	          <div class="item_marc_tot_ser">100</div>
+	          <div class="item_marc_tot_ser"><?php echo addTwoDecimalsOrGuion($f_flete); ?></div>
 	          <div class="item_marc_tot_ser">-</div>
 	          <div class="item_marc_tot_ser"><?php echo addTwoDecimalsOrGuion($f_emision_BL); ?></div>
 	          <div class="item_marc_tot_ser"><?php echo addTwoDecimalsOrGuion($f_handling); ?></div>

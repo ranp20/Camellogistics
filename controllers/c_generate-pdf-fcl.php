@@ -262,7 +262,7 @@ $name_quotation = "Presupuesto-".$_POST['code_quote']."-".$f_typecontainer;
             ?>
           </div>
           <div id="marc_tot_uniqueser">
-            <div class="item_marc_tot_uniqueser pt-02 text-fw-bold">-</div>
+            <div class="item_marc_tot_uniqueser pt-02 text-fw-bold"><?php echo addTwoDecimalsOrGuion($f_flete); ?></div>
             <div class="item_marc_tot_uniqueser pt-02 text-fw-bold">-</div>
             <div class="item_marc_tot_uniqueser pt-02"><?php echo addTwoDecimalsOrGuion($f_emision_BL); ?></div>
             <div class="item_marc_tot_uniqueser pt-02"><?php echo addTwoDecimalsOrGuion($f_handling); ?></div>
