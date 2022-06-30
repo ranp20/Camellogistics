@@ -29,6 +29,22 @@ function addTwoDecimals($number){
 	}
 	return $output_final;
 }
+function addTwoDecimalsOrGuion($number){
+	$output_final = "";
+	if($number != "0" || $number != 0){
+		$output_num = explode(".", $number);
+		if(!isset($output_num[1]) || $output_num[1] == "undefined" || $output_num[1] == ""){
+			$output_final = number_format($number).".00";
+		}else	if(isset($output_num[1]) && strlen($output_num[1]) < 2){
+			$output_final = number_format($output_num[0]).".".$output_num[1]."0";
+		}else{
+			$output_final = number_format($output_num[0]).".".$output_num[1];
+		}
+	}else{
+		$output_final = "-";
+	}
+	return $output_final;
+}
 function maxcharacters($string, $maxletters){
 	$output_strg = "";
 	if(strlen($string) > $maxletters){
@@ -68,14 +84,24 @@ $f_v_antidumping = $listbyidcode[0]['f_v_antidumping'];
 // VALORES CALCULADOS DE IMPUESTOS
 $f_IGV = $listbyidcode[0]['f_IGV'];
 $f_IPM = $listbyidcode[0]['f_IPM'];
+// VALORES DE SERVICIOS - FCL/LCL
+$f_emision_BL = $listbyidcode[0]['f_emision_BL'];
+$f_visto_bueno = $listbyidcode[0]['f_visto_bueno'];
+$f_almacen_referencial = $listbyidcode[0]['f_almacen_referencial'];
+$f_gremios_maritimos = $listbyidcode[0]['f_gremios_maritimos'];
+$f_THC = $listbyidcode[0]['f_THC'];
+$f_devolucion_contenedores = $listbyidcode[0]['f_devolucion_contenedores'];
+$f_handling = $listbyidcode[0]['f_handling'];
+$f_descarga = $listbyidcode[0]['f_descarga'];
+$f_comision_agencia = $listbyidcode[0]['f_comision_agencia'];
+$f_gastos_operativos = $listbyidcode[0]['f_gastos_operativos'];
+// VALORES IMPUESTOS
 $f_percepcion = $listbyidcode[0]['f_percepcion'];
 $f_ad_valoren = $listbyidcode[0]['f_ad_valoren'];
 $f_impuesto_selectivo = $listbyidcode[0]['f_impuesto_selectivo'];
 $f_antidumping = $listbyidcode[0]['f_antidumping'];
 $f_totalimpuestos = $listbyidcode[0]['f_totalimpuestos'];
 // VALORES CALCULADOS DE SERVICIOS
-$f_comision_agencia = $listbyidcode[0]['f_comision_agencia'];
-$f_gastos_operativos = $listbyidcode[0]['f_gastos_operativos'];
 $f_transporte_interno = $listbyidcode[0]['f_transporte_interno'];
 $f_fichatecnicaycertconform = $listbyidcode[0]['f_fichatecnicaycertconform'];
 $f_total_services = $listbyidcode[0]['f_totalservices'];
@@ -236,12 +262,12 @@ $name_quotation = "Presupuesto-".$_POST['code_quote']."-".$f_typecontainer;
           <div class="item_marc_usd_det_imp1">$</div>
 	      </div>
 	      <div id="marc_det_tot_imp1">
-	        <div class="item_usd_tot_imp1"><?php echo addTwoDecimals($f_IGV);?></div>
-	        <div class="item_usd_tot_imp1"><?php echo addTwoDecimals($f_IPM); ?></div>
-	        <div class="item_usd_tot_imp1"><?php echo addTwoDecimals($f_percepcion); ?></div>
-	        <div class="item_usd_tot_imp1"><?php echo addTwoDecimals($f_ad_valoren); ?></div>
-	        <div class="item_usd_tot_imp1"><?php echo addTwoDecimals($f_impuesto_selectivo); ?></div>
-          <div class="item_usd_tot_imp1"><?php echo addTwoDecimals($f_antidumping); ?></div>
+	        <div class="item_usd_tot_imp1"><?php echo addTwoDecimalsOrGuion($f_IGV);?></div>
+	        <div class="item_usd_tot_imp1"><?php echo addTwoDecimalsOrGuion($f_IPM); ?></div>
+	        <div class="item_usd_tot_imp1"><?php echo addTwoDecimalsOrGuion($f_percepcion); ?></div>
+	        <div class="item_usd_tot_imp1"><?php echo addTwoDecimalsOrGuion($f_ad_valoren); ?></div>
+	        <div class="item_usd_tot_imp1"><?php echo addTwoDecimalsOrGuion($f_impuesto_selectivo); ?></div>
+          <div class="item_usd_tot_imp1"><?php echo addTwoDecimalsOrGuion($f_antidumping); ?></div>
 	      </div>
 	    </div>
 	    <div id="marc_det_er_log">
@@ -275,18 +301,18 @@ $name_quotation = "Presupuesto-".$_POST['code_quote']."-".$f_typecontainer;
 	          <div class="item_marc_usd_det_ser1 h-18">$</div>
 	        </div>
 	        <div id="marc_tot_ser">
-	          <div class="item_marc_tot_ser pt-02 text-red">-</div>
-	          <div class="item_marc_tot_ser pt-02 text-red">-</div>
-	          <div class="item_marc_tot_ser pt-02 text-red">-</div>
-	          <div class="item_marc_tot_ser pt-02"><?php echo addTwoDecimals($f_transporte_interno); ?></div>
+	          <div class="item_marc_tot_ser pt-02 text-red"><?php echo addTwoDecimalsOrGuion($f_visto_bueno); ?></div>
+	          <div class="item_marc_tot_ser pt-02 text-red"><?php echo addTwoDecimalsOrGuion($f_emision_BL); ?></div>
+	          <div class="item_marc_tot_ser pt-02 text-red"><?php echo addTwoDecimalsOrGuion($f_almacen_referencial); ?></div>
+	          <div class="item_marc_tot_ser pt-02"><?php echo addTwoDecimalsOrGuion($f_transporte_interno); ?></div>
 	          <div class="item_marc_tot_ser pt-02">-</div>
-	          <div class="item_marc_tot_ser pt-02 text-red">-</div>
-	          <div class="item_marc_tot_ser pt-02 text-red">-</div>
-	          <div class="item_marc_tot_ser h-25 pt-05"><?php echo addTwoDecimals($f_fichatecnicaycertconform); ?></div>
+	          <div class="item_marc_tot_ser pt-02 text-red"><?php echo addTwoDecimalsOrGuion($f_THC); ?></div>
+	          <div class="item_marc_tot_ser pt-02 text-red"><?php echo addTwoDecimalsOrGuion($f_devolucion_contenedores); ?></div>
+	          <div class="item_marc_tot_ser h-25 pt-05"><?php echo addTwoDecimalsOrGuion($f_fichatecnicaycertconform); ?></div>
 	          <div class="item_marc_tot_ser pt-02">-</div>
-	          <div class="item_marc_tot_ser pt-02 text-red">-</div>
-	          <div class="item_marc_tot_ser pt-02"><?php echo addTwoDecimals($f_comision_agencia); ?></div>
-	          <div class="item_marc_tot_ser pt-02"><?php echo addTwoDecimals($f_gastos_operativos); ?></div>
+	          <div class="item_marc_tot_ser pt-02 text-red"><?php echo addTwoDecimalsOrGuion($f_handling); ?></div>
+	          <div class="item_marc_tot_ser pt-02"><?php echo addTwoDecimalsOrGuion($f_comision_agencia); ?></div>
+	          <div class="item_marc_tot_ser pt-02"><?php echo addTwoDecimalsOrGuion($f_gastos_operativos); ?></div>
 	        </div>
 	      </div>
 	      <div id="marc_det_inf1_log">
