@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Memopay |</title>
+	<title>Camellogistics |</title>
 	<link rel="stylesheet" href="views/assets/css/styles.min.css">
 </head>
 <body>
