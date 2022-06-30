@@ -1,10 +1,8 @@
 $(() => {
-	changesTabsOperation();
 	list_puertoOriginLCL();
   list_puertoDestinyLCL();
 });
-// ------------ CAMBIAR DE CONTROLES SEGÚN LA OPCIÓN SELECCIONADA 
-function changesTabsOperation(){
+$(document).ready(function(){
   // ------------ VARIABLES SESSIONSTORAGE 
   var sess_usercli = sessionStorage.setItem("sess_usercli", 0); //SESSION DE VARIABLE LOCAL PARA EL USUARIO
   var sess_valuser = sessionStorage.setItem("sess_valuser", 0); //VALOR DEL TIPO DE USUARIO: 0 = NINGUNO Y 1 = INVITADO O REGISTRADO
@@ -122,7 +120,7 @@ function changesTabsOperation(){
       `);
     }
 	});
-}
+});
 // ------------ MOSTRAR EL LISTADO DE PAÍSES O PUERTOS - ORIGEN 
 function list_puertoOriginLCL(searchVal){ 
   $.ajax({
@@ -140,9 +138,7 @@ function list_puertoOriginLCL(searchVal){
         <span>No encontrado</span>
       </li>`;
       $("#list-itemsNamePortsOrigin").html(tmpOList);
-      setTimeout(function(){
-        $("#list-itemsNamePortsOrigin").removeClass("show");
-      }, 5000);
+      setTimeout(function(){$("#list-itemsNamePortsOrigin").removeClass("show");}, 5000);
     }else{
       $.each(r, function(i,e){
         tmpOList += `
@@ -198,9 +194,7 @@ function list_puertoDestinyLCL(searchVal){
         <span>No encontrado</span>
       </li>`;
       $("#list-itemsNamePortsDestiny").html(tmpDList);
-      setTimeout(function(){
-        $("#list-itemsNamePortsDestiny").removeClass("show");
-      }, 5000);
+      setTimeout(function(){$("#list-itemsNamePortsDestiny").removeClass("show");}, 5000);
     }else{
       $.each(r, function(i,e){
         if(e.idpais != idCountryOrigin){

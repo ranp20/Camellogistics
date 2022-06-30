@@ -157,25 +157,16 @@
                         $textcompleteContains = $textContain20Std.$textContain40Std.$textContain40HC.$textContain40Nor;
 
                         $withoutcomaStr = substr(trim($textcompleteContains), 0, -1);
-                          $templateQq.="<p>
-                            <span>{$withoutcomaStr}</span>
-                          </p>
-                          ";
+                          $templateQq="<p><span>{$withoutcomaStr}</span></p>";
                         }else{
                           if($_POST['val-iptPackagesNInterface'] > 1){
                             $textpackages = "Bultos";
                             $tmpjoinLCL = "{$_POST['val-iptPackagesNInterface']} {$textpackages} de {$_POST['val-iptWeightNInterface']} Kg y {$_POST['val-iptVolumeNInterface']} M³";
-                            $templateQq.="<p>
-                              <span>{$tmpjoinLCL}</span>
-                            </p>
-                            ";
+                            $templateQq="<p><span>{$tmpjoinLCL}</span></p>";
                           }else{
                             $textpackages = "Bulto";
                             $templateQq = "{$_POST['val-iptPackagesNInterface']} {$textpackages} de {$_POST['val-iptWeightNInterface']} Kg y {$_POST['val-iptVolumeNInterface']} M³";
-                            $templateQq.="<p>
-                              <span>{$templateQq}</span>
-                            </p>
-                            ";
+                            $templateQq="<p><span>{$templateQq}</span></p>";
                           }
                         }
                       }else{
@@ -502,14 +493,41 @@ echo $template_incserv.$template_notincserv;
 <input tabindex="-1" placeholder="phdr-whidipts" type="hidden" width="0" height="0" autocomplete="off" spellcheck="false" f-hidden="aria-hidden" class="non-visvalipt h-alternative-shwnon s-fkeynone-step" id="v_frselinsmerch" value="<?= (isset($_POST['res-insuremerch']) && $_POST['res-insuremerch'] != "") ? $_POST['res-insuremerch'] : "No especificado";?>">
 <input tabindex="-1" placeholder="phdr-whidipts" type="hidden" width="0" height="0" autocomplete="off" spellcheck="false" f-hidden="aria-hidden" class="non-visvalipt h-alternative-shwnon s-fkeynone-step" id="v_fplctopckloc" value="<?= (isset($_POST['plc-pickuploc']) && $_POST['plc-pickuploc'] != "") ? $_POST['plc-pickuploc'] : "No especificado";?>">
 <input tabindex="-1" placeholder="phdr-whidipts" type="hidden" width="0" height="0" autocomplete="off" spellcheck="false" f-hidden="aria-hidden" class="non-visvalipt h-alternative-shwnon s-fkeynone-step" id="v_fpckgcontquant" value="<?php if(isset($_POST['loadTypeCharge']) && $_POST['loadTypeCharge'] != ""){
+  
+  $templateQq = "";
+  $tmpjoinLCL = "";
+  $textpackages = "";
+  $textContain20Std = "";
+  $textContain40Std = "";
+  $textContain40HC = "";
+  $textContain40Nor = "";
+  $textcompleteContains = "";
+
   if($_POST['loadTypeCharge'] == "FCL"){
-    echo $withoutcomaStr;
-  }else if($_POST['loadTypeCharge'] == "LCL"){
-    echo $tmpjoinLCL;
+(isset($_POST['loadTypeContainer20']) && isset($_POST['loadQContainer20']) && $_POST['loadQContainer20'] != 0) ? $textContain20Std = $_POST['loadQContainer20']."x".$_POST['loadTypeContainer20'].", " : "";
+(isset($_POST['loadTypeContainer40']) && isset($_POST['loadQContainer40']) && $_POST['loadQContainer40'] != 0) ? $textContain40Std = $_POST['loadQContainer40']."x".$_POST['loadTypeContainer40'].", " : "";
+(isset($_POST['loadTypeContainer40hq']) && isset($_POST['loadQContainer40hq']) && $_POST['loadQContainer40hq'] != 0) ? $textContain40HC = $_POST['loadQContainer40hq']."x".$_POST['loadTypeContainer40hq'].", " : "";
+(isset($_POST['loadTypeContainer40nor']) && isset($_POST['loadQContainer40nor']) && $_POST['loadQContainer40nor'] != 0) ? $textContain40Nor = $_POST['loadQContainer40nor']."x".$_POST['loadTypeContainer40nor'].", " : "";
+    
+  $textcompleteContains = $textContain20Std.$textContain40Std.$textContain40HC.$textContain40Nor;
+
+  $withoutcomaStr = substr(trim($textcompleteContains), 0, -1);
+  echo $withoutcomaStr;
   }else{
-    echo "No especificado";
+    if($_POST['val-iptPackagesNInterface'] > 1){
+      $textpackages = "Bultos";
+      $tmpjoinLCL = "{$_POST['val-iptPackagesNInterface']} {$textpackages} de {$_POST['val-iptWeightNInterface']} Kg y {$_POST['val-iptVolumeNInterface']} M³";
+      echo $tmpjoinLCL;
+    }else{
+      $textpackages = "Bulto";
+      $templateQq = "{$_POST['val-iptPackagesNInterface']} {$textpackages} de {$_POST['val-iptWeightNInterface']} Kg y {$_POST['val-iptVolumeNInterface']} M³";
+      echo $templateQq;
+    }
   }
-}else{ echo "0"; }?>">
+}else{
+  echo "<span>No especificado</span>";
+}
+?>">
 <input tabindex="-1" placeholder="phdr-whidipts" type="hidden" width="0" height="0" autocomplete="off" spellcheck="false" f-hidden="aria-hidden" class="non-visvalipt h-alternative-shwnon s-fkeynone-step" id="v_ftcomparweacbm" value="<?php if(isset($_POST['loadTypeCharge']) && $_POST['loadTypeCharge'] != ""){
   if($_POST['loadTypeCharge'] == "FCL"){
     $removapostrophe = preg_replace("/'/","",$withoutcomaStr);
