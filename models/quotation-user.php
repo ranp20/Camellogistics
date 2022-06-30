@@ -85,6 +85,7 @@ class Quotation_user extends Connection
       :f_gremios_maritimos,
       :f_THC,
       :f_devolucion_contenedores,
+      :f_descarga,
       :f_derechos_embarque,
       :f_consolidacion,
       :f_bohe_o_inspeccion,

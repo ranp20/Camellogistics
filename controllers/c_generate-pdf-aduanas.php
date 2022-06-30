@@ -44,6 +44,8 @@ $u_nameenterprise = $listbyidcode[0]['u_enterprise'];
 $u_ndocument = $listbyidcode[0]['u_n_document'];
 $u_telephone = $listbyidcode[0]['u_telephone'];
 $u_contain = $listbyidcode[0]['u_contain'];
+$f_origen = strtoupper($listbyidcode[0]['f_origen']);
+$f_destiny = strtoupper($listbyidcode[0]['f_destiny']);
 $f_typetransendinitid = ($listbyidcode[0]['f_typetransendinitid'] == "S-ADU") ? "ADUANAS" : "Otro";
 $f_type_operation = strtoupper($listbyidcode[0]['f_type_service']);
 $f_typecontainer = $listbyidcode[0]['f_type_container'];

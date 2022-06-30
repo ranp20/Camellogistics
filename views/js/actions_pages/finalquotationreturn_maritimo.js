@@ -158,11 +158,19 @@ $(document).ready(function(){
 	var partInteger_Tax = 0;
 	var partDecimal_Tax = 0;
 	var partFinalDecimal_Tax = 0;
-	// ------------ CÁLCULO SERVICIOS IGV 18%
+	// ------------ CÁLCULO SERVICIOS Y SERVICIOS + IGV 18%
+	var val_defaultmin = 0;
+	var fvalfinal_emision_bl = 0;
+	var fvalfinal_visto_bueno = 0;
+	var fvalfinal_almcen_ref = 0;
+	var fvalfinal_gremios_maritimos = 0;
+	var fvalfinal_thc = 0;
+	var fvalfinal_devol_contenedor = 0;
+	var fvalfinal_handling = 0;
+	var fvalfinal_descarga = 0;
 	var fval_com_agencia = 0;
 	var fvalfinal_com_agencia = 0;
 	var fvalfinal_gas_operativos = 0;
-	var val_defaultmin = 0;
 	// ------------ VARIABLES PARA LOS TOTALES A IMPRIMIR 
 	var sumTotalServices = 0;
 	var sumTotalbyIGV = 0;
@@ -301,8 +309,15 @@ $(document).ready(function(){
 						  		}else{
 						  			fvalfinal_com_agencia = com_agencia_fcl;
 						  		}
+						  		//AGREGAR VALOR A LOS SERVICIOS FINALES
+						  		fvalfinal_emision_bl = emision_bl_fcl;
+						  		fvalfinal_visto_bueno = visto_bueno_fcl;
+						  		fvalfinal_almcen_ref = almacen_ref_fcl;
+						  		fvalfinal_gremios_maritimos = gremios_maritimos_fcl;
+						  		fvalfinal_thc = thc_fcl;
+						  		fvalfinal_devol_contenedor = devol_contenedor_fcl;
 				  	 			// SUMAR TODOS LOS SERVICIOS - FCL
-				  	 			var totalServiciosTODOS = emision_bl_fcl+visto_bueno_fcl+almacen_ref_fcl+gremios_maritimos_fcl+thc_fcl+devol_contenedor_fcl+fvalfinal_com_agencia+fvalfinal_gas_operativos+totalftecycertconform;
+				  	 			var totalServiciosTODOS = fvalfinal_emision_bl+fvalfinal_visto_bueno+fvalfinal_almcen_ref+fvalfinal_gremios_maritimos+fvalfinal_thc+fvalfinal_devol_contenedor+fvalfinal_com_agencia+fvalfinal_gas_operativos+totalftecycertconform;
 				  	 			sumTotalServices = totaltransport + totalamountadditional + totalServiciosTODOS; // VALOR TOTAL - SERVICIOS
 				  	 			sumTotalbyIGV = (totaltransport + totalamountadditional + totalServiciosTODOS) * (18 / 100); // VALOR TOTAL - SERVICIOS + IGV 18%
 				  	 			sumTotalFinalFleteandIGV = sumTotalServices + sumTotalbyIGV; // VALOR TOTAL FINAL DE LA COTIZACIÓN
@@ -315,8 +330,14 @@ $(document).ready(function(){
 						  		}else{
 						  			fvalfinal_com_agencia = com_agencia_fcl;
 						  		}
+						  		//AGREGAR VALOR A LOS SERVICIOS FINALES
+						  		fvalfinal_emision_bl = emision_bl_lcl;
+						  		fvalfinal_handling = handling_lcl;
+						  		fvalfinal_visto_bueno = visto_bueno_lcl;
+						  		fvalfinal_descarga = descarga_lcl;
+						  		fvalfinal_almcen_ref = almacen_ref_lcl;
 						  		// SUMAR TODOS LOS SERVICIOS - LCL
-				  	 			var totalServiciosTODOS = emision_bl_lcl+handling_lcl+visto_bueno_lcl+descarga_lcl+almacen_ref_lcl+fvalfinal_com_agencia+fvalfinal_gas_operativos+totalftecycertconform;
+				  	 			var totalServiciosTODOS = fvalfinal_emision_bl+fvalfinal_handling+fvalfinal_visto_bueno+fvalfinal_descarga+fvalfinal_almcen_ref+fvalfinal_com_agencia+fvalfinal_gas_operativos+totalftecycertconform;
 				  	 			sumTotalServices = totaltransport + totalamountadditional + totalServiciosTODOS; // VALOR TOTAL - SERVICIOS
 				  	 			sumTotalbyIGV = (totaltransport + totalamountadditional + totalServiciosTODOS) * (18 / 100); // VALOR TOTAL - SERVICIOS + IGV 18%
 				  	 			sumTotalFinalFleteandIGV = sumTotalServices + sumTotalbyIGV; // VALOR TOTAL FINAL DE LA COTIZACIÓN
@@ -325,7 +346,9 @@ $(document).ready(function(){
 				  	 		}
 				  	 	}else if(v_foptgnfquotevl == "not-moreOpts"){
 				  	 		if(v_loadtypecharge == "FCL"){
-				  	 			var totalServiciosTODOS = thc_fcl+totalftecycertconform;
+				  	 			//AGREGAR VALOR A LOS SERVICIOS FINALES
+				  	 			fvalfinal_thc = thc_fcl;
+				  	 			var totalServiciosTODOS = fvalfinal_thc+totalftecycertconform;
 				  	 			sumTotalServices = totaltransport + totalamountadditional + totalServiciosTODOS; // VALOR TOTAL - SERVICIOS
 				  	 			sumTotalbyIGV = (totaltransport + totalamountadditional + totalServiciosTODOS) * (18 / 100); // VALOR TOTAL - SERVICIOS + IGV 18%
 				  	 			sumTotalFinalFleteandIGV = sumTotalServices + sumTotalbyIGV; // VALOR TOTAL FINAL DE LA COTIZACIÓN
@@ -337,7 +360,9 @@ $(document).ready(function(){
 						  		}else{
 						  			fvalfinal_com_agencia = com_agencia_fcl;
 						  		}
-						  		var totalServiciosTODOS = almacen_ref_lcl+fvalfinal_gas_operativos+fvalfinal_com_agencia+totalftecycertconform;
+						  		//AGREGAR VALOR A LOS SERVICIOS FINALES
+						  		fvalfinal_almcen_ref = almacen_ref_lcl;
+						  		var totalServiciosTODOS = fvalfinal_almcen_ref+fvalfinal_gas_operativos+fvalfinal_com_agencia+totalftecycertconform;
 						  		sumTotalServices = totaltransport + totalamountadditional + totalServiciosTODOS; // VALOR TOTAL - SERVICIOS
 				  	 			sumTotalbyIGV = (totaltransport + totalamountadditional + totalServiciosTODOS) * (18 / 100); // VALOR TOTAL - SERVICIOS + IGV 18%
 				  	 			sumTotalFinalFleteandIGV = sumTotalServices + sumTotalbyIGV; // VALOR TOTAL FINAL DE LA COTIZACIÓN
@@ -452,7 +477,7 @@ $(document).ready(function(){
 								var finalval_percepcion = parseFloat(twodecimal_percepcion);
 
 								// ------------ CALCULO FINAL DE IMPUESTOS 
-								var val_FinalTax = finalval_IGV + finalval_IPM + finalval_percepcion + finalval_Ad_valoren + finalval_i_selectivo + finalval_antidumping + finalRoundinsurance;
+								var val_FinalTax = finalval_IGV + finalval_IPM + finalval_percepcion + finalval_Ad_valoren + finalval_i_selectivo + finalval_antidumping;
 
 								var twodecimals_FinalTax = twodecimals(val_FinalTax);
 								var finalval_FinalTax = parseFloat(twodecimals_FinalTax);
@@ -533,11 +558,19 @@ $(document).ready(function(){
 									formdata.append("f_v_percepcion", percepcion_notfilter);
 									formdata.append("f_IGV", igvcalc_twodeci);
 									formdata.append("f_IPM", ipmcalc_twodeci);
+									formdata.append("f_emision_bl", fvalfinal_emision_bl);
+									formdata.append("f_handling", fvalfinal_handling);
+									formdata.append("f_visto_bueno", fvalfinal_visto_bueno);
+									formdata.append("f_almacen_referencial", fvalfinal_almcen_ref);
+									formdata.append("f_gremios_maritimos", fvalfinal_gremios_maritimos);
+									formdata.append("f_THC", fvalfinal_thc);
+									formdata.append("f_devolucion_contenedores", fvalfinal_devol_contenedor);
+									formdata.append("f_descarga", fvalfinal_descarga);
 									formdata.append("f_percepcion", percepcioncalc_twodeci);
 									formdata.append("f_transporte_interno", totaltransport);
 									formdata.append("f_comision_agencia", fvalfinal_com_agencia);
 									formdata.append("f_gastos_operativos", fvalfinal_gas_operativos);
-									formdata.append("f_fichatecnicaycertconform", v_fftecycertconformpcatg);
+									formdata.append("f_fichatecnicaycertconform", totalftecycertconform);
 									formdata.append("f_totalinsurance", finalRoundinsurance);
 									formdata.append("f_totalservices", totalNotround);
 									formdata.append("f_totalservicesIGV18", totalNotRountByIGV);
@@ -803,11 +836,19 @@ $(document).ready(function(){
 									formdata.append("f_v_percepcion", percepcion_notfilter);
 									formdata.append("f_IGV", igvcalc_twodeci);
 									formdata.append("f_IPM", ipmcalc_twodeci);
+									formdata.append("f_emision_bl", fvalfinal_emision_bl);
+									formdata.append("f_handling", fvalfinal_handling);
+									formdata.append("f_visto_bueno", fvalfinal_visto_bueno);
+									formdata.append("f_almacen_referencial", fvalfinal_almcen_ref);
+									formdata.append("f_gremios_maritimos", fvalfinal_gremios_maritimos);
+									formdata.append("f_THC", fvalfinal_thc);
+									formdata.append("f_devolucion_contenedores", fvalfinal_devol_contenedor);
+									formdata.append("f_descarga", fvalfinal_descarga);
 									formdata.append("f_percepcion", percepcioncalc_twodeci);
 									formdata.append("f_transporte_interno", totaltransport);
 									formdata.append("f_comision_agencia", fvalfinal_com_agencia);
 									formdata.append("f_gastos_operativos", fvalfinal_gas_operativos);
-									formdata.append("f_fichatecnicaycertconform", v_fftecycertconformpcatg);
+									formdata.append("f_fichatecnicaycertconform", totalftecycertconform);
 									formdata.append("f_totalinsurance", finalRoundinsurance);
 									formdata.append("f_totalservices", totalNotround);
 									formdata.append("f_totalservicesIGV18", totalNotRountByIGV);
@@ -1050,7 +1091,7 @@ $(document).ready(function(){
   });
 	// ------------ VALIDAR SI EXISTE UN USUARIO AL ABRIR EL MODAL - PRIMER BOTÓN 
   $(document).on("click","#btn-requireDownloadQuotaion_one",function(e){
-		e.preventDefault();	
+		e.preventDefault();
 		if($("#s_useregin-sistem").val() == "" || $("#s_useregin-sistem").val() == undefined || $("#s_useregin-sistem").val() == 'undefined' || $("#s_useregin-sistem").val() == null || $("#s_useregin-sistem").val() == 'null'){
 			$("#cnt-modalFormLoginyRegister").add($(".cnt-modalFormLoginyRegister--c")).addClass("show");
 			console.log('Por favor, rellene sus datos.');
@@ -1092,55 +1133,163 @@ $(document).ready(function(){
 							</div>
 							<p>Preparando cotización...</p>
 						</div>`);
-						$.ajax({
-							type: 'POST',
-							url: 'controllers/c_generate-pdf-integral.php',
-							data: {
-								id_codegenrand : v_idgencoderand, 
-								code_quote : $("#v_gencodexxx").text(),
-								u_login : user_sessquote
-							},
-							xhrFields: {
-					      responseType: 'blob' // to avoid binary data being mangled on charset conversion
-					    },
-					    success: function(blob, status, xhr) {
-				        // check for a filename
-				        var filename = "";
-				        var disposition = xhr.getResponseHeader('Content-Disposition');
-				        if (disposition && disposition.indexOf('attachment') !== -1) {
-			            var filenameRegex = /filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/;
-			            var matches = filenameRegex.exec(disposition);
-			            if (matches != null && matches[1]) filename = matches[1].replace(/['"]/g, '');
-				        }
+						if(v_foptgnfquotevl == "y-moreOpts"){
+							$.ajax({
+								type: 'POST',
+								url: 'controllers/c_generate-pdf-integral.php',
+								data: {
+									id_codegenrand : v_idgencoderand, 
+									code_quote : $("#v_gencodexxx").text(),
+									u_login : user_sessquote
+								},
+								xhrFields: {
+						      responseType: 'blob' // to avoid binary data being mangled on charset conversion
+						    },
+						    success: function(blob, status, xhr) {
+					        // check for a filename
+					        var filename = "";
+					        var disposition = xhr.getResponseHeader('Content-Disposition');
+					        if (disposition && disposition.indexOf('attachment') !== -1) {
+				            var filenameRegex = /filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/;
+				            var matches = filenameRegex.exec(disposition);
+				            if (matches != null && matches[1]) filename = matches[1].replace(/['"]/g, '');
+					        }
 
-				        if (typeof window.navigator.msSaveBlob !== 'undefined') {
-			            // IE workaround for "HTML7007: One or more blob URLs were revoked by closing the blob for which they were created. These URLs will no longer resolve as the data backing the URL has been freed."
-			            window.navigator.msSaveBlob(blob, filename);
-				        } else {
-			            var URL = window.URL || window.webkitURL;
-			            var downloadUrl = URL.createObjectURL(blob);
+					        if (typeof window.navigator.msSaveBlob !== 'undefined') {
+				            // IE workaround for "HTML7007: One or more blob URLs were revoked by closing the blob for which they were created. These URLs will no longer resolve as the data backing the URL has been freed."
+				            window.navigator.msSaveBlob(blob, filename);
+					        } else {
+				            var URL = window.URL || window.webkitURL;
+				            var downloadUrl = URL.createObjectURL(blob);
 
-			            if (filename) {
-		                // use HTML5 a[download] attribute to specify filename
-		                var a = document.createElement("a");
-		                // safari doesn't support this yet
-		                if (typeof a.download === 'undefined') {
-		                  window.location.href = downloadUrl;
-		                } else {
-	                    a.href = downloadUrl;
-	                    a.download = filename;
-	                    document.body.appendChild(a);
-	                    a.click();
-	                    $("#cUIMessageValid-user").html("");
-		                }
-			            } else {
-			              window.location.href = downloadUrl;
-			            }
+				            if (filename) {
+			                // use HTML5 a[download] attribute to specify filename
+			                var a = document.createElement("a");
+			                // safari doesn't support this yet
+			                if (typeof a.download === 'undefined') {
+			                  window.location.href = downloadUrl;
+			                } else {
+		                    a.href = downloadUrl;
+		                    a.download = filename;
+		                    document.body.appendChild(a);
+		                    a.click();
+		                    $("#cUIMessageValid-user").html("");
+			                }
+				            } else {
+				              window.location.href = downloadUrl;
+				            }
 
-			            setTimeout(function () { URL.revokeObjectURL(downloadUrl); }, 100); // cleanup
-				        }
-					    }
-						});
+				            setTimeout(function () { URL.revokeObjectURL(downloadUrl); }, 100); // cleanup
+					        }
+						    }
+							});
+						}else if(v_foptgnfquotevl == "not-moreOpts"){
+							if(v_loadtypecharge == "FCL"){
+								$.ajax({
+									type: 'POST',
+									url: 'controllers/c_generate-pdf-fcl.php',
+									data: {
+										id_codegenrand : v_idgencoderand, 
+										code_quote : $("#v_gencodexxx").text(),
+										u_login : user_sessquote
+									},
+									xhrFields: {
+							      responseType: 'blob' // to avoid binary data being mangled on charset conversion
+							    },
+							    success: function(blob, status, xhr) {
+						        // check for a filename
+						        var filename = "";
+						        var disposition = xhr.getResponseHeader('Content-Disposition');
+						        if (disposition && disposition.indexOf('attachment') !== -1) {
+					            var filenameRegex = /filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/;
+					            var matches = filenameRegex.exec(disposition);
+					            if (matches != null && matches[1]) filename = matches[1].replace(/['"]/g, '');
+						        }
+
+						        if (typeof window.navigator.msSaveBlob !== 'undefined') {
+					            // IE workaround for "HTML7007: One or more blob URLs were revoked by closing the blob for which they were created. These URLs will no longer resolve as the data backing the URL has been freed."
+					            window.navigator.msSaveBlob(blob, filename);
+						        } else {
+					            var URL = window.URL || window.webkitURL;
+					            var downloadUrl = URL.createObjectURL(blob);
+
+					            if (filename) {
+				                // use HTML5 a[download] attribute to specify filename
+				                var a = document.createElement("a");
+				                // safari doesn't support this yet
+				                if (typeof a.download === 'undefined') {
+				                  window.location.href = downloadUrl;
+				                } else {
+			                    a.href = downloadUrl;
+			                    a.download = filename;
+			                    document.body.appendChild(a);
+			                    a.click();
+			                    $("#cUIMessageValid-user").html("");
+				                }
+					            } else {
+					              window.location.href = downloadUrl;
+					            }
+
+					            setTimeout(function () { URL.revokeObjectURL(downloadUrl); }, 100); // cleanup
+						        }
+							    }
+								});
+							}else if(v_loadtypecharge == "LCL"){
+								$.ajax({
+									type: 'POST',
+									url: 'controllers/c_generate-pdf-lcl.php',
+									data: {
+										id_codegenrand : v_idgencoderand, 
+										code_quote : $("#v_gencodexxx").text(),
+										u_login : user_sessquote
+									},
+									xhrFields: {
+							      responseType: 'blob' // to avoid binary data being mangled on charset conversion
+							    },
+							    success: function(blob, status, xhr) {
+						        // check for a filename
+						        var filename = "";
+						        var disposition = xhr.getResponseHeader('Content-Disposition');
+						        if (disposition && disposition.indexOf('attachment') !== -1) {
+					            var filenameRegex = /filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/;
+					            var matches = filenameRegex.exec(disposition);
+					            if (matches != null && matches[1]) filename = matches[1].replace(/['"]/g, '');
+						        }
+
+						        if (typeof window.navigator.msSaveBlob !== 'undefined') {
+					            // IE workaround for "HTML7007: One or more blob URLs were revoked by closing the blob for which they were created. These URLs will no longer resolve as the data backing the URL has been freed."
+					            window.navigator.msSaveBlob(blob, filename);
+						        } else {
+					            var URL = window.URL || window.webkitURL;
+					            var downloadUrl = URL.createObjectURL(blob);
+
+					            if (filename) {
+				                // use HTML5 a[download] attribute to specify filename
+				                var a = document.createElement("a");
+				                // safari doesn't support this yet
+				                if (typeof a.download === 'undefined') {
+				                  window.location.href = downloadUrl;
+				                } else {
+			                    a.href = downloadUrl;
+			                    a.download = filename;
+			                    document.body.appendChild(a);
+			                    a.click();
+			                    $("#cUIMessageValid-user").html("");
+				                }
+					            } else {
+					              window.location.href = downloadUrl;
+					            }
+
+					            setTimeout(function () { URL.revokeObjectURL(downloadUrl); }, 100); // cleanup
+						        }
+							    }
+								});
+							}else{
+								console.log('Lo sentimos, hubo un error al procesar la información.');
+							}
+						}else{
+							console.log('Lo sentimos, hubo un error al procesar la información.');
+						}
 					}else if(rpdf.res == "notexists"){
 						$("#cUIMessageValid-user").html("");
 						$("#cnt-modalFormLoginyRegister").add($(".cnt-modalFormLoginyRegister--c")).addClass("show");
@@ -1200,55 +1349,163 @@ $(document).ready(function(){
 							</div>
 							<p>Preparando cotización...</p>
 						</div>`);
-						$.ajax({
-							type: 'POST',
-							url: 'controllers/c_generate-pdf-integral.php',
-							data: {
-								id_codegenrand : v_idgencoderand, 
-								code_quote : $("#v_gencodexxx").text(),
-								u_login : user_sessquote
-							},
-							xhrFields: {
-					      responseType: 'blob' // to avoid binary data being mangled on charset conversion
-					    },
-					    success: function(blob, status, xhr) {
-				        // check for a filename
-				        var filename = "";
-				        var disposition = xhr.getResponseHeader('Content-Disposition');
-				        if (disposition && disposition.indexOf('attachment') !== -1) {
-			            var filenameRegex = /filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/;
-			            var matches = filenameRegex.exec(disposition);
-			            if (matches != null && matches[1]) filename = matches[1].replace(/['"]/g, '');
-				        }
+						if(v_foptgnfquotevl == "y-moreOpts"){
+							$.ajax({
+								type: 'POST',
+								url: 'controllers/c_generate-pdf-integral.php',
+								data: {
+									id_codegenrand : v_idgencoderand, 
+									code_quote : $("#v_gencodexxx").text(),
+									u_login : user_sessquote
+								},
+								xhrFields: {
+						      responseType: 'blob' // to avoid binary data being mangled on charset conversion
+						    },
+						    success: function(blob, status, xhr) {
+					        // check for a filename
+					        var filename = "";
+					        var disposition = xhr.getResponseHeader('Content-Disposition');
+					        if (disposition && disposition.indexOf('attachment') !== -1) {
+				            var filenameRegex = /filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/;
+				            var matches = filenameRegex.exec(disposition);
+				            if (matches != null && matches[1]) filename = matches[1].replace(/['"]/g, '');
+					        }
 
-				        if (typeof window.navigator.msSaveBlob !== 'undefined') {
-			            // IE workaround for "HTML7007: One or more blob URLs were revoked by closing the blob for which they were created. These URLs will no longer resolve as the data backing the URL has been freed."
-			            window.navigator.msSaveBlob(blob, filename);
-				        } else {
-			            var URL = window.URL || window.webkitURL;
-			            var downloadUrl = URL.createObjectURL(blob);
+					        if (typeof window.navigator.msSaveBlob !== 'undefined') {
+				            // IE workaround for "HTML7007: One or more blob URLs were revoked by closing the blob for which they were created. These URLs will no longer resolve as the data backing the URL has been freed."
+				            window.navigator.msSaveBlob(blob, filename);
+					        } else {
+				            var URL = window.URL || window.webkitURL;
+				            var downloadUrl = URL.createObjectURL(blob);
 
-			            if (filename) {
-		                // use HTML5 a[download] attribute to specify filename
-		                var a = document.createElement("a");
-		                // safari doesn't support this yet
-		                if (typeof a.download === 'undefined') {
-		                  window.location.href = downloadUrl;
-		                } else {
-	                    a.href = downloadUrl;
-	                    a.download = filename;
-	                    document.body.appendChild(a);
-	                    a.click();
-	                    $("#cUIMessageValid-user").html("");
-		                }
-			            } else {
-			              window.location.href = downloadUrl;
-			            }
+				            if (filename) {
+			                // use HTML5 a[download] attribute to specify filename
+			                var a = document.createElement("a");
+			                // safari doesn't support this yet
+			                if (typeof a.download === 'undefined') {
+			                  window.location.href = downloadUrl;
+			                } else {
+		                    a.href = downloadUrl;
+		                    a.download = filename;
+		                    document.body.appendChild(a);
+		                    a.click();
+		                    $("#cUIMessageValid-user").html("");
+			                }
+				            } else {
+				              window.location.href = downloadUrl;
+				            }
 
-			            setTimeout(function () { URL.revokeObjectURL(downloadUrl); }, 100); // cleanup
-				        }
-					    }
-						});
+				            setTimeout(function () { URL.revokeObjectURL(downloadUrl); }, 100); // cleanup
+					        }
+						    }
+							});
+						}else if(v_foptgnfquotevl == "not-moreOpts"){
+							if(v_loadtypecharge == "FCL"){
+								$.ajax({
+									type: 'POST',
+									url: 'controllers/c_generate-pdf-fcl.php',
+									data: {
+										id_codegenrand : v_idgencoderand, 
+										code_quote : $("#v_gencodexxx").text(),
+										u_login : user_sessquote
+									},
+									xhrFields: {
+							      responseType: 'blob' // to avoid binary data being mangled on charset conversion
+							    },
+							    success: function(blob, status, xhr) {
+						        // check for a filename
+						        var filename = "";
+						        var disposition = xhr.getResponseHeader('Content-Disposition');
+						        if (disposition && disposition.indexOf('attachment') !== -1) {
+					            var filenameRegex = /filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/;
+					            var matches = filenameRegex.exec(disposition);
+					            if (matches != null && matches[1]) filename = matches[1].replace(/['"]/g, '');
+						        }
+
+						        if (typeof window.navigator.msSaveBlob !== 'undefined') {
+					            // IE workaround for "HTML7007: One or more blob URLs were revoked by closing the blob for which they were created. These URLs will no longer resolve as the data backing the URL has been freed."
+					            window.navigator.msSaveBlob(blob, filename);
+						        } else {
+					            var URL = window.URL || window.webkitURL;
+					            var downloadUrl = URL.createObjectURL(blob);
+
+					            if (filename) {
+				                // use HTML5 a[download] attribute to specify filename
+				                var a = document.createElement("a");
+				                // safari doesn't support this yet
+				                if (typeof a.download === 'undefined') {
+				                  window.location.href = downloadUrl;
+				                } else {
+			                    a.href = downloadUrl;
+			                    a.download = filename;
+			                    document.body.appendChild(a);
+			                    a.click();
+			                    $("#cUIMessageValid-user").html("");
+				                }
+					            } else {
+					              window.location.href = downloadUrl;
+					            }
+
+					            setTimeout(function () { URL.revokeObjectURL(downloadUrl); }, 100); // cleanup
+						        }
+							    }
+								});
+							}else if(v_loadtypecharge == "LCL"){
+								$.ajax({
+									type: 'POST',
+									url: 'controllers/c_generate-pdf-lcl.php',
+									data: {
+										id_codegenrand : v_idgencoderand, 
+										code_quote : $("#v_gencodexxx").text(),
+										u_login : user_sessquote
+									},
+									xhrFields: {
+							      responseType: 'blob' // to avoid binary data being mangled on charset conversion
+							    },
+							    success: function(blob, status, xhr) {
+						        // check for a filename
+						        var filename = "";
+						        var disposition = xhr.getResponseHeader('Content-Disposition');
+						        if (disposition && disposition.indexOf('attachment') !== -1) {
+					            var filenameRegex = /filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/;
+					            var matches = filenameRegex.exec(disposition);
+					            if (matches != null && matches[1]) filename = matches[1].replace(/['"]/g, '');
+						        }
+
+						        if (typeof window.navigator.msSaveBlob !== 'undefined') {
+					            // IE workaround for "HTML7007: One or more blob URLs were revoked by closing the blob for which they were created. These URLs will no longer resolve as the data backing the URL has been freed."
+					            window.navigator.msSaveBlob(blob, filename);
+						        } else {
+					            var URL = window.URL || window.webkitURL;
+					            var downloadUrl = URL.createObjectURL(blob);
+
+					            if (filename) {
+				                // use HTML5 a[download] attribute to specify filename
+				                var a = document.createElement("a");
+				                // safari doesn't support this yet
+				                if (typeof a.download === 'undefined') {
+				                  window.location.href = downloadUrl;
+				                } else {
+			                    a.href = downloadUrl;
+			                    a.download = filename;
+			                    document.body.appendChild(a);
+			                    a.click();
+			                    $("#cUIMessageValid-user").html("");
+				                }
+					            } else {
+					              window.location.href = downloadUrl;
+					            }
+
+					            setTimeout(function () { URL.revokeObjectURL(downloadUrl); }, 100); // cleanup
+						        }
+							    }
+								});
+							}else{
+								console.log('Lo sentimos, hubo un error al procesar la información.');
+							}
+						}else{
+							console.log('Lo sentimos, hubo un error al procesar la información.');
+						}
 					}else if(rpdf.res == "notexists"){
 						$("#cUIMessageValid-user").html("");
 						$("#cnt-modalFormLoginyRegister").add($(".cnt-modalFormLoginyRegister--c")).addClass("show");
@@ -1325,55 +1582,163 @@ $(document).ready(function(){
 							</div>
 							<p>Preparando cotización...</p>
 						</div>`);
-						$.ajax({
-							type: 'POST',
-							url: 'controllers/c_generate-pdf-integral.php',
-							data: {
-								id_codegenrand : v_idgencoderand, 
-								code_quote : $("#v_gencodexxx").text(),
-								u_login : user_sessquote
-							},
-							xhrFields: {
-					      responseType: 'blob' // to avoid binary data being mangled on charset conversion
-					    },
-					    success: function(blob, status, xhr) {
-				        // check for a filename
-				        var filename = "";
-				        var disposition = xhr.getResponseHeader('Content-Disposition');
-				        if (disposition && disposition.indexOf('attachment') !== -1) {
-			            var filenameRegex = /filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/;
-			            var matches = filenameRegex.exec(disposition);
-			            if (matches != null && matches[1]) filename = matches[1].replace(/['"]/g, '');
-				        }
+						if(v_foptgnfquotevl == "y-moreOpts"){
+							$.ajax({
+								type: 'POST',
+								url: 'controllers/c_generate-pdf-integral.php',
+								data: {
+									id_codegenrand : v_idgencoderand, 
+									code_quote : $("#v_gencodexxx").text(),
+									u_login : user_sessquote
+								},
+								xhrFields: {
+						      responseType: 'blob' // to avoid binary data being mangled on charset conversion
+						    },
+						    success: function(blob, status, xhr) {
+					        // check for a filename
+					        var filename = "";
+					        var disposition = xhr.getResponseHeader('Content-Disposition');
+					        if (disposition && disposition.indexOf('attachment') !== -1) {
+				            var filenameRegex = /filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/;
+				            var matches = filenameRegex.exec(disposition);
+				            if (matches != null && matches[1]) filename = matches[1].replace(/['"]/g, '');
+					        }
 
-				        if (typeof window.navigator.msSaveBlob !== 'undefined') {
-			            // IE workaround for "HTML7007: One or more blob URLs were revoked by closing the blob for which they were created. These URLs will no longer resolve as the data backing the URL has been freed."
-			            window.navigator.msSaveBlob(blob, filename);
-				        } else {
-			            var URL = window.URL || window.webkitURL;
-			            var downloadUrl = URL.createObjectURL(blob);
+					        if (typeof window.navigator.msSaveBlob !== 'undefined') {
+				            // IE workaround for "HTML7007: One or more blob URLs were revoked by closing the blob for which they were created. These URLs will no longer resolve as the data backing the URL has been freed."
+				            window.navigator.msSaveBlob(blob, filename);
+					        } else {
+				            var URL = window.URL || window.webkitURL;
+				            var downloadUrl = URL.createObjectURL(blob);
 
-			            if (filename) {
-		                // use HTML5 a[download] attribute to specify filename
-		                var a = document.createElement("a");
-		                // safari doesn't support this yet
-		                if (typeof a.download === 'undefined') {
-		                  window.location.href = downloadUrl;
-		                } else {
-	                    a.href = downloadUrl;
-	                    a.download = filename;
-	                    document.body.appendChild(a);
-	                    a.click();
-	                    $("#cUIMessageValid-user").html("");
-		                }
-			            } else {
-			              window.location.href = downloadUrl;
-			            }
+				            if (filename) {
+			                // use HTML5 a[download] attribute to specify filename
+			                var a = document.createElement("a");
+			                // safari doesn't support this yet
+			                if (typeof a.download === 'undefined') {
+			                  window.location.href = downloadUrl;
+			                } else {
+		                    a.href = downloadUrl;
+		                    a.download = filename;
+		                    document.body.appendChild(a);
+		                    a.click();
+		                    $("#cUIMessageValid-user").html("");
+			                }
+				            } else {
+				              window.location.href = downloadUrl;
+				            }
 
-			            setTimeout(function () { URL.revokeObjectURL(downloadUrl); }, 100); // cleanup
-				        }
-					    }
-						});
+				            setTimeout(function () { URL.revokeObjectURL(downloadUrl); }, 100); // cleanup
+					        }
+						    }
+							});
+						}else if(v_foptgnfquotevl == "not-moreOpts"){
+							if(v_loadtypecharge == "FCL"){
+								$.ajax({
+									type: 'POST',
+									url: 'controllers/c_generate-pdf-fcl.php',
+									data: {
+										id_codegenrand : v_idgencoderand, 
+										code_quote : $("#v_gencodexxx").text(),
+										u_login : user_sessquote
+									},
+									xhrFields: {
+							      responseType: 'blob' // to avoid binary data being mangled on charset conversion
+							    },
+							    success: function(blob, status, xhr) {
+						        // check for a filename
+						        var filename = "";
+						        var disposition = xhr.getResponseHeader('Content-Disposition');
+						        if (disposition && disposition.indexOf('attachment') !== -1) {
+					            var filenameRegex = /filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/;
+					            var matches = filenameRegex.exec(disposition);
+					            if (matches != null && matches[1]) filename = matches[1].replace(/['"]/g, '');
+						        }
+
+						        if (typeof window.navigator.msSaveBlob !== 'undefined') {
+					            // IE workaround for "HTML7007: One or more blob URLs were revoked by closing the blob for which they were created. These URLs will no longer resolve as the data backing the URL has been freed."
+					            window.navigator.msSaveBlob(blob, filename);
+						        } else {
+					            var URL = window.URL || window.webkitURL;
+					            var downloadUrl = URL.createObjectURL(blob);
+
+					            if (filename) {
+				                // use HTML5 a[download] attribute to specify filename
+				                var a = document.createElement("a");
+				                // safari doesn't support this yet
+				                if (typeof a.download === 'undefined') {
+				                  window.location.href = downloadUrl;
+				                } else {
+			                    a.href = downloadUrl;
+			                    a.download = filename;
+			                    document.body.appendChild(a);
+			                    a.click();
+			                    $("#cUIMessageValid-user").html("");
+				                }
+					            } else {
+					              window.location.href = downloadUrl;
+					            }
+
+					            setTimeout(function () { URL.revokeObjectURL(downloadUrl); }, 100); // cleanup
+						        }
+							    }
+								});
+							}else if(v_loadtypecharge == "LCL"){
+								$.ajax({
+									type: 'POST',
+									url: 'controllers/c_generate-pdf-lcl.php',
+									data: {
+										id_codegenrand : v_idgencoderand, 
+										code_quote : $("#v_gencodexxx").text(),
+										u_login : user_sessquote
+									},
+									xhrFields: {
+							      responseType: 'blob' // to avoid binary data being mangled on charset conversion
+							    },
+							    success: function(blob, status, xhr) {
+						        // check for a filename
+						        var filename = "";
+						        var disposition = xhr.getResponseHeader('Content-Disposition');
+						        if (disposition && disposition.indexOf('attachment') !== -1) {
+					            var filenameRegex = /filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/;
+					            var matches = filenameRegex.exec(disposition);
+					            if (matches != null && matches[1]) filename = matches[1].replace(/['"]/g, '');
+						        }
+
+						        if (typeof window.navigator.msSaveBlob !== 'undefined') {
+					            // IE workaround for "HTML7007: One or more blob URLs were revoked by closing the blob for which they were created. These URLs will no longer resolve as the data backing the URL has been freed."
+					            window.navigator.msSaveBlob(blob, filename);
+						        } else {
+					            var URL = window.URL || window.webkitURL;
+					            var downloadUrl = URL.createObjectURL(blob);
+
+					            if (filename) {
+				                // use HTML5 a[download] attribute to specify filename
+				                var a = document.createElement("a");
+				                // safari doesn't support this yet
+				                if (typeof a.download === 'undefined') {
+				                  window.location.href = downloadUrl;
+				                } else {
+			                    a.href = downloadUrl;
+			                    a.download = filename;
+			                    document.body.appendChild(a);
+			                    a.click();
+			                    $("#cUIMessageValid-user").html("");
+				                }
+					            } else {
+					              window.location.href = downloadUrl;
+					            }
+
+					            setTimeout(function () { URL.revokeObjectURL(downloadUrl); }, 100); // cleanup
+						        }
+							    }
+								});
+							}else{
+								console.log('Lo sentimos, hubo un error al procesar la información.');
+							}
+						}else{
+							console.log('Lo sentimos, hubo un error al procesar la información.');
+						}
 					}else if(rpdf.res == "notexists"){
 						$("#cUIMessageValid-user").html("");
 						$("#cnt-modalFormLoginyRegister").add($(".cnt-modalFormLoginyRegister--c")).addClass("show");
@@ -1433,55 +1798,163 @@ $(document).ready(function(){
 							</div>
 							<p>Preparando cotización...</p>
 						</div>`);
-						$.ajax({
-							type: 'POST',
-							url: 'controllers/c_generate-pdf-integral.php',
-							data: {
-								id_codegenrand : v_idgencoderand, 
-								code_quote : $("#v_gencodexxx").text(),
-								u_login : user_sessquote
-							},
-							xhrFields: {
-					      responseType: 'blob' // to avoid binary data being mangled on charset conversion
-					    },
-					    success: function(blob, status, xhr) {
-				        // check for a filename
-				        var filename = "";
-				        var disposition = xhr.getResponseHeader('Content-Disposition');
-				        if (disposition && disposition.indexOf('attachment') !== -1) {
-			            var filenameRegex = /filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/;
-			            var matches = filenameRegex.exec(disposition);
-			            if (matches != null && matches[1]) filename = matches[1].replace(/['"]/g, '');
-				        }
+						if(v_foptgnfquotevl == "y-moreOpts"){
+							$.ajax({
+								type: 'POST',
+								url: 'controllers/c_generate-pdf-integral.php',
+								data: {
+									id_codegenrand : v_idgencoderand, 
+									code_quote : $("#v_gencodexxx").text(),
+									u_login : user_sessquote
+								},
+								xhrFields: {
+						      responseType: 'blob' // to avoid binary data being mangled on charset conversion
+						    },
+						    success: function(blob, status, xhr) {
+					        // check for a filename
+					        var filename = "";
+					        var disposition = xhr.getResponseHeader('Content-Disposition');
+					        if (disposition && disposition.indexOf('attachment') !== -1) {
+				            var filenameRegex = /filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/;
+				            var matches = filenameRegex.exec(disposition);
+				            if (matches != null && matches[1]) filename = matches[1].replace(/['"]/g, '');
+					        }
 
-				        if (typeof window.navigator.msSaveBlob !== 'undefined') {
-			            // IE workaround for "HTML7007: One or more blob URLs were revoked by closing the blob for which they were created. These URLs will no longer resolve as the data backing the URL has been freed."
-			            window.navigator.msSaveBlob(blob, filename);
-				        } else {
-			            var URL = window.URL || window.webkitURL;
-			            var downloadUrl = URL.createObjectURL(blob);
+					        if (typeof window.navigator.msSaveBlob !== 'undefined') {
+				            // IE workaround for "HTML7007: One or more blob URLs were revoked by closing the blob for which they were created. These URLs will no longer resolve as the data backing the URL has been freed."
+				            window.navigator.msSaveBlob(blob, filename);
+					        } else {
+				            var URL = window.URL || window.webkitURL;
+				            var downloadUrl = URL.createObjectURL(blob);
 
-			            if (filename) {
-		                // use HTML5 a[download] attribute to specify filename
-		                var a = document.createElement("a");
-		                // safari doesn't support this yet
-		                if (typeof a.download === 'undefined') {
-		                  window.location.href = downloadUrl;
-		                } else {
-	                    a.href = downloadUrl;
-	                    a.download = filename;
-	                    document.body.appendChild(a);
-	                    a.click();
-	                    $("#cUIMessageValid-user").html("");
-		                }
-			            } else {
-			              window.location.href = downloadUrl;
-			            }
+				            if (filename) {
+			                // use HTML5 a[download] attribute to specify filename
+			                var a = document.createElement("a");
+			                // safari doesn't support this yet
+			                if (typeof a.download === 'undefined') {
+			                  window.location.href = downloadUrl;
+			                } else {
+		                    a.href = downloadUrl;
+		                    a.download = filename;
+		                    document.body.appendChild(a);
+		                    a.click();
+		                    $("#cUIMessageValid-user").html("");
+			                }
+				            } else {
+				              window.location.href = downloadUrl;
+				            }
 
-			            setTimeout(function () { URL.revokeObjectURL(downloadUrl); }, 100); // cleanup
-				        }
-					    }
-						});
+				            setTimeout(function () { URL.revokeObjectURL(downloadUrl); }, 100); // cleanup
+					        }
+						    }
+							});
+						}else if(v_foptgnfquotevl == "not-moreOpts"){
+							if(v_loadtypecharge == "FCL"){
+								$.ajax({
+									type: 'POST',
+									url: 'controllers/c_generate-pdf-fcl.php',
+									data: {
+										id_codegenrand : v_idgencoderand, 
+										code_quote : $("#v_gencodexxx").text(),
+										u_login : user_sessquote
+									},
+									xhrFields: {
+							      responseType: 'blob' // to avoid binary data being mangled on charset conversion
+							    },
+							    success: function(blob, status, xhr) {
+						        // check for a filename
+						        var filename = "";
+						        var disposition = xhr.getResponseHeader('Content-Disposition');
+						        if (disposition && disposition.indexOf('attachment') !== -1) {
+					            var filenameRegex = /filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/;
+					            var matches = filenameRegex.exec(disposition);
+					            if (matches != null && matches[1]) filename = matches[1].replace(/['"]/g, '');
+						        }
+
+						        if (typeof window.navigator.msSaveBlob !== 'undefined') {
+					            // IE workaround for "HTML7007: One or more blob URLs were revoked by closing the blob for which they were created. These URLs will no longer resolve as the data backing the URL has been freed."
+					            window.navigator.msSaveBlob(blob, filename);
+						        } else {
+					            var URL = window.URL || window.webkitURL;
+					            var downloadUrl = URL.createObjectURL(blob);
+
+					            if (filename) {
+				                // use HTML5 a[download] attribute to specify filename
+				                var a = document.createElement("a");
+				                // safari doesn't support this yet
+				                if (typeof a.download === 'undefined') {
+				                  window.location.href = downloadUrl;
+				                } else {
+			                    a.href = downloadUrl;
+			                    a.download = filename;
+			                    document.body.appendChild(a);
+			                    a.click();
+			                    $("#cUIMessageValid-user").html("");
+				                }
+					            } else {
+					              window.location.href = downloadUrl;
+					            }
+
+					            setTimeout(function () { URL.revokeObjectURL(downloadUrl); }, 100); // cleanup
+						        }
+							    }
+								});
+							}else if(v_loadtypecharge == "LCL"){
+								$.ajax({
+									type: 'POST',
+									url: 'controllers/c_generate-pdf-lcl.php',
+									data: {
+										id_codegenrand : v_idgencoderand, 
+										code_quote : $("#v_gencodexxx").text(),
+										u_login : user_sessquote
+									},
+									xhrFields: {
+							      responseType: 'blob' // to avoid binary data being mangled on charset conversion
+							    },
+							    success: function(blob, status, xhr) {
+						        // check for a filename
+						        var filename = "";
+						        var disposition = xhr.getResponseHeader('Content-Disposition');
+						        if (disposition && disposition.indexOf('attachment') !== -1) {
+					            var filenameRegex = /filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/;
+					            var matches = filenameRegex.exec(disposition);
+					            if (matches != null && matches[1]) filename = matches[1].replace(/['"]/g, '');
+						        }
+
+						        if (typeof window.navigator.msSaveBlob !== 'undefined') {
+					            // IE workaround for "HTML7007: One or more blob URLs were revoked by closing the blob for which they were created. These URLs will no longer resolve as the data backing the URL has been freed."
+					            window.navigator.msSaveBlob(blob, filename);
+						        } else {
+					            var URL = window.URL || window.webkitURL;
+					            var downloadUrl = URL.createObjectURL(blob);
+
+					            if (filename) {
+				                // use HTML5 a[download] attribute to specify filename
+				                var a = document.createElement("a");
+				                // safari doesn't support this yet
+				                if (typeof a.download === 'undefined') {
+				                  window.location.href = downloadUrl;
+				                } else {
+			                    a.href = downloadUrl;
+			                    a.download = filename;
+			                    document.body.appendChild(a);
+			                    a.click();
+			                    $("#cUIMessageValid-user").html("");
+				                }
+					            } else {
+					              window.location.href = downloadUrl;
+					            }
+
+					            setTimeout(function () { URL.revokeObjectURL(downloadUrl); }, 100); // cleanup
+						        }
+							    }
+								});
+							}else{
+								console.log('Lo sentimos, hubo un error al procesar la información.');
+							}
+						}else{
+							console.log('Lo sentimos, hubo un error al procesar la información.');
+						}
 					}else if(rpdf.res == "notexists"){
 						$("#cUIMessageValid-user").html("");
 						$("#cnt-modalFormLoginyRegister").add($(".cnt-modalFormLoginyRegister--c")).addClass("show");

@@ -83,7 +83,7 @@ $(document).ready(function(){
 	var v_fatthxyatwopcatg = decryptValuesIpts(encrypt_v_fatthxyatwopcatg.val()); // IMPUESTO SELECTIVO
 	var v_fatthxyathreepcatg = decryptValuesIpts(encrypt_v_fatthxyathreepcatg.val()); // ANTIDUMPING
 	var v_fftecycertconformpcatg = decryptValuesIpts(encrypt_v_fftecycertconformpcatg.val()); // FICHA TÉCNICA Y CERTIFICADO DE CONFORMIDAD
-	console.log(v_ftcomparweacbm);
+	
 	// ------------ VALORES DE CAJAS DE TEXTO - CÁLCULO
 	var val_ftotvalofdownload = decryptValuesIpts(encrypt_val_ftotvalofdownload.val());
 	var val_ftotalfleteprod = decryptValuesIpts(encrypt_val_ftotalfleteprod.val());
@@ -475,7 +475,7 @@ $(document).ready(function(){
 									formdata.append("f_transporte_interno", totaltransport);
 									formdata.append("f_comision_agencia", fvalfinal_com_agencia);
 									formdata.append("f_gastos_operativos", fvalfinal_gas_operativos);
-									formdata.append("f_fichatecnicaycertconform", v_fftecycertconformpcatg);
+									formdata.append("f_fichatecnicaycertconform", totalftecycertconform);
 									formdata.append("f_totalinsurance", finalRoundinsurance);
 									formdata.append("f_totalservices", totalNotround);
 									formdata.append("f_totalservicesIGV18", totalNotRountByIGV);
@@ -751,7 +751,7 @@ $(document).ready(function(){
 									formdata.append("f_transporte_interno", totaltransport);
 									formdata.append("f_comision_agencia", fvalfinal_com_agencia);
 									formdata.append("f_gastos_operativos", fvalfinal_gas_operativos);
-									formdata.append("f_fichatecnicaycertconform", v_fftecycertconformpcatg);
+									formdata.append("f_fichatecnicaycertconform", totalftecycertconform);
 									formdata.append("f_totalinsurance", finalRoundinsurance);
 									formdata.append("f_totalservices", totalNotround);
 									formdata.append("f_totalservicesIGV18", totalNotRountByIGV);
