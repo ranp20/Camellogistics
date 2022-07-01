@@ -2,14 +2,14 @@ $(() => {
   scannear_botones(); //carga la pagina y le digo que sea operativo el funcionamiento de los links...
 });
 var nombre = '';
-/************************** CAPTURAR LOS VALORES DEL INPUT DE ENTRADA **************************/
+// ------------ CAPTURAR LOS VALORES DEL INPUT DE ENTRADA
 var inputsearch = document.querySelector("#search_quotationusers");
 inputsearch.addEventListener('keyup', function(e){
   var name = inputsearch.value;
   num = 1;
   buscar(name, num);
 });
-/************************** CAPTURAR EL VALOR NUMÉRICO DEL ATRIBUTO EN EL ENLACE **************************/
+// ------------ CAPTURAR EL VALOR NUMÉRICO DEL ATRIBUTO EN EL ENLACE
 function scannear_botones(){
   const botones = document.querySelectorAll('#paginador a');
   for( let i = 0; i < botones.length; i++ ){
@@ -20,7 +20,7 @@ function scannear_botones(){
     });
   }
 }
-/************************** BUSCADOR EN TIEMPO REAL **************************/
+// ------------ BUSCADOR EN TIEMPO REAL
 function buscar(que, num){
   if(num == undefined || num == 'undefined'){
     return false;
@@ -284,3 +284,14 @@ $(document).on("click", ".btn-generate-pdf", function(e){
 
   });
 });
+/*
+// ------------ AGREGAR NOTIFICACIONES PUSH.JS
+Push.create("Hello world!", {
+  body: "How's it hangin'?",
+  timeout: 4000,
+  onClick: function () {
+      window.focus();
+      this.close();
+  }
+});
+*/

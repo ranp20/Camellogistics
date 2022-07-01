@@ -20,6 +20,14 @@ $adjacents = 3;
 <head>
 	<?php require_once 'includes/adm-header-index.php'; ?>
 	<title>Admin - Cotización de Usuarios</title>
+	<!-- INCLUIR PUSH.JS -->
+	<script type="text/javascript" charset="utf8" src="<?= $urlCli; ?>views/js/plugins/push.js/push.min.js"></script>
+	<!-- INCLUIR SWEETALERTS2 -->
+	<link rel="stylesheet" href="../node_modules/sweetalert2/dist/sweetalert2.min.css">
+	<script type="text/javascript" src="../node_modules/sweetalert2/dist/sweetalert2.all.min.js"></script>
+	<!-- INCLUIR DATATABLES -->
+	<link rel="stylesheet" type="text/css" href="<?= $urlCli; ?>views/js/plugins/DataTables/datatables.min.css">
+	<script type="text/javascript" charset="utf8" src="<?= $urlCli; ?>views/js/plugins/DataTables/datatables.min.js"></script>
 </head>
 <body>
 	<div id="cUIMessageValid-adm"></div>
