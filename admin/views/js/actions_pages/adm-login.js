@@ -37,7 +37,7 @@ $(document).on("submit", "#c-formvalidLoginAdm", function(e) {
       `);
       $(this).find("button[type=submit]").addClass("showActive");
       setTimeout(function() {
-        window.location.replace("dashboard");
+        window.location.replace("quotation-users");
       }, 500);
     } else if (res.response == "error_email") {
       $('#c-formvalidLoginAdm')[0].reset();
