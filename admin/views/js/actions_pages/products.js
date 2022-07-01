@@ -1,6 +1,25 @@
 $(() => {
   listAllProducts();
+  list_certiconform();
 });
+// ------------ LISTAR LOS SEGUROS DE TRANSPORTE MARÍTIMO Y AÉREO
+function list_certiconform(){ 
+  $.ajax({
+    url: "../admin/controllers/c_list-other-values-cert-conform.php",
+    method: "POST",
+    datatype: "JSON",
+    contentType: 'application/x-www-form-urlencoded;charset=UTF-8',
+  }).done((e) => {
+    if(e != ""){
+      let r = JSON.parse(e);
+      let v_certconform = r[0].data_value;
+      $("#chck_fichatecycertconform").attr("data-fichatecycertconform", v_certconform);
+      $("#chck_fichatecycertconform-update").attr("data-fichatecycertconform", v_certconform);
+    }else{
+      console.log('Lo sentimos, hubo un error al procesar la información.');
+    }
+  });
+}
 // ------------ LIMITAR A DOS DECIMALES CUALQUIER INPUT DE TIPO NÚMERO EN DONDE ESTÁ IMPORTADO ESTE ARCHIVO
 $(document).on("keyup","input[data-valformat=withtwodecimals]",function(e){
   let val = e.target.value;
@@ -946,7 +965,6 @@ $(document).on('click', '.btn-update-detail', function(e){
       pricetadditional_three: $(this).attr('data-pricetadditional_three'),
       fichatecycertconform: $(this).attr('data-fichatecycertconform')
     };
-    console.log(item_data);
     // ------------ ASIGNAR A LOS CONTROLES DEL MODAL DE ACTUALIZAR
     $('#idupdate-product').val(item_data['id']);
     $('#name-update').val(item_data['name']);

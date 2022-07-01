@@ -5,9 +5,6 @@ session_start();
 if(!isset($_SESSION['admin_camel'])){
 	header("Location: ../admin");
 }
-require_once '../controllers/config.php';
-$settings = new List_Settings();
-$adm_config = $settings->list();
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -113,18 +110,7 @@ $adm_config = $settings->list();
 						        		<div class="cont-modalbootstrap__form__cControlSwitch__cSwitch">
 						        			<div class="cont-modalbootstrap__form__cControlSwitch__cSwitch__c">
 						        				<div class="cont-modalbootstrap__form__cControlSwitch__cSwitch__c__chckCont">
-						        					<input type="checkbox" id="chck_fichatecycertconform" class="cont-modalbootstrap__form__cControlSwitch__cSwitch__c__chckCont__input" data-fichatecycertconform="<?php
-										          if(isset($adm_config('quotation_ammountcerticonformvalidation')['setting_value'])){
-											          $ammountcifvalidation = $adm_config('quotation_ammountcerticonformvalidation')['setting_value'];
-											          if($ammountcifvalidation != ""){
-											          	echo number_format($adm_config('quotation_ammountcerticonformvalidation')['setting_value'],2);
-											          }else{
-											          	echo "";
-											          }
-									          	}else{
-									          		echo "";
-									          	}
-										        	?>" data-fichatecycertconformsend="" name="activation" value="NO">
+						        					<input type="checkbox" id="chck_fichatecycertconform" class="cont-modalbootstrap__form__cControlSwitch__cSwitch__c__chckCont__input" data-fichatecycertconform="" data-fichatecycertconformsend="" name="activation" value="NO">
 						        					<label for="chck_fichatecycertconform" class="cont-modalbootstrap__form__cControlSwitch__cSwitch__c__chckCont__label"></label>
 						        				</div>
 						        			</div>
@@ -223,18 +209,7 @@ $adm_config = $settings->list();
 						        		<div class="cont-modalbootstrapupdate__form__cControlSwitch__cSwitch">
 						        			<div class="cont-modalbootstrapupdate__form__cControlSwitch__cSwitch__c">
 						        				<div class="cont-modalbootstrapupdate__form__cControlSwitch__cSwitch__c__chckCont">
-						        					<input type="checkbox" id="chck_fichatecycertconform-update" class="cont-modalbootstrapupdate__form__cControlSwitch__cSwitch__c__chckCont__input" data-fichatecycertconform="<?php
-										          if(isset($adm_config('quotation_ammountcerticonformvalidation')['setting_value'])){
-											          $ammountcifvalidation = $adm_config('quotation_ammountcerticonformvalidation')['setting_value'];
-											          if($ammountcifvalidation != ""){
-											          	echo number_format($adm_config('quotation_ammountcerticonformvalidation')['setting_value'],2);
-											          }else{
-											          	echo "";
-											          }
-									          	}else{
-									          		echo "";
-									          	}
-										        	?>" data-fichatecycertconformsend="" name="activation" value="NO">
+						        					<input type="checkbox" id="chck_fichatecycertconform-update" class="cont-modalbootstrapupdate__form__cControlSwitch__cSwitch__c__chckCont__input" data-fichatecycertconform="" data-fichatecycertconformsend="" name="activation" value="NO">
 						        					<label for="chck_fichatecycertconform-update" class="cont-modalbootstrapupdate__form__cControlSwitch__cSwitch__c__chckCont__label"></label>
 						        				</div>
 						        			</div>

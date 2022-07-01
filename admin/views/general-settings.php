@@ -35,7 +35,7 @@ $adm_config = $settings->list();
 									<div class="cont-dashCamel--cHSettings--containRight--cContain__cBody__cSettings__sideLinkAnchors__cLinks" id="c-Settings_linksAnchors">
 										<ul id="c-Settings_linksAnchors-m">
 											<li data-target="#anchor_settings_home">Home</li>
-											<li data-target="#anchor_settings_convert-divise">Otros Valores</li>
+											<!-- <li data-target="#anchor_settings_convert-divise">Otros Valores</li> -->
 											<li data-target="#anchor_settings_banners">Banners</li>
 											<li data-target="#anchor_settings_logos">Logos</li>
 											<li data-target="#anchor_settings_about-us">Nosotros</li>
@@ -85,6 +85,7 @@ $adm_config = $settings->list();
 											</div>
 										</form>
 									</div>
+									<!-- 
 									<div class="cont-dashCamel--cHSettings--containRight--cContain__cBody__cSettings__sideContAnchors__cItemSetting" id="anchor_settings_convert-divise">
 										<form action="" method="POST" class="cont-dashCamel--cHSettings--containRight--cContain__cBody__cSettings__sideContAnchors__cItemSetting--frm">
 											<div class="cont-dashCamel--cHSettings--containRight--cContain__cBody__cardBody">
@@ -158,6 +159,7 @@ $adm_config = $settings->list();
 											</div>
 										</form>
 									</div>
+									 -->
 									<div class="cont-dashCamel--cHSettings--containRight--cContain__cBody__cSettings__sideContAnchors__cItemSetting" id="anchor_settings_banners">
 										<form action="" method="POST" class="cont-dashCamel--cHSettings--containRight--cContain__cBody__cSettings__sideContAnchors__cItemSetting--frm" enctype="multipart/form-data">
 											<div class="cont-dashCamel--cHSettings--containRight--cContain__cBody__cardBody">
