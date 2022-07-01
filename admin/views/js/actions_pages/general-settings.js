@@ -29,9 +29,6 @@ $(document).on("keyup", "input[data-valformat=withspacesforthreenumbers]", funct
 	let val = e.target.value;
   $(this).val(val.replace(/\D+/g, '').replace(/(\d{3})(\d{3})(\d{3})/, '$1 $2 $3'));
 });
-// ------------ FUNCIÓN - LIMITAR A DOS DECIMALES SIN REDONDEO
-function twodecimals(n) {
-}
 // ------------ LIMITAR A DOS DECIMALES CUALQUIER INPUT DE TIPO NÚMERO EN DONDE ESTÁ IMPORTADO ESTE ARCHIVO
 $(document).on("keyup","input[data-valformat=withtwodecimals]",function(e){
   let val = e.target.value;

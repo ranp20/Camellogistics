@@ -137,6 +137,9 @@
 					&--cInputs{
 						max-width: 27rem;
 						width: 100%;
+						&.mx-longlabel{
+							max-width: 14rem;
+						}
 						&--input{
 							outline: none;
 							flex: auto;
