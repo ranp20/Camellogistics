@@ -120,10 +120,6 @@ $f_totalinsurance = $listbyidcode[0]['f_totalinsurance'];
 $f_total_services = $listbyidcode[0]['f_totalservices'];
 $f_totalservicesIGV18 = $listbyidcode[0]['f_totalservicesIGV18'];
 $f_totalwithIGV = $listbyidcode[0]['f_totalwithIGV'];
-// VALORES TOTALES SOLO FLETE
-$f_fcl_igv_serv18_camel = $f_emision_BL + $f_handling + $f_THC;
-$f_fcl_total_igv_serv18_camel = ($f_fcl_igv_serv18_camel) * (18 / 100);
-$f_fcl_total_proforma = $f_fcl_igv_serv18_camel + $f_totalinsurance + $f_fcl_total_igv_serv18_camel;
 //NOMBRE DE LA COTIZACIÓN
 $name_quotation = "Presupuesto-".$_POST['code_quote']."-".$f_typecontainer;
 ?>
@@ -356,7 +352,7 @@ $name_quotation = "Presupuesto-".$_POST['code_quote']."-".$f_typecontainer;
 		        <div class="item_igv_only_flete">$</div>
 		      </div>
 		      <div id="ammount_total_igv_only_flete">
-		        <div class="item_igv_total_only_flete"><?php echo addTwoDecimalsOrGuion($f_fcl_total_igv_serv18_camel); ?></div>
+		        <div class="item_igv_total_only_flete"><?php echo addTwoDecimalsOrGuion($f_totalservicesIGV18); ?></div>
 		      </div>
 		    </div>
 		    <div class="marc_medium mt-4px">
@@ -367,7 +363,7 @@ $name_quotation = "Presupuesto-".$_POST['code_quote']."-".$f_typecontainer;
 		        <div class="item_marc_usd_det_uniqueseronly"><strong>$</strong></div>
 		      </div>
 		      <div id="ammount_total_proform_only_flete">
-		        <div class="item_marc_tot_ser1"><strong><?php echo addTwoDecimalsOrGuion($f_fcl_total_proforma); ?></strong></div>
+		        <div class="item_marc_tot_ser1"><strong><?php echo addTwoDecimalsOrGuion($f_totalwithIGV); ?></strong></div>
 		      </div>
 		    </div>
 		    <div class="marc_medium_1 mt-4px">

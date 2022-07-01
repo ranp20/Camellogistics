@@ -348,21 +348,17 @@ $(document).ready(function(){
 				  	 			//AGREGAR VALOR A LOS SERVICIOS FINALES
 				  	 			fvalfinal_thc = thc_fcl;
 				  	 			var totalPreciosTODOS = fvalfinal_thc+totalftecycertconform;
-				  	 			sumTotalServices = totaltransport + totalamountadditional + totalPreciosTODOS; // VALOR TOTAL - SERVICIOS
+				  	 			sumTotalServices = totflete + totalPreciosTODOS + totaltransport + totalamountadditional + finalRoundinsurance; // VALOR TOTAL - SERVICIOS
 				  	 			sumTotalbyIGV = (totaltransport + totalamountadditional + totalPreciosTODOS) * (18 / 100); // VALOR TOTAL - SERVICIOS + IGV 18%
 				  	 			sumTotalFinalFleteandIGV = sumTotalServices + sumTotalbyIGV; // VALOR TOTAL FINAL DE LA COTIZACIÓN
 				  	 		}else if(v_loadtypecharge == "LCL"){
-				  	 			fvalfinal_gas_operativos = gas_operativos_lcl;
-				  	 			if(sumbyCIF > comagencia_monto){
-						  			fval_com_agencia = sumbyCIF * val_defaultmin;
-						  			fvalfinal_com_agencia = myRound(fval_com_agencia);
-						  		}else{
-						  			fvalfinal_com_agencia = com_agencia_fcl;
-						  		}
 						  		//AGREGAR VALOR A LOS SERVICIOS FINALES
-						  		fvalfinal_almcen_ref = almacen_ref_lcl;
-						  		var totalPreciosTODOS = fvalfinal_almcen_ref+fvalfinal_gas_operativos+fvalfinal_com_agencia+totalftecycertconform;
-						  		sumTotalServices = totaltransport + totalamountadditional + totalPreciosTODOS; // VALOR TOTAL - SERVICIOS
+						  		fvalfinal_emision_bl = emision_bl_lcl;
+						  		fvalfinal_handling = handling_lcl;
+						  		fvalfinal_visto_bueno = visto_bueno_lcl;
+						  		fvalfinal_descarga = descarga_lcl;
+						  		var totalPreciosTODOS = fvalfinal_emision_bl+fvalfinal_handling+fvalfinal_visto_bueno+fvalfinal_descarga+totalftecycertconform;
+						  		sumTotalServices = totflete + totalPreciosTODOS + totaltransport + totalamountadditional + finalRoundinsurance; // VALOR TOTAL - SERVICIOS
 				  	 			sumTotalbyIGV = (totaltransport + totalamountadditional + totalPreciosTODOS) * (18 / 100); // VALOR TOTAL - SERVICIOS + IGV 18%
 				  	 			sumTotalFinalFleteandIGV = sumTotalServices + sumTotalbyIGV; // VALOR TOTAL FINAL DE LA COTIZACIÓN
 				  	 		}else{

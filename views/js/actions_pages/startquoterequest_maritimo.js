@@ -898,7 +898,6 @@ $(document).on("click", "#c-incdecBtns20 button", function(){
         totalSend20ST = parseFloat(totalFCL[0].total) * $("#ipt-qvalContainer20ST").val();
         // ------------ AGREGAR AL INPUT SEND
         $("#val_valfleteprod").val(totalSend20ST);
-
         // ------------ RESUMEN DEL LISTADO - CONTENEDORES 20' 
         $("div[data-merchandisetype=rsm-qcontainer20]").find("img").attr("src", v_QContainersImgSrc20);
         $("div[data-merchandisetype=rsm-qcontainer20]").find("span").eq(0).text(val20inputhiddenNew);
@@ -1568,7 +1567,6 @@ $(document).on("click","#list-insuremerchandise-notMoreOpts a",function(){
             <input type="hidden" value="" id="val-ammtthxvaone-noMoreOpts" name="val-ammtthxvaonepcatg" class="n-val-sd">
             <input type="hidden" value="" id="val-ammtthxvatwo-noMoreOpts" name="val-ammtthxvatwopcatg" class="n-val-sd">
             <input type="hidden" value="" id="val-ammtthxvathree-noMoreOpts" name="val-ammtthxvathreepcatg" class="n-val-sd">
-            <input type="hidden" id="val_valfleteprod" name="val_valfleteprod" class="n-val-sd" value="">
             <input type="hidden" value="" id="val-ftecycertconform-noMoreOpts" name="val-ftecycertconformpcatg" class="n-val-sd">
           </span>
         </span>
