@@ -2243,12 +2243,8 @@ $(document).on("click", "#btn-NextStepTochargedata", function(){
           </div>
         `);
         // ------------ CERRAR EL MODAL 
-        setTimeout(function(){
-          $("#idMessageSteps-prcss .cntMessageSteps-prcss--cont").remove();
-        }, 6500)
-        $("#btnclose-modalMessage").on("click", function(){
-          $(this).parent().parent().remove();
-        });
+        setTimeout(function(){$("#idMessageSteps-prcss .cntMessageSteps-prcss--cont").remove();}, 6500);
+        $("#btnclose-modalMessage").on("click", function(){$(this).parent().parent().remove();});
       }else{
         // ------------ DEVOLVER EL CÁLCULO DE LA DESCARGA 
         $.ajax({

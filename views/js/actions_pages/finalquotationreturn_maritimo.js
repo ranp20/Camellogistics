@@ -66,7 +66,7 @@ $(document).ready(function(){
 	var portDestinyName = decryptValuesIpts(encrypt_portDestinyName.val());
 	var v_typeserviceinit = decryptValuesIpts(encrypt_v_typeserviceinit.val());
 	var v_fnamecategprod = decryptValuesIpts(encrypt_v_fnamecategprod.val());
-	var v_ftaproxtransbycont = decryptValuesIpts(encrypt_v_ftaproxtransbycont.val());
+	var v_ftaproxtransbycont = decryptValuesIpts(encrypt_v_ftaproxtransbycont.val()); // TIEMPO DE TRÁNSITO
 	var v_floadTypeTranport = decryptValuesIpts(encrypt_v_floadTypeTranport.val());
 	var v_validdesde = decryptValuesIpts(encrypt_v_validdesde.val());
 	var v_validhasta = decryptValuesIpts(encrypt_v_validhasta.val());
@@ -83,10 +83,9 @@ $(document).ready(function(){
 	var v_fatthxyatwopcatg = decryptValuesIpts(encrypt_v_fatthxyatwopcatg.val()); // IMPUESTO SELECTIVO
 	var v_fatthxyathreepcatg = decryptValuesIpts(encrypt_v_fatthxyathreepcatg.val()); // ANTIDUMPING
 	var v_fftecycertconformpcatg = decryptValuesIpts(encrypt_v_fftecycertconformpcatg.val()); // FICHA TÉCNICA Y CERTIFICADO DE CONFORMIDAD
-
 	// ------------ VALORES DE CAJAS DE TEXTO - CÁLCULO
 	var val_ftotvalofdownload = decryptValuesIpts(encrypt_val_ftotvalofdownload.val());
-	var val_ftotalfleteprod = decryptValuesIpts(encrypt_val_ftotalfleteprod.val());
+	var val_ftotalfleteprod = decryptValuesIpts(encrypt_val_ftotalfleteprod.val()); // FLETE
 	var val_ftotalvalfobprod = decryptValuesIpts(encrypt_val_ftotalvalfobprod.val()); // VALOR FOB
 	var val_plcpickuprateprov = decryptValuesIpts(encrypt_val_plcpickuprateprov.val()); // TRANSPORTE INTERNO
 
@@ -317,9 +316,9 @@ $(document).ready(function(){
 						  		fvalfinal_thc = thc_fcl;
 						  		fvalfinal_devol_contenedor = devol_contenedor_fcl;
 				  	 			// SUMAR TODOS LOS SERVICIOS - FCL
-				  	 			var totalServiciosTODOS = fvalfinal_emision_bl+fvalfinal_visto_bueno+fvalfinal_almcen_ref+fvalfinal_gremios_maritimos+fvalfinal_thc+fvalfinal_devol_contenedor+fvalfinal_com_agencia+fvalfinal_gas_operativos+totalftecycertconform;
-				  	 			sumTotalServices = totaltransport + totalamountadditional + totalServiciosTODOS; // VALOR TOTAL - SERVICIOS
-				  	 			sumTotalbyIGV = (totaltransport + totalamountadditional + totalServiciosTODOS) * (18 / 100); // VALOR TOTAL - SERVICIOS + IGV 18%
+				  	 			var totalPreciosTODOS = fvalfinal_emision_bl+fvalfinal_visto_bueno+fvalfinal_almcen_ref+fvalfinal_gremios_maritimos+fvalfinal_thc+fvalfinal_devol_contenedor+fvalfinal_com_agencia+fvalfinal_gas_operativos+totalftecycertconform;
+				  	 			sumTotalServices = totflete + totalPreciosTODOS + totaltransport + totalamountadditional + finalRoundinsurance; // VALOR TOTAL - SERVICIOS
+				  	 			sumTotalbyIGV = (totaltransport + totalamountadditional + totalPreciosTODOS) * (18 / 100); // VALOR TOTAL - SERVICIOS + IGV 18%
 				  	 			sumTotalFinalFleteandIGV = sumTotalServices + sumTotalbyIGV; // VALOR TOTAL FINAL DE LA COTIZACIÓN
 				  	 		}else if(v_loadtypecharge == "LCL"){
 				  	 			// VALIDAR EL VALOR DEL CIF - COMISIÓN DE AGENCIA
@@ -337,9 +336,9 @@ $(document).ready(function(){
 						  		fvalfinal_descarga = descarga_lcl;
 						  		fvalfinal_almcen_ref = almacen_ref_lcl;
 						  		// SUMAR TODOS LOS SERVICIOS - LCL
-				  	 			var totalServiciosTODOS = fvalfinal_emision_bl+fvalfinal_handling+fvalfinal_visto_bueno+fvalfinal_descarga+fvalfinal_almcen_ref+fvalfinal_com_agencia+fvalfinal_gas_operativos+totalftecycertconform;
-				  	 			sumTotalServices = totaltransport + totalamountadditional + totalServiciosTODOS; // VALOR TOTAL - SERVICIOS
-				  	 			sumTotalbyIGV = (totaltransport + totalamountadditional + totalServiciosTODOS) * (18 / 100); // VALOR TOTAL - SERVICIOS + IGV 18%
+				  	 			var totalPreciosTODOS = fvalfinal_emision_bl+fvalfinal_handling+fvalfinal_visto_bueno+fvalfinal_descarga+fvalfinal_almcen_ref+fvalfinal_com_agencia+fvalfinal_gas_operativos+totalftecycertconform;
+				  	 			sumTotalServices = totflete + totalPreciosTODOS + totaltransport + totalamountadditional + finalRoundinsurance; // VALOR TOTAL - SERVICIOS
+				  	 			sumTotalbyIGV = (totaltransport + totalamountadditional + totalPreciosTODOS) * (18 / 100); // VALOR TOTAL - SERVICIOS + IGV 18%
 				  	 			sumTotalFinalFleteandIGV = sumTotalServices + sumTotalbyIGV; // VALOR TOTAL FINAL DE LA COTIZACIÓN
 				  	 		}else{
 				  	 			console.log('Lo sentimos, hubo un error al procesar la información.');
@@ -348,9 +347,9 @@ $(document).ready(function(){
 				  	 		if(v_loadtypecharge == "FCL"){
 				  	 			//AGREGAR VALOR A LOS SERVICIOS FINALES
 				  	 			fvalfinal_thc = thc_fcl;
-				  	 			var totalServiciosTODOS = fvalfinal_thc+totalftecycertconform;
-				  	 			sumTotalServices = totaltransport + totalamountadditional + totalServiciosTODOS; // VALOR TOTAL - SERVICIOS
-				  	 			sumTotalbyIGV = (totaltransport + totalamountadditional + totalServiciosTODOS) * (18 / 100); // VALOR TOTAL - SERVICIOS + IGV 18%
+				  	 			var totalPreciosTODOS = fvalfinal_thc+totalftecycertconform;
+				  	 			sumTotalServices = totaltransport + totalamountadditional + totalPreciosTODOS; // VALOR TOTAL - SERVICIOS
+				  	 			sumTotalbyIGV = (totaltransport + totalamountadditional + totalPreciosTODOS) * (18 / 100); // VALOR TOTAL - SERVICIOS + IGV 18%
 				  	 			sumTotalFinalFleteandIGV = sumTotalServices + sumTotalbyIGV; // VALOR TOTAL FINAL DE LA COTIZACIÓN
 				  	 		}else if(v_loadtypecharge == "LCL"){
 				  	 			fvalfinal_gas_operativos = gas_operativos_lcl;
@@ -362,9 +361,9 @@ $(document).ready(function(){
 						  		}
 						  		//AGREGAR VALOR A LOS SERVICIOS FINALES
 						  		fvalfinal_almcen_ref = almacen_ref_lcl;
-						  		var totalServiciosTODOS = fvalfinal_almcen_ref+fvalfinal_gas_operativos+fvalfinal_com_agencia+totalftecycertconform;
-						  		sumTotalServices = totaltransport + totalamountadditional + totalServiciosTODOS; // VALOR TOTAL - SERVICIOS
-				  	 			sumTotalbyIGV = (totaltransport + totalamountadditional + totalServiciosTODOS) * (18 / 100); // VALOR TOTAL - SERVICIOS + IGV 18%
+						  		var totalPreciosTODOS = fvalfinal_almcen_ref+fvalfinal_gas_operativos+fvalfinal_com_agencia+totalftecycertconform;
+						  		sumTotalServices = totaltransport + totalamountadditional + totalPreciosTODOS; // VALOR TOTAL - SERVICIOS
+				  	 			sumTotalbyIGV = (totaltransport + totalamountadditional + totalPreciosTODOS) * (18 / 100); // VALOR TOTAL - SERVICIOS + IGV 18%
 				  	 			sumTotalFinalFleteandIGV = sumTotalServices + sumTotalbyIGV; // VALOR TOTAL FINAL DE LA COTIZACIÓN
 				  	 		}else{
 				  	 			console.log('Lo sentimos, hubo un error al procesar la información.');

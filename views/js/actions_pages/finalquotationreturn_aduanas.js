@@ -66,7 +66,7 @@ $(document).ready(function(){
 	var portDestinyName = decryptValuesIpts(encrypt_portDestinyName.val());
 	var v_typeserviceinit = decryptValuesIpts(encrypt_v_typeserviceinit.val());
 	var v_fnamecategprod = decryptValuesIpts(encrypt_v_fnamecategprod.val());
-	var v_ftaproxtransbycont = decryptValuesIpts(encrypt_v_ftaproxtransbycont.val());
+	var v_ftaproxtransbycont = decryptValuesIpts(encrypt_v_ftaproxtransbycont.val()); // TIEMPO DE TRÁNSITO
 	var v_floadTypeTranport = decryptValuesIpts(encrypt_v_floadTypeTranport.val());
 	var v_validdesde = decryptValuesIpts(encrypt_v_validdesde.val());
 	var v_validhasta = decryptValuesIpts(encrypt_v_validhasta.val());
@@ -86,7 +86,7 @@ $(document).ready(function(){
 	
 	// ------------ VALORES DE CAJAS DE TEXTO - CÁLCULO
 	var val_ftotvalofdownload = decryptValuesIpts(encrypt_val_ftotvalofdownload.val());
-	var val_ftotalfleteprod = decryptValuesIpts(encrypt_val_ftotalfleteprod.val());
+	var val_ftotalfleteprod = decryptValuesIpts(encrypt_val_ftotalfleteprod.val()); // FLETE
 	var val_ftotalvalfobprod = decryptValuesIpts(encrypt_val_ftotalvalfobprod.val()); // VALOR FOB
 	var val_plcpickuprateprov = decryptValuesIpts(encrypt_val_plcpickuprateprov.val()); // TRANSPORTE INTERNO
 
