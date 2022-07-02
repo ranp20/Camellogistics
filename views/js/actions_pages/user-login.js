@@ -163,7 +163,7 @@ $(document).on("submit", "#c-formLoginU_Camel", function(e){
       contentType: 'application/x-www-form-urlencoded;charset=UTF-8',
       data: form
     }).done((e) => {
-      if(e.response == "true"){
+      if(e.res == "true"){
         // ------------ AGREGAR AL CONTROL DE VALIDACIÓN 
         $("#s_useregin-sistem").val(e.received.username);
         // ------------ ASIGNAR A LA VARIABLE DE SESIÓN LOCAL 
@@ -204,12 +204,10 @@ $(document).on("submit", "#c-formLoginU_Camel", function(e){
 						<span class="c-mssgloadSendAction--cloader--loader"></span>
 					</div>`);
         // ------------ QUITAR EL LOADER 
-        setTimeout(function(){
-          $("#s-mssgloadSendAction .c-mssgloadSendAction--cloader").remove();
-        }, 350);
+        setTimeout(function(){$("#s-mssgloadSendAction .c-mssgloadSendAction--cloader").remove();}, 350);
         $("#cnt-modalFormSessLoginorRegister").removeClass("show");
         $('#c-formLoginU_Camel')[0].reset();
-      }else if(e.response == "error_email"){
+      }else if(e.res == "error_email"){
         // ------------ AGREGAR AL CONTROL DE VALIDACIÓN 
         $("#s_useregin-sistem").val("");
         Swal.fire({
@@ -233,6 +231,56 @@ $(document).on("submit", "#c-formLoginU_Camel", function(e){
 			    allowEnterKey:true
 		    });
 		    $(document).on('click', '.SwalBtn1', function() {
+			    swal.clickConfirm();
+			  });
+      }else if(e.res == "err_notequalpass"){
+      	$("#s_useregin-sistem").val("");
+        Swal.fire({
+			    title: '',
+			    html: `<div class="alertSwal">
+			            <div class="alertSwal__cTitle">
+			              <h3>¡Error!</h3>
+			            </div>
+			            <div class="alertSwal__cText">
+			              <p>La contraseña ingresada es incorrecta.</p>
+			            </div>
+			            <button type="button" role="button" tabindex="0" class="SwalBtn1 customSwalBtn">Aceptar</button>
+			          </div>`,
+			    icon: 'error',
+			    showCancelButton: false,
+			    showConfirmButton: false,
+			    confirmButtonColor: '#3085d6',
+			    confirmButtonText: 'Aceptar',
+			    allowOutsideClick: false,
+			    allowEscapeKey:false,
+			    allowEnterKey:true
+			  });
+			  $(document).on('click', '.SwalBtn1', function() {
+			    swal.clickConfirm();
+			  });
+      }else if(e.res == "err_emailnotexist"){
+      	$("#s_useregin-sistem").val("");
+        Swal.fire({
+			    title: '',
+			    html: `<div class="alertSwal">
+			            <div class="alertSwal__cTitle">
+			              <h3>¡Error!</h3>
+			            </div>
+			            <div class="alertSwal__cText">
+			              <p>Los datos del usuario no coinciden o no existen.</p>
+			            </div>
+			            <button type="button" role="button" tabindex="0" class="SwalBtn1 customSwalBtn">Aceptar</button>
+			          </div>`,
+			    icon: 'error',
+			    showCancelButton: false,
+			    showConfirmButton: false,
+			    confirmButtonColor: '#3085d6',
+			    confirmButtonText: 'Aceptar',
+			    allowOutsideClick: false,
+			    allowEscapeKey:false,
+			    allowEnterKey:true
+			  });
+			  $(document).on('click', '.SwalBtn1', function() {
 			    swal.clickConfirm();
 			  });
       }else{
@@ -295,176 +343,192 @@ $(document).on("submit", "#c-formRegisterU_Camel", function(e){
   ($("#u-username").val() != 0 && $("#u-username").val() != "") ? $("#mssg_alertcontrol_usr").text(""): $("#mssg_alertcontrol_usr").text("Debes ingresar un usuario");
   ($("#u-password").val() != 0 && $("#u-password").val() != "") ? $("#mssg_alertcontrol_pass").text(""): $("#mssg_alertcontrol_pass").text("Debes ingresar una contraseña");
   ($("#u-passwordtwo").val() != 0 && $("#u-passwordtwo").val() != "") ? $("#mssg_alertcontrol_passrepeat").text(""): $("#mssg_alertcontrol_passrepeat").text("Debes repetir la contraseña");
-  if ($("#u-username").val() != 0 && $("#u-username").val() != "" && $("#u-password").val() != 0 && $("#u-password").val() != "" && $("#u-passwordtwo").val() != 0 && $("#u-passwordtwo").val() != "" && $("#u-passwordtwo").val() == $("#u-password").val()) {
-    var form = $(this).serializeArray();
-    $.ajax({
-      url: 'controllers/prcss_add-user.php',
-      method: 'POST',
-      dataType: 'JSON',
-      contentType: 'application/x-www-form-urlencoded;charset=UTF-8',
-      data: form
-    }).done((e) => {
-      if(e.response == "true"){
-        Swal.fire({
-		      title: '',
-		      html: `<div class="alertSwal">
-			            <div class="alertSwal__cTitle">
-			              <h3>¡Éxito!</h3>
-			            </div>
-			            <div class="alertSwal__cText">
-			              <p>El usuario ha sido registrado.</strong></p>
-			            </div>
-			            <button type="button" role="button" tabindex="0" class="SwalBtn1 customSwalBtn">Aceptar</button>
-			          </div>`,
-		      icon: 'success',
-		      showCancelButton: false,
-			    showConfirmButton: false,
-			    confirmButtonColor: '#3085d6',
-			    confirmButtonText: 'Aceptar',
-			    allowOutsideClick: false,
-			    allowEscapeKey:false,
-			    allowEnterKey:true
-		    });
-		    $(document).on('click', '.SwalBtn1', function() {
-			    swal.clickConfirm();
-			  });
-        // ------------ AGREGAR AL CONTROL DE VALIDACIÓN 
-        $("#s_useregin-sistem").val(e.received.username);
-        // ------------ ASIGNAR A LA VARIABLE DE SESIÓN LOCAL 
-        var sessstorage_loguser = {
-          'username': e.received.username
-        }
-        sessionStorage.setItem("sess_usercli", JSON.stringify(sessstorage_loguser));
-        sessionStorage.setItem("sess_valuser", 1);
-        // ------------ MOSTRAR EL NOMBRE/CORREO DEL USUARIO - DESKTOP
-        $("#s-loginsessuser-active-mb").html(`
-				<a href='javascript:void(0);' class='c-Htopbar--c--cMenu--m--link'>
-          <span id='namUser_validSess' class='c-Htopbar--c--cMenu--m--link--sessUser'>${e.received.username}</span>
-        </a>
-        <ul class='c-Htopbar--c--cMenu--m--item--subm'>
-          <li class='c-Htopbar--c--cMenu--m--item--subm--subitem'>
-            <a href='logout' class='c-Htopbar--c--cMenu--m--item--subm--sublink'>
-            	<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#fff" viewBox="0 0 24 24"><path d="M8 9v-4l8 7-8 7v-4h-8v-6h8zm2-7v2h12v16h-12v2h14v-20h-14z"/></svg>
-      				<span>Cerrar sesión</span>
-            </a>
-          </li>
-        </ul>`);
-        // ------------ MOSTRAR EL NOMBRE/CORREO DEL USUARIO - MOBILE
-        $("#s-loginsessuser-active-ms").html(`
-				<a href='javascript:void(0);' class='c-Htopbar--c--cMenu--m--link'>
-          <span id='namUser_validSess' class='c-Htopbar--c--cMenu--m--link--sessUser'>${e.received.username}</span>
-        </a>
-        <ul class='c-Htopbar--c--cMenu--m--item--subm'>
-          <li class='c-Htopbar--c--cMenu--m--item--subm--subitem'>
-            <a href='logout' class='c-Htopbar--c--cMenu--m--item--subm--sublink'>
-            	<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#fff" viewBox="0 0 24 24"><path d="M8 9v-4l8 7-8 7v-4h-8v-6h8zm2-7v2h12v16h-12v2h14v-20h-14z"/></svg>
-      				<span>Cerrar sesión</span>
-            </a>
-          </li>
-        </ul>`);
-        // ------------ MOSTRAR EL LOADER PERSONALIZADO 
-        $("#s-mssgloadSendAction").html(`
-        <div class="c-mssgloadSendAction--cloader">
-					<span class="c-mssgloadSendAction--cloader--loader"></span>
-				</div>`);
-        // ------------ QUITAR EL LOADER 
-        setTimeout(function(){
-          $("#s-mssgloadSendAction .c-mssgloadSendAction--cloader").remove();
-        }, 1000);
-        $("#cnt-modalFormSessLoginorRegister").removeClass("show");
-        $('#c-formRegisterU_Camel')[0].reset();
-      }else if(e.response == "equals"){
-        $("#s_useregin-sistem").val("");
-        Swal.fire({
-		      title: '',
-		      html: `<div class="alertSwal">
-			            <div class="alertSwal__cTitle">
-			              <h3>¡Usuario ya existe!</h3>
-			            </div>
-			            <div class="alertSwal__cText">
-			              <p>El usuario ingresado <strong class="bold-pricolor">ya se encuentra registrado, por favor inicie sesión.</strong></p>
-			            </div>
-			            <button type="button" role="button" tabindex="0" class="SwalBtn1 customSwalBtn">Aceptar</button>
-			          </div>`,
-		      icon: 'warning',
-		      showCancelButton: false,
-			    showConfirmButton: false,
-			    confirmButtonColor: '#3085d6',
-			    confirmButtonText: 'Aceptar',
-			    allowOutsideClick: false,
-			    allowEscapeKey:false,
-			    allowEnterKey:true
-		    });
-		    $(document).on('click', '.SwalBtn1', function() {
-			    swal.clickConfirm();
-			  });
-      }else if(e.response == "error_email"){
-      	$("#s_useregin-sistem").val("");
-        Swal.fire({
-		      title: '',
-		      html: `<div class="alertSwal">
-			            <div class="alertSwal__cTitle">
-			              <h3>¡Email Inválido!</h3>
-			            </div>
-			            <div class="alertSwal__cText">
-			              <p>El correo electrónico ingresado no es válido.</p>
-			            </div>
-			            <button type="button" role="button" tabindex="0" class="SwalBtn1 customSwalBtn">Aceptar</button>
-			          </div>`,
-		      icon: 'error',
-		      showCancelButton: false,
-			    showConfirmButton: false,
-			    confirmButtonColor: '#3085d6',
-			    confirmButtonText: 'Aceptar',
-			    allowOutsideClick: false,
-			    allowEscapeKey:false,
-			    allowEnterKey:true
-		    });
-		    $(document).on('click', '.SwalBtn1', function() {
-			    swal.clickConfirm();
-			  });
-      } else if (e.response == "error_pass"){
-      	$("#s_useregin-sistem").val("");
-        Swal.fire({
-		      title: '',
-		      html: `<div class="alertSwal">
-			            <div class="alertSwal__cTitle">
-			              <h3>¡Contraseña Inválida!</h3>
-			            </div>
-			            <div class="alertSwal__cText">
-			              <p>La contraseña solo puede contener letras (a-b ó A-B) y números del 0 - 9.</p>
-			            </div>
-			            <button type="button" role="button" tabindex="0" class="SwalBtn1 customSwalBtn">Aceptar</button>
-			          </div>`,
-		      icon: 'error',
-		      showCancelButton: false,
-			    showConfirmButton: false,
-			    confirmButtonColor: '#3085d6',
-			    confirmButtonText: 'Aceptar',
-			    allowOutsideClick: false,
-			    allowEscapeKey:false,
-			    allowEnterKey:true
-		    });
-		    $(document).on('click', '.SwalBtn1', function() {
-			    swal.clickConfirm();
-			  });
-      }else if(e.response == "errinsert"){
-        $("#s_useregin-sistem").val("");
-        Swal.fire({
-		      title: 'Error!',
-		      html: `<span class='font-w-300'>Lo sentimos, hubo un error al procesar la información.</span>`,
-		      icon: 'error',
-		      confirmButtonText: 'Aceptar'
-		    });
-      }else{
-        Swal.fire({
-		      title: 'Error!',
-		      html: `<span class='font-w-300'>Lo sentimos, hubo un error al procesar la información.</span>`,
-		      icon: 'error',
-		      confirmButtonText: 'Aceptar'
-		    });
-      }
-    });
+  if ($("#u-username").val() != 0 && $("#u-username").val() != "" && $("#u-password").val() != 0 && $("#u-password").val() != "" && $("#u-passwordtwo").val() != 0 && $("#u-passwordtwo").val() != "") {
+    if($("#u-password").val() == $("#u-passwordtwo").val()){
+	    var form = $(this).serializeArray();
+	    $.ajax({
+	      url: 'controllers/prcss_add-user.php',
+	      method: 'POST',
+	      dataType: 'JSON',
+	      contentType: 'application/x-www-form-urlencoded;charset=UTF-8',
+	      data: form
+	    }).done((e) => {
+	    	if(e != "" && e != "[]"){
+		      if(e.res == "true"){
+		        Swal.fire({
+				      title: '',
+				      html: `<div class="alertSwal">
+					            <div class="alertSwal__cTitle">
+					              <h3>¡Éxito!</h3>
+					            </div>
+					            <div class="alertSwal__cText">
+					              <p>El usuario ha sido registrado.</strong></p>
+					            </div>
+					            <button type="button" role="button" tabindex="0" class="SwalBtn1 customSwalBtn">Aceptar</button>
+					          </div>`,
+				      icon: 'success',
+				      showCancelButton: false,
+					    showConfirmButton: false,
+					    confirmButtonColor: '#3085d6',
+					    confirmButtonText: 'Aceptar',
+					    allowOutsideClick: false,
+					    allowEscapeKey:false,
+					    allowEnterKey:true
+				    });
+				    $(document).on('click', '.SwalBtn1', function() {
+					    swal.clickConfirm();
+					  });
+		        // ------------ AGREGAR AL CONTROL DE VALIDACIÓN 
+		        $("#s_useregin-sistem").val(e.received.username);
+		        // ------------ ASIGNAR A LA VARIABLE DE SESIÓN LOCAL 
+		        var sessstorage_loguser = {
+		          'username': e.received.username
+		        }
+		        sessionStorage.setItem("sess_usercli", JSON.stringify(sessstorage_loguser));
+		        sessionStorage.setItem("sess_valuser", 1);
+		        // ------------ MOSTRAR EL NOMBRE/CORREO DEL USUARIO - DESKTOP
+		        $("#s-loginsessuser-active-mb").html(`
+						<a href='javascript:void(0);' class='c-Htopbar--c--cMenu--m--link'>
+		          <span id='namUser_validSess' class='c-Htopbar--c--cMenu--m--link--sessUser'>${e.received.username}</span>
+		        </a>
+		        <ul class='c-Htopbar--c--cMenu--m--item--subm'>
+		          <li class='c-Htopbar--c--cMenu--m--item--subm--subitem'>
+		            <a href='logout' class='c-Htopbar--c--cMenu--m--item--subm--sublink'>
+		            	<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#fff" viewBox="0 0 24 24"><path d="M8 9v-4l8 7-8 7v-4h-8v-6h8zm2-7v2h12v16h-12v2h14v-20h-14z"/></svg>
+		      				<span>Cerrar sesión</span>
+		            </a>
+		          </li>
+		        </ul>`);
+		        // ------------ MOSTRAR EL NOMBRE/CORREO DEL USUARIO - MOBILE
+		        $("#s-loginsessuser-active-ms").html(`
+						<a href='javascript:void(0);' class='c-Htopbar--c--cMenu--m--link'>
+		          <span id='namUser_validSess' class='c-Htopbar--c--cMenu--m--link--sessUser'>${e.received.username}</span>
+		        </a>
+		        <ul class='c-Htopbar--c--cMenu--m--item--subm'>
+		          <li class='c-Htopbar--c--cMenu--m--item--subm--subitem'>
+		            <a href='logout' class='c-Htopbar--c--cMenu--m--item--subm--sublink'>
+		            	<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#fff" viewBox="0 0 24 24"><path d="M8 9v-4l8 7-8 7v-4h-8v-6h8zm2-7v2h12v16h-12v2h14v-20h-14z"/></svg>
+		      				<span>Cerrar sesión</span>
+		            </a>
+		          </li>
+		        </ul>`);
+		        // ------------ MOSTRAR EL LOADER PERSONALIZADO 
+		        $("#s-mssgloadSendAction").html(`
+		        <div class="c-mssgloadSendAction--cloader">
+							<span class="c-mssgloadSendAction--cloader--loader"></span>
+						</div>`);
+		        // ------------ QUITAR EL LOADER 
+		        setTimeout(function(){$("#s-mssgloadSendAction .c-mssgloadSendAction--cloader").remove();}, 1000);
+		        $("#cnt-modalFormSessLoginorRegister").removeClass("show");
+		        $('#c-formRegisterU_Camel')[0].reset();
+		      }else if(e.res == "equals"){
+		        $("#s_useregin-sistem").val("");
+		        Swal.fire({
+				      title: '',
+				      html: `<div class="alertSwal">
+					            <div class="alertSwal__cTitle">
+					              <h3>¡Usuario ya existe!</h3>
+					            </div>
+					            <div class="alertSwal__cText">
+					              <p>El usuario ingresado <strong class="bold-pricolor">ya se encuentra registrado, por favor inicie sesión.</strong></p>
+					            </div>
+					            <button type="button" role="button" tabindex="0" class="SwalBtn1 customSwalBtn">Aceptar</button>
+					          </div>`,
+				      icon: 'warning',
+				      showCancelButton: false,
+					    showConfirmButton: false,
+					    confirmButtonColor: '#3085d6',
+					    confirmButtonText: 'Aceptar',
+					    allowOutsideClick: false,
+					    allowEscapeKey:false,
+					    allowEnterKey:true
+				    });
+				    $(document).on('click', '.SwalBtn1', function() {
+					    swal.clickConfirm();
+					  });
+		      }else if(e.res == "error_email"){
+		      	$("#s_useregin-sistem").val("");
+		        Swal.fire({
+				      title: '',
+				      html: `<div class="alertSwal">
+					            <div class="alertSwal__cTitle">
+					              <h3>¡Email Inválido!</h3>
+					            </div>
+					            <div class="alertSwal__cText">
+					              <p>El correo electrónico ingresado no es válido.</p>
+					            </div>
+					            <button type="button" role="button" tabindex="0" class="SwalBtn1 customSwalBtn">Aceptar</button>
+					          </div>`,
+				      icon: 'error',
+				      showCancelButton: false,
+					    showConfirmButton: false,
+					    confirmButtonColor: '#3085d6',
+					    confirmButtonText: 'Aceptar',
+					    allowOutsideClick: false,
+					    allowEscapeKey:false,
+					    allowEnterKey:true
+				    });
+				    $(document).on('click', '.SwalBtn1', function() {
+					    swal.clickConfirm();
+					  });
+		      } else if (e.res == "error_pass"){
+		      	$("#s_useregin-sistem").val("");
+		        Swal.fire({
+				      title: '',
+				      html: `<div class="alertSwal">
+					            <div class="alertSwal__cTitle">
+					              <h3>¡Contraseña Inválida!</h3>
+					            </div>
+					            <div class="alertSwal__cText">
+					              <p>La contraseña solo puede contener letras (a-b ó A-B) y números del 0 - 9.</p>
+					            </div>
+					            <button type="button" role="button" tabindex="0" class="SwalBtn1 customSwalBtn">Aceptar</button>
+					          </div>`,
+				      icon: 'error',
+				      showCancelButton: false,
+					    showConfirmButton: false,
+					    confirmButtonColor: '#3085d6',
+					    confirmButtonText: 'Aceptar',
+					    allowOutsideClick: false,
+					    allowEscapeKey:false,
+					    allowEnterKey:true
+				    });
+				    $(document).on('click', '.SwalBtn1', function() {
+					    swal.clickConfirm();
+					  });
+		      }else if(e.res == "errinsert"){
+		        $("#s_useregin-sistem").val("");
+		        Swal.fire({
+				      title: 'Error!',
+				      html: `<span class='font-w-300'>Lo sentimos, hubo un error al procesar la información.</span>`,
+				      icon: 'error',
+				      confirmButtonText: 'Aceptar'
+				    });
+		      }else{
+		        Swal.fire({
+				      title: 'Error!',
+				      html: `<span class='font-w-300'>Lo sentimos, hubo un error al procesar la información.</span>`,
+				      icon: 'error',
+				      confirmButtonText: 'Aceptar'
+				    });
+		      }
+	    	}else{
+	    		Swal.fire({
+			      title: 'Error!',
+			      html: `<span class='font-w-300'>Lo sentimos, hubo un error al procesar la información.</span>`,
+			      icon: 'error',
+			      confirmButtonText: 'Aceptar'
+			    });
+	    	}
+	    });
+    }else{
+    	Swal.fire({
+	      title: 'Atención!',
+	      html: `<span class='font-w-300'>Los campos de contraseña deben coincidir.</span>`,
+	      icon: 'warning',
+	      confirmButtonText: 'Aceptar'
+	    });
+    }
   }else{
   	$("#s_useregin-sistem").val("");
 	  Swal.fire({

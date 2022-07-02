@@ -9,7 +9,7 @@ class Regulator extends Connection
     parent::__construct();
   }
 
-  /************************** DEVOLVER NÚMERO TOTAL DE REGISTROS **************************/
+  // -------------- DEVOLVER NÚMERO TOTAL DE REGISTROS
   public function get_count_regulators()
   {
     try {
@@ -21,7 +21,7 @@ class Regulator extends Connection
       return $e->getMessage();
     }
   }
-  /************************** LIMITAR EL NÚMERO DE REGISTROS POR VISTA **************************/
+  // -------------- LIMITAR EL NÚMERO DE REGISTROS POR VISTA
   public function get_limit_regulators($offset, $per_page)
   {
     try {

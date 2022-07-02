@@ -7,7 +7,7 @@ class Users extends Connection
   {
     parent::__construct();
   }
-  /************************** VALIDAR EL USUARIO **************************/
+  // -------------- VALIDAR EL USUARIO
   function verify_email($username){
     try{
       $sql = "SELECT * FROM {$this->users} WHERE username = :username";
@@ -19,7 +19,19 @@ class Users extends Connection
       return $e->getMessage();
     }
   }
-  /************************** LISTAR - USERS **************************/
+  // -------------- LISTAR USUARIO - PARA VALIDAR INICIO DE SESIÓN
+  function get_usersverifylogin($username){
+    try{
+      $sql = "SELECT password FROM {$this->users} WHERE username = :username";
+      $stm = $this->con->prepare($sql);
+      $stm->bindValue(':username', $username);
+      $stm->execute();
+      return $stm->fetchAll(PDO::FETCH_ASSOC);
+    }catch(PDOException $e){
+      return $e->getMessage();
+    }
+  }
+  // -------------- LISTAR - USERS
   function get_users($username){
     try{
       $sql = "SELECT * FROM {$this->users} WHERE username = :username";
