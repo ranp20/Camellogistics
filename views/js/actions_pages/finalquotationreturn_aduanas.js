@@ -1576,38 +1576,105 @@ $(document).ready(function(){
 				    });
 				    $(document).on('click', '.SwalBtn1', function() {
 					    swal.clickConfirm();
-					  });
-						/*
-						var formdata = new FormData();
-						formdata.append("id_gencoderand", v_idgencoderand);
-						formdata.append("code_quote", $("#v_gencodexxx").text());
-						formdata.append("ndoc_cli", $("#n_document_cli").val());
-						formdata.append("name_enterprise_cli", $("#name_enterprise_cli").val());
-						formdata.append("telephone_cli", $("#telephone_cli").val());
-						formdata.append("email", $("#email_cli").val());
+					    //VALIDAR LA INFORMACIÓN DEL USUARIO...
+							user_sessquote = s_username_local.username;
+							var formdata = new FormData();
+							formdata.append("id_codegenrand", v_idgencoderand);
+							formdata.append("code_quote", $("#v_gencodexxx").text());
+							formdata.append("u_login", user_sessquote);
+							$.ajax({
+								url: 'controllers/c_validation_by_idcodegenrand.php',
+								method: 'POST',
+								datatype: 'JSON',
+								data: formdata,
+								contentType: false,
+				        cache: false,
+				        processData: false
+							}).done((e) => {
+								if(e != ""){
+									var rpdf = JSON.parse(e);
+									if(rpdf.res == "exists"){
+										$("#cUIMessageValid-user").html(`<div id="msgAlertpreloader">
+											<div class="cont-loader--loader">
+												<span class="cont-loader--loader--circle"></span>
+												<span class="cont-loader--loader--circle"></span>
+												<span class="cont-loader--loader--circle"></span>
+												<span class="cont-loader--loader--circle"></span>
+											</div>
+											<p>Preparando cotización...</p>
+										</div>`);
+										$.ajax({
+											type: 'POST',
+											url: 'controllers/c_generate-pdf-aduanas.php',
+											data: {
+												id_codegenrand : v_idgencoderand, 
+												code_quote : $("#v_gencodexxx").text(),
+												u_login : user_sessquote
+											},
+											xhrFields: {
+									      responseType: 'blob' // to avoid binary data being mangled on charset conversion
+									    },
+									    success: function(blob, status, xhr) {
+								        // check for a filename
+								        var filename = "";
+								        var disposition = xhr.getResponseHeader('Content-Disposition');
+								        if (disposition && disposition.indexOf('attachment') !== -1) {
+							            var filenameRegex = /filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/;
+							            var matches = filenameRegex.exec(disposition);
+							            if (matches != null && matches[1]) filename = matches[1].replace(/['"]/g, '');
+								        }
 
-						$.ajax({
-							url: 'controllers/c_add_unlogged_user.php',
-							method: 'POST',
-							datatype: 'JSON',
-							data: formdata,
-							contentType: false,
-			        cache: false,
-			        processData: false
-						}).done((upd) => {
-							if(upd == "true"){
-								console.log('Cotización guardada en unlogged');
-							}else{
-								$("#cUIMessageValid-user").html("");
-								Swal.fire({
-						      title: 'Error!',
-						      html: `<span class='font-w-300'>Lo sentimos, hubo un error al procesar la información.</span>`,
-						      icon: 'error',
-						      confirmButtonText: 'Aceptar'
-						    });
-							}
-						});
-						*/
+								        if (typeof window.navigator.msSaveBlob !== 'undefined') {
+							            // IE workaround for "HTML7007: One or more blob URLs were revoked by closing the blob for which they were created. These URLs will no longer resolve as the data backing the URL has been freed."
+							            window.navigator.msSaveBlob(blob, filename);
+								        } else {
+							            var URL = window.URL || window.webkitURL;
+							            var downloadUrl = URL.createObjectURL(blob);
+
+							            if (filename) {
+						                // use HTML5 a[download] attribute to specify filename
+						                var a = document.createElement("a");
+						                // safari doesn't support this yet
+						                if (typeof a.download === 'undefined') {
+						                  window.location.href = downloadUrl;
+						                } else {
+					                    a.href = downloadUrl;
+					                    a.download = filename;
+					                    document.body.appendChild(a);
+					                    a.click();
+					                    $("#cUIMessageValid-user").html("");
+						                }
+							            } else {
+							              window.location.href = downloadUrl;
+							            }
+
+							            setTimeout(function () { URL.revokeObjectURL(downloadUrl); }, 100); // cleanup
+								        }
+									    }
+										});
+									}else if(rpdf.res == "notexists"){
+										$("#cUIMessageValid-user").html("");
+										$("#cnt-modalFormLoginyRegister").add($(".cnt-modalFormLoginyRegister--c")).addClass("show");
+									}else{
+										$("#cUIMessageValid-user").html("");
+										Swal.fire({
+								      title: 'Error!',
+								      html: `<span class='font-w-300'>Lo sentimos, hubo un error al procesar la información.</span>`,
+								      icon: 'error',
+								      confirmButtonText: 'Aceptar'
+								    });
+									}
+								}else{
+									$("#cUIMessageValid-user").html("");
+									Swal.fire({
+							      title: 'Error!',
+							      html: `<span class='font-w-300'>Lo sentimos, hubo un error al procesar la información.</span>`,
+							      icon: 'error',
+							      confirmButtonText: 'Aceptar'
+							    });
+								}
+							});
+					  });
 					}else if(r.res == "already_update"){
 						$("#cUIMessageValid-user").html("");
 						Swal.fire({
