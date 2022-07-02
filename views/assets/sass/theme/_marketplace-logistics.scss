@@ -131,12 +131,15 @@
 				}
 				/* CONTENIDO DE LOS ITEMS */
 				&--cTabsItem{
-					padding: 1rem;
+					padding: .5rem;
 					border-left: thin solid $border-bottom-headertop;
 					border-right: thin solid $border-bottom-headertop;
 					border-bottom: thin solid $border-bottom-headertop;
 					border-radius: 0 0 .4rem .4rem;
 					box-shadow: 0 5px 10px 0px rgb(0 0 0 / 10%);
+					@media (min-width: 768px){
+						padding: 1rem;
+					}
 					&--item{
 						display: block;
 						opacity: 1;
@@ -169,7 +172,10 @@
 						    	}
 						    	&:nth-child(2){
 						    		div.cont-MainCamelLog--c--cOptionsMarket--f--cont--cTabsItem--item--cControl--control--cGroupIptsIcon--cIcon{
-						    			border-radius: 5px 0 0 5px;
+						    			border-radius: 2px 0 0 2px;
+								    	@media (min-width: 768px){
+								    		border-radius: .4rem 0 0 .4rem;
+											}
 						    			@media (min-width: 991px){
 												border-radius: unset;
 											}
@@ -200,10 +206,14 @@
 										&--input{
 											outline: none;
 											width: 100%;
-											padding: 0.5rem;
+											padding: 0.7rem 0.5rem;
 											border: thin solid #ccc;
-											border-radius: 0 5px 5px 0;
+											border-radius: 0 2px 2px 0;
 											font-size: 0.8rem;
+											@media (min-width: 768px){
+												padding: 0.5rem;
+								    		border-radius: 0 5px 5px 0;
+											}
 											@media (min-width: 991px){
 												border-radius: unset;
 												font-size: 1rem;
@@ -280,7 +290,10 @@
 					    		}
 									&:first-child{
 										div{
-								    	border-radius: .4rem 0 0 .4rem;
+											border-radius: 2px 0 0 2px;
+								    	@media (min-width: 768px){
+								    		border-radius: .4rem 0 0 .4rem;
+											}
 								    	svg{
 								    		color: red;
 								    	}
@@ -306,8 +319,8 @@
 								text-align: center;
 								background-color: orange;
 								color: #fff;
-								padding: 0.5rem 2rem;
-								border-radius: 5px;
+								padding: 0.95rem 2rem;
+								border-radius: 2px;
 								&:hover{
 									color: #fff;
 									opacity: 0.7;
@@ -317,6 +330,10 @@
 									@media (min-width: 991px){
 										font-size: 1rem;
 									}
+								}
+								@media (min-width: 768px){
+									padding: 0.5rem 2rem;
+					    		border-radius: 5px;
 								}
 								@media (min-width: 991px){
 									border-radius: 0 5px 5px 0;

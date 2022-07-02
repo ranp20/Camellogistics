@@ -215,7 +215,7 @@
 				padding-top: 2rem;
 				margin-bottom: 2rem;
 				&--title{
-					font-weight: 300;
+					font-weight: 400;
 					font-size: 1.2rem;
 					@media (min-width: 768px){
 						font-size: 1.35rem;
@@ -904,9 +904,13 @@
 							&--label{
 								color: $primary-color;
 								font-weight: 300;
-								padding-left: 1rem;
-								font-size: 0.85rem;
+								padding-left: .5rem;
+								font-size: 0.65rem;
 								letter-spacing: .2rem;
+								@media (min-width: 991px){
+									padding-left: 1rem;
+    							font-size: .85rem;
+								}
 							}
 							/* CONTENIDO DE CONTROL SIN ÍCONO */
 							&--cListChange{
@@ -930,7 +934,7 @@
 								&--input{
 									width: 100%;
 									border: thin solid $primary-color;
-									font-size: 1rem;
+									font-size: .7rem;
 									padding: 0.5rem;
 									line-height: 1.5;
 									&[type=number]::-webkit-inner-spin-button, 
@@ -945,6 +949,9 @@
 									  color: #fff;
 									  background-color: #fff;
 									  opacity: 0;
+									}
+									@media (min-width: 991px){
+										font-size: 1rem;
 									}
 								}
 								&--m{
@@ -973,8 +980,8 @@
 							    }
 									&--item{
 										cursor: pointer;
-										padding: 0.5rem 1rem;
-										font-size: 0.9rem;
+										padding: 0.5rem 0.5rem;
+										font-size: 0.75rem;
 										line-height: 1;
 										&:hover{
 											background-color: #000;
@@ -984,6 +991,10 @@
 											margin: 0;
 										}
 										small{
+										}
+										@media (min-width: 991px){
+											padding: 0.5rem 1rem;
+											font-size: 0.9rem;
 										}
 									}
 								}
@@ -1010,7 +1021,7 @@
 								&--input{
 									width: 100%;
 									border: thin solid $primary-color;
-									font-size: 1rem;
+									font-size: .7rem;
 									padding: 0.5rem 0.5rem 0.5rem 3rem;
 									line-height: 1.5;
 									&[type=number]::-webkit-inner-spin-button, 
@@ -1025,6 +1036,9 @@
 									  color: #fff;
 									  background-color: #fff;
 									  opacity: 0;
+									}
+									@media (min-width: 991px){
+										font-size: 1rem;
 									}
 								}
 								&--m{
@@ -1087,6 +1101,7 @@
 							vertical-align: middle;
 							transition: .2s ease-in-out;
 							margin: 0 1rem 0 0;
+							font-size: 0.75rem;
 							&:after{
 								content: "NO";
 								position: absolute;
@@ -1156,6 +1171,7 @@
 							}
 							@media (min-width: 991px){
 								flex: 0 0 134px;
+								font-size: 1rem;
 								&:after{
 									content: "NO";
 									position: absolute;
@@ -1221,6 +1237,10 @@
 						span{
 							text-align: left;
 							word-break: break-word;
+							font-size: 0.8rem;
+							@media (min-width: 991px){
+								font-size: 1rem;
+							}
 						}
 					}
 				}
@@ -1247,9 +1267,13 @@
 							&--label{
 								color: $primary-color;
 								font-weight: 300;
-								padding-left: 1rem;
-								font-size: 0.85rem;
+								padding-left: .5rem;
+								font-size: 0.65rem;
 								letter-spacing: .2rem;
+								@media (min-width: 991px){
+									padding-left: 1rem;
+    							font-size: .85rem;
+								}
 							}
 							&--cListChange{
 								width: 100%;
@@ -1257,7 +1281,7 @@
 								&--input{
 									width: 100%;
 									border: thin solid $primary-color;
-									font-size: 1rem;
+									font-size: .7rem;
 									padding: 0.5rem;
 									line-height: 1.5;
 									&[type=number]::-webkit-inner-spin-button, 
@@ -1272,6 +1296,9 @@
 									  color: #fff;
 									  background-color: #fff;
 									  opacity: 0;
+									}
+									@media (min-width: 991px){
+										font-size: 1rem;
 									}
 								}
 								&--m{
@@ -1308,8 +1335,8 @@
 									}
 									&--item{
 										cursor: pointer;
-										padding: 0.65rem 1rem;
-										font-size: 0.9rem;
+										padding: 0.5rem 0.5rem;
+										font-size: 0.75rem;
 										line-height: 1;
 										&:hover{
 											background-color: #000;
@@ -1319,6 +1346,10 @@
 											margin: 0;
 										}
 										small{
+										}
+										@media (min-width: 991px){
+											padding: 0.65rem 1rem;
+											font-size: 0.9rem;
 										}
 									}
 								}
@@ -1468,8 +1499,12 @@
 			    	}
 			    }
 			    span{
+			    	font-size: 0.8rem;
 			    	font-weight: 600;
 			    	vertical-align: middle;
+			    	@media (min-width: 991px){
+			    		font-size: 1rem;
+			    	}
 			    }
 					svg{
 				    color: orange;

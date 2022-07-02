@@ -14,9 +14,9 @@ session_start();
 </head>
 <body>
   <?php require_once 'includes/inc_header-top.php'; ?>
-  <main class="cont-MainCamelLog box-container mtop-headertop" id="cont-MainCamelLog">
+  <main class="cont-MainCamelLog mtop-headertop" id="cont-MainCamelLog">
     <div class="cont-MainCamelLog--c" id="cont-MainCamelLog--cMarketplaceLogistics">
-      <section class="cont-MainCamelLog--c--cTop">
+      <section class="cont-MainCamelLog--c--cTop box-container">
         <div class="cont-MainCamelLog--c--cTop--cTitle">
           <h3 class="cont-MainCamelLog--c--cTop--cTitle--title">La herramienta Web gratuita para gestionar la contratación de transporte de carga internacional y despachos de aduana.</h3>
           <p class="cont-MainCamelLog--c--cTop--cTitle--desc">Solicita, recibe, compara y gestiona presupuestos de Agente Aduaneros y Freight Forwardersen todo el mundo desde una única plataforma.</p>
@@ -29,7 +29,7 @@ session_start();
           </ul>
         </div>
       </section>
-      <section class="cont-MainCamelLog--c--cOptionsMarket">
+      <section class="cont-MainCamelLog--c--cOptionsMarket box-container-95">
         <form action="startQuoteRequest" class="cont-MainCamelLog--c--cOptionsMarket--f" method="POST" id="f-cOptionsMarkLogistic">
           <div class="cont-MainCamelLog--c--cOptionsMarket--f--cont">
             <div class="cont-MainCamelLog--c--cOptionsMarket--f--cont--m" id="c-cOptionsMarket">

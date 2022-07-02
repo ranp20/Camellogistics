@@ -103,6 +103,12 @@ input[f-hidden="aria-hidden"]{
 	margin-left: auto;
 	margin-right: auto;
 }
+.box-container-95{
+	max-width: $max-width;
+	width: 95%;
+	margin-left: auto;
+	margin-right: auto;
+}
 .box-containerredux{
 	max-width: $max-width-redux;
 	width: 90%;
