@@ -30,6 +30,7 @@ if(isset($_POST) && $_POST != [] && isset($_POST['v_typetranspinit'])){
         <input type='hidden' class='cont-MainCamelLog--c--ctrbysend' id='ipt-vtypetranspinit' value='{$_POST['v_typetranspinit']}'>
         <input type='hidden' class='cont-MainCamelLog--c--ctrbysend' id='ipt-vidcodgenrand' name='ipt-vidcodgenrand' value=''>
         <section class='cont-MainCamelLog--c--contResumeCalc' id='id-resumeLeftQuoteCamel'>
+          <!--<div class='cont-MainCamelLog--c--contResumeCalc--c_ibybtnclose'><span id='btn-close-resmobile'><span></span></span></div>-->
           <div class='cont-MainCamelLog--c--contResumeCalc--item' data-advlevel='d-typetransportnumb'></div>
           <div class='cont-MainCamelLog--c--contResumeCalc--item' data-advlevel='d-typeserviceinit'>
             <div class='cont-MainCamelLog--c--contResumeCalc--item--cardStep'>

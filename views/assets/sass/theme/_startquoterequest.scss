@@ -49,6 +49,54 @@
 		  transform: translateX(0);
 		  box-shadow: unset;
     }
+    // BOTÓN - CERRAR MODAL MOBILE
+    &--c_ibybtnclose{
+      display: flex;
+	    align-items: center;
+	    justify-content: flex-end;
+	    flex-flow: wrap row;
+	    padding: 0 0 0.5rem 0;
+	    border-bottom: thin solid #7777;
+	    margin-bottom: .5rem;
+	    position: relative;
+    	span#btn-close-resmobile{
+    		margin-left: 0;
+		    top: 0;
+		    right: 0;
+		    left: auto;
+		    width: 40px;
+		    height: 40px;
+		    background-color: #000;
+		    display: flex;
+		    align-items: center;
+		    justify-content: center;
+		    text-align: center;
+	    	span{
+	    		cursor: pointer;
+					position: initial;
+			    margin-left: 0;
+			    top: 10px;
+			    left: 295px;
+			    background-color: #fff;
+			    animation-name: moveIconBurger;
+			    animation-duration: .3s;
+			    animation-timing-function: ease-in-out;
+			    color: #fff;
+			    font-size: 2rem;
+			    display: inline-block;
+			    transition: .3s;
+			    width: 20px;
+			    height: 20px;
+			    background: linear-gradient(45deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 43%, #fff 45%, #fff 55%, rgba(0, 0, 0, 0) 57%, rgba(0, 0, 0, 0) 100%),linear-gradient(135deg, transparent 0%, transparent 43%, #fff 45%, #fff 55%, transparent 57%, transparent 100%);
+			    border: none;
+			    padding: .5rem;
+			    z-index: 99999999;
+	    	}
+    	}
+    	@media (min-width: 991px){
+    		display: none;
+    	}
+    }
 		&--item{
 			/************************** TIPO DE TRANSPORTE **************************/
 			&[data-advlevel="d-typetransportcharge"]{
