@@ -3,6 +3,6 @@
 		<span>Asesor en Línea</span>
 	</div>
 	<div class="float--contIconWps">
-		<img src="<?php echo $url; ?>assets/img/icons/whatsapp_api.svg" alt="">
+		<img src="<?php echo $url; ?>assets/img/icons/whatsapp_api.svg" alt="icon_whatsapp" width="100" height="100">
 	</div>
 </a>

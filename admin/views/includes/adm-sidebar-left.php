@@ -1,5 +1,5 @@
 <?php
-	$admname = $_SESSION['admin_camel']['username'];
+$admname = $_SESSION['admin_camel']['username'];
 ?>
 <div class="nav-dashCamel">
 	<nav class="nav-dashCamel--sidenav" id="nav-dashCamel">

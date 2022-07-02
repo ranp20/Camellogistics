@@ -1,5 +1,5 @@
 <?php
-  $pathbannerp = $url_admin."views/assets/img/banner_principal/".$g_setting("home_banner_principal")['setting_value'];
+$pathbannerp = $url_admin."views/assets/img/banner_principal/".$g_setting("home_banner_principal")['setting_value'];
 ?>
 <header class="h-heroImage-init mtop-headertop" id="h-heroImage-init" style="background-image: url(<?= $pathbannerp; ?>);">
   <div class="h-heroImage-init--c box-containerredux">

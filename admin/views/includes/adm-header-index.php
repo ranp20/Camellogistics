@@ -1,13 +1,13 @@
 <?php 
-  $actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]";
-  // CONFIGURACIÓN LOCALHOST
-  $url =  $actual_link . "/Camellogistics/admin/views/";
-  $urlCli =  $actual_link . "/" ."Camellogistics/";
-  // CONFIGURACIÓN SERVIDOR
-  /*
-  $url =  $actual_link . "/admin/views/";
-  $urlCli =  $actual_link . "/";
-  */
+$actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]";
+// CONFIGURACIÓN LOCALHOST
+$url =  $actual_link . "/Camellogistics/admin/views/";
+$urlCli =  $actual_link . "/" ."Camellogistics/";
+// CONFIGURACIÓN SERVIDOR
+/*
+$url =  $actual_link . "/admin/views/";
+$urlCli =  $actual_link . "/";
+*/
 ?>
 <meta charset="UTF-8">
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
@@ -33,10 +33,10 @@
 <link rel="preload" href="<?= $url; ?>assets/css/styles.min.css" as="style"/>
 <link rel="preload" href="<?= $url; ?>js/plugins/jquery/jquery-3.6.0.min.js" as="script"/>
 <!-- JQUERY COMPRESSED -->
-<script src="<?= $url; ?>js/plugins/jquery/jquery-3.6.0.min.js"></script>
+<script type="text/javascript" src="<?= $url; ?>js/plugins/jquery/jquery-3.6.0.min.js"></script>
 <!-- BOOTSTRAP UNCOMPRESSED -->
 <link rel="stylesheet" href="<?php echo $url; ?>js/plugins/bootstrap/css/bootstrap.min.css">
-<script src="<?php echo $url; ?>js/plugins/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="<?php echo $url; ?>js/plugins/bootstrap/js/bootstrap.min.js"></script>
 <!-- STYLESSHEET -->
 <link rel="stylesheet" href="<?= $url; ?>assets/css/styles.min.css">
 <!-- GOOGLE FONTS -->

@@ -1,17 +1,17 @@
 <?php
-  //COMPRIMIR ARCHIVOS DE TEXTO...
-  (substr_count($_SERVER["HTTP_ACCEPT_ENCODING"], "gzip")) ? ob_start("ob_gzhandler") : ob_start();
-  session_start();
-  $actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]";
-  $url_defaulthome = $actual_link . "/Camellogistics";
-  $url =  $actual_link . "/Camellogistics/views/";
-  if(!isset($_POST) || $_POST == []){
-    header("Location: marketplace-logistico");
-  }else{
-    if(!isset($_SESSION['user_camel'])){
-      $_SESSION['user_camel'] = array('username' => "Invitado");
-    }
+//COMPRIMIR ARCHIVOS DE TEXTO...
+(substr_count($_SERVER["HTTP_ACCEPT_ENCODING"], "gzip")) ? ob_start("ob_gzhandler") : ob_start();
+session_start();
+$actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]";
+$url_defaulthome = $actual_link . "/Camellogistics";
+$url =  $actual_link . "/Camellogistics/views/";
+if(!isset($_POST) || $_POST == []){
+  header("Location: marketplace-logistico");
+}else{
+  if(!isset($_SESSION['user_camel'])){
+    $_SESSION['user_camel'] = array('username' => "Invitado");
   }
+}
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -32,7 +32,7 @@
       <div class="box-container">
         <div class="c-FinalQuotation--contStep--cQuotation">
           <div class="c-FinalQuotation--contStep--cQuotation--cBtnDownload">
-            <a href="#" class="c-FinalQuotation--contStep--cQuotation--cBtnDownload--btn" id="btn-requireDownloadQuotaion_one">
+            <a href="javascript:void(0);" class="c-FinalQuotation--contStep--cQuotation--cBtnDownload--btn" id="btn-requireDownloadQuotaion_one">
               <span class="c-FinalQuotation--contStep--cQuotation--cBtnDownload--btn--cIcon">
                 <svg class="MuiSvgIcon-root" focusable="false" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"></path></svg>
               </span>
@@ -265,10 +265,10 @@
                 </ul>
               </div>
               <div class="c-FinalQuotation--contStep--cQuotation--cTop--c--cDudeInfo">
-                <!--<p>¿Dudas? - <a href="#">Click Aquí</a></p>-->
+                <!--<p>¿Dudas? - <a href="javascript:void(0);">Click Aquí</a></p>-->
               </div>
               <div class="c-FinalQuotation--contStep--cQuotation--cTop--c--cWhatsappContact">
-                <a href="#" target="_blank" class="c-FinalQuotation--contStep--cQuotation--cTop--c--cWhatsappContact--link" id="d-link-messagecontact">
+                <a href="javascript:void(0);" target="_blank" class="c-FinalQuotation--contStep--cQuotation--cTop--c--cWhatsappContact--link" id="d-link-messagecontact">
                   <span class="c-FinalQuotation--contStep--cQuotation--cTop--c--cWhatsappContact--link--cImg">
                     <img src="<?= $url; ?>assets/img/utilities/whatsapp.svg" alt="icon_whatsapp" width="100" height="100">
                   </span>
@@ -453,7 +453,7 @@ echo $template_incserv.$template_notincserv;
             </a>
           </div>
           <div class="c-FinalQuotation--contStep--cQuotation--cBtnDownload">
-            <a href="#" class="c-FinalQuotation--contStep--cQuotation--cBtnDownload--btn" id="btn-requireDownloadQuotaion_two">
+            <a href="javascript:void(0);" class="c-FinalQuotation--contStep--cQuotation--cBtnDownload--btn" id="btn-requireDownloadQuotaion_two">
               <span class="c-FinalQuotation--contStep--cQuotation--cBtnDownload--btn--cIcon">
                 <svg class="MuiSvgIcon-root" focusable="false" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"></path></svg>
               </span>

@@ -1,11 +1,11 @@
 <?php 
-  $actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]";
-  // CONFIGURACIÓN LOCALHOST
-  $urlAdmin =  $actual_link . "/Camellogistics/admin/";
-  // CONFIGURACIÓN SERVIDOR
-  /*
-  $urlAdmin =  $actual_link . "/admin/";
-  */
+$actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]";
+// CONFIGURACIÓN LOCALHOST
+$urlAdmin =  $actual_link . "/Camellogistics/admin/";
+// CONFIGURACIÓN SERVIDOR
+/*
+$urlAdmin =  $actual_link . "/admin/";
+*/
 ?>
 <header id="h-dashCamel" class="h-dashCamel">
 	<div class="h-dashCamel--c">

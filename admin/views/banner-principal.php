@@ -136,7 +136,7 @@ if(!isset($_SESSION['admin_camel'])){
 			</div>
 		</main>
 	</div>
-	<script src="<?= $url ?>js/main.js"></script>
-	<script src="<?= $url ?>js/actions_pages/banner-principal.js"></script>
+	<script type="text/javascript" src="<?= $url ?>js/main.js"></script>
+	<script type="text/javascript" src="<?= $url ?>js/actions_pages/banner-principal.js"></script>
 </body>
 </html>

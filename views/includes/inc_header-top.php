@@ -1,17 +1,17 @@
 <?php 
-  $actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]";
-  // CONFIGURACIÓN LOCALHOST
-  $url =  $actual_link . "/Camellogistics/views/";
-  // CONFIGURACIÓN SERVIDOR
-  /*
-  $url =  $actual_link . "/views/";
-  */
-  $sess_user = 0;
-  if(isset($_SESSION['user_camel'])){
-    $sess_user = $_SESSION['user_camel']['username'];
-  }else{
-    $sess_user = "";
-  }
+$actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]";
+// CONFIGURACIÓN LOCALHOST
+$url =  $actual_link . "/Camellogistics/views/";
+// CONFIGURACIÓN SERVIDOR
+/*
+$url =  $actual_link . "/views/";
+*/
+$sess_user = 0;
+if(isset($_SESSION['user_camel'])){
+  $sess_user = $_SESSION['user_camel']['username'];
+}else{
+  $sess_user = "";
+}
 ?>
 <nav class="c-Htopbar" id="c-HTop-camel">
   <div class="c-Htopbar--c">

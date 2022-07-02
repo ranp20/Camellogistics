@@ -1,17 +1,17 @@
 <?php
-  //COMPRIMIR ARCHIVOS DE TEXTO...
-  (substr_count($_SERVER["HTTP_ACCEPT_ENCODING"], "gzip")) ? ob_start("ob_gzhandler") : ob_start();
-  session_start();
-  $actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]";
-  $url_defaulthome = $actual_link . "/Camellogistics";
-  $url =  $actual_link . "/Camellogistics/views/";
-  if(!isset($_POST) || $_POST == []){
-    header("Location: marketplace-logistico");
-  }else{
-    if(!isset($_SESSION['user_camel'])){
-      $_SESSION['user_camel'] = array('username' => "Invitado");
-    }
+//COMPRIMIR ARCHIVOS DE TEXTO...
+(substr_count($_SERVER["HTTP_ACCEPT_ENCODING"], "gzip")) ? ob_start("ob_gzhandler") : ob_start();
+session_start();
+$actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]";
+$url_defaulthome = $actual_link . "/Camellogistics";
+$url =  $actual_link . "/Camellogistics/views/";
+if(!isset($_POST) || $_POST == []){
+  header("Location: marketplace-logistico");
+}else{
+  if(!isset($_SESSION['user_camel'])){
+    $_SESSION['user_camel'] = array('username' => "Invitado");
   }
+}
 ?>
 <!DOCTYPE html>
 <html lang="es">
