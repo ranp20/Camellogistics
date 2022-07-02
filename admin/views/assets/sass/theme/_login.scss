@@ -201,7 +201,6 @@
 						top: 2px;
 						transition: .2s ease-in-out;
 					}
-
 					&:hover,
 					&:active{
 						opacity: 0.6;
@@ -209,7 +208,6 @@
 							width: 27px;
 						}
 					}
-
 					span:last-child{
 						display: none;
 		    		opacity: 0;
@@ -219,7 +217,6 @@
 		    		margin-bottom: 0.1rem;
 						@include loader-clasic(23px, #fff);
 					}
-
 					&.showActive{
 						cursor: not-allowed;
 			    	opacity: 0.6;
@@ -228,34 +225,28 @@
 			    		opacity: 0;
 			    		pointer-events: none;
 			    	}
-
 			    	span:last-child{
 			    		display: flex;
 			    		opacity: 1;
 			    		pointer-events: auto;
 			    	}
 					}
-
 				}
 			}
 		}
-
 		/* 	FOOTER DEL LOGIN */
 		&--cBottInfo{
 			display: none;
 	    position: absolute;
-    	bottom: 1.2rem;
+    	bottom: 0.5rem;
 			@media (min-width: 960px){
 				display: block;
-				//margin-top: 90%;
 			}
-
 			small{
 				font-size: 0.75rem;
 			}
 		}
 	}
-
 	/* FONDO DE LA PÁGINA */
 	&--cBcImage{
 		grid-area: loginbackground;
@@ -267,7 +258,6 @@
 		align-items: center;
 		justify-content: center;
 		position: relative;
-
 		&:after{
 			content: "";
 			position: absolute;
@@ -277,7 +267,6 @@
 			left: 0;
 			background-color: rgba(0, 0, 0, .2);
 		}
-
 		@media (min-width: 960px){
 			display: flex;
 		}
