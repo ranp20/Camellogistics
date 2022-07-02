@@ -1,6 +1,6 @@
 // ------------ PREGUNTAR SI DESEA ABANDONAR LA PÁGINA - INPUTS
-window.onbeforeunload = function(event){
-  event.returnValue = "Es posible que no se guarden los cambios que ha hecho";
+window.onbeforeunload = function(e){
+  e.returnValue = "Es posible que no se guarden los cambios que ha hecho";
 };
 // ------------ DEJAR EN 2 DECIMALES POR DEFECTO 
 function myRound(num, dec){
