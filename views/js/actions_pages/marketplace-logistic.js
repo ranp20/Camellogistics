@@ -1,7 +1,3 @@
-$(() => {
-	list_puertoOriginLCL();
-  list_puertoDestinyLCL();
-});
 $(document).ready(function(){
   // ------------ VARIABLES SESSIONSTORAGE 
   var sess_usercli = sessionStorage.setItem("sess_usercli", 0); //SESSION DE VARIABLE LOCAL PARA EL USUARIO
@@ -122,7 +118,7 @@ $(document).ready(function(){
 	});
 });
 // ------------ MOSTRAR EL LISTADO DE PAÍSES O PUERTOS - ORIGEN 
-function list_puertoOriginLCL(searchVal){ 
+function list_puertoOriginLCL(searchVal){
   $.ajax({
     url: "controllers/list_puertoOriginLCL.php",
     method: "POST",
@@ -130,35 +126,44 @@ function list_puertoOriginLCL(searchVal){
     contentType: 'application/x-www-form-urlencoded;charset=UTF-8',
     data: {searchList : searchVal},
   }).done((e) => {
-    var r = JSON.parse(e);
-    var tmpOList = "";
-    if($("#ipt-valNamePortOrigin").val() == "" || r.length == 0){
-      tmpOList = `
-      <li class="cont-MainCamelLog--c--cOptionsMarket--f--cont--cTabsItem--item--cControl--control--cGroupIptsIcon--cInput--m--anyresults">
-        <span>No encontrado</span>
-      </li>`;
+    if(e != "" && e != "[]"){
+      var r = JSON.parse(e);
+      var tmpOList = "";
+      if(r.length == 0){
+        tmpOList = `<li class="cont-MainCamelLog--c--cOptionsMarket--f--cont--cTabsItem--item--cControl--control--cGroupIptsIcon--cInput--m--anyresults"><span>No encontrado</span></li>`;
+        $("#list-itemsNamePortsOrigin").html(tmpOList);
+        setTimeout(function(){$("#list-itemsNamePortsOrigin").removeClass("show");}, 5000);
+      }else{
+        $.each(r, function(i,e){
+          tmpOList += `
+          <li class="cont-MainCamelLog--c--cOptionsMarket--f--cont--cTabsItem--item--cControl--control--cGroupIptsIcon--cInput--m--item" id="${e.idpuerto}" idpaisattr="${e.idpais}">
+            <span>
+              <svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="anchor" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" class="svg-inline--fa fa-anchor fa-w-18 fa-3x"><path fill="currentColor" d="M571.515 331.515l-67.029-67.029c-4.686-4.686-12.284-4.686-16.971 0l-67.029 67.029c-7.56 7.56-2.206 20.485 8.485 20.485h44.268C453.531 417.326 380.693 456.315 312 462.865V216h60c6.627 0 12-5.373 12-12v-24c0-6.627-5.373-12-12-12h-60v-11.668c32.456-10.195 56-40.512 56-76.332 0-44.183-35.817-80-80-80s-80 35.817-80 80c0 35.82 23.544 66.138 56 76.332V168h-60c-6.627 0-12 5.373-12 12v24c0 6.627 5.373 12 12 12h60v246.865C195.192 456.304 122.424 417.176 102.762 352h44.268c10.691 0 16.045-12.926 8.485-20.485l-67.029-67.029c-4.686-4.686-12.284-4.686-16.971 0l-67.03 67.029C-3.074 339.074 2.28 352 12.971 352h40.284C73.657 451.556 181.238 512 288 512c113.135 0 215.338-65.3 234.745-160h40.284c10.691 0 16.045-12.926 8.486-20.485zM288 48c17.645 0 32 14.355 32 32s-14.355 32-32 32-32-14.355-32-32 14.355-32 32-32z" class=""></path></svg>
+              (Puerto)
+            </span>
+            <span>${e.puerto}, ${e.pais}</span>
+          </li>`;
+        });
+        $("#list-itemsNamePortsOrigin").html(tmpOList);
+      }
+    }else{
+      tmpOList = `<li class="cont-MainCamelLog--c--cOptionsMarket--f--cont--cTabsItem--item--cControl--control--cGroupIptsIcon--cInput--m--anyresults"><span>No encontrado</span></li>`;
       $("#list-itemsNamePortsOrigin").html(tmpOList);
       setTimeout(function(){$("#list-itemsNamePortsOrigin").removeClass("show");}, 5000);
-    }else{
-      $.each(r, function(i,e){
-        tmpOList += `
-        <li class="cont-MainCamelLog--c--cOptionsMarket--f--cont--cTabsItem--item--cControl--control--cGroupIptsIcon--cInput--m--item" id="${e.idpuerto}" idpaisattr="${e.idpais}">
-          <span>
-            <svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="anchor" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" class="svg-inline--fa fa-anchor fa-w-18 fa-3x"><path fill="currentColor" d="M571.515 331.515l-67.029-67.029c-4.686-4.686-12.284-4.686-16.971 0l-67.029 67.029c-7.56 7.56-2.206 20.485 8.485 20.485h44.268C453.531 417.326 380.693 456.315 312 462.865V216h60c6.627 0 12-5.373 12-12v-24c0-6.627-5.373-12-12-12h-60v-11.668c32.456-10.195 56-40.512 56-76.332 0-44.183-35.817-80-80-80s-80 35.817-80 80c0 35.82 23.544 66.138 56 76.332V168h-60c-6.627 0-12 5.373-12 12v24c0 6.627 5.373 12 12 12h60v246.865C195.192 456.304 122.424 417.176 102.762 352h44.268c10.691 0 16.045-12.926 8.485-20.485l-67.029-67.029c-4.686-4.686-12.284-4.686-16.971 0l-67.03 67.029C-3.074 339.074 2.28 352 12.971 352h40.284C73.657 451.556 181.238 512 288 512c113.135 0 215.338-65.3 234.745-160h40.284c10.691 0 16.045-12.926 8.486-20.485zM288 48c17.645 0 32 14.355 32 32s-14.355 32-32 32-32-14.355-32-32 14.355-32 32-32z" class=""></path></svg>
-            (Puerto)
-          </span>
-          <span>${e.puerto}, ${e.pais}</span>
-        </li>`;
-      });
-      $("#list-itemsNamePortsOrigin").html(tmpOList);
     }
   });
 }
 // ------------ BUSQUEDA EN TIEMPO REAL DE PUERTO DE ORIGIN - LCL 
-$(document).on("keypress keyup", "#ipt-valNamePortOrigin", function(){ 
+$(document).on("keypress keyup", "#ipt-valNamePortOrigin", function(e){ 
   $("#list-itemsNamePortsOrigin").addClass("show");
-  var searchVal = $(this).val();
-  (searchVal != "") ? list_puertoOriginLCL(searchVal) : list_puertoOriginLCL();
+  var searchVal = e.target.value;
+  if(searchVal != ""){list_puertoOriginLCL(searchVal);}else{list_puertoOriginLCL();};
+});
+// ------------ LISTAR PUERTOS DE ORIGEN *TRANSPORTE MARÍTIMO*
+$(document).on("focus","#ipt-valNamePortOrigin",function(e){
+  $("#list-itemsNamePortsOrigin").addClass("show");
+  var searchVal = e.target.value;
+  if(searchVal != ""){list_puertoOriginLCL(searchVal);}else{list_puertoOriginLCL();};
 });
 // ------------ FIJAR EL VALOR DEL PUERTO EN EL INPUT 
 $(document).on("click", "#list-itemsNamePortsOrigin .cont-MainCamelLog--c--cOptionsMarket--f--cont--cTabsItem--item--cControl--control--cGroupIptsIcon--cInput--m--item", function(){ 
@@ -186,37 +191,46 @@ function list_puertoDestinyLCL(searchVal){
     contentType: 'application/x-www-form-urlencoded;charset=UTF-8',
     data: {searchList : searchVal, idpais : idCountryOrigin },
   }).done((e) => {
-    var r = JSON.parse(e);
-    var tmpDList = "";
-    if($("#ipt-valNamePortDestiny").val() == "" || $("#ipt-valNamePortDestiny").val() == 0 || r.length == 0){
-      tmpDList = `
-      <li class="cont-MainCamelLog--c--cOptionsMarket--f--cont--cTabsItem--item--cControl--control--cGroupIptsIcon--cInput--m--anyresults">
-        <span>No encontrado</span>
-      </li>`;
+    if(e != "" && e != "[]"){
+      var r = JSON.parse(e);
+      var tmpDList = "";
+      if(r.length == 0){
+        tmpDList = `<li class="cont-MainCamelLog--c--cOptionsMarket--f--cont--cTabsItem--item--cControl--control--cGroupIptsIcon--cInput--m--anyresults"><span>No encontrado</span></li>`;
+        $("#list-itemsNamePortsDestiny").html(tmpDList);
+        setTimeout(function(){$("#list-itemsNamePortsDestiny").removeClass("show");}, 5000);
+      }else{
+        $.each(r, function(i,e){
+          if(e.idpais != idCountryOrigin){
+            tmpDList += `
+            <li class="cont-MainCamelLog--c--cOptionsMarket--f--cont--cTabsItem--item--cControl--control--cGroupIptsIcon--cInput--m--item" id="${e.idpuerto}" idpaisattr="${e.idpais}">
+              <span>
+                <svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="anchor" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" class="svg-inline--fa fa-anchor fa-w-18 fa-3x"><path fill="currentColor" d="M571.515 331.515l-67.029-67.029c-4.686-4.686-12.284-4.686-16.971 0l-67.029 67.029c-7.56 7.56-2.206 20.485 8.485 20.485h44.268C453.531 417.326 380.693 456.315 312 462.865V216h60c6.627 0 12-5.373 12-12v-24c0-6.627-5.373-12-12-12h-60v-11.668c32.456-10.195 56-40.512 56-76.332 0-44.183-35.817-80-80-80s-80 35.817-80 80c0 35.82 23.544 66.138 56 76.332V168h-60c-6.627 0-12 5.373-12 12v24c0 6.627 5.373 12 12 12h60v246.865C195.192 456.304 122.424 417.176 102.762 352h44.268c10.691 0 16.045-12.926 8.485-20.485l-67.029-67.029c-4.686-4.686-12.284-4.686-16.971 0l-67.03 67.029C-3.074 339.074 2.28 352 12.971 352h40.284C73.657 451.556 181.238 512 288 512c113.135 0 215.338-65.3 234.745-160h40.284c10.691 0 16.045-12.926 8.486-20.485zM288 48c17.645 0 32 14.355 32 32s-14.355 32-32 32-32-14.355-32-32 14.355-32 32-32z" class=""></path></svg>
+                (Puerto)
+              </span>
+              <span>${e.puerto}, ${e.pais}</span>
+            </li>`;
+          }
+        });
+        $("#list-itemsNamePortsDestiny").html(tmpDList);
+      }
+    }else{
+      tmpDList = `<li class="cont-MainCamelLog--c--cOptionsMarket--f--cont--cTabsItem--item--cControl--control--cGroupIptsIcon--cInput--m--anyresults"><span>No encontrado</span></li>`;
       $("#list-itemsNamePortsDestiny").html(tmpDList);
       setTimeout(function(){$("#list-itemsNamePortsDestiny").removeClass("show");}, 5000);
-    }else{
-      $.each(r, function(i,e){
-        if(e.idpais != idCountryOrigin){
-          tmpDList += `
-          <li class="cont-MainCamelLog--c--cOptionsMarket--f--cont--cTabsItem--item--cControl--control--cGroupIptsIcon--cInput--m--item" id="${e.idpuerto}" idpaisattr="${e.idpais}">
-            <span>
-              <svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="anchor" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" class="svg-inline--fa fa-anchor fa-w-18 fa-3x"><path fill="currentColor" d="M571.515 331.515l-67.029-67.029c-4.686-4.686-12.284-4.686-16.971 0l-67.029 67.029c-7.56 7.56-2.206 20.485 8.485 20.485h44.268C453.531 417.326 380.693 456.315 312 462.865V216h60c6.627 0 12-5.373 12-12v-24c0-6.627-5.373-12-12-12h-60v-11.668c32.456-10.195 56-40.512 56-76.332 0-44.183-35.817-80-80-80s-80 35.817-80 80c0 35.82 23.544 66.138 56 76.332V168h-60c-6.627 0-12 5.373-12 12v24c0 6.627 5.373 12 12 12h60v246.865C195.192 456.304 122.424 417.176 102.762 352h44.268c10.691 0 16.045-12.926 8.485-20.485l-67.029-67.029c-4.686-4.686-12.284-4.686-16.971 0l-67.03 67.029C-3.074 339.074 2.28 352 12.971 352h40.284C73.657 451.556 181.238 512 288 512c113.135 0 215.338-65.3 234.745-160h40.284c10.691 0 16.045-12.926 8.486-20.485zM288 48c17.645 0 32 14.355 32 32s-14.355 32-32 32-32-14.355-32-32 14.355-32 32-32z" class=""></path></svg>
-              (Puerto)
-            </span>
-            <span>${e.puerto}, ${e.pais}</span>
-          </li>`;
-        }
-      });
-      $("#list-itemsNamePortsDestiny").html(tmpDList);
     }
   });
 }
 // ------------ BUSQUEDA EN TIEMPO REAL DE PUERTO DE DESTINO - LCL 
-$(document).on("keypress keyup", "#ipt-valNamePortDestiny", function(){  
+$(document).on("keypress keyup", "#ipt-valNamePortDestiny", function(e){  
   $("#list-itemsNamePortsDestiny").addClass("show");
-  var searchVal = $(this).val();
-  (searchVal != "") ? list_puertoDestinyLCL(searchVal) : list_puertoDestinyLCL();
+  var searchVal = e.target.value;
+  if(searchVal != ""){list_puertoDestinyLCL(searchVal);}else{list_puertoDestinyLCL();};
+});
+// ------------ LISTAR PUERTOS DE DESTINO *TRANSPORTE MARÍTIMO*
+$(document).on("focus","#ipt-valNamePortDestiny",function(e){
+  $("#list-itemsNamePortsDestiny").addClass("show");
+  var searchVal = e.target.value;
+  if(searchVal != ""){list_puertoDestinyLCL(searchVal);}else{list_puertoDestinyLCL();};
 });
 // ------------ FIJAR EL VALOR DEL PUERTO EN EL INPUT 
 $(document).on("click", "#list-itemsNamePortsDestiny .cont-MainCamelLog--c--cOptionsMarket--f--cont--cTabsItem--item--cControl--control--cGroupIptsIcon--cInput--m--item", function(){ 
