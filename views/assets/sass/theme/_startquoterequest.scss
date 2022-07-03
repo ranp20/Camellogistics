@@ -1138,148 +1138,95 @@
 				    justify-content: flex-start;
 				    padding: 1rem 0 0 0;
 						&--cSwitch{
-							cursor: pointer;
-							background-color: #d74742;
-							padding: 0.15rem;
 							position: relative;
-							height: 37px;
+							display: inline-block;
 							display: flex;
-							flex: 0 0 100px;
-							border-radius: .2rem;
-							vertical-align: middle;
-							transition: .2s ease-in-out;
-							margin: 0 1rem 0 0;
-							font-size: 0.75rem;
+					    align-items: center;
+					    justify-content: flex-start;
+					    flex: 0 0 130px;
+				    	margin: 0 1rem 0 0;
 							&:after{
-								content: "NO";
-								position: absolute;
-								background-color: #fff;
-								color: #d74742;
-								left: 2px;
-								width: 47px;
-								height: 32px;
-								border-radius: .2rem;
-								display: flex;
-								align-items: center;
-								justify-content: center;
-								transition: .2s ease-in-out;
+								content: 'NO';
+							  color: #fff;
+							  position: relative;
+							  right: 56px;
+    						bottom: 0px;
 							}
 							&:before{
-								content: "SÍ";
+								content: 'SI';
+							  position: relative;
+					    	left: 23px;
+    						bottom: 0px;
+							  color: #fff;
+							  z-index: 1;
+							}
+							&--label{
+								cursor: pointer;
+								min-width: 100%;
+						    width: 100%;
+								height: 37px;
+						    left: -13px;
+						    margin-right: auto;
+						    text-align: left;
+						    position: relative;
+						    display: inline-block;
+						    border-radius: 3px;
+						    transition: 0.4s;
+							  background: #d74742;
+							  &:after{
+							  	content: '';
+							    position: absolute;
+							    border-radius: 3px;
+							    left: 0;
+							    z-index: 2;
+							    background: #fff;
+							    box-shadow: 0 0 5px rgb(0 0 0 / 20%);
+							    transition: 0.4s;
+								  top: 1px;
+							    width: 60px;
+							    height: 32px;
+							    margin: 2px;
+							    display: flex;
+							    align-items: center;
+							    justify-content: center;
+							    text-align: center;
+							  }
+							  &.t-sizereg{
+							  	&:after{
+							  		content: '';
+								    position: absolute;
+								    border-radius: 3px;
+								    left: 0;
+								    z-index: 2;
+								    background: #fff;
+								    box-shadow: 0 0 5px rgb(0 0 0 / 20%);
+								    transition: 0.4s;
+									  top: 0px;
+								    width: 60px;
+								    height: 33px;
+								    margin: 2px;
+								    display: flex;
+								    align-items: center;
+								    justify-content: center;
+								    text-align: center;
+							  	}
+							  }
+							}
+							&--input{
 								position: absolute;
-								background-color: transparent;
-								color: #fff;
-								right: 2px;
-								width: 47px;
-								height: 32px;
-								border-radius: .2rem;
-								display: flex;
-								align-items: center;
-								justify-content: center;
-								transition: .2s ease-in-out;
-							}
-							&.active{
-								background-color: #70C767;
-								&:after{
-									content: "SÍ";
-									position: absolute;
-									// background-color: transparent;
-									// color: #fff;
-									background-color: #fff;
-									color: #70C767;
-									left: 50px;
-									width: 47px;
-									height: 32px;
-									border-radius: .2rem;
-									display: flex;
-									align-items: center;
-									justify-content: center;
-								}
-								&:before{
-									content: "NO";
-									position: absolute;
-									// background-color: #fff;
-									// color: #70C767;
-									background-color: transparent;
-									color: #fff;
-									// right: 50px;
-									left: 2px;
-									width: 47px;
-									height: 32px;
-									border-radius: .2rem;
-									display: flex;
-									align-items: center;
-									justify-content: center;
-								}
-							}
-							&--chck{
-								display: none;
-								opacity: 0;
-								visibility: hidden;
-							}
-							@media (min-width: 991px){
-								flex: 0 0 134px;
-								font-size: 1rem;
-								&:after{
-									content: "NO";
-									position: absolute;
-									background-color: #fff;
-									color: #d74742;
-									left: 2px;
-									width: 65px;
-									height: 32px;
-									border-radius: .2rem;
-									display: flex;
-									align-items: center;
-									justify-content: center;
-								}
-								&:before{
-									content: "SÍ";
-									position: absolute;
-									background-color: transparent;
-									color: #fff;
-									right: 2px;
-									width: 65px;
-									height: 32px;
-									border-radius: .2rem;
-									display: flex;
-									align-items: center;
-									justify-content: center;
-								}
-								&.active{
-									background-color: #70C767;
-									&:after{
-										content: "SÍ";
-										position: absolute;
-										// background-color: transparent;
-										// color: #fff;
-										background-color: #fff;
-										color: #70C767;
-										left: 66px;
-										width: 65px;
-										height: 32px;
-										border-radius: .2rem;
-										display: flex;
-										align-items: center;
-										justify-content: center;
-									}
-									&:before{
-										content: "NO";
-										position: absolute;
-										// background-color: #fff;
-										// color: #70C767;
-										background-color: transparent;
-										color: #fff;
-										// right: 50px;
-										left: 2px;
-										width: 65px;
-										height: 32px;
-										border-radius: .2rem;
-										display: flex;
-										align-items: center;
-										justify-content: center;
-									}
-								}
+						    left: 0;
+						    top: 0;
+						    width: 100%;
+						    height: 100%;
+						    z-index: 5;
+						    opacity: 0;
+						    cursor: pointer;
+						    &:checked + label{
+									background: #4BD865;
+						    }
+						    &:checked + label:after{
+									left: 65px;
+						    }
 							}
 						}
 						span{
