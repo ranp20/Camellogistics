@@ -265,7 +265,7 @@ if(!isset($_POST) || $_POST == []){
                 <!--<p>¿Dudas? - <a href="#">Click Aquí</a></p>-->
               </div>
               <div class="c-FinalQuotation--contStep--cQuotation--cTop--c--cWhatsappContact">
-                <a href="#" target="_blank" class="c-FinalQuotation--contStep--cQuotation--cTop--c--cWhatsappContact--link" id="d-link-messagecontact" title="Enviar por whatsapp">
+                <a href="javascript:void(0);" target="_blank" class="c-FinalQuotation--contStep--cQuotation--cTop--c--cWhatsappContact--link" id="d-link-messagecontact" title="Enviar por whatsapp">
                   <span class="c-FinalQuotation--contStep--cQuotation--cTop--c--cWhatsappContact--link--cImg">
                     <img src="<?= $url; ?>assets/img/utilities/whatsapp.svg" alt="icon_whatsapp" width="100" height="100">
                   </span>
@@ -411,7 +411,7 @@ echo $template_incserv.$template_notincserv;
                       <ul class='c-FinalQuotation--contStep--cQuotation--cBottom--cAduanaImpst--cTop--m'>
                         <li class='c-FinalQuotation--contStep--cQuotation--cBottom--cAduanaImpst--cTop--m--item'>
                           <div class='c-FinalQuotation--contStep--cQuotation--cBottom--cAduanaImpst--cTop--m--item--cImg'>
-                            <img src='views/assets/img/utilities/SUNAT.png' alt=''>
+                            <img src='views/assets/img/utilities/SUNAT.png' alt='icon_camellogistics_sunat' width='100' height='100'>
                           </div>
                           <div class='c-FinalQuotation--contStep--cQuotation--cBottom--cAduanaImpst--cTop--m--item--cInfo'>
                             <h3>IMPUESTOS DE ADUANA</h3>

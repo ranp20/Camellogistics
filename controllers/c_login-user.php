@@ -10,7 +10,6 @@ class Login_User extends Connection{
 			}
 			$stm->execute();
 			return $stm->rowCount() > 0 ? "true" : "false";
-
 		}catch(PDOException $e){
 			return $e->getMessage();
 		}

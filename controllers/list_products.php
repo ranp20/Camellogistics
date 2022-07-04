@@ -2,7 +2,6 @@
 require_once '../models/db/connection.php';
 class Products extends Connection{
 	function list(){
-
 		try{
 			$sql = "SELECT
 								tbp.id as 'id_prod',
@@ -43,16 +42,13 @@ class Products extends Connection{
 
 			$stm = $this->con->query($sql);
 			$stm->execute();
-			
 			$data = $stm->fetchAll(PDO::FETCH_ASSOC); 
 			$res = json_encode($data);
-
 			echo $res;
 		}catch(PDOException $e){
 			return $e->getMessage();
 		}
 	}
 }
-
 $products = new Products();
 echo $products->list();

@@ -10,7 +10,6 @@ class Add_UnQuotation_User extends Connection{
 			'telephone_cli' => $_POST['telephone_cli'],
 			'email' => $_POST['email']
 		];
-
 		try{
 			$sql = "CALL sp_add_unlogged_user(:id_gencoderand,:code_quote,:ndoc_cli,:name_enterprise_cli,:telephone_cli,:email)";
 			$stm = $this->con->prepare($sql);
@@ -19,7 +18,6 @@ class Add_UnQuotation_User extends Connection{
 			}
 			$stm->execute();
 			return $stm->rowCount() > 0 ? "true" : "false";
-
 		}catch(PDOException $e){
 			return $e->getMessage();
 		}

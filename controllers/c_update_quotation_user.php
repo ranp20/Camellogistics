@@ -2,7 +2,6 @@
 require_once '../models/db/connection.php';
 class Update_Quotation_User extends Connection{
 	function update(){
-
 		$arr_userquotation = [
 			'id_gencoderand' => $_POST['id_gencoderand'],
 			'code_quote' => $_POST['code_quote'],
@@ -10,7 +9,6 @@ class Update_Quotation_User extends Connection{
 			'name_enterprise_cli' => $_POST['name_enterprise_cli'],
 			'telephone_cli' => $_POST['telephone_cli']
 		];
-
 		try{
 			$sql = "CALL sp_update_quotation_user(:id_gencoderand,:code_quote,:ndoc_cli,:name_enterprise_cli,:telephone_cli)";
 			$stm = $this->con->prepare($sql);
@@ -18,12 +16,9 @@ class Update_Quotation_User extends Connection{
 				$stm->bindValue($key, $value);
 			}
 			$stm->execute();
-			//$data = $stm->fetchAll(PDO::FETCH_ASSOC);
-			//return $data;
 			$data = $stm->fetchAll(PDO::FETCH_ASSOC); 
 			$res = json_encode($data);
 			echo $res;
-
 		}catch(PDOException $e){
 			return $e->getMessage();
 		}

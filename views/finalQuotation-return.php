@@ -47,11 +47,11 @@ if(!isset($_POST) || $_POST == []){
                 <div class="c-FinalQuotation--contStep--cQuotation--cTop--c--nOriginDestinyInfo--cImgInfo">
                   <?php
                     if($_POST['idtypetransportsendinit'] == 1){
-                      echo "<img src='{$url}assets/img/utilities/fleteMaritimo.png' alt='fletemaritimoicon_camel'>";
+                      echo "<img src='{$url}assets/img/utilities/fleteMaritimo.png' alt='fletemaritimoicon_camel' width='100' height='100'>";
                     }else if($_POST['idtypetransportsendinit'] == 2){
-                      echo "<img src='{$url}assets/img/utilities/fleteAereo.png' alt='fleteaereoicon_camel'>";
+                      echo "<img src='{$url}assets/img/utilities/fleteAereo.png' alt='fleteaereoicon_camel' width='100' height='100'>";
                     }else{
-                      echo "<img src='{$url}assets/img/logos/logotipo-camel.png' alt=''>";
+                      echo "<img src='{$url}assets/img/logos/logotipo-camel.png' alt='icon_camellogistics' width='100' height='100'>";
                     }
                   ?>
                   <?php 
@@ -301,7 +301,7 @@ if(!isset($_POST) || $_POST == []){
                   </div>
                 </div>
                 <div class="c-FinalQuotation--contStep--cQuotation--cBottom--cImgInfoEnterprise">
-                  <img src="views/assets/img/logos/logotipo-camel.png" alt="">
+                  <img src="views/assets/img/logos/logotipo-camel.png" alt="icon_camellogistics-bottom" width="100" height="100">
                   <div class="c-FinalQuotation--contStep--cQuotation--cBottom--cImgInfoEnterprise--info">
                     <h3>SERVICIO LOGÍSTICO</h3>
                     <span>Valor FIJO</span>
@@ -406,15 +406,14 @@ echo $template_incserv.$template_notincserv;
               <p>NOTA: Los conceptos están sujetos a IGV, excepto al flete internacional.</p>
             </div>
             <div class="c-FinalQuotation--contStep--cQuotation--cBottom--cAduanaImpst">
-              <?php 
-
+              <?php
                 if(isset($_POST['opt-genfquotation']) && $_POST['opt-genfquotation'] == 'y-moreOpts'){
                   echo "
                     <div class='c-FinalQuotation--contStep--cQuotation--cBottom--cAduanaImpst--cTop'>
                       <ul class='c-FinalQuotation--contStep--cQuotation--cBottom--cAduanaImpst--cTop--m'>
                         <li class='c-FinalQuotation--contStep--cQuotation--cBottom--cAduanaImpst--cTop--m--item'>
                           <div class='c-FinalQuotation--contStep--cQuotation--cBottom--cAduanaImpst--cTop--m--item--cImg'>
-                            <img src='views/assets/img/utilities/SUNAT.png' alt=''>
+                            <img src='views/assets/img/utilities/SUNAT.png' alt='icon_camellogistics_sunat' width='100' height='100'>
                           </div>
                           <div class='c-FinalQuotation--contStep--cQuotation--cBottom--cAduanaImpst--cTop--m--item--cInfo'>
                             <h3>IMPUESTOS DE ADUANA</h3>
@@ -433,7 +432,6 @@ echo $template_incserv.$template_notincserv;
                 }else{
                   echo "";
                 }
-
               ?>
               <div class="c-FinalQuotation--contStep--cQuotation--cBottom--cAduanaImpst--cBottom">
                 <ul class="c-FinalQuotation--contStep--cQuotation--cBottom--cAduanaImpst--cBottom--m">

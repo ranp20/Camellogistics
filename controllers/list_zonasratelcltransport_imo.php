@@ -23,7 +23,6 @@ class list_zonasrateLCLTransport_imo extends Connection{
 							WHERE tbaqpai.pais_id = '".$id."'";
 
 			if(isset($_POST['searchList'])){
-				//$search = $this->con->real_escape_string($_POST['searchList']);
 				$search = addslashes($_POST['searchList']);
 				$sql = "SELECT 
 									tbrtimo.id,
@@ -47,10 +46,8 @@ class list_zonasrateLCLTransport_imo extends Connection{
 
 			$stm = $this->con->query($sql);
 			$stm->execute();
-			
 			$data = $stm->fetchAll(PDO::FETCH_ASSOC); 
 			$res = json_encode($data);
-
 			echo $res;
 		}catch(PDOException $e){
 			return $e->getMessage();

@@ -13,10 +13,8 @@ class list_puertoOriginById extends Connection{
 				$stm->bindValue($key, $value);
 			}
 			$stm->execute();
-			
 			$data = $stm->fetchAll(PDO::FETCH_ASSOC); 
 			$res = json_encode($data);
-
 			echo $res;
 		}catch(PDOException $e){
 			return $e->getMessage();

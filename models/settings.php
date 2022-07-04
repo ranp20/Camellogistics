@@ -6,7 +6,7 @@ class Settings_all extends Connection{
 	function __construct(){
 		parent::__construct();
 	}
-
+	// -------------- LISTAR CONFIGURACIONES
 	function get_config(){
 		return function ($namekey){
 			try{

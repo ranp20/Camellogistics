@@ -8,7 +8,6 @@ class Quotation_user extends Connection
   {
     parent::__construct();
   }
-
   // -------------- LISTAR COTIZACIÓN POR ID DE CÓDIGO RANDOM
   function get_by_idcodegenrand($id_codegenrand){
     try{

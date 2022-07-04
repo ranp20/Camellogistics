@@ -8,7 +8,6 @@ class Regulator extends Connection
   {
     parent::__construct();
   }
-
   // -------------- DEVOLVER NÚMERO TOTAL DE REGISTROS
   public function get_count_regulators()
   {

@@ -8,7 +8,6 @@ class Banners extends Connection
   {
     parent::__construct();
   }
-
   // -------------- LISTAR - BANNER PRINCIPAL
   function get_banner_p(){
     try{
