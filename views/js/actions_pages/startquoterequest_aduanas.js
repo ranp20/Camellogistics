@@ -919,6 +919,7 @@ $(document).on("click", "#btn-NextStepToSelOptResultExp", function(){
           <span>
             <input type="hidden" value="" id="val-categProdquot-noMoreOpts" name="val-categProdquot" class="n-val-sd">
             <input type="hidden" value="" id="val-valProdquot" name="val-valProdquot" class="n-val-sd">
+            <input type="hidden" value="" id="val-reqPermisoProdquot" name="val-reqPermisoProdquot" class="n-val-sd">
             <input type="text" id="val_valfleteprod" name="val_valfleteprod" class="n-val-sd" value="">
             <input type="hidden" value="NO" id="val-prevImports" name="val-prevImports" class="n-val-sd">
             <input type="hidden" value="" id="val-quantityProdsAmmAdd" name="val-quantityProdsAmmAdd" class="n-val-sd">
@@ -1460,6 +1461,7 @@ $(document).on("click", "#btn-NextStepTochargedata", function(){
               <span>
                 <input type="hidden" value="" id="val-categProdquot-noMoreOpts" name="val-categProdquot" class="n-val-sd">
                 <input type="hidden" value="" id="val-valProdquot" name="val-valProdquot" class="n-val-sd">
+                <input type="hidden" value="" id="val-reqPermisoProdquot" name="val-reqPermisoProdquot" class="n-val-sd">
                 <input type="text" id="val_valfleteprod" name="val_valfleteprod" class="n-val-sd" value="">
                 <input type="hidden" value="NO" id="val-prevImports" name="val-prevImports" class="n-val-sd">
                 <input type="hidden" value="" id="val-quantityProdsAmmAdd" name="val-quantityProdsAmmAdd" class="n-val-sd">
@@ -1534,6 +1536,7 @@ $(document).on("click", "#btn-NextStepTochargedata", function(){
               <span>
                 <input type="hidden" value="" id="val-categProdquot-noMoreOpts" name="val-categProdquot" class="n-val-sd">
                 <input type="hidden" value="" id="val-valProdquot" name="val-valProdquot" class="n-val-sd">
+                <input type="hidden" value="" id="val-reqPermisoProdquot" name="val-reqPermisoProdquot" class="n-val-sd">
                 <input type="text" id="val_valfleteprod" name="val_valfleteprod" class="n-val-sd" value="">
                 <input type="hidden" value="NO" id="val-prevImports" name="val-prevImports" class="n-val-sd">
                 <input type="hidden" value="" id="val-quantityProdsAmmAdd" name="val-quantityProdsAmmAdd" class="n-val-sd">
@@ -1758,7 +1761,8 @@ function listProductsUser(searchVal){
             data-taxone="${e.ad_valoren}"
             data-taxtwo="${e.impuesto_selectivo}"
             data-taxthree="${e.antidumping}"
-            data-fichatecycertconform="${e.ftecycertconform}">
+            data-fichatecycertconform="${e.ftecycertconform}"
+            data-nameofregs="${nounOneAndTwoRegs}">
             <p>${e.name_prod}</p>
             <small>
               <span>Regulador: </span>
@@ -1882,13 +1886,7 @@ $(document).on("click", ".cont-MainCamelLog--c--contSteps--item--cStep--mFrmIpts
   var taxationTwoVal = parseFloat($(this).attr("data-taxtwo"));
   var taxationThreeVal = parseFloat($(this).attr("data-taxthree"));
   var fichatecycertconform = parseFloat($(this).attr("data-fichatecycertconform"));
-  // ------------ ASIGNAR A INPUTS DE ENVÍO
-  $("#val-ammtthxvaone").val(taxationOneVal); //VALOR DE AD-VALOREN
-  $("#val-ammtthxvatwo").val(taxationTwoVal); //VALOR DE IMPUESTO SELECCTIVO
-  $("#val-ammtthxvathree").val(taxationThreeVal); //VALOR DE ANTIDUMPING
-  $("#val-ftecycertconform").val(fichatecycertconform); // VALOR DE FICHA TÉCNICA Y CERTIFICADO DE CONFORMIDAD
-  // ------------ INPUT POST MONTO ADICIONAL DEL PRODUCTO
-  $("#val-ammvthisprod").val($(this).attr("data-amountadditional"));
+  var regsofprod = $(this).attr("data-nameofregs");
   // ------------ MOSTRAR/OCULTAR DE ACUERDO A EL VALOR DEL MONTO ADICIONAL 
   if($(this).attr("data-amountadditional") != 0 || $(this).attr("data-amountadditional") != 0.00){
     $("#ipt-valCantOfAmountAdditional").html(`
@@ -1902,7 +1900,13 @@ $(document).on("click", ".cont-MainCamelLog--c--contSteps--item--cStep--mFrmIpts
     $("#ipt-valCantOfAmountAdditional").html("");
   }
   // ------------ ASIGNAR VALORES DE LOS INPUTS HIDDEN - MERCANCÍA 
-  $("#val-categProdquot-noMoreOpts").val($(this).find("p").text());
+  $("#val-categProdquot-noMoreOpts").val($(this).find("p").text()); // NOMBRE DEL PRODUCTO
+  $("#val-reqPermisoProdquot").val(regsofprod); // REGULADORES DEL PRODUCTO
+  $("#val-ammtthxvaone").val(taxationOneVal); //VALOR DE AD-VALOREN
+  $("#val-ammtthxvatwo").val(taxationTwoVal); //VALOR DE IMPUESTO SELECCTIVO
+  $("#val-ammtthxvathree").val(taxationThreeVal); //VALOR DE ANTIDUMPING
+  $("#val-ftecycertconform").val(fichatecycertconform); // VALOR DE FICHA TÉCNICA Y CERTIFICADO DE CONFORMIDAD
+  $("#val-ammvthisprod").val($(this).attr("data-amountadditional")); // MONTO ADICIONAL DEL PRODUCTO
 });
 // ------------ VALIDAR INPUT - CANTIDAD DE PRODUCTOS CON MONTO ADICIONAL 
 $(document).on("keyup keypress", "#ipt-valQuantityAmAddProdNInterface", function(e){
