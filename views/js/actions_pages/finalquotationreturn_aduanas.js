@@ -46,6 +46,7 @@ $(document).ready(function(){
 	var encrypt_val_plcpickuprateprov = $("#v-plcpickuprateprov").val(encryptValuesIpts($("#v-plcpickuprateprov").val()));
 	var encrypt_v_validdesde = $("#v_datevaliddesde").val(encryptValuesIpts($("#v_datevaliddesde").val()));
 	var encrypt_v_validhasta = $("#v_datevalidhasta").val(encryptValuesIpts($("#v_datevalidhasta").val()));
+	var encrypt_v_frqexplinsur = $("#v_frqexplinsur").val(encryptValuesIpts($("#v_frqexplinsur").val()));
 	var encrypt_v_fprevimports = $("#v_fprevimports").val(encryptValuesIpts($("#v_fprevimports").val()));
 	var encrypt_v_floadtypeope = $("#v_floadtypeope").val(encryptValuesIpts($("#v_floadtypeope").val()));
 	var encrypt_v_fpckgcontquant = $("#v_fpckgcontquant").val(encryptValuesIpts($("#v_fpckgcontquant").val()));
@@ -72,6 +73,7 @@ $(document).ready(function(){
 	var v_floadTypeTranport = decryptValuesIpts(encrypt_v_floadTypeTranport.val());
 	var v_validdesde = decryptValuesIpts(encrypt_v_validdesde.val());
 	var v_validhasta = decryptValuesIpts(encrypt_v_validhasta.val());
+	var v_frqexplinsur = decryptValuesIpts(encrypt_v_frqexplinsur.val()); // SEGURO EXPLÍCITO
 	var v_fprevimports = decryptValuesIpts(encrypt_v_fprevimports.val());
 	var v_floadtypeope = decryptValuesIpts(encrypt_v_floadtypeope.val());
 	var v_fpckgcontquant = decryptValuesIpts(encrypt_v_fpckgcontquant.val());

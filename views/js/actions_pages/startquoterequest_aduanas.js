@@ -45,6 +45,12 @@ function twodecimals(n){
     return t.match(regex)[0];
   }
 }
+// ------------ FORMATO - SEPARADOR DE MILLAR Y PUNTO DECIMAL
+$(document).on("keyup", "input[data-valformat=withcomedecimal]", function(e){
+  let val = e.target.value;
+  let val_formatNumber = val.toString().replace(/[^\d.]/g, "").replace(/^(\d*\.)(.*)\.(.*)$/, '$1$2$3').replace(/\.(\d{2})\d+/, '.$1').replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  $(this).val(val_formatNumber);
+});
 // ------------ RETORNAR - PRIMERA LETRA EN MAYÚSCULA
 function firstToUppercase(e) {
   return e.charAt(0).toUpperCase() + e.slice(1);
@@ -969,6 +975,13 @@ $(document).on("click", "#btn-NextStepToSelOptResultExp", function(){
           </div>
           <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cBottom">
             <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cBottom--cSwitch">
+              <input type="checkbox" id="chck-reqinsurance" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cBottom--cSwitch--input"/>
+              <label for="chck-reqinsurance" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cBottom--cSwitch--label"></label>
+            </div>
+            <span>¿Su producto posee seguro?</span>
+          </div>
+          <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cBottom">
+            <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cBottom--cSwitch">
               <input type="checkbox" id="chck-importpreview" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cBottom--cSwitch--input"/>
               <label for="chck-importpreview" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cBottom--cSwitch--label"></label>
             </div>
@@ -1511,6 +1524,13 @@ $(document).on("click", "#btn-NextStepTochargedata", function(){
               </div>
               <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cBottom">
                 <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cBottom--cSwitch">
+                  <input type="checkbox" id="chck-reqinsurance" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cBottom--cSwitch--input"/>
+                  <label for="chck-reqinsurance" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cBottom--cSwitch--label"></label>
+                </div>
+                <span>¿Su producto posee seguro?</span>
+              </div>
+              <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cBottom">
+                <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cBottom--cSwitch">
                   <input type="checkbox" id="chck-importpreview" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cBottom--cSwitch--input"/>
                   <label for="chck-importpreview" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cBottom--cSwitch--label"></label>
                 </div>
@@ -1583,6 +1603,13 @@ $(document).on("click", "#btn-NextStepTochargedata", function(){
                     <input type="text" id="val-iptPriceValNInterface" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl--cListChangeWIcon--input" maxlength="13" autocomplete="off" placeholder="Ingrese el valor del flete">
                   </div>
                 </div>
+              </div>
+              <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cBottom">
+                <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cBottom--cSwitch">
+                  <input type="checkbox" id="chck-reqinsurance" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cBottom--cSwitch--input"/>
+                  <label for="chck-reqinsurance" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cBottom--cSwitch--label"></label>
+                </div>
+                <span>¿Su producto posee seguro?</span>
               </div>
               <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cBottom">
                 <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cBottom--cSwitch">
@@ -1830,6 +1857,40 @@ $(document).on("click", "#chck-importpreview", function(){
     $("#val-prevImports").val(notImportPrev);
   }
 });
+// ------------ SWITCH DE "SU PRODUCTO POSEE SEGURO"
+$(document).on("click","#chck-reqinsurance",function(){
+  if($(this).is(":checked")){
+    $("#cnt-modalFormReqInsurance").add($(".cnt-modalFormReqInsurance--c")).addClass("show");
+  }else{
+    $("#cnt-modalFormReqInsurance").add($(".cnt-modalFormReqInsurance--c")).removeClass("show");
+  }
+});
+// ------------ CERRAR EL MODAL DE "SU PRODUCTO POSEE SEGURO"
+$(document).on("click","#btn-closeiconFormNotInsurance",function(){
+  let val = $("#v_valtoreqinsurance").val();
+  if(val == "" || val == 0 || val == " USD" || val == ".00" || val == 0.00){
+    $("#chck-reqinsurance").prop("checked", false);
+  }
+  $("#cnt-modalFormReqInsurance").add($(".cnt-modalFormReqInsurance--c")).removeClass("show");
+});
+// ------------ VALIDAR INPUT EN MODAL "SU PRODUCTO POSEE SEGURO"
+$(document).on("keyup keypress","#v_valtoreqinsurance",function(e){
+  let val = e.target.value;
+  let valRegZero = val.replace(/,/g, "");
+  $("#val-rqexplicitinsurance").val(valRegZero);
+  // ------------ VALIDAR SI CONTIENE ALGÚN VALOR NULO O 0 
+  if(valRegZero == "" || valRegZero == 0 || $(this).val() == " USD" || $(this).val() == ".00" || $(this).val() == 0.00){
+    $("#ct-modcontbtnchangipt").html(``);
+  }else{
+    $("#ct-modcontbtnchangipt").html(`
+    <a href="javascript:void(0);" class="cnt-modalFormNotInsurance--c--cForm--cBtnResolNotInsurance--action" id="btn-ifreqinsurancelink">
+      <span>Seguir</span>
+      <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 100 125" enable-background="new 0 0 100 100" xml:space="preserve"><g><g><polygon points="19.318,43.363 19.318,61.189 49.497,95 79.675,61.189 79.675,43.363 49.497,77.174   "/><polygon points="50.504,38.811 20.326,5 20.326,24.872 49.497,60.537 79.675,24.872 80.682,5   "/></g></g></svg>
+    </a>`);
+  }
+});
+// ------------ VALIDAR EL BOTÓN DEL MODAL "SU PRODUCTO POSEE SEGURO"
+$(document).on("click","#btn-ifreqinsurancelink",function(e){e.preventDefault();$("#cnt-modalFormReqInsurance").add($(".cnt-modalFormReqInsurance--c")).removeClass("show");});
 // ------------ VALIDAR EL INPUT DE PRECIO DEL PRODUCTO 
 $(document).on("keyup keypress", "#ipt-valPriceProdNInterface", function(e){
   if ((e.which != 8 && e.which != 0) && (e.which < 48 || e.which > 57) && $(this).val().length >= parseInt($(this).attr('maxlength'))){
