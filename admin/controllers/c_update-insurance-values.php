@@ -7,7 +7,6 @@ class Insurance_values extends Connection{
 			"data_value" => $_POST['data_value'],
 			"id" => $_POST['id']
 		];
-
 		try{
 			$sql = "CALL sp_update_insurancevalue(:data_name, :data_value, :id)";
 			$stm = $this->con->prepare($sql);
@@ -16,7 +15,6 @@ class Insurance_values extends Connection{
 			}
 			$stm->execute();
 			return $stm->rowCount() > 0 ? "true" : "false";
-
 		}catch(PDOException $e){
 			return $e->getMessage();
 		}

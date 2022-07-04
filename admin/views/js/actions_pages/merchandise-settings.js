@@ -37,7 +37,7 @@ function listMerchandiseValues(){
             <td>
               <div class="cont-dashCamel__cControlsList--cC--cTable--cControl">
                 <label for="" class="cont-dashCamel__cControlsList--cC--cTable--cControl--label">
-                  <a class="btn-update-merchandisevalues" href="javascript:void(0);" data-toggle="modal" data-target="#updateModal" 
+                  <a class="btn-update-merchandisevalues" href="javascript:void(0);" data-toggle="modal" data-target="#updateModalMerchandise" 
                      data-id="${e.id}"
                      data-dataname="${e.data_name}"
                      data-datavalue="${v_formatPrice}">
@@ -70,17 +70,17 @@ $(document).on('click', '.btn-update-merchandisevalues', function(e){
       data_value: $(this).attr('data-datavalue')
     };
     $('#idupdate-merchandisevalues').val(item_data['id']);
-    $('#dataname-update').val(item_data['data_name']);
-    $('#datavalue-update').val(item_data['data_value']);
+    $('#datanamemerchandise-update').val(item_data['data_name']);
+    $('#datavaluemerchandise-update').val(item_data['data_value']);
   });
 });
 // ------------ ACTUALIZAR RESTAURANTE POR ID
 $(document).on('submit', '#form-update-merchandisevalues', function(e){
   e.preventDefault();
-  let val_input = $('#datavalue-update').val();
+  let val_input = $('#datavaluemerchandise-update').val();
   let formatWithoutComa = val_input.replace(/\,/g, '');
   var formdata = new FormData();
-  formdata.append("data_name", $('#dataname-update').val());
+  formdata.append("data_name", $('#datanamemerchandise-update').val());
   formdata.append("data_value", formatWithoutComa);
   formdata.append("id", $('#idupdate-merchandisevalues').val());
   $.ajax({
