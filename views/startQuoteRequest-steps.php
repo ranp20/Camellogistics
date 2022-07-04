@@ -4,10 +4,10 @@
 session_start();
 $actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]";
 // CONFIGURACIÓN LOCALHOST
-$url =  $actual_link . "/Camellogistics/views/";
+$url = $actual_link . "/Camellogistics/views/";
 // CONFIGURACIÓN SERVIDOR
 /*
-$url =  $actual_link . "/views/";
+$url = $actual_link . "/views/";
 */
 //VARIABLES DE USO EN EL PROCESO...
 $portOriginPOST = "";
@@ -190,8 +190,6 @@ if(isset($_POST) && $_POST != [] && isset($_POST['v_typetranspinit'])){
       $portDestinyPOST = $_POST['v_iptportdestinypost'];
       $portCountryDestinyPOST = $_POST['v_iptcountryportdestinypost'];
 
-      //echo "";
-
       $sections_qresumeandsteps = "
         <form action='fquotationgenerate' method='POST' id='f-expquotationFrmClient'>
           <input type='hidden' class='cont-MainCamelLog--c--ctrbysend' id='val-port-norigin' name='port-norigin' value='{$_POST['ipt-valNamePortOrigin']}'>
@@ -342,10 +340,10 @@ if(isset($_POST) && $_POST != [] && isset($_POST['v_typetranspinit'])){
 
       $script_qbysteps = "<script src='{$url}js/actions_pages/startquoterequest_maritimo.js'></script>";
     }else{
-      header("Location: marketplace-logistico");
+      header("Location: ./marketplace-logistico");
     }
   }else if($_POST['v_typetranspinit'] == 2){
-    echo "Transporte aéreo";
+    header("Location: ./marketplace-logistico");
   }else{
     header("Location: ./marketplace-logistico");
   }

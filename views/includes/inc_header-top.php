@@ -4,7 +4,7 @@ $actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https"
 $url = $actual_link . "/Camellogistics/views/";
 // CONFIGURACIÓN SERVIDOR
 /*
-$url =  $actual_link . "/views/";
+$url = $actual_link . "/views/";
 */
 $sess_user = 0;
 if(isset($_SESSION['user_camel'])){

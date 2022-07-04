@@ -5,13 +5,11 @@ session_start();
 if(isset($_SESSION['admin_camel'])){
 	header("Location: dashboard");
 }
-$actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]";
-$url = $actual_link . "/Camellogistics/admin/views/";
 ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
-	<?php require_once 'views/includes/adm-header-index.php'; ?>
+	<?php require_once 'views/includes/adm-header-index.php';?>
 	<title>Login - CamelLogistics</title>
 </head>
 <body class="c_body-loginAdm">
@@ -19,7 +17,7 @@ $url = $actual_link . "/Camellogistics/admin/views/";
 	<main class="c-LoginAdm">
 		<div class="c-LoginAdm--cLoginF box-small">
 			<div class="c-LoginAdm--cLoginF--cLogo">
-				<img src="views/assets/img/utilities/logotipo-camellogistics.png" alt="">
+				<img src="views/assets/img/utilities/logotipo-camellogistics.png" alt="icon_camellogistics_admin" width="100" height="100">
 			</div>
 			<div class="c-LoginAdm--cLoginF--cForm">
 				<div class="c-LoginAdm--cLoginF--cForm--cTitle">
@@ -41,7 +39,7 @@ $url = $actual_link . "/Camellogistics/admin/views/";
 							echo $tmp_email;
 						?>
 						<div class="c-LoginAdm--cLoginF--cForm--form--cControl--cIcon">
-							<img src="views/assets/img/svg/icon-user-login.svg" alt="">
+							<img src="views/assets/img/svg/icon-user-login.svg" alt="icon_userintranet_admin" width="100" height="100">
 						</div>
 					</div>
 					<div class="c-LoginAdm--cLoginF--cForm--form--cControl">
@@ -103,7 +101,7 @@ $url = $actual_link . "/Camellogistics/admin/views/";
 					?>
 					<button type="submit" class="c-LoginAdm--cLoginF--cForm--form--btnLoginAdm">
 						<span>ACCEDER</span>
-						<img src="views/assets/img/svg/icon-arrow-intranet-login.svg" alt="">
+						<img src="views/assets/img/svg/icon-arrow-intranet-login.svg" alt="icon_intranet_admin" width="100" height="100">
 						<span></span>
 					</button>
 				</form>

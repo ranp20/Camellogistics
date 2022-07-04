@@ -14,12 +14,10 @@
 	align-items: flex-start;
 	justify-content: center;
 	pointer-events: none;
-	
 	&.show{
 		display: flex;
 		pointer-events: auto;
 	}
-
 	&--c{
 		background-color: #fff;
 		border-radius: .6rem;
@@ -33,7 +31,6 @@
 		animation-timing-function: ease-in-out;
 		transform: translateY(-200%);
 		pointer-events: none;
-	
 		&.show{
 			transform: translateY(0);
 			pointer-events: auto;
@@ -46,7 +43,6 @@
 				transform: translateY(0);
 			}
 		}
-
 		&--close{
 			width: 15px;
 			height: 15px;
@@ -80,22 +76,17 @@
 		&--cForm{
 			padding: 1.25rem;
 			text-align: center;
-
 			&--cControl{
 				display: flex;
 				flex-direction: column;
 				margin-bottom: 1rem;
-
 				/************************** QUITAR LOS BOTONES DE BOOSTRAP POR DEFECTO EN INPUT DE TIPO NÚMERO (INICIO) **************************/
-				&.input-group{
-					display: none !important;
-				}
+				&.input-group{display: none !important;}
 				&.input-group .input-group-prepend,
 				&.input-group .input-group-append{
 					display: none !important;
 				}
 				/************************** QUITAR LOS BOTONES DE BOOSTRAP POR DEFECTO EN INPUT DE TIPO NÚMERO (FIN) **************************/
-				
 				&--label{
 					color: #222;
 					font-weight: 600;
@@ -110,7 +101,6 @@
 					border: thin solid #ccc;
 					border-radius: .4rem !important;
 					text-align: center;
-	
 					&:focus{
 						text-align: left;
 					}
@@ -123,7 +113,6 @@
 				&--input[type=number]{ 
 					-moz-appearance:textfield;
 				}
-
 				#msg-nounNumberDoc,
 				#msg-nounNameEnterpriseReg,
 				#msg-nounNumberorTelephoneNumb,
@@ -133,7 +122,6 @@
 					font-weight: 600;
 				}
 			}
-
 			/************************** BOTONES VÁLIDOS PARA DESCARGAR **************************/
 			&--cBtnsDownloadPdf{
 				display: flex;
@@ -153,20 +141,8 @@
 				font-weight: bold;
 				text-decoration: underline !important;
 			}
-
-			/************************** TOGGLE CONTROL **************************/
-			// #cont-btnsDownloadOptions.hidden{
-			// 	display: none;
-			// }
-			// #control-inputaddEmail{
-			// 	display: none;
-			// 	align-items: center;
-			// 	justify-content: center;
-			// }
-			// #control-inputaddEmail.show{
-			// 	display: flex;
-			// }
 			button[type=submit]{
+				cursor: pointer;
 				border: none;
 				background-color: $primary-color;
 				width: auto;
@@ -178,12 +154,10 @@
 				color: #fff;
 				border-radius: .4rem;
 				font-weight: 600;
-
 				&:hover{
 					opacity: .5;
 				}
 			}
-
 		}
 	}
 }

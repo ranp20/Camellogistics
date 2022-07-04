@@ -1,13 +1,13 @@
 <?php 
 $actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]";
 // CONFIGURACIÓN LOCALHOST
-$url =  $actual_link . "/Camellogistics/views/";
-$url_admin =  $actual_link . "/Camellogistics/admin/";
+$url = $actual_link . "/Camellogistics/views/";
+$url_admin = $actual_link . "/Camellogistics/admin/";
 // CONFIGURACIÓN SERVIDOR
 /*
 $actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]";
-$url =  $actual_link . "/views/";
-$url_admin =  $actual_link . "/admin/";
+$url = $actual_link . "/views/";
+$url_admin = $actual_link . "/admin/";
 */
 ?>
 <meta charset="UTF-8"/>

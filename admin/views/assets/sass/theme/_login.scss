@@ -45,6 +45,7 @@
 			}
 			img{
 				display: table;
+				max-width: 215px;
 				width: 90%;
 			}
 		}
@@ -99,6 +100,7 @@
 				    top: 50%;
 				    transform: translateY(-50%);
 				    height: 100%;
+				    max-width: 42px;
 				    width: 42px;
 				    padding: 0 .6rem;
 				    display: flex;
@@ -111,7 +113,8 @@
 							display: table;
 							position: relative;
 							top: 2px;
-							width: 42px;
+							max-width: 42px;
+							width: 25px;
 							height: 42px;
 						}
 						svg{
@@ -197,6 +200,7 @@
 					justify-content: center;
 					img{
 						display: table;
+						max-width: 27px;
 						width: 0;
 						height: 27px;
 						margin-left: 0.65rem;
