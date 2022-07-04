@@ -3,7 +3,6 @@ $(document).ready(function(){
   var sess_usercli = sessionStorage.setItem("sess_usercli", 0); //SESSION DE VARIABLE LOCAL PARA EL USUARIO
   var sess_valuser = sessionStorage.setItem("sess_valuser", 0); //VALOR DEL TIPO DE USUARIO: 0 = NINGUNO Y 1 = INVITADO O REGISTRADO
   var sessval_loginuser = "";
-
   if($("#s_useregin-sistem").val() == "" || $("#s_useregin-sistem").val() == undefined || $("#s_useregin-sistem").val() == 'undefined' || $("#s_useregin-sistem").val() == null ||$("#s_useregin-sistem").val() == 'null'){
     sessval_loginuser = { username: 'any' };
     sessionStorage.setItem("sess_usercli", JSON.stringify(sessval_loginuser));

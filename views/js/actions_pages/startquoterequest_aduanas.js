@@ -19,20 +19,16 @@ function refreshIdCodeGenRandom(){
     $("#ipt-vidcodgenrand").val(e);
   });
 }
-// ------------ ABRIR EL SIDEBARLEFT - MOBILE (PROCESO COTIZACIÓN)
-$(document).on("click", "#btn-resume-mobile-header", function(){
-  $(".cont-MainCamelLog--c--contResumeCalc").toggleClass("show");
-});
-////OTRAS TAREAS - MEJORA DE UI Y UX
-/*- Mostrar al inicio solo los pasos a usar antes de cada elección, luego ir añadiendo o quitando de acuerdo a los elementos seleccionados*/
-// RECOGER LAS VARIABLES RECIBIDAS POR POST
-var ipt_idTypeTransport = $("#ipt-vtypetranspinit").val();
 // ------------ CAMBIAR/REMOVER EL ESTADO ENTRE OPCIONES
 function ChangesSibblingsLinks(){
   $(document).on("click", ".cont-MainCamelLog--c--contSteps--item--cStep--m a", function(){
     $(this).addClass("active").siblings().removeClass("active");
   });
 }
+// ------------ ABRIR EL SIDEBARLEFT - MOBILE (PROCESO COTIZACIÓN)
+$(document).on("click", "#btn-resume-mobile-header", function(){$(".cont-MainCamelLog--c--contResumeCalc").toggleClass("show");});
+// ------------ RECOGER LAS VARIABLES RECIBIDAS POR POST
+var ipt_idTypeTransport = $("#ipt-vtypetranspinit").val();
 // ------------ LIMITAR A DOS DECIMALES CUALQUIER INPUT DE TIPO NÚMERO EN DONDE ESTÁ IMPORTADO ESTE ARCHIVO
 $(document).on("input","input[data-valformat=twodecimal]",function(e){
   let val = e.target.value;
@@ -46,7 +42,7 @@ $(document).on("keyup", "input[data-valformat=withcomedecimal]", function(e){
   $(this).val(val_formatNumber);
 });
 // ------------ RETORNAR - PRIMERA LETRA EN MAYÚSCULA
-function firstToUppercase(e) {
+function firstToUppercase(e){
   return e.charAt(0).toUpperCase() + e.slice(1);
 }
 // ------------ PLUGIN - FULLPAGE.JS
@@ -101,9 +97,6 @@ function hiddenAllNextSteps(){
 $(".cont-MainCamelLog--c--contResumeCalc--item[data-advlevel=d-typetransportnumb]").html(`
   <input type="hidden" id="idtypetransportsendinit" name="idtypetransportsendinit" value="${ipt_idTypeTransport}">
 `);
-
-
-
 
 // ================================================================================== //
 //                        1. ELEGIR EL TIPO DE OPERACIÓN                             
@@ -220,10 +213,6 @@ $(document).on("click", "#list-typeOperationItems li", function(){
     </div>`);
   }
 });
-
-
-
-
 // ================================================================================== //
 //                         2. ELEGIR EL TIPO DE CARGA                                
 // ================================================================================== //
@@ -617,10 +606,6 @@ $(document).on("click", "#list-typeChargeLoadItems li", function(){
     `); 
   }
 });
-
-
-
-
 // ================================================================================== //
 //                          4. AÑADIR LA CANTIDAD DE CONTENEDORES                     //
 // ================================================================================== //
@@ -1002,10 +987,6 @@ $(document).on("click", "#btn-NextStepToSelOptResultExp", function(){
     $("#btnclose-modalMessage").on("click", function(){$(this).parent().parent().remove();});
   }  
 });
-
-
-
-
 // ================================================================================== //
 //                         3. AGREGAR LAS DIMENSIONES DE LA CARGA                        
 // ================================================================================== //
@@ -1725,10 +1706,6 @@ $(document).on("change input keyup", "#val-iptVolumeNInterface", function(e){
     //console.log("Campo completado");
   }
 });
-
-
-
-
 // =================================================================================== //
 //                       4. AGREGAR LOS DATOS DE MERCANCÍA                           
 // =================================================================================== //
@@ -1994,10 +1971,6 @@ $(document).on("keyup keypress", "#ipt-valQuantityAmAddProdNInterface", function
     }
   }
 });
-
-
-
-
 // =================================================================================== //
 //                      5. SELECCIONAR SI DESEA TRANSPORTE INTERNO          
 // =================================================================================== //
@@ -2075,10 +2048,6 @@ $(document).on("click", "#btn-NextStepTomerchandisedata", function(){
     $("#btnclose-modalMessage").on("click", function(){$(this).parent().parent().remove();});
   }
 });
-
-
-
-
 // =================================================================================== //
 //                            6. INGRESAR EL VALOR DEL FLETE          
 // =================================================================================== //
@@ -2147,10 +2116,6 @@ $(document).on("click", "#list-requirespickup li", function(){
     </button>`);
   }
 });
-
-
-
-
 // ================================================================================== //
 //         7. ELEGIR EL TIPO DE TRANSPORTE DE CARGA: GENERAL, IMO O REGRIGERADO          
 // ================================================================================== //
@@ -2295,10 +2260,6 @@ $(document).on("click","#list-typeTransporteSelectItems li",function(){
     `);
   }
 });
-
-
-
-
 // ================================================================================== //
 //                          8. ELEGIR EL LUGAR A TRANSPORTAR
 // ================================================================================== //

@@ -1,12 +1,12 @@
 $(() => {
   refreshIdCodeGenRandom();
-  ChangesSibblingsLinks(); // CAMBIAR ENTRE ENLACES HERMANOS Y OCULTAR LOS PASOS SIGUIENTES
-  hiddenAllNextSteps(); // OCULTAR LOS PASOS SIGUIENTES
+  ChangesSibblingsLinks();
+  hiddenAllNextSteps();
 	listPortOriginandDestiny(); // LISTAR LOS PUERTOS DE ORIGEN Y DE DESTINO DE ACUERDO AL ID RECIBIDO POR POST
 	list_measurement_units(); // LISTAR LAS UNIDADES DE MEDIDA EN EL MODAL
 	list_mass_units(); // LISTAR LAS UNIDADES DE MASA EN EL MODAL
-	listProductsUser(); // LISTAR LOS TIPOS DE PRODUCTOS
-	listrateLCLTransport(); // LISTAR LOS DISTRITOS DE ACUERDO AL PAÍS DE DESTINO
+	listProductsUser();
+	listrateLCLTransport();
 });
 // ------------ ACTUALIZAR EL ID DE CÓDIGO RANDOM
 function refreshIdCodeGenRandom(){
@@ -22,8 +22,6 @@ function refreshIdCodeGenRandom(){
 }
 // ------------ ABRIR EL SIDEBARLEFT - MOBILE (PROCESO COTIZACIÓN)
 $(document).on("click", "#btn-resume-mobile-header", function(){$(".cont-MainCamelLog--c--contResumeCalc").toggleClass("show");});
-////OTRAS TAREAS - MEJORA DE UI Y UX
-/*- Mostrar al inicio solo los pasos a usar antes de cada elección, luego ir añadiendo o quitando de acuerdo a los elementos seleccionados*/
 // ------------ RECOGER LAS VARIABLES RECIBIDAS POR POST 
 var ipt_idTypeTransport = $("#ipt-vtypetranspinit").val(),
     ipt_idPortOrigin = $("#ipt-vportidOrigin").val(),
@@ -51,7 +49,7 @@ function roundToTwo(num){
   return +(Math.round(num + "e+2")  + "e-2");
 }
 // ------------ FUNCIÓN - LIMITAR A DOS DECIMALES SIN REDONDEO 
-function twodecimals(n) {
+function twodecimals(n){
   let t = n.toString();
   let regex = /(\d*.\d{0,2})/;
   return t.match(regex)[0];
@@ -69,7 +67,7 @@ $(document).on("keyup", "input[data-valformat=withcomedecimal]", function(e){
   $(this).val(val_formatNumber);
 });
 // ------------ RETORNAR - PRIMERA LETRA EN MAYÚSCULA 
-function firstToUppercase(e) {
+function firstToUppercase(e){
   return e.charAt(0).toUpperCase() + e.slice(1);
 }
 // ------------ PLUGIN - FULLPAGE.JS 
