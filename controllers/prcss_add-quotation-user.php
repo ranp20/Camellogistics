@@ -27,6 +27,7 @@ if(isset($_POST) && !empty($_POST)){
 	  'u_telephone' => $_POST['u_telephone'],
 	  'u_service' => $_POST['u_service'],
 	  'u_cont' => $_POST['u_cont'],
+	  'u_regs' => $_POST['u_regs'],
 	  'f_origen' => (!isset($_POST['f_origen']) || $_POST['f_origen'] == "") ? "No especificado" : $_POST['f_origen'],
 	  'f_destiny' => (!isset($_POST['f_destiny']) || $_POST['f_destiny'] == "") ? "No especificado" : $_POST['f_destiny'],
 	  'f_desc_w_v' => $_POST['f_desc_w_v'],

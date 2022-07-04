@@ -37,6 +37,7 @@ $(document).ready(function(){
 	var encrypt_portDestinyName = $("#v_fportdestiname").val(encryptValuesIpts( $("#v_fportdestiname").val()));
 	var encrypt_v_typeserviceinit = $("#v_typeserviceinit").val(encryptValuesIpts( $("#v_typeserviceinit").val()));
 	var encrypt_v_fnamecategprod = $("#v_fnamecategprod").val(encryptValuesIpts( $("#v_fnamecategprod").val()));
+	var encrypt_v_freqregsprod = $("#v_freqregsprod").val(encryptValuesIpts($("#v_freqregsprod").val()));
 	var encrypt_v_ftaproxtransbycont = $("#v_ftaproxtransbycont").val(encryptValuesIpts( $("#v_ftaproxtransbycont").val()));
 	var encrypt_v_floadTypeTranport = $("#v_floadTypeTranport").val(encryptValuesIpts( $("#v_floadTypeTranport").val()));
 	var encrypt_val_ftotvalofdownload = $("#v_ftotvalofdownload").val(encryptValuesIpts( $("#v_ftotvalofdownload").val()));
@@ -65,7 +66,8 @@ $(document).ready(function(){
 	var portOriginName = decryptValuesIpts(encrypt_portOriginName.val());
 	var portDestinyName = decryptValuesIpts(encrypt_portDestinyName.val());
 	var v_typeserviceinit = decryptValuesIpts(encrypt_v_typeserviceinit.val());
-	var v_fnamecategprod = decryptValuesIpts(encrypt_v_fnamecategprod.val());
+	var v_fnamecategprod = decryptValuesIpts(encrypt_v_fnamecategprod.val()); // NOMBRE DEL PRODUCTO
+	var v_freqregsprod = decryptValuesIpts(encrypt_v_freqregsprod.val()); // REGULADORES DEL PRODUCTO
 	var v_ftaproxtransbycont = decryptValuesIpts(encrypt_v_ftaproxtransbycont.val()); // TIEMPO DE TRÁNSITO
 	var v_floadTypeTranport = decryptValuesIpts(encrypt_v_floadTypeTranport.val());
 	var v_validdesde = decryptValuesIpts(encrypt_v_validdesde.val());
@@ -537,6 +539,7 @@ $(document).ready(function(){
 									formdata.append("u_telephone", "No especificado");
 									formdata.append("u_service", "No especificado");
 									formdata.append("u_cont", v_fnamecategprod);
+									formdata.append("u_regs", v_freqregsprod);
 									formdata.append("f_origen", portOriginName);
 									formdata.append("f_destiny", portDestinyName);
 									formdata.append("f_desc_w_v", v_fpckgcontquant);
@@ -815,6 +818,7 @@ $(document).ready(function(){
 									formdata.append("u_telephone", "No especificado");
 									formdata.append("u_service", "No especificado");
 									formdata.append("u_cont", v_fnamecategprod);
+									formdata.append("u_regs", v_freqregsprod);
 									formdata.append("f_origen", portOriginName);
 									formdata.append("f_destiny", portDestinyName);
 									formdata.append("f_desc_w_v", v_fpckgcontquant);

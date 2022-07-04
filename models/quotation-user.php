@@ -52,6 +52,7 @@ class Quotation_user extends Connection
       :u_telephone, 
       :u_service, 
       :u_cont, 
+      :u_regs,
       :f_origen,
       :f_destiny, 
       :f_desc_w_v,
