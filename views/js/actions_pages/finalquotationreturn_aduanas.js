@@ -171,6 +171,7 @@ $(document).ready(function(){
 	var sumTotalbyIGV = 0;
 	var sumTotalFinalFleteandIGV = 0;
 	var sumbyCIF = 0;
+	var final_sumCIF = 0;
 	// ------------ LISTAR LOS VALORES PARA LOS CÁLCULOS 
 	var partInteger = 0;
 	var partDecimal = 0;
@@ -224,6 +225,7 @@ $(document).ready(function(){
 
 		    // VALOR TOTAL - CIF
 		  	sumbyCIF = totalfinalvaluefob + totflete + finalRoundinsurance; //CIF FINAL
+		  	final_sumCIF = parseFloat(twodecimals(sumbyCIF));
 
 		  	$.ajax({
 			    url: "controllers/c_list_validation_comisionagencia.php",
@@ -253,8 +255,8 @@ $(document).ready(function(){
 
 					  	if(v_loadtypecharge == "FCL"){
 					  		fvalfinal_gas_operativos = gas_operativos_fcl;
-					  		if(sumbyCIF > comagencia_monto){
-					  			fval_com_agencia = sumbyCIF * val_defaultmin;
+					  		if(final_sumCIF > comagencia_monto){
+					  			fval_com_agencia = final_sumCIF * val_defaultmin;
 					  			fvalfinal_com_agencia = myRound(fval_com_agencia);
 					  		}else{
 					  			fvalfinal_com_agencia = com_agencia_fcl;
@@ -266,8 +268,8 @@ $(document).ready(function(){
 			  	 			sumTotalFinalFleteandIGV = sumTotalServices + sumTotalbyIGV; // VALOR TOTAL FINAL DE LA COTIZACIÓN
 					  	}else if(v_loadtypecharge == "LCL"){
 					  		fvalfinal_gas_operativos = gas_operativos_lcl;
-					  		if(sumbyCIF > comagencia_monto){
-					  			fval_com_agencia = sumbyCIF * val_defaultmin;
+					  		if(final_sumCIF > comagencia_monto){
+					  			fval_com_agencia = final_sumCIF * val_defaultmin;
 					  			fvalfinal_com_agencia = myRound(fval_com_agencia);
 					  		}else{
 					  			fvalfinal_com_agencia = com_agencia_fcl;
@@ -362,27 +364,27 @@ $(document).ready(function(){
 						    }
 
 						    // ------------ CALCULAR AD-VALOREN 
-						    var val_Ad_valoren = sumbyCIF * convert_Ad_Valoren;
+						    var val_Ad_valoren = final_sumCIF * convert_Ad_Valoren;
 						    var twodecimal_Ad_valoren = twodecimals(val_Ad_valoren);
 						    var finalval_Ad_valoren = parseFloat(twodecimal_Ad_valoren);
 								// ------------ CALCULAR IMPUESTO SELECTIVO 
-								var val_i_selectivo = sumbyCIF * convert_I_selectivo;
+								var val_i_selectivo = final_sumCIF * convert_I_selectivo;
 								var twodecimal_i_selectivo = twodecimals(val_i_selectivo);
 								var finalval_i_selectivo = parseFloat(twodecimal_i_selectivo);
 								// ------------ CALCULAR ANTIDUMPING 
-								var val_antidumping = sumbyCIF * convert_antidumping;
+								var val_antidumping = final_sumCIF * convert_antidumping;
 								var twodecimal_antidumping = twodecimals(val_antidumping);
 								var finalval_antidumping = parseFloat(twodecimal_antidumping);
 						    // ------------ CALCULAR IGV 
-								var val_IGV = ( sumbyCIF + finalval_Ad_valoren ) * convert_IGV;
+								var val_IGV = ( final_sumCIF + finalval_Ad_valoren ) * convert_IGV;
 								var twodecimal_IGV = twodecimals(val_IGV);
 								var finalval_IGV = parseFloat(twodecimal_IGV);
 								// ------------ CALCULAR IPM 
-								var val_IPM = ( sumbyCIF + finalval_Ad_valoren) * convert_IPM;
+								var val_IPM = ( final_sumCIF + finalval_Ad_valoren) * convert_IPM;
 								var twodecimal_IPM = twodecimals(val_IPM);
 								var finalval_IPM = parseFloat(twodecimal_IPM);
 								// ------------ CALCULAR PERCEPCIÓN 
-								var val_Percepcion = ( sumbyCIF + finalval_Ad_valoren + finalval_IGV + finalval_IPM ) * convert_Percepcion;
+								var val_Percepcion = ( final_sumCIF + finalval_Ad_valoren + finalval_IGV + finalval_IPM ) * convert_Percepcion;
 								var twodecimal_percepcion = twodecimals(val_Percepcion);
 								var finalval_percepcion = parseFloat(twodecimal_percepcion);
 
@@ -430,12 +432,12 @@ $(document).ready(function(){
 
 									user_sessquote = s_username_local.username;
 
-									var igv_calculate = convert_IGV * sumbyCIF;
-									var ipm_calculate = sumbyCIF * convert_IPM;
+									var igv_calculate = convert_IGV * final_sumCIF;
+									var ipm_calculate = final_sumCIF * convert_IPM;
 									var impuestosel_calculate = 0;
 									var igvcalc_twodeci = myRound(igv_calculate);
 									var ipmcalc_twodeci = myRound(ipm_calculate);
-									var percepcion_calculate = (sumbyCIF + igvcalc_twodeci + ipmcalc_twodeci + impuestosel_calculate) * convert_Percepcion;
+									var percepcion_calculate = (final_sumCIF + igvcalc_twodeci + ipmcalc_twodeci + impuestosel_calculate) * convert_Percepcion;
 									var percepcioncalc_twodeci = myRound(percepcion_calculate);
 
 									var formdata = new FormData();
@@ -462,7 +464,7 @@ $(document).ready(function(){
 									formdata.append("f_fob", totalfinalvaluefob);
 									formdata.append("f_flete", totflete);
 									formdata.append("f_insurance", initvalinsurance);
-									formdata.append("f_cif", sumbyCIF);
+									formdata.append("f_cif", final_sumCIF);
 									formdata.append("f_v_IGV", restaxvalues[0].data_value);
 									formdata.append("f_v_IPM", restaxvalues[1].data_value);
 									formdata.append("f_importadoprev", v_fprevimports);
@@ -707,12 +709,12 @@ $(document).ready(function(){
 									});
 								}else if($("#s_useregin-sistem").val() != "" || $("#s_useregin-sistem").val() != undefined || $("#s_useregin-sistem").val() != 'undefined' || $("#s_useregin-sistem").val() != null || $("#s_useregin-sistem").val() != 'null'){
 
-									var igv_calculate = convert_IGV * sumbyCIF;
-									var ipm_calculate = sumbyCIF * convert_IPM;
+									var igv_calculate = convert_IGV * final_sumCIF;
+									var ipm_calculate = final_sumCIF * convert_IPM;
 									var impuestosel_calculate = 0;
 									var igvcalc_twodeci = myRound(igv_calculate);
 									var ipmcalc_twodeci = myRound(ipm_calculate);
-									var percepcion_calculate = (sumbyCIF + igvcalc_twodeci + ipmcalc_twodeci + impuestosel_calculate) * convert_Percepcion;
+									var percepcion_calculate = (final_sumCIF + igvcalc_twodeci + ipmcalc_twodeci + impuestosel_calculate) * convert_Percepcion;
 									var percepcioncalc_twodeci = myRound(percepcion_calculate);
 
 									var formdata = new FormData();
@@ -739,7 +741,7 @@ $(document).ready(function(){
 									formdata.append("f_fob", totalfinalvaluefob);
 									formdata.append("f_flete", totflete);
 									formdata.append("f_insurance", initvalinsurance);
-									formdata.append("f_cif", sumbyCIF);
+									formdata.append("f_cif", final_sumCIF);
 									formdata.append("f_v_IGV", restaxvalues[0].data_value);
 									formdata.append("f_v_IPM", restaxvalues[1].data_value);
 									formdata.append("f_importadoprev", v_fprevimports);

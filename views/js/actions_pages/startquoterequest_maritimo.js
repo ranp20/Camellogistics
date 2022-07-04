@@ -56,6 +56,18 @@ function twodecimals(n) {
   let regex = /(\d*.\d{0,2})/;
   return t.match(regex)[0];
 }
+// ------------ LIMITAR A DOS DECIMALES CUALQUIER INPUT DE TIPO NÚMERO EN DONDE ESTÁ IMPORTADO ESTE ARCHIVO
+$(document).on("input","input[data-valformat=twodecimal]",function(e){
+  let val = e.target.value;
+  let val_formatNumber = val.toString().replace(/[^\d.]/g, "").replace(/^(\d*\.)(.*)\.(.*)$/, '$1$2$3').replace(/\.(\d{2})\d+/, '.$1');
+  $(this).val(val_formatNumber);
+});
+// ------------ FORMATO - SEPARADOR DE MILLAR Y PUNTO DECIMAL
+$(document).on("keyup", "input[data-valformat=withcomedecimal]", function(e){
+  let val = e.target.value;
+  let val_formatNumber = val.toString().replace(/[^\d.]/g, "").replace(/^(\d*\.)(.*)\.(.*)$/, '$1$2$3').replace(/\.(\d{2})\d+/, '.$1').replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  $(this).val(val_formatNumber);
+});
 // ------------ RETORNAR - PRIMERA LETRA EN MAYÚSCULA 
 function firstToUppercase(e) {
   return e.charAt(0).toUpperCase() + e.slice(1);
@@ -3426,10 +3438,6 @@ function listrateLCLTransport(searchVal){
 $(document).on("focus", "#ipt-valDistricByCountryNInterface", function(){
 	$("#m-listAllDistricsByCountry").addClass("show");
   listrateLCLTransport();
-	sectionsSteps.setAutoScrolling(false);
-});
-$(document).on("blur", "#ipt-valDistricByCountryNInterface", function(){
-	sectionsSteps.setAutoScrolling(true);
 });
 $(document).on("keyup", "#ipt-valDistricByCountryNInterface", function(){
   $("#m-listAllDistricsByCountry").addClass("show");

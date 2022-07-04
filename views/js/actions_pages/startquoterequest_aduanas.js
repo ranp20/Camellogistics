@@ -33,18 +33,12 @@ function ChangesSibblingsLinks(){
     $(this).addClass("active").siblings().removeClass("active");
   });
 }
-// ------------ REDONDEAR A 2 DECIMALES - ALTERNATIVA .toFixed(2)
-function roundToTwo(num){
-  return +(Math.round(num + "e+2")  + "e-2");
-}
-// ------------ FUNCIÓN - LIMITAR A DOS DECIMALES SIN REDONDEO
-function twodecimals(n){
-  if(n != ""){
-    let t = n.toString();
-    let regex = /(\d*.\d{0,2})/;
-    return t.match(regex)[0];
-  }
-}
+// ------------ LIMITAR A DOS DECIMALES CUALQUIER INPUT DE TIPO NÚMERO EN DONDE ESTÁ IMPORTADO ESTE ARCHIVO
+$(document).on("input","input[data-valformat=twodecimal]",function(e){
+  let val = e.target.value;
+  let val_formatNumber = val.toString().replace(/[^\d.]/g, "").replace(/^(\d*\.)(.*)\.(.*)$/, '$1$2$3').replace(/\.(\d{2})\d+/, '.$1');
+  $(this).val(val_formatNumber);
+});
 // ------------ FORMATO - SEPARADOR DE MILLAR Y PUNTO DECIMAL
 $(document).on("keyup", "input[data-valformat=withcomedecimal]", function(e){
   let val = e.target.value;
@@ -607,7 +601,7 @@ $(document).on("click", "#list-typeChargeLoadItems li", function(){
           </div>
           <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControls--cControl">
             <label for="val-iptVolumeNInterface" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControls--cControl--label">VOLUMEN (M³)</label>
-            <input type="text" id="val-iptVolumeNInterface" name="val-iptVolumeNInterface" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControls--cControl--input" maxlength="13" placeholder="Ingrese el volumen en M³">
+            <input type="text" id="val-iptVolumeNInterface" name="val-iptVolumeNInterface" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControls--cControl--input" placeholder="Ingrese el volumen en M³" data-valformat="twodecimal">
           </div>
           <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControls--cBtnModalCalculator" id="link-showModalCalcVolum">
             <span>AYUDA - ¡CALCULAR VOLUMEN (M³) AQUÍ!</span>
@@ -926,7 +920,7 @@ $(document).on("click", "#btn-NextStepToSelOptResultExp", function(){
             <input type="hidden" value="" id="val-categProdquot-noMoreOpts" name="val-categProdquot" class="n-val-sd">
             <input type="hidden" value="" id="val-valProdquot" name="val-valProdquot" class="n-val-sd">
             <input type="hidden" value="" id="val-reqPermisoProdquot" name="val-reqPermisoProdquot" class="n-val-sd">
-            <input type="text" id="val_valfleteprod" name="val_valfleteprod" class="n-val-sd" value="">
+            <input type="hidden" value="" id="val_valfleteprod" name="val_valfleteprod" class="n-val-sd">
             <input type="hidden" value="NO" id="val-prevImports" name="val-prevImports" class="n-val-sd">
             <input type="hidden" value="" id="val-quantityProdsAmmAdd" name="val-quantityProdsAmmAdd" class="n-val-sd">
             <input type="hidden" value="" id="val-ammvthisprod" name="val-ammvthisprodcateg" class="n-val-sd">
@@ -957,7 +951,7 @@ $(document).on("click", "#btn-NextStepToSelOptResultExp", function(){
                   <svg xmlns="http://www.w3.org/2000/svg" data-name="Layer 1" viewBox="0 0 100 125" x="0px" y="0px"><title>dollar</title><path d="M44.38354,5V15.697c-10.549,2.19025-18.11077,10.34265-18.11077,19.681,0,10.004,7.56927,16.77643,22.49676,20.1286C62.49225,58.587,62.49225,63.167,62.49225,64.67181c0,4.88868-5.7204,9.019-12.49115,9.019-6.77191,0-12.49335-4.13031-12.49335-9.019V63.57428h-11.235v1.09753c0,9.33838,7.56176,17.48975,18.11077,19.67951V95h11.235V84.35132C66.1665,82.161,73.72723,74.0097,73.72723,64.67181c0-10.004-7.56823-16.77636-22.49566-20.12854-13.72382-3.08044-13.72382-7.6604-13.72382-9.16528,0-4.88971,5.72144-9.02057,12.49335-9.02057,6.77075,0,12.49115,4.13086,12.49115,9.02057v1.0976h11.235V35.378c0-9.33838-7.56073-17.49078-18.10864-19.681V5Z"/>
                   </svg>
                 </div>
-                <input type="text" id="ipt-valPriceProdNInterface" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl--cListChangeWIcon--input" maxlength="13" autocomplete="off" placeholder="Ingrese el valor de mercancía">
+                <input type="text" id="ipt-valPriceProdNInterface" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl--cListChangeWIcon--input" maxlength="13" autocomplete="off" placeholder="Ingrese el valor de mercancía" data-valformat="withcomedecimal">
               </div>
             </div>
           </div>
@@ -969,7 +963,7 @@ $(document).on("click", "#btn-NextStepToSelOptResultExp", function(){
                   <svg xmlns="http://www.w3.org/2000/svg" data-name="Layer 1" viewBox="0 0 100 125" x="0px" y="0px"><title>dollar</title><path d="M44.38354,5V15.697c-10.549,2.19025-18.11077,10.34265-18.11077,19.681,0,10.004,7.56927,16.77643,22.49676,20.1286C62.49225,58.587,62.49225,63.167,62.49225,64.67181c0,4.88868-5.7204,9.019-12.49115,9.019-6.77191,0-12.49335-4.13031-12.49335-9.019V63.57428h-11.235v1.09753c0,9.33838,7.56176,17.48975,18.11077,19.67951V95h11.235V84.35132C66.1665,82.161,73.72723,74.0097,73.72723,64.67181c0-10.004-7.56823-16.77636-22.49566-20.12854-13.72382-3.08044-13.72382-7.6604-13.72382-9.16528,0-4.88971,5.72144-9.02057,12.49335-9.02057,6.77075,0,12.49115,4.13086,12.49115,9.02057v1.0976h11.235V35.378c0-9.33838-7.56073-17.49078-18.10864-19.681V5Z"/>
                   </svg>
                 </div>
-                <input type="text" id="val-iptPriceValNInterface" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl--cListChangeWIcon--input" maxlength="13" autocomplete="off" placeholder="Ingrese el valor del flete">
+                <input type="text" id="val-iptPriceValNInterface" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl--cListChangeWIcon--input" maxlength="13" autocomplete="off" placeholder="Ingrese el valor del flete" data-valformat="withcomedecimal">
               </div>
             </div>
           </div>
@@ -1026,8 +1020,7 @@ $(document).on("keyup keypress blur change", "#val-iptWeightNInterface", functio
     return v.replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d)\.?)/g, ".");
   });
 });
-$(document).on("input", "#val-iptVolumeNInterface", function(e){
-  ($(this).val() == "") ? $(this).val() : $(this).val(twodecimals(e.target.value));
+$(document).on("keyup keypress", "#val-iptVolumeNInterface", function(e){
   if($(this).val().length >= parseInt($(this).attr('maxlength'))){
     return false;
   }
@@ -1475,7 +1468,7 @@ $(document).on("click", "#btn-NextStepTochargedata", function(){
                 <input type="hidden" value="" id="val-categProdquot-noMoreOpts" name="val-categProdquot" class="n-val-sd">
                 <input type="hidden" value="" id="val-valProdquot" name="val-valProdquot" class="n-val-sd">
                 <input type="hidden" value="" id="val-reqPermisoProdquot" name="val-reqPermisoProdquot" class="n-val-sd">
-                <input type="text" id="val_valfleteprod" name="val_valfleteprod" class="n-val-sd" value="">
+                <input type="hidden" value="" id="val_valfleteprod" name="val_valfleteprod" class="n-val-sd">
                 <input type="hidden" value="NO" id="val-prevImports" name="val-prevImports" class="n-val-sd">
                 <input type="hidden" value="" id="val-quantityProdsAmmAdd" name="val-quantityProdsAmmAdd" class="n-val-sd">
                 <input type="hidden" value="" id="val-ammvthisprod" name="val-ammvthisprodcateg" class="n-val-sd">
@@ -1506,7 +1499,7 @@ $(document).on("click", "#btn-NextStepTochargedata", function(){
                       <svg xmlns="http://www.w3.org/2000/svg" data-name="Layer 1" viewBox="0 0 100 125" x="0px" y="0px"><title>dollar</title><path d="M44.38354,5V15.697c-10.549,2.19025-18.11077,10.34265-18.11077,19.681,0,10.004,7.56927,16.77643,22.49676,20.1286C62.49225,58.587,62.49225,63.167,62.49225,64.67181c0,4.88868-5.7204,9.019-12.49115,9.019-6.77191,0-12.49335-4.13031-12.49335-9.019V63.57428h-11.235v1.09753c0,9.33838,7.56176,17.48975,18.11077,19.67951V95h11.235V84.35132C66.1665,82.161,73.72723,74.0097,73.72723,64.67181c0-10.004-7.56823-16.77636-22.49566-20.12854-13.72382-3.08044-13.72382-7.6604-13.72382-9.16528,0-4.88971,5.72144-9.02057,12.49335-9.02057,6.77075,0,12.49115,4.13086,12.49115,9.02057v1.0976h11.235V35.378c0-9.33838-7.56073-17.49078-18.10864-19.681V5Z"/>
                       </svg>
                     </div>
-                    <input type="text" id="ipt-valPriceProdNInterface" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl--cListChangeWIcon--input" maxlength="13" autocomplete="off" placeholder="Ingrese el valor de mercancía">
+                    <input type="text" id="ipt-valPriceProdNInterface" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl--cListChangeWIcon--input" maxlength="13" autocomplete="off" placeholder="Ingrese el valor de mercancía" data-valformat="withcomedecimal">
                   </div>
                 </div>
               </div>
@@ -1518,7 +1511,7 @@ $(document).on("click", "#btn-NextStepTochargedata", function(){
                       <svg xmlns="http://www.w3.org/2000/svg" data-name="Layer 1" viewBox="0 0 100 125" x="0px" y="0px"><title>dollar</title><path d="M44.38354,5V15.697c-10.549,2.19025-18.11077,10.34265-18.11077,19.681,0,10.004,7.56927,16.77643,22.49676,20.1286C62.49225,58.587,62.49225,63.167,62.49225,64.67181c0,4.88868-5.7204,9.019-12.49115,9.019-6.77191,0-12.49335-4.13031-12.49335-9.019V63.57428h-11.235v1.09753c0,9.33838,7.56176,17.48975,18.11077,19.67951V95h11.235V84.35132C66.1665,82.161,73.72723,74.0097,73.72723,64.67181c0-10.004-7.56823-16.77636-22.49566-20.12854-13.72382-3.08044-13.72382-7.6604-13.72382-9.16528,0-4.88971,5.72144-9.02057,12.49335-9.02057,6.77075,0,12.49115,4.13086,12.49115,9.02057v1.0976h11.235V35.378c0-9.33838-7.56073-17.49078-18.10864-19.681V5Z"/>
                       </svg>
                     </div>
-                    <input type="text" id="val-iptPriceValNInterface" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl--cListChangeWIcon--input" maxlength="13" autocomplete="off" placeholder="Ingrese el valor del flete">
+                    <input type="text" id="val-iptPriceValNInterface" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl--cListChangeWIcon--input" maxlength="13" autocomplete="off" placeholder="Ingrese el valor del flete" data-valformat="withcomedecimal">
                   </div>
                 </div>
               </div>
@@ -1557,7 +1550,7 @@ $(document).on("click", "#btn-NextStepTochargedata", function(){
                 <input type="hidden" value="" id="val-categProdquot-noMoreOpts" name="val-categProdquot" class="n-val-sd">
                 <input type="hidden" value="" id="val-valProdquot" name="val-valProdquot" class="n-val-sd">
                 <input type="hidden" value="" id="val-reqPermisoProdquot" name="val-reqPermisoProdquot" class="n-val-sd">
-                <input type="text" id="val_valfleteprod" name="val_valfleteprod" class="n-val-sd" value="">
+                <input type="hidden" value="" id="val_valfleteprod" name="val_valfleteprod" class="n-val-sd">
                 <input type="hidden" value="NO" id="val-prevImports" name="val-prevImports" class="n-val-sd">
                 <input type="hidden" value="" id="val-quantityProdsAmmAdd" name="val-quantityProdsAmmAdd" class="n-val-sd">
                 <input type="hidden" value="" id="val-ammvthisprod" name="val-ammvthisprodcateg" class="n-val-sd">
@@ -1588,7 +1581,7 @@ $(document).on("click", "#btn-NextStepTochargedata", function(){
                       <svg xmlns="http://www.w3.org/2000/svg" data-name="Layer 1" viewBox="0 0 100 125" x="0px" y="0px"><title>dollar</title><path d="M44.38354,5V15.697c-10.549,2.19025-18.11077,10.34265-18.11077,19.681,0,10.004,7.56927,16.77643,22.49676,20.1286C62.49225,58.587,62.49225,63.167,62.49225,64.67181c0,4.88868-5.7204,9.019-12.49115,9.019-6.77191,0-12.49335-4.13031-12.49335-9.019V63.57428h-11.235v1.09753c0,9.33838,7.56176,17.48975,18.11077,19.67951V95h11.235V84.35132C66.1665,82.161,73.72723,74.0097,73.72723,64.67181c0-10.004-7.56823-16.77636-22.49566-20.12854-13.72382-3.08044-13.72382-7.6604-13.72382-9.16528,0-4.88971,5.72144-9.02057,12.49335-9.02057,6.77075,0,12.49115,4.13086,12.49115,9.02057v1.0976h11.235V35.378c0-9.33838-7.56073-17.49078-18.10864-19.681V5Z"/>
                       </svg>
                     </div>
-                    <input type="text" id="ipt-valPriceProdNInterface" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl--cListChangeWIcon--input" maxlength="13" autocomplete="off" placeholder="Ingrese el valor de mercancía">
+                    <input type="text" id="ipt-valPriceProdNInterface" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl--cListChangeWIcon--input" maxlength="13" autocomplete="off" placeholder="Ingrese el valor de mercancía" data-valformat="withcomedecimal">
                   </div>
                 </div>
               </div>
@@ -1600,7 +1593,7 @@ $(document).on("click", "#btn-NextStepTochargedata", function(){
                       <svg xmlns="http://www.w3.org/2000/svg" data-name="Layer 1" viewBox="0 0 100 125" x="0px" y="0px"><title>dollar</title><path d="M44.38354,5V15.697c-10.549,2.19025-18.11077,10.34265-18.11077,19.681,0,10.004,7.56927,16.77643,22.49676,20.1286C62.49225,58.587,62.49225,63.167,62.49225,64.67181c0,4.88868-5.7204,9.019-12.49115,9.019-6.77191,0-12.49335-4.13031-12.49335-9.019V63.57428h-11.235v1.09753c0,9.33838,7.56176,17.48975,18.11077,19.67951V95h11.235V84.35132C66.1665,82.161,73.72723,74.0097,73.72723,64.67181c0-10.004-7.56823-16.77636-22.49566-20.12854-13.72382-3.08044-13.72382-7.6604-13.72382-9.16528,0-4.88971,5.72144-9.02057,12.49335-9.02057,6.77075,0,12.49115,4.13086,12.49115,9.02057v1.0976h11.235V35.378c0-9.33838-7.56073-17.49078-18.10864-19.681V5Z"/>
                       </svg>
                     </div>
-                    <input type="text" id="val-iptPriceValNInterface" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl--cListChangeWIcon--input" maxlength="13" autocomplete="off" placeholder="Ingrese el valor del flete">
+                    <input type="text" id="val-iptPriceValNInterface" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl--cListChangeWIcon--input" maxlength="13" autocomplete="off" placeholder="Ingrese el valor del flete" data-valformat="withcomedecimal">
                   </div>
                 </div>
               </div>
@@ -1666,15 +1659,10 @@ $(document).on("click", "#btn-NextStepTochargedata", function(){
   }
 });
 // ------------ ADMITIR SOLO 2 DECIMALES COMO MÁXIMO (VALOR DEL FLETE 
-$(document).on("input","#val-iptPriceValNInterface",function(e){
-  var val = e.target.value;
-  if(isNaN(val)){
-    val = val.replace(/[^0-9\.]/g,'');
-    if(val.split('.').length>2) 
-      val =val.replace(/\.+$/,"");
-  }
-  $(this).val(val);
-  $("#val_valfleteprod").val(twodecimals(val));
+$(document).on("keyup keypress","#val-iptPriceValNInterface",function(e){
+  let val = e.target.value;
+  let valregwithcome = val.replace(/,/g, "");
+  $("#val_valfleteprod").val(valregwithcome);
   if(document.querySelector("#ipt-valCantOfAmountAdditional").contains(document.querySelector("#ipt-valQuantityAmAddProdNInterface"))){
     if($("#ipt-valNameTypeProdNInterface").attr("idproduct") && $("#ipt-valPriceProdNInterface").val() != 0 && $("#ipt-valPriceProdNInterface").val() != "" && val != "" && val != 0){
       $("#s-caseNextStepTomerchandisedata").html(`
@@ -1893,18 +1881,12 @@ $(document).on("keyup keypress","#v_valtoreqinsurance",function(e){
 $(document).on("click","#btn-ifreqinsurancelink",function(e){e.preventDefault();$("#cnt-modalFormReqInsurance").add($(".cnt-modalFormReqInsurance--c")).removeClass("show");});
 // ------------ VALIDAR EL INPUT DE PRECIO DEL PRODUCTO 
 $(document).on("keyup keypress", "#ipt-valPriceProdNInterface", function(e){
-  if ((e.which != 8 && e.which != 0) && (e.which < 48 || e.which > 57) && $(this).val().length >= parseInt($(this).attr('maxlength'))){
-    return false;
-  }
-  let value = e.target.value;
-  e.target.value = value.replace(/[^A-Z\d-]/g, "");
-  $(this).val(function(i, v){
-    return v.replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d)\.?)/g, ".");
-  });
+  let val = e.target.value;
+  let valregcome = val.replace(/,/g, "");
   // ------------ ASIGNAR VALORES DE LOS INPUTS HIDDEN - MERCANCÍA 
-  $("#val-valProdquot").val($(this).val());
+  $("#val-valProdquot").val(valregcome);
   // ------------ VALIDAR SI CONTIENE ALGÚN VALOR NULO O 0 
-  if(e.target.value == "" || e.target.value == 0 || $(this).val() == " USD" || $(this).val() == ".00" || $(this).val() == 0.00){
+  if(val == "" || val == 0 || $(this).val() == " USD" || $(this).val() == ".00" || $(this).val() == 0.00){
     $("#s-caseNextStepTomerchandisedata").html("");
     $("#MsgItemValueProdRequired").text("Ingrese valor exacto, SIN DECIMALES");
     $(this).val("");
@@ -2635,11 +2617,6 @@ function listrateLCLTransport(searchVal){
 $(document).on("focus", "#ipt-valDistricByCountryNInterface", function(){
   $("#m-listAllDistricsByCountry").addClass("show");
   listrateLCLTransport();
-  sectionsSteps.setAutoScrolling(false);
-});
-// ------------ OCULTAR TODOS LOS RESULTADOS DE DISTRITOS AL HACER BLUR 
-$(document).on("blur", "#ipt-valDistricByCountryNInterface", function(){
-  sectionsSteps.setAutoScrolling(true);
 });
 // ------------ LISTAR TODOS LOS RESULTADOS DE DISTRITOS DE ACUERDO AL VALOR INGRESADO 
 $(document).on("keyup", "#ipt-valDistricByCountryNInterface", function(){
