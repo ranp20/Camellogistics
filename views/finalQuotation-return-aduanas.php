@@ -555,6 +555,5 @@ echo $template_incserv.$template_notincserv;
   <?php require_once 'includes/inc_form-before-download-pdf.php'; ?>
   <script type="text/javascript" src="<?= $url; ?>js/actions_pages/user-login.js"></script>
   <script type="text/javascript" src="<?= $url; ?>js/actions_pages/finalquotationreturn_aduanas.js"></script>
-  <script type="text/javascript" src="<?= $url; ?>js/actions_pages/register-before-download.js"></script>
 </body>
 </html>

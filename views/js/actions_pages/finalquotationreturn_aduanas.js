@@ -28,6 +28,11 @@ function decryptValuesIpts(valueipt){
 	let originalText = bytes.toString(CryptoJS.enc.Utf8);
 	return originalText;
 }
+// ------------ CERRAR EL MODAL DE REGISTRO PRE-DESCARGA DE COTIZACIÓN
+$(document).on("click", "#btn-closeiconForm", function(){$("#cnt-modalFormLoginyRegister").removeClass("show");});
+let containFormDownload = document.querySelector("#cnt-modalFormLoginyRegister");
+containFormDownload.addEventListener("click", e => {if(e.target === containFormDownload){containFormDownload.classList.remove("show");};
+});
 $("#btn-scrollingtTtB").on("click", function(){$("body, html").animate({scrollTop: '500'}, 350);}); //BOTÓN DE IR HACIA ABAJO
 $(document).ready(function(){
 	/* ENCRIPTACIÓN DE INPUTS */
