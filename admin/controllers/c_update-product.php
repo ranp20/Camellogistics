@@ -8,7 +8,7 @@ class Update_Product extends Connection{
 			"sel_ammadditional" => $_POST['sel_ammadditional'],
 			"sel_taxadditional" => $_POST['sel_taxadditional'],
 			"sel_fichatecycertconform" => $_POST['sel_fichatecycertconform'],
-			"id_regulator" => (isset($_POST['id_regulatorone'])) ? $_POST['id_regulatorone'] : 0,
+			"id_regulatorone" => (isset($_POST['id_regulatorone'])) ? $_POST['id_regulatorone'] : 0,
 			"id_regulator_two" => (isset($_POST['id_regulatortwo'])) ? $_POST['id_regulatortwo'] : 0,
 			"amount_additional" => (isset($_POST['amount_additional']) && $_POST['amount_additional'] != "" && $_POST['amount_additional'] != "undefined") ? $_POST['amount_additional'] : 0,
 			"ad_valoren" => (isset($_POST['ad_valoren']) && $_POST['ad_valoren'] != "" && $_POST['ad_valoren'] != "undefined") ? $_POST['ad_valoren'] : 0,
@@ -18,7 +18,7 @@ class Update_Product extends Connection{
 			"id" => $_POST['id']
 		];
 		try{
-			$sql = "CALL sp_update_product(:name, :sel_regulated, :sel_ammadditional, :sel_taxadditional, :sel_fichatecycertconform, :id_regulator, :id_regulator_two, :amount_additional, :ad_valoren, :impuesto_selectivo, :antidumping, :fichatecycertconform, :id)";
+			$sql = "CALL sp_update_product(:name, :sel_regulated, :sel_ammadditional, :sel_taxadditional, :sel_fichatecycertconform, :id_regulatorone, :id_regulator_two, :amount_additional, :ad_valoren, :impuesto_selectivo, :antidumping, :fichatecycertconform, :id)";
 			$stm = $this->con->prepare($sql);
 			foreach ($arr_product as $key => $value){
 				$stm->bindValue($key, $value);
