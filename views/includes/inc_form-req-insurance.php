@@ -5,7 +5,7 @@
 			<h2>SEGURO DE MERCANCÍA</h2>
 			<span>
 				<span>
-					<input type="hidden" value="" id="val-rqexplicitinsurance" name="val-rqexplicitinsurance" class="n-val-sd">
+					<input type="hidden" value="" id="val-rqexplicitinsurance" name="val-rqexplicitinsurance" tabindex="-1" width="0" height="0" autocomplete="off" spellcheck="false" f-hidden="aria-hidden" class="n-val-sd">
 				</span>
 			</span>
 		</div>
