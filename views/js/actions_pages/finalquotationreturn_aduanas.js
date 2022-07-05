@@ -162,6 +162,7 @@ $(document).ready(function(){
 	var initvalinsurance = 0;
 	var finalinsurance = 0;
 	var finalRoundinsurance = 0;
+	var final_expinsure = 0;
 	// ------------ CÁLCULO DE IMPUESTOS 
 	var partInteger_Tax = 0;
 	var partDecimal_Tax = 0;
@@ -198,14 +199,17 @@ $(document).ready(function(){
   
 	// ------------ LISTAR LOS VALORES DE SEGURO
 	$.ajax({
-    url: "controllers/list_insurancevalues-aduanas.php",
+    url: "controllers/list_insurancevalues.php",
     method: "POST",
     datatype: "JSON",
     contentType: 'application/x-www-form-urlencoded;charset=UTF-8',
   }).done((e) => {
   	var r = JSON.parse(e);
-  	var insurance_default = parseFloat(r[0].data_value);
-  	var insureconvert_default = insurance_default / 100; //VALOR POR DEFECTO
+  	var insure_min25000 = parseFloat(r[0].data_value); //FOB MENOR A 25000
+  	var insure_max25000 = parseFloat(r[1].data_value); //FOB MAYOR A 25000
+  	var insure_default = parseFloat(r[2].data_value); //SIN FOB/VALOR POR DEFECTO
+  	var insureconvert_max25000 = insure_max25000 / 100;
+  	var insureconvert_default = insure_default / 100;
     
   	// ------------ LISTAR EL VALOR FIJO DEL FOB
   	$.ajax({
@@ -218,15 +222,22 @@ $(document).ready(function(){
 	  		var r = JSON.parse(e);
 	  		var merchandiseValFixed = parseFloat(r[0].data_value); // VALOR FIJO (FOB)
 
-	  		if(totalfinalvaluefob > merchandiseValFixed){
-		      finalinsurance = totalfinalvaluefob * insureconvert_default; //ES MAYOR A (FOB)
-		      initvalinsurance = insurance_default;
-		      finalRoundinsurance = myRound(finalinsurance);
-		    }else{
-		      finalinsurance = totalfinalvaluefob * insureconvert_default; //ES MENOR A (FOB)
-		      initvalinsurance = insurance_default;
-		      finalRoundinsurance = myRound(finalinsurance);
-		    }
+	  		// VALIDACIÓN SEGURO EXPLÍCITO
+	  		if(v_frqexplinsur != 0 && v_frqexplinsur > 0){
+	  			final_expinsure = "SI";
+	  			finalRoundinsurance = twodecimals(v_frqexplinsur);
+	  		}else{
+	  			final_expinsure = "NO";
+		  		if(totalfinalvaluefob > merchandiseValFixed){
+			      finalinsurance = totalfinalvaluefob * insureconvert_default; //ES MAYOR A (FOB)
+			      initvalinsurance = insure_default;
+			      finalRoundinsurance = myRound(finalinsurance);
+			    }else{
+			      finalinsurance = totalfinalvaluefob * insureconvert_default; //ES MENOR A (FOB)
+			      initvalinsurance = insure_default;
+			      finalRoundinsurance = myRound(finalinsurance);
+			    }
+	  		}
 
 		    // VALOR TOTAL - CIF
 		  	sumbyCIF = totalfinalvaluefob + totflete + finalRoundinsurance; //CIF FINAL
@@ -454,6 +465,7 @@ $(document).ready(function(){
 									formdata.append("f_type_transp", v_floadTypeTranport);
 									formdata.append("f_type_cont", v_loadtypecharge);
 									formdata.append("f_optgenfquot", v_foptgnfquotevl);
+									formdata.append("f_expinsurance", final_expinsure);
 									formdata.append("u_n_document", "No especificado");
 									formdata.append("u_enterprise", "No especificado");
 									formdata.append("u_telephone", "No especificado");
@@ -731,6 +743,7 @@ $(document).ready(function(){
 									formdata.append("f_type_transp", v_floadTypeTranport);
 									formdata.append("f_type_cont", v_loadtypecharge);
 									formdata.append("f_optgenfquot", v_foptgnfquotevl);
+									formdata.append("f_expinsurance", final_expinsure);
 									formdata.append("u_n_document", "No especificado");
 									formdata.append("u_enterprise", "No especificado");
 									formdata.append("u_telephone", "No especificado");
