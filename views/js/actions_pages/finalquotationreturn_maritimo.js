@@ -82,7 +82,7 @@ $(document).ready(function(){
 	var v_fpckgcontquant = decryptValuesIpts(encrypt_v_fpckgcontquant.val());
 	var v_ftcomparweacbm = decryptValuesIpts(encrypt_v_ftcomparweacbm.val());
 	var v_fplctopckloc = decryptValuesIpts(encrypt_v_fplctopckloc.val());
-	var v_frselinsmerch = decryptValuesIpts(encrypt_v_frselinsmerch.val());
+	var v_frselinsmerch = decryptValuesIpts(encrypt_v_frselinsmerch.val()); // ¿DESEA AGREGAR SEGURO?
 	var v_foptgnfquotevl = decryptValuesIpts(encrypt_v_foptgnfquotevl.val());
 	var v_fquaprcataadd = decryptValuesIpts(encrypt_v_fquaprcataadd.val());
 	var v_fammvthpcat = decryptValuesIpts(encrypt_v_fammvthpcat.val());
@@ -95,7 +95,6 @@ $(document).ready(function(){
 	var val_ftotalfleteprod = decryptValuesIpts(encrypt_val_ftotalfleteprod.val()); // FLETE
 	var val_ftotalvalfobprod = decryptValuesIpts(encrypt_val_ftotalvalfobprod.val()); // VALOR FOB
 	var val_plcpickuprateprov = decryptValuesIpts(encrypt_val_plcpickuprateprov.val()); // TRANSPORTE INTERNO
-
 	// ------------ VALIDAR SI EXISTE UN USUARIO, DE LO CONTRARIO ASIGNAR EL USUARIO POR DEFECTO 
 	if($("#s_useregin-sistem").val() == "" || $("#s_useregin-sistem").val() == undefined || $("#s_useregin-sistem").val() == 'undefined' || $("#s_useregin-sistem").val() == null || $("#s_useregin-sistem").val() == 'null'){
 		sessval_loginuser = { username: 'Invitado' }

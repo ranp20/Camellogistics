@@ -135,7 +135,7 @@ function listPortOriginandDestiny(){
           </div>
           <div class="cont-MainCamelLog--c--contResumeCalc--item--cardStep--cDescMap">
             <span>${e.nom_puerto} - ${e.nom_pais}</span>
-            <input type="hidden" id="val-originPortSend" name="val-originPortSend" value="${e.nom_puerto} - ${e.nom_pais}" class="n-val-sd">
+            <input type="hidden" id="val-originPortSend" name="val-originPortSend" value="${e.nom_puerto} - ${e.nom_pais}" tabindex="-1" width="0" height="0" autocomplete="off" spellcheck="false" f-hidden="aria-hidden" class="n-val-sd">
           </div>
         </div>
       `;
@@ -158,7 +158,7 @@ function listPortOriginandDestiny(){
             </div>
             <div class="cont-MainCamelLog--c--contResumeCalc--item--cardStep--cDescMap">
               <span>${e.nom_puerto} - ${e.nom_pais}</span>
-              <input type="hidden" id="val-destinyPortSend" name="val-destinyPortSend" value="${e.nom_puerto} - ${e.nom_pais}" class="n-val-sd">
+              <input type="hidden" id="val-destinyPortSend" name="val-destinyPortSend" value="${e.nom_puerto} - ${e.nom_pais}" tabindex="-1" width="0" height="0" autocomplete="off" spellcheck="false" f-hidden="aria-hidden" class="n-val-sd">
             </div>
           </div>
         `;
@@ -235,7 +235,7 @@ $(document).on("click", "#list-typeOperationItems li", function(){
         <h3 class="cont-MainCamelLog--c--contSteps--item--cTitle--title">Tipo de Transporte</h3>
         <span>
           <span>
-            <input type="hidden" id="loadTypeTranport" name="loadTypeTranport" class="n-val-sd">
+            <input type="hidden" id="loadTypeTranport" name="loadTypeTranport" tabindex="-1" width="0" height="0" autocomplete="off" spellcheck="false" f-hidden="aria-hidden" class="n-val-sd">
           </span>
         </span>
       </div>
@@ -307,10 +307,10 @@ $(document).on("click","#list-typeTransporteSelectItems a",function(){
         <h3 class="cont-MainCamelLog--c--contSteps--item--cTitle--title">Tipo de carga</h3>
         <span>
           <span>
-            <input type="hidden" id="loadTypeCharge" name="loadTypeCharge" class="n-val-sd">
-            <input type="hidden" id="val-datevaliddesde" name="val-datevaliddesde" class="n-val-sd">
-            <input type="hidden" id="val-datevalidhasta" name="val-datevalidhasta" class="n-val-sd">
-            <input type="hidden" id="val-timeaproxtransbycont" name="val-timeaproxtransbycont" class="n-val-sd">
+            <input type="hidden" id="loadTypeCharge" name="loadTypeCharge" tabindex="-1" width="0" height="0" autocomplete="off" spellcheck="false" f-hidden="aria-hidden" class="n-val-sd">
+            <input type="hidden" id="val-datevaliddesde" name="val-datevaliddesde" tabindex="-1" width="0" height="0" autocomplete="off" spellcheck="false" f-hidden="aria-hidden" class="n-val-sd">
+            <input type="hidden" id="val-datevalidhasta" name="val-datevalidhasta" tabindex="-1" width="0" height="0" autocomplete="off" spellcheck="false" f-hidden="aria-hidden" class="n-val-sd">
+            <input type="hidden" id="val-timeaproxtransbycont" name="val-timeaproxtransbycont" tabindex="-1" width="0" height="0" autocomplete="off" spellcheck="false" f-hidden="aria-hidden" class="n-val-sd">
           </span>
         </span>
       </div>
@@ -353,10 +353,10 @@ $(document).on("click","#list-typeTransporteSelectItems a",function(){
         <h3 class="cont-MainCamelLog--c--contSteps--item--cTitle--title">Tipo de carga</h3>
         <span>
           <span>
-            <input type="hidden" id="loadTypeCharge" name="loadTypeCharge" class="n-val-sd">
-            <input type="hidden" id="val-datevaliddesde" name="val-datevaliddesde" class="n-val-sd">
-            <input type="hidden" id="val-datevalidhasta" name="val-datevalidhasta" class="n-val-sd">
-            <input type="hidden" id="val-timeaproxtransbycont" name="val-timeaproxtransbycont" class="n-val-sd">
+            <input type="hidden" id="loadTypeCharge" name="loadTypeCharge" tabindex="-1" width="0" height="0" autocomplete="off" spellcheck="false" f-hidden="aria-hidden" class="n-val-sd">
+            <input type="hidden" id="val-datevaliddesde" name="val-datevaliddesde" tabindex="-1" width="0" height="0" autocomplete="off" spellcheck="false" f-hidden="aria-hidden" class="n-val-sd">
+            <input type="hidden" id="val-datevalidhasta" name="val-datevalidhasta" tabindex="-1" width="0" height="0" autocomplete="off" spellcheck="false" f-hidden="aria-hidden" class="n-val-sd">
+            <input type="hidden" id="val-timeaproxtransbycont" name="val-timeaproxtransbycont" tabindex="-1" width="0" height="0" autocomplete="off" spellcheck="false" f-hidden="aria-hidden" class="n-val-sd">
           </span>
         </span>
       </div>
@@ -400,10 +400,10 @@ $(document).on("click","#list-typeTransporteSelectItems a",function(){
         <h3 class="cont-MainCamelLog--c--contSteps--item--cTitle--title">Tipo de carga</h3>
         <span>
           <span>
-            <input type="hidden" id="loadTypeCharge" name="loadTypeCharge" class="n-val-sd">
-            <input type="hidden" id="val-datevaliddesde" name="val-datevaliddesde" class="n-val-sd">
-            <input type="hidden" id="val-datevalidhasta" name="val-datevalidhasta" class="n-val-sd">
-            <input type="hidden" id="val-timeaproxtransbycont" name="val-timeaproxtransbycont" class="n-val-sd">
+            <input type="hidden" id="loadTypeCharge" name="loadTypeCharge" tabindex="-1" width="0" height="0" autocomplete="off" spellcheck="false" f-hidden="aria-hidden" class="n-val-sd">
+            <input type="hidden" id="val-datevaliddesde" name="val-datevaliddesde" tabindex="-1" width="0" height="0" autocomplete="off" spellcheck="false" f-hidden="aria-hidden" class="n-val-sd">
+            <input type="hidden" id="val-datevalidhasta" name="val-datevalidhasta" tabindex="-1" width="0" height="0" autocomplete="off" spellcheck="false" f-hidden="aria-hidden" class="n-val-sd">
+            <input type="hidden" id="val-timeaproxtransbycont" name="val-timeaproxtransbycont" tabindex="-1" width="0" height="0" autocomplete="off" spellcheck="false" f-hidden="aria-hidden" class="n-val-sd">
           </span>
         </span>
       </div>
@@ -481,16 +481,16 @@ $(document).on("click", "#list-typeChargeLoadItems a", function(){
         <h3 class="cont-MainCamelLog--c--contSteps--item--cTitle--title">Contenedores</h3>
         <span>
           <span>
-            <input type="hidden" value="" id="loadTypeContainer20" name="loadTypeContainer20" class="n-val-sd">
-            <input type="hidden" value="0" id="loadQContainer20" name="loadQContainer20" class="n-val-sd">
-            <input type="hidden" value="" id="loadTypeContainer40" name="loadTypeContainer40" class="n-val-sd">
-            <input type="hidden" value="0" id="loadQContainer40" name="loadQContainer40" class="n-val-sd">
-            <input type="hidden" value="" id="loadTypeContainer40hq" name="loadTypeContainer40hq" class="n-val-sd">
-            <input type="hidden" value="0" id="loadQContainer40hq" name="loadQContainer40hq" class="n-val-sd">
-            <input type="hidden" value="" id="loadTypeContainer40nor" name="loadTypeContainer40nor" class="n-val-sd">
-            <input type="hidden" value="0" id="loadQContainer40nor" name="loadQContainer40nor" class="n-val-sd">
-            <input type="hidden" value="" id="val_validateratequote" name="val_validateratequote" class="n-val-sd">
-            <input type="hidden" id="val_valfleteprod" name="val_valfleteprod" class="n-val-sd" value="">
+            <input type="hidden" value="" id="loadTypeContainer20" name="loadTypeContainer20" tabindex="-1" width="0" height="0" autocomplete="off" spellcheck="false" f-hidden="aria-hidden" class="n-val-sd">
+            <input type="hidden" value="0" id="loadQContainer20" name="loadQContainer20" tabindex="-1" width="0" height="0" autocomplete="off" spellcheck="false" f-hidden="aria-hidden" class="n-val-sd">
+            <input type="hidden" value="" id="loadTypeContainer40" name="loadTypeContainer40" tabindex="-1" width="0" height="0" autocomplete="off" spellcheck="false" f-hidden="aria-hidden" class="n-val-sd">
+            <input type="hidden" value="0" id="loadQContainer40" name="loadQContainer40" tabindex="-1" width="0" height="0" autocomplete="off" spellcheck="false" f-hidden="aria-hidden" class="n-val-sd">
+            <input type="hidden" value="" id="loadTypeContainer40hq" name="loadTypeContainer40hq" tabindex="-1" width="0" height="0" autocomplete="off" spellcheck="false" f-hidden="aria-hidden" class="n-val-sd">
+            <input type="hidden" value="0" id="loadQContainer40hq" name="loadQContainer40hq" tabindex="-1" width="0" height="0" autocomplete="off" spellcheck="false" f-hidden="aria-hidden" class="n-val-sd">
+            <input type="hidden" value="" id="loadTypeContainer40nor" name="loadTypeContainer40nor" tabindex="-1" width="0" height="0" autocomplete="off" spellcheck="false" f-hidden="aria-hidden" class="n-val-sd">
+            <input type="hidden" value="0" id="loadQContainer40nor" name="loadQContainer40nor" tabindex="-1" width="0" height="0" autocomplete="off" spellcheck="false" f-hidden="aria-hidden" class="n-val-sd">
+            <input type="hidden" value="" id="val_validateratequote" name="val_validateratequote" tabindex="-1" width="0" height="0" autocomplete="off" spellcheck="false" f-hidden="aria-hidden" class="n-val-sd">
+            <input type="hidden" id="val_valfleteprod" name="val_valfleteprod" tabindex="-1" width="0" height="0" autocomplete="off" spellcheck="false" f-hidden="aria-hidden" class="n-val-sd" value="">
           </span>
         </span>
       </div>
@@ -772,13 +772,13 @@ $(document).on("click", "#list-typeChargeLoadItems a", function(){
         <h3 class="cont-MainCamelLog--c--contSteps--item--cTitle--title">Dimensiones de carga</h3>
         <span>
           <span>
-            <input type="text" id="n_packscompare_ultstep" class="n-val-sd" disabled>
-            <input type="text" id="n_weightcompare_ultstep" class="n-val-sd" disabled>
-            <input type="text" id="n_volumecompare_ultstep" class="n-val-sd" disabled>
-            <input type="text" id="val_validateratequote" name="val_validateratequote" class="n-val-sd" value="">
-            <input type="text" id="val_maxtotalweight" name="val_maxtotalweight" class="n-val-sd" value="">
-            <input type="text" id="val_ftotvalofdownload" name="val_ftotvalofdownload" class="n-val-sd" value="">
-            <input type="hidden" id="val_valfleteprod" name="val_valfleteprod" class="n-val-sd" value="">
+            <input type="text" id="n_packscompare_ultstep" tabindex="-1" width="0" height="0" autocomplete="off" spellcheck="false" f-hidden="aria-hidden" class="n-val-sd" disabled>
+            <input type="text" id="n_weightcompare_ultstep" tabindex="-1" width="0" height="0" autocomplete="off" spellcheck="false" f-hidden="aria-hidden" class="n-val-sd" disabled>
+            <input type="text" id="n_volumecompare_ultstep" tabindex="-1" width="0" height="0" autocomplete="off" spellcheck="false" f-hidden="aria-hidden" class="n-val-sd" disabled>
+            <input type="text" id="val_validateratequote" name="val_validateratequote" tabindex="-1" width="0" height="0" autocomplete="off" spellcheck="false" f-hidden="aria-hidden" class="n-val-sd" value="">
+            <input type="text" id="val_maxtotalweight" name="val_maxtotalweight" tabindex="-1" width="0" height="0" autocomplete="off" spellcheck="false" f-hidden="aria-hidden" class="n-val-sd" value="">
+            <input type="text" id="val_ftotvalofdownload" name="val_ftotvalofdownload" tabindex="-1" width="0" height="0" autocomplete="off" spellcheck="false" f-hidden="aria-hidden" class="n-val-sd" value="">
+            <input type="hidden" id="val_valfleteprod" name="val_valfleteprod" tabindex="-1" width="0" height="0" autocomplete="off" spellcheck="false" f-hidden="aria-hidden" class="n-val-sd" value="">
           </span>
         </span>
       </div>
@@ -1375,7 +1375,7 @@ $(document).on("click", "#btn-NextStepToSelOptResultExp", function(){
         <h3 class="cont-MainCamelLog--c--contSteps--item--cTitle--title">Eliga una opción</h3>
         <span>
           <span>
-            <input type="hidden" id="opt-genfquotation" name="opt-genfquotation" class="n-val-sd">
+            <input type="hidden" id="opt-genfquotation" name="opt-genfquotation" tabindex="-1" width="0" height="0" autocomplete="off" spellcheck="false" f-hidden="aria-hidden" class="n-val-sd">
           </span>
         </span>
       </div>
@@ -1442,16 +1442,16 @@ $(document).on("click", "#list-SelOptionResultExp a", function(){
         <h3 class="cont-MainCamelLog--c--contSteps--item--cTitle--title">Mercancía</h3>
         <span>
           <span>
-            <input type="hidden" value="" id="val-categProdquot" name="val-categProdquot" class="n-val-sd">
-            <input type="hidden" value="" id="val-reqPermisoProdquot" name="val-reqPermisoProdquot" class="n-val-sd">
-            <input type="hidden" value="" id="val-valProdquot" name="val-valProdquot" class="n-val-sd">
-            <input type="hidden" value="NO" id="val-prevImports" name="val-prevImports" class="n-val-sd">
-            <input type="hidden" value="" id="val-quantityProdsAmmAdd" name="val-quantityProdsAmmAdd" class="n-val-sd">
-            <input type="hidden" value="" id="val-ammvthisprod" name="val-ammvthisprodcateg" class="n-val-sd">
-            <input type="hidden" value="" id="val-ammtthxvaone" name="val-ammtthxvaonepcatg" class="n-val-sd">
-            <input type="hidden" value="" id="val-ammtthxvatwo" name="val-ammtthxvatwopcatg" class="n-val-sd">
-            <input type="hidden" value="" id="val-ammtthxvathree" name="val-ammtthxvathreepcatg" class="n-val-sd">
-            <input type="hidden" value="" id="val-ftecycertconform" name="val-ftecycertconformpcatg" class="n-val-sd">
+            <input type="hidden" value="" id="val-categProdquot" name="val-categProdquot" tabindex="-1" width="0" height="0" autocomplete="off" spellcheck="false" f-hidden="aria-hidden" class="n-val-sd">
+            <input type="hidden" value="" id="val-reqPermisoProdquot" name="val-reqPermisoProdquot" tabindex="-1" width="0" height="0" autocomplete="off" spellcheck="false" f-hidden="aria-hidden" class="n-val-sd">
+            <input type="hidden" value="" id="val-valProdquot" name="val-valProdquot" tabindex="-1" width="0" height="0" autocomplete="off" spellcheck="false" f-hidden="aria-hidden" class="n-val-sd">
+            <input type="hidden" value="NO" id="val-prevImports" name="val-prevImports" tabindex="-1" width="0" height="0" autocomplete="off" spellcheck="false" f-hidden="aria-hidden" class="n-val-sd">
+            <input type="hidden" value="" id="val-quantityProdsAmmAdd" name="val-quantityProdsAmmAdd" tabindex="-1" width="0" height="0" autocomplete="off" spellcheck="false" f-hidden="aria-hidden" class="n-val-sd">
+            <input type="hidden" value="" id="val-ammvthisprod" name="val-ammvthisprodcateg" tabindex="-1" width="0" height="0" autocomplete="off" spellcheck="false" f-hidden="aria-hidden" class="n-val-sd">
+            <input type="hidden" value="" id="val-ammtthxvaone" name="val-ammtthxvaonepcatg" tabindex="-1" width="0" height="0" autocomplete="off" spellcheck="false" f-hidden="aria-hidden" class="n-val-sd">
+            <input type="hidden" value="" id="val-ammtthxvatwo" name="val-ammtthxvatwopcatg" tabindex="-1" width="0" height="0" autocomplete="off" spellcheck="false" f-hidden="aria-hidden" class="n-val-sd">
+            <input type="hidden" value="" id="val-ammtthxvathree" name="val-ammtthxvathreepcatg" tabindex="-1" width="0" height="0" autocomplete="off" spellcheck="false" f-hidden="aria-hidden" class="n-val-sd">
+            <input type="hidden" value="" id="val-ftecycertconform" name="val-ftecycertconformpcatg" tabindex="-1" width="0" height="0" autocomplete="off" spellcheck="false" f-hidden="aria-hidden" class="n-val-sd">
           </span>
         </span>
       </div>
@@ -1512,7 +1512,7 @@ $(document).on("click", "#list-SelOptionResultExp a", function(){
         <h3 class="cont-MainCamelLog--c--contSteps--item--cTitle--title">¿Quieres asegurar la mercancía?</h3>
         <span>
           <span>
-            <input type="hidden" id="res-insuremerch" name="res-insuremerch" class="n-val-sd">
+            <input type="hidden" id="res-insuremerch" name="res-insuremerch" tabindex="-1" width="0" height="0" autocomplete="off" spellcheck="false" f-hidden="aria-hidden" class="n-val-sd">
           </span>
         </span>
       </div>
@@ -1562,15 +1562,15 @@ $(document).on("click","#list-insuremerchandise-notMoreOpts a",function(){
         <h3 class="cont-MainCamelLog--c--contSteps--item--cTitle--title">Mercancía</h3>
         <span>
           <span>
-            <input type="hidden" value="" id="val-categProdquot-noMoreOpts" name="val-categProdquot" class="n-val-sd">
-            <input type="hidden" value="" id="val-reqPermisoProdquot-noMoreOpts" name="val-reqPermisoProdquot" class="n-val-sd">
-            <input type="hidden" value="" id="val-valProdquot-noMoreOpts" name="val-valProdquot" class="n-val-sd">
-            <input type="hidden" value="" id="val-quantityProdsAmmAdd-noMoreOpts" name="val-quantityProdsAmmAdd" class="n-val-sd">
-            <input type="hidden" value="" id="val-ammvthisprod-noMoreOpts" name="val-ammvthisprodcateg" class="n-val-sd">
-            <input type="hidden" value="" id="val-ammtthxvaone-noMoreOpts" name="val-ammtthxvaonepcatg" class="n-val-sd">
-            <input type="hidden" value="" id="val-ammtthxvatwo-noMoreOpts" name="val-ammtthxvatwopcatg" class="n-val-sd">
-            <input type="hidden" value="" id="val-ammtthxvathree-noMoreOpts" name="val-ammtthxvathreepcatg" class="n-val-sd">
-            <input type="hidden" value="" id="val-ftecycertconform-noMoreOpts" name="val-ftecycertconformpcatg" class="n-val-sd">
+            <input type="hidden" value="" id="val-categProdquot-noMoreOpts" name="val-categProdquot" tabindex="-1" width="0" height="0" autocomplete="off" spellcheck="false" f-hidden="aria-hidden" class="n-val-sd">
+            <input type="hidden" value="" id="val-reqPermisoProdquot-noMoreOpts" name="val-reqPermisoProdquot" tabindex="-1" width="0" height="0" autocomplete="off" spellcheck="false" f-hidden="aria-hidden" class="n-val-sd">
+            <input type="hidden" value="" id="val-valProdquot-noMoreOpts" name="val-valProdquot" tabindex="-1" width="0" height="0" autocomplete="off" spellcheck="false" f-hidden="aria-hidden" class="n-val-sd">
+            <input type="hidden" value="" id="val-quantityProdsAmmAdd-noMoreOpts" name="val-quantityProdsAmmAdd" tabindex="-1" width="0" height="0" autocomplete="off" spellcheck="false" f-hidden="aria-hidden" class="n-val-sd">
+            <input type="hidden" value="" id="val-ammvthisprod-noMoreOpts" name="val-ammvthisprodcateg" tabindex="-1" width="0" height="0" autocomplete="off" spellcheck="false" f-hidden="aria-hidden" class="n-val-sd">
+            <input type="hidden" value="" id="val-ammtthxvaone-noMoreOpts" name="val-ammtthxvaonepcatg" tabindex="-1" width="0" height="0" autocomplete="off" spellcheck="false" f-hidden="aria-hidden" class="n-val-sd">
+            <input type="hidden" value="" id="val-ammtthxvatwo-noMoreOpts" name="val-ammtthxvatwopcatg" tabindex="-1" width="0" height="0" autocomplete="off" spellcheck="false" f-hidden="aria-hidden" class="n-val-sd">
+            <input type="hidden" value="" id="val-ammtthxvathree-noMoreOpts" name="val-ammtthxvathreepcatg" tabindex="-1" width="0" height="0" autocomplete="off" spellcheck="false" f-hidden="aria-hidden" class="n-val-sd">
+            <input type="hidden" value="" id="val-ftecycertconform-noMoreOpts" name="val-ftecycertconformpcatg" tabindex="-1" width="0" height="0" autocomplete="off" spellcheck="false" f-hidden="aria-hidden" class="n-val-sd">
           </span>
         </span>
       </div>
@@ -2313,7 +2313,7 @@ $(document).on("click", "#btn-NextStepTochargedata", function(){
                 <h3 class="cont-MainCamelLog--c--contSteps--item--cTitle--title">Eliga una opción</h3>
                 <span>
                   <span>
-                    <input type="hidden" id="opt-genfquotation" name="opt-genfquotation" class="n-val-sd">
+                    <input type="hidden" id="opt-genfquotation" name="opt-genfquotation" tabindex="-1" width="0" height="0" autocomplete="off" spellcheck="false" f-hidden="aria-hidden" class="n-val-sd">
                   </span>
                 </span>
               </div>
@@ -2361,7 +2361,7 @@ $(document).on("click", "#btn-NextStepTochargedata", function(){
                 <h3 class="cont-MainCamelLog--c--contSteps--item--cTitle--title">Eliga una opción</h3>
                 <span>
                   <span>
-                    <input type="hidden" value="" id="opt-genfquotation" name="opt-genfquotation" class="n-val-sd">
+                    <input type="hidden" value="" id="opt-genfquotation" name="opt-genfquotation" tabindex="-1" width="0" height="0" autocomplete="off" spellcheck="false" f-hidden="aria-hidden" class="n-val-sd">
                   </span>
                 </span>
               </div>
@@ -2474,7 +2474,7 @@ $(document).on("click", "#btn-NextStepTochargedata", function(){
                 <h3 class="cont-MainCamelLog--c--contSteps--item--cTitle--title">Eliga una opción</h3>
                 <span>
                   <span>
-                    <input type="hidden" value="" id="opt-genfquotation" name="opt-genfquotation" class="n-val-sd">
+                    <input type="hidden" value="" id="opt-genfquotation" name="opt-genfquotation" tabindex="-1" width="0" height="0" autocomplete="off" spellcheck="false" f-hidden="aria-hidden" class="n-val-sd">
                   </span>
                 </span>
               </div>
@@ -2566,7 +2566,7 @@ $(document).on("click", "#btn-NextStepTochargedata", function(){
                   <h3 class="cont-MainCamelLog--c--contSteps--item--cTitle--title">Eliga una opción</h3>
                   <span>
                     <span>
-                      <input type="hidden" value="" id="opt-genfquotation" name="opt-genfquotation" class="n-val-sd">
+                      <input type="hidden" value="" id="opt-genfquotation" name="opt-genfquotation" tabindex="-1" width="0" height="0" autocomplete="off" spellcheck="false" f-hidden="aria-hidden" class="n-val-sd">
                     </span>
                   </span>
                 </div>
@@ -2840,7 +2840,7 @@ $(document).on("click", "#btn-NextStepTomerchandisedata", function(){
           <h3 class="cont-MainCamelLog--c--contSteps--item--cTitle--title">¿Quieres asegurar la mercancía?</h3>
           <span>
             <span>
-              <input type="hidden" id="res-insuremerch" name="res-insuremerch" class="n-val-sd">
+              <input type="hidden" id="res-insuremerch" name="res-insuremerch" tabindex="-1" width="0" height="0" autocomplete="off" spellcheck="false" f-hidden="aria-hidden" class="n-val-sd">
             </span>
           </span>
         </div>
@@ -2903,7 +2903,7 @@ $(document).on("click", "#btn-NextStepTomerchandisedata", function(){
           <h3 class="cont-MainCamelLog--c--contSteps--item--cTitle--title">¿Quieres asegurar la mercancía?</h3>
           <span>
             <span>
-              <input type="hidden" id="res-insuremerch" name="res-insuremerch" class="n-val-sd">
+              <input type="hidden" id="res-insuremerch" name="res-insuremerch" tabindex="-1" width="0" height="0" autocomplete="off" spellcheck="false" f-hidden="aria-hidden" class="n-val-sd">
             </span>
           </span>
         </div>
@@ -2969,7 +2969,7 @@ $(document).on("click", "#list-insuremerchandise a", function(){
         <h3 class="cont-MainCamelLog--c--contSteps--item--cTitle--title">¿Necesitas Transporte?</h3>
         <span>
           <span>
-            <input type="hidden" value="" id="opt-reqtransport" name="opt-reqtransport" class="n-val-sd">
+            <input type="hidden" value="" id="opt-reqtransport" name="opt-reqtransport" tabindex="-1" width="0" height="0" autocomplete="off" spellcheck="false" f-hidden="aria-hidden" class="n-val-sd">
           </span>
         </span>
       </div>
@@ -3004,7 +3004,7 @@ $(document).on("click", "#list-insuremerchandise a", function(){
         <h3 class="cont-MainCamelLog--c--contSteps--item--cTitle--title">¿Necesitas Transporte?</h3>
         <span>
           <span>
-            <input type="hidden" value="" id="opt-reqtransport" name="opt-reqtransport" class="n-val-sd">
+            <input type="hidden" value="" id="opt-reqtransport" name="opt-reqtransport" tabindex="-1" width="0" height="0" autocomplete="off" spellcheck="false" f-hidden="aria-hidden" class="n-val-sd">
           </span>
         </span>
       </div>
@@ -3052,8 +3052,8 @@ $(document).on("click", "#list-requirespickup a", function(){
         <h3 class="cont-MainCamelLog--c--contSteps--item--cTitle--title">Recogida - Ubicación</h3>
         <span>
           <span>
-            <input type="hidden" value="" id="plc-pickuploc" name="plc-pickuploc" class="n-val-sd">
-            <input type="hidden" value="" id="plc-pickuprate" name="plc-pickuprate" class="n-val-sd">
+            <input type="hidden" value="" id="plc-pickuploc" name="plc-pickuploc" tabindex="-1" width="0" height="0" autocomplete="off" spellcheck="false" f-hidden="aria-hidden" class="n-val-sd">
+            <input type="hidden" value="" id="plc-pickuprate" name="plc-pickuprate" tabindex="-1" width="0" height="0" autocomplete="off" spellcheck="false" f-hidden="aria-hidden" class="n-val-sd">
           </span>
         </span>
       </div>
