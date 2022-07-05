@@ -21,7 +21,7 @@ function list_certiconform(){
   });
 }
 // ------------ LIMITAR A DOS DECIMALES CUALQUIER INPUT DE TIPO NÚMERO EN DONDE ESTÁ IMPORTADO ESTE ARCHIVO
-$(document).on("keyup","input[data-valformat=withtwodecimals]",function(e){
+$(document).on("keyup keypress","input[data-valformat=withtwodecimals]",function(e){
   let val = e.target.value;
   if(val != ""){
     let t = val.toString();
@@ -30,6 +30,8 @@ $(document).on("keyup","input[data-valformat=withtwodecimals]",function(e){
     $(this).val(vl_twoformat);
   }
 });
+// ------------ VALIDAR SI EL NOMBRE DEL PRODUCTO ESTÁ VACÍO
+$(document).on("keyup keypress", "#nameProduct", function(e){(e.target.value != 0 || e.target.value != "") ? $("#msgErrNounNameProduct").text("") : $("#msgErrNounNameProduct").text("Debes ingresar un nombre");});
 // ------------ MOSTRAR/OCULTAR DE ACUERDO AL CHECKBOX SELECCINADO - REGULADOR/NO REQUIERE
 $(document).on("click","#chck_regulated",function(e){
   if($(this).is(":checked")){
@@ -69,8 +71,6 @@ $(document).on("click","#chck_regulated",function(e){
     $("#txt-chck_regulated").removeClass("active");
   }
 });
-// ------------ VALIDAR SI EL NOMBRE DEL PRODUCTO ESTÁ VACÍO
-$(document).on("keyup", "#nameProduct", function(){($(this).val() != 0) ? $("#msgErrNounNameProduct").text("") : $("#msgErrNounNameProduct").text("Debes ingresar un nombre");});
 // ------------ ABRIR/CERRAR EL LISTADO DE REGULADORES - AGREGAR 1
 $(document).on("click", "#btn-FakeListRegulatorOne", function(){
   $("#c-listitems-regulatorOne").toggleClass("show");
@@ -143,28 +143,6 @@ $(document).on("click", "#c-listitems-regulatorTwo .cont-modalbootstrap__form--c
   $("#SelectedItem-inputfakeselRegTwo").attr("regulartwo", $(this).attr("regulartwo"));
   $("#SelectedItem-inputfakeselRegTwo").attr("idtregulartwo", $(this).attr("id"));
 });
-// ------------ MOSTRAR/OCULTAR DE ACUERDO AL CHECKBOX SELECCIONADO - MONTO ADICIONAL(AGREGAR)
-$(document).on("click","#chck_ammadditional",function(e){
-  if($(this).is(":checked")){
-    $("#sel-optsAmountAdditionalMore").html(`
-      <div class="cont-modalbootstrap__form--control">
-        <label for="amountadditionalProduct" class="cont-modalbootstrap__form--control__label">Precio adicional</label>
-        <input id="amountadditionalProduct" class="cont-modalbootstrap__form--control__input" name="amountadditionalProduct" type="text" data-valformat="withtwodecimals" maxlength="300" placeholder="Ingrese el monto del producto" step="0.01">
-        <span id="msgErrNounAmountAdditionalProduct"></span>
-      </div>
-    `);
-    $(this).val("SI");
-    $("#txt-chck_ammadditional").text("SI");
-    $("#txt-chck_ammadditional").addClass("active");
-  }else{
-    $("#sel-optsAmountAdditionalMore").html("");
-    $(this).val("NO");
-    $("#txt-chck_ammadditional").text("NO");
-    $("#txt-chck_ammadditional").removeClass("active");
-  }
-});
-// ------------ VALIDAR SI EL MONTO ESTÁ VACÍO
-$(document).on("keyup", "#amountadditionalProduct", function(){ ($(this).val() != 0) ? $("#msgErrNounAmountAdditionalProduct").text("") : $("#msgErrNounAmountAdditionalProduct").text("Debe colocar un monto");});
 // ------------ LISTAR LOS IMPUESTOS ADICIONALES - AGREGAR 1
 $(document).on("click","#chck_taxadditional",function(e){
   if($(this).is(":checked")){
@@ -225,18 +203,20 @@ $(document).on('submit', '#form-add-product', function(e){
       ($("#SelectedItem-inputfakeselRegOne").attr("idtregularOne")) ? $("#msgErrNounReguladorOne").text("") : $("#msgErrNounReguladorOne").text("Debe seleccionar un regulador");
       ($("#SelectedItem-inputfakeselRegTwo").attr("idtregulartwo")) ? $("#msgErrNounReguladorTwo").text("") : $("#msgErrNounReguladorTwo").text("Debe seleccionar un regulador");
 
-      if($("#chck_regulated").is(":checked") && $("#chck_ammadditional").is(":checked")){
-        ($("#amountadditionalProduct").val() != 0 && $("#amountadditionalProduct").val() != "") ? $("#msgErrNounAmountAdditionalProduct").text("") : $("#msgErrNounAmountAdditionalProduct").text("Debe colocar un monto");
+      if($("#chck_regulated").is(":checked")){
+        
+        ($("#SelectedItem-inputfakeselRegOne").attr("idtregularOne")) ? $("#msgErrNounReguladorOne").text("") : $("#msgErrNounReguladorOne").text("Debe seleccionar un regulador");
+        ($("#SelectedItem-inputfakeselRegTwo").attr("idtregulartwo")) ? $("#msgErrNounReguladorTwo").text("") : $("#msgErrNounReguladorTwo").text("Debe seleccionar un regulador");
+        
+        if($("#chck_regulated").is(":checked") && $("#chck_taxadditional").is(":checked")){
 
-        if($("#chck_regulated").is(":checked") && $("#chck_ammadditional").is(":checked") && $("#chck_taxadditional").is(":checked")){
           ($("#SelectedItem-inputfakeselRegOne").attr("idtregularOne")) ? $("#msgErrNounReguladorOne").text("") : $("#msgErrNounReguladorOne").text("Debe seleccionar un regulador");
           ($("#SelectedItem-inputfakeselRegTwo").attr("idtregulartwo")) ? $("#msgErrNounReguladorTwo").text("") : $("#msgErrNounReguladorTwo").text("Debe seleccionar un regulador");
-          ($("#amountadditionalProduct").val() != 0 || $("#amountadditionalProduct").val() != "") ? $("#msgErrNounAmountAdditionalProduct").text("") : $("#msgErrNounAmountAdditionalProduct").text("Debe colocar un monto");
           ($("#taxoneadditional").val() == 0 || $("#taxoneadditional").val() == "") ? $("#msgErrNounTaxOneAdditionalProduct").text("Debe colocar un monto") : $("#msgErrNounTaxOneAdditionalProduct").text("");
           ($("#taxtwoadditional").val() == 0 || $("#taxtwoadditional").val() == "") ? $("#msgErrNounTaxTwoAdditionalProduct").text("Debe colocar un monto") : $("#msgErrNounTaxTwoAdditionalProduct").text("");
           ($("#taxthreeadditional").val() == 0 || $("#taxthreeadditional").val() == "") ? $("#msgErrNounTaxThreeAdditionalProduct").text("Debe colocar un monto") : $("#msgErrNounTaxThreeAdditionalProduct").text("");
 
-          if(($("#SelectedItem-inputfakeselRegOne").attr("idtregularOne") || $("#SelectedItem-inputfakeselRegTwo").attr("idtregulartwo")) && ($("#amountadditionalProduct").val() != 0 && $("#amountadditionalProduct").val() != "") && (($("#taxoneadditional").val() != 0 || $("#taxoneadditional").val() != "") && ($("#taxtwoadditional").val() != 0 || $("#taxtwoadditional").val() != "") && ($("#taxthreeadditional").val() != 0 || $("#taxthreeadditional").val() != ""))){
+          if(($("#SelectedItem-inputfakeselRegOne").attr("idtregularOne") || $("#SelectedItem-inputfakeselRegTwo").attr("idtregulartwo")) && (($("#taxoneadditional").val() != 0 || $("#taxoneadditional").val() != "") && ($("#taxtwoadditional").val() != 0 || $("#taxtwoadditional").val() != "") && ($("#taxthreeadditional").val() != 0 || $("#taxthreeadditional").val() != ""))){
             var formdata = new FormData();
             formdata.append("name", $("#nameProduct").val());
             formdata.append("sel_regulated", $("#chck_regulated").val());
@@ -245,7 +225,6 @@ $(document).on('submit', '#form-add-product', function(e){
             formdata.append("sel_fichatecycertconform", $("#chck_fichatecycertconform").val());
             formdata.append("id_regulatorone", ($("#SelectedItem-inputfakeselRegOne").attr("idtregularOne") || $("#SelectedItem-inputfakeselRegOne").attr("idtregularOne") != undefined) ? $("#SelectedItem-inputfakeselRegOne").attr("idtregularOne") : 0);
             formdata.append("id_regulatortwo", ($("#SelectedItem-inputfakeselRegTwo").attr("idtregulartwo") || $("#SelectedItem-inputfakeselRegTwo").attr("idtregulartwo") != undefined) ? $("#SelectedItem-inputfakeselRegTwo").attr("idtregulartwo") : 0);
-            formdata.append("amount_additional", $("#amountadditionalProduct").val());
             formdata.append("ad_valoren", $("#taxoneadditional").val());
             formdata.append("impuesto_selectivo", $("#taxtwoadditional").val());
             formdata.append("antidumping", $("#taxthreeadditional").val());
@@ -298,8 +277,7 @@ $(document).on('submit', '#form-add-product', function(e){
             });
           }
         }else{
-          if(($("#SelectedItem-inputfakeselRegOne").attr("idtregularOne") || $("#SelectedItem-inputfakeselRegTwo").attr("idtregulartwo")) && 
-            ($("#amountadditionalProduct").val() != 0 && $("#amountadditionalProduct").val() != "")){
+          if($("#SelectedItem-inputfakeselRegOne").attr("idtregularOne") || $("#SelectedItem-inputfakeselRegTwo").attr("idtregulartwo")){
             var formdata = new FormData();
             formdata.append("name", $("#nameProduct").val());
             formdata.append("sel_regulated", $("#chck_regulated").val());
@@ -308,7 +286,6 @@ $(document).on('submit', '#form-add-product', function(e){
             formdata.append("sel_fichatecycertconform", $("#chck_fichatecycertconform").val());
             formdata.append("id_regulatorone", ($("#SelectedItem-inputfakeselRegOne").attr("idtregularOne") || $("#SelectedItem-inputfakeselRegOne").attr("idtregularOne") != undefined) ? $("#SelectedItem-inputfakeselRegOne").attr("idtregularOne") : 0);
             formdata.append("id_regulatortwo", ($("#SelectedItem-inputfakeselRegTwo").attr("idtregulartwo") || $("#SelectedItem-inputfakeselRegTwo").attr("idtregulartwo") != undefined) ? $("#SelectedItem-inputfakeselRegTwo").attr("idtregulartwo") : 0);
-            formdata.append("amount_additional", $("#amountadditionalProduct").val());
             formdata.append("ad_valoren", $("#taxoneadditional").val());
             formdata.append("impuesto_selectivo", $("#taxtwoadditional").val());
             formdata.append("antidumping", $("#taxthreeadditional").val());
@@ -371,7 +348,6 @@ $(document).on('submit', '#form-add-product', function(e){
           formdata.append("sel_fichatecycertconform", $("#chck_fichatecycertconform").val());
           formdata.append("id_regulatorone", ($("#SelectedItem-inputfakeselRegOne").attr("idtregularOne") || $("#SelectedItem-inputfakeselRegOne").attr("idtregularOne") != undefined) ? $("#SelectedItem-inputfakeselRegOne").attr("idtregularOne") : 0);
           formdata.append("id_regulatortwo", ($("#SelectedItem-inputfakeselRegTwo").attr("idtregulartwo") || $("#SelectedItem-inputfakeselRegTwo").attr("idtregulartwo") != undefined) ? $("#SelectedItem-inputfakeselRegTwo").attr("idtregulartwo") : 0);
-          formdata.append("amount_additional", $("#amountadditionalProduct").val());
           formdata.append("ad_valoren", $("#taxoneadditional").val());
           formdata.append("impuesto_selectivo", $("#taxtwoadditional").val());
           formdata.append("antidumping", $("#taxthreeadditional").val());
@@ -433,7 +409,6 @@ $(document).on('submit', '#form-add-product', function(e){
       formdata.append("sel_fichatecycertconform", $("#chck_fichatecycertconform").val());
       formdata.append("id_regulatorone", ($("#SelectedItem-inputfakeselRegOne").attr("idtregularOne") || $("#SelectedItem-inputfakeselRegOne").attr("idtregularOne") != undefined) ? $("#SelectedItem-inputfakeselRegOne").attr("idtregularOne") : 0);
       formdata.append("id_regulatortwo", ($("#SelectedItem-inputfakeselRegTwo").attr("idtregulartwo") || $("#SelectedItem-inputfakeselRegTwo").attr("idtregulartwo") != undefined) ? $("#SelectedItem-inputfakeselRegTwo").attr("idtregulartwo") : 0);
-      formdata.append("amount_additional", $("#amountadditionalProduct").val());
       formdata.append("ad_valoren", $("#taxoneadditional").val());
       formdata.append("impuesto_selectivo", $("#taxtwoadditional").val());
       formdata.append("antidumping", $("#taxthreeadditional").val());
@@ -487,7 +462,7 @@ $(document).on('submit', '#form-add-product', function(e){
     });
   }
 });
-// // ------------ LISTAR PRODUCTOS
+// ------------ LISTAR PRODUCTOS
 var listAllProducts = () => {
   var tblClients = $("#tbl_products").DataTable({
     "destroy": true,
@@ -505,7 +480,6 @@ var listAllProducts = () => {
         }
       },
       {"data":"name_prod"},
-      {"data":"sel_regulated"},
       {"data":"reguladorOne",
         "render": function ( data, type, row ){
           var nounRegOne = "";
@@ -527,7 +501,6 @@ var listAllProducts = () => {
           return nounOneAndTwoRegs;
         }
       },
-      {"data":"montoadd"},
       {"data":"ad_valoren"},
       {"data":"impuesto_selectivo"},
       {"data":"antidumping"},
@@ -547,14 +520,12 @@ var listAllProducts = () => {
                data-id="${row.id_prod}"
                data-name="${row.name_prod}"
                data-sel_regulated="${row.sel_regulated}"
-               data-sel_ammadditional="${row.sel_ammadditional}"
                data-sel_taxadditional="${row.sel_taxadditional}"
                data-sel_fichatecycertconform="${row.sel_fichatecycertconform}"
                data-idregulator="${row.id_regulator}"
                data-idregulatortwo="${row.id_regulator_two}"
                data-regulatorone="${nounRegOne}"
                data-regulatortwo="${nounRegTwo}"
-               data-amountadditional="${row.montoadd}"
                data-pricetadditional_one="${row.ad_valoren}"
                data-pricetadditional_two="${row.impuesto_selectivo}"
                data-pricetadditional_three="${row.antidumping}"
@@ -833,29 +804,6 @@ $(document).on("click","#chck_regulated-update",function(e){
     $("#sel-optsRegulatorsMoreUpdate").html("");
   }
 });
-// ------------ MONTO ADICIONAL - ACTUALIZAR
-$(document).on("click","#chck_ammadditional-update",function(e){
-  var upd_ammadditionalval = $("#required_ammountadditinalupdate").val();
-  if($(this).is(":checked")){
-    $("#sel-optsAmountAdditionalMoreUpdate").html(`
-      <div class="cont-modalbootstrapupdate__form--control">
-        <label for="amountadditionalProduct-update" class="cont-modalbootstrapupdate__form--control__label">Precio adicional</label>
-        <input id="amountadditionalProduct-update" class="cont-modalbootstrapupdate__form--control__input" name="amountadditionalProduct-update" type="text" data-valformat="withtwodecimals" maxlength="300" placeholder="Ingrese el monto del producto" step="0.01" value="${upd_ammadditionalval}">
-        <span id="msgErrNounAmountAdditionalProductUpdate"></span>
-      </div>
-    `);
-    $("#chck_ammadditional-update").attr("checked", "checked");
-    $("#chck_ammadditional-update").val("SI");
-    $("#txt-chck_ammadditional-update").text("SI");
-    $("#txt-chck_ammadditional-update").addClass("active");
-  }else{
-    $("#sel-optsAmountAdditionalMoreUpdate").html("");
-    $("#chck_ammadditional-update").attr("checked", false);
-    $("#chck_ammadditional-update").val("NO");
-    $("#txt-chck_ammadditional-update").text("NO");
-    $("#txt-chck_ammadditional-update").removeClass("active");
-  }
-});
 // ------------ IMPUESTOS ADICIONALES - ACTUALIZAR
 $(document).on("click","#chck_taxadditional-update",function(e){
   var upd_advalorenval = $("#required_advalorenupdate").val();
@@ -952,14 +900,12 @@ $(document).on('click', '.btn-update-detail', function(e){
       id: $(this).attr('data-id'),
       name: $(this).attr('data-name'),
       sel_regulated: $(this).attr('data-sel_regulated'),
-      sel_ammadditional: $(this).attr('data-sel_ammadditional'),
       sel_taxadditional: $(this).attr('data-sel_taxadditional'),
       sel_fichatecycertconform: $(this).attr('data-sel_fichatecycertconform'),
       idregulator: $(this).attr('data-idregulator'),
       idregulatortwo: $(this).attr('data-idregulatortwo'),
       regulatorone: $(this).attr('data-regulatorone'),
       regulatortwo: $(this).attr('data-regulatortwo'),
-      amountadditional: $(this).attr('data-amountadditional'),
       pricetadditional_one: $(this).attr('data-pricetadditional_one'),
       pricetadditional_two: $(this).attr('data-pricetadditional_two'),
       pricetadditional_three: $(this).attr('data-pricetadditional_three'),
@@ -969,14 +915,14 @@ $(document).on('click', '.btn-update-detail', function(e){
     $('#idupdate-product').val(item_data['id']);
     $('#name-update').val(item_data['name']);
     $('#required_regsoptupdate').val(item_data['sel_regulated']);
-    $('#required_ammadditionalupdate').val(item_data['sel_ammadditional']);
+    // $('#required_ammadditionalupdate').val(item_data['sel_ammadditional']);
     $('#required_taxadditionalupdate').val(item_data['sel_taxadditional']);
     $("#required_sel_fichatecycertconform").val(item_data['sel_fichatecycertconform']);
     $("#required_idregulatorupdate").val(item_data['idregulator']);
     $("#required_regulatorupdate").val(item_data['regulatorone']);
     $("#required_idregulator_twoupdate").val(item_data['idregulatortwo']);
     $("#required_regulator_twoupdate").val(item_data['regulatortwo']);
-    $("#required_ammountadditinalupdate").val(item_data['amountadditional']);
+    // $("#required_ammountadditinalupdate").val(item_data['amountadditional']);
     $("#required_advalorenupdate").val(item_data['pricetadditional_one']);
     $("#required_impuestoselectivoupdate").val(item_data['pricetadditional_two']);
     $("#required_antidumpingupdate").val(item_data['pricetadditional_three']);
@@ -1161,7 +1107,7 @@ $(document).on("click", "#c-listitems-regulatorTwoUpdate .cont-modalbootstrapupd
   $("#SelectedItem-inputfakeselRegTwoUpdate").attr("idtregulartwo", $(this).attr("id"));
 });
 // ------------ VALIDAR SI EL NOMBRE DEL PRODUCTO ESTÁ VACÍO - ACTUALIZAR
-$(document).on("keyup", "#name-update", function(){($(this).val() != 0 || $(this).val() != "") ? $("#msgErrNounNameProductUpdate").text("") : $("#msgErrNounNameProductUpdate").text("Debes ingresar un nombre");});
+$(document).on("keyup keypress", "#name-update", function(e){(e.target.value != 0 || e.target.value != "") ? $("#msgErrNounNameProductUpdate").text("") : $("#msgErrNounNameProductUpdate").text("Debes ingresar un nombre");});
 // ------------ ACTUALIZAR PRODUCTO POR ID
 $(document).on('submit', '#form-update-product', function(e){
   e.preventDefault();
@@ -1170,12 +1116,10 @@ $(document).on('submit', '#form-update-product', function(e){
     var formdata = new FormData();
     formdata.append("name", $('#name-update').val());
     formdata.append("sel_regulated", $("#chck_regulated-update").val());
-    formdata.append("sel_ammadditional", $("#chck_ammadditional-update").val());
     formdata.append("sel_taxadditional", $("#chck_taxadditional-update").val());
     formdata.append("sel_fichatecycertconform", $("#chck_fichatecycertconform-update").val());
     formdata.append("id_regulatorone", ($("#SelectedItem-inputfakeselRegOneUpdate").attr("idtregularone") != undefined && $("#SelectedItem-inputfakeselRegOneUpdate").attr("idtregularone") != null) ? $("#SelectedItem-inputfakeselRegOneUpdate").attr("idtregularone") : 0);
     formdata.append("id_regulatortwo", ($("#SelectedItem-inputfakeselRegTwoUpdate").attr("idtregulartwo") != undefined && $("#SelectedItem-inputfakeselRegTwoUpdate").attr("idtregulartwo") != null) ? $("#SelectedItem-inputfakeselRegTwoUpdate").attr("idtregulartwo") : 0);
-    formdata.append("amount_additional", ($("#amountadditionalProduct-update").val() != undefined && $("#amountadditionalProduct-update").val() != 0 && $("#amountadditionalProduct-update").val() != "") ? $("#amountadditionalProduct-update").val() : 0);
     formdata.append("ad_valoren", ($("#taxoneadditional-update").val() != undefined && $("#taxoneadditional-update").val() != 0 && $("#taxoneadditional-update").val() != "") ? $("#taxoneadditional-update").val() : 0);
     formdata.append("impuesto_selectivo", ($("#taxtwoadditional-update").val() != undefined && $("#taxtwoadditional-update").val() != 0 && $("#taxtwoadditional-update").val() != "") ? $("#taxtwoadditional-update").val() : 0);
     formdata.append("antidumping", ($("#taxthreeadditional-update").val() != undefined && $("#taxthreeadditional-update").val() != 0 && $("#taxthreeadditional-update").val() != "") ? $("#taxthreeadditional-update").val() : 0);

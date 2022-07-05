@@ -9,20 +9,20 @@ if(!isset($_SESSION['admin_camel'])){
 <!DOCTYPE html>
 <html lang="es">
 <head>
-	<?php require_once 'includes/adm-header-index.php'; ?>
+	<?php require_once 'includes/adm-header-index.php';?>
 	<title>Admin - Productos</title>
 	<!-- INCLUIR SWEETALERTS2 -->
 	<link rel="stylesheet" href="../node_modules/sweetalert2/dist/sweetalert2.min.css">
 	<script type="text/javascript" src="../node_modules/sweetalert2/dist/sweetalert2.all.min.js"></script>
 	<!-- INCLUIR DATATABLES -->
-	<link rel="stylesheet" type="text/css" href="<?= $urlCli; ?>views/js/plugins/DataTables/datatables.min.css">
-	<script type="text/javascript" charset="utf8" src="<?= $urlCli; ?>views/js/plugins/DataTables/datatables.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="<?= $urlCli;?>views/js/plugins/DataTables/datatables.min.css">
+	<script type="text/javascript" charset="utf8" src="<?= $urlCli;?>views/js/plugins/DataTables/datatables.min.js"></script>
 </head>
 <body>
 	<div id="dash-contT">
-		<?php require_once 'includes/adm-sidebar-left.php'; ?>
+		<?php require_once 'includes/adm-sidebar-left.php';?>
 		<main id="main-dashCamel">
-			<?php require_once 'includes/adm-header-top.php'; ?>
+			<?php require_once 'includes/adm-header-top.php';?>
 			<div class="cont-dashCamel">
 				<div class="box-window-border">
 					<div class="cont-dashCamel__addtitle">
@@ -35,9 +35,7 @@ if(!isset($_SESSION['admin_camel'])){
 								<tr>
 									<th>ID</th>
 									<th>Nombre</th>
-									<th>Regula</th>
 									<th>Reguladores</th>
-									<th>M. Adicional</th>
 									<th>Ad-valoren</th>
 									<th>Impuesto Selecctivo</th>
 									<th>ANTIDUMPING</th>
@@ -79,19 +77,6 @@ if(!isset($_SESSION['admin_camel'])){
 						        		</div>
 						        	</div>
 						        	<div id="sel-optsRegulatorsMore"></div>
-						        	<div class="cont-modalbootstrap__form__cControlSwitch">
-						        		<span for="" class="cont-modalbootstrap__form__cControlSwitch__label">Monto adicional</span>
-						        		<div class="cont-modalbootstrap__form__cControlSwitch__cSwitch">
-						        			<div class="cont-modalbootstrap__form__cControlSwitch__cSwitch__c">
-						        				<div class="cont-modalbootstrap__form__cControlSwitch__cSwitch__c__chckCont">
-						        					<input type="checkbox" id="chck_ammadditional" class="cont-modalbootstrap__form__cControlSwitch__cSwitch__c__chckCont__input" name="activation" value="NO">
-						        					<label for="chck_ammadditional" class="cont-modalbootstrap__form__cControlSwitch__cSwitch__c__chckCont__label"></label>
-						        				</div>
-						        			</div>
-						        			<label for="" class="cont-modalbootstrap__form__cControlSwitch__cSwitch__label" id="txt-chck_ammadditional">NO</label>
-						        		</div>
-						        	</div>
-						        	<div id="sel-optsAmountAdditionalMore"></div>
 						        	<div class="cont-modalbootstrap__form__cControlSwitch">
 						        		<span for="" class="cont-modalbootstrap__form__cControlSwitch__label">Impuesto adicional</span>
 						        		<div class="cont-modalbootstrap__form__cControlSwitch__cSwitch">
@@ -145,14 +130,12 @@ if(!isset($_SESSION['admin_camel'])){
 						        			<span>
 									        	<input type="hidden" id="idupdate-product">
 									        	<input type="hidden" id="required_regsoptupdate">
-									        	<input type="hidden" id="required_ammadditionalupdate">
 									        	<input type="hidden" id="required_taxadditionalupdate">
 									        	<input type="hidden" id="required_sel_fichatecycertconform">
 									        	<input type="hidden" id="required_idregulatorupdate">
 									        	<input type="hidden" id="required_regulatorupdate">
 									        	<input type="hidden" id="required_idregulator_twoupdate">
 									        	<input type="hidden" id="required_regulator_twoupdate">
-									        	<input type="hidden" id="required_ammountadditinalupdate">
 									        	<input type="hidden" id="required_advalorenupdate">
 									        	<input type="hidden" id="required_impuestoselectivoupdate">
 									        	<input type="hidden" id="required_antidumpingupdate">
@@ -178,19 +161,6 @@ if(!isset($_SESSION['admin_camel'])){
 						        		</div>
 						        	</div>
 						        	<div id="sel-optsRegulatorsMoreUpdate"></div>
-						        	<div class="cont-modalbootstrapupdate__form__cControlSwitch">
-						        		<span for="" class="cont-modalbootstrapupdate__form__cControlSwitch__label">Monto adicional</span>
-						        		<div class="cont-modalbootstrapupdate__form__cControlSwitch__cSwitch">
-						        			<div class="cont-modalbootstrapupdate__form__cControlSwitch__cSwitch__c">
-						        				<div class="cont-modalbootstrapupdate__form__cControlSwitch__cSwitch__c__chckCont">
-						        					<input type="checkbox" id="chck_ammadditional-update" class="cont-modalbootstrapupdate__form__cControlSwitch__cSwitch__c__chckCont__input" name="activation" value="NO">
-						        					<label for="chck_ammadditional-update" class="cont-modalbootstrapupdate__form__cControlSwitch__cSwitch__c__chckCont__label"></label>
-						        				</div>
-						        			</div>
-						        			<label for="" class="cont-modalbootstrapupdate__form__cControlSwitch__cSwitch__label" id="txt-chck_ammadditional-update">NO</label>
-						        		</div>
-						        	</div>
-						        	<div id="sel-optsAmountAdditionalMoreUpdate"></div>
 						        	<div class="cont-modalbootstrapupdate__form__cControlSwitch">
 						        		<span for="" class="cont-modalbootstrapupdate__form__cControlSwitch__label">Impuesto adicional</span>
 						        		<div class="cont-modalbootstrapupdate__form__cControlSwitch__cSwitch">
@@ -256,7 +226,7 @@ if(!isset($_SESSION['admin_camel'])){
 			</div>
 		</main>
 	</div>
-	<script type="text/javascript" src="<?= $url ?>js/main.js"></script>
-	<script type="text/javascript" src="<?= $url ?>js/actions_pages/products.js"></script>
+	<script type="text/javascript" src="<?= $url;?>js/main.js"></script>
+	<script type="text/javascript" src="<?= $url;?>js/actions_pages/products.js"></script>
 </body>
 </html>
