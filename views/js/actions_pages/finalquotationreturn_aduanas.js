@@ -225,7 +225,7 @@ $(document).ready(function(){
 	  		// VALIDACIÓN SEGURO EXPLÍCITO
 	  		if(v_frqexplinsur != 0 && v_frqexplinsur > 0){
 	  			final_expinsure = "SI";
-	  			finalRoundinsurance = twodecimals(v_frqexplinsur);
+	  			finalRoundinsurance = parseFloat(twodecimals(v_frqexplinsur));
 	  		}else{
 	  			final_expinsure = "NO";
 		  		if(totalfinalvaluefob > merchandiseValFixed){
