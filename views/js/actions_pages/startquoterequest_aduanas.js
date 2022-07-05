@@ -913,6 +913,7 @@ $(document).on("click", "#btn-NextStepToSelOptResultExp", function(){
             <input type="hidden" value="" id="val-ammtthxvatwo" name="val-ammtthxvatwopcatg" tabindex="-1" width="0" height="0" autocomplete="off" spellcheck="false" f-hidden="aria-hidden" class="n-val-sd">
             <input type="hidden" value="" id="val-ammtthxvathree" name="val-ammtthxvathreepcatg" tabindex="-1" width="0" height="0" autocomplete="off" spellcheck="false" f-hidden="aria-hidden" class="n-val-sd">
             <input type="hidden" value="" id="val-ftecycertconform" name="val-ftecycertconformpcatg" tabindex="-1" width="0" height="0" autocomplete="off" spellcheck="false" f-hidden="aria-hidden" class="n-val-sd">
+            <input type="hidden" value="" id="val-freqinsurancesel" name="val-freqinsusel" tabindex="-1" width="0" height="0" autocomplete="off" spellcheck="false" f-hidden="aria-hidden" class="n-val-sd">
           </span>
         </span>
       </div>
@@ -1457,6 +1458,7 @@ $(document).on("click", "#btn-NextStepTochargedata", function(){
                 <input type="hidden" value="" id="val-ammtthxvatwo" name="val-ammtthxvatwopcatg" tabindex="-1" width="0" height="0" autocomplete="off" spellcheck="false" f-hidden="aria-hidden" class="n-val-sd">
                 <input type="hidden" value="" id="val-ammtthxvathree" name="val-ammtthxvathreepcatg" tabindex="-1" width="0" height="0" autocomplete="off" spellcheck="false" f-hidden="aria-hidden" class="n-val-sd">
                 <input type="hidden" value="" id="val-ftecycertconform" name="val-ftecycertconformpcatg" tabindex="-1" width="0" height="0" autocomplete="off" spellcheck="false" f-hidden="aria-hidden" class="n-val-sd">
+                <input type="hidden" value="" id="val-freqinsurancesel" name="val-freqinsusel" tabindex="-1" width="0" height="0" autocomplete="off" spellcheck="false" f-hidden="aria-hidden" class="n-val-sd">
               </span>
             </span>
           </div>
@@ -1539,6 +1541,7 @@ $(document).on("click", "#btn-NextStepTochargedata", function(){
                 <input type="hidden" value="" id="val-ammtthxvatwo" name="val-ammtthxvatwopcatg" tabindex="-1" width="0" height="0" autocomplete="off" spellcheck="false" f-hidden="aria-hidden" class="n-val-sd">
                 <input type="hidden" value="" id="val-ammtthxvathree" name="val-ammtthxvathreepcatg" tabindex="-1" width="0" height="0" autocomplete="off" spellcheck="false" f-hidden="aria-hidden" class="n-val-sd">
                 <input type="hidden" value="" id="val-ftecycertconform" name="val-ftecycertconformpcatg" tabindex="-1" width="0" height="0" autocomplete="off" spellcheck="false" f-hidden="aria-hidden" class="n-val-sd">
+                <input type="hidden" value="" id="val-freqinsurancesel" name="val-freqinsusel" tabindex="-1" width="0" height="0" autocomplete="off" spellcheck="false" f-hidden="aria-hidden" class="n-val-sd">
               </span>
             </span>
           </div>
@@ -1825,8 +1828,10 @@ $(document).on("click", "#chck-importpreview", function(){
 // ------------ SWITCH DE "SU PRODUCTO POSEE SEGURO"
 $(document).on("click","#chck-reqinsurance",function(){
   if($(this).is(":checked")){
+    $("#val-freqinsurancesel").val("SI");
     $("#cnt-modalFormReqInsurance").add($(".cnt-modalFormReqInsurance--c")).addClass("show");
   }else{
+    $("#val-freqinsurancesel").val("NO");
     $("#cnt-modalFormReqInsurance").add($(".cnt-modalFormReqInsurance--c")).removeClass("show");
   }
 });
@@ -1835,6 +1840,7 @@ $(document).on("click","#btn-closeiconFormNotInsurance",function(){
   let val = $("#v_valtoreqinsurance").val();
   if(val == "" || val == 0 || val == " USD" || val == ".00" || val == 0.00){
     $("#chck-reqinsurance").prop("checked", false);
+    $("#val-freqinsurancesel").val("NO");
   }
   $("#cnt-modalFormReqInsurance").add($(".cnt-modalFormReqInsurance--c")).removeClass("show");
 });
@@ -1846,7 +1852,9 @@ $(document).on("keyup keypress","#v_valtoreqinsurance",function(e){
   // ------------ VALIDAR SI CONTIENE ALGÚN VALOR NULO O 0 
   if(valRegZero == "" || valRegZero == 0 || $(this).val() == " USD" || $(this).val() == ".00" || $(this).val() == 0.00){
     $("#ct-modcontbtnchangipt").html(``);
+    $("#val-freqinsurancesel").val("NO");
   }else{
+    $("#val-freqinsurancesel").val("SI");
     $("#ct-modcontbtnchangipt").html(`
     <a href="javascript:void(0);" class="cnt-modalFormNotInsurance--c--cForm--cBtnResolNotInsurance--action" id="btn-ifreqinsurancelink">
       <span>Seguir</span>

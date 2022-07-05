@@ -51,6 +51,7 @@ $(document).ready(function(){
 	var encrypt_val_plcpickuprateprov = $("#v-plcpickuprateprov").val(encryptValuesIpts($("#v-plcpickuprateprov").val()));
 	var encrypt_v_validdesde = $("#v_datevaliddesde").val(encryptValuesIpts($("#v_datevaliddesde").val()));
 	var encrypt_v_validhasta = $("#v_datevalidhasta").val(encryptValuesIpts($("#v_datevalidhasta").val()));
+	var encrypt_v_freqinsusel = $("#v_freqinsusel").val(encryptValuesIpts($("#v_freqinsusel").val()));
 	var encrypt_v_frqexplinsur = $("#v_frqexplinsur").val(encryptValuesIpts($("#v_frqexplinsur").val()));
 	var encrypt_v_fprevimports = $("#v_fprevimports").val(encryptValuesIpts($("#v_fprevimports").val()));
 	var encrypt_v_floadtypeope = $("#v_floadtypeope").val(encryptValuesIpts($("#v_floadtypeope").val()));
@@ -78,6 +79,7 @@ $(document).ready(function(){
 	var v_floadTypeTranport = decryptValuesIpts(encrypt_v_floadTypeTranport.val());
 	var v_validdesde = decryptValuesIpts(encrypt_v_validdesde.val());
 	var v_validhasta = decryptValuesIpts(encrypt_v_validhasta.val());
+	var v_freqinsusel = decryptValuesIpts(encrypt_v_freqinsusel.val());
 	var v_frqexplinsur = decryptValuesIpts(encrypt_v_frqexplinsur.val()); // SEGURO EXPLÍCITO
 	var v_fprevimports = decryptValuesIpts(encrypt_v_fprevimports.val());
 	var v_floadtypeope = decryptValuesIpts(encrypt_v_floadtypeope.val());
@@ -162,7 +164,7 @@ $(document).ready(function(){
 	var initvalinsurance = 0;
 	var finalinsurance = 0;
 	var finalRoundinsurance = 0;
-	var final_expinsure = 0;
+	var final_expinsure = "";
 	// ------------ CÁLCULO DE IMPUESTOS 
 	var partInteger_Tax = 0;
 	var partDecimal_Tax = 0;
@@ -223,7 +225,7 @@ $(document).ready(function(){
 	  		var merchandiseValFixed = parseFloat(r[0].data_value); // VALOR FIJO (FOB)
 
 	  		// VALIDACIÓN SEGURO EXPLÍCITO
-	  		if(v_frqexplinsur != 0 && v_frqexplinsur > 0){
+	  		if(v_freqinsusel == "SI" && v_frqexplinsur != 0 && v_frqexplinsur > 0){
 	  			final_expinsure = "SI";
 	  			finalRoundinsurance = parseFloat(twodecimals(v_frqexplinsur));
 	  		}else{
