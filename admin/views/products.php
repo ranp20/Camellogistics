@@ -95,7 +95,7 @@ if(!isset($_SESSION['admin_camel'])){
 						        		<div class="cont-modalbootstrap__form__cControlSwitch__cSwitch">
 						        			<div class="cont-modalbootstrap__form__cControlSwitch__cSwitch__c">
 						        				<div class="cont-modalbootstrap__form__cControlSwitch__cSwitch__c__chckCont">
-						        					<input type="checkbox" id="chck_fichatecycertconform" class="cont-modalbootstrap__form__cControlSwitch__cSwitch__c__chckCont__input" data-fichatecycertconform="" data-fichatecycertconformsend="" name="activation" value="NO">
+						        					<input type="checkbox" id="chck_fichatecycertconform" class="cont-modalbootstrap__form__cControlSwitch__cSwitch__c__chckCont__input" data-fichacert-min="" data-fichacert-max="" data-fichacert-quantity="" data-fichacert-min-send="" data-fichacert-max-send="" data-fichacert-quantity-send="" name="activation" value="NO">
 						        					<label for="chck_fichatecycertconform" class="cont-modalbootstrap__form__cControlSwitch__cSwitch__c__chckCont__label"></label>
 						        				</div>
 						        			</div>
@@ -139,7 +139,6 @@ if(!isset($_SESSION['admin_camel'])){
 									        	<input type="hidden" id="required_advalorenupdate">
 									        	<input type="hidden" id="required_impuestoselectivoupdate">
 									        	<input type="hidden" id="required_antidumpingupdate">
-									        	<input type="hidden" id="required_fichatecycertconform">
 						        			</span>
 						        		</span>
 						        	</span>
@@ -179,7 +178,7 @@ if(!isset($_SESSION['admin_camel'])){
 						        		<div class="cont-modalbootstrapupdate__form__cControlSwitch__cSwitch">
 						        			<div class="cont-modalbootstrapupdate__form__cControlSwitch__cSwitch__c">
 						        				<div class="cont-modalbootstrapupdate__form__cControlSwitch__cSwitch__c__chckCont">
-						        					<input type="checkbox" id="chck_fichatecycertconform-update" class="cont-modalbootstrapupdate__form__cControlSwitch__cSwitch__c__chckCont__input" data-fichatecycertconform="" data-fichatecycertconformsend="" name="activation" value="NO">
+						        					<input type="checkbox" id="chck_fichatecycertconform-update" class="cont-modalbootstrapupdate__form__cControlSwitch__cSwitch__c__chckCont__input" data-fichacert-min="" data-fichacert-max="" data-fichacert-quantity="" data-fichacert-min-send="" data-fichacert-max-send="" data-fichacert-quantity-send="" name="activation" value="NO">
 						        					<label for="chck_fichatecycertconform-update" class="cont-modalbootstrapupdate__form__cControlSwitch__cSwitch__c__chckCont__label"></label>
 						        				</div>
 						        			</div>

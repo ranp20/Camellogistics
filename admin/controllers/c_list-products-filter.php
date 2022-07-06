@@ -14,7 +14,9 @@
 						tbp.ad_valoren as 'ad_valoren',
 						tbp.impuesto_selectivo as 'impuesto_selectivo',
 						tbp.antidumping as 'antidumping',
-						tbp.fichatecycertconform as 'fichatecycertconform'
+						tbp.fichacert_min,
+						tbp.fichacert_max,
+						tbp.fichacert_quantity
 					FROM tbl_products tbp ORDER BY tbp.id DESC";
 
 	require_once 'connection.php';

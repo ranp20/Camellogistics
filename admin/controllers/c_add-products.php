@@ -12,10 +12,12 @@ class Add_Products extends Connection{
 			"ad_valoren" => (isset($_POST['ad_valoren']) && $_POST['ad_valoren'] != "" && $_POST['ad_valoren'] != "undefined") ? $_POST['ad_valoren'] : 0,
 			"impuesto_selectivo" => (isset($_POST['impuesto_selectivo']) && $_POST['impuesto_selectivo'] != "" && $_POST['impuesto_selectivo'] != "undefined") ? $_POST['impuesto_selectivo'] : 0,
 			"antidumping" => (isset($_POST['antidumping']) && $_POST['antidumping'] != "" && $_POST['antidumping'] != "undefined") ? $_POST['antidumping'] : 0,
-			"fichatecycertconform" => (isset($_POST['fichatecycertconform']) && $_POST['fichatecycertconform'] != "" && $_POST['fichatecycertconform'] != "undefined") ? $_POST['fichatecycertconform'] : 0
+			"fichacert_min" => (isset($_POST['fichacert_min']) && $_POST['fichacert_min'] != "" && $_POST['fichacert_min'] != "undefined") ? $_POST['fichacert_min'] : 0,
+			"fichacert_max" => (isset($_POST['fichacert_max']) && $_POST['fichacert_max'] != "" && $_POST['fichacert_max'] != "undefined") ? $_POST['fichacert_max'] : 0,
+			"fichacert_quantity" => (isset($_POST['fichacert_quantity']) && $_POST['fichacert_quantity'] != "" && $_POST['fichacert_quantity'] != "undefined") ? $_POST['fichacert_quantity'] : 0
 		];
 		try{
-			$sql = "CALL sp_add_product(:name, :sel_regulated, :sel_taxadditional, :sel_fichatecycertconform, :id_regulator, :id_regulator_two, :ad_valoren, :impuesto_selectivo, :antidumping, :fichatecycertconform)";
+			$sql = "CALL sp_add_product(:name, :sel_regulated, :sel_taxadditional, :sel_fichatecycertconform, :id_regulator, :id_regulator_two, :ad_valoren, :impuesto_selectivo, :antidumping, :fichacert_min, :fichacert_max, :fichacert_quantity)";
 			$stm = $this->con->prepare($sql);
 			foreach ($arr_product as $key => $value) {
 				$stm->bindValue($key, $value);
