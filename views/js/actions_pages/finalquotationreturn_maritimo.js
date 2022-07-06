@@ -544,6 +544,7 @@ $(document).ready(function(){
 									formdata.append("f_type_transp", v_floadTypeTranport);
 									formdata.append("f_type_cont", v_loadtypecharge);
 									formdata.append("f_optgenfquot", v_foptgnfquotevl);
+									formdata.append("f_selinsuremerch", v_frselinsmerch);
 									formdata.append("u_n_document", "No especificado");
 									formdata.append("u_enterprise", "No especificado");
 									formdata.append("u_telephone", "No especificado");
@@ -823,6 +824,7 @@ $(document).ready(function(){
 									formdata.append("f_type_transp", v_floadTypeTranport);
 									formdata.append("f_type_cont", v_loadtypecharge);
 									formdata.append("f_optgenfquot", v_foptgnfquotevl);
+									formdata.append("f_selinsuremerch", v_frselinsmerch);
 									formdata.append("u_n_document", "No especificado");
 									formdata.append("u_enterprise", "No especificado");
 									formdata.append("u_telephone", "No especificado");

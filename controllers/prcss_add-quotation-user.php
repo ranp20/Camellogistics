@@ -23,6 +23,7 @@ if(isset($_POST) && !empty($_POST)){
 	  'f_type_cont' => $_POST['f_type_cont'],
 	  'f_optgenfquot' => $_POST['f_optgenfquot'],
 	  'f_expinsurance' => (!isset($_POST['f_expinsurance']) || $_POST['f_expinsurance'] == "") ? "NO" : $_POST['f_expinsurance'],
+	  'f_selinsuremerch' => (!isset($_POST['f_selinsuremerch']) || $_POST['f_selinsuremerch'] == "") ? "NO" : $_POST['f_selinsuremerch'],
 	  'u_n_document' => $_POST['u_n_document'],
 	  'u_enterprise' => $_POST['u_enterprise'],
 	  'u_telephone' => $_POST['u_telephone'],

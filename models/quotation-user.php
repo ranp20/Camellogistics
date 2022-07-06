@@ -46,6 +46,7 @@ class Quotation_user extends Connection
       :f_type_transp, 
       :f_type_cont,
       :f_optgenfquot,
+      :f_selinsuremerch,
       :f_expinsurance, 
       :u_n_document,
       :u_enterprise, 
