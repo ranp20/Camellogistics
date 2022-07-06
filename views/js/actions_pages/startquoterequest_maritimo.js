@@ -1720,7 +1720,7 @@ $(document).on("keyup keypress blur change", "#ipt-valQuantityAmAddProdNInterfac
   // ------------ VALIDAR SI CONTIENE ALGÚN VALOR NULO O 0 
   if(val == 0 || val == ""){
     $("#s-caseNextStepTomerchandisedata").html("");
-  }else if(val > 0 && val <= 10){
+  }else if(val > 0 && val < 10){
     if($("#ipt-valNameTypeProdNInterface-notMoreOpts").attr("idproduct") && $("#ipt-valPriceProdNInterface-notMoreOpts").val() != 0 && $("#ipt-valPriceProdNInterface-notMoreOpts").val() != ""){
       $("#s-caseNextStepTomerchandisedata").html(`
         <button type="submit" class="cont-MainCamelLog--c--contSteps--item--cBtnNextStep--btnR" id="btn-CalcQuoteToMerchandiseData-3">
@@ -1731,7 +1731,7 @@ $(document).on("keyup keypress blur change", "#ipt-valQuantityAmAddProdNInterfac
     }else{
       $("#s-caseNextStepTomerchandisedata").html("");
     }
-  }else if(val > 0 && val > 10){
+  }else if(val > 0 && val >= 10){
     if($("#ipt-valNameTypeProdNInterface-notMoreOpts").attr("idproduct") && $("#ipt-valPriceProdNInterface-notMoreOpts").val() != 0 && $("#ipt-valPriceProdNInterface-notMoreOpts").val() != ""){
       $("#s-caseNextStepTomerchandisedata").html(`
         <button type="submit" class="cont-MainCamelLog--c--contSteps--item--cBtnNextStep--btnR" id="btn-CalcQuoteToMerchandiseData-3">
@@ -2698,7 +2698,7 @@ $(document).on("keyup keypress", "#ipt-valQuantityAmAddProdNInterface", function
   $("#val-quantityProdsAmmAdd").val(val);
   if(val == 0 || val == ""){
     $("#s-caseNextStepTomerchandisedata").html("");
-  }else if(val > 0 && val <= 10){
+  }else if(val > 0 && val < 10){
     if($("#ipt-valNameTypeProdNInterface").val() != "" && $("#ipt-valNameTypeProdNInterface").val() != 0 && $("#ipt-valNameTypeProdNInterface").attr("idproduct") && $("#ipt-valNameTypeProdNInterface").attr("idproduct") != "" && $("#ipt-valNameTypeProdNInterface").attr("idproduct") != 0 && $("#ipt-valQuantityAmAddProdNInterface").val() != 0 && $("#ipt-valQuantityAmAddProdNInterface").val() != "" && $("#ipt-valPriceProdNInterface").val() != "" && $("#ipt-valPriceProdNInterface").val() != 0){
       $("#s-caseNextStepTomerchandisedata").html(`
         <button type="button" class="cont-MainCamelLog--c--contSteps--item--cBtnNextStep--btn" id="btn-NextStepTomerchandisedata">
@@ -2709,7 +2709,7 @@ $(document).on("keyup keypress", "#ipt-valQuantityAmAddProdNInterface", function
     }else{
       $("#s-caseNextStepTomerchandisedata").html("");
     }
-  }else if(val > 0 && val > 10){
+  }else if(val > 0 && val >= 10){
     if($("#ipt-valNameTypeProdNInterface").val() != "" && $("#ipt-valNameTypeProdNInterface").val() != 0 && $("#ipt-valNameTypeProdNInterface").attr("idproduct") && $("#ipt-valNameTypeProdNInterface").attr("idproduct") != "" && $("#ipt-valNameTypeProdNInterface").attr("idproduct") != 0 && $("#ipt-valQuantityAmAddProdNInterface").val() != 0 && $("#ipt-valQuantityAmAddProdNInterface").val() != "" && $("#ipt-valPriceProdNInterface").val() != "" && $("#ipt-valPriceProdNInterface").val() != 0){
       $("#s-caseNextStepTomerchandisedata").html(`
         <button type="button" class="cont-MainCamelLog--c--contSteps--item--cBtnNextStep--btn" id="btn-NextStepTomerchandisedata">
