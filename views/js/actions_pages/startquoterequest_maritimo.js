@@ -57,6 +57,12 @@ $(document).on("keyup", "input[data-valformat=withcomedecimal]", function(e){
   let val_formatNumber = val.toString().replace(/[^\d.]/g, "").replace(/^(\d*\.)(.*)\.(.*)$/, '$1$2$3').replace(/\.(\d{2})\d+/, '.$1').replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   $(this).val(val_formatNumber);
 });
+// ------------ FORMATO - SOLO VALORES ENTEROS Y SIN NEGATIVOS
+$(document).on("keyup keypress", "input[data-valformat=onlyintegers]", function(e){
+  let val = e.target.value;
+  let val_formatNumber = val.toString().replace(/[^\d]/g, "");
+  $(this).val(val_formatNumber);
+});
 // ------------ RETORNAR - PRIMERA LETRA EN MAYÚSCULA 
 function firstToUppercase(e){
   return e.charAt(0).toUpperCase() + e.slice(1);
@@ -125,9 +131,9 @@ function listPortOriginandDestiny(){
     contentType: 'application/x-www-form-urlencoded;charset=UTF-8',
     data: {idpaisportOrigin : ipt_idPortcountryOrigin, idportOrigin : ipt_idPortOrigin},
 	}).done((e) => {
-    var result = JSON.parse(e);
+    let r = JSON.parse(e);
 		// ------------ LISTAR LOS NOMBRES - PUERTO DE ORIGEN 
-    $.each(result, function(i, e){
+    $.each(r, function(i, e){
       tempOriginDestiny += `
         <div class="cont-MainCamelLog--c--contResumeCalc--item--cardStep">
           <div class="cont-MainCamelLog--c--contResumeCalc--item--cardStep--cNameFlag">
@@ -148,9 +154,8 @@ function listPortOriginandDestiny(){
       contentType: 'application/x-www-form-urlencoded;charset=UTF-8',
       data: {idpaisportDestiny : ipt_idPortcountryDestiny, idportDestiny : ipt_idPortDestiny},
     }).done((e) => {
-      var result2 = JSON.parse(e);
-      $.each(result2, function(i, e){
-
+      let r = JSON.parse(e);
+      $.each(r, function(i, e){
         tempOriginDestiny += `
           <div class="cont-MainCamelLog--c--contResumeCalc--item--cardStep">
             <div class="cont-MainCamelLog--c--contResumeCalc--item--cardStep--cNameFlag">
@@ -167,10 +172,6 @@ function listPortOriginandDestiny(){
     });
 	});
 }
-
-
-
-
 /*====================================================================================
 =                         2. ELEGIR EL TIPO DE OPERACIÓN                             =
 ====================================================================================*/
@@ -279,10 +280,6 @@ $(document).on("click", "#list-typeOperationItems li", function(){
     `);
   }
 });
-
-
-
-
 /*==============================================================================================
 =            2.5. ELEGIR EL TIPO DE TRANSPORTE DE CARGA: GENERAL, IMO O REGRIGERADO            =
 ==============================================================================================*/
@@ -430,10 +427,6 @@ $(document).on("click","#list-typeTransporteSelectItems a",function(){
     `);
   }
 });
-
-
-
-
 /*=======================================================================================
 =            									3. ELEGIR EL TIPO DE CARGA            									  =
 =========================================================================================*/
@@ -810,10 +803,6 @@ $(document).on("click", "#list-typeChargeLoadItems a", function(){
     `); 
 	}
 });
-
-
-
-
 /*========================================================================================
 =                          4. AÑADIR LA CANTIDAD DE CONTENEDORES                         =
 =========================================================================================*/
@@ -1488,12 +1477,7 @@ $(document).on("click", "#list-SelOptionResultExp a", function(){
           </div>
         </div>
       </div>
-      <div class="cont-MainCamelLog--c--contSteps--item--cBtnNextStep">
-        <button type="button" class="cont-MainCamelLog--c--contSteps--item--cBtnNextStep--btn" id="btn-NextStepTomerchandisedata">
-          <span>Seguir</span>
-          <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 100 125" enable-background="new 0 0 100 100" xml:space="preserve"><g><g><polygon points="19.318,43.363 19.318,61.189 49.497,95 79.675,61.189 79.675,43.363 49.497,77.174   "/><polygon points="50.504,38.811 20.326,5 20.326,24.872 49.497,60.537 79.675,24.872 80.682,5   "/></g></g></svg>
-        </button>
-      </div>
+      <div class="cont-MainCamelLog--c--contSteps--item--cBtnNextStep" id="s-caseNextStepTomerchandisedata"></div>
     `);
   }else{
     // ------------ ASIGNAR VALORES DE LOS INPUTS HIDDEN - ELIGE UNA OPCIÓN 
@@ -1540,10 +1524,6 @@ $(document).on("click", "#list-SelOptionResultExp a", function(){
     `);
   }
 });
-
-
-
-
 /*=========================================================================================
 =            ELEGIR DE ACUERDO A SI ELIGE SI O NO EL SEGURO - SOLO DESEO FLETE            =
 ==========================================================================================*/
@@ -1611,7 +1591,6 @@ $(document).on("click","#list-insuremerchandise-notMoreOpts a",function(){
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-requirespickup]").html("");
     // ------------ MOSTRAR EL MODAL DE RELLENAR (FOB)
     // $("#cnt-modalFormNotInsurance").add($(".cnt-modalFormNotInsurance--c")).addClass("show");
-    
     // ------------ MOSTRAR EL BOTÓN DE CALCULAR COTIZACIÓN 
     $("#s-quotationToNextStep").html(`
       <button type="submit" class="cont-MainCamelLog--c--contSteps--item--cBtnNextStep--btnR" id="btn-CalcQuoteToMerchandiseData-1">
@@ -1619,7 +1598,6 @@ $(document).on("click","#list-insuremerchandise-notMoreOpts a",function(){
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 125" x="0px" y="0px"><g data-name="13-Quotation"><path d="M53.47,77.72h.88a1.06,1.06,0,0,0,0-2.12H19.46V7.19H61.17V22.81a1.06,1.06,0,0,0,1.06,1.06H77.1V65.09a1.06,1.06,0,0,0,2.11,0V22.81s0,0,0-.07a2.38,2.38,0,0,0,0-.26l0-.1a1.17,1.17,0,0,0-.19-.3L63,5.41a1,1,0,0,0-.79-.32H18.41a1.05,1.05,0,0,0-1.06,1.06V75.6H6.11a1.06,1.06,0,0,0-1.05,1.06c0,7.43,5.29,13.47,11.79,13.47h37.5a1.06,1.06,0,1,0,0-2.12H16.85c-5,0-9.18-4.53-9.64-10.29H53.47ZM63.28,8.83l12.4,12.92H63.28Z"/><path d="M73.84,64V33.17a1.05,1.05,0,0,0-1.06-1.06h-49a1.05,1.05,0,0,0-1.06,1.06V64a1.05,1.05,0,0,0,1.06,1.06h49A1.05,1.05,0,0,0,73.84,64ZM71.73,38.29H39.25V34.22H71.73Zm-39.4,0V34.22h4.81v4.07Zm4.81,2.11V63H32.33V40.4ZM24.83,34.22h5.38v4.07H24.83Zm0,6.18h5.38V63H24.83ZM39.25,63V40.4H71.73V63Z"/><path d="M60.49,69.27a1.05,1.05,0,0,0-1.06-1.06H55.81a1.06,1.06,0,1,0,0,2.11h3.62A1.05,1.05,0,0,0,60.49,69.27Z"/><path d="M51.57,69.27a.95.95,0,1,0,1-1A.95.95,0,0,0,51.57,69.27Z"/><path d="M23,17.73H34.47a1.06,1.06,0,0,0,0-2.11H23a1.06,1.06,0,1,0,0,2.11Z"/><path d="M23,21.52H38.36a1.06,1.06,0,0,0,0-2.12H23a1.06,1.06,0,0,0,0,2.12Z"/><path d="M42.48,20.46a.95.95,0,1,0-.94.95A.95.95,0,0,0,42.48,20.46Z"/><path d="M71.47,75.84a2,2,0,0,1,2,2,1.06,1.06,0,0,0,1,1.1,1,1,0,0,0,1.09-1,4,4,0,0,0-3-4l0-.75a1.06,1.06,0,0,0-2.11-.08l0,.75a4,4,0,0,0-3.25,3.74,4,4,0,0,0,1.12,2.9,4.21,4.21,0,0,0,2.88,1.27,2.12,2.12,0,0,1,1.44.63,1.82,1.82,0,0,1,.53,1.35,2.05,2.05,0,0,1-4.09-.16,1.07,1.07,0,0,0-1-1.1,1,1,0,0,0-1.1,1,4,4,0,0,0,2.95,4l0,.68a1.05,1.05,0,0,0,1,1.1h0a1.06,1.06,0,0,0,1.05-1l0-.67a4,4,0,0,0,3.25-3.75,4,4,0,0,0-1.12-2.9,4.25,4.25,0,0,0-2.88-1.27A2.12,2.12,0,0,1,69.88,79a1.82,1.82,0,0,1-.53-1.35A2,2,0,0,1,71.47,75.84Z"/><path d="M83.67,92.54a1,1,0,0,0-1-.78,6.53,6.53,0,0,1-3.2-1,13.68,13.68,0,1,0-8.67,3.1A13.48,13.48,0,0,0,74,93.52,8.58,8.58,0,0,0,78.77,95a8.68,8.68,0,0,0,2.31-.31L83,94.15a1,1,0,0,0,.74-1.29Zm-6.67-1a8.39,8.39,0,0,0,1.88,1.32,6.37,6.37,0,0,1-4.07-1.34,1.08,1.08,0,0,0-.64-.22,1.26,1.26,0,0,0-.28,0,11.79,11.79,0,0,1-3.08.43,11.59,11.59,0,1,1,6.32-1.89,1.07,1.07,0,0,0-.47.8A1,1,0,0,0,77,91.56Z"/></g></svg>
       </button>
     `);
-    
   }
 });
 /*
@@ -1655,7 +1633,7 @@ $(document).on("change input keyup", "#ipt-valPriceProdNInterface-notMoreOpts", 
   // ------------ ASIGNAR VALORES DE LOS INPUTS HIDDEN - MERCANCÍA 
   $("#val-valProdquot-noMoreOpts").val(valregcome);
   // ------------ VALIDAR SI CONTIENE ALGÚN VALOR NULO O 0 
-  if(val == "" || val == 0 || $(this).val() == " USD" || $(this).val() == ".00" || $(this).val() == 0.00){
+  if(val == "" || val == 0 || val == " USD" || val == ".00" || val == 0.00){
     $("#s-caseNextStepTomerchandisedata").html("");
     $("#MsgItemValueProdRequired").text("Ingrese valor exacto, SIN DECIMALES");
     $(this).val("");
@@ -1677,7 +1655,6 @@ $(document).on("change input keyup", "#ipt-valPriceProdNInterface-notMoreOpts", 
         $("#s-caseNextStepTomerchandisedata").html("");
       }
     }
-
     $("#s-caseNextStepTomerchandisedata").html(`
       <button type="submit" class="cont-MainCamelLog--c--contSteps--item--cBtnNextStep--btnR" id="btn-CalcQuoteToMerchandiseData-2">
         <span>CALCULAR COTIZACIÓN</span>
@@ -1694,7 +1671,7 @@ $(document).on("focus", "#ipt-valNameTypeProdNInterface-notMoreOpts", function()
 // ------------ LISTAR LOS PRODUCTOS EN TIEMPO REAL 
 $(document).on("keyup keydown", "#ipt-valNameTypeProdNInterface-notMoreOpts", function(e){
   $("#m-listAllNamTypeProds").addClass("show");
-  var searchVal = $(this).val();
+  var searchVal = e.target.value;
   if(searchVal != ""){
     $("#ipt-valNameTypeProdNInterface-notMoreOpts").attr("idproduct", "");
     listProductsUser(searchVal);
@@ -1713,13 +1690,13 @@ $(document).on("click", ".cont-MainCamelLog--c--contSteps--item--cStep--mFrmIpts
   var taxationThreeVal = parseFloat($(this).attr("data-taxthree"));
   var fichatecycertconform = parseFloat($(this).attr("data-fichatecycertconform"));
   var regsofprod = $(this).attr("data-nameofregs");
-  // ------------ MOSTRAR/OCULTAR DE ACUERDO A EL VALOR DEL MONTO ADICIONAL 
-  if($(this).attr("data-amountadditional") != 0 || $(this).attr("data-amountadditional") != 0.00){
+  // ------------ MOSTRAR/OCULTAR DE ACUERDO A EL VALOR DEL CERTIFICADO DE CONFORMIDAD 
+  if($(this).attr("data-fichatecycertconform") != null && $(this).attr("data-fichatecycertconform") != undefined && $(this).attr("data-fichatecycertconform") != 0 && $(this).attr("data-fichatecycertconform") != 0.00){
     $("#ipt-valCantOfAmountAdditional-notMoreOpts").html(`
       <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl">
         <label for="" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl--label">CANTIDAD</label>
         <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl--cListChange">
-          <input type="text" id="ipt-valQuantityAmAddProdNInterface-notMoreOpts" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl--cListChange--input" maxlength="13" autocomplete="off">
+          <input type="text" id="ipt-valQuantityAmAddProdNInterface-notMoreOpts" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl--cListChange--input" maxlength="13" autocomplete="off" data-valformat="onlyintegers">
         </div>
       </div>
     `);
@@ -1733,57 +1710,42 @@ $(document).on("click", ".cont-MainCamelLog--c--contSteps--item--cStep--mFrmIpts
   $("#val-ammtthxvatwo-noMoreOpts").val(taxationTwoVal); //VALOR DE IMPUESTO SELECCTIVO
   $("#val-ammtthxvathree-noMoreOpts").val(taxationThreeVal); //VALOR DE ANTIDUMPING
   $("#val-ftecycertconform-noMoreOpts").val(fichatecycertconform); // VALOR DE FICHA TÉCNICA Y CERTIFICADO DE CONFORMIDAD
-  $("#val-ammvthisprod-noMoreOpts").val($(this).attr("data-amountadditional")); // MONTO ADICIONAL DEL PRODUCTO
 });
-// ------------ VALIDAR INPUT - CANTIDAD DE PRODUCTOS CON MONTO ADICIONAL 
+// ------------ VALIDAR INPUT - CANTIDAD DE PRODUCTOS CON CERTIFICADO DE CONFORMIDAD 
 $(document).on("keyup keypress blur change", "#ipt-valQuantityAmAddProdNInterface-notMoreOpts", function(e){
-  if ((e.which != 8 && e.which != 0) && (e.which < 48 || e.which > 57) && $(this).val().length >= parseInt($(this).attr('maxlength'))) {
-    return false;
-  }
-  let value = e.target.value;
-  e.target.value = value.replace(/[^A-Z\d-]/g, "");
-  $(this).val(function(i, v) {
-    return v.replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d)\.?)/g, ".");
-  });
+  let val = e.target.value;
+  let valregwithcome = val.replace(/,/g, "");
   // ------------ AGREGAR AL INPUT DE ENVÍO POST Y AGREGAR A LA VARIABLE LOCAL 
-  $("#val-quantityProdsAmmAdd-noMoreOpts").val(e.target.value);
+  $("#val-quantityProdsAmmAdd-noMoreOpts").val(val);
   // ------------ VALIDAR SI CONTIENE ALGÚN VALOR NULO O 0 
-  if(e.target.value == 0 && e.target.value == ""){
+  if(val == 0 || val == ""){
     $("#s-caseNextStepTomerchandisedata").html("");
-  }else{
-    if(document.querySelector("#ipt-valCantOfAmountAdditional-notMoreOpts").contains(document.querySelector("#ipt-valQuantityAmAddProdNInterface-notMoreOpts"))){
-      if($("#ipt-valNameTypeProdNInterface-notMoreOpts").attr("idproduct") && $("#ipt-valPriceProdNInterface-notMoreOpts").val() != 0 && $("#ipt-valPriceProdNInterface-notMoreOpts").val() != ""){
-        // ------------ AGREGAR A LA VARIABLE LOCAL 
-        $("#s-caseNextStepTomerchandisedata").html(`
-          <button type="submit" class="cont-MainCamelLog--c--contSteps--item--cBtnNextStep--btnR" id="btn-CalcQuoteToMerchandiseData-3">
-            <span>CALCULAR COTIZACIÓN</span>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 125" x="0px" y="0px"><g data-name="13-Quotation"><path d="M53.47,77.72h.88a1.06,1.06,0,0,0,0-2.12H19.46V7.19H61.17V22.81a1.06,1.06,0,0,0,1.06,1.06H77.1V65.09a1.06,1.06,0,0,0,2.11,0V22.81s0,0,0-.07a2.38,2.38,0,0,0,0-.26l0-.1a1.17,1.17,0,0,0-.19-.3L63,5.41a1,1,0,0,0-.79-.32H18.41a1.05,1.05,0,0,0-1.06,1.06V75.6H6.11a1.06,1.06,0,0,0-1.05,1.06c0,7.43,5.29,13.47,11.79,13.47h37.5a1.06,1.06,0,1,0,0-2.12H16.85c-5,0-9.18-4.53-9.64-10.29H53.47ZM63.28,8.83l12.4,12.92H63.28Z"/><path d="M73.84,64V33.17a1.05,1.05,0,0,0-1.06-1.06h-49a1.05,1.05,0,0,0-1.06,1.06V64a1.05,1.05,0,0,0,1.06,1.06h49A1.05,1.05,0,0,0,73.84,64ZM71.73,38.29H39.25V34.22H71.73Zm-39.4,0V34.22h4.81v4.07Zm4.81,2.11V63H32.33V40.4ZM24.83,34.22h5.38v4.07H24.83Zm0,6.18h5.38V63H24.83ZM39.25,63V40.4H71.73V63Z"/><path d="M60.49,69.27a1.05,1.05,0,0,0-1.06-1.06H55.81a1.06,1.06,0,1,0,0,2.11h3.62A1.05,1.05,0,0,0,60.49,69.27Z"/><path d="M51.57,69.27a.95.95,0,1,0,1-1A.95.95,0,0,0,51.57,69.27Z"/><path d="M23,17.73H34.47a1.06,1.06,0,0,0,0-2.11H23a1.06,1.06,0,1,0,0,2.11Z"/><path d="M23,21.52H38.36a1.06,1.06,0,0,0,0-2.12H23a1.06,1.06,0,0,0,0,2.12Z"/><path d="M42.48,20.46a.95.95,0,1,0-.94.95A.95.95,0,0,0,42.48,20.46Z"/><path d="M71.47,75.84a2,2,0,0,1,2,2,1.06,1.06,0,0,0,1,1.1,1,1,0,0,0,1.09-1,4,4,0,0,0-3-4l0-.75a1.06,1.06,0,0,0-2.11-.08l0,.75a4,4,0,0,0-3.25,3.74,4,4,0,0,0,1.12,2.9,4.21,4.21,0,0,0,2.88,1.27,2.12,2.12,0,0,1,1.44.63,1.82,1.82,0,0,1,.53,1.35,2.05,2.05,0,0,1-4.09-.16,1.07,1.07,0,0,0-1-1.1,1,1,0,0,0-1.1,1,4,4,0,0,0,2.95,4l0,.68a1.05,1.05,0,0,0,1,1.1h0a1.06,1.06,0,0,0,1.05-1l0-.67a4,4,0,0,0,3.25-3.75,4,4,0,0,0-1.12-2.9,4.25,4.25,0,0,0-2.88-1.27A2.12,2.12,0,0,1,69.88,79a1.82,1.82,0,0,1-.53-1.35A2,2,0,0,1,71.47,75.84Z"/><path d="M83.67,92.54a1,1,0,0,0-1-.78,6.53,6.53,0,0,1-3.2-1,13.68,13.68,0,1,0-8.67,3.1A13.48,13.48,0,0,0,74,93.52,8.58,8.58,0,0,0,78.77,95a8.68,8.68,0,0,0,2.31-.31L83,94.15a1,1,0,0,0,.74-1.29Zm-6.67-1a8.39,8.39,0,0,0,1.88,1.32,6.37,6.37,0,0,1-4.07-1.34,1.08,1.08,0,0,0-.64-.22,1.26,1.26,0,0,0-.28,0,11.79,11.79,0,0,1-3.08.43,11.59,11.59,0,1,1,6.32-1.89,1.07,1.07,0,0,0-.47.8A1,1,0,0,0,77,91.56Z"/></g></svg>
-          </button>
-        `);
-
-      }else{
-        $("#s-caseNextStepTomerchandisedata").html("");
-      }
+  }else if(val > 0 && val <= 10){
+    if($("#ipt-valNameTypeProdNInterface-notMoreOpts").attr("idproduct") && $("#ipt-valPriceProdNInterface-notMoreOpts").val() != 0 && $("#ipt-valPriceProdNInterface-notMoreOpts").val() != ""){
+      $("#s-caseNextStepTomerchandisedata").html(`
+        <button type="submit" class="cont-MainCamelLog--c--contSteps--item--cBtnNextStep--btnR" id="btn-CalcQuoteToMerchandiseData-3">
+          <span>CALCULAR COTIZACIÓN</span>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 125" x="0px" y="0px"><g data-name="13-Quotation"><path d="M53.47,77.72h.88a1.06,1.06,0,0,0,0-2.12H19.46V7.19H61.17V22.81a1.06,1.06,0,0,0,1.06,1.06H77.1V65.09a1.06,1.06,0,0,0,2.11,0V22.81s0,0,0-.07a2.38,2.38,0,0,0,0-.26l0-.1a1.17,1.17,0,0,0-.19-.3L63,5.41a1,1,0,0,0-.79-.32H18.41a1.05,1.05,0,0,0-1.06,1.06V75.6H6.11a1.06,1.06,0,0,0-1.05,1.06c0,7.43,5.29,13.47,11.79,13.47h37.5a1.06,1.06,0,1,0,0-2.12H16.85c-5,0-9.18-4.53-9.64-10.29H53.47ZM63.28,8.83l12.4,12.92H63.28Z"/><path d="M73.84,64V33.17a1.05,1.05,0,0,0-1.06-1.06h-49a1.05,1.05,0,0,0-1.06,1.06V64a1.05,1.05,0,0,0,1.06,1.06h49A1.05,1.05,0,0,0,73.84,64ZM71.73,38.29H39.25V34.22H71.73Zm-39.4,0V34.22h4.81v4.07Zm4.81,2.11V63H32.33V40.4ZM24.83,34.22h5.38v4.07H24.83Zm0,6.18h5.38V63H24.83ZM39.25,63V40.4H71.73V63Z"/><path d="M60.49,69.27a1.05,1.05,0,0,0-1.06-1.06H55.81a1.06,1.06,0,1,0,0,2.11h3.62A1.05,1.05,0,0,0,60.49,69.27Z"/><path d="M51.57,69.27a.95.95,0,1,0,1-1A.95.95,0,0,0,51.57,69.27Z"/><path d="M23,17.73H34.47a1.06,1.06,0,0,0,0-2.11H23a1.06,1.06,0,1,0,0,2.11Z"/><path d="M23,21.52H38.36a1.06,1.06,0,0,0,0-2.12H23a1.06,1.06,0,0,0,0,2.12Z"/><path d="M42.48,20.46a.95.95,0,1,0-.94.95A.95.95,0,0,0,42.48,20.46Z"/><path d="M71.47,75.84a2,2,0,0,1,2,2,1.06,1.06,0,0,0,1,1.1,1,1,0,0,0,1.09-1,4,4,0,0,0-3-4l0-.75a1.06,1.06,0,0,0-2.11-.08l0,.75a4,4,0,0,0-3.25,3.74,4,4,0,0,0,1.12,2.9,4.21,4.21,0,0,0,2.88,1.27,2.12,2.12,0,0,1,1.44.63,1.82,1.82,0,0,1,.53,1.35,2.05,2.05,0,0,1-4.09-.16,1.07,1.07,0,0,0-1-1.1,1,1,0,0,0-1.1,1,4,4,0,0,0,2.95,4l0,.68a1.05,1.05,0,0,0,1,1.1h0a1.06,1.06,0,0,0,1.05-1l0-.67a4,4,0,0,0,3.25-3.75,4,4,0,0,0-1.12-2.9,4.25,4.25,0,0,0-2.88-1.27A2.12,2.12,0,0,1,69.88,79a1.82,1.82,0,0,1-.53-1.35A2,2,0,0,1,71.47,75.84Z"/><path d="M83.67,92.54a1,1,0,0,0-1-.78,6.53,6.53,0,0,1-3.2-1,13.68,13.68,0,1,0-8.67,3.1A13.48,13.48,0,0,0,74,93.52,8.58,8.58,0,0,0,78.77,95a8.68,8.68,0,0,0,2.31-.31L83,94.15a1,1,0,0,0,.74-1.29Zm-6.67-1a8.39,8.39,0,0,0,1.88,1.32,6.37,6.37,0,0,1-4.07-1.34,1.08,1.08,0,0,0-.64-.22,1.26,1.26,0,0,0-.28,0,11.79,11.79,0,0,1-3.08.43,11.59,11.59,0,1,1,6.32-1.89,1.07,1.07,0,0,0-.47.8A1,1,0,0,0,77,91.56Z"/></g></svg>
+        </button>
+      `);
     }else{
-      if($("#ipt-valNameTypeProdNInterface-notMoreOpts").attr("idproduct")){
-        // ------------ AGREGAR A LA VARIABLE LOCAL 
-        $("#s-caseNextStepTomerchandisedata").html(`
-          <button type="submit" class="cont-MainCamelLog--c--contSteps--item--cBtnNextStep--btnR" id="btn-CalcQuoteToMerchandiseData-4">
-            <span>CALCULAR COTIZACIÓN</span>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 125" x="0px" y="0px"><g data-name="13-Quotation"><path d="M53.47,77.72h.88a1.06,1.06,0,0,0,0-2.12H19.46V7.19H61.17V22.81a1.06,1.06,0,0,0,1.06,1.06H77.1V65.09a1.06,1.06,0,0,0,2.11,0V22.81s0,0,0-.07a2.38,2.38,0,0,0,0-.26l0-.1a1.17,1.17,0,0,0-.19-.3L63,5.41a1,1,0,0,0-.79-.32H18.41a1.05,1.05,0,0,0-1.06,1.06V75.6H6.11a1.06,1.06,0,0,0-1.05,1.06c0,7.43,5.29,13.47,11.79,13.47h37.5a1.06,1.06,0,1,0,0-2.12H16.85c-5,0-9.18-4.53-9.64-10.29H53.47ZM63.28,8.83l12.4,12.92H63.28Z"/><path d="M73.84,64V33.17a1.05,1.05,0,0,0-1.06-1.06h-49a1.05,1.05,0,0,0-1.06,1.06V64a1.05,1.05,0,0,0,1.06,1.06h49A1.05,1.05,0,0,0,73.84,64ZM71.73,38.29H39.25V34.22H71.73Zm-39.4,0V34.22h4.81v4.07Zm4.81,2.11V63H32.33V40.4ZM24.83,34.22h5.38v4.07H24.83Zm0,6.18h5.38V63H24.83ZM39.25,63V40.4H71.73V63Z"/><path d="M60.49,69.27a1.05,1.05,0,0,0-1.06-1.06H55.81a1.06,1.06,0,1,0,0,2.11h3.62A1.05,1.05,0,0,0,60.49,69.27Z"/><path d="M51.57,69.27a.95.95,0,1,0,1-1A.95.95,0,0,0,51.57,69.27Z"/><path d="M23,17.73H34.47a1.06,1.06,0,0,0,0-2.11H23a1.06,1.06,0,1,0,0,2.11Z"/><path d="M23,21.52H38.36a1.06,1.06,0,0,0,0-2.12H23a1.06,1.06,0,0,0,0,2.12Z"/><path d="M42.48,20.46a.95.95,0,1,0-.94.95A.95.95,0,0,0,42.48,20.46Z"/><path d="M71.47,75.84a2,2,0,0,1,2,2,1.06,1.06,0,0,0,1,1.1,1,1,0,0,0,1.09-1,4,4,0,0,0-3-4l0-.75a1.06,1.06,0,0,0-2.11-.08l0,.75a4,4,0,0,0-3.25,3.74,4,4,0,0,0,1.12,2.9,4.21,4.21,0,0,0,2.88,1.27,2.12,2.12,0,0,1,1.44.63,1.82,1.82,0,0,1,.53,1.35,2.05,2.05,0,0,1-4.09-.16,1.07,1.07,0,0,0-1-1.1,1,1,0,0,0-1.1,1,4,4,0,0,0,2.95,4l0,.68a1.05,1.05,0,0,0,1,1.1h0a1.06,1.06,0,0,0,1.05-1l0-.67a4,4,0,0,0,3.25-3.75,4,4,0,0,0-1.12-2.9,4.25,4.25,0,0,0-2.88-1.27A2.12,2.12,0,0,1,69.88,79a1.82,1.82,0,0,1-.53-1.35A2,2,0,0,1,71.47,75.84Z"/><path d="M83.67,92.54a1,1,0,0,0-1-.78,6.53,6.53,0,0,1-3.2-1,13.68,13.68,0,1,0-8.67,3.1A13.48,13.48,0,0,0,74,93.52,8.58,8.58,0,0,0,78.77,95a8.68,8.68,0,0,0,2.31-.31L83,94.15a1,1,0,0,0,.74-1.29Zm-6.67-1a8.39,8.39,0,0,0,1.88,1.32,6.37,6.37,0,0,1-4.07-1.34,1.08,1.08,0,0,0-.64-.22,1.26,1.26,0,0,0-.28,0,11.79,11.79,0,0,1-3.08.43,11.59,11.59,0,1,1,6.32-1.89,1.07,1.07,0,0,0-.47.8A1,1,0,0,0,77,91.56Z"/></g></svg>
-          </button>
-        `);
-
-      }else{
-        $("#s-caseNextStepTomerchandisedata").html("");
-      }
+      $("#s-caseNextStepTomerchandisedata").html("");
     }
+  }else if(val > 0 && val > 10){
+    if($("#ipt-valNameTypeProdNInterface-notMoreOpts").attr("idproduct") && $("#ipt-valPriceProdNInterface-notMoreOpts").val() != 0 && $("#ipt-valPriceProdNInterface-notMoreOpts").val() != ""){
+      $("#s-caseNextStepTomerchandisedata").html(`
+        <button type="submit" class="cont-MainCamelLog--c--contSteps--item--cBtnNextStep--btnR" id="btn-CalcQuoteToMerchandiseData-3">
+          <span>CALCULAR COTIZACIÓN</span>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 125" x="0px" y="0px"><g data-name="13-Quotation"><path d="M53.47,77.72h.88a1.06,1.06,0,0,0,0-2.12H19.46V7.19H61.17V22.81a1.06,1.06,0,0,0,1.06,1.06H77.1V65.09a1.06,1.06,0,0,0,2.11,0V22.81s0,0,0-.07a2.38,2.38,0,0,0,0-.26l0-.1a1.17,1.17,0,0,0-.19-.3L63,5.41a1,1,0,0,0-.79-.32H18.41a1.05,1.05,0,0,0-1.06,1.06V75.6H6.11a1.06,1.06,0,0,0-1.05,1.06c0,7.43,5.29,13.47,11.79,13.47h37.5a1.06,1.06,0,1,0,0-2.12H16.85c-5,0-9.18-4.53-9.64-10.29H53.47ZM63.28,8.83l12.4,12.92H63.28Z"/><path d="M73.84,64V33.17a1.05,1.05,0,0,0-1.06-1.06h-49a1.05,1.05,0,0,0-1.06,1.06V64a1.05,1.05,0,0,0,1.06,1.06h49A1.05,1.05,0,0,0,73.84,64ZM71.73,38.29H39.25V34.22H71.73Zm-39.4,0V34.22h4.81v4.07Zm4.81,2.11V63H32.33V40.4ZM24.83,34.22h5.38v4.07H24.83Zm0,6.18h5.38V63H24.83ZM39.25,63V40.4H71.73V63Z"/><path d="M60.49,69.27a1.05,1.05,0,0,0-1.06-1.06H55.81a1.06,1.06,0,1,0,0,2.11h3.62A1.05,1.05,0,0,0,60.49,69.27Z"/><path d="M51.57,69.27a.95.95,0,1,0,1-1A.95.95,0,0,0,51.57,69.27Z"/><path d="M23,17.73H34.47a1.06,1.06,0,0,0,0-2.11H23a1.06,1.06,0,1,0,0,2.11Z"/><path d="M23,21.52H38.36a1.06,1.06,0,0,0,0-2.12H23a1.06,1.06,0,0,0,0,2.12Z"/><path d="M42.48,20.46a.95.95,0,1,0-.94.95A.95.95,0,0,0,42.48,20.46Z"/><path d="M71.47,75.84a2,2,0,0,1,2,2,1.06,1.06,0,0,0,1,1.1,1,1,0,0,0,1.09-1,4,4,0,0,0-3-4l0-.75a1.06,1.06,0,0,0-2.11-.08l0,.75a4,4,0,0,0-3.25,3.74,4,4,0,0,0,1.12,2.9,4.21,4.21,0,0,0,2.88,1.27,2.12,2.12,0,0,1,1.44.63,1.82,1.82,0,0,1,.53,1.35,2.05,2.05,0,0,1-4.09-.16,1.07,1.07,0,0,0-1-1.1,1,1,0,0,0-1.1,1,4,4,0,0,0,2.95,4l0,.68a1.05,1.05,0,0,0,1,1.1h0a1.06,1.06,0,0,0,1.05-1l0-.67a4,4,0,0,0,3.25-3.75,4,4,0,0,0-1.12-2.9,4.25,4.25,0,0,0-2.88-1.27A2.12,2.12,0,0,1,69.88,79a1.82,1.82,0,0,1-.53-1.35A2,2,0,0,1,71.47,75.84Z"/><path d="M83.67,92.54a1,1,0,0,0-1-.78,6.53,6.53,0,0,1-3.2-1,13.68,13.68,0,1,0-8.67,3.1A13.48,13.48,0,0,0,74,93.52,8.58,8.58,0,0,0,78.77,95a8.68,8.68,0,0,0,2.31-.31L83,94.15a1,1,0,0,0,.74-1.29Zm-6.67-1a8.39,8.39,0,0,0,1.88,1.32,6.37,6.37,0,0,1-4.07-1.34,1.08,1.08,0,0,0-.64-.22,1.26,1.26,0,0,0-.28,0,11.79,11.79,0,0,1-3.08.43,11.59,11.59,0,1,1,6.32-1.89,1.07,1.07,0,0,0-.47.8A1,1,0,0,0,77,91.56Z"/></g></svg>
+        </button>
+      `);
+    }else{
+      $("#s-caseNextStepTomerchandisedata").html("");
+    }
+  }else{
+    console.log('No definido');
   }
 });
-
-
-
-
 /*========================================================================================
 =           	 						5. AGREGAR LAS DIMENSIONES DE LA CARGA            						 =
 =========================================================================================*/
@@ -1817,26 +1779,16 @@ function list_measurement_units(){
     method: "POST",
     datatype: "JSON",
     contentType: 'application/x-www-form-urlencoded;charset=UTF-8',
-  }).done( function (res) {
-    var response = JSON.parse(res);
-
-    if(response.length == 0){
-      template = `
-        <option value="">No se encontraron resultados</option>
-      `;
-      $("#val-Lengthselitem").html(template);
-      setTimeout(function(){
-        $("#val-Lengthselitem").removeClass("show");
-      }, 1000);
+  }).done((e) => {
+    var r = JSON.parse(e);
+    if(r.length == 0){
+      tmp = `<option value="">No se encontraron resultados</option>`;
+      $("#val-Lengthselitem").html(tmp);
+      setTimeout(function(){$("#val-Lengthselitem").removeClass("show");}, 1000);
     }else{
-
-      $("#val-Lengthselitem").append(`
-      	<option value="0">Elige una opción</option>
-      `);
-      response.forEach(e => {
-	      $("#val-Lengthselitem").append(`
-	        <option value="${e.id}" prefixunit="${e.prefix}">${e.unit}</option>
-	      `);
+      $("#val-Lengthselitem").append(`<option value="0">Elige una opción</option>`);
+      $.each(r,function(i,e){
+	      $("#val-Lengthselitem").append(`<option value="${e.id}" prefixunit="${e.prefix}">${e.unit}</option>`);
       });
     }
   });
@@ -2663,7 +2615,6 @@ function listProductsUser(searchVal){
         
         template += `
           <li class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl--cListChange--m--item" id="${e.id_prod}" 
-            data-amountadditional="${e.montoadd}"
             data-taxone="${e.ad_valoren}"
             data-taxtwo="${e.impuesto_selectivo}"
             data-taxthree="${e.antidumping}"
@@ -2718,13 +2669,13 @@ $(document).on("click", ".cont-MainCamelLog--c--contSteps--item--cStep--mFrmIpts
   var taxationThreeVal = parseFloat($(this).attr("data-taxthree"));
   var fichatecycertconform = parseFloat($(this).attr("data-fichatecycertconform"));
   var regsofprod = $(this).attr("data-nameofregs");
-  // ------------ MOSTRAR/OCULTAR DE ACUERDO A EL VALOR DEL MONTO ADICIONAL 
-  if($(this).attr("data-amountadditional") != 0 || $(this).attr("data-amountadditional") != 0.00){
+  // ------------ MOSTRAR/OCULTAR DE ACUERDO A EL VALOR DEL CERTIFICADO DE CONFORMIDAD 
+  if($(this).attr("data-fichatecycertconform") != null && $(this).attr("data-fichatecycertconform") != undefined && $(this).attr("data-fichatecycertconform") != 0 && $(this).attr("data-fichatecycertconform") != 0.00){
     $("#ipt-valCantOfAmountAdditional").html(`
       <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl">
         <label for="" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl--label">CANTIDAD</label>
         <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl--cListChange">
-          <input type="text" id="ipt-valQuantityAmAddProdNInterface" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl--cListChange--input" maxlength="13" autocomplete="off">
+          <input type="text" id="ipt-valQuantityAmAddProdNInterface" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl--cListChange--input" maxlength="13" autocomplete="off" data-valformat="onlyintegers">
         </div>
       </div>
     `);
@@ -2738,25 +2689,40 @@ $(document).on("click", ".cont-MainCamelLog--c--contSteps--item--cStep--mFrmIpts
   $("#val-ammtthxvatwo").val(taxationTwoVal); //VALOR DE IMPUESTO SELECCTIVO
   $("#val-ammtthxvathree").val(taxationThreeVal); //VALOR DE ANTIDUMPING
   $("#val-ftecycertconform").val(fichatecycertconform); // VALOR DE FICHA TÉCNICA Y CERTIFICADO DE CONFORMIDAD
-  $("#val-ammvthisprod").val($(this).attr("data-amountadditional")); // MONTO ADICIONAL DEL PRODUCTO
 });
-// ------------ VALIDAR INPUT - CANTIDAD DE PRODUCTOS CON MONTO ADICIONAL 
-$(document).on("keyup keypress blur change", "#ipt-valQuantityAmAddProdNInterface", function(e){
-  if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
-    return false;
-  }else{
-    // ------------ LIMITAR EL MÁXMIMO DE CARACTERES 
-    if( $(this).val().length >= parseInt($(this).attr('maxlength')) && (e.which != 8 && e.which != 0)){
-      return false;
-    }
-  }
-  let value = e.target.value;
-  e.target.value = value.replace(/[^A-Z\d-]/g, "");
-  $(this).val(function(i, v) {
-    return v.replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d)\.?)/g, ".");
-  });
+// ------------ VALIDAR INPUT - CANTIDAD DE PRODUCTOS CON CERTIFICADO DE CONFORMIDAD 
+$(document).on("keyup keypress", "#ipt-valQuantityAmAddProdNInterface", function(e){
+  let val = e.target.value;
+  let valregwithcome = val.replace(/,/g, "");
   // ------------ AGREGAR AL INPUT DE ENVÍO POST Y AGREGAR A LA VARIABLE LOCAL 
-  $("#val-quantityProdsAmmAdd").val(e.target.value);
+  $("#val-quantityProdsAmmAdd").val(val);
+  if(val == 0 || val == ""){
+    $("#s-caseNextStepTomerchandisedata").html("");
+  }else if(val > 0 && val <= 10){
+    if($("#ipt-valNameTypeProdNInterface").val() != "" && $("#ipt-valNameTypeProdNInterface").val() != 0 && $("#ipt-valNameTypeProdNInterface").attr("idproduct") && $("#ipt-valNameTypeProdNInterface").attr("idproduct") != "" && $("#ipt-valNameTypeProdNInterface").attr("idproduct") != 0 && $("#ipt-valQuantityAmAddProdNInterface").val() != 0 && $("#ipt-valQuantityAmAddProdNInterface").val() != "" && $("#ipt-valPriceProdNInterface").val() != "" && $("#ipt-valPriceProdNInterface").val() != 0){
+      $("#s-caseNextStepTomerchandisedata").html(`
+        <button type="button" class="cont-MainCamelLog--c--contSteps--item--cBtnNextStep--btn" id="btn-NextStepTomerchandisedata">
+          <span>Seguir</span>
+          <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 100 125" enable-background="new 0 0 100 100" xml:space="preserve"><g><g><polygon points="19.318,43.363 19.318,61.189 49.497,95 79.675,61.189 79.675,43.363 49.497,77.174   "/><polygon points="50.504,38.811 20.326,5 20.326,24.872 49.497,60.537 79.675,24.872 80.682,5   "/></g></g></svg>
+        </button>
+      `);
+    }else{
+      $("#s-caseNextStepTomerchandisedata").html("");
+    }
+  }else if(val > 0 && val > 10){
+    if($("#ipt-valNameTypeProdNInterface").val() != "" && $("#ipt-valNameTypeProdNInterface").val() != 0 && $("#ipt-valNameTypeProdNInterface").attr("idproduct") && $("#ipt-valNameTypeProdNInterface").attr("idproduct") != "" && $("#ipt-valNameTypeProdNInterface").attr("idproduct") != 0 && $("#ipt-valQuantityAmAddProdNInterface").val() != 0 && $("#ipt-valQuantityAmAddProdNInterface").val() != "" && $("#ipt-valPriceProdNInterface").val() != "" && $("#ipt-valPriceProdNInterface").val() != 0){
+      $("#s-caseNextStepTomerchandisedata").html(`
+        <button type="button" class="cont-MainCamelLog--c--contSteps--item--cBtnNextStep--btn" id="btn-NextStepTomerchandisedata">
+          <span>Seguir</span>
+          <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 100 125" enable-background="new 0 0 100 100" xml:space="preserve"><g><g><polygon points="19.318,43.363 19.318,61.189 49.497,95 79.675,61.189 79.675,43.363 49.497,77.174   "/><polygon points="50.504,38.811 20.326,5 20.326,24.872 49.497,60.537 79.675,24.872 80.682,5   "/></g></g></svg>
+        </button>
+      `);
+    }else{
+      $("#s-caseNextStepTomerchandisedata").html("");
+    }
+  }else{
+    console.log('No definido');
+  }
 });
 // ------------ VALIDAR INPUT - VALOR DE PRODUCTO IMPORTADO 
 $(document).on("keyup keypress", "#ipt-valPriceProdNInterface", function(e){
@@ -2764,7 +2730,9 @@ $(document).on("keyup keypress", "#ipt-valPriceProdNInterface", function(e){
   let valregcome = val.replace(/,/g, "");
   // ------------ ASIGNAR VALORES DE LOS INPUTS HIDDEN - MERCANCÍA 
   $("#val-valProdquot").val(valregcome);
-  if(val == "" || val == 0){
+  // ------------ VALIDAR SI CONTIENE ALGÚN VALOR NULO O 0 
+  if(val == "" || val == 0 || $(this).val() == " USD" || $(this).val() == ".00" || $(this).val() == 0.00){
+    $("#s-caseNextStepTomerchandisedata").html("");
     // ------------ OCULTAR EL SIGUIENTE PASO 
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-insuremerchandise]").removeClass("show");
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-insuremerchandise]").html("");
@@ -2772,35 +2740,25 @@ $(document).on("keyup keypress", "#ipt-valPriceProdNInterface", function(e){
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-requirespickup]").removeClass("show");
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-requirespickup]").html("");
   }else{
-    //console.log("Campo completado");
-  }
-});
-// ------------ VALIDAR SI HAY ALGÚN VALOR EN EL CONTROL - VALOR DE PRODUCTO IMPORTADO 
-$(document).on("change input keyup", "#ipt-valPriceProdNInterface", function(e){
-  if(e.target.value == "" || e.target.value == 0){
-    // ------------ OCULTAR EL SIGUIENTE PASO 
-    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-insuremerchandise]").removeClass("show");
-    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-insuremerchandise]").html("");
-    // ------------ OCULTAR EL TRASSIGUIENTE PASO 
-    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-requirespickup]").removeClass("show");
-    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-requirespickup]").html("");
-  }else{
-    //console.log("Campo completado");
-  }
-});
-// ------------ VALIDAR SI CONTIENE ALGÚN VALOR NULO O 0 
-$(document).on("keyup", "#ipt-valPriceProdNInterface", function(){
-  if($(this).val() == "" || $(this).val() == 0 || $(this).val() == " USD" || $(this).val() == ".00" || $(this).val() == 0.00){
-    $("#MsgItemValueProdRequired").text("Ingrese valor exacto, SIN DECIMALES");
-    $(this).val("");
-    // ------------ OCULTAR EL SIGUIENTE PASO 
-    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-insuremerchandise]").removeClass("show");
-    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-insuremerchandise]").html("");
-    // ------------ OCULTAR EL TRASSIGUIENTE PASO 
-    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-requirespickup]").removeClass("show");
-    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-requirespickup]").html("");
-  }else{
-    $("#MsgItemValueProdRequired").text("");
+    if(document.querySelector("#ipt-valCantOfAmountAdditional").contains(document.querySelector("#ipt-valQuantityAmAddProdNInterface"))){
+      if($("#ipt-valNameTypeProdNInterface").val() != "" && $("#ipt-valNameTypeProdNInterface").val() != 0 && $("#ipt-valNameTypeProdNInterface").attr("idproduct") && $("#ipt-valNameTypeProdNInterface").attr("idproduct") != "" && $("#ipt-valNameTypeProdNInterface").attr("idproduct") != 0 && $("#ipt-valQuantityAmAddProdNInterface").val() != 0 && $("#ipt-valQuantityAmAddProdNInterface").val() != "" && $("#ipt-valPriceProdNInterface").val() != "" && $("#ipt-valPriceProdNInterface").val() != 0){
+        $("#s-caseNextStepTomerchandisedata").html(`
+          <button type="button" class="cont-MainCamelLog--c--contSteps--item--cBtnNextStep--btn" id="btn-NextStepTomerchandisedata">
+            <span>Seguir</span>
+            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 100 125" enable-background="new 0 0 100 100" xml:space="preserve"><g><g><polygon points="19.318,43.363 19.318,61.189 49.497,95 79.675,61.189 79.675,43.363 49.497,77.174   "/><polygon points="50.504,38.811 20.326,5 20.326,24.872 49.497,60.537 79.675,24.872 80.682,5   "/></g></g></svg>
+          </button>
+        `);
+      }else{
+        $("#s-caseNextStepTomerchandisedata").html("");
+      }     
+    }else{
+      $("#s-caseNextStepTomerchandisedata").html(`
+        <button type="button" class="cont-MainCamelLog--c--contSteps--item--cBtnNextStep--btn" id="btn-NextStepTomerchandisedata">
+          <span>Seguir</span>
+          <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 100 125" enable-background="new 0 0 100 100" xml:space="preserve"><g><g><polygon points="19.318,43.363 19.318,61.189 49.497,95 79.675,61.189 79.675,43.363 49.497,77.174   "/><polygon points="50.504,38.811 20.326,5 20.326,24.872 49.497,60.537 79.675,24.872 80.682,5   "/></g></g></svg>
+        </button>
+      `);
+    }
   }
 });
 // ------------ SWITCH DE IMPORTACIONES PREVIAS 
@@ -2831,7 +2789,6 @@ $(document).on("click", "#btn-NextStepTomerchandisedata", function(){
       $("#val-categProdquot").val($("#ipt-valNameTypeProdNInterface").val());
       $("#val-valProdquot").val($("#ipt-valPriceProdNInterface").val());
       $("#val-prevImports").val($("#chck-importpreview").parent().attr("switch-CFreeze"));
-
       // ------------ MOSTRAR EL SIGUIENTE PASO 
       $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-insuremerchandise]").addClass("show");
       sectionsSteps.moveTo('step-insuremerchandise', 1);
@@ -2869,7 +2826,6 @@ $(document).on("click", "#btn-NextStepTomerchandisedata", function(){
       // ------------ OCULTAR EL SIGUIENTE PASO 
       $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-insuremerchandise]").removeClass("show");
       $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-insuremerchandise]").html("");
-      
       // ------------ MOSTRAR EL MENSAJE DE ALERTA PERSONALIZADO 
       $("#idMessageSteps-prcss").html(`
         <div class="cntMessageSteps-prcss--cont">
@@ -2884,7 +2840,6 @@ $(document).on("click", "#btn-NextStepTomerchandisedata", function(){
       setTimeout(function(){$("#idMessageSteps-prcss .cntMessageSteps-prcss--cont").remove();}, 6500);
       $("#btnclose-modalMessage").on("click", function(){$(this).parent().parent().remove();});
     }
-
   }else{
     if($("#ipt-valNameTypeProdNInterface").val() != "" && $("#ipt-valNameTypeProdNInterface").val() != 0 &&
        $("#ipt-valNameTypeProdNInterface").attr("idproduct") &&
@@ -2894,7 +2849,6 @@ $(document).on("click", "#btn-NextStepTomerchandisedata", function(){
       $("#val-categProdquot").val($("#ipt-valNameTypeProdNInterface").val());
       $("#val-valProdquot").val($("#ipt-valPriceProdNInterface").val());
       $("#val-prevImports").val($("#chck-importpreview").parent().attr("switch-CFreeze"));
-
       // ------------ MOSTRAR EL SIGUIENTE PASO 
       $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-insuremerchandise]").addClass("show");
       sectionsSteps.moveTo('step-insuremerchandise', 1);
@@ -2932,7 +2886,6 @@ $(document).on("click", "#btn-NextStepTomerchandisedata", function(){
       // ------------ OCULTAR EL SIGUIENTE PASO 
       $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-insuremerchandise]").removeClass("show");
       $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-insuremerchandise]").html("");
-      
       // ------------ MOSTRAR EL MENSAJE DE ALERTA PERSONALIZADO 
       $("#idMessageSteps-prcss").html(`
         <div class="cntMessageSteps-prcss--cont">
@@ -2949,10 +2902,6 @@ $(document).on("click", "#btn-NextStepTomerchandisedata", function(){
     }
   }
 });
-
-
-
-
 /*===================================================================================
 =                     7. AGREGAR O NO SEGURO DE MERCANCÍA                           =
 ====================================================================================*/

@@ -1922,7 +1922,7 @@ $(document).on("click", ".cont-MainCamelLog--c--contSteps--item--cStep--mFrmIpts
   var fichatecycertconform = parseFloat($(this).attr("data-fichatecycertconform"));
   var regsofprod = $(this).attr("data-nameofregs");
   // ------------ MOSTRAR/OCULTAR DE ACUERDO A EL VALOR DEL CERTIFICADO DE CONFORMIDAD 
-  if($(this).attr("data-fichatecycertconform") != 0 || $(this).attr("data-fichatecycertconform") != 0.00){
+  if($(this).attr("data-fichatecycertconform") != null && $(this).attr("data-fichatecycertconform") != undefined && $(this).attr("data-fichatecycertconform") != 0 && $(this).attr("data-fichatecycertconform") != 0.00){
     $("#ipt-valCantOfAmountAdditional").html(`
     <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl">
       <label for="" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl--label">CANTIDAD</label>
