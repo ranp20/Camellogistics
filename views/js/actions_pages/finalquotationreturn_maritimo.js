@@ -63,7 +63,10 @@ $(document).ready(function(){
 	var encrypt_v_fatthxyaonepcatg = $("#v_fatthxyaonepcatg").val(encryptValuesIpts($("#v_fatthxyaonepcatg").val()));
 	var encrypt_v_fatthxyatwopcatg = $("#v_fatthxyatwopcatg").val(encryptValuesIpts($("#v_fatthxyatwopcatg").val()));
 	var encrypt_v_fatthxyathreepcatg = $("#v_fatthxyathreepcatg").val(encryptValuesIpts($("#v_fatthxyathreepcatg").val()));
-	var encrypt_v_fftecycertconformpcatg = $("#v_fftecycertconformpcatg").val(encryptValuesIpts($("#v_fftecycertconformpcatg").val()));
+	var encrypt_v_fficycertminpcatg = $("#v_fficycertminpcatg").val(encryptValuesIpts($("#v_fficycertminpcatg").val()));
+	var encrypt_v_fficycertmaxpcatg = $("#v_fficycertmaxpcatg").val(encryptValuesIpts($("#v_fficycertmaxpcatg").val()));
+	var encrypt_v_fficycertquantpcatg = $("#v_fficycertquantpcatg").val(encryptValuesIpts($("#v_fficycertquantpcatg").val()));
+	var encrypt_v_fficycertvloprtnpcatg = $("#v_fficycertvloprtnpcatg").val(encryptValuesIpts($("#v_fficycertvloprtnpcatg").val()));
 	/* DESENCRIPTACIÓN DE INPUTS */
 	// ------------ VALORES DE CAJAS DE TEXTO - TEXTO
 	var v_idgencoderand = decryptValuesIpts(encrypt_v_idgencoderand.val());
@@ -84,12 +87,15 @@ $(document).ready(function(){
 	var v_fplctopckloc = decryptValuesIpts(encrypt_v_fplctopckloc.val());
 	var v_frselinsmerch = decryptValuesIpts(encrypt_v_frselinsmerch.val()); // ¿DESEA AGREGAR SEGURO?
 	var v_foptgnfquotevl = decryptValuesIpts(encrypt_v_foptgnfquotevl.val());
-	var v_fquaprcataadd = decryptValuesIpts(encrypt_v_fquaprcataadd.val());
+	var v_fquaprcataadd = decryptValuesIpts(encrypt_v_fquaprcataadd.val()); // CANTIDAD DE PRODUCTOS X CANTIDAD
 	var v_fammvthpcat = decryptValuesIpts(encrypt_v_fammvthpcat.val());
 	var v_fatthxyaonepcatg = decryptValuesIpts(encrypt_v_fatthxyaonepcatg.val()); // AD-VALOREN
 	var v_fatthxyatwopcatg = decryptValuesIpts(encrypt_v_fatthxyatwopcatg.val()); // IMPUESTO SELECTIVO
 	var v_fatthxyathreepcatg = decryptValuesIpts(encrypt_v_fatthxyathreepcatg.val()); // ANTIDUMPING
-	var v_fftecycertconformpcatg = decryptValuesIpts(encrypt_v_fftecycertconformpcatg.val()); // FICHA TÉCNICA Y CERTIFICADO DE CONFORMIDAD
+	var v_fficycertminpcatg = decryptValuesIpts(encrypt_v_fficycertminpcatg.val()); // VALOR MENOR A X CANTIDAD (CERTIFICADO DE CONFOMIDAD)
+	var v_fficycertmaxpcatg = decryptValuesIpts(encrypt_v_fficycertmaxpcatg.val()); // VALOR MAYOR A X CANTIDAD (CERTIFICADO DE CONFOMIDAD)
+	var v_fficycertquantpcatg = decryptValuesIpts(encrypt_v_fficycertquantpcatg.val()); // CANTIDAD X (CERTIFICADO DE CONFOMIDAD)
+	var v_fficycertvloprtnpcatg = decryptValuesIpts(encrypt_v_fficycertvloprtnpcatg.val()); // VALOR ASIGNADO VALIDADO X CANTIDAD
 	// ------------ VALORES DE CAJAS DE TEXTO - CÁLCULO
 	var val_ftotvalofdownload = decryptValuesIpts(encrypt_val_ftotvalofdownload.val());
 	var val_ftotalfleteprod = decryptValuesIpts(encrypt_val_ftotalfleteprod.val()); // FLETE
@@ -198,8 +204,8 @@ $(document).ready(function(){
 	var totalamountadditional = parseInt(v_fquaprcataadd) * myRound(v_fammvthpcat); //MONTO ADICIONAL
   var totalfinalvaluefob = parseFloat(twodecimals(cutewithoutofpricefob)); //TOTAL DE VALOR FOB
   var totalfinalvaluedownload = parseFloat(twodecimals(receiveddownload)); //TOTAL DE VALOR DE DESCARGA
-  var totalftecycertconform = parseFloat(v_fftecycertconformpcatg); // TOTAL FICHA TÉCNICA Y CERTIFICADO DE CONFORMIDAD
-
+  var totalftecycertconform = parseFloat(v_fficycertvloprtnpcatg); // VALOR DE REFERENCIA FICHA T. Y CERTIFICADO DE CONFORMIDAD
+  var totalfirstoperfycert = totalftecycertconform * parseInt(v_fquaprcataadd); // TOTAL FICHA T. Y CERTIFICADO DE CONFORMIDAD
 	// LLAMAR A LOS VALORES DE ASEGURAMIENTO, METER LOS VALORES DENTRO DEL AJAX DE TAXATION O CREAR VARIABLES GLOBALES Y USARLAS
 	$.ajax({
     url: "controllers/list_insurancevalues.php",
@@ -322,7 +328,7 @@ $(document).ready(function(){
 						  		fvalfinal_thc = thc_fcl;
 						  		fvalfinal_devol_contenedor = devol_contenedor_fcl;
 				  	 			// SUMAR TODOS LOS SERVICIOS - FCL
-				  	 			var totalPreciosTODOS = fvalfinal_emision_bl+fvalfinal_visto_bueno+fvalfinal_almcen_ref+fvalfinal_gremios_maritimos+fvalfinal_thc+fvalfinal_devol_contenedor+fvalfinal_com_agencia+fvalfinal_gas_operativos+totalftecycertconform;
+				  	 			var totalPreciosTODOS = fvalfinal_emision_bl+fvalfinal_visto_bueno+fvalfinal_almcen_ref+fvalfinal_gremios_maritimos+fvalfinal_thc+fvalfinal_devol_contenedor+fvalfinal_com_agencia+fvalfinal_gas_operativos+totalfirstoperfycert;
 				  	 			sumTotalServices = totflete + totalPreciosTODOS + totaltransport + totalamountadditional + finalRoundinsurance; // VALOR TOTAL - SERVICIOS
 				  	 			sumTotalbyIGV = (totaltransport + totalamountadditional + totalPreciosTODOS) * (18 / 100); // VALOR TOTAL - SERVICIOS + IGV 18%
 				  	 			sumTotalFinalFleteandIGV = sumTotalServices + sumTotalbyIGV; // VALOR TOTAL FINAL DE LA COTIZACIÓN
@@ -342,7 +348,7 @@ $(document).ready(function(){
 						  		fvalfinal_descarga = descarga_lcl;
 						  		fvalfinal_almcen_ref = almacen_ref_lcl;
 						  		// SUMAR TODOS LOS SERVICIOS - LCL
-				  	 			var totalPreciosTODOS = fvalfinal_emision_bl+fvalfinal_handling+fvalfinal_visto_bueno+fvalfinal_descarga+fvalfinal_almcen_ref+fvalfinal_com_agencia+fvalfinal_gas_operativos+totalftecycertconform;
+				  	 			var totalPreciosTODOS = fvalfinal_emision_bl+fvalfinal_handling+fvalfinal_visto_bueno+fvalfinal_descarga+fvalfinal_almcen_ref+fvalfinal_com_agencia+fvalfinal_gas_operativos+totalfirstoperfycert;
 				  	 			sumTotalServices = totflete + totalPreciosTODOS + totaltransport + totalamountadditional + finalRoundinsurance; // VALOR TOTAL - SERVICIOS
 				  	 			sumTotalbyIGV = (totaltransport + totalamountadditional + totalPreciosTODOS) * (18 / 100); // VALOR TOTAL - SERVICIOS + IGV 18%
 				  	 			sumTotalFinalFleteandIGV = sumTotalServices + sumTotalbyIGV; // VALOR TOTAL FINAL DE LA COTIZACIÓN
@@ -353,7 +359,7 @@ $(document).ready(function(){
 				  	 		if(v_loadtypecharge == "FCL"){
 				  	 			//AGREGAR VALOR A LOS SERVICIOS FINALES
 				  	 			fvalfinal_thc = thc_fcl;
-				  	 			var totalPreciosTODOS = fvalfinal_thc+totalftecycertconform;
+				  	 			var totalPreciosTODOS = fvalfinal_thc+totalfirstoperfycert;
 				  	 			sumTotalServices = totflete + totalPreciosTODOS + totaltransport + totalamountadditional + finalRoundinsurance; // VALOR TOTAL - SERVICIOS
 				  	 			sumTotalbyIGV = (totaltransport + totalamountadditional + totalPreciosTODOS) * (18 / 100); // VALOR TOTAL - SERVICIOS + IGV 18%
 				  	 			sumTotalFinalFleteandIGV = sumTotalServices + sumTotalbyIGV; // VALOR TOTAL FINAL DE LA COTIZACIÓN
@@ -363,7 +369,7 @@ $(document).ready(function(){
 						  		fvalfinal_handling = handling_lcl;
 						  		fvalfinal_visto_bueno = visto_bueno_lcl;
 						  		fvalfinal_descarga = descarga_lcl;
-						  		var totalPreciosTODOS = fvalfinal_emision_bl+fvalfinal_handling+fvalfinal_visto_bueno+fvalfinal_descarga+totalftecycertconform;
+						  		var totalPreciosTODOS = fvalfinal_emision_bl+fvalfinal_handling+fvalfinal_visto_bueno+fvalfinal_descarga+totalfirstoperfycert;
 						  		sumTotalServices = totflete + totalPreciosTODOS + totaltransport + totalamountadditional + finalRoundinsurance; // VALOR TOTAL - SERVICIOS
 				  	 			sumTotalbyIGV = (totaltransport + totalamountadditional + totalPreciosTODOS) * (18 / 100); // VALOR TOTAL - SERVICIOS + IGV 18%
 				  	 			sumTotalFinalFleteandIGV = sumTotalServices + sumTotalbyIGV; // VALOR TOTAL FINAL DE LA COTIZACIÓN
@@ -572,7 +578,7 @@ $(document).ready(function(){
 									formdata.append("f_transporte_interno", totaltransport);
 									formdata.append("f_comision_agencia", fvalfinal_com_agencia);
 									formdata.append("f_gastos_operativos", fvalfinal_gas_operativos);
-									formdata.append("f_fichatecnicaycertconform", totalftecycertconform);
+									formdata.append("f_fichatecnicaycertconform", totalfirstoperfycert);
 									formdata.append("f_totalinsurance", finalRoundinsurance);
 									formdata.append("f_totalservices", totalNotround);
 									formdata.append("f_totalservicesIGV18", totalNotRountByIGV);
@@ -851,7 +857,7 @@ $(document).ready(function(){
 									formdata.append("f_transporte_interno", totaltransport);
 									formdata.append("f_comision_agencia", fvalfinal_com_agencia);
 									formdata.append("f_gastos_operativos", fvalfinal_gas_operativos);
-									formdata.append("f_fichatecnicaycertconform", totalftecycertconform);
+									formdata.append("f_fichatecnicaycertconform", totalfirstoperfycert);
 									formdata.append("f_totalinsurance", finalRoundinsurance);
 									formdata.append("f_totalservices", totalNotround);
 									formdata.append("f_totalservicesIGV18", totalNotRountByIGV);

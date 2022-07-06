@@ -14,7 +14,9 @@ class Products extends Connection{
 								tbp.ad_valoren as 'ad_valoren',
 								tbp.impuesto_selectivo as 'impuesto_selectivo',
 								tbp.antidumping as 'antidumping',
-								tbp.fichatecycertconform as 'ftecycertconform'
+								tbp.fichacert_min as 'fi_min',
+								tbp.fichacert_max as 'fi_max',
+								tbp.fichacert_quantity as 'fi_quantity'
 							FROM tbl_products tbp
 							ORDER BY tbp.id ASC";
 
@@ -31,7 +33,9 @@ class Products extends Connection{
 									tbp.ad_valoren as 'ad_valoren',
 									tbp.impuesto_selectivo as 'impuesto_selectivo',
 									tbp.antidumping as 'antidumping',
-									tbp.fichatecycertconform as 'ftecycertconform'
+									tbp.fichacert_min as 'fi_min',
+									tbp.fichacert_max as 'fi_max',
+									tbp.fichacert_quantity as 'fi_quantity'
 								FROM tbl_products tbp
 								WHERE tbp.name LIKE '%".$search."%' OR
 											tbp.sel_regulated LIKE '%".$search."%'

@@ -64,7 +64,11 @@ $(document).ready(function(){
 	var encrypt_v_fatthxyaonepcatg = $("#v_fatthxyaonepcatg").val(encryptValuesIpts($("#v_fatthxyaonepcatg").val()));
 	var encrypt_v_fatthxyatwopcatg = $("#v_fatthxyatwopcatg").val(encryptValuesIpts($("#v_fatthxyatwopcatg").val()));
 	var encrypt_v_fatthxyathreepcatg = $("#v_fatthxyathreepcatg").val(encryptValuesIpts($("#v_fatthxyathreepcatg").val()));
-	var encrypt_v_fftecycertconformpcatg = $("#v_fftecycertconformpcatg").val(encryptValuesIpts($("#v_fftecycertconformpcatg").val()));
+	// var encrypt_v_fftecycertconformpcatg = $("#v_fftecycertconformpcatg").val(encryptValuesIpts($("#v_fftecycertconformpcatg").val()));
+	var encrypt_v_fficycertminpcatg = $("#v_fficycertminpcatg").val(encryptValuesIpts($("#v_fficycertminpcatg").val()));
+	var encrypt_v_fficycertmaxpcatg = $("#v_fficycertmaxpcatg").val(encryptValuesIpts($("#v_fficycertmaxpcatg").val()));
+	var encrypt_v_fficycertquantpcatg = $("#v_fficycertquantpcatg").val(encryptValuesIpts($("#v_fficycertquantpcatg").val()));
+	var encrypt_v_fficycertvloprtnpcatg = $("#v_fficycertvloprtnpcatg").val(encryptValuesIpts($("#v_fficycertvloprtnpcatg").val()));
 	/* DESENCRIPTACIÓN DE INPUTS */
 	// ------------ VALORES DE CAJAS DE TEXTO - TEXTO
 	var v_idgencoderand = decryptValuesIpts(encrypt_v_idgencoderand.val());
@@ -91,7 +95,11 @@ $(document).ready(function(){
 	var v_fatthxyaonepcatg = decryptValuesIpts(encrypt_v_fatthxyaonepcatg.val()); // AD-VALOREN
 	var v_fatthxyatwopcatg = decryptValuesIpts(encrypt_v_fatthxyatwopcatg.val()); // IMPUESTO SELECTIVO
 	var v_fatthxyathreepcatg = decryptValuesIpts(encrypt_v_fatthxyathreepcatg.val()); // ANTIDUMPING
-	var v_fftecycertconformpcatg = decryptValuesIpts(encrypt_v_fftecycertconformpcatg.val()); // FICHA TÉCNICA Y CERTIFICADO DE CONFORMIDAD
+	// var v_fftecycertconformpcatg = decryptValuesIpts(encrypt_v_fftecycertconformpcatg.val()); // FICHA TÉCNICA Y CERTIFICADO DE CONFORMIDAD
+	var v_fficycertminpcatg = decryptValuesIpts(encrypt_v_fficycertminpcatg.val()); // VALOR MENOR A X CANTIDAD (CERTIFICADO DE CONFOMIDAD)
+	var v_fficycertmaxpcatg = decryptValuesIpts(encrypt_v_fficycertmaxpcatg.val()); // VALOR MAYOR A X CANTIDAD (CERTIFICADO DE CONFOMIDAD)
+	var v_fficycertquantpcatg = decryptValuesIpts(encrypt_v_fficycertquantpcatg.val()); // CANTIDAD X (CERTIFICADO DE CONFOMIDAD)
+	var v_fficycertvloprtnpcatg = decryptValuesIpts(encrypt_v_fficycertvloprtnpcatg.val()); // VALOR ASIGNADO VALIDADO X CANTIDAD
 	// ------------ VALORES DE CAJAS DE TEXTO - CÁLCULO
 	var val_ftotvalofdownload = decryptValuesIpts(encrypt_val_ftotvalofdownload.val());
 	var val_ftotalfleteprod = decryptValuesIpts(encrypt_val_ftotalfleteprod.val()); // FLETE
