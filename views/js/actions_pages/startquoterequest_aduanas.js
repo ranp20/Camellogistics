@@ -41,6 +41,12 @@ $(document).on("keyup", "input[data-valformat=withcomedecimal]", function(e){
   let val_formatNumber = val.toString().replace(/[^\d.]/g, "").replace(/^(\d*\.)(.*)\.(.*)$/, '$1$2$3').replace(/\.(\d{2})\d+/, '.$1').replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   $(this).val(val_formatNumber);
 });
+// ------------ FORMATO - SOLO VALORES ENTEROS Y SIN NEGATIVOS
+$(document).on("keyup keypress", "input[data-valformat=onlyintegers]", function(e){
+  let val = e.target.value;
+  let val_formatNumber = val.toString().replace(/[^\d]/g, "");
+  $(this).val(val_formatNumber);
+});
 // ------------ RETORNAR - PRIMERA LETRA EN MAYÚSCULA
 function firstToUppercase(e){
   return e.charAt(0).toUpperCase() + e.slice(1);
@@ -1915,13 +1921,13 @@ $(document).on("click", ".cont-MainCamelLog--c--contSteps--item--cStep--mFrmIpts
   var taxationThreeVal = parseFloat($(this).attr("data-taxthree"));
   var fichatecycertconform = parseFloat($(this).attr("data-fichatecycertconform"));
   var regsofprod = $(this).attr("data-nameofregs");
-  // ------------ MOSTRAR/OCULTAR DE ACUERDO A EL VALOR DEL MONTO ADICIONAL 
-  if($(this).attr("data-amountadditional") != 0 || $(this).attr("data-amountadditional") != 0.00){
+  // ------------ MOSTRAR/OCULTAR DE ACUERDO A EL VALOR DEL CERTIFICADO DE CONFORMIDAD 
+  if($(this).attr("data-fichatecycertconform") != 0 || $(this).attr("data-fichatecycertconform") != 0.00){
     $("#ipt-valCantOfAmountAdditional").html(`
     <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl">
       <label for="" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl--label">CANTIDAD</label>
       <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl--cListChange">
-        <input type="text" id="ipt-valQuantityAmAddProdNInterface" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl--cListChange--input" maxlength="13" autocomplete="off">
+        <input type="text" id="ipt-valQuantityAmAddProdNInterface" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl--cListChange--input" maxlength="13" autocomplete="off" data-valformat="onlyintegers">
       </div>
     </div>`);
   }else{
@@ -1934,47 +1940,73 @@ $(document).on("click", ".cont-MainCamelLog--c--contSteps--item--cStep--mFrmIpts
   $("#val-ammtthxvatwo").val(taxationTwoVal); //VALOR DE IMPUESTO SELECCTIVO
   $("#val-ammtthxvathree").val(taxationThreeVal); //VALOR DE ANTIDUMPING
   $("#val-ftecycertconform").val(fichatecycertconform); // VALOR DE FICHA TÉCNICA Y CERTIFICADO DE CONFORMIDAD
-  $("#val-ammvthisprod").val($(this).attr("data-amountadditional")); // MONTO ADICIONAL DEL PRODUCTO
 });
-// ------------ VALIDAR INPUT - CANTIDAD DE PRODUCTOS CON MONTO ADICIONAL 
+// ------------ VALIDAR INPUT - CANTIDAD DE PRODUCTOS CON CERTIFICADO DE CONFORMIDAD 
 $(document).on("keyup keypress", "#ipt-valQuantityAmAddProdNInterface", function(e){
-  if ((e.which != 8 && e.which != 0) && (e.which < 48 || e.which > 57) && $(this).val().length >= parseInt($(this).attr('maxlength'))) {
-    return false;
-  }
-  let value = e.target.value;
-  e.target.value = value.replace(/[^A-Z\d-]/g, "");
-  $(this).val(function(i, v) {
-    return v.replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d)\.?)/g, ".");
-  });
+  let val = e.target.value;
+  let valregwithcome = val.replace(/,/g, "");
   // ------------ AGREGAR AL INPUT DE ENVÍO POST Y AGREGAR A LA VARIABLE LOCAL 
-  $("#val-quantityProdsAmmAdd").val(e.target.value);
-  // ------------ VALIDAR SI CONTIENE ALGÚN VALOR NULO O 0 
-  if(e.target.value == 0 && e.target.value == ""){
-    $("#s-caseNextStepTomerchandisedata").html("");
-  }else{
-    if(document.querySelector("#ipt-valCantOfAmountAdditional").contains(document.querySelector("#ipt-valQuantityAmAddProdNInterface"))){
-      if($("#ipt-valNameTypeProdNInterface").attr("idproduct") && $("#ipt-valPriceProdNInterface").val() != 0 && $("#ipt-valPriceProdNInterface").val() != "" && $("#val-iptPriceValNInterface").val() != "" && $("#val-iptPriceValNInterface").val() != 0){
-        
-        $("#s-caseNextStepTomerchandisedata").html(`
-          <button type="button" class="cont-MainCamelLog--c--contSteps--item--cBtnNextStep--btn" id="btn-NextStepTomerchandisedata">
-            <span>Seguir</span>
-            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 100 125" enable-background="new 0 0 100 100" xml:space="preserve"><g><g><polygon points="19.318,43.363 19.318,61.189 49.497,95 79.675,61.189 79.675,43.363 49.497,77.174   "/><polygon points="50.504,38.811 20.326,5 20.326,24.872 49.497,60.537 79.675,24.872 80.682,5   "/></g></g></svg>
-          </button>
-        `);
-      }else{
-        $("#s-caseNextStepTomerchandisedata").html("");
-      }
+  $("#val-quantityProdsAmmAdd").val(valregwithcome);
+  if(val > 10){
+    // ------------ VALIDAR SI CONTIENE ALGÚN VALOR NULO O 0 
+    if(val == 0 && val == ""){
+      $("#s-caseNextStepTomerchandisedata").html("");
     }else{
-      if($("#ipt-valNameTypeProdNInterface").attr("idproduct") && $("#val-iptPriceValNInterface").val() != "" && $("#val-iptPriceValNInterface").val() != 0){
-        
-        $("#s-caseNextStepTomerchandisedata").html(`
-          <button type="button" class="cont-MainCamelLog--c--contSteps--item--cBtnNextStep--btn" id="btn-NextStepTomerchandisedata">
-            <span>Seguir</span>
-            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 100 125" enable-background="new 0 0 100 100" xml:space="preserve"><g><g><polygon points="19.318,43.363 19.318,61.189 49.497,95 79.675,61.189 79.675,43.363 49.497,77.174   "/><polygon points="50.504,38.811 20.326,5 20.326,24.872 49.497,60.537 79.675,24.872 80.682,5   "/></g></g></svg>
-          </button>
-        `);
+      if(document.querySelector("#ipt-valCantOfAmountAdditional").contains(document.querySelector("#ipt-valQuantityAmAddProdNInterface"))){
+        if($("#ipt-valNameTypeProdNInterface").attr("idproduct") && $("#ipt-valPriceProdNInterface").val() != 0 && $("#ipt-valPriceProdNInterface").val() != "" && $("#val-iptPriceValNInterface").val() != "" && $("#val-iptPriceValNInterface").val() != 0){
+          
+          $("#s-caseNextStepTomerchandisedata").html(`
+            <button type="button" class="cont-MainCamelLog--c--contSteps--item--cBtnNextStep--btn" id="btn-NextStepTomerchandisedata">
+              <span>Seguir</span>
+              <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 100 125" enable-background="new 0 0 100 100" xml:space="preserve"><g><g><polygon points="19.318,43.363 19.318,61.189 49.497,95 79.675,61.189 79.675,43.363 49.497,77.174   "/><polygon points="50.504,38.811 20.326,5 20.326,24.872 49.497,60.537 79.675,24.872 80.682,5   "/></g></g></svg>
+            </button>
+          `);
+        }else{
+          $("#s-caseNextStepTomerchandisedata").html("");
+        }
       }else{
-        $("#s-caseNextStepTomerchandisedata").html("");
+        if($("#ipt-valNameTypeProdNInterface").attr("idproduct") && $("#val-iptPriceValNInterface").val() != "" && $("#val-iptPriceValNInterface").val() != 0){
+          
+          $("#s-caseNextStepTomerchandisedata").html(`
+            <button type="button" class="cont-MainCamelLog--c--contSteps--item--cBtnNextStep--btn" id="btn-NextStepTomerchandisedata">
+              <span>Seguir</span>
+              <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 100 125" enable-background="new 0 0 100 100" xml:space="preserve"><g><g><polygon points="19.318,43.363 19.318,61.189 49.497,95 79.675,61.189 79.675,43.363 49.497,77.174   "/><polygon points="50.504,38.811 20.326,5 20.326,24.872 49.497,60.537 79.675,24.872 80.682,5   "/></g></g></svg>
+            </button>
+          `);
+        }else{
+          $("#s-caseNextStepTomerchandisedata").html("");
+        }
+      }
+    }
+  }else{
+    // ------------ VALIDAR SI CONTIENE ALGÚN VALOR NULO O 0 
+    if(val == 0 && val == ""){
+      $("#s-caseNextStepTomerchandisedata").html("");
+    }else{
+      if(document.querySelector("#ipt-valCantOfAmountAdditional").contains(document.querySelector("#ipt-valQuantityAmAddProdNInterface"))){
+        if($("#ipt-valNameTypeProdNInterface").attr("idproduct") && $("#ipt-valPriceProdNInterface").val() != 0 && $("#ipt-valPriceProdNInterface").val() != "" && $("#val-iptPriceValNInterface").val() != "" && $("#val-iptPriceValNInterface").val() != 0){
+          
+          $("#s-caseNextStepTomerchandisedata").html(`
+            <button type="button" class="cont-MainCamelLog--c--contSteps--item--cBtnNextStep--btn" id="btn-NextStepTomerchandisedata">
+              <span>Seguir</span>
+              <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 100 125" enable-background="new 0 0 100 100" xml:space="preserve"><g><g><polygon points="19.318,43.363 19.318,61.189 49.497,95 79.675,61.189 79.675,43.363 49.497,77.174   "/><polygon points="50.504,38.811 20.326,5 20.326,24.872 49.497,60.537 79.675,24.872 80.682,5   "/></g></g></svg>
+            </button>
+          `);
+        }else{
+          $("#s-caseNextStepTomerchandisedata").html("");
+        }
+      }else{
+        if($("#ipt-valNameTypeProdNInterface").attr("idproduct") && $("#val-iptPriceValNInterface").val() != "" && $("#val-iptPriceValNInterface").val() != 0){
+          
+          $("#s-caseNextStepTomerchandisedata").html(`
+            <button type="button" class="cont-MainCamelLog--c--contSteps--item--cBtnNextStep--btn" id="btn-NextStepTomerchandisedata">
+              <span>Seguir</span>
+              <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 100 125" enable-background="new 0 0 100 100" xml:space="preserve"><g><g><polygon points="19.318,43.363 19.318,61.189 49.497,95 79.675,61.189 79.675,43.363 49.497,77.174   "/><polygon points="50.504,38.811 20.326,5 20.326,24.872 49.497,60.537 79.675,24.872 80.682,5   "/></g></g></svg>
+            </button>
+          `);
+        }else{
+          $("#s-caseNextStepTomerchandisedata").html("");
+        }
       }
     }
   }

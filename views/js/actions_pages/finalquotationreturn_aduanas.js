@@ -61,7 +61,6 @@ $(document).ready(function(){
 	var encrypt_v_frselinsmerch = $("#v_frselinsmerch").val(encryptValuesIpts($("#v_frselinsmerch").val()));
 	var encrypt_v_foptgnfquotevl = $("#v_foptgnfquotevl").val(encryptValuesIpts($("#v_foptgnfquotevl").val()));
 	var encrypt_v_fquaprcataadd = $("#v_fquaprcataadd").val(encryptValuesIpts($("#v_fquaprcataadd").val()));
-	var encrypt_v_fammvthpcat = $("#v_fammvthpcat").val(encryptValuesIpts($("#v_fammvthpcat").val()));
 	var encrypt_v_fatthxyaonepcatg = $("#v_fatthxyaonepcatg").val(encryptValuesIpts($("#v_fatthxyaonepcatg").val()));
 	var encrypt_v_fatthxyatwopcatg = $("#v_fatthxyatwopcatg").val(encryptValuesIpts($("#v_fatthxyatwopcatg").val()));
 	var encrypt_v_fatthxyathreepcatg = $("#v_fatthxyathreepcatg").val(encryptValuesIpts($("#v_fatthxyathreepcatg").val()));
@@ -89,7 +88,6 @@ $(document).ready(function(){
 	var v_frselinsmerch = decryptValuesIpts(encrypt_v_frselinsmerch.val());
 	var v_foptgnfquotevl = decryptValuesIpts(encrypt_v_foptgnfquotevl.val());
 	var v_fquaprcataadd = decryptValuesIpts(encrypt_v_fquaprcataadd.val());
-	var v_fammvthpcat = decryptValuesIpts(encrypt_v_fammvthpcat.val());
 	var v_fatthxyaonepcatg = decryptValuesIpts(encrypt_v_fatthxyaonepcatg.val()); // AD-VALOREN
 	var v_fatthxyatwopcatg = decryptValuesIpts(encrypt_v_fatthxyatwopcatg.val()); // IMPUESTO SELECTIVO
 	var v_fatthxyathreepcatg = decryptValuesIpts(encrypt_v_fatthxyathreepcatg.val()); // ANTIDUMPING
@@ -194,10 +192,10 @@ $(document).ready(function(){
 	var totaltransport = parseFloat(val_plcpickuprateprov); //TOTAL TRANSPORTE
 	var totalimportprev = v_fprevimports; // IMPORTACIÓN PREVIA
 	var totflete = parseFloat(val_ftotalfleteprod); //TOTAL - SOLO FLETE
-	var totalamountadditional = parseInt(v_fquaprcataadd) * myRound(v_fammvthpcat); //MONTO ADICIONAL
   var totalfinalvaluefob = parseFloat(twodecimals(cutewithoutofpricefob)); //TOTAL DE VALOR FOB
   var totalfinalvaluedownload = parseFloat(twodecimals(receiveddownload)); //TOTAL DE VALOR DE DESCARGA
-  var totalftecycertconform = parseFloat(v_fftecycertconformpcatg); // TOTAL FICHA TÉCNICA Y CERTIFICADO DE CONFORMIDAD
+  var ftecycertconformofprod = parseFloat(v_fftecycertconformpcatg); // TOTAL FICHA TÉCNICA Y CERTIFICADO DE CONFORMIDAD
+	var totalftecycertconform = parseInt(v_fquaprcataadd) * parseFloat(v_fftecycertconformpcatg); //MONTO ADICIONAL
   
 	// ------------ LISTAR LOS VALORES DE SEGURO
 	$.ajax({
@@ -281,8 +279,8 @@ $(document).ready(function(){
 					  		}
 					  		// SUMAR TODOS LOS SERVICIOS - FCL
 			  	 			var totalServiciosTODOS = fvalfinal_com_agencia+fvalfinal_gas_operativos+totalftecycertconform;
-			  	 			sumTotalServices = totaltransport + totalamountadditional + totalServiciosTODOS; // VALOR TOTAL - SERVICIOS
-			  	 			sumTotalbyIGV = (totaltransport + totalamountadditional + totalServiciosTODOS) * (18 / 100); // VALOR TOTAL - SERVICIOS + IGV 18%
+			  	 			sumTotalServices = totaltransport + totalServiciosTODOS; // VALOR TOTAL - SERVICIOS
+			  	 			sumTotalbyIGV = (totaltransport + totalServiciosTODOS) * (18 / 100); // VALOR TOTAL - SERVICIOS + IGV 18%
 			  	 			sumTotalFinalFleteandIGV = sumTotalServices + sumTotalbyIGV; // VALOR TOTAL FINAL DE LA COTIZACIÓN
 					  	}else if(v_loadtypecharge == "LCL"){
 					  		fvalfinal_gas_operativos = gas_operativos_lcl;
@@ -294,8 +292,8 @@ $(document).ready(function(){
 					  		}
 					  		// SUMAR TODOS LOS SERVICIOS - LCL
 			  	 			var totalServiciosTODOS = fvalfinal_com_agencia+fvalfinal_gas_operativos+totalftecycertconform;
-			  	 			sumTotalServices = totaltransport + totalamountadditional + totalServiciosTODOS; // VALOR TOTAL - SERVICIOS
-			  	 			sumTotalbyIGV = (totaltransport + totalamountadditional + totalServiciosTODOS) * (18 / 100); // VALOR TOTAL - SERVICIOS + IGV 18%
+			  	 			sumTotalServices = totaltransport + totalServiciosTODOS; // VALOR TOTAL - SERVICIOS
+			  	 			sumTotalbyIGV = (totaltransport + totalServiciosTODOS) * (18 / 100); // VALOR TOTAL - SERVICIOS + IGV 18%
 			  	 			sumTotalFinalFleteandIGV = sumTotalServices + sumTotalbyIGV; // VALOR TOTAL FINAL DE LA COTIZACIÓN
 					  	}else{
 					  		console.log('Lo sentimos, hubo un error al procesar la información.');
@@ -491,6 +489,8 @@ $(document).ready(function(){
 									formdata.append("f_v_ad_valoren", v_fatthxyaonepcatg);
 									formdata.append("f_v_impuesto_selectivo", v_fatthxyatwopcatg);
 									formdata.append("f_v_antidumping", v_fatthxyathreepcatg);
+									formdata.append("f_v_amm_comagency", comagencia_monto);
+									formdata.append("f_v_percent_comagency", comagencia_porcentaje);
 									formdata.append("f_IGV", igvcalc_twodeci);
 									formdata.append("f_IPM", ipmcalc_twodeci);
 									formdata.append("f_percepcion", percepcioncalc_twodeci);
@@ -500,8 +500,9 @@ $(document).ready(function(){
 									formdata.append("f_transporte_interno", totaltransport);
 									formdata.append("f_comision_agencia", fvalfinal_com_agencia);
 									formdata.append("f_gastos_operativos", fvalfinal_gas_operativos);
-									formdata.append("f_fichatecnicaycertconform", totalftecycertconform);
+									formdata.append("f_fichatecnicaycertconform", ftecycertconformofprod);
 									formdata.append("f_totalinsurance", finalRoundinsurance);
+									formdata.append("f_totalfichatecycertiform", totalftecycertconform);
 									formdata.append("f_totalservices", totalNotround);
 									formdata.append("f_totalservicesIGV18", totalNotRountByIGV);
 									formdata.append("f_totalimpuestos", twodecimals_FinalTax);
@@ -775,6 +776,8 @@ $(document).ready(function(){
 									formdata.append("f_v_ad_valoren", v_fatthxyaonepcatg);
 									formdata.append("f_v_impuesto_selectivo", v_fatthxyatwopcatg);
 									formdata.append("f_v_antidumping", v_fatthxyathreepcatg);
+									formdata.append("f_v_amm_comagency", comagencia_monto);
+									formdata.append("f_v_percent_comagency", comagencia_porcentaje);
 									formdata.append("f_IGV", igvcalc_twodeci);
 									formdata.append("f_IPM", ipmcalc_twodeci);
 									formdata.append("f_percepcion", percepcioncalc_twodeci);
@@ -784,8 +787,9 @@ $(document).ready(function(){
 									formdata.append("f_transporte_interno", totaltransport);
 									formdata.append("f_comision_agencia", fvalfinal_com_agencia);
 									formdata.append("f_gastos_operativos", fvalfinal_gas_operativos);
-									formdata.append("f_fichatecnicaycertconform", totalftecycertconform);
+									formdata.append("f_fichatecnicaycertconform", ftecycertconformofprod);
 									formdata.append("f_totalinsurance", finalRoundinsurance);
+									formdata.append("f_totalfichatecycertiform", totalftecycertconform);
 									formdata.append("f_totalservices", totalNotround);
 									formdata.append("f_totalservicesIGV18", totalNotRountByIGV);
 									formdata.append("f_totalimpuestos", twodecimals_FinalTax);
