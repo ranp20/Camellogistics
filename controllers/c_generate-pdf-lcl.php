@@ -5,7 +5,9 @@ use Dompdf\Dompdf;
 ob_start(); //CARGA EN MEMORIA UN ARCHIVO
 //include(dirname('_FILE_').'/c_pdfquotation.php'); //INCLUIR LA PLANTILLA DE LA COTIZACIÓN, DEVOLVER DE LA RUTA PADRE, PARA COMPARTIR INFO.
 require_once '../models/quotation-user.php';
+require_once 'c_cifrasaletras.php';
 $quotebyidcode = new Quotation_user();
+$convertToLetters = new CifrasEnLetras();
 $listbyidcode = $quotebyidcode->get_by_idcodegenrand($_POST['id_codegenrand']); // LISTAR VALORES DE COTIZACIÓN
 $listisurance = $quotebyidcode->get_insurancebyquotation(); // LISTAR VALOR DE SEGURO
 function cambiaf_mysql($date){
@@ -123,6 +125,9 @@ $f_totalinsurance = $listbyidcode[0]['f_totalinsurance'];
 $f_total_services = $listbyidcode[0]['f_totalservices'];
 $f_totalservicesIGV18 = $listbyidcode[0]['f_totalservicesIGV18'];
 $f_totalwithIGV = $listbyidcode[0]['f_totalwithIGV'];
+//CIFRAS A LETRAS
+$totalinletters = floatval($f_totalwithIGV);
+$letters_totalwithIGV = $convertToLetters->convertirEurosEnLetras($totalinletters);
 //NOMBRE DE LA COTIZACIÓN
 $name_quotation = "Presupuesto-".$_POST['code_quote']."-".$f_typecontainer;
 ?>
@@ -380,7 +385,7 @@ $name_quotation = "Presupuesto-".$_POST['code_quote']."-".$f_typecontainer;
 		    <div class="marc_medium_1 mt-4px">
 	        </br>
 		      <div class="cuad_tit_cuent1">Son:</div>
-		      <div class="cuad_tit_cuent1"><!--DOS MIL SETECIENTOS SETENTA Y NUEVE--></div>
+		      <div class="cuad_tit_cuent1"><?php echo strtoupper($letters_totalwithIGV); ?></div>
 		      <div class="cuad_tit_cuent1"><!--28/100 DOLARES--></div>
 		    </div>
 	    </div>
