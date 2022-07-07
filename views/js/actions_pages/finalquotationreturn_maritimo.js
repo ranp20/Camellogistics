@@ -600,8 +600,9 @@ $(document).ready(function(){
 									formdata.append("f_transporte_interno", totaltransport);
 									formdata.append("f_comision_agencia", fvalfinal_com_agencia);
 									formdata.append("f_gastos_operativos", fvalfinal_gas_operativos);
-									formdata.append("f_fichatecnicaycertconform", totalfirstoperfycert);
+									formdata.append("f_fichatecnicaycertconform", totalftecycertconform);
 									formdata.append("f_totalinsurance", finalRoundinsurance);
+									formdata.append("f_totalfichatecycertiform", totalfirstoperfycert);
 									formdata.append("f_totalservices", totalNotround);
 									formdata.append("f_totalservicesIGV18", totalNotRountByIGV);
 									formdata.append("f_totalimpuestos", twodecimals_FinalTax);
@@ -881,8 +882,9 @@ $(document).ready(function(){
 									formdata.append("f_transporte_interno", totaltransport);
 									formdata.append("f_comision_agencia", fvalfinal_com_agencia);
 									formdata.append("f_gastos_operativos", fvalfinal_gas_operativos);
-									formdata.append("f_fichatecnicaycertconform", totalfirstoperfycert);
+									formdata.append("f_fichatecnicaycertconform", totalftecycertconform);
 									formdata.append("f_totalinsurance", finalRoundinsurance);
+									formdata.append("f_totalfichatecycertiform", totalfirstoperfycert);
 									formdata.append("f_totalservices", totalNotround);
 									formdata.append("f_totalservicesIGV18", totalNotRountByIGV);
 									formdata.append("f_totalimpuestos", twodecimals_FinalTax);

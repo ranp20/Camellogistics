@@ -64,7 +64,6 @@ $(document).ready(function(){
 	var encrypt_v_fatthxyaonepcatg = $("#v_fatthxyaonepcatg").val(encryptValuesIpts($("#v_fatthxyaonepcatg").val()));
 	var encrypt_v_fatthxyatwopcatg = $("#v_fatthxyatwopcatg").val(encryptValuesIpts($("#v_fatthxyatwopcatg").val()));
 	var encrypt_v_fatthxyathreepcatg = $("#v_fatthxyathreepcatg").val(encryptValuesIpts($("#v_fatthxyathreepcatg").val()));
-	// var encrypt_v_fftecycertconformpcatg = $("#v_fftecycertconformpcatg").val(encryptValuesIpts($("#v_fftecycertconformpcatg").val()));
 	var encrypt_v_fficycertminpcatg = $("#v_fficycertminpcatg").val(encryptValuesIpts($("#v_fficycertminpcatg").val()));
 	var encrypt_v_fficycertmaxpcatg = $("#v_fficycertmaxpcatg").val(encryptValuesIpts($("#v_fficycertmaxpcatg").val()));
 	var encrypt_v_fficycertquantpcatg = $("#v_fficycertquantpcatg").val(encryptValuesIpts($("#v_fficycertquantpcatg").val()));
@@ -95,7 +94,6 @@ $(document).ready(function(){
 	var v_fatthxyaonepcatg = decryptValuesIpts(encrypt_v_fatthxyaonepcatg.val()); // AD-VALOREN
 	var v_fatthxyatwopcatg = decryptValuesIpts(encrypt_v_fatthxyatwopcatg.val()); // IMPUESTO SELECTIVO
 	var v_fatthxyathreepcatg = decryptValuesIpts(encrypt_v_fatthxyathreepcatg.val()); // ANTIDUMPING
-	// var v_fftecycertconformpcatg = decryptValuesIpts(encrypt_v_fftecycertconformpcatg.val()); // FICHA TÉCNICA Y CERTIFICADO DE CONFORMIDAD
 	var v_fficycertminpcatg = decryptValuesIpts(encrypt_v_fficycertminpcatg.val()); // VALOR MENOR A X CANTIDAD (CERTIFICADO DE CONFOMIDAD)
 	var v_fficycertmaxpcatg = decryptValuesIpts(encrypt_v_fficycertmaxpcatg.val()); // VALOR MAYOR A X CANTIDAD (CERTIFICADO DE CONFOMIDAD)
 	var v_fficycertquantpcatg = decryptValuesIpts(encrypt_v_fficycertquantpcatg.val()); // CANTIDAD X (CERTIFICADO DE CONFOMIDAD)
@@ -202,8 +200,8 @@ $(document).ready(function(){
 	var totflete = parseFloat(val_ftotalfleteprod); //TOTAL - SOLO FLETE
   var totalfinalvaluefob = parseFloat(twodecimals(cutewithoutofpricefob)); //TOTAL DE VALOR FOB
   var totalfinalvaluedownload = parseFloat(twodecimals(receiveddownload)); //TOTAL DE VALOR DE DESCARGA
-  var ftecycertconformofprod = parseFloat(v_fftecycertconformpcatg); // TOTAL FICHA TÉCNICA Y CERTIFICADO DE CONFORMIDAD
-	var totalftecycertconform = parseInt(v_fquaprcataadd) * parseFloat(v_fftecycertconformpcatg); //MONTO ADICIONAL
+	var totalftecycertconform = parseFloat(v_fficycertvloprtnpcatg); // VALOR DE REFERENCIA FICHA T. Y CERTIFICADO DE CONFORMIDAD
+  var totalfirstoperfycert = totalftecycertconform * parseInt(v_fquaprcataadd); // TOTAL FICHA T. Y CERTIFICADO DE CONFORMIDAD
   
 	// ------------ LISTAR LOS VALORES DE SEGURO
 	$.ajax({
@@ -286,7 +284,7 @@ $(document).ready(function(){
 					  			fvalfinal_com_agencia = com_agencia_fcl;
 					  		}
 					  		// SUMAR TODOS LOS SERVICIOS - FCL
-			  	 			var totalServiciosTODOS = fvalfinal_com_agencia+fvalfinal_gas_operativos+totalftecycertconform;
+			  	 			var totalServiciosTODOS = fvalfinal_com_agencia+fvalfinal_gas_operativos+totalfirstoperfycert;
 			  	 			sumTotalServices = totaltransport + totalServiciosTODOS; // VALOR TOTAL - SERVICIOS
 			  	 			sumTotalbyIGV = (totaltransport + totalServiciosTODOS) * (18 / 100); // VALOR TOTAL - SERVICIOS + IGV 18%
 			  	 			sumTotalFinalFleteandIGV = sumTotalServices + sumTotalbyIGV; // VALOR TOTAL FINAL DE LA COTIZACIÓN
@@ -299,7 +297,7 @@ $(document).ready(function(){
 					  			fvalfinal_com_agencia = com_agencia_fcl;
 					  		}
 					  		// SUMAR TODOS LOS SERVICIOS - LCL
-			  	 			var totalServiciosTODOS = fvalfinal_com_agencia+fvalfinal_gas_operativos+totalftecycertconform;
+			  	 			var totalServiciosTODOS = fvalfinal_com_agencia+fvalfinal_gas_operativos+totalfirstoperfycert;
 			  	 			sumTotalServices = totaltransport + totalServiciosTODOS; // VALOR TOTAL - SERVICIOS
 			  	 			sumTotalbyIGV = (totaltransport + totalServiciosTODOS) * (18 / 100); // VALOR TOTAL - SERVICIOS + IGV 18%
 			  	 			sumTotalFinalFleteandIGV = sumTotalServices + sumTotalbyIGV; // VALOR TOTAL FINAL DE LA COTIZACIÓN
@@ -508,9 +506,9 @@ $(document).ready(function(){
 									formdata.append("f_transporte_interno", totaltransport);
 									formdata.append("f_comision_agencia", fvalfinal_com_agencia);
 									formdata.append("f_gastos_operativos", fvalfinal_gas_operativos);
-									formdata.append("f_fichatecnicaycertconform", ftecycertconformofprod);
+									formdata.append("f_fichatecnicaycertconform", totalftecycertconform);
 									formdata.append("f_totalinsurance", finalRoundinsurance);
-									formdata.append("f_totalfichatecycertiform", totalftecycertconform);
+									formdata.append("f_totalfichatecycertiform", totalfirstoperfycert);
 									formdata.append("f_totalservices", totalNotround);
 									formdata.append("f_totalservicesIGV18", totalNotRountByIGV);
 									formdata.append("f_totalimpuestos", twodecimals_FinalTax);
@@ -795,9 +793,9 @@ $(document).ready(function(){
 									formdata.append("f_transporte_interno", totaltransport);
 									formdata.append("f_comision_agencia", fvalfinal_com_agencia);
 									formdata.append("f_gastos_operativos", fvalfinal_gas_operativos);
-									formdata.append("f_fichatecnicaycertconform", ftecycertconformofprod);
+									formdata.append("f_fichatecnicaycertconform", totalftecycertconform);
 									formdata.append("f_totalinsurance", finalRoundinsurance);
-									formdata.append("f_totalfichatecycertiform", totalftecycertconform);
+									formdata.append("f_totalfichatecycertiform", totalfirstoperfycert);
 									formdata.append("f_totalservices", totalNotround);
 									formdata.append("f_totalservicesIGV18", totalNotRountByIGV);
 									formdata.append("f_totalimpuestos", twodecimals_FinalTax);

@@ -918,8 +918,11 @@ $(document).on("click", "#btn-NextStepToSelOptResultExp", function(){
             <input type="hidden" value="" id="val-ammtthxvaone" name="val-ammtthxvaonepcatg" tabindex="-1" width="0" height="0" autocomplete="off" spellcheck="false" f-hidden="aria-hidden" class="n-val-sd">
             <input type="hidden" value="" id="val-ammtthxvatwo" name="val-ammtthxvatwopcatg" tabindex="-1" width="0" height="0" autocomplete="off" spellcheck="false" f-hidden="aria-hidden" class="n-val-sd">
             <input type="hidden" value="" id="val-ammtthxvathree" name="val-ammtthxvathreepcatg" tabindex="-1" width="0" height="0" autocomplete="off" spellcheck="false" f-hidden="aria-hidden" class="n-val-sd">
-            <input type="hidden" value="" id="val-ftecycertconform" name="val-ftecycertconformpcatg" tabindex="-1" width="0" height="0" autocomplete="off" spellcheck="false" f-hidden="aria-hidden" class="n-val-sd">
             <input type="hidden" value="" id="val-freqinsurancesel" name="val-freqinsusel" tabindex="-1" width="0" height="0" autocomplete="off" spellcheck="false" f-hidden="aria-hidden" class="n-val-sd">
+            <input type="hidden" value="" id="val-fficycert_min" name="val-fficycert_minpcatg" tabindex="-1" width="0" height="0" autocomplete="off" spellcheck="false" f-hidden="aria-hidden" class="n-val-sd">
+            <input type="hidden" value="" id="val-fficycert_max" name="val-fficycert_maxpcatg" tabindex="-1" width="0" height="0" autocomplete="off" spellcheck="false" f-hidden="aria-hidden" class="n-val-sd">
+            <input type="hidden" value="" id="val-fficycert_quantity" name="val-fficycert_quantitypcatg" tabindex="-1" width="0" height="0" autocomplete="off" spellcheck="false" f-hidden="aria-hidden" class="n-val-sd">
+            <input type="hidden" value="" id="val-fficycertvloprtn" name="val-fficycertvloprtnpcatg" tabindex="-1" width="0" height="0" autocomplete="off" spellcheck="false" f-hidden="aria-hidden" class="n-val-sd">
           </span>
         </span>
       </div>
@@ -1463,8 +1466,11 @@ $(document).on("click", "#btn-NextStepTochargedata", function(){
                 <input type="hidden" value="" id="val-ammtthxvaone" name="val-ammtthxvaonepcatg" tabindex="-1" width="0" height="0" autocomplete="off" spellcheck="false" f-hidden="aria-hidden" class="n-val-sd">
                 <input type="hidden" value="" id="val-ammtthxvatwo" name="val-ammtthxvatwopcatg" tabindex="-1" width="0" height="0" autocomplete="off" spellcheck="false" f-hidden="aria-hidden" class="n-val-sd">
                 <input type="hidden" value="" id="val-ammtthxvathree" name="val-ammtthxvathreepcatg" tabindex="-1" width="0" height="0" autocomplete="off" spellcheck="false" f-hidden="aria-hidden" class="n-val-sd">
-                <input type="hidden" value="" id="val-ftecycertconform" name="val-ftecycertconformpcatg" tabindex="-1" width="0" height="0" autocomplete="off" spellcheck="false" f-hidden="aria-hidden" class="n-val-sd">
                 <input type="hidden" value="" id="val-freqinsurancesel" name="val-freqinsusel" tabindex="-1" width="0" height="0" autocomplete="off" spellcheck="false" f-hidden="aria-hidden" class="n-val-sd">
+                <input type="hidden" value="" id="val-fficycert_min" name="val-fficycert_minpcatg" tabindex="-1" width="0" height="0" autocomplete="off" spellcheck="false" f-hidden="aria-hidden" class="n-val-sd">
+                <input type="hidden" value="" id="val-fficycert_max" name="val-fficycert_maxpcatg" tabindex="-1" width="0" height="0" autocomplete="off" spellcheck="false" f-hidden="aria-hidden" class="n-val-sd">
+                <input type="hidden" value="" id="val-fficycert_quantity" name="val-fficycert_quantitypcatg" tabindex="-1" width="0" height="0" autocomplete="off" spellcheck="false" f-hidden="aria-hidden" class="n-val-sd">
+                <input type="hidden" value="" id="val-fficycertvloprtn" name="val-fficycertvloprtnpcatg" tabindex="-1" width="0" height="0" autocomplete="off" spellcheck="false" f-hidden="aria-hidden" class="n-val-sd">
               </span>
             </span>
           </div>
@@ -1546,8 +1552,11 @@ $(document).on("click", "#btn-NextStepTochargedata", function(){
                 <input type="hidden" value="" id="val-ammtthxvaone" name="val-ammtthxvaonepcatg" tabindex="-1" width="0" height="0" autocomplete="off" spellcheck="false" f-hidden="aria-hidden" class="n-val-sd">
                 <input type="hidden" value="" id="val-ammtthxvatwo" name="val-ammtthxvatwopcatg" tabindex="-1" width="0" height="0" autocomplete="off" spellcheck="false" f-hidden="aria-hidden" class="n-val-sd">
                 <input type="hidden" value="" id="val-ammtthxvathree" name="val-ammtthxvathreepcatg" tabindex="-1" width="0" height="0" autocomplete="off" spellcheck="false" f-hidden="aria-hidden" class="n-val-sd">
-                <input type="hidden" value="" id="val-ftecycertconform" name="val-ftecycertconformpcatg" tabindex="-1" width="0" height="0" autocomplete="off" spellcheck="false" f-hidden="aria-hidden" class="n-val-sd">
                 <input type="hidden" value="" id="val-freqinsurancesel" name="val-freqinsusel" tabindex="-1" width="0" height="0" autocomplete="off" spellcheck="false" f-hidden="aria-hidden" class="n-val-sd">
+                <input type="hidden" value="" id="val-fficycert_min" name="val-fficycert_minpcatg" tabindex="-1" width="0" height="0" autocomplete="off" spellcheck="false" f-hidden="aria-hidden" class="n-val-sd">
+                <input type="hidden" value="" id="val-fficycert_max" name="val-fficycert_maxpcatg" tabindex="-1" width="0" height="0" autocomplete="off" spellcheck="false" f-hidden="aria-hidden" class="n-val-sd">
+                <input type="hidden" value="" id="val-fficycert_quantity" name="val-fficycert_quantitypcatg" tabindex="-1" width="0" height="0" autocomplete="off" spellcheck="false" f-hidden="aria-hidden" class="n-val-sd">
+                <input type="hidden" value="" id="val-fficycertvloprtn" name="val-fficycertvloprtnpcatg" tabindex="-1" width="0" height="0" autocomplete="off" spellcheck="false" f-hidden="aria-hidden" class="n-val-sd">
               </span>
             </span>
           </div>
@@ -1762,7 +1771,9 @@ function listProductsUser(searchVal){
             data-taxone="${e.ad_valoren}"
             data-taxtwo="${e.impuesto_selectivo}"
             data-taxthree="${e.antidumping}"
-            data-fichatecycertconform="${e.ftecycertconform}"
+            data-fi_min="${e.fi_min}"
+            data-fi_max="${e.fi_max}"
+            data-fi_quantity="${e.fi_quantity}"
             data-nameofregs="${nounOneAndTwoRegs}">
             <p>${e.name_prod}</p>
             <small>
@@ -1919,10 +1930,12 @@ $(document).on("click", ".cont-MainCamelLog--c--contSteps--item--cStep--mFrmIpts
   var taxationOneVal = parseFloat($(this).attr("data-taxone"));
   var taxationTwoVal = parseFloat($(this).attr("data-taxtwo"));
   var taxationThreeVal = parseFloat($(this).attr("data-taxthree"));
-  var fichatecycertconform = parseFloat($(this).attr("data-fichatecycertconform"));
+  var ficha_min = parseFloat($(this).attr("data-fi_min"));
+  var ficha_max = parseFloat($(this).attr("data-fi_max"));
+  var ficha_quantity = parseFloat($(this).attr("data-fi_quantity"));
   var regsofprod = $(this).attr("data-nameofregs");
   // ------------ MOSTRAR/OCULTAR DE ACUERDO A EL VALOR DEL CERTIFICADO DE CONFORMIDAD 
-  if($(this).attr("data-fichatecycertconform") != null && $(this).attr("data-fichatecycertconform") != undefined && $(this).attr("data-fichatecycertconform") != 0 && $(this).attr("data-fichatecycertconform") != 0.00){
+  if($(this).attr("data-fi_min") != null && $(this).attr("data-fi_min") != undefined && $(this).attr("data-fi_min") != 0 && $(this).attr("data-fi_min") != 0.00){
     $("#ipt-valCantOfAmountAdditional").html(`
     <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl">
       <label for="" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cC--cControl--label">CANTIDAD</label>
@@ -1939,76 +1952,55 @@ $(document).on("click", ".cont-MainCamelLog--c--contSteps--item--cStep--mFrmIpts
   $("#val-ammtthxvaone").val(taxationOneVal); //VALOR DE AD-VALOREN
   $("#val-ammtthxvatwo").val(taxationTwoVal); //VALOR DE IMPUESTO SELECCTIVO
   $("#val-ammtthxvathree").val(taxationThreeVal); //VALOR DE ANTIDUMPING
-  $("#val-ftecycertconform").val(fichatecycertconform); // VALOR DE FICHA TÉCNICA Y CERTIFICADO DE CONFORMIDAD
+  $("#val-fficycert_min").val(ficha_min); // VALOR MENOR A (CERTIFICADO DE CONFORMIDAD)
+  $("#val-fficycert_max").val(ficha_max); // VALOR MAYOR A (CERTIFICADO DE CONFORMIDAD)
+  $("#val-fficycert_quantity").val(ficha_quantity); // VALOR CANTIDAD A VALIDAR
 });
 // ------------ VALIDAR INPUT - CANTIDAD DE PRODUCTOS CON CERTIFICADO DE CONFORMIDAD 
 $(document).on("keyup keypress", "#ipt-valQuantityAmAddProdNInterface", function(e){
   let val = e.target.value;
-  let valregwithcome = val.replace(/,/g, "");
   // ------------ AGREGAR AL INPUT DE ENVÍO POST Y AGREGAR A LA VARIABLE LOCAL 
-  $("#val-quantityProdsAmmAdd").val(valregwithcome);
-  if(val > 10){
-    // ------------ VALIDAR SI CONTIENE ALGÚN VALOR NULO O 0 
-    if(val == 0 && val == ""){
-      $("#s-caseNextStepTomerchandisedata").html("");
+  $("#val-quantityProdsAmmAdd").val(val);
+  // ------------ VALOR DE CERTIFICADO DE CONFORMIDAD A VALIDAR
+  let v_fi_min = $("#val-fficycert_min").val();
+  let v_fi_max = $("#val-fficycert_max").val();
+  let v_fi_quantity = $("#val-fficycert_quantity").val();
+  v_fi_min = parseFloat(v_fi_min); // VALOR MENOR A X (CANTIDAD DE PRODUCTOS)
+  v_fi_max = parseFloat(v_fi_max); // VALOR MAYOR A X (CANTIDAD DE PRODUCTOS)
+  v_fi_quantity = parseInt(v_fi_quantity); // VALOR X (CANTIDAD DE PRODUCTOS)
+  if(val == 0 || val == ""){
+    $("#s-caseNextStepTomerchandisedata").html("");
+    $("#val-fficycertvloprtn").val();
+  }else if(val > 0 && val < v_fi_quantity){
+    // AGREGAR AL VALOR DE CERIFICADOR DE CONFORMIDAD FINAL
+    $("#val-fficycertvloprtn").val(v_fi_min);
+    if($("#ipt-valNameTypeProdNInterface").attr("idproduct") && $("#ipt-valPriceProdNInterface").val() != 0 && $("#ipt-valPriceProdNInterface").val() != "" && $("#val-iptPriceValNInterface").val() != "" && $("#val-iptPriceValNInterface").val() != 0){     
+      $("#s-caseNextStepTomerchandisedata").html(`
+        <button type="button" class="cont-MainCamelLog--c--contSteps--item--cBtnNextStep--btn" id="btn-NextStepTomerchandisedata">
+          <span>Seguir</span>
+          <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 100 125" enable-background="new 0 0 100 100" xml:space="preserve"><g><g><polygon points="19.318,43.363 19.318,61.189 49.497,95 79.675,61.189 79.675,43.363 49.497,77.174   "/><polygon points="50.504,38.811 20.326,5 20.326,24.872 49.497,60.537 79.675,24.872 80.682,5   "/></g></g></svg>
+        </button>
+      `);
     }else{
-      if(document.querySelector("#ipt-valCantOfAmountAdditional").contains(document.querySelector("#ipt-valQuantityAmAddProdNInterface"))){
-        if($("#ipt-valNameTypeProdNInterface").attr("idproduct") && $("#ipt-valPriceProdNInterface").val() != 0 && $("#ipt-valPriceProdNInterface").val() != "" && $("#val-iptPriceValNInterface").val() != "" && $("#val-iptPriceValNInterface").val() != 0){
-          
-          $("#s-caseNextStepTomerchandisedata").html(`
-            <button type="button" class="cont-MainCamelLog--c--contSteps--item--cBtnNextStep--btn" id="btn-NextStepTomerchandisedata">
-              <span>Seguir</span>
-              <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 100 125" enable-background="new 0 0 100 100" xml:space="preserve"><g><g><polygon points="19.318,43.363 19.318,61.189 49.497,95 79.675,61.189 79.675,43.363 49.497,77.174   "/><polygon points="50.504,38.811 20.326,5 20.326,24.872 49.497,60.537 79.675,24.872 80.682,5   "/></g></g></svg>
-            </button>
-          `);
-        }else{
-          $("#s-caseNextStepTomerchandisedata").html("");
-        }
-      }else{
-        if($("#ipt-valNameTypeProdNInterface").attr("idproduct") && $("#val-iptPriceValNInterface").val() != "" && $("#val-iptPriceValNInterface").val() != 0){
-          
-          $("#s-caseNextStepTomerchandisedata").html(`
-            <button type="button" class="cont-MainCamelLog--c--contSteps--item--cBtnNextStep--btn" id="btn-NextStepTomerchandisedata">
-              <span>Seguir</span>
-              <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 100 125" enable-background="new 0 0 100 100" xml:space="preserve"><g><g><polygon points="19.318,43.363 19.318,61.189 49.497,95 79.675,61.189 79.675,43.363 49.497,77.174   "/><polygon points="50.504,38.811 20.326,5 20.326,24.872 49.497,60.537 79.675,24.872 80.682,5   "/></g></g></svg>
-            </button>
-          `);
-        }else{
-          $("#s-caseNextStepTomerchandisedata").html("");
-        }
-      }
+      $("#s-caseNextStepTomerchandisedata").html("");
+    }
+  }else if(val > 0 && val >= v_fi_quantity){
+    // AGREGAR AL VALOR DE CERIFICADOR DE CONFORMIDAD FINAL
+    $("#val-fficycertvloprtn").val(v_fi_max);
+    if($("#ipt-valNameTypeProdNInterface").attr("idproduct") && $("#ipt-valPriceProdNInterface").val() != 0 && $("#ipt-valPriceProdNInterface").val() != "" && $("#val-iptPriceValNInterface").val() != "" && $("#val-iptPriceValNInterface").val() != 0){     
+      $("#s-caseNextStepTomerchandisedata").html(`
+        <button type="button" class="cont-MainCamelLog--c--contSteps--item--cBtnNextStep--btn" id="btn-NextStepTomerchandisedata">
+          <span>Seguir</span>
+          <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 100 125" enable-background="new 0 0 100 100" xml:space="preserve"><g><g><polygon points="19.318,43.363 19.318,61.189 49.497,95 79.675,61.189 79.675,43.363 49.497,77.174   "/><polygon points="50.504,38.811 20.326,5 20.326,24.872 49.497,60.537 79.675,24.872 80.682,5   "/></g></g></svg>
+        </button>
+      `);
+    }else{
+      $("#s-caseNextStepTomerchandisedata").html("");
     }
   }else{
-    // ------------ VALIDAR SI CONTIENE ALGÚN VALOR NULO O 0 
-    if(val == 0 && val == ""){
-      $("#s-caseNextStepTomerchandisedata").html("");
-    }else{
-      if(document.querySelector("#ipt-valCantOfAmountAdditional").contains(document.querySelector("#ipt-valQuantityAmAddProdNInterface"))){
-        if($("#ipt-valNameTypeProdNInterface").attr("idproduct") && $("#ipt-valPriceProdNInterface").val() != 0 && $("#ipt-valPriceProdNInterface").val() != "" && $("#val-iptPriceValNInterface").val() != "" && $("#val-iptPriceValNInterface").val() != 0){
-          
-          $("#s-caseNextStepTomerchandisedata").html(`
-            <button type="button" class="cont-MainCamelLog--c--contSteps--item--cBtnNextStep--btn" id="btn-NextStepTomerchandisedata">
-              <span>Seguir</span>
-              <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 100 125" enable-background="new 0 0 100 100" xml:space="preserve"><g><g><polygon points="19.318,43.363 19.318,61.189 49.497,95 79.675,61.189 79.675,43.363 49.497,77.174   "/><polygon points="50.504,38.811 20.326,5 20.326,24.872 49.497,60.537 79.675,24.872 80.682,5   "/></g></g></svg>
-            </button>
-          `);
-        }else{
-          $("#s-caseNextStepTomerchandisedata").html("");
-        }
-      }else{
-        if($("#ipt-valNameTypeProdNInterface").attr("idproduct") && $("#val-iptPriceValNInterface").val() != "" && $("#val-iptPriceValNInterface").val() != 0){
-          
-          $("#s-caseNextStepTomerchandisedata").html(`
-            <button type="button" class="cont-MainCamelLog--c--contSteps--item--cBtnNextStep--btn" id="btn-NextStepTomerchandisedata">
-              <span>Seguir</span>
-              <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 100 125" enable-background="new 0 0 100 100" xml:space="preserve"><g><g><polygon points="19.318,43.363 19.318,61.189 49.497,95 79.675,61.189 79.675,43.363 49.497,77.174   "/><polygon points="50.504,38.811 20.326,5 20.326,24.872 49.497,60.537 79.675,24.872 80.682,5   "/></g></g></svg>
-            </button>
-          `);
-        }else{
-          $("#s-caseNextStepTomerchandisedata").html("");
-        }
-      }
-    }
+    $("#s-caseNextStepTomerchandisedata").html("");
+    $("#val-fficycertvloprtn").val();
+    console.log('No definido');
   }
 });
 // =================================================================================== //
