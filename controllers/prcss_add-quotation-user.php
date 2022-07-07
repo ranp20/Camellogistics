@@ -49,6 +49,7 @@ if(isset($_POST) && !empty($_POST)){
 	  'f_v_antidumping' => (!isset($_POST['f_v_antidumping']) || $_POST['f_v_antidumping'] == "") ? 0 : $_POST['f_v_antidumping'],
 	  'f_v_amm_comagency' => (!isset($_POST['f_v_amm_comagency']) || $_POST['f_v_amm_comagency'] == "") ? 0 : $_POST['f_v_amm_comagency'],
 	  'f_v_percent_comagency' => (!isset($_POST['f_v_percent_comagency']) || $_POST['f_v_percent_comagency'] == "") ? 0 : $_POST['f_v_percent_comagency'],
+	  'f_v_descarga' => (!isset($_POST['f_v_descarga']) || $_POST['f_v_descarga'] == "" || $_POST['f_v_descarga'] == 0) ? 0 : $_POST['f_v_descarga'],
 	  'f_percepcion' =>  (!isset($_POST['f_percepcion']) || $_POST['f_percepcion'] == "" || $_POST['f_percepcion'] == 0) ? 0 : $_POST['f_percepcion'],
 	  'f_ad_valoren' => (!isset($_POST['f_ad_valoren']) || $_POST['f_ad_valoren'] == "" || $_POST['f_ad_valoren'] == 0) ? 0 : $_POST['f_ad_valoren'],
 	  'f_impuesto_selectivo' => (!isset($_POST['f_impuesto_selectivo']) || $_POST['f_impuesto_selectivo'] == "" || $_POST['f_impuesto_selectivo'] == 0) ? 0 : $_POST['f_impuesto_selectivo'],

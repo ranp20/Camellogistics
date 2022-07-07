@@ -73,6 +73,7 @@ class Quotation_user extends Connection
       :f_v_antidumping,
       :f_v_amm_comagency,
       :f_v_percent_comagency,
+      :f_v_descarga,
       :f_percepcion,
       :f_ad_valoren,
       :f_impuesto_selectivo,

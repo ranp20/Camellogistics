@@ -67,6 +67,9 @@ $(document).ready(function(){
 	var encrypt_v_fficycertmaxpcatg = $("#v_fficycertmaxpcatg").val(encryptValuesIpts($("#v_fficycertmaxpcatg").val()));
 	var encrypt_v_fficycertquantpcatg = $("#v_fficycertquantpcatg").val(encryptValuesIpts($("#v_fficycertquantpcatg").val()));
 	var encrypt_v_fficycertvloprtnpcatg = $("#v_fficycertvloprtnpcatg").val(encryptValuesIpts($("#v_fficycertvloprtnpcatg").val()));
+
+	var encrypt_v_ftotmxwgtcompr = $("#v_ftotmxwgtcompr").val(encryptValuesIpts($("#v_ftotmxwgtcompr").val()));
+	var encrypt_v_ftotmxcbmcompr = $("#v_ftotmxcbmcompr").val(encryptValuesIpts($("#v_ftotmxcbmcompr").val()));
 	/* DESENCRIPTACIÓN DE INPUTS */
 	// ------------ VALORES DE CAJAS DE TEXTO - TEXTO
 	var v_idgencoderand = decryptValuesIpts(encrypt_v_idgencoderand.val());
@@ -96,6 +99,8 @@ $(document).ready(function(){
 	var v_fficycertmaxpcatg = decryptValuesIpts(encrypt_v_fficycertmaxpcatg.val()); // VALOR MAYOR A X CANTIDAD (CERTIFICADO DE CONFOMIDAD)
 	var v_fficycertquantpcatg = decryptValuesIpts(encrypt_v_fficycertquantpcatg.val()); // CANTIDAD X (CERTIFICADO DE CONFOMIDAD)
 	var v_fficycertvloprtnpcatg = decryptValuesIpts(encrypt_v_fficycertvloprtnpcatg.val()); // VALOR ASIGNADO VALIDADO X CANTIDAD
+	var v_ftotmxwgtcompr = decryptValuesIpts(encrypt_v_ftotmxwgtcompr.val()); // PESO TOTAL (COMPARAR)
+	var v_ftotmxcbmcompr = decryptValuesIpts(encrypt_v_ftotmxcbmcompr.val()); // VOLUMEN TOTAL (COMPARAR)
 	// ------------ VALORES DE CAJAS DE TEXTO - CÁLCULO
 	var val_ftotvalofdownload = decryptValuesIpts(encrypt_val_ftotvalofdownload.val());
 	var val_ftotalfleteprod = decryptValuesIpts(encrypt_val_ftotalfleteprod.val()); // FLETE
@@ -165,6 +170,10 @@ $(document).ready(function(){
 	var initvalinsurance = 0;
 	var finalinsurance = 0;
 	var finalRoundinsurance = 0;
+	// ------------ CÁLCULO DE DESCARGA
+	var totalconvert_weight = parseFloat(v_ftotmxwgtcompr) / 1000;
+	var totalconvert_volumen = parseFloat(v_ftotmxcbmcompr);
+	var totaldescarga = 0;
 	// ------------ CÁLCULO DE IMPUESTOS 
 	var partInteger_Tax = 0;
 	var partDecimal_Tax = 0;
@@ -347,8 +356,14 @@ $(document).ready(function(){
 						  		fvalfinal_visto_bueno = visto_bueno_lcl;
 						  		fvalfinal_descarga = descarga_lcl;
 						  		fvalfinal_almcen_ref = almacen_ref_lcl;
+						  		// VALIDAR EL VALOR DE DESCARGA
+						  		if(totalconvert_weight > totalconvert_volumen){
+						  			totaldescarga = totalconvert_weight * fvalfinal_descarga;
+						  		}else{
+						  			totaldescarga = totalconvert_volumen * fvalfinal_descarga;
+						  		}
 						  		// SUMAR TODOS LOS SERVICIOS - LCL
-				  	 			var totalPreciosTODOS = fvalfinal_emision_bl+fvalfinal_handling+fvalfinal_visto_bueno+fvalfinal_descarga+fvalfinal_almcen_ref+fvalfinal_com_agencia+fvalfinal_gas_operativos+totalfirstoperfycert;
+				  	 			var totalPreciosTODOS = fvalfinal_emision_bl+fvalfinal_handling+fvalfinal_visto_bueno+totaldescarga+fvalfinal_almcen_ref+fvalfinal_com_agencia+fvalfinal_gas_operativos+totalfirstoperfycert;
 				  	 			sumTotalServices = totflete + totalPreciosTODOS + totaltransport + totalamountadditional + finalRoundinsurance; // VALOR TOTAL - SERVICIOS
 				  	 			sumTotalbyIGV = (totaltransport + totalamountadditional + totalPreciosTODOS) * (18 / 100); // VALOR TOTAL - SERVICIOS + IGV 18%
 				  	 			sumTotalFinalFleteandIGV = sumTotalServices + sumTotalbyIGV; // VALOR TOTAL FINAL DE LA COTIZACIÓN
@@ -369,7 +384,14 @@ $(document).ready(function(){
 						  		fvalfinal_handling = handling_lcl;
 						  		fvalfinal_visto_bueno = visto_bueno_lcl;
 						  		fvalfinal_descarga = descarga_lcl;
-						  		var totalPreciosTODOS = fvalfinal_emision_bl+fvalfinal_handling+fvalfinal_visto_bueno+fvalfinal_descarga+totalfirstoperfycert;
+						  		// VALIDAR EL VALOR DE DESCARGA
+						  		if(totalconvert_weight > totalconvert_volumen){
+						  			totaldescarga = totalconvert_weight * fvalfinal_descarga;
+						  		}else{
+						  			totaldescarga = totalconvert_volumen * fvalfinal_descarga;
+						  		}
+						  		// SUMAR TODOS LOS SERVICIOS - LCL
+						  		var totalPreciosTODOS = fvalfinal_emision_bl+fvalfinal_handling+fvalfinal_visto_bueno+totaldescarga+totalfirstoperfycert;
 						  		sumTotalServices = totflete + totalPreciosTODOS + totaltransport + totalamountadditional + finalRoundinsurance; // VALOR TOTAL - SERVICIOS
 				  	 			sumTotalbyIGV = (totaltransport + totalamountadditional + totalPreciosTODOS) * (18 / 100); // VALOR TOTAL - SERVICIOS + IGV 18%
 				  	 			sumTotalFinalFleteandIGV = sumTotalServices + sumTotalbyIGV; // VALOR TOTAL FINAL DE LA COTIZACIÓN
@@ -565,6 +587,7 @@ $(document).ready(function(){
 									formdata.append("f_v_IPM", restaxvalues[1].data_value);
 									formdata.append("f_importadoprev", v_fprevimports);
 									formdata.append("f_v_percepcion", percepcion_notfilter);
+									formdata.append("f_v_descarga", fvalfinal_descarga);
 									formdata.append("f_percepcion", percepcioncalc_twodeci);
 									formdata.append("f_IGV", igvcalc_twodeci);
 									formdata.append("f_IPM", ipmcalc_twodeci);
@@ -575,7 +598,7 @@ $(document).ready(function(){
 									formdata.append("f_gremios_maritimos", fvalfinal_gremios_maritimos);
 									formdata.append("f_THC", fvalfinal_thc);
 									formdata.append("f_devolucion_contenedores", fvalfinal_devol_contenedor);
-									formdata.append("f_descarga", fvalfinal_descarga);
+									formdata.append("f_descarga", totaldescarga);
 									formdata.append("f_transporte_interno", totaltransport);
 									formdata.append("f_comision_agencia", fvalfinal_com_agencia);
 									formdata.append("f_gastos_operativos", fvalfinal_gas_operativos);
@@ -845,6 +868,7 @@ $(document).ready(function(){
 									formdata.append("f_v_IPM", restaxvalues[1].data_value);
 									formdata.append("f_importadoprev", v_fprevimports);
 									formdata.append("f_v_percepcion", percepcion_notfilter);
+									formdata.append("f_v_descarga", fvalfinal_descarga);
 									formdata.append("f_percepcion", percepcioncalc_twodeci);
 									formdata.append("f_IGV", igvcalc_twodeci);
 									formdata.append("f_IPM", ipmcalc_twodeci);
@@ -855,7 +879,7 @@ $(document).ready(function(){
 									formdata.append("f_gremios_maritimos", fvalfinal_gremios_maritimos);
 									formdata.append("f_THC", fvalfinal_thc);
 									formdata.append("f_devolucion_contenedores", fvalfinal_devol_contenedor);
-									formdata.append("f_descarga", fvalfinal_descarga);
+									formdata.append("f_descarga", totaldescarga);
 									formdata.append("f_transporte_interno", totaltransport);
 									formdata.append("f_comision_agencia", fvalfinal_com_agencia);
 									formdata.append("f_gastos_operativos", fvalfinal_gas_operativos);
