@@ -194,6 +194,9 @@
 	          <div class="item_marc_usd_det_ser1">$</div>
 	          <div class="item_marc_usd_det_ser1">$</div>
 	          <div class="item_marc_usd_det_ser1">$</div>
+	          <div class="item_marc_usd_det_ser1 height-by-two">$</div>
+	          <div class="item_marc_usd_det_ser1">$</div>
+	          <div class="item_marc_usd_det_ser1">$</div>
 	          <div class="item_marc_usd_det_ser1">$</div>
 	          <div class="item_marc_usd_det_ser1">$</div>
 	        </div>
@@ -210,11 +213,10 @@
 	          <div class="item_marc_tot_ser">100</div>
 	          <div class="item_marc_tot_ser">100</div>
 	          <div class="item_marc_tot_ser">100</div>
+	          <div class="item_marc_tot_ser height-by-two">-</div>
 	          <div class="item_marc_tot_ser">-</div>
 	          <div class="item_marc_tot_ser">-</div>
 	          <div class="item_marc_tot_ser">-</div>
-	          <div class="item_marc_tot_ser">-</div>
-	          <div class="item_marc_tot_ser">100</div>
 	          <div class="item_marc_tot_ser">100</div>
 	        </div>
 	      </div>

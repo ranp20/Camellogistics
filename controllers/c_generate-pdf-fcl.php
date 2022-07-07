@@ -6,7 +6,8 @@ ob_start(); //CARGA EN MEMORIA UN ARCHIVO
 //include(dirname('_FILE_').'/c_pdfquotation.php'); //INCLUIR LA PLANTILLA DE LA COTIZACIÓN, DEVOLVER DE LA RUTA PADRE, PARA COMPARTIR INFO.
 require_once '../models/quotation-user.php';
 $quotebyidcode = new Quotation_user();
-$listbyidcode = $quotebyidcode->get_by_idcodegenrand($_POST['id_codegenrand']);
+$listbyidcode = $quotebyidcode->get_by_idcodegenrand($_POST['id_codegenrand']); // LISTAR VALORES DE COTIZACIÓN
+$listisurance = $quotebyidcode->get_insurancebyquotation(); // LISTAR VALOR DE SEGURO
 function cambiaf_mysql($date){
   $originalDate = $date;
 	$newDate = date("d/m/Y", strtotime($originalDate));
@@ -53,6 +54,8 @@ function maxcharacters($string, $maxletters){
 	}
 	return $output_strg;
 }
+//VALOR PARA SEGURO (MÍNIMO DE FOB)
+$insure_min = $listisurance[0]['data_value'];
 //VARIABLES A USAR EN EL MOSTRADO DE INFORMACIÓN DENTRO DEL PDF
 $creation_date = $listbyidcode[0]['creation_date'];
 $u_nameenterprise = $listbyidcode[0]['u_enterprise'];
@@ -208,38 +211,40 @@ $name_quotation = "Presupuesto-".$_POST['code_quote']."-".$f_typecontainer;
 	        <div class="item_demp3_dat1"><?php echo $f_desc_weightvolumen; ?></div>
 	        <div class="item_demp3_dat1"><?php echo $f_time_transit; ?></div>
 	      </div>
-	      <!--
-        <div id="marc_dat3_derr1">
-	        <div class="item_marc3_dat2">FOB</div>
-	        <div class="item_marc3_dat2">FLETE</div>
+	      <div id="marc_dat3_derr1">
 	        <div class="item_marc3_dat2">SEGURO</div>
-	        <div class="item_marc3_dat2">CIF</div>
+	        <div class="item_marc3_dat2">FOB</div>
 	      </div>
 	      <div id="marc_dat3_cent">
-	        <div class="item_dpt3_dat1">:</div>
-	        <div class="item_dpt3_dat1">:</div>
 	        <div class="item_dpt3_dat1">:</div>
 	        <div class="item_dpt3_dat1">:</div>
 	      </div>
 	      <div id="marc_dat3_cent1">
 	        <div class="item_por3_dat1"></div>
-	        <div class="item_por3_dat1"></div>
-	        <div class="item_por3_dat1">1.00 %</div>
-	        <div class="item_por3_dat1"></div>
+	        <?php 
+	        	if($f_insurance == $insure_min){
+	        		echo "<div class='item_por3_dat1'>-</div>";
+	        	}else{
+	        		echo "<div class='item_por3_dat1'>".addTwoDecimals($f_insurance)." %</div>";
+	        	}
+	        ?>
 	      </div>
 	      <div id="marc_dat3_dollar">
-	        <div class="item_dpt3_dat1">$</div>
+	        <div class="item_dpt3_dat1"></div>
         	<div class="item_dpt3_dat1">$</div>
-	        <div class="item_dpt3_dat1">$</div>
-	        <div class="item_dpt3_dat1">$</div>
 	      </div>
         <div id="marc_dat3_derr11">
-	        <div class="item_tpor3_dat1">45000</div>
-	        <div class="item_tpor3_dat1">180</div>
-	        <div class="item_tpor3_dat1">112.03</div>
-	        <div class="item_tpor3_dat1">45292.03</div>
+	        <?php
+          	if($f_optgenfquotation == "not-moreOpts" && $f_selinsuremerch == "SI"){
+          		echo "<div class='item_tpor3_dat1'>SI</div>";
+          	}else if($f_optgenfquotation == "not-moreOpts" && $f_selinsuremerch == "NO"){
+          		echo "<div class='item_tpor3_dat1'>NO</div>";
+          	}else{
+          		echo "<div class='item_tpor3_dat1'>No especificado</div>";
+          	}
+          ?>
+	        <div class="item_tpor3_dat1"><?php echo addTwoDecimals($f_fob); ?></div>
 	      </div>
-      -->
 	    </div>
 	  </div>
 	  <div class="marc_fill" id="title_quoteservices">
