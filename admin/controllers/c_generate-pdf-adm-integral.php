@@ -288,10 +288,17 @@ $name_quotation = "Presupuesto-".$_POST['code_quote']."-".$f_typecontainer;
 	      <div id="marc_det_1er_log">
 	        <div id="marc_det_serv1">
 	          <div class="item_marc_det_serv1">Flete Internacional (no esta afecto a IGV)</div>
+	          <?php
+            	if($listbyidcode[0]['f_optgenfquotation'] == "y-moreOpts"){
+	            	if(isset($f_totalinsurance) && $f_totalinsurance != "" && $f_totalinsurance != 0){
+	            		echo "<div class='item_marc_det_serv1'>Seguro Internacional (no esta afecto a IGV)</div>";
+	            	}
+            	}
+            ?>
 	          <div class="item_marc_det_serv1">Pickup , ADUANAS ORIGEN</div>
 	          <div class="item_marc_det_serv1">Emision de BL / EWB</div>
 	          <div class="item_marc_det_serv1">Handling</div>
-	          <div class="item_marc_det_serv1">visto bueno</div>
+	          <div class="item_marc_det_serv1">Visto bueno</div>
 	          <div class="item_marc_det_serv1">Descarga</div>
 	          <div class="item_marc_det_serv1">* Almacen Referencial</div>
 	          <div class="item_marc_det_serv1">Transporte interno</div>
@@ -305,16 +312,16 @@ $name_quotation = "Presupuesto-".$_POST['code_quote']."-".$f_typecontainer;
 	          <div class="item_marc_det_serv1">Aforo fisico</div>
 	          <div class="item_marc_det_serv1">Comision de Agencia </div>
 	          <div class="item_marc_det_serv1">Gastos Operativos</div>
-	          <?php
-            	if($listbyidcode[0]['f_optgenfquotation'] == "y-moreOpts"){
-	            	if(isset($f_totalinsurance) && $f_totalinsurance != "" && $f_totalinsurance != 0){
-	            		echo "<div class='item_marc_det_serv1'>Seguro</div>";
-	            	}
-            	}
-            ?>
 	        </div>
 	        <div id="marc_usd_det_ser1">
 	          <div class="item_marc_usd_det_ser1">$</div>
+	          <?php
+            	if($listbyidcode[0]['f_optgenfquotation'] == "y-moreOpts"){
+	            	if(isset($f_totalinsurance) && $f_totalinsurance != "" && $f_totalinsurance != 0){
+	            		echo "<div class='item_marc_usd_det_ser1'>$</div>";
+	            	}
+            	}
+            ?>
 	          <div class="item_marc_usd_det_ser1">$</div>
 	          <div class="item_marc_usd_det_ser1">$</div>
 	          <div class="item_marc_usd_det_ser1">$</div>
@@ -328,16 +335,17 @@ $name_quotation = "Presupuesto-".$_POST['code_quote']."-".$f_typecontainer;
 	          <div class="item_marc_usd_det_ser1">$</div>
 	          <div class="item_marc_usd_det_ser1">$</div>
 	          <div class="item_marc_usd_det_ser1">$</div>
-	          <?php
-            	if($listbyidcode[0]['f_optgenfquotation'] == "y-moreOpts"){
-	            	if(isset($f_totalinsurance) && $f_totalinsurance != "" && $f_totalinsurance != 0){
-	            		echo "<div class='item_marc_usd_det_ser1'>$</div>";
-	            	}
-            	}
-            ?>
 	        </div>
 	        <div id="marc_tot_ser">
 	          <div class="item_marc_tot_ser"><?php echo addTwoDecimalsOrGuion($f_flete); ?></div>
+	          <?php
+            	if($listbyidcode[0]['f_optgenfquotation'] == "y-moreOpts"){
+	            	if(isset($f_totalinsurance) && $f_totalinsurance != "" && $f_totalinsurance != 0){
+            			$insurance = addTwoDecimalsOrGuion($f_totalinsurance);
+	            		echo "<div class='item_marc_tot_ser'>{$insurance}</div>";
+	            	}
+            	}
+            ?>
 	          <div class="item_marc_tot_ser">-</div>
 	          <div class="item_marc_tot_ser"><?php echo addTwoDecimalsOrGuion($f_emision_BL); ?></div>
 	          <div class="item_marc_tot_ser"><?php echo addTwoDecimalsOrGuion($f_handling); ?></div>
@@ -354,14 +362,6 @@ $name_quotation = "Presupuesto-".$_POST['code_quote']."-".$f_typecontainer;
 	          <div class="item_marc_tot_ser">-</div>
 	          <div class="item_marc_tot_ser"><?php echo addTwoDecimalsOrGuion($f_comision_agencia); ?></div>
 	          <div class="item_marc_tot_ser"><?php echo addTwoDecimalsOrGuion($f_gastos_operativos); ?></div>
-	          <?php
-            	if($listbyidcode[0]['f_optgenfquotation'] == "y-moreOpts"){
-	            	if(isset($f_totalinsurance) && $f_totalinsurance != "" && $f_totalinsurance != 0){
-            			$insurance = addTwoDecimalsOrGuion($f_totalinsurance);
-	            		echo "<div class='item_marc_tot_ser'>{$insurance}</div>";
-	            	}
-            	}
-            ?>
 	        </div>
 	      </div>
 	      <div id="marc_det_inf1_log">
