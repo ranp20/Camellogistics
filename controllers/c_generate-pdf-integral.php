@@ -6,8 +6,8 @@ ob_start(); //CARGA EN MEMORIA UN ARCHIVO
 //include(dirname('_FILE_').'/c_pdfquotation.php'); //INCLUIR LA PLANTILLA DE LA COTIZACIÓN, DEVOLVER DE LA RUTA PADRE, PARA COMPARTIR INFO.
 require_once '../models/quotation-user.php';
 $quotebyidcode = new Quotation_user();
-$listbyidcode = $quotebyidcode->get_by_idcodegenrand($_POST['id_codegenrand']);
-// print_r($listbyidcode);
+$listbyidcode = $quotebyidcode->get_by_idcodegenrand($_POST['id_codegenrand']); // LISTAR VALORES DE COTIZACIÓN
+$listisurance = $quotebyidcode->get_insurancebyquotation(); // LISTAR VALOR DE SEGURO
 function cambiaf_mysql($date){
   $originalDate = $date;
 	$newDate = date("d/m/Y", strtotime($originalDate));
@@ -54,6 +54,8 @@ function maxcharacters($string, $maxletters){
 	}
 	return $output_strg;
 }
+//VALOR PARA SEGURO (MÍNIMO DE FOB)
+$insure_min = $listisurance[0]['data_value'];
 //VARIABLES A USAR EN EL MOSTRADO DE INFORMACIÓN DENTRO DEL PDF
 $creation_date = $listbyidcode[0]['creation_date'];
 $u_nameenterprise = $listbyidcode[0]['u_enterprise'];
@@ -77,6 +79,8 @@ if($listbyidcode[0]['f_typetransendinitid'] == "S-ADU"){
 }
 $f_type_operation = strtoupper($listbyidcode[0]['f_type_service']);
 $f_typecontainer = $listbyidcode[0]['f_type_container'];
+$f_optgenfquotation = $listbyidcode[0]['f_optgenfquotation'];
+$f_selinsuremerch = $listbyidcode[0]['f_selinsuremerch'];
 $f_desc_weightvolumen = $listbyidcode[0]['f_desc_weightvolumen'];
 $f_weight_volume = ($listbyidcode[0]['f_weight_volume'] == "No especificado" || $listbyidcode[0]['f_weight_volume'] == "") ? 0 : $listbyidcode[0]['f_weight_volume'];
 $f_transit_location = $listbyidcode[0]['f_transit_location'];
@@ -230,7 +234,13 @@ $name_quotation = "Presupuesto-".$_POST['code_quote']."-".$f_typecontainer;
 	      <div id="marc_dat3_cent1">
 	        <div class="item_por3_dat1"></div>
 	        <div class="item_por3_dat1"></div>
-	        <div class="item_por3_dat1"><?php echo addTwoDecimals($f_insurance); ?> %</div>
+	        <?php 
+	        	if($f_insurance == $insure_min){
+	        		echo "<div class='item_por3_dat1'>-</div>";
+	        	}else{
+	        		echo "<div class='item_por3_dat1'>".addTwoDecimals($f_insurance)." %</div>";
+	        	}
+	        ?>
 	        <div class="item_por3_dat1"></div>
 	      </div>
 	      <div id="marc_dat3_dollar">
@@ -291,10 +301,8 @@ $name_quotation = "Presupuesto-".$_POST['code_quote']."-".$f_typecontainer;
 	        <div id="marc_det_serv1">
 	          <div class="item_marc_det_serv1">Flete Internacional (no esta afecto a IGV)</div>
 	          <?php
-            	if($listbyidcode[0]['f_optgenfquotation'] == "y-moreOpts"){
-	            	if(isset($f_totalinsurance) && $f_totalinsurance != "" && $f_totalinsurance != 0){
-	            		echo "<div class='item_marc_det_serv1'>Seguro Internacional (no esta afecto a IGV)</div>";
-	            	}
+            	if($f_optgenfquotation == "y-moreOpts" && $f_selinsuremerch == "SI"){
+	            	echo "<div class='item_marc_det_serv1'>Seguro Internacional (no esta afecto a IGV)</div>";
             	}
             ?>
 	          <div class="item_marc_det_serv1">Pickup , ADUANAS ORIGEN</div>
@@ -325,10 +333,8 @@ $name_quotation = "Presupuesto-".$_POST['code_quote']."-".$f_typecontainer;
 	        <div id="marc_usd_det_ser1">
 	          <div class="item_marc_usd_det_ser1">$</div>
 	          <?php
-            	if($listbyidcode[0]['f_optgenfquotation'] == "y-moreOpts"){
-	            	if(isset($f_totalinsurance) && $f_totalinsurance != "" && $f_totalinsurance != 0){
-	            		echo "<div class='item_marc_usd_det_ser1'>$</div>";
-	            	}
+            	if($f_optgenfquotation == "y-moreOpts" && $f_selinsuremerch == "SI"){
+	            	echo "<div class='item_marc_usd_det_ser1'>$</div>";
             	}
             ?>
 	          <div class="item_marc_usd_det_ser1">$</div>
@@ -351,11 +357,9 @@ $name_quotation = "Presupuesto-".$_POST['code_quote']."-".$f_typecontainer;
 	        <div id="marc_tot_ser">
 	          <div class="item_marc_tot_ser"><?php echo addTwoDecimalsOrGuion($f_flete); ?></div>
 	          <?php
-            	if($listbyidcode[0]['f_optgenfquotation'] == "y-moreOpts"){
-	            	if(isset($f_totalinsurance) && $f_totalinsurance != "" && $f_totalinsurance != 0){
-            			$insurance = addTwoDecimalsOrGuion($f_totalinsurance);
-	            		echo "<div class='item_marc_tot_ser'>{$insurance}</div>";
-	            	}
+            	if($f_optgenfquotation == "y-moreOpts" && $f_selinsuremerch == "SI"){
+            		$insurance = addTwoDecimalsOrGuion($f_totalinsurance);
+	            	echo "<div class='item_marc_tot_ser'>{$insurance}</div>";
             	}
             ?>
 	          <div class="item_marc_tot_ser">-</div>

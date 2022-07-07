@@ -20,6 +20,17 @@ class Quotation_user extends Connection
       return $e->getMessage();
     }
   }
+  // -------------- LISTAR VALORES DE SEGURO
+  function get_insurancebyquotation(){
+    try{
+      $sql = "CALL sp_list_insurancebyquotation()";
+      $stm = $this->con->prepare($sql);
+      $stm->execute();
+      return $stm->fetchAll(PDO::FETCH_ASSOC);
+    }catch(PDOEXception $e){
+      return $e->getMessage();
+    }
+  }
   // -------------- VALIDAR SI EXISTE LA COTIZACIÓN
   function valid_exist_quotation($id_gencode, $codegenerate){
     try{
