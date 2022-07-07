@@ -585,10 +585,15 @@ $(document).ready(function(){
 									formdata.append("f_v_IPM", restaxvalues[1].data_value);
 									formdata.append("f_importadoprev", v_fprevimports);
 									formdata.append("f_v_percepcion", percepcion_notfilter);
+									formdata.append("f_v_ad_valoren", v_fatthxyaonepcatg);
+									formdata.append("f_v_impuesto_selectivo", v_fatthxyatwopcatg);
+									formdata.append("f_v_antidumping", v_fatthxyathreepcatg);
+									formdata.append("f_v_amm_comagency", comagencia_monto);
+									formdata.append("f_v_percent_comagency", comagencia_porcentaje);
 									formdata.append("f_v_descarga", fvalfinal_descarga);
-									formdata.append("f_percepcion", percepcioncalc_twodeci);
 									formdata.append("f_IGV", igvcalc_twodeci);
 									formdata.append("f_IPM", ipmcalc_twodeci);
+									formdata.append("f_percepcion", percepcioncalc_twodeci);
 									formdata.append("f_emision_bl", fvalfinal_emision_bl);
 									formdata.append("f_handling", fvalfinal_handling);
 									formdata.append("f_visto_bueno", fvalfinal_visto_bueno);
@@ -867,6 +872,11 @@ $(document).ready(function(){
 									formdata.append("f_v_IPM", restaxvalues[1].data_value);
 									formdata.append("f_importadoprev", v_fprevimports);
 									formdata.append("f_v_percepcion", percepcion_notfilter);
+									formdata.append("f_v_ad_valoren", v_fatthxyaonepcatg);
+									formdata.append("f_v_impuesto_selectivo", v_fatthxyatwopcatg);
+									formdata.append("f_v_antidumping", v_fatthxyathreepcatg);
+									formdata.append("f_v_amm_comagency", comagencia_monto);
+									formdata.append("f_v_percent_comagency", comagencia_porcentaje);
 									formdata.append("f_v_descarga", fvalfinal_descarga);
 									formdata.append("f_percepcion", percepcioncalc_twodeci);
 									formdata.append("f_IGV", igvcalc_twodeci);

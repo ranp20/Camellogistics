@@ -1567,7 +1567,7 @@ $(document).on("click", "#list-SelOptionResultExp a", function(){
           </div>
           <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cBottom">
             <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cBottom--cSwitch">
-              <input type="checkbox" id="chck-importpreview" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cBottom--cSwitch--input"/>
+              <input type="checkbox" id="chck-importpreview" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cBottom--cSwitch--input" switch-CFreeze="NO"/>
               <label for="chck-importpreview" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cBottom--cSwitch--label t-sizereg"></label>
             </div>
             <span>¿Has realizado importaciones previamente?</span>
@@ -2894,14 +2894,14 @@ $(document).on("keyup keypress", "#ipt-valPriceProdNInterface", function(e){
 $(document).on("click", "#chck-importpreview", function(){
   if($(this).is(":checked")){
 		$(this).parent().addClass("active");
-		$(this).parent().attr("switch-CFreeze", "SI");
-    var yesImportPrev = $(this).parent().attr("switch-CFreeze");
+		$(this).attr("switch-CFreeze", "SI");
+    var yesImportPrev = $(this).attr("switch-CFreeze");
     // ------------ ASIGNAR VALORES DE LOS INPUTS HIDDEN - MERCANCÍA 
     $("#val-prevImports").val(yesImportPrev);
 	}else{
 		$(this).parent().removeClass("active");
-		$(this).parent().attr("switch-CFreeze", "NO");
-    var notImportPrev = $(this).parent().attr("switch-CFreeze");
+		$(this).attr("switch-CFreeze", "NO");
+    var notImportPrev = $(this).attr("switch-CFreeze");
     // ------------ ASIGNAR VALORES DE LOS INPUTS HIDDEN - MERCANCÍA 
     $("#val-prevImports").val(notImportPrev);
 	}
@@ -2917,7 +2917,7 @@ $(document).on("click", "#btn-NextStepTomerchandisedata", function(){
       // ------------ ASIGNAR VALORES DE LOS INPUTS HIDDEN - MERCANCÍA 
       $("#val-categProdquot").val($("#ipt-valNameTypeProdNInterface").val());
       $("#val-valProdquot").val($("#ipt-valPriceProdNInterface").val());
-      $("#val-prevImports").val($("#chck-importpreview").parent().attr("switch-CFreeze"));
+      $("#val-prevImports").val($("#chck-importpreview").attr("switch-CFreeze"));
       // ------------ MOSTRAR EL SIGUIENTE PASO 
       $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-insuremerchandise]").addClass("show");
       sectionsSteps.moveTo('step-insuremerchandise', 1);
@@ -2977,7 +2977,7 @@ $(document).on("click", "#btn-NextStepTomerchandisedata", function(){
       // ------------ ASIGNAR VALORES DE LOS INPUTS HIDDEN - MERCANCÍA 
       $("#val-categProdquot").val($("#ipt-valNameTypeProdNInterface").val());
       $("#val-valProdquot").val($("#ipt-valPriceProdNInterface").val());
-      $("#val-prevImports").val($("#chck-importpreview").parent().attr("switch-CFreeze"));
+      $("#val-prevImports").val($("#chck-importpreview").attr("switch-CFreeze"));
       // ------------ MOSTRAR EL SIGUIENTE PASO 
       $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-insuremerchandise]").addClass("show");
       sectionsSteps.moveTo('step-insuremerchandise', 1);
@@ -3142,12 +3142,6 @@ $(document).on("click", "#list-requirespickup a", function(){
               </div>
             </div>
           </div>
-          <!--<div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation--cBottom">
-            <label for="chck-insuremerchandise" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation--cBottom--cSwitch" switch-CFreeze="NO">
-              <input type="checkbox" id="chck-insuremerchandise" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsPickupLocation--cBottom--cSwitch--chck">
-            </label>
-            <span>¿Quieres asegurar la mercancía?</span>
-          </div>-->
         </div>
       </div>
       <div class="cont-MainCamelLog--c--contSteps--item--cBtnNextStep"></div>

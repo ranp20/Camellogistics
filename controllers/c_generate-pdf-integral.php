@@ -93,6 +93,8 @@ $f_v_percepcion = $listbyidcode[0]['f_v_percepcion'];
 $f_v_ad_valoren = $listbyidcode[0]['f_v_ad_valoren'];
 $f_v_impuesto_selectivo = $listbyidcode[0]['f_v_impuesto_selectivo'];
 $f_v_antidumping = $listbyidcode[0]['f_v_antidumping'];
+$f_v_amm_comagency = $listbyidcode[0]['f_v_amm_comagency'];
+$f_v_percent_comagency = $listbyidcode[0]['f_v_percent_comagency'];
 // VALORES CALCULADOS DE IMPUESTOS
 $f_IGV = $listbyidcode[0]['f_IGV'];
 $f_IPM = $listbyidcode[0]['f_IPM'];
@@ -310,7 +312,14 @@ $name_quotation = "Presupuesto-".$_POST['code_quote']."-".$f_typecontainer;
 	          <div class="item_marc_det_serv1">FICHA TECNICA</div>
 	          <div class="item_marc_det_serv1">Consolidación</div>
 	          <div class="item_marc_det_serv1">Aforo fisico</div>
-	          <div class="item_marc_det_serv1">Comision de Agencia </div>
+	          <?php 
+	          	if($f_cif > $f_v_amm_comagency){
+	          		$percent_comagency = addTwoDecimals($f_v_percent_comagency) . "%";
+	          		echo "<div class='item_marc_det_serv1'>Comision de Agencia &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{$percent_comagency}</div>";
+	          	}else{
+	          		echo "<div class='item_marc_det_serv1'>Comision de Agencia </div>";
+	          	}
+	          ?>
 	          <div class="item_marc_det_serv1">Gastos Operativos</div>
 	        </div>
 	        <div id="marc_usd_det_ser1">

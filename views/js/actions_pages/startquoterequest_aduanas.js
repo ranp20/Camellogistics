@@ -971,7 +971,7 @@ $(document).on("click", "#btn-NextStepToSelOptResultExp", function(){
           </div>
           <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cBottom">
             <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cBottom--cSwitch">
-              <input type="checkbox" id="chck-importpreview" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cBottom--cSwitch--input"/>
+              <input type="checkbox" id="chck-importpreview" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cBottom--cSwitch--input" switch-CFreeze="NO"/>
               <label for="chck-importpreview" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cBottom--cSwitch--label"></label>
             </div>
             <span>¿Has realizado importaciones previamente?</span>
@@ -1519,7 +1519,7 @@ $(document).on("click", "#btn-NextStepTochargedata", function(){
               </div>
               <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cBottom">
                 <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cBottom--cSwitch">
-                  <input type="checkbox" id="chck-importpreview" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cBottom--cSwitch--input"/>
+                  <input type="checkbox" id="chck-importpreview" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cBottom--cSwitch--input" switch-CFreeze="NO"/>
                   <label for="chck-importpreview" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cBottom--cSwitch--label"></label>
                 </div>
                 <span>¿Has realizado importaciones previamente?</span>
@@ -1605,7 +1605,7 @@ $(document).on("click", "#btn-NextStepTochargedata", function(){
               </div>
               <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cBottom">
                 <div class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cBottom--cSwitch">
-                  <input type="checkbox" id="chck-importpreview" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cBottom--cSwitch--input"/>
+                  <input type="checkbox" id="chck-importpreview" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cBottom--cSwitch--input" switch-CFreeze="NO"/>
                   <label for="chck-importpreview" class="cont-MainCamelLog--c--contSteps--item--cStep--mFrmIptsControlsMerchandise--cBottom--cSwitch--label"></label>
                 </div>
                 <span>¿Has realizado importaciones previamente?</span>
@@ -1830,14 +1830,14 @@ $(document).on("change input keyup", "#ipt-valNameTypeProdNInterface", function(
 $(document).on("click", "#chck-importpreview", function(){
   if($(this).is(":checked")){
     $(this).parent().addClass("active");
-    $(this).parent().attr("switch-CFreeze", "SI");
-    var yesImportPrev = $(this).parent().attr("switch-CFreeze");
+    $(this).attr("switch-CFreeze", "SI");
+    var yesImportPrev = $(this).attr("switch-CFreeze");
     // ------------ ASIGNAR VALORES DE LOS INPUTS HIDDEN - MERCANCÍA 
     $("#val-prevImports").val(yesImportPrev);
   }else{
     $(this).parent().removeClass("active");
-    $(this).parent().attr("switch-CFreeze", "NO");
-    var notImportPrev = $(this).parent().attr("switch-CFreeze");
+    $(this).attr("switch-CFreeze", "NO");
+    var notImportPrev = $(this).attr("switch-CFreeze");
     // ------------ ASIGNAR VALORES DE LOS INPUTS HIDDEN - MERCANCÍA 
     $("#val-prevImports").val(notImportPrev);
   }
