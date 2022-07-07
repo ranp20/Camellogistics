@@ -125,7 +125,6 @@ $f_totalservicesIGV18 = $listbyidcode[0]['f_totalservicesIGV18'];
 $f_totalwithIGV = $listbyidcode[0]['f_totalwithIGV'];
 //NOMBRE DE LA COTIZACIÓN
 $name_quotation = "Presupuesto-".$_POST['code_quote']."-".$f_typecontainer;
-
 ?>
 <!DOCTYPE html>
 <html lang="es">
