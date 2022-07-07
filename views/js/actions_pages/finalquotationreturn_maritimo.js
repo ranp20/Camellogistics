@@ -260,16 +260,24 @@ $(document).ready(function(){
 			    }
 		  	}else if(v_foptgnfquotevl == "y-moreOpts" && v_frselinsmerch == "NO"){
 		  		if(totalfinalvaluefob > merchandiseValFixed){
-			      finalinsurance = totalfinalvaluefob * insureconvert_max25000; //ES MAYOR A (FOB)
-			      initvalinsurance = insure_max25000;
+			      finalinsurance = totalfinalvaluefob * insureconvert_default; //ES MAYOR A (FOB)
+			      initvalinsurance = insure_default;
 			      finalRoundinsurance = myRound(finalinsurance);
 			    }else{
-			      finalinsurance = insure_min25000; //ES MENOR A (FOB)
-			      initvalinsurance = insure_min25000;
+			      finalinsurance = insureconvert_default; //ES MENOR A (FOB)
+			      initvalinsurance = insure_default;
 			      finalRoundinsurance = myRound(finalinsurance);
 			    }
 		  	}else if(v_foptgnfquotevl == "not-moreOpts" && v_frselinsmerch == "NO"){
-			  	finalRoundinsurance = 0;
+			  	if(totalfinalvaluefob > merchandiseValFixed){
+			      finalinsurance = totalfinalvaluefob * insureconvert_default; //ES MAYOR A (FOB)
+			      initvalinsurance = insure_default;
+			      finalRoundinsurance = myRound(finalinsurance);
+			    }else{
+			      finalinsurance = insureconvert_default; //ES MENOR A (FOB)
+			      initvalinsurance = insure_default;
+			      finalRoundinsurance = myRound(finalinsurance);
+			    }
 		  	}else{
 		  		finalRoundinsurance = 0;
 		  	}
