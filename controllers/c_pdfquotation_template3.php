@@ -91,7 +91,7 @@
 	        <div class="item_dpt3_dat1">:</div>
 	      </div>
 	      <div id="marc_dat3_cent1">
-	        <div class="item_por3_dat1"></div>
+	        <div class="item_por3_dat1">SI</div>
 	        <div class="item_por3_dat1">1.00 %</div>
 	      </div>
 	      <div id="marc_dat3_dollar">
@@ -99,7 +99,7 @@
 	        <div class="item_dpt3_dat1">$</div>
 	      </div>
         <div id="marc_dat3_derr11">
-	        <div class="item_tpor3_dat1">SI</div>
+	        <div class="item_tpor3_dat1"></div>
 	        <div class="item_tpor3_dat1">45000</div>
 	      </div>
 	    </div>

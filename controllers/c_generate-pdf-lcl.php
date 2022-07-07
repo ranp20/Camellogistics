@@ -218,37 +218,55 @@ $name_quotation = "Presupuesto-".$_POST['code_quote']."-".$f_typecontainer;
 	      </div>        
 	      <div id="marc_dat3_derr1">
 	        <div class="item_marc3_dat2">Seguro Internacional</div>
-	        <div class="item_marc3_dat2">FOB</div>
+	        <?php 
+	        	if($f_optgenfquotation == "not-moreOpts" && $f_selinsuremerch == "SI" && $f_fob != "" && $f_fob > 0){
+	        		echo "<div class='item_marc3_dat2'>FOB</div>";
+	        	}
+	        ?>
 	      </div>
 	      <div id="marc_dat3_cent">
 	        <div class="item_dpt3_dat1">:</div>
-	        <div class="item_dpt3_dat1">:</div>
+	        <?php 
+	        	if($f_optgenfquotation == "not-moreOpts" && $f_selinsuremerch == "SI" && $f_fob != "" && $f_fob > 0){
+	        		echo "<div class='item_dpt3_dat1'>:</div>";
+	        	}
+	        ?>
 	      </div>
 	      <div id="marc_dat3_cent1">
-	        <div class="item_por3_dat1"></div>
-	        <?php 
-	        	if($f_insurance == $insure_min){
-	        		echo "<div class='item_por3_dat1'>-</div>";
-	        	}else{
-	        		echo "<div class='item_por3_dat1'>".addTwoDecimals($f_insurance)." %</div>";
+	        <?php
+          	if($f_optgenfquotation == "not-moreOpts" && $f_selinsuremerch == "SI"){
+          		echo "<div class='item_por3_dat1'>SI</div>";
+          	}else if($f_optgenfquotation == "not-moreOpts" && $f_selinsuremerch == "NO"){
+          		echo "<div class='item_por3_dat1'>NO</div>";
+          	}else{
+          		echo "<div class='item_por3_dat1'>No especificado</div>";
+          	}
+          ?>
+	        <?php
+	        	if($f_optgenfquotation == "not-moreOpts" && $f_selinsuremerch == "SI" && $f_fob != "" && $f_fob > 0){
+		        	if($f_insurance == $insure_min){
+		        		echo "<div class='item_por3_dat1'>-</div>";
+		        	}else{
+		        		echo "<div class='item_por3_dat1'>".addTwoDecimals($f_insurance)." %</div>";
+		        	}
 	        	}
 	        ?>
 	      </div>
 	      <div id="marc_dat3_dollar">
 	        <div class="item_dpt3_dat1"></div>
-        	<div class="item_dpt3_dat1">$</div>
+        	<?php 
+	        	if($f_optgenfquotation == "not-moreOpts" && $f_selinsuremerch == "SI" && $f_fob != "" && $f_fob > 0){
+        			echo "<div class='item_dpt3_dat1'>$</div>";
+	        	}
+	        ?>
 	      </div>
         <div id="marc_dat3_derr11">
-	        <?php
-          	if($f_optgenfquotation == "not-moreOpts" && $f_selinsuremerch == "SI"){
-          		echo "<div class='item_tpor3_dat1'>SI</div>";
-          	}else if($f_optgenfquotation == "not-moreOpts" && $f_selinsuremerch == "NO"){
-          		echo "<div class='item_tpor3_dat1'>NO</div>";
-          	}else{
-          		echo "<div class='item_tpor3_dat1'>No especificado</div>";
+	        <div class='item_tpor3_dat1'></div>
+	        <?php 
+          	if($f_optgenfquotation == "not-moreOpts" && $f_selinsuremerch == "SI" && $f_fob != "" && $f_fob > 0){
+          		echo "<div class='item_tpor3_dat1'>".addTwoDecimals($f_fob)."</div>";
           	}
           ?>
-	        <div class="item_tpor3_dat1"><?php echo addTwoDecimals($f_fob); ?></div>
 	      </div>
 	    </div>
 	  </div>
