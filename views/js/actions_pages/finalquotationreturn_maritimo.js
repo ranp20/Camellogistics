@@ -565,6 +565,7 @@ $(document).ready(function(){
 									formdata.append("f_v_IPM", restaxvalues[1].data_value);
 									formdata.append("f_importadoprev", v_fprevimports);
 									formdata.append("f_v_percepcion", percepcion_notfilter);
+									formdata.append("f_percepcion", percepcioncalc_twodeci);
 									formdata.append("f_IGV", igvcalc_twodeci);
 									formdata.append("f_IPM", ipmcalc_twodeci);
 									formdata.append("f_emision_bl", fvalfinal_emision_bl);
@@ -575,7 +576,6 @@ $(document).ready(function(){
 									formdata.append("f_THC", fvalfinal_thc);
 									formdata.append("f_devolucion_contenedores", fvalfinal_devol_contenedor);
 									formdata.append("f_descarga", fvalfinal_descarga);
-									formdata.append("f_percepcion", percepcioncalc_twodeci);
 									formdata.append("f_transporte_interno", totaltransport);
 									formdata.append("f_comision_agencia", fvalfinal_com_agencia);
 									formdata.append("f_gastos_operativos", fvalfinal_gas_operativos);
@@ -845,6 +845,7 @@ $(document).ready(function(){
 									formdata.append("f_v_IPM", restaxvalues[1].data_value);
 									formdata.append("f_importadoprev", v_fprevimports);
 									formdata.append("f_v_percepcion", percepcion_notfilter);
+									formdata.append("f_percepcion", percepcioncalc_twodeci);
 									formdata.append("f_IGV", igvcalc_twodeci);
 									formdata.append("f_IPM", ipmcalc_twodeci);
 									formdata.append("f_emision_bl", fvalfinal_emision_bl);
@@ -855,7 +856,6 @@ $(document).ready(function(){
 									formdata.append("f_THC", fvalfinal_thc);
 									formdata.append("f_devolucion_contenedores", fvalfinal_devol_contenedor);
 									formdata.append("f_descarga", fvalfinal_descarga);
-									formdata.append("f_percepcion", percepcioncalc_twodeci);
 									formdata.append("f_transporte_interno", totaltransport);
 									formdata.append("f_comision_agencia", fvalfinal_com_agencia);
 									formdata.append("f_gastos_operativos", fvalfinal_gas_operativos);
