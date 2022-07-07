@@ -234,7 +234,13 @@ $name_quotation = "Presupuesto-".$_POST['code_quote']."-".$f_typecontainer;
 	      <div id="marc_dat3_cent1">
 	        <div class="item_por3_dat1"></div>
 	        <div class="item_por3_dat1"></div>
-	        <div class="item_por3_dat1"><?php echo addTwoDecimals($f_insurance); ?> %</div>
+	        <?php 
+	        	if($f_insurance == $insure_min){
+	        		echo "<div class='item_por3_dat1'>-</div>";
+	        	}else{
+	        		echo "<div class='item_por3_dat1'>".addTwoDecimals($f_insurance)." %</div>";
+	        	}
+	        ?>
 	        <div class="item_por3_dat1"></div>
 	      </div>
 	      <div id="marc_dat3_dollar">
