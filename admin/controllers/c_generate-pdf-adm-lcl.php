@@ -287,7 +287,6 @@ $name_quotation = "Presupuesto-".$_POST['code_quote']."-".$f_typecontainer;
             <div class="item_marc_det_uniqueserv h-18">Emisión de BL</div>
             <div class="item_marc_det_uniqueserv h-18">Handling</div>
             <div class="item_marc_det_uniqueserv h-18">Visto Bueno</div>
-            <div class="item_marc_det_uniqueserv h-18">Desconsolidación</div>
             <div class="item_marc_det_uniqueserv h-18">Descarga</div>
           </div>
           <div id="marc_usd_det_uniqueser">
@@ -298,7 +297,6 @@ $name_quotation = "Presupuesto-".$_POST['code_quote']."-".$f_typecontainer;
             	}
             ?>
             <div class="item_marc_usd_det_uniqueser h-15 pt-02 text-fw-bold">$</div>
-            <div class="item_marc_usd_det_uniqueser h-15 pt-02">$</div>
             <div class="item_marc_usd_det_uniqueser h-15 pt-02">$</div>
             <div class="item_marc_usd_det_uniqueser h-15 pt-02">$</div>
             <div class="item_marc_usd_det_uniqueser h-15 pt-02">$</div>
@@ -316,7 +314,6 @@ $name_quotation = "Presupuesto-".$_POST['code_quote']."-".$f_typecontainer;
             <div class="item_marc_tot_uniqueser pt-02"><?php echo addTwoDecimalsOrGuion($f_emision_BL); ?></div>
             <div class="item_marc_tot_uniqueser pt-02"><?php echo addTwoDecimalsOrGuion($f_handling); ?></div>
             <div class="item_marc_tot_uniqueser pt-02"><?php echo addTwoDecimalsOrGuion($f_visto_bueno); ?></div>
-            <div class="item_marc_tot_uniqueser pt-02">-</div>
             <div class="item_marc_tot_uniqueser pt-02"><?php echo addTwoDecimalsOrGuion($f_descarga); ?></div>
           </div>
         </div>
