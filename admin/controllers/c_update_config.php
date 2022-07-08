@@ -7,12 +7,20 @@ if(isset($_GET['action']) && $_GET['action'] == "SaveChanges" && isset($_GET['as
 	// ------------ AJUSTES - HOME
 	if($_GET['assoc'] == 'home_settings'){
 		if(isset($_POST) && count($_POST) > 0){
+			// WHATSAPP
 			$whatsapp_phone = (isset($_POST['whatsapp_phone'])) ? str_replace(" ", "", $_POST['whatsapp_phone']) : 0;
 			$whatsapp_text = (isset($_POST['whatsapp_text']) && $_POST['whatsapp_text'] != "") ? $_POST['whatsapp_text'] : "";
+			// INFORMACIÓN GENERAL
+			$infogeneral_address = (isset($_POST['infogeneral_address']) && $_POST['infogeneral_address'] != "") ? $_POST['infogeneral_address'] : "";
+			$infogeneral_email = (isset($_POST['infogeneral_email']) && $_POST['infogeneral_email'] != "") ? $_POST['infogeneral_email'] : "";
+			$infogeneral_telephone = (isset($_POST['infogeneral_telephone'])) ? str_replace(" ", "", $_POST['infogeneral_telephone']) : 0;
 
 			$arr_postSettings = [
 				"whatsapp_phone" => $whatsapp_phone,
-				"whatsapp_text" => $whatsapp_text
+				"whatsapp_text" => $whatsapp_text,
+				"infogeneral_address" => $infogeneral_address,
+				"infogeneral_email" => $infogeneral_email,
+				"infogeneral_telephone" => $infogeneral_telephone
 			];
 		}else{
 			$r = array(
@@ -63,7 +71,7 @@ if(isset($_GET['action']) && $_GET['action'] == "SaveChanges" && isset($_GET['as
 	$sql = "";
 	foreach($arr_postSettings as $key => $valor){
 		$sql_valid = "SELECT setting_name FROM tbl_settings WHERE setting_name = '".$key."'";
-		$row_valid = $con->query($sql_valid);
+		$row_valid = $con_u->query($sql_valid);
 		$numb_rows = $row_valid->rowCount();
 		if($numb_rows > 0){
 			$sql = "UPDATE tbl_settings SET setting_value = '".$valor."' WHERE setting_name = '".$key."'";
@@ -71,7 +79,7 @@ if(isset($_GET['action']) && $_GET['action'] == "SaveChanges" && isset($_GET['as
 			$sql = "INSERT INTO tbl_settings (setting_name, setting_value) VALUES ('".$key."','".$valor."')";
 		}
 		$sql_db = $sql;
-		$result = $con->prepare($sql_db);
+		$result = $con_u->prepare($sql_db);
 		$result->execute();
 		if($result == true){
 			$r = array(

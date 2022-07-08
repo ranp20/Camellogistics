@@ -35,7 +35,6 @@ $adm_config = $settings->list();
 									<div class="cont-dashCamel--cHSettings--containRight--cContain__cBody__cSettings__sideLinkAnchors__cLinks" id="c-Settings_linksAnchors">
 										<ul id="c-Settings_linksAnchors-m">
 											<li data-target="#anchor_settings_home">Home</li>
-											<!-- <li data-target="#anchor_settings_convert-divise">Otros Valores</li> -->
 											<li data-target="#anchor_settings_banners">Banners</li>
 											<li data-target="#anchor_settings_logos">Logos</li>
 											<li data-target="#anchor_settings_about-us">Nosotros</li>
@@ -62,18 +61,52 @@ $adm_config = $settings->list();
 										          }else{
 										          	echo "";
 										          }
-										          //echo $config->list("whatsapp_phone")[0]["setting_value"];
-										        ?>" placeholder="(+51) 999 999 999" maxlength="11">
+										        ?>" placeholder="999 999 999" maxlength="11">
 										        </div>
 										        <div class="cont-dashCamel--cHSettings--containRight--cContain__cBody__cardBody__cCardBody__contCol__cardGrpControls__ctrlItem w-100">
-										          <label for="whatsapp_phone" class="cont-dashCamel--cHSettings--containRight--cContain__cBody__cardBody__cCardBody__contCol__cardGrpControls__ctrlItem__label">Texto de whatsapp</label>
+										          <label for="whatsapp_text" class="cont-dashCamel--cHSettings--containRight--cContain__cBody__cardBody__cCardBody__contCol__cardGrpControls__ctrlItem__label">Texto de whatsapp</label>
 										          <textarea id="whatsapp_text" name="whatsapp_text" class="cont-dashCamel--cHSettings--containRight--cContain__cBody__cardBody__cCardBody__contCol__cardGrpControls__ctrlItem__textarea" placeholder="Escribe aquí el texto para WhatsApp" maxlength="999"><?php 
-										          if(isset($adm_config('whatsapp_phone')['setting_value'])){
-										          	echo $adm_config('whatsapp_text')['setting_value']; 
+										          if(isset($adm_config('whatsapp_text')['setting_value'])){
+										          	echo $adm_config('whatsapp_text')['setting_value'];
 										          }else{
 										          	echo "";
 										          }
 										        	?></textarea>
+										        </div>
+													</div>
+													<div class="cont-dashCamel--cHSettings--containRight--cContain__cBody__cardBody__cCardBody__contCol">
+														<h3 class="cont-dashCamel--cHSettings--containRight--cContain__cBody__cardBody__cCardBody__contCol__cardTitle">Información General</h3>
+													</div>
+													<div class="cont-dashCamel--cHSettings--containRight--cContain__cBody__cardBody__cCardBody__contCol__cardGrpControls">
+														<div class="cont-dashCamel--cHSettings--containRight--cContain__cBody__cardBody__cCardBody__contCol__cardGrpControls__ctrlItem w-100">
+										          <label for="infogeneral_address" class="cont-dashCamel--cHSettings--containRight--cContain__cBody__cardBody__cCardBody__contCol__cardGrpControls__ctrlItem__label">Dirección</label>
+										          <input type="text" id="infogeneral_address" name="infogeneral_address" class="cont-dashCamel--cHSettings--containRight--cContain__cBody__cardBody__cCardBody__contCol__cardGrpControls__ctrlItem__input" value="<?php
+										          if(isset($adm_config('infogeneral_address')['setting_value'])){
+										          	echo preg_replace('/(\d{1,3})(?=(\d{3})+$)/', '$1 ', $adm_config('infogeneral_address')['setting_value']);
+										          }else{
+										          	echo "";
+										          }
+										        ?>" placeholder="Ejm: Av. Dos de Mayo" maxlength="">
+										        </div>
+										        <div class="cont-dashCamel--cHSettings--containRight--cContain__cBody__cardBody__cCardBody__contCol__cardGrpControls__ctrlItem w-100">
+										          <label for="infogeneral_email" class="cont-dashCamel--cHSettings--containRight--cContain__cBody__cardBody__cCardBody__contCol__cardGrpControls__ctrlItem__label">Correo Electrónico</label>
+										          <input type="email" id="infogeneral_email" name="infogeneral_email" class="cont-dashCamel--cHSettings--containRight--cContain__cBody__cardBody__cCardBody__contCol__cardGrpControls__ctrlItem__input" value="<?php
+										          if(isset($adm_config('infogeneral_email')['setting_value'])){
+										          	echo preg_replace('/(\d{1,3})(?=(\d{3})+$)/', '$1 ', $adm_config('infogeneral_email')['setting_value']);
+										          }else{
+										          	echo "";
+										          }
+										        ?>" placeholder="Ejm: info@gmail.com" maxlength="">
+										        </div>
+										        <div class="cont-dashCamel--cHSettings--containRight--cContain__cBody__cardBody__cCardBody__contCol__cardGrpControls__ctrlItem w-100">
+										          <label for="infogeneral_telephone" class="cont-dashCamel--cHSettings--containRight--cContain__cBody__cardBody__cCardBody__contCol__cardGrpControls__ctrlItem__label">Teléfono</label>
+										          <input type="text" id="infogeneral_telephone" name="infogeneral_telephone" data-valformat="withspacesforthreenumbers" class="cont-dashCamel--cHSettings--containRight--cContain__cBody__cardBody__cCardBody__contCol__cardGrpControls__ctrlItem__input" value="<?php
+										          if(isset($adm_config('infogeneral_telephone')['setting_value'])){
+										          	echo preg_replace('/(\d{1,3})(?=(\d{3})+$)/', '$1 ', $adm_config('infogeneral_telephone')['setting_value']);
+										          }else{
+										          	echo "";
+										          }
+										        ?>" placeholder="999 999 999" maxlength="11">
 										        </div>
 													</div>
 													<div class="cont-dashCamel--cHSettings--containRight--cContain__cBody__cardBody__cCardBody__colElement ta-right">
@@ -85,81 +118,6 @@ $adm_config = $settings->list();
 											</div>
 										</form>
 									</div>
-									<!-- 
-									<div class="cont-dashCamel--cHSettings--containRight--cContain__cBody__cSettings__sideContAnchors__cItemSetting" id="anchor_settings_convert-divise">
-										<form action="" method="POST" class="cont-dashCamel--cHSettings--containRight--cContain__cBody__cSettings__sideContAnchors__cItemSetting--frm">
-											<div class="cont-dashCamel--cHSettings--containRight--cContain__cBody__cardBody">
-												<div class="cont-dashCamel--cHSettings--containRight--cContain__cBody__cardBody__cCardTitle">
-													<h4>Otros valores</h4>
-												</div>
-												<div class="cont-dashCamel--cHSettings--containRight--cContain__cBody__cardBody__cCardBody">
-													<div class="cont-dashCamel--cHSettings--containRight--cContain__cBody__cardBody__cCardBody__contCol">
-														<h3 class="cont-dashCamel--cHSettings--containRight--cContain__cBody__cardBody__cCardBody__contCol__cardTitle">COMISIÓN DE AGENCIA</h3>
-													</div>
-													<div class="cont-dashCamel--cHSettings--containRight--cContain__cBody__cardBody__cCardBody__contCol__cardGrpControls">
-														<div class="cont-dashCamel--cHSettings--containRight--cContain__cBody__cardBody__cCardBody__contCol__cardGrpControls__ctrlItem w-100">
-										          <label for="ammountCifValidation" class="cont-dashCamel--cHSettings--containRight--cContain__cBody__cardBody__cCardBody__contCol__cardGrpControls__ctrlItem__label">Montos mayores al valor CIF</label>
-										          <input type="text" id="ammountCifValidation" name="ammountCifValidation" data-valformat="withcomedecimal" class="cont-dashCamel--cHSettings--containRight--cContain__cBody__cardBody__cCardBody__contCol__cardGrpControls__ctrlItem__input md-w-control" value="<?php
-										          if(isset($adm_config('quotation_ammountcifvalidation')['setting_value'])){
-											          $ammountcifvalidation = $adm_config('quotation_ammountcifvalidation')['setting_value'];
-											          if($ammountcifvalidation != ""){
-											          	echo number_format($adm_config('quotation_ammountcifvalidation')['setting_value'],2);
-											          }else{
-											          	echo "";
-											          }
-									          	}else{
-									          		echo "";
-									          	}
-										        	?>" placeholder="Ejm: 5,000" maxlength="12">
-										        </div>
-													</div>
-													<div class="cont-dashCamel--cHSettings--containRight--cContain__cBody__cardBody__cCardBody__contCol__cardGrpControls">
-														<div class="cont-dashCamel--cHSettings--containRight--cContain__cBody__cardBody__cCardBody__contCol__cardGrpControls__ctrlItem w-100">
-										          <label for="ammountCifMaxValidation" class="cont-dashCamel--cHSettings--containRight--cContain__cBody__cardBody__cCardBody__contCol__cardGrpControls__ctrlItem__label">Valor para montos mayores al máximo CIF (%)</label>
-										          <input type="text" id="ammountCifMaxValidation" name="ammountCifMaxValidation" data-valformat="withtwodecimals" class="cont-dashCamel--cHSettings--containRight--cContain__cBody__cardBody__cCardBody__contCol__cardGrpControls__ctrlItem__input md-w-control" value="<?php
-										          if(isset($adm_config('quotation_ammountcifmaxvalidation')['setting_value'])){
-											          $ammountcifmaxvalidation = $adm_config('quotation_ammountcifmaxvalidation')['setting_value'];
-											          if($ammountcifmaxvalidation != ""){
-											          	echo number_format($adm_config('quotation_ammountcifmaxvalidation')['setting_value'],2);
-											          }else{
-											          	echo "";
-											          }
-									          	}else{
-									          		echo "";
-									          	}
-										        	?>" placeholder="Ejm: 0.5" maxlength="12">
-										        </div>
-													</div>
-													<div class="cont-dashCamel--cHSettings--containRight--cContain__cBody__cardBody__cCardBody__contCol">
-														<h3 class="cont-dashCamel--cHSettings--containRight--cContain__cBody__cardBody__cCardBody__contCol__cardTitle">CERTIFICADO DE CONFORMIDAD</h3>
-													</div>
-													<div class="cont-dashCamel--cHSettings--containRight--cContain__cBody__cardBody__cCardBody__contCol__cardGrpControls">
-														<div class="cont-dashCamel--cHSettings--containRight--cContain__cBody__cardBody__cCardBody__contCol__cardGrpControls__ctrlItem w-100">
-										          <label for="ammountCertiConformValidation" class="cont-dashCamel--cHSettings--containRight--cContain__cBody__cardBody__cCardBody__contCol__cardGrpControls__ctrlItem__label">Monto a validar</label>
-										          <input type="text" id="ammountCertiConformValidation" name="ammountCertiConformValidation" data-valformat="withcomedecimal" class="cont-dashCamel--cHSettings--containRight--cContain__cBody__cardBody__cCardBody__contCol__cardGrpControls__ctrlItem__input md-w-control" value="<?php
-										          if(isset($adm_config('quotation_ammountcerticonformvalidation')['setting_value'])){
-											          $ammountcifvalidation = $adm_config('quotation_ammountcerticonformvalidation')['setting_value'];
-											          if($ammountcifvalidation != ""){
-											          	echo number_format($adm_config('quotation_ammountcerticonformvalidation')['setting_value'],2);
-											          }else{
-											          	echo "";
-											          }
-									          	}else{
-									          		echo "";
-									          	}
-										        	?>" placeholder="Ejm: 5,000" maxlength="12">
-										        </div>
-													</div>
-													<div class="cont-dashCamel--cHSettings--containRight--cContain__cBody__cardBody__cCardBody__colElement ta-right">
-														<button name="quotation_settings" type="submit" class="cont-dashCamel--cHSettings--containRight--cContain__cBody__cardBody__cCardBody__colElement__btnFormAction">
-															<span>Guardar</span>
-														</button>
-													</div>
-												</div>
-											</div>
-										</form>
-									</div>
-									 -->
 									<div class="cont-dashCamel--cHSettings--containRight--cContain__cBody__cSettings__sideContAnchors__cItemSetting" id="anchor_settings_banners">
 										<form action="" method="POST" class="cont-dashCamel--cHSettings--containRight--cContain__cBody__cSettings__sideContAnchors__cItemSetting--frm" enctype="multipart/form-data">
 											<div class="cont-dashCamel--cHSettings--containRight--cContain__cBody__cardBody">

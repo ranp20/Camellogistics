@@ -66,6 +66,9 @@ $(document).on("submit",".cont-dashCamel--cHSettings--containRight--cContain__cB
 	if(nameSendPOST == "home_settings"){
 		formdata.append("whatsapp_phone", $("#whatsapp_phone").val());
 		formdata.append("whatsapp_text", $("#whatsapp_text").val());
+		formdata.append("infogeneral_address", $("#infogeneral_address").val());
+		formdata.append("infogeneral_email", $("#infogeneral_email").val());
+		formdata.append("infogeneral_telephone", $("#infogeneral_telephone").val());
 	}else if(nameSendPOST == "quotation_settings"){
 		formdata.append("quotation_ammountcifvalidation", $("#ammountCifValidation").val());
 		formdata.append("quotation_ammountcifmaxvalidation", $("#ammountCifMaxValidation").val());

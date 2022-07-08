@@ -548,7 +548,7 @@ echo $template_incserv.$template_notincserv;
 
 
 
-<input tabindex="-1" placeholder="phdr-whidipts" type="hidden" width="0" height="0" autocomplete="off" spellcheck="false" f-hidden="aria-hidden" class="non-visvalipt h-alternative-shwnon s-fkeynone-step" id="v_ftotmxwgtcompr" value="<?= (isset($_POST['val_maxtotalweight']) && $_POST['val_maxtotalweight'] != "") ? $_POST['val_maxtotalweight'] : 0;?>">
+<input tabindex="-1" placeholder="phdr-whidipts" type="hidden" width="0" height="0" autocomplete="off" spellcheck="false" f-hidden="aria-hidden" class="non-visvalipt h-alternative-shwnon s-fkeynone-step" id="v_ftotmxwgtcompr" value="<?= (isset($_POST['val-iptWeightNInterface']) && $_POST['val-iptWeightNInterface'] != "") ? $_POST['val-iptWeightNInterface'] : 0;?>">
 <input tabindex="-1" placeholder="phdr-whidipts" type="hidden" width="0" height="0" autocomplete="off" spellcheck="false" f-hidden="aria-hidden" class="non-visvalipt h-alternative-shwnon s-fkeynone-step" id="v_ftotmxcbmcompr" value="<?= (isset($_POST['val-iptVolumeNInterface']) && $_POST['val-iptVolumeNInterface'] != "") ? $_POST['val-iptVolumeNInterface'] : 0;?>">
 </div>
 </div>

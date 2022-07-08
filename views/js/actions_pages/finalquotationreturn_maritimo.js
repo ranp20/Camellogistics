@@ -170,7 +170,8 @@ $(document).ready(function(){
 	var finalinsurance = 0;
 	var finalRoundinsurance = 0;
 	// ------------ CÁLCULO DE DESCARGA
-	var totalconvert_weight = parseFloat(v_ftotmxwgtcompr) / 1000;
+	var sainttotalweight = v_ftotmxwgtcompr.toString().replace(/\./g, '');
+	var totalconvert_weight = parseFloat(sainttotalweight) / 1000;
 	var totalconvert_volumen = parseFloat(v_ftotmxcbmcompr);
 	var totaldescarga = 0;
 	// ------------ CÁLCULO DE IMPUESTOS 
@@ -363,7 +364,11 @@ $(document).ready(function(){
 						  		fvalfinal_descarga = descarga_lcl;
 						  		fvalfinal_almcen_ref = almacen_ref_lcl;
 						  		// VALIDAR EL VALOR DE DESCARGA (PESO / 1000)
-						  		totaldescarga = totalconvert_weight * fvalfinal_descarga;
+						  		if(totalconvert_weight < 1){
+						  			totaldescarga = totalconvert_weight * fvalfinal_descarga;
+						  		}else{
+						  			totaldescarga = totalconvert_weight * fvalfinal_descarga;
+						  		}
 						  		// SUMAR TODOS LOS SERVICIOS - LCL
 				  	 			var totalPreciosTODOS = fvalfinal_emision_bl+fvalfinal_handling+fvalfinal_visto_bueno+totaldescarga+fvalfinal_almcen_ref+fvalfinal_com_agencia+fvalfinal_gas_operativos+totalfirstoperfycert;
 				  	 			sumTotalServices = totflete + totalPreciosTODOS + totaltransport + finalRoundinsurance; // VALOR TOTAL - SERVICIOS
@@ -387,7 +392,11 @@ $(document).ready(function(){
 						  		fvalfinal_visto_bueno = visto_bueno_lcl;
 						  		fvalfinal_descarga = descarga_lcl;
 						  		// VALIDAR EL VALOR DE DESCARGA (PESO / 1000)
-						  		totaldescarga = totalconvert_weight * fvalfinal_descarga;
+						  		if(totalconvert_weight < 1){
+						  			totaldescarga = totalconvert_weight * fvalfinal_descarga;
+						  		}else{
+						  			totaldescarga = totalconvert_weight * fvalfinal_descarga;
+						  		}
 						  		// SUMAR TODOS LOS SERVICIOS - LCL
 						  		var totalPreciosTODOS = fvalfinal_emision_bl+fvalfinal_handling+fvalfinal_visto_bueno+totaldescarga+totalfirstoperfycert;
 						  		sumTotalServices = totflete + totalPreciosTODOS + totaltransport + finalRoundinsurance; // VALOR TOTAL - SERVICIOS
@@ -396,6 +405,8 @@ $(document).ready(function(){
 				  	 		}else{
 				  	 			console.log('Lo sentimos, hubo un error al procesar la información.');
 				  	 		}
+				  	 	}else{
+				  	 		console.log('Lo sentimos, hubo un error al procesar la información.');
 				  	 	}
 						
 							// ------------ LIMPIAR EL VALOR E IMPRIMIR EN EL TOTAL DEL SERVICIOS 
