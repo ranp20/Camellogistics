@@ -119,11 +119,14 @@
 				transition: .3s linear;
 			}
 			&--cLogo{
-				padding: 1rem 1rem .5rem 1rem;
+				padding: 0.5rem 1rem 0.5rem 1rem;
 				max-width: 125px;
 				width: 90%;
 				margin-right: auto;
 				&--img{
+			    max-width: 93px;
+			    width: 93px;
+			    height: auto;
 					object-fit: contain;
 					object-position: center;
 				}
@@ -140,8 +143,9 @@
 						max-width: 180px;
 					}
 					&--img{
-						width: 100px;
-						height: 100px;
+						max-width: 85px;
+						width: 85px;
+						height: 85px;
 						border-radius: 50%;
 						box-shadow: 0 0 0 1px #D0D0D0;
 						object-fit: contain;

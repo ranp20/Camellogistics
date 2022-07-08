@@ -347,7 +347,7 @@ $(document).ready(function(){
 				  	 			var totalPreciosTODOS = fvalfinal_emision_bl+fvalfinal_visto_bueno+fvalfinal_almcen_ref+fvalfinal_gremios_maritimos+fvalfinal_thc+fvalfinal_devol_contenedor+fvalfinal_com_agencia+fvalfinal_gas_operativos+totalfirstoperfycert;
 				  	 			sumTotalServices = totflete + totalPreciosTODOS + totaltransport + finalRoundinsurance; // VALOR TOTAL - SERVICIOS
 				  	 			sumTotalbyIGV = (totaltransport + totalfirstoperfycert + totalPreciosTODOS) * (18 / 100); // VALOR TOTAL - SERVICIOS + IGV 18%
-				  	 			sumTotalFinalFleteandIGV = sumTotalServices + sumTotalbyIGV; // VALOR TOTAL FINAL DE LA COTIZACIÓN
+				  	 			sumTotalFinalFleteandIGV = sumTotalServices + parseFloat(twodecimals(sumTotalbyIGV)); // VALOR TOTAL FINAL DE LA COTIZACIÓN
 				  	 		}else if(v_loadtypecharge == "LCL"){
 				  	 			// VALIDAR EL VALOR DEL CIF - COMISIÓN DE AGENCIA
 				  	 			fvalfinal_gas_operativos = gas_operativos_lcl;
@@ -373,18 +373,19 @@ $(document).ready(function(){
 				  	 			var totalPreciosTODOS = fvalfinal_emision_bl+fvalfinal_handling+fvalfinal_visto_bueno+totaldescarga+fvalfinal_almcen_ref+fvalfinal_com_agencia+fvalfinal_gas_operativos+totalfirstoperfycert;
 				  	 			sumTotalServices = totflete + totalPreciosTODOS + totaltransport + finalRoundinsurance; // VALOR TOTAL - SERVICIOS
 				  	 			sumTotalbyIGV = (totaltransport + totalfirstoperfycert + totalPreciosTODOS) * (18 / 100); // VALOR TOTAL - SERVICIOS + IGV 18%
-				  	 			sumTotalFinalFleteandIGV = sumTotalServices + sumTotalbyIGV; // VALOR TOTAL FINAL DE LA COTIZACIÓN
+				  	 			sumTotalFinalFleteandIGV = sumTotalServices + parseFloat(twodecimals(sumTotalbyIGV)); // VALOR TOTAL FINAL DE LA COTIZACIÓN
 				  	 		}else{
 				  	 			console.log('Lo sentimos, hubo un error al procesar la información.');
 				  	 		}
 				  	 	}else if(v_foptgnfquotevl == "not-moreOpts"){
 				  	 		if(v_loadtypecharge == "FCL"){
 				  	 			//AGREGAR VALOR A LOS SERVICIOS FINALES
+				  	 			fvalfinal_emision_bl = emision_bl_fcl;
 				  	 			fvalfinal_thc = thc_fcl;
-				  	 			var totalPreciosTODOS = fvalfinal_thc+totalfirstoperfycert;
+				  	 			var totalPreciosTODOS = fvalfinal_emision_bl+fvalfinal_thc+totalfirstoperfycert;
 				  	 			sumTotalServices = totflete + totalPreciosTODOS + totaltransport + finalRoundinsurance; // VALOR TOTAL - SERVICIOS
 				  	 			sumTotalbyIGV = (totaltransport + totalfirstoperfycert + totalPreciosTODOS) * (18 / 100); // VALOR TOTAL - SERVICIOS + IGV 18%
-				  	 			sumTotalFinalFleteandIGV = sumTotalServices + sumTotalbyIGV; // VALOR TOTAL FINAL DE LA COTIZACIÓN
+				  	 			sumTotalFinalFleteandIGV = sumTotalServices + parseFloat(twodecimals(sumTotalbyIGV)); // VALOR TOTAL FINAL DE LA COTIZACIÓN
 				  	 		}else if(v_loadtypecharge == "LCL"){
 						  		//AGREGAR VALOR A LOS SERVICIOS FINALES
 						  		fvalfinal_emision_bl = emision_bl_lcl;
@@ -401,7 +402,7 @@ $(document).ready(function(){
 						  		var totalPreciosTODOS = fvalfinal_emision_bl+fvalfinal_handling+fvalfinal_visto_bueno+totaldescarga+totalfirstoperfycert;
 						  		sumTotalServices = totflete + totalPreciosTODOS + totaltransport + finalRoundinsurance; // VALOR TOTAL - SERVICIOS
 				  	 			sumTotalbyIGV = (totaltransport + totalfirstoperfycert + totalPreciosTODOS) * (18 / 100); // VALOR TOTAL - SERVICIOS + IGV 18%
-				  	 			sumTotalFinalFleteandIGV = sumTotalServices + sumTotalbyIGV; // VALOR TOTAL FINAL DE LA COTIZACIÓN
+				  	 			sumTotalFinalFleteandIGV = sumTotalServices + parseFloat(twodecimals(sumTotalbyIGV)); // VALOR TOTAL FINAL DE LA COTIZACIÓN
 				  	 		}else{
 				  	 			console.log('Lo sentimos, hubo un error al procesar la información.');
 				  	 		}
