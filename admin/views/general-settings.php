@@ -82,7 +82,7 @@ $adm_config = $settings->list();
 										          <label for="infogeneral_address" class="cont-dashCamel--cHSettings--containRight--cContain__cBody__cardBody__cCardBody__contCol__cardGrpControls__ctrlItem__label">Dirección</label>
 										          <input type="text" id="infogeneral_address" name="infogeneral_address" class="cont-dashCamel--cHSettings--containRight--cContain__cBody__cardBody__cCardBody__contCol__cardGrpControls__ctrlItem__input" value="<?php
 										          if(isset($adm_config('infogeneral_address')['setting_value'])){
-										          	echo preg_replace('/(\d{1,3})(?=(\d{3})+$)/', '$1 ', $adm_config('infogeneral_address')['setting_value']);
+										          	echo $adm_config('infogeneral_address')['setting_value'];
 										          }else{
 										          	echo "";
 										          }
@@ -90,9 +90,9 @@ $adm_config = $settings->list();
 										        </div>
 										        <div class="cont-dashCamel--cHSettings--containRight--cContain__cBody__cardBody__cCardBody__contCol__cardGrpControls__ctrlItem w-100">
 										          <label for="infogeneral_email" class="cont-dashCamel--cHSettings--containRight--cContain__cBody__cardBody__cCardBody__contCol__cardGrpControls__ctrlItem__label">Correo Electrónico</label>
-										          <input type="email" id="infogeneral_email" name="infogeneral_email" class="cont-dashCamel--cHSettings--containRight--cContain__cBody__cardBody__cCardBody__contCol__cardGrpControls__ctrlItem__input" value="<?php
+										          <input type="text" id="infogeneral_email" name="infogeneral_email" class="cont-dashCamel--cHSettings--containRight--cContain__cBody__cardBody__cCardBody__contCol__cardGrpControls__ctrlItem__input" value="<?php
 										          if(isset($adm_config('infogeneral_email')['setting_value'])){
-										          	echo preg_replace('/(\d{1,3})(?=(\d{3})+$)/', '$1 ', $adm_config('infogeneral_email')['setting_value']);
+										          	echo $adm_config('infogeneral_email')['setting_value'];
 										          }else{
 										          	echo "";
 										          }
