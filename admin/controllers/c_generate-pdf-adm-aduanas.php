@@ -130,7 +130,7 @@ $letters_totalwithIGV = $convertToLetters->convertirEurosEnLetras($totalinletter
 //INFORMACIÓN GENERAL DESDE EL ADMINISTRADOR
 $info_address = $listprintinfo[0]['address'];
 $info_email = $listprintinfo[0]['email'];
-$info_telephone = preg_replace('/(\d{1,3})(?=(\d{3})+$)/', '$1 ', $listprintinfo[0]['telephone']);
+$info_telephone = $listprintinfo[0]['telephone'];
 //NOMBRE DE LA COTIZACIÓN
 $name_quotation = "Presupuesto-".$_POST['code_quote']."-".$f_typecontainer;
 ?>
