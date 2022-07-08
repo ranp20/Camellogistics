@@ -678,8 +678,18 @@
 									cursor: pointer;
     							padding: .5rem 1rem;
     							font-size: 0.8rem;
+    							&.v-nonevalue{
+    								background-color: #ff7675;
+    								color: #eee;
+    								&:hover{
+    									background-color: darken(#ff7675, 6%);
+    								}
+									}
 									&:hover{
 										background-color: #ccc;
+									}
+									@media (min-width: 768px){
+										font-size: 1rem;
 									}
 								}
 								&--itemAccount{
@@ -1163,8 +1173,19 @@
 								&--item{
 									cursor: pointer;
     							padding: .5rem 1rem;
+    							font-size: 0.8rem;
+    							&.v-nonevalue{
+    								background-color: #ff7675;
+    								color: #eee;
+    								&:hover{
+    									background-color: darken(#ff7675, 6%);
+    								}
+    							}
 									&:hover{
 										background-color: #ccc;
+									}
+									@media (min-width: 768px){
+										font-size: 1rem;
 									}
 								}
 								&--itemAccount{

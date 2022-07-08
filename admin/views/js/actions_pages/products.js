@@ -91,6 +91,7 @@ $(document).on("click", "#btn-FakeListRegulatorOne", function(){
       let r = JSON.parse(e);
       let tmp = "";
       if(r.length > 0){
+        tmp += `<li class="cont-modalbootstrap__form--controlSelect--m--item v-nonevalue" id="" regularone="">NO REQUIERE</li>`;
         $.each(r, function(i,e){
           tmp += `<li class="cont-modalbootstrap__form--controlSelect--m--item" id="${e.id}" regularone="${e.name}">${e.name}</li>`;
         });
@@ -127,6 +128,7 @@ $(document).on("click", "#btn-FakeListRegulatorTwo", function(){
       let r = JSON.parse(e);
       let tmp = "";
       if(r.length > 0){
+        tmp += `<li class="cont-modalbootstrap__form--controlSelect--m--item v-nonevalue" id="" regulartwo="">NO REQUIERE</li>`;
         $.each(r, function(i,e){
           tmp += `<li class="cont-modalbootstrap__form--controlSelect--m--item" id="${e.id}" regulartwo="${e.name}">${e.name}</li>`;
         });
@@ -1079,6 +1081,7 @@ $(document).on("click", "#btn-FakeListRegulatorOneUpdate", function(){
       let r = JSON.parse(e);
       let tmp = "";
       if(r.length > 0){   
+        tmp += `<li class="cont-modalbootstrapupdate__form--controlSelect--m--item v-nonevalue" id="" regularone="">NO REQUIERE</li>`;
         $.each(r, function(i,e){
           tmp += `<li class="cont-modalbootstrapupdate__form--controlSelect--m--item" id="${e.id}" regularone="${e.name}">${e.name}</li>`;
         });
@@ -1115,6 +1118,7 @@ $(document).on("click", "#btn-FakeListRegulatorTwoUpdate", function(){
       let r = JSON.parse(e);
       let tmp = "";
       if(r.length > 0){
+        tmp += `<li class="cont-modalbootstrapupdate__form--controlSelect--m--item v-nonevalue" id="" regulartwo="">NO REQUIERE</li>`;
         $.each(r, function(i,e){
           tmp += `<li class="cont-modalbootstrapupdate__form--controlSelect--m--item" id="${e.id}" regulartwo="${e.name}">${e.name}</li>`;
         });
