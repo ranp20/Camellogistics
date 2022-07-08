@@ -20,7 +20,7 @@
 		justify-content: space-between;
 		padding: 0;
 		position: relative;
-		@media (min-width: 991px){
+		@media screen and (min-device-width: 991px){
 			-webkit-box-align: start;
 		}
 		&--cLogo{
@@ -52,7 +52,7 @@
 			background-color: orange;
 			margin-left: auto;
 			height: 100%;
-			@media (min-width: 991px){
+			@media screen and (min-device-width: 991px){
 				display: none;
 			}
 			span{
@@ -88,7 +88,7 @@
 				transform: translateX(0);
 				pointer-events: auto;
 			}
-			@media (min-width: 991px){
+			@media screen and (min-device-width: 991px){
 				display: block;
 				position: relative;
 				width: auto;
@@ -122,7 +122,7 @@
 		    padding-top: 1rem;
 		    text-align: left;
 				overscroll-behavior-y: contain;
-				@media (min-width: 991px){
+				@media screen and (min-device-width: 991px){
 					display: none;
 					opacity: 0;
 					visibility: hidden;
@@ -177,7 +177,7 @@
 					margin-right: auto;
 					flex-direction: column;
 					text-align: left;
-					@media (min-width: 991px){
+					@media screen and (min-device-width: 991px){
 						flex-direction: row;
 						width: auto;
 						max-width: unset;
@@ -190,7 +190,7 @@
 						&:last-child{
 							padding: 0;
 						}
-						@media (min-width: 991px){
+						@media screen and (min-device-width: 991px){
 							width: auto;
 						}
 						&--subm{
@@ -250,7 +250,7 @@
 							box-shadow: 0px 2px 0px 0px #000 inset;
 							background-color: #ddd;
 						}
-						@media (min-width: 991px){
+						@media screen and (min-device-width: 991px){
 							font-size: 1rem;
 							padding: 0 1rem;
 						}
@@ -275,7 +275,7 @@
 				flex-direction: column;
 				padding-top: 1rem;
 				text-align: left;
-				@media (min-width: 991px){
+				@media screen and (min-device-width: 991px){
 					display: -webkit-inline-box;
 					opacity: 1;
 					pointer-events: auto;
@@ -290,7 +290,7 @@
 					&:last-child{
 						padding: 0;
 					}
-					@media (min-width: 991px){
+					@media screen and (min-device-width: 991px){
 						width: auto;
 					}
 					&--subm{
@@ -349,7 +349,7 @@
 						box-shadow: 0px 2px 0px 0px #000 inset;
 						background-color: #ddd;
 					}
-					@media (min-width: 991px){
+					@media screen and (min-device-width: 991px){
 						font-size: 1rem;
 						padding: 0 1rem;
 					}
@@ -407,7 +407,7 @@
 			opacity: 1;
 			visibility: visible;
 			pointer-events: auto;
-			@media (min-width: 991px){
+			@media screen and (min-device-width: 991px){
 				display: none;
 				opacity: 0;
 				visibility: hidden;
