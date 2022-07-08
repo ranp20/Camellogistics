@@ -364,10 +364,10 @@ $(document).ready(function(){
 						  		fvalfinal_descarga = descarga_lcl;
 						  		fvalfinal_almcen_ref = almacen_ref_lcl;
 						  		// VALIDAR EL VALOR DE DESCARGA (PESO / 1000)
-						  		if(totalconvert_weight < 1){
+						  		if(totalconvert_weight >= 1){
 						  			totaldescarga = totalconvert_weight * fvalfinal_descarga;
 						  		}else{
-						  			totaldescarga = totalconvert_weight * fvalfinal_descarga;
+						  			totaldescarga = fvalfinal_descarga;
 						  		}
 						  		// SUMAR TODOS LOS SERVICIOS - LCL
 				  	 			var totalPreciosTODOS = fvalfinal_emision_bl+fvalfinal_handling+fvalfinal_visto_bueno+totaldescarga+fvalfinal_almcen_ref+fvalfinal_com_agencia+fvalfinal_gas_operativos+totalfirstoperfycert;
@@ -392,10 +392,10 @@ $(document).ready(function(){
 						  		fvalfinal_visto_bueno = visto_bueno_lcl;
 						  		fvalfinal_descarga = descarga_lcl;
 						  		// VALIDAR EL VALOR DE DESCARGA (PESO / 1000)
-						  		if(totalconvert_weight < 1){
+						  		if(totalconvert_weight >= 1){
 						  			totaldescarga = totalconvert_weight * fvalfinal_descarga;
 						  		}else{
-						  			totaldescarga = totalconvert_weight * fvalfinal_descarga;
+						  			totaldescarga = fvalfinal_descarga;
 						  		}
 						  		// SUMAR TODOS LOS SERVICIOS - LCL
 						  		var totalPreciosTODOS = fvalfinal_emision_bl+fvalfinal_handling+fvalfinal_visto_bueno+totaldescarga+totalfirstoperfycert;
