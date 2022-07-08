@@ -13,7 +13,7 @@ if(isset($_GET['action']) && $_GET['action'] == "SaveChanges" && isset($_GET['as
 			// INFORMACIÓN GENERAL
 			$infogeneral_address = (isset($_POST['infogeneral_address']) && $_POST['infogeneral_address'] != "") ? $_POST['infogeneral_address'] : "";
 			$infogeneral_email = (isset($_POST['infogeneral_email']) && $_POST['infogeneral_email'] != "") ? $_POST['infogeneral_email'] : "";
-			$infogeneral_telephone = (isset($_POST['infogeneral_telephone'])) ? str_replace(" ", "", $_POST['infogeneral_telephone']) : 0;
+			$infogeneral_telephone = (isset($_POST['infogeneral_telephone']) && $_POST['infogeneral_telephone'] != "") ? $_POST['infogeneral_telephone'] : 0;
 
 			$arr_postSettings = [
 				"whatsapp_phone" => $whatsapp_phone,

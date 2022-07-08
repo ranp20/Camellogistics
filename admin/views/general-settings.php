@@ -100,13 +100,13 @@ $adm_config = $settings->list();
 										        </div>
 										        <div class="cont-dashCamel--cHSettings--containRight--cContain__cBody__cardBody__cCardBody__contCol__cardGrpControls__ctrlItem w-100">
 										          <label for="infogeneral_telephone" class="cont-dashCamel--cHSettings--containRight--cContain__cBody__cardBody__cCardBody__contCol__cardGrpControls__ctrlItem__label">Teléfono</label>
-										          <input type="text" id="infogeneral_telephone" name="infogeneral_telephone" data-valformat="withspacesforthreenumbers" class="cont-dashCamel--cHSettings--containRight--cContain__cBody__cardBody__cCardBody__contCol__cardGrpControls__ctrlItem__input" value="<?php
+										          <input type="text" id="infogeneral_telephone" name="infogeneral_telephone" class="cont-dashCamel--cHSettings--containRight--cContain__cBody__cardBody__cCardBody__contCol__cardGrpControls__ctrlItem__input" value="<?php
 										          if(isset($adm_config('infogeneral_telephone')['setting_value'])){
-										          	echo preg_replace('/(\d{1,3})(?=(\d{3})+$)/', '$1 ', $adm_config('infogeneral_telephone')['setting_value']);
+										          	echo $adm_config('infogeneral_telephone')['setting_value'];
 										          }else{
 										          	echo "";
 										          }
-										        ?>" placeholder="999 999 999" maxlength="11">
+										        ?>" placeholder="999 999 999">
 										        </div>
 													</div>
 													<div class="cont-dashCamel--cHSettings--containRight--cContain__cBody__cardBody__cCardBody__colElement ta-right">
