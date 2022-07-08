@@ -135,6 +135,7 @@ $letters_totalwithIGV = $convertToLetters->convertirEurosEnLetras($totalinletter
 $info_address = $listprintinfo[0]['address'];
 $info_email = $listprintinfo[0]['email'];
 $info_telephone = $listprintinfo[0]['telephone'];
+$info_conditions = $listprintinfo[0]['conditions'];
 //NOMBRE DE LA COTIZACIÓN
 $name_quotation = "Presupuesto-".$_POST['code_quote']."-".$f_typecontainer;
 ?>
@@ -474,41 +475,22 @@ $name_quotation = "Presupuesto-".$_POST['code_quote']."-".$f_typecontainer;
 			<div id="title_border">Condiciones de servicio:</div>
 			<div id="c_listconditions">
 				<ul class="c_listconditions_m">
-					<li class="c_listconditions_m_item">
-						<div>El cliente debe contar con su póliza de seguro para evitar contingencias con la seguridad en el traslado de sus mercancías, NO es responsabilidad de la agencia de aduana y/o carga en caso ocurriesen robos o asaltos durante el transporte local e internacional de dichas mercancía, adicional a la póliza de seguro se recomienda que el cliente contrate una custodia policial y/o los candados inteligentes de Prosegur para los traslados locales.
-	Esta proforma tiene una validez de 15 días calendarios, posterior a ello el cliente debe solicitar por escrito la renovación o confirmación de las tarifas brindadas.
-	Se recomienda realizar el abono de los impuestos en soles, de lo contrario se generara una diferencia por tipo cambiario (banco y sunat) que será asumida por el cliente.</div>
-					</li>
-					<li class="c_listconditions_m_item">
-						<div>El transporte interno es valido desde los almacenes donde se encuentra la mercadería  hasta la dirección donde especifica la cotización y no incluye  costo de estiba.</div>
-					</li>
-					<li class="c_listconditions_m_item">
-						<div class="text-black">En caso Caida en canal ROJO se cobrara un adicionalmene USD 50.00 + IGV.</div>
-					</li>
-					<li class="c_listconditions_m_item">
-						<div class="text-black">No incluye servicio de cuadrilla, montacargas, resguardo policial.</div>
-					</li>
-					<li class="c_listconditions_m_item">
-						<div>Los costos del almacén referencial está sujeto a facturas de terceros.</div>
-					</li>
-					<li class="c_listconditions_m_item">
-						<div>Los demás precios que son los servicios de camel son estables y no variaran de acuerdo a esta cotización.</div>
-					</li>
-					<li class="c_listconditions_m_item">
-						<div>Los pagos de impuestos de importación son derechos directamente del importador y los montos se aplican de acuerdo a la DUA emitida por la ADUANA.</div>
-					</li>
-					<li class="c_listconditions_m_item">
-						<div>Almacenaje: 21 días libre para LCL; 14 días libre para FCL.</div>
-					</li>
-					<li class="c_listconditions_m_item">
-						<div>Validez de la cotización 7 días contadas a partir de la fecha de su emisión.</div>
-					</li>
-					<li class="c_listconditions_m_item">
-						<div>Tarifa aplicada por tonelada / metro cúbico.</div>
-					</li>
-					<li class="c_listconditions_m_item">
-						<div>Tarifa expresada en USD.</div>
-					</li>
+					<?php 
+						$list_dec = json_decode($info_conditions, true);
+						$tmp = "";
+						foreach ($list_dec as $key => $value){
+							if($value['font_weight'] == "bold"){
+								$tmp .= "<li class='c_listconditions_m_item'>
+									<div class='text-black'>{$value['text']}</div>
+								</li>";
+							}else{
+								$tmp .= "<li class='c_listconditions_m_item'>
+									<div>{$value['text']}</div>
+								</li>";
+							}
+						}
+						echo $tmp;
+					?>
 				</ul>
 			</div>
 		</div>

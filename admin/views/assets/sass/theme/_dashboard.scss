@@ -369,7 +369,7 @@
 	    /* TAMAÑO - TABLET(768px)*/
 	    @media (min-width: 768px){
 	    	position: relative;
-				background-color: green;
+				background-color: $btn-color-green;
 				font-size: .9rem;
 				padding: 0.5rem 2rem;
 				border-radius: 5px;
@@ -747,7 +747,7 @@
 										margin-right: 0.5rem;
 									}
 									&--input:checked ~ &--fakelabel{
-										color: green;
+										color: $btn-color-green;
 									}
 								}
 							}
@@ -781,7 +781,7 @@
 										font-size: 1.05rem;
 									}
 									&.active{
-										color: green;
+										color: $btn-color-green;
 									}
 								}
 								&__c{
@@ -1236,7 +1236,7 @@
 										margin-right: 0.5rem;
 									}
 									&--input:checked ~ &--fakelabel{
-										color: green;
+										color: $btn-color-green;
 									}
 								}
 							}
@@ -1270,7 +1270,7 @@
 										font-size: 1.05rem;
 									}
 									&.active{
-										color: green;
+										color: $btn-color-green;
 									}
 								}
 								&__c{

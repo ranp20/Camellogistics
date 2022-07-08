@@ -1,6 +1,8 @@
 <?php
 session_start();
 $r = "";
+// print_r($_POST);
+// exit();
 if(isset($_GET['action']) && $_GET['action'] == "SaveChanges" && isset($_GET['assoc'])){
 	$arr_postSettings = [];
 
@@ -28,17 +30,29 @@ if(isset($_GET['action']) && $_GET['action'] == "SaveChanges" && isset($_GET['as
 			);
 		}
 	}
-	// ------------ AJUSTES - COTIZACIONES
-	if($_GET['assoc'] == 'quotation_settings'){
+	// ------------ AJUSTES - CONDICIONES
+	if($_GET['assoc'] == 'conditions_settings'){
 		if(isset($_POST) && count($_POST) > 0){
-			$quotation_ammountcifvalidation = (isset($_POST['quotation_ammountcifvalidation'])) ? str_replace(",", "", $_POST['quotation_ammountcifvalidation']) : 0;
-			$quotation_ammountcifmaxvalidation = (isset($_POST['quotation_ammountcifmaxvalidation'])) ? str_replace(",", "", $_POST['quotation_ammountcifmaxvalidation']) : 0;
-			$quotation_ammountcerticonformvalidation = (isset($_POST['quotation_ammountcerticonformvalidation'])) ? str_replace(",", "", $_POST['quotation_ammountcerticonformvalidation']) : 0;
+			$arr_infogeneral_conditions = (isset($_POST['infogeneral_conditions']) && $_POST['infogeneral_conditions'] != "") ? $_POST['infogeneral_conditions'] : "[]";
+			$arr_infogeneral_conditions_bold = (isset($_POST['infogeneral_conditions_bold']) && $_POST['infogeneral_conditions_bold'] != "") ? $_POST['infogeneral_conditions_bold'] : "[]";
+			$asign_infogeneral_conditions = [];
+		 	$asign_infogeneral_conditions = array();
+     	foreach ($arr_infogeneral_conditions as $key => $value){
+       	$comb = array('text' => $value, 'font_weight' => '');
+       	foreach ($arr_infogeneral_conditions_bold as $k => $v){
+         	if($k == $key){
+           	$comb['font_weight'] = $v;
+           	break;
+         	}else{
+          	$comb['font_weight'] = $v;
+         	}
+       	}
+   			$asign_infogeneral_conditions[] = $comb;
+     	}
+			$infogeneral_conditions = json_encode($asign_infogeneral_conditions);
 
 			$arr_postSettings = [
-				"quotation_ammountcifvalidation" => $quotation_ammountcifvalidation,
-				"quotation_ammountcifmaxvalidation" => $quotation_ammountcifmaxvalidation,
-				"quotation_ammountcerticonformvalidation" => $quotation_ammountcerticonformvalidation
+				"infogeneral_conditions" => $infogeneral_conditions
 			];
 		}else{
 			$r = array(
@@ -46,6 +60,7 @@ if(isset($_GET['action']) && $_GET['action'] == "SaveChanges" && isset($_GET['as
 			);
 		}
 	}
+
 	// ------------ AJUSTES - BANNERS
 	if($_GET['assoc'] == 'banners_settings'){
 		if(isset($_FILES) && count($_FILES) > 0){
