@@ -10,6 +10,7 @@ $quotebyidcode = new Quotation_user();
 $convertToLetters = new CifrasEnLetras();
 $listbyidcode = $quotebyidcode->get_by_idcodegenrand($_POST['id_codegenrand']); // LISTAR VALORES DE COTIZACIÓN
 $listisurance = $quotebyidcode->get_insurancebyquotation(); // LISTAR VALOR DE SEGURO
+$listprintinfo = $quotebyidcode->get_generalinfoprint(); // LISTAR VALORES DE INFORMACIÓN GENERAL
 function cambiaf_mysql($date){
   $originalDate = $date;
 	$newDate = date("d/m/Y", strtotime($originalDate));
@@ -128,6 +129,10 @@ $f_totalwithIGV = $listbyidcode[0]['f_totalwithIGV'];
 //CIFRAS A LETRAS
 $totalinletters = floatval($f_totalwithIGV);
 $letters_totalwithIGV = $convertToLetters->convertirEurosEnLetras($totalinletters);
+//INFORMACIÓN GENERAL DESDE EL ADMINISTRADOR
+$info_address = $listprintinfo[0]['address'];
+$info_email = $listprintinfo[0]['email'];
+$info_telephone = preg_replace('/(\d{1,3})(?=(\d{3})+$)/', '$1 ', $listprintinfo[0]['telephone']);
 //NOMBRE DE LA COTIZACIÓN
 $name_quotation = "Presupuesto-".$_POST['code_quote']."-".$f_typecontainer;
 ?>
@@ -405,8 +410,8 @@ $name_quotation = "Presupuesto-".$_POST['code_quote']."-".$f_typecontainer;
 	    </div>
 	  </div>
 	  <div id="marc_fill2">
-	    <center>Av. Dos de Mayo 1545 Of. 318 San Isidro - Lima<br>
-	      Email. info@camel.com.pe / Telf. 989 874 368<br>
+	    <center><?php echo $info_address; ?><br>
+	      Email. <?php echo $info_email; ?> / Telf. <?php echo $info_telephone; ?><br>
 	      www.camel.com.pe
 	    </center>
 	  </div>

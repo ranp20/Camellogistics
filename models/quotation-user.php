@@ -31,6 +31,17 @@ class Quotation_user extends Connection
       return $e->getMessage();
     }
   }
+  // -------------- LISTAR INFORMACIÓN DE LA PARTE INFERIOR EN LOS PDFS
+  function get_generalinfoprint(){
+    try{
+      $sql = "CALL sp_listgeneralinfo_print()";
+      $stm = $this->con->prepare($sql);
+      $stm->execute();
+      return $stm->fetchAll(PDO::FETCH_ASSOC);
+    }catch(PDOEXception $e){
+      return $e->getMessage();
+    }
+  }
   // -------------- VALIDAR SI EXISTE LA COTIZACIÓN
   function valid_exist_quotation($id_gencode, $codegenerate){
     try{
