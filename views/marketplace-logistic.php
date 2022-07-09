@@ -14,7 +14,7 @@ session_start();
 </head>
 <body>
   <?php require_once 'includes/inc_header-top.php'; ?>
-  <main class="cont-MainCamelLog mtop-headertop" id="cont-MainCamelLog">
+  <main class="cont-MainCamelLog" id="cont-MainCamelLog">
     <div class="cont-MainCamelLog--c" id="cont-MainCamelLog--cMarketplaceLogistics">
       <section class="cont-MainCamelLog--c--cTop box-container">
         <div class="cont-MainCamelLog--c--cTop--cTitle">
