@@ -33,6 +33,16 @@ img{
 	height: auto;
 }
 /* CLASS UTILITIES */
+.box{
+	@include max-width($max-width);
+	margin-left: auto;
+	margin-right: auto;
+	width: 100%;
+	padding: 1rem;
+}
+.section-wrapper{
+	margin-top: 4rem;
+}
 .bold-pricolor{
 	color: $theme-clr-btns;
 	font-weight: bold;

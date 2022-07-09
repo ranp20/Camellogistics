@@ -1,3 +1,7 @@
+/* ANCHO MÁXIMO DE LA PÁGINAS */
+@mixin max-width($maxwidth){
+	max-width: $maxwidth;
+}
 /* LOADER EN LA WEB */
 @mixin loaderPoints($background, $color){
 	&{
@@ -14,7 +18,6 @@
 	  z-index: 9999999999;
 	  top: 0;
 	  left: 0;
-
 	  &.hidden{
 	  	display: none;
 	  	pointer-events: none;
@@ -50,7 +53,6 @@
 				  from {transform: scale(0,0); opacity: 0;}
 				  to {transform: scale(1,1); opacity: 1;}
 				}
-
 				@keyframes move {
 				  from {transform: translateX(0px)}
 				  to {transform: translateX(45px)}
@@ -76,7 +78,6 @@
     animation-duration: .2s;
     animation-timing-function: linear;
     animation-iteration-count: infinite;
-
     @keyframes girar {
       0%{
         transform: rotate(0deg);
@@ -100,13 +101,11 @@
 	  z-index: 999;
 	  top: 0;
 	  left: 0;
-
 	  &.disabled{
 			transition: ease .3s;			
 			opacity: 0;			
 			display: none;		
 		}
-
 		.msgAlertLoginErr--c{
 			max-width: 400px;
 	    width: 90%;
@@ -119,7 +118,6 @@
 			animation-duration: .3s;			
 			animation-timing-function: ease;			
 			animation-iteration-count: inherit;
-
 			&--close{
 				width: 18px;
 				height: 18px;
@@ -146,7 +144,6 @@
 				margin: 0;
 				font-size: 0.9rem;
 			}
-
 			@keyframes alert{
 				0%{
 					transform: translateY(-100%);
@@ -160,7 +157,6 @@
 		}
 	}
 }
-
 @mixin notifiMsg-client($backdrop-cont, $background-notify, $border-notify){
 	&{
 		position: fixed;
@@ -177,18 +173,15 @@
     right: 0;
     left: auto;
     padding: .65rem;
-
     @media (min-width: 768px){
     	padding: 1rem;
     }
-
 	  &.hidden{
 	  	display: none;
 	  	pointer-events: none;
 	  	visibility: hidden;
 	  	opacity: 0;
 	  }
-
 	  .c_notifyMsg{
 	    border-radius: 0 0 .45rem .45rem;
     	text-align: left;
@@ -207,7 +200,6 @@
     	animation-duration: .2s;
     	animation-timing-function: ease-in-out;
     	animation-fill-mode: forwards;
-
     	@keyframes moveToRightMobile{
     		0%{
     			transform: translateX(150%);
@@ -216,7 +208,6 @@
     			transform: translateX(0%);
     		}
     	}
-
 	    @media (min-width: 768px){
 	    	max-width: 500px;
 	    	padding: 21px 0;
@@ -224,7 +215,6 @@
     		margin-left: auto;
     		margin-right: .25rem;
 	    }
-
   		&:before{
 	    	content: '';
 		    position: absolute;
@@ -235,17 +225,14 @@
 			  border-top-left-radius: 4px;
 			  border-bottom-left-radius: 4px;
 	    }
-
     	&.toast--green{
     		.c_notifyMsg__icon{
     			background-color: #2BDE3F;
     		}
-
     		&:before{
     			background-color: #2BDE3F;
     		}
     	}
-
     	&__icon{
     		position: absolute;
 		    top: 50%;
@@ -258,30 +245,25 @@
 		    display: table;
 		    text-align: center;
     	}
-
     	&__svg{
     		fill: #fff;
     		color: #fff;
     		width: 1rem;
     		height: 1rem;
     	}
-
     	&__content{
     		padding-left: 70px;
 				padding-right: 60px;
-
 				p{
 					line-height: 1.15;
 				}
     	}
-
     	&__type{
     		color: #3e3e3e;
 			  font-weight: 700;
 			  margin-top: 0;
 			  margin-bottom: 8px;
     	}
-
     	&__message{
     		font-size: .86rem;
 		    margin-top: 0;
@@ -292,7 +274,6 @@
 		    	font-size: 14px;
 		    }
     	}
-
     	&__close{
 		    display: table;
     		position: absolute;

@@ -25,7 +25,7 @@ if(!isset($_POST) || $_POST == []){
   <div id="cUIMessageValid-user"></div>
   <?php require_once 'includes/inc_header-top.php'; ?>
   <main class="cont-MainCamelLog" id="cont-MainCamelLog">
-    <div class="cont-MainCamelLog--c ptop-headertop" id="cont-MainCamelLog--cFinalDownloadQuoteReturn">
+    <div class="cont-MainCamelLog--c" id="cont-MainCamelLog--cFinalDownloadQuoteReturn">
       <div class="box-container">
         <div class="c-FinalQuotation--contStep--cQuotation">
           <div class="c-FinalQuotation--contStep--cQuotation--cBtnDownload">
