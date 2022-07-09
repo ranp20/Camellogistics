@@ -20,7 +20,7 @@
 		justify-content: space-between;
 		padding: 0;
 		position: relative;
-		@media screen and (min-device-width: 991px){
+		@media (min-width: 991px){
 			-webkit-box-align: start;
 		}
 		&--cLogo{
@@ -49,13 +49,14 @@
 			padding: 0.5rem;
 			border: none;
 			border-radius: .4rem;
-			background-color: orange;
+			background-color: #FFA500;
 			margin-left: auto;
 			height: 100%;
-			@media screen and (min-device-width: 991px){
-				display: none;
+			@media (min-width: 991px){
+				display: none !important;
 			}
 			span{
+				display: block;
 				width: 22px;
 				height: 2px;
 				background-color: #fff;
@@ -88,7 +89,7 @@
 				transform: translateX(0);
 				pointer-events: auto;
 			}
-			@media screen and (min-device-width: 991px){
+			@media (min-width: 991px){
 				display: block;
 				position: relative;
 				width: auto;
@@ -122,7 +123,7 @@
 		    padding-top: 1rem;
 		    text-align: left;
 				overscroll-behavior-y: contain;
-				@media screen and (min-device-width: 991px){
+				@media (min-width: 991px){
 					display: none;
 					opacity: 0;
 					visibility: hidden;
@@ -177,7 +178,7 @@
 					margin-right: auto;
 					flex-direction: column;
 					text-align: left;
-					@media screen and (min-device-width: 991px){
+					@media (min-width: 991px){
 						flex-direction: row;
 						width: auto;
 						max-width: unset;
@@ -190,7 +191,7 @@
 						&:last-child{
 							padding: 0;
 						}
-						@media screen and (min-device-width: 991px){
+						@media (min-width: 991px){
 							width: auto;
 						}
 						&--subm{
@@ -250,7 +251,7 @@
 							box-shadow: 0px 2px 0px 0px #000 inset;
 							background-color: #ddd;
 						}
-						@media screen and (min-device-width: 991px){
+						@media (min-width: 991px){
 							font-size: 1rem;
 							padding: 0 1rem;
 						}
@@ -275,7 +276,7 @@
 				flex-direction: column;
 				padding-top: 1rem;
 				text-align: left;
-				@media screen and (min-device-width: 991px){
+				@media (min-width: 991px){
 					display: -webkit-inline-box;
 					opacity: 1;
 					pointer-events: auto;
@@ -290,7 +291,7 @@
 					&:last-child{
 						padding: 0;
 					}
-					@media screen and (min-device-width: 991px){
+					@media (min-width: 991px){
 						width: auto;
 					}
 					&--subm{
@@ -349,7 +350,7 @@
 						box-shadow: 0px 2px 0px 0px #000 inset;
 						background-color: #ddd;
 					}
-					@media screen and (min-device-width: 991px){
+					@media (min-width: 991px){
 						font-size: 1rem;
 						padding: 0 1rem;
 					}
@@ -401,13 +402,13 @@
 			padding: 0.5rem;
 			border: none;
 			border-radius: .4rem;
-			background-color: orange;
+			background-color: #FFA500;
 			margin-left: auto;
 			height: 100%;
 			opacity: 1;
 			visibility: visible;
 			pointer-events: auto;
-			@media screen and (min-device-width: 991px){
+			@media (min-width: 991px){
 				display: none;
 				opacity: 0;
 				visibility: hidden;
@@ -536,11 +537,14 @@
 				padding: 0.5rem;
 				border: none;
 				border-radius: .4rem;
-				background-color: orange;
+				background-color: #FFA500;
 				margin-left: auto;
 				height: 100%;
+				@media screen and (max-device-width: 480px){
+					display: block !important;
+				}
 				@media screen and (min-device-width: 991px){
-					display: none;
+					display: none !important;
 				}
 				span{
 					width: 22px;
@@ -888,7 +892,7 @@
 				padding: 0.5rem;
 				border: none;
 				border-radius: .4rem;
-				background-color: orange;
+				background-color: #FFA500;
 				margin-left: auto;
 				height: 100%;
 				opacity: 1;
