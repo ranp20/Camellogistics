@@ -64,6 +64,7 @@ if(isset($_SESSION['user_camel'])){
           </li>
           <li class="c-Htopbar--c--cMenu--Mmobile--m--item" id="s-loginsessuser-active-mb">
             <?php
+              
               if(isset($_SESSION['user_camel'])){
                 echo "
                   <a href='javascript:void(0);' class='c-Htopbar--c--cMenu--Mmobile--m--link' title='user-logged in'>
@@ -83,6 +84,7 @@ if(isset($_SESSION['user_camel'])){
                     <span>Log in</span>
                   </a>";
               }
+              
             ?>
           </li>
         </ul>
@@ -96,6 +98,7 @@ if(isset($_SESSION['user_camel'])){
         </li>
         <li class="c-Htopbar--c--cMenu--m--item" id="s-loginsessuser-active-ms">
           <?php 
+            
             if(isset($_SESSION['user_camel'])){
               echo "
                 <a href='javascript:void(0);' class='c-Htopbar--c--cMenu--m--link' title='user-logged in'>
@@ -115,6 +118,7 @@ if(isset($_SESSION['user_camel'])){
                   <span>Log in</span>
                 </a>";
             }
+            
           ?>
         </li>
       </ul>

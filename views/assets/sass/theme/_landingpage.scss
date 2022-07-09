@@ -1,6 +1,9 @@
 /* THEME - HEADER TOP (PÁGINAS DE LOGIN) */
 #c-HTop-camel{
-	position: fixed;
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
 	z-index: 9999999;
 	width: 100%;
 	top: 0;
