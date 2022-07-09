@@ -28,9 +28,9 @@ $url_admin = $actual_link . "/admin/";
 <meta property="og:url" name="twitter.url" content="https://localhost/Camellogistics"/>
 <meta property="og:title" name="twitter.title" content="Calculadora de Envíos | Camel Logistics"/>
 <meta property="og:description" name="twitter.description" content="¡Calcula el costo de tu importación en 4 simples pasos!"/>
-<meta property="og:image" name="twitter.image" content="<?= $url; ?>assets/img/logos/logotipo-camel.png"/>
-<link rel="icon" type="image/x-icon" href="views/assets/img/favicon/favicon-camel.png"/>
-<link rel="apple-touch-icon" href="views/assets/img/favicon/favicon-camel.png"/>
+<meta property="og:image" name="twitter.image" content="./views/assets/img/logos/logotipo-camel.png"/>
+<link rel="icon" type="image/x-icon" href="./views/assets/img/favicon/favicon-camel.png"/>
+<link rel="apple-touch-icon" href="./views/assets/img/favicon/favicon-camel.png"/>
 <link rel="canonical" href="https://localhost/Camellogistics"/>
 <!-- PRELOADER FILES -->
 <link rel="preload" href="<?= $url ?>assets/css/styles.min.css" as="style"/>
