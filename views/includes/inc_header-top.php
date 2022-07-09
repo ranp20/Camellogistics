@@ -16,7 +16,7 @@ if(isset($_SESSION['user_camel'])){
 <nav class="c-Htopbar" id="c-HTop-camel">
   <div class="c-Htopbar--c">
     <div class="c-Htopbar--c--cLogo">
-      <a href="./" title="logo-camellogistics">
+      <a href="./" title="logo-camellogistics" title="Logo_camellogistics">
         <img src="<?= $url;?>assets/img/logos/logotipo-camel.png" alt="logo_camel" width="100" height="100" decoding="async">
         <span>
           <span>
@@ -57,7 +57,7 @@ if(isset($_SESSION['user_camel'])){
         </div>
         <ul class="c-Htopbar--c--cMenu--Mmobile--m">
           <li class="c-Htopbar--c--cMenu--Mmobile--m--item">
-            <a href="./" class="c-Htopbar--c--cMenu--Mmobile--m--link" title="Inicio">Inicio</a>
+            <a href="./" class="c-Htopbar--c--cMenu--Mmobile--m--link" title="Ir al inicio">Inicio</a>
           </li>
           <li class="c-Htopbar--c--cMenu--Mmobile--m--item">
             <a href="marketplace-logistico" class="c-Htopbar--c--cMenu--Mmobile--m--link" title="Marketplace Logístico">Marketplace Logístico</a>
@@ -91,7 +91,7 @@ if(isset($_SESSION['user_camel'])){
       </div>
       <ul class="c-Htopbar--c--cMenu--m">
         <li class="c-Htopbar--c--cMenu--m--item">
-          <a href="./" class="c-Htopbar--c--cMenu--m--link" title="Inicio">Inicio</a>
+          <a href="./" class="c-Htopbar--c--cMenu--m--link" title="Ir al inicio">Inicio</a>
         </li>
         <li class="c-Htopbar--c--cMenu--m--item">
           <a href="marketplace-logistico" class="c-Htopbar--c--cMenu--m--link" title="Marketplace Logístico">Marketplace Logístico</a>
@@ -101,12 +101,12 @@ if(isset($_SESSION['user_camel'])){
             
             if(isset($_SESSION['user_camel'])){
               echo "
-                <a href='javascript:void(0);' class='c-Htopbar--c--cMenu--m--link' title='user-logged in'>
+                <a href='javascript:void(0);' class='c-Htopbar--c--cMenu--m--link' title='Se inicio sesión'>
                   <span class='c-Htopbar--c--cMenu--m--link--sessUser'>{$_SESSION['user_camel']['username']}</span>
                 </a>
                 <ul class='c-Htopbar--c--cMenu--m--item--subm'>
                   <li class='c-Htopbar--c--cMenu--m--item--subm--subitem'>
-                    <a href='logout' class='c-Htopbar--c--cMenu--m--item--subm--sublink' title='sign off'>
+                    <a href='logout' class='c-Htopbar--c--cMenu--m--item--subm--sublink' title='Cerrar sesión'>
                       <svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' fill='#fff' viewBox='0 0 24 24'><path d='M8 9v-4l8 7-8 7v-4h-8v-6h8zm2-7v2h12v16h-12v2h14v-20h-14z'/></svg>
                       <span>Cerrar sesión</span>
                     </a>
@@ -114,7 +114,7 @@ if(isset($_SESSION['user_camel'])){
                 </ul>";
             }else{
               echo "
-                <a href='javascript:void(0);' class='c-Htopbar--c--cMenu--m--link' id='s-formLoginOrRegister' title='log in'>
+                <a href='javascript:void(0);' class='c-Htopbar--c--cMenu--m--link' id='s-formLoginOrRegister' title='Iniciar sesión'>
                   <span>Log in</span>
                 </a>";
             }
