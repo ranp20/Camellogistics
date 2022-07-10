@@ -69,20 +69,8 @@ containerMLoginorRegister.addEventListener("click", e => {
   }
 });
 // ------------ VALIDAR LOS CAMPOS DE TEXTO 
-$(document).on("input keyup", "#u-username", function(e){
-  if(e.target.value != ""){
-    $("#mssg_alertcontrol_usr").text("");
-  }else{
-    $("#mssg_alertcontrol_usr").text("Debes ingresar un usuario");
-  }
-});
-$(document).on("input keyup", "#u-password", function(e){
-  if(e.target.value != ""){
-    $("#mssg_alertcontrol_pass").text("");
-  }else{
-    $("#mssg_alertcontrol_pass").text("Debes ingresar una contraseña");
-  }
-});
+$(document).on("input keyup", "#u-username", function(e){if(e.target.value != ""){$("#mssg_alertcontrol_usr").text("");}else{$("#mssg_alertcontrol_usr").text("Debes ingresar un usuario");}});
+$(document).on("input keyup", "#u-password", function(e){if(e.target.value != ""){$("#mssg_alertcontrol_pass").text("");}else{$("#mssg_alertcontrol_pass").text("Debes ingresar una contraseña");}});
 $(document).on("input keyup", "#u-passwordtwo", function(e){
   if(e.target.value != ""){
     $("#mssg_alertcontrol_passrepeat").text("");

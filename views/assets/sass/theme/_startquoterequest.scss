@@ -6,6 +6,10 @@
   gap: .5rem;
   min-height: 100vh;
   height: auto;
+  &.absposit-steps{
+  	z-index: 9999999;
+  	position: absolute;
+  }
   .n-val-sd{
   	border: none;
     background-color: unset;

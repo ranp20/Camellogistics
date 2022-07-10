@@ -546,7 +546,8 @@ echo $template_incserv.$template_notincserv;
 </div>
   <?php require_once 'includes/inc_form-login-user.php'; ?>
   <?php require_once 'includes/inc_form-before-download-pdf.php'; ?>
-  <script type="text/javascript" src="<?= $url; ?>js/actions_pages/user-login.js"></script>
-  <script type="text/javascript" src="<?= $url; ?>js/actions_pages/finalquotationreturn_aduanas.js"></script>
+  <script type="text/javascript" src="<?= $url;?>js/actions_pages/user-login.js"></script>
+  <script type="text/javascript" src="<?= $url;?>js/actions_pages/finalquotationreturn_aduanas.js"></script>
+  <script type="text/javascript" src="<?= $url;?>js/main.js"></script>
 </body>
 </html>

@@ -11,7 +11,7 @@ $(() => {
 // ------------ ITEM SELECCIONADO DEL MENÚ MOBILE
 var url = window.location.pathname;
 var filename = url.substring(url.lastIndexOf('/')+1);
-if(filename == "marketplace-logistico"){
+if(filename == "marketplace-logistico" || filename == "fquotationgenerateaduanas" || filename == "fquotationgenerate"){
 	$('.c-Htopbar--c--cMenu--m--item a').eq(1).add($('.c-Htopbar--c--cMenu--Mmobile--m--item a').eq(1)).addClass("active");
 }else if(filename == ""){
 	$('.c-Htopbar--c--cMenu--m--item a').eq(0).add($('.c-Htopbar--c--cMenu--Mmobile--m--item a').eq(0)).addClass("active");

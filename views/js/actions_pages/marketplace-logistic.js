@@ -28,12 +28,12 @@ $(document).ready(function(){
       typeService = t.find("li").find("span:nth-child(2)").text();
       $("#c-cTabsItem").html(`
         <div class="cont-MainCamelLog--c--cOptionsMarket--f--cont--cTabsItem--item">
-          <input type="hidden" id="v_typeserviceinpinit" name="v_typeserviceinpinit" value="${typeService}">
-          <input type="hidden" id="v_typetranspinit" name="v_typetranspinit" value="${ind}">
-          <input type="hidden" id="v_iptportoriginpost" name="v_iptportoriginpost">
-          <input type="hidden" id="v_iptcountryportoriginpost" name="v_iptcountryportoriginpost">
-          <input type="hidden" id="v_iptportdestinypost" name="v_iptportdestinypost">
-          <input type="hidden" id="v_iptcountryportdestinypost" name="v_iptcountryportdestinypost">
+          <input tabindex="-1" placeholder="" type="hidden" width="0" height="0" autocomplete="off" spellcheck="false" f-hidden="aria-hidden" class="non-visvalipt h-alternative-shwnon s-fkeynone-step" id="v_typeserviceinpinit" name="v_typeserviceinpinit" value="${typeService}">
+          <input tabindex="-1" placeholder="" type="hidden" width="0" height="0" autocomplete="off" spellcheck="false" f-hidden="aria-hidden" class="non-visvalipt h-alternative-shwnon s-fkeynone-step" id="v_typetranspinit" name="v_typetranspinit" value="${ind}">
+          <input tabindex="-1" placeholder="" type="hidden" width="0" height="0" autocomplete="off" spellcheck="false" f-hidden="aria-hidden" class="non-visvalipt h-alternative-shwnon s-fkeynone-step" id="v_iptportoriginpost" name="v_iptportoriginpost">
+          <input tabindex="-1" placeholder="" type="hidden" width="0" height="0" autocomplete="off" spellcheck="false" f-hidden="aria-hidden" class="non-visvalipt h-alternative-shwnon s-fkeynone-step" id="v_iptcountryportoriginpost" name="v_iptcountryportoriginpost">
+          <input tabindex="-1" placeholder="" type="hidden" width="0" height="0" autocomplete="off" spellcheck="false" f-hidden="aria-hidden" class="non-visvalipt h-alternative-shwnon s-fkeynone-step" id="v_iptportdestinypost" name="v_iptportdestinypost">
+          <input tabindex="-1" placeholder="" type="hidden" width="0" height="0" autocomplete="off" spellcheck="false" f-hidden="aria-hidden" class="non-visvalipt h-alternative-shwnon s-fkeynone-step" id="v_iptcountryportdestinypost" name="v_iptcountryportdestinypost">
           <div class="cont-MainCamelLog--c--cOptionsMarket--f--cont--cTabsItem--item--cControl">
             <div class="cont-MainCamelLog--c--cOptionsMarket--f--cont--cTabsItem--item--cControl--control">
               <div class="cont-MainCamelLog--c--cOptionsMarket--f--cont--cTabsItem--item--cControl--control--cGroupIptsIcon">
@@ -65,7 +65,7 @@ $(document).ready(function(){
       typeService = t.find("li").find("span:nth-child(2)").text();
       $("#c-cTabsItem").html(`
         <div class="cont-MainCamelLog--c--cOptionsMarket--f--cont--cTabsItem--item">
-          <input type="hidden" id="v_typeserviceinpinit" name="v_typeserviceinpinit" value="${typeService}">
+          <input tabindex="-1" placeholder="" type="hidden" width="0" height="0" autocomplete="off" spellcheck="false" f-hidden="aria-hidden" class="non-visvalipt h-alternative-shwnon s-fkeynone-step" id="v_typeserviceinpinit" name="v_typeserviceinpinit" value="${typeService}">
           <div class="cont-MainCamelLog--c--cOptionsMarket--f--cont--cTabsItem--item--cControl">
             <div class="cont-MainCamelLog--c--cOptionsMarket--f--cont--cTabsItem--item--cControl--control">
               <div class="cont-MainCamelLog--c--cOptionsMarket--f--cont--cTabsItem--item--cControl--control--cGroupIptsIcon">
@@ -94,8 +94,8 @@ $(document).ready(function(){
       typeService = t.eq(0).find("li").find("span:nth-child(2)").text();
       $("#c-cTabsItem").html(`
         <div class="cont-MainCamelLog--c--cOptionsMarket--f--cont--cTabsItem--item">
-          <input type="hidden" id="v_typetranspinit" name="v_typetranspinit" value="${ind}">
-          <input type="hidden" id="v_typeserviceinpinit" name="v_typeserviceinpinit" value="${typeService}">
+          <input tabindex="-1" placeholder="" type="hidden" width="0" height="0" autocomplete="off" spellcheck="false" f-hidden="aria-hidden" class="non-visvalipt h-alternative-shwnon s-fkeynone-step" id="v_typetranspinit" name="v_typetranspinit" value="${ind}">
+          <input tabindex="-1" placeholder="" type="hidden" width="0" height="0" autocomplete="off" spellcheck="false" f-hidden="aria-hidden" class="non-visvalipt h-alternative-shwnon s-fkeynone-step" id="v_typeserviceinpinit" name="v_typeserviceinpinit" value="${typeService}">
           <!--<div class="cont-MainCamelLog--c--cOptionsMarket--f--cont--cTabsItem--item--cControl">
             <div class="cont-MainCamelLog--c--cOptionsMarket--f--cont--cTabsItem--item--cControl--control">
               <div class="cont-MainCamelLog--c--cOptionsMarket--f--cont--cTabsItem--item--cControl--control--cGroupIptsIcon">
