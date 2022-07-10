@@ -552,13 +552,6 @@ echo $template_incserv.$template_notincserv;
 <input tabindex="-1" placeholder="phdr-whidipts" type="hidden" width="0" height="0" autocomplete="off" spellcheck="false" f-hidden="aria-hidden" class="non-visvalipt h-alternative-shwnon s-fkeynone-step" id="v_ftotmxcbmcompr" value="<?= (isset($_POST['val-iptVolumeNInterface']) && $_POST['val-iptVolumeNInterface'] != "") ? $_POST['val-iptVolumeNInterface'] : 0;?>">
 </div>
 </div>
-  <?php
-    
-    echo "<pre>";
-    print_r($_POST);
-    echo "</pre>";
-    
-  ?>
   <?php require_once 'includes/inc_form-login-user.php'; ?>
   <?php require_once 'includes/inc_form-before-download-pdf.php'; ?>
   <script type="text/javascript" src="<?= $url; ?>js/actions_pages/user-login.js"></script>

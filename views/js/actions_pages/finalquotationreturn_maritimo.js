@@ -7,7 +7,7 @@ function myRound(num, dec){
   var exp = Math.pow(10, dec || 2); // 2 decimales por defecto
   return parseInt(num * exp, 10) / exp;
 }
-// ------------ FUNCIÓN - LIMITAR A DOS DECIMALES SIN REDONDEO 
+// ------------ FUNCIÓN - LIMITAR A 2 DECIMALES SIN REDONDEO 
 function twodecimals(n){
   let t = n.toString();
   let regex = /(\d*.\d{0,2})/;
@@ -260,28 +260,21 @@ $(document).ready(function(){
 			      finalRoundinsurance = myRound(finalinsurance);
 			    }
 		  	}else if(v_foptgnfquotevl == "y-moreOpts" && v_frselinsmerch == "NO"){
-		  		if(totalfinalvaluefob > merchandiseValFixed){
-			      finalinsurance = totalfinalvaluefob * insureconvert_default; //ES MAYOR A (FOB)
+		  		
+			      finalinsurance = totalfinalvaluefob * insureconvert_default; // VALOR POR DEFECTO DEL SEGURO
 			      initvalinsurance = insure_default;
 			      finalRoundinsurance = myRound(finalinsurance);
-			    }else{
-			      finalinsurance = insureconvert_default; //ES MENOR A (FOB)
-			      initvalinsurance = insure_default;
-			      finalRoundinsurance = myRound(finalinsurance);
-			    }
+			    
 		  	}else if(v_foptgnfquotevl == "not-moreOpts" && v_frselinsmerch == "NO"){
-			  	if(totalfinalvaluefob > merchandiseValFixed){
-			      finalinsurance = totalfinalvaluefob * insureconvert_default; //ES MAYOR A (FOB)
+
+			      finalinsurance = totalfinalvaluefob * insureconvert_default; // VALOR POR DEFECTO DEL SEGURO
 			      initvalinsurance = insure_default;
 			      finalRoundinsurance = myRound(finalinsurance);
-			    }else{
-			      finalinsurance = insureconvert_default; //ES MENOR A (FOB)
-			      initvalinsurance = insure_default;
-			      finalRoundinsurance = myRound(finalinsurance);
-			    }
+			    
 		  	}else{
 		  		finalRoundinsurance = 0;
 		  	}
+
 
 		  	// VALOR TOTAL - CIF
 		  	sumbyCIF = totalfinalvaluefob + totflete + finalRoundinsurance; //CIF FINAL
