@@ -7,7 +7,7 @@ use PhpOffice\PhpSpreadsheet\IOFactory;
 
 /************************** ABRIENDO CONEXIÓN SECUNDARIA - USANDO MYSQLI **************************/
 require_once 'connection.php';
-
+$r = "";
 if(isset($_FILES) && isset($_POST)){
 	if($_FILES['spreadsheetlcl']['error'] == 0){
 		if($_FILES['spreadsheetlcl']['type'] === "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"){
@@ -20,137 +20,266 @@ if(isset($_FILES) && isset($_POST)){
 
 			/************************** COMPROBAR SI EXISTE INFORMACIÓN EN LA TABLA **************************/
 			require 'c_list_id_rate_lcl.php';
+			require 'c_delete_rate_lcl.php';
 			$rateidlcl = new List_Ids_rateLCL();
 			$listids = $rateidlcl->list();
 
 			if(!empty($listids)){
+				/************************** ELIMINAR TODOS LOS REGISTRO Y SETEAR EL AUTO_INCREMENT=1; **************************/
+				$del_lcl = new Delete_Rate_LCL();
+				$del_all_lcl = $del_lcl->delete();
 
-				$ilistid = 0;
-				$arrupdated = [];
+				if($del_all_lcl == "true"){
 
-				for ($i = 6; $i < $numberrows; $i++){
-					$countryOrigin = $archivoExcel->getActiveSheet()->getCell('A'.$i)->getCalculatedValue();
-					$portOrigin = $archivoExcel->getActiveSheet()->getCell('B'.$i)->getCalculatedValue();
-					$portDestiny = $archivoExcel->getActiveSheet()->getCell('C'.$i)->getCalculatedValue();
-					$max5cbm = $archivoExcel->getActiveSheet()->getCell('D'.$i)->getCalculatedValue();
-					$total5cbm = $archivoExcel->getActiveSheet()->getCell('E'.$i)->getCalculatedValue();
-					$max15cbm = $archivoExcel->getActiveSheet()->getCell('F'.$i)->getCalculatedValue();
-					$total15cbm = $archivoExcel->getActiveSheet()->getCell('G'.$i)->getCalculatedValue();
-					$amount_imo = $archivoExcel->getActiveSheet()->getCell('H'.$i)->getCalculatedValue();
-					$total_imo = $archivoExcel->getActiveSheet()->getCell('I'.$i)->getCalculatedValue();
-					$amount_refrigerado = $archivoExcel->getActiveSheet()->getCell('J'.$i)->getCalculatedValue();
-					$total_refrigerado = $archivoExcel->getActiveSheet()->getCell('K'.$i)->getCalculatedValue();
-					$frecuencies = $archivoExcel->getActiveSheet()->getCell('L'.$i)->getCalculatedValue();
-					$ttaprox = $archivoExcel->getActiveSheet()->getCell('M'.$i)->getCalculatedValue();
-					$cooloder = $archivoExcel->getActiveSheet()->getCell('N'.$i)->getCalculatedValue();
-				
-					if($countryOrigin != "" || $portOrigin != "" || $portDestiny != "" || $max5cbm != "" || $total5cbm != ""){
+					//echo "No hay datos en la tabla";
+					for ($i = 6; $i < $numberrows; $i++){
+						$countryOrigin = $archivoExcel->getActiveSheet()->getCell('A'.$i)->getCalculatedValue();
+						$portOrigin = $archivoExcel->getActiveSheet()->getCell('B'.$i)->getCalculatedValue();
+						$portDestiny = $archivoExcel->getActiveSheet()->getCell('C'.$i)->getCalculatedValue();
+						$max5cbm = $archivoExcel->getActiveSheet()->getCell('D'.$i)->getCalculatedValue();
+						$total5cbm = $archivoExcel->getActiveSheet()->getCell('E'.$i)->getCalculatedValue();
+						$max15cbm = $archivoExcel->getActiveSheet()->getCell('F'.$i)->getCalculatedValue();
+						$total15cbm = $archivoExcel->getActiveSheet()->getCell('G'.$i)->getCalculatedValue();
+						$amount_imo = $archivoExcel->getActiveSheet()->getCell('H'.$i)->getCalculatedValue();
+						$total_imo = $archivoExcel->getActiveSheet()->getCell('I'.$i)->getCalculatedValue();
+						$amount_refrigerado = $archivoExcel->getActiveSheet()->getCell('J'.$i)->getCalculatedValue();
+						$total_refrigerado = $archivoExcel->getActiveSheet()->getCell('K'.$i)->getCalculatedValue();
+						$frecuencies = $archivoExcel->getActiveSheet()->getCell('L'.$i)->getCalculatedValue();
+						$ttaprox = $archivoExcel->getActiveSheet()->getCell('M'.$i)->getCalculatedValue();
+						$cooloder = $archivoExcel->getActiveSheet()->getCell('N'.$i)->getCalculatedValue();
 						
-						array_push($arrupdated, 
-											[
-												$countryOrigin, 
-												$portOrigin,	
-												$portDestiny,	
-												$max5cbm,	
-												$total5cbm,	
-												$max15cbm, 
-												$total15cbm,
-												$amount_imo,
-												$total_imo,
-												$amount_refrigerado,
-												$total_refrigerado,
-												$frecuencies,
-												$ttaprox, 
-												$cooloder
-											]);
+						if($countryOrigin != "" || $portOrigin != "" || $portDestiny != "" || $max5cbm != "" || $total5cbm != ""){
 
+							/************************** INSERTAR LA INFORMACIÓN DE LA HOJA DE CÁLCULO **************************/
+							$sql = "INSERT INTO tbl_rate_lcl(
+							country_origin, 
+							port_origin, 
+							port_destiny, 
+							hasta5cbm, 
+							total5cbm, 
+							hasta15cbm, 
+							total15cbm, 
+							amount_imo,
+							total_imo,
+							amount_refrigerado,
+							total_refrigerado,
+							frecuencia, 
+							tt_aprox, 
+							cooloder, 
+							validdesde, 
+							validhasta, 
+							utility) 
+							VALUES 
+							('".$countryOrigin."', 
+							'".$portOrigin."', 
+							'".$portDestiny."',
+							'".$max5cbm."', 
+							'".$total5cbm."', 
+							'".$max15cbm."', 
+							'".$total15cbm."',
+							'".$amount_imo."',
+							'".$total_imo."',
+							'".$amount_refrigerado."',
+							'".$total_refrigerado."',
+							'".$frecuencies."', 
+							'".$ttaprox."', 
+							'".$cooloder."', 
+							'".$_POST['validdesdelcl']."', 
+							'".$_POST['validhastalcl']."', 
+							".$_POST['utilitylcl'].")";
+							$result = $con->prepare($sql);
+							$result->execute();
+
+							if($result == true){
+								$r = array(
+									'res' => 'inserted'
+								);
+							}else{
+								$r = array(
+									'res' => 'false'
+								);
+							}
+						}
 					}
-				}
 
-				/************************** RECORRER LOS IDs Y ACTUALIZAR LOS REGISTROS PREVIOS **************************/
-				while ($ilistid < count($arrupdated)) {
-					/************************** ACTUALIZAR LA INFORMACIÓN DE LA HOJA DE CÁLCULO **************************/
-					$sql = "UPDATE tbl_rate_lcl SET
-					country_origin = '".$arrupdated[$ilistid][0]."', 
-					port_origin = '".$arrupdated[$ilistid][1]."', 
-					port_destiny = '".$arrupdated[$ilistid][2]."', 
-					hasta5cbm = '".$arrupdated[$ilistid][3]."', 
-					total5cbm = '".$arrupdated[$ilistid][4]."', 
-					hasta15cbm = '".$arrupdated[$ilistid][5]."', 
-					total15cbm = '".$arrupdated[$ilistid][6]."',
-					amount_imo = '".$arrupdated[$ilistid][7]."',
-					total_imo = '".$arrupdated[$ilistid][8]."',
-					amount_refrigerado = '".$arrupdated[$ilistid][9]."',
-					total_refrigerado = '".$arrupdated[$ilistid][10]."',
-					frecuencia = '".$arrupdated[$ilistid][11]."', 
-					tt_aprox = '".$arrupdated[$ilistid][12]."', 
-					cooloder = '".$arrupdated[$ilistid][13]."', 
-					validdesde = '".$_POST['validdesdelcl']."', 
-					validhasta = '".$_POST['validhastalcl']."',
-					utility = ".$_POST['utilitylcl']." WHERE id = ".$listids[$ilistid]['id']."";
+					/************************** ENVIAR LA HOJA DE CÁLCULO A GUARDAR **************************/
+					$file_name = $_FILES['spreadsheetlcl']['name'];
+					$file_lowercase = strtolower($file_name);
+					$file_origin = $_FILES['spreadsheetlcl']['tmp_name'];
+					$file_folder = "../views/assets/spreadsheets/lcl/";
+
+					if(move_uploaded_file($file_origin, $file_folder . $file_lowercase)){
+						$sql = "CALL sp_add_spreadsheet_rate_lcl(:spreadsheet)";
+						$stm = $con->prepare($sql);
+						$stm->bindValue(":spreadsheet", $file_name);
+						$stm->execute();
+						if($stm == true){
+							$r = array(
+								'res' => 'inserted'
+							);
+						}else{
+							$r = array(
+								'res' => 'false'
+							);
+						}
+					}else{
+						echo "Error fatal";
+					}
+
+					/************************** AGREGAR A LA TABLA - LÍNEA DE TIEMPO DE CAMBIOS EN UTILIDAD  **************************/
+					$sql = "INSERT INTO tbl_utility_rate_lcl(
+					utility,
+					val_desde,
+					val_hasta)
+					VALUES 
+					(".$_POST['utilitylcl'].",
+					'".$_POST['validdesdelcl']."', 
+					'".$_POST['validhastalcl']."')";
 					$result = $con->prepare($sql);
 					$result->execute();
 
 					if($result == true){
-						$res = array(
-							'response' => 'updated'
+						$r = array(
+							'res' => 'inserted'
 						);
 					}else{
-						$res = array(
-							'response' => 'false'
+						$r = array(
+							'res' => 'false'
 						);
 					}
-					$ilistid++;
-				}
 
-				/************************** ENVIAR LA HOJA DE CÁLCULO A GUARDAR **************************/
-				$file_name = $_FILES['spreadsheetlcl']['name'];
-				$file_lowercase = strtolower($file_name);
-				$file_origin = $_FILES['spreadsheetlcl']['tmp_name'];
-				$file_folder = "../views/assets/spreadsheets/lcl/";
+					/*
+					$ilistid = 0;
+					$arrupdated = [];
 
-				if(move_uploaded_file($file_origin, $file_folder . $file_lowercase)){
-					$sql = "CALL sp_add_spreadsheet_rate_lcl(:spreadsheet)";
-					$stm = $con->prepare($sql);
-					$stm->bindValue(":spreadsheet", $file_name);
-					$stm->execute();
-					if($stm == true){
-						$res = array(
-							'response' => 'updated'
-						);
-					}else{
-						$res = array(
-							'response' => 'false'
-						);
-					}
+					for ($i = 6; $i < $numberrows; $i++){
+						$countryOrigin = $archivoExcel->getActiveSheet()->getCell('A'.$i)->getCalculatedValue();
+						$portOrigin = $archivoExcel->getActiveSheet()->getCell('B'.$i)->getCalculatedValue();
+						$portDestiny = $archivoExcel->getActiveSheet()->getCell('C'.$i)->getCalculatedValue();
+						$max5cbm = $archivoExcel->getActiveSheet()->getCell('D'.$i)->getCalculatedValue();
+						$total5cbm = $archivoExcel->getActiveSheet()->getCell('E'.$i)->getCalculatedValue();
+						$max15cbm = $archivoExcel->getActiveSheet()->getCell('F'.$i)->getCalculatedValue();
+						$total15cbm = $archivoExcel->getActiveSheet()->getCell('G'.$i)->getCalculatedValue();
+						$amount_imo = $archivoExcel->getActiveSheet()->getCell('H'.$i)->getCalculatedValue();
+						$total_imo = $archivoExcel->getActiveSheet()->getCell('I'.$i)->getCalculatedValue();
+						$amount_refrigerado = $archivoExcel->getActiveSheet()->getCell('J'.$i)->getCalculatedValue();
+						$total_refrigerado = $archivoExcel->getActiveSheet()->getCell('K'.$i)->getCalculatedValue();
+						$frecuencies = $archivoExcel->getActiveSheet()->getCell('L'.$i)->getCalculatedValue();
+						$ttaprox = $archivoExcel->getActiveSheet()->getCell('M'.$i)->getCalculatedValue();
+						$cooloder = $archivoExcel->getActiveSheet()->getCell('N'.$i)->getCalculatedValue();
 					
+						if($countryOrigin != "" || $portOrigin != "" || $portDestiny != "" || $max5cbm != "" || $total5cbm != ""){
+							
+							array_push($arrupdated, 
+												[
+													$countryOrigin, 
+													$portOrigin,	
+													$portDestiny,	
+													$max5cbm,	
+													$total5cbm,	
+													$max15cbm, 
+													$total15cbm,
+													$amount_imo,
+													$total_imo,
+													$amount_refrigerado,
+													$total_refrigerado,
+													$frecuencies,
+													$ttaprox, 
+													$cooloder
+												]);
+
+						}
+					}
+
+					// ------------ RECORRER LOS IDs Y ACTUALIZAR LOS REGISTROS PREVIOS
+					while ($ilistid < count($arrupdated)) {
+						// ------------ ACTUALIZAR LA INFORMACIÓN DE LA HOJA DE CÁLCULO
+						$sql = "UPDATE tbl_rate_lcl SET
+						country_origin = '".$arrupdated[$ilistid][0]."', 
+						port_origin = '".$arrupdated[$ilistid][1]."', 
+						port_destiny = '".$arrupdated[$ilistid][2]."', 
+						hasta5cbm = '".$arrupdated[$ilistid][3]."', 
+						total5cbm = '".$arrupdated[$ilistid][4]."', 
+						hasta15cbm = '".$arrupdated[$ilistid][5]."', 
+						total15cbm = '".$arrupdated[$ilistid][6]."',
+						amount_imo = '".$arrupdated[$ilistid][7]."',
+						total_imo = '".$arrupdated[$ilistid][8]."',
+						amount_refrigerado = '".$arrupdated[$ilistid][9]."',
+						total_refrigerado = '".$arrupdated[$ilistid][10]."',
+						frecuencia = '".$arrupdated[$ilistid][11]."', 
+						tt_aprox = '".$arrupdated[$ilistid][12]."', 
+						cooloder = '".$arrupdated[$ilistid][13]."', 
+						validdesde = '".$_POST['validdesdelcl']."', 
+						validhasta = '".$_POST['validhastalcl']."',
+						utility = ".$_POST['utilitylcl']." WHERE id = ".$listids[$ilistid]['id']."";
+						$result = $con->prepare($sql);
+						$result->execute();
+
+						if($result == true){
+							$r = array(
+								'res' => 'updated'
+							);
+						}else{
+							$r = array(
+								'res' => 'false'
+							);
+						}
+						$ilistid++;
+					}
+
+					// ------------ ENVIAR LA HOJA DE CÁLCULO A GUARDAR
+					$file_name = $_FILES['spreadsheetlcl']['name'];
+					$file_lowercase = strtolower($file_name);
+					$file_origin = $_FILES['spreadsheetlcl']['tmp_name'];
+					$file_folder = "../views/assets/spreadsheets/lcl/";
+
+					if(move_uploaded_file($file_origin, $file_folder . $file_lowercase)){
+						$sql = "CALL sp_add_spreadsheet_rate_lcl(:spreadsheet)";
+						$stm = $con->prepare($sql);
+						$stm->bindValue(":spreadsheet", $file_name);
+						$stm->execute();
+						if($stm == true){
+							$r = array(
+								'res' => 'updated'
+							);
+						}else{
+							$r = array(
+								'res' => 'false'
+							);
+						}
+						
+					}else{
+						echo "Error fatal";
+					}
+
+					// ------------ AGREGAR A LA TABLA - LÍNEA DE TIEMPO DE CAMBIOS EN UTILIDAD 
+					$sql = "INSERT INTO tbl_utility_rate_lcl(
+					utility,
+					val_desde,
+					val_hasta)
+					VALUES 
+					(".$_POST['utilitylcl'].",
+					'".$_POST['validdesdelcl']."', 
+					'".$_POST['validhastalcl']."')";
+					$result = $con->prepare($sql);
+					$result->execute();
+
+					if($result == true){
+						$r = array(
+							'res' => 'updated'
+						);
+					}else{
+						$r = array(
+							'res' => 'false'
+						);
+					}
+					*/
 				}else{
-					echo "Error fatal";
-				}
-
-				/************************** AGREGAR A LA TABLA - LÍNEA DE TIEMPO DE CAMBIOS EN UTILIDAD  **************************/
-				$sql = "INSERT INTO tbl_utility_rate_lcl(
-				utility,
-				val_desde,
-				val_hasta)
-				VALUES 
-				(".$_POST['utilitylcl'].",
-				'".$_POST['validdesdelcl']."', 
-				'".$_POST['validhastalcl']."')";
-				$result = $con->prepare($sql);
-				$result->execute();
-
-				if($result == true){
-					$res = array(
-						'response' => 'updated'
-					);
-				}else{
-					$res = array(
-						'response' => 'false'
+					$r = array(
+						'res' => 'false'
 					);
 				}
-
-
+				
 				//echo "Existen datos en la tabla";
 			}else{
 	
@@ -214,17 +343,16 @@ if(isset($_FILES) && isset($_POST)){
 						$result->execute();
 
 						if($result == true){
-							$res = array(
-								'response' => 'inserted'
+							$r = array(
+								'res' => 'inserted'
 							);
 						}else{
-							$res = array(
-								'response' => 'false'
+							$r = array(
+								'res' => 'false'
 							);
 						}
 					}
 				}
-
 
 				/************************** ENVIAR LA HOJA DE CÁLCULO A GUARDAR **************************/
 				$file_name = $_FILES['spreadsheetlcl']['name'];
@@ -238,19 +366,17 @@ if(isset($_FILES) && isset($_POST)){
 					$stm->bindValue(":spreadsheet", $file_name);
 					$stm->execute();
 					if($stm == true){
-						$res = array(
-							'response' => 'inserted'
+						$r = array(
+							'res' => 'inserted'
 						);
 					}else{
-						$res = array(
-							'response' => 'false'
+						$r = array(
+							'res' => 'false'
 						);
 					}
-					
 				}else{
 					echo "Error fatal";
 				}
-
 
 				/************************** AGREGAR A LA TABLA - LÍNEA DE TIEMPO DE CAMBIOS EN UTILIDAD  **************************/
 				$sql = "INSERT INTO tbl_utility_rate_lcl(
@@ -265,29 +391,28 @@ if(isset($_FILES) && isset($_POST)){
 				$result->execute();
 
 				if($result == true){
-					$res = array(
-						'response' => 'inserted'
+					$r = array(
+						'res' => 'inserted'
 					);
 				}else{
-					$res = array(
-						'response' => 'false'
+					$r = array(
+						'res' => 'false'
 					);
 				}
 			}
-
 		}else{			
-			$res = array(
-				'response' => 'false'
+			$r = array(
+				'res' => 'false'
 			);
 		}
 	}else{
-		$res = array(
-			'response' => 'false'
+		$r = array(
+			'res' => 'false'
 		);
 	}
 }else{
-	$res = array(
-		'response' => 'false'
+	$r = array(
+		'res' => 'false'
 	);
 }
-die(json_encode($res));
+die(json_encode($r));

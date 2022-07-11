@@ -33,7 +33,7 @@ $(document).on('submit', '#form-add-spreadsheetlcl', function(e){
 	}).done((e) => {
     if(e != ""){
   		var r = JSON.parse(e);
-  		if(r.response == "inserted"){
+  		if(r.res == "inserted"){
   			listUtilitiesLCL();
   			$("#btnadd-spreadsheetlcl").attr("disabled", false);
   			$("#btnadd-spreadsheetlcl").removeClass("showloader");
@@ -47,7 +47,7 @@ $(document).on('submit', '#form-add-spreadsheetlcl', function(e){
           icon: 'success',
           confirmButtonText: 'Aceptar'
         });
-  		}else if(r.response == "updated"){
+  		}else if(r.res == "updated"){
   			listUtilitiesLCL();
   			$("#btnadd-spreadsheetlcl").attr("disabled", false);
   			$("#btnadd-spreadsheetlcl").removeClass("showloader");
