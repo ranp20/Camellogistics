@@ -98,7 +98,7 @@ if(isset($_FILES) && isset($_POST)){
 							'".$de_20st_40nor."', 
 							'".$total_20st_40nor."',
 							".$_POST['utilitylcltransport'].")";
-							$result = $con->prepare($sql);
+							$result = $con_u->prepare($sql);
 							$result->execute();
 
 							if($result == true){
@@ -166,7 +166,7 @@ if(isset($_FILES) && isset($_POST)){
 							'".$imo_de_20st_40nor."', 
 							'".$imo_total_20st_40nor."',
 							".$_POST['utilitylcltransport'].")";
-							$result = $con->prepare($sql);
+							$result = $con_u->prepare($sql);
 							$result->execute();
 
 							if($result == true){
@@ -234,7 +234,7 @@ if(isset($_FILES) && isset($_POST)){
 							'".$refr_de_20st_40nor."', 
 							'".$refr_total_20st_40nor."',
 							".$_POST['utilitylcltransport'].")";
-							$result = $con->prepare($sql);
+							$result = $con_u->prepare($sql);
 							$result->execute();
 
 							if($result == true){
@@ -257,7 +257,7 @@ if(isset($_FILES) && isset($_POST)){
 
 					if(move_uploaded_file($file_origin, $file_folder . $file_lowercase)){
 						$sql = "CALL sp_add_spreadsheet_rate_lcl_transport(:spreadsheet)";
-						$stm = $con->prepare($sql);
+						$stm = $con_u->prepare($sql);
 						$stm->bindValue(":spreadsheet", $file_name);
 						$stm->execute();
 						if($stm == true){
@@ -275,7 +275,7 @@ if(isset($_FILES) && isset($_POST)){
 
 					/************************** AGREGAR A LA TABLA - LÍNEA DE TIEMPO DE CAMBIOS EN UTILIDAD  **************************/
 					$sql = "INSERT INTO tbl_utility_rate_lcl_transport(utility)	VALUES (".$_POST['utilitylcltransport'].")";
-					$result = $con->prepare($sql);
+					$result = $con_u->prepare($sql);
 					$result->execute();
 
 					if($result == true){
@@ -361,7 +361,7 @@ if(isset($_FILES) && isset($_POST)){
 					20st_40nor = '".$arrupdated_general[$ilistid_general][13]."', 
 					total_20st_40nor = '".$arrupdated_general[$ilistid_general][14]."', 
 					utility = ".$_POST['utilitylcltransport']." WHERE id = ".$listids_general[$ilistid_general]['id']."";
-					$result = $con->prepare($sql);
+					$result = $con_u->prepare($sql);
 					$result->execute();
 
 					if($result == true){
@@ -437,7 +437,7 @@ if(isset($_FILES) && isset($_POST)){
 					20st_40nor = '".$arrupdated_imo[$ilistid_imo][13]."', 
 					total_20st_40nor = '".$arrupdated_imo[$ilistid_imo][14]."', 
 					utility = ".$_POST['utilitylcltransport']." WHERE id = ".$listids_imo[$ilistid_imo]['id']."";
-					$result = $con->prepare($sql);
+					$result = $con_u->prepare($sql);
 					$result->execute();
 
 					if($result == true){
@@ -513,7 +513,7 @@ if(isset($_FILES) && isset($_POST)){
 					20st_40nor = '".$arrupdated_refrigerado[$ilistid_refrigerado][13]."', 
 					total_20st_40nor = '".$arrupdated_refrigerado[$ilistid_refrigerado][14]."', 
 					utility = ".$_POST['utilitylcltransport']." WHERE id = ".$listids_refri[$ilistid_refrigerado]['id']."";
-					$result = $con->prepare($sql);
+					$result = $con_u->prepare($sql);
 					$result->execute();
 
 					if($result == true){
@@ -536,7 +536,7 @@ if(isset($_FILES) && isset($_POST)){
 
 				if(move_uploaded_file($file_origin, $file_folder . $file_lowercase)){
 					$sql = "CALL sp_add_spreadsheet_rate_lcl_transport(:spreadsheet)";
-					$stm = $con->prepare($sql);
+					$stm = $con_u->prepare($sql);
 					$stm->bindValue(":spreadsheet", $file_name);
 					$stm->execute();
 					if($stm == true){
@@ -555,7 +555,7 @@ if(isset($_FILES) && isset($_POST)){
 
 				// ------------ AGREGAR A LA TABLA - LÍNEA DE TIEMPO DE CAMBIOS EN UTILIDAD 
 				$sql = "INSERT INTO tbl_utility_rate_lcl_transport(utility)	VALUES (".$_POST['utilitylcltransport'].")";
-				$result = $con->prepare($sql);
+				$result = $con_u->prepare($sql);
 				$result->execute();
 
 				if($result == true){
@@ -624,7 +624,7 @@ if(isset($_FILES) && isset($_POST)){
 						'".$de_20st_40nor."', 
 						'".$total_20st_40nor."',
 						".$_POST['utilitylcltransport'].")";
-						$result = $con->prepare($sql);
+						$result = $con_u->prepare($sql);
 						$result->execute();
 
 						if($result == true){
@@ -692,7 +692,7 @@ if(isset($_FILES) && isset($_POST)){
 						'".$imo_de_20st_40nor."', 
 						'".$imo_total_20st_40nor."',
 						".$_POST['utilitylcltransport'].")";
-						$result = $con->prepare($sql);
+						$result = $con_u->prepare($sql);
 						$result->execute();
 
 						if($result == true){
@@ -760,7 +760,7 @@ if(isset($_FILES) && isset($_POST)){
 						'".$refr_de_20st_40nor."', 
 						'".$refr_total_20st_40nor."',
 						".$_POST['utilitylcltransport'].")";
-						$result = $con->prepare($sql);
+						$result = $con_u->prepare($sql);
 						$result->execute();
 
 						if($result == true){
@@ -783,7 +783,7 @@ if(isset($_FILES) && isset($_POST)){
 
 				if(move_uploaded_file($file_origin, $file_folder . $file_lowercase)){
 					$sql = "CALL sp_add_spreadsheet_rate_lcl_transport(:spreadsheet)";
-					$stm = $con->prepare($sql);
+					$stm = $con_u->prepare($sql);
 					$stm->bindValue(":spreadsheet", $file_name);
 					$stm->execute();
 					if($stm == true){
@@ -801,7 +801,7 @@ if(isset($_FILES) && isset($_POST)){
 
 				/************************** AGREGAR A LA TABLA - LÍNEA DE TIEMPO DE CAMBIOS EN UTILIDAD  **************************/
 				$sql = "INSERT INTO tbl_utility_rate_lcl_transport(utility)	VALUES (".$_POST['utilitylcltransport'].")";
-				$result = $con->prepare($sql);
+				$result = $con_u->prepare($sql);
 				$result->execute();
 
 				if($result == true){
