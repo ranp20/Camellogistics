@@ -177,22 +177,14 @@ if(isset($_POST) && $_POST != [] && isset($_POST['v_typetranspinit'])){
         </section>
       </form>
     ";
-
     $script_qbysteps = "<script src='{$url}js/actions_pages/startquoterequest_aduanas.js'></script>";
   }else if($_POST['v_typetranspinit'] == 1){
-    if(isset($_POST['v_iptportoriginpost']) && is_numeric($_POST['v_iptportoriginpost']) && 
-       isset($_POST['v_iptcountryportoriginpost']) && is_numeric($_POST['v_iptcountryportoriginpost']) &&
-       isset($_POST['v_iptportdestinypost']) && is_numeric($_POST['v_iptportdestinypost']) &&
-       isset($_POST['v_iptcountryportdestinypost']) && is_numeric($_POST['v_iptcountryportdestinypost'])){
-
-      $portOriginPOST = $_POST['v_iptportoriginpost'];
-      $portCountryOriginPOST = $_POST['v_iptcountryportoriginpost'];
-      $portDestinyPOST = $_POST['v_iptportdestinypost'];
+    if(isset($_POST['v_iptcountryportdestinypost']) && is_numeric($_POST['v_iptcountryportdestinypost'])){
       $portCountryDestinyPOST = $_POST['v_iptcountryportdestinypost'];
-
       $sections_qresumeandsteps = "
         <form action='fquotationgenerate' method='POST' id='f-expquotationFrmClient'>
           <input type='hidden' class='cont-MainCamelLog--c--ctrbysend' id='val-port-norigin' name='port-norigin' value='{$_POST['ipt-valNamePortOrigin']}'>
+          <input type='hidden' class='cont-MainCamelLog--c--ctrbysend' id='val-port-ndestiny' name='port-ndestiny' value='{$_POST['ipt-valNamePortDestiny']}'>
           <input type='hidden' class='cont-MainCamelLog--c--ctrbysend' id='val-typeoptselectininit' name='val-typeoptselectininit' value='{$val_name_service}'>
           <input type='hidden' class='cont-MainCamelLog--c--ctrbysend' id='ipt-vtypetranspinit' value='{$_POST['v_typetranspinit']}'>
           <input type='hidden' class='cont-MainCamelLog--c--ctrbysend' id='ipt-vportidOrigin' value='{$portOriginPOST}'>
@@ -337,11 +329,20 @@ if(isset($_POST) && $_POST != [] && isset($_POST['v_typetranspinit'])){
           </section>
         </form>
       ";
-
       $script_qbysteps = "<script src='{$url}js/actions_pages/startquoterequest_maritimo.js'></script>";
     }else{
       header("Location: ./marketplace-logistico");
     }
+    // if(isset($_POST['v_iptcountryportoriginpost']) && is_numeric($_POST['v_iptcountryportoriginpost']) &&
+    //    isset($_POST['v_iptportdestinypost']) && is_numeric($_POST['v_iptportdestinypost']) &&
+    //    isset($_POST['v_iptcountryportdestinypost']) && is_numeric($_POST['v_iptcountryportdestinypost'])){
+    //   $portOriginPOST = $_POST['v_iptportoriginpost'];
+    //   $portCountryOriginPOST = $_POST['v_iptcountryportoriginpost'];
+    //   $portDestinyPOST = $_POST['v_iptportdestinypost'];
+    //   $portCountryDestinyPOST = $_POST['v_iptcountryportdestinypost'];
+    // }else{
+    //   header("Location: ./marketplace-logistico");
+    // }
   }else if($_POST['v_typetranspinit'] == 2){
     header("Location: ./marketplace-logistico");
   }else{

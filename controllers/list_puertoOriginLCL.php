@@ -3,17 +3,22 @@ require_once '../models/db/connection.php';
 class list_puertoOriginLCL extends Connection{
 	function list(){
 		try{
-			$sql = "SELECT tap.puerto_id as 'idpuerto', tap.puerto as 'puerto', tapa.pais_id as 'idpais', tapa.pais as 'pais' 
-							FROM tbl_aq_puertos tap	INNER JOIN tbl_aq_paises tapa ON tap.pais_id = tapa.pais_id ORDER BY tap.puerto_id DESC";
+			$sql = "SELECT 
+								trlcl.id,
+								trlcl.country_origin as 'pais',
+								trlcl.port_origin as 'puerto'
+							FROM tbl_rate_lcl trlcl ORDER BY trlcl.port_origin ASC";
 
 			if(isset($_POST['searchList']) && $_POST['searchList'] != ""){
-				//$search = $this->con->real_escape_string($_POST['searchList']);
 				$search = addslashes($_POST['searchList']);
-				$sql = "SELECT tap.puerto_id as 'idpuerto', tap.puerto as 'puerto', tapa.pais_id as 'idpais', tapa.pais as 'pais' 
-							FROM tbl_aq_puertos tap	INNER JOIN tbl_aq_paises tapa ON tap.pais_id = tapa.pais_id 
-								WHERE tap.puerto LIKE '%".$search."%' OR
-											tapa.pais LIKE '%".$search."%'
-								ORDER BY puerto_id DESC";
+				$sql = "SELECT 
+									trlcl.id,
+									trlcl.country_origin as 'pais',
+									trlcl.port_origin as 'puerto'
+								FROM tbl_rate_lcl trlcl
+								WHERE trlcl.country_origin LIKE '%".$search."%' OR
+											trlcl.port_origin LIKE '%".$search."%'
+								ORDER BY trlcl.port_origin ASC";
 			}
 
 			$stm = $this->con->query($sql);

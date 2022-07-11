@@ -35,7 +35,9 @@ var rate_5cbm = 0,
     twodecimal_rate_5cbm = 0,
     twodecimal_rate_15cbm = 0;
 var nameOrigin = $("#val-port-norigin").val();
+var nameDestiny = $("#val-port-ndestiny").val();
 var arrPortOrigin = nameOrigin.split(', ');
+var arrPortDestiny = nameDestiny.split(', ');
 // ------------ OTROS VALORES PARA LOS PASOS,MENSAJES,ETC
 var asesor_telephone = "";
 // ------------ CAMBIAR/REMOVER EL ESTADO ENTRE OPCIONES 
@@ -126,54 +128,79 @@ $(".cont-MainCamelLog--c--contResumeCalc--item[data-advlevel=d-typetransportnumb
 `);
 // ------------ LISTAR EL PUERTO DE ORIGEN Y EL PUERTO DE DESTINO 
 function listPortOriginandDestiny(){
-  var tempOriginDestiny = "";
-	$.ajax({
-		url: "controllers/list_puertoOriginByIds.php",
-    method: "POST",
-    datatype: "JSON",
-    contentType: 'application/x-www-form-urlencoded;charset=UTF-8',
-    data: {idpaisportOrigin : ipt_idPortcountryOrigin, idportOrigin : ipt_idPortOrigin},
-	}).done((e) => {
-    let r = JSON.parse(e);
-		// ------------ LISTAR LOS NOMBRES - PUERTO DE ORIGEN 
-    $.each(r, function(i, e){
-      tempOriginDestiny += `
-        <div class="cont-MainCamelLog--c--contResumeCalc--item--cardStep">
-          <div class="cont-MainCamelLog--c--contResumeCalc--item--cardStep--cNameFlag">
-            <span>ORIGEN</span>
-          </div>
-          <div class="cont-MainCamelLog--c--contResumeCalc--item--cardStep--cDescMap">
-            <span>${e.nom_puerto} - ${e.nom_pais}</span>
-            <input type="hidden" id="val-originPortSend" name="val-originPortSend" value="${e.nom_puerto} - ${e.nom_pais}" tabindex="-1" width="0" height="0" autocomplete="off" spellcheck="false" f-hidden="aria-hidden" class="n-val-sd">
-          </div>
-        </div>
-      `;
-    });
-    // ------------ LISTAR LOS NOMBRES - PUERTO DE DESTINO 
-    $.ajax({
-      url: "controllers/list_puertoDestinyByIds.php",
-      method: "POST",
-      datatype: "JSON",
-      contentType: 'application/x-www-form-urlencoded;charset=UTF-8',
-      data: {idpaisportDestiny : ipt_idPortcountryDestiny, idportDestiny : ipt_idPortDestiny},
-    }).done((e) => {
-      let r = JSON.parse(e);
-      $.each(r, function(i, e){
-        tempOriginDestiny += `
-          <div class="cont-MainCamelLog--c--contResumeCalc--item--cardStep">
-            <div class="cont-MainCamelLog--c--contResumeCalc--item--cardStep--cNameFlag">
-              <span>DESTINO</span>
-            </div>
-            <div class="cont-MainCamelLog--c--contResumeCalc--item--cardStep--cDescMap">
-              <span>${e.nom_puerto} - ${e.nom_pais}</span>
-              <input type="hidden" id="val-destinyPortSend" name="val-destinyPortSend" value="${e.nom_puerto} - ${e.nom_pais}" tabindex="-1" width="0" height="0" autocomplete="off" spellcheck="false" f-hidden="aria-hidden" class="n-val-sd">
-            </div>
-          </div>
-        `;
-      });
-      $("#id-resumeLeftQuoteCamel .cont-MainCamelLog--c--contResumeCalc--item[data-advlevel=d-firstChargeLoad]").html(tempOriginDestiny);
-    });
-	});
+  var tmp = "";
+	// $.ajax({
+	// 	url: "controllers/list_puertoOriginByIds.php",
+ //    method: "POST",
+ //    datatype: "JSON",
+ //    contentType: 'application/x-www-form-urlencoded;charset=UTF-8',
+ //    data: {idpaisportOrigin : ipt_idPortcountryOrigin, idportOrigin : ipt_idPortOrigin},
+	// }).done((e) => {
+ //    let r = JSON.parse(e);
+	// 	// ------------ LISTAR LOS NOMBRES - PUERTO DE ORIGEN 
+ //    $.each(r, function(i, e){
+ //      tmp += `
+ //        <div class="cont-MainCamelLog--c--contResumeCalc--item--cardStep">
+ //          <div class="cont-MainCamelLog--c--contResumeCalc--item--cardStep--cNameFlag">
+ //            <span>ORIGEN</span>
+ //          </div>
+ //          <div class="cont-MainCamelLog--c--contResumeCalc--item--cardStep--cDescMap">
+ //            <span>${e.nom_puerto} - ${e.nom_pais}</span>
+ //            <input type="hidden" id="val-originPortSend" name="val-originPortSend" value="${e.nom_puerto} - ${e.nom_pais}" tabindex="-1" width="0" height="0" autocomplete="off" spellcheck="false" f-hidden="aria-hidden" class="n-val-sd">
+ //          </div>
+ //        </div>
+ //      `;
+ //    });
+ //    // ------------ LISTAR LOS NOMBRES - PUERTO DE DESTINO 
+ //    $.ajax({
+ //      url: "controllers/list_puertoDestinyByIds.php",
+ //      method: "POST",
+ //      datatype: "JSON",
+ //      contentType: 'application/x-www-form-urlencoded;charset=UTF-8',
+ //      data: {idpaisportDestiny : ipt_idPortcountryDestiny, idportDestiny : ipt_idPortDestiny},
+ //    }).done((e) => {
+ //      let r = JSON.parse(e);
+ //      $.each(r, function(i, e){
+ //        tmp += `
+ //          <div class="cont-MainCamelLog--c--contResumeCalc--item--cardStep">
+ //            <div class="cont-MainCamelLog--c--contResumeCalc--item--cardStep--cNameFlag">
+ //              <span>DESTINO</span>
+ //            </div>
+ //            <div class="cont-MainCamelLog--c--contResumeCalc--item--cardStep--cDescMap">
+ //              <span>${e.nom_puerto} - ${e.nom_pais}</span>
+ //              <input type="hidden" id="val-destinyPortSend" name="val-destinyPortSend" value="${e.nom_puerto} - ${e.nom_pais}" tabindex="-1" width="0" height="0" autocomplete="off" spellcheck="false" f-hidden="aria-hidden" class="n-val-sd">
+ //            </div>
+ //          </div>
+ //        `;
+ //    });
+ //    $("#id-resumeLeftQuoteCamel .cont-MainCamelLog--c--contResumeCalc--item[data-advlevel=d-firstChargeLoad]").html(tmp);
+ //   });
+ //  });
+  let port_nameOrigin = firstToUppercase(arrPortOrigin[0]);
+  let country_nameOrigin = firstToUppercase(arrPortOrigin[1]);
+  let port_nameDestiny = firstToUppercase(arrPortDestiny[0]);
+  let country_nameDestiny = firstToUppercase(arrPortDestiny[1]);
+  tmp += `
+    <div class="cont-MainCamelLog--c--contResumeCalc--item--cardStep">
+      <div class="cont-MainCamelLog--c--contResumeCalc--item--cardStep--cNameFlag">
+        <span>ORIGEN</span>
+      </div>
+      <div class="cont-MainCamelLog--c--contResumeCalc--item--cardStep--cDescMap">
+        <span>${port_nameOrigin} - ${country_nameOrigin}</span>
+        <input type="hidden" id="val-originPortSend" name="val-originPortSend" value="${port_nameOrigin} - ${country_nameOrigin}" tabindex="-1" width="0" height="0" autocomplete="off" spellcheck="false" f-hidden="aria-hidden" class="n-val-sd">
+      </div>
+    </div>
+    <div class="cont-MainCamelLog--c--contResumeCalc--item--cardStep">
+      <div class="cont-MainCamelLog--c--contResumeCalc--item--cardStep--cNameFlag">
+        <span>DESTINO</span>
+      </div>
+      <div class="cont-MainCamelLog--c--contResumeCalc--item--cardStep--cDescMap">
+        <span>${port_nameDestiny} - ${country_nameDestiny}</span>
+        <input type="hidden" id="val-destinyPortSend" name="val-destinyPortSend" value="${port_nameDestiny} - ${country_nameDestiny}" tabindex="-1" width="0" height="0" autocomplete="off" spellcheck="false" f-hidden="aria-hidden" class="n-val-sd">
+      </div>
+    </div>
+  `;
+  $("#id-resumeLeftQuoteCamel .cont-MainCamelLog--c--contResumeCalc--item[data-advlevel=d-firstChargeLoad]").html(tmp);
 }
 // ------------ LISTAR - INFORMACIÓN GENERAL (AJUSTES)
 function lts_infogen_as(){
