@@ -24,7 +24,7 @@ session_start();
         <div class="cont-MainCamelLog--c--cTop--cImg">
           <ul class="cont-MainCamelLog--c--cTop--cImg--m">
             <li class="cont-MainCamelLog--c--cTop--cImg--m--item">
-              <img src="views/assets/img/utilities/p1.png" alt="img_slide_p1" loading="lazy" width="100" height="100" decoding="async">
+              <img src="views/assets/img/utilities/p1.png" alt="img_slide_p1" width="100" height="100" decoding="async">
             </li>
           </ul>
         </div>
