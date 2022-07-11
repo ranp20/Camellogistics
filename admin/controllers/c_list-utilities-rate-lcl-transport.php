@@ -1,21 +1,26 @@
-<?php 
-require_once '../../models/db/connection.php';
-class Utilities_rate_lcl_transport extends Connection{
-	function list(){
+<?php
+// if(isset($_POST) && count($_POST) > 0){
+	$sql = "";
+	$sql = "SELECT 
+						tulcltrans.id, 
+						tulcltrans.utility
+					FROM tbl_utility_rate_lcl_transport tulcltrans ORDER BY tulcltrans.id ASC";
 
-		try{
-			$sql = "SELECT * FROM tbl_utility_rate_lcl_transport";
-			$stm = $this->con->query($sql);
-			$stm->execute();
-			
-			$data = $stm->fetchAll(PDO::FETCH_ASSOC); 
-			$res = json_encode($data);
-
-			echo $res;
-		}catch(PDOException $e){
-			return $e->getMessage();
+	require_once 'connection.php';
+	$stm = $con->prepare($sql);
+	$stm->execute();
+	$data = $stm->fetchAll(PDO::FETCH_ASSOC);
+	if(isset($data) && !empty($data)){
+		foreach ($data as $key => $value){
+			$res['data'][] = array_map("utf8_encode",$value);
 		}
+		$output = json_encode($res);
+	}else{
+		$data = null;
+		$output = json_encode($data);
 	}
-}
-$rate_lcl_transport = new Utilities_rate_lcl_transport();
-echo $rate_lcl_transport->list();
+	echo $output;
+
+// }else{
+// 	header("Location: productos");
+// }
