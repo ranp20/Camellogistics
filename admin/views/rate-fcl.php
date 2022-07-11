@@ -14,6 +14,9 @@ if(!isset($_SESSION['admin_camel'])){
 	<!-- INCLUIR SWEETALERTS2 -->
 	<link rel="stylesheet" href="../node_modules/sweetalert2/dist/sweetalert2.min.css">
 	<script type="text/javascript" src="../node_modules/sweetalert2/dist/sweetalert2.all.min.js"></script>
+	<!-- INCLUIR DATATABLES -->
+	<link rel="stylesheet" type="text/css" href="<?= $urlCli; ?>views/js/plugins/DataTables/datatables.min.css">
+	<script type="text/javascript" charset="utf8" src="<?= $urlCli; ?>views/js/plugins/DataTables/datatables.min.js"></script>
 </head>
 <body>
 	<div id="dash-contT">
@@ -32,16 +35,17 @@ if(!isset($_SESSION['admin_camel'])){
 						</button>
 					</div>
 					<div class="contain-table-responsive">
-						<table class="cont-dashCamel__list-results">
+						<table id="tbl_utilities_rate_fcl" class="cont-dashCamel__list-results" cellpadding="0" width="100%">
 							<thead>
 								<tr>
 									<th class='center'>Item</th>
 									<th class='center'>Utilidad</th>
 									<th class='center'>Vigencia desde</th>
 									<th class='center'>Vigencia Hasta</th>
+									<!-- <th></th> -->
 								</tr>
 							</thead>
-							<tbody id="tbl_utilities_rate_fcl"></tbody>
+							<tbody></tbody>
 						</table>
 					</div>
 					<!-- MODAL - AGREGAR NUEVO ITEM -->
@@ -94,7 +98,7 @@ if(!isset($_SESSION['admin_camel'])){
 			</div>
 		</main>
 	</div>
-	<script type="text/javascript" src="<?= $url ?>js/main.js"></script>
-	<script type="text/javascript" src="<?= $url ?>js/actions_pages/rate_fcl.js"></script>
+	<script type="text/javascript" src="<?= $url;?>js/main.js"></script>
+	<script type="text/javascript" src="<?= $url;?>js/actions_pages/rate_fcl.js"></script>
 </body>
 </html>
