@@ -377,6 +377,14 @@
 																fill: #000;
 															}
 														}
+														&.t-bold{
+															background-color: #000;
+															span{
+																svg{
+																	fill: #fff;
+																}
+															}
+														}
 													}
 												}
 											}

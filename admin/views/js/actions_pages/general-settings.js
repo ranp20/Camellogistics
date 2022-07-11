@@ -89,13 +89,16 @@ $(document).on("click","button.btn-del",function(){
 });
 // ------------ AGREGAR BOLD A UNA CONDICIÓN
 $(document).on("click","button.btn-bold",function(){
+	let thisbtn = $(this);
 	let txtinput = $(this).parent().parent().find("textarea");
 	if(txtinput.hasClass("t-bold")){
 		txtinput.removeClass("t-bold");
 		txtinput.attr("data-bold","light");
+		thisbtn.removeClass("t-bold");
 	}else{
 		txtinput.attr("data-bold","bold");
 		txtinput.addClass("t-bold");
+		thisbtn.addClass("t-bold");
 	}
 });
 $(document).on("submit",".cont-dashCamel--cHSettings--containRight--cContain__cBody__cSettings__sideContAnchors__cItemSetting--frm",function(e){
@@ -110,6 +113,7 @@ $(document).on("submit",".cont-dashCamel--cHSettings--containRight--cContain__cB
 		formdata.append("infogeneral_address", $("#infogeneral_address").val());
 		formdata.append("infogeneral_email", $("#infogeneral_email").val());
 		formdata.append("infogeneral_telephone", $("#infogeneral_telephone").val());
+		formdata.append("infogeneral_asesor_telephone", $("#infogeneral_asesor_telephone").val());
 	}else if(nameSendPOST == "conditions_settings"){
 		$('[name^="infogeneral_conditions["]').each(function(){
 			formdata.append("infogeneral_conditions[]", $(this).val());

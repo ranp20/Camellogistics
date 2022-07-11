@@ -7,6 +7,7 @@ $(() => {
 	list_mass_units(); // LISTAR LAS UNIDADES DE MASA EN EL MODAL
 	listProductsUser();
 	listrateLCLTransport();
+  lts_infogen_as();
 });
 // ------------ ACTUALIZAR EL ID DE CÓDIGO RANDOM
 function refreshIdCodeGenRandom(){
@@ -35,6 +36,8 @@ var rate_5cbm = 0,
     twodecimal_rate_15cbm = 0;
 var nameOrigin = $("#val-port-norigin").val();
 var arrPortOrigin = nameOrigin.split(', ');
+// ------------ OTROS VALORES PARA LOS PASOS,MENSAJES,ETC
+var asesor_telephone = "";
 // ------------ CAMBIAR/REMOVER EL ESTADO ENTRE OPCIONES 
 function ChangesSibblingsLinks(){
   $(document).on("click", ".cont-MainCamelLog--c--contSteps--item--cStep--m a", function(){
@@ -171,6 +174,23 @@ function listPortOriginandDestiny(){
       $("#id-resumeLeftQuoteCamel .cont-MainCamelLog--c--contResumeCalc--item[data-advlevel=d-firstChargeLoad]").html(tempOriginDestiny);
     });
 	});
+}
+// ------------ LISTAR - INFORMACIÓN GENERAL (AJUSTES)
+function lts_infogen_as(){
+  $.ajax({
+    url: "controllers/c_list_ass_data.php",
+    method: "POST",
+    datatype: "JSON",
+    contentType: 'application/x-www-form-urlencoded;charset=UTF-8'
+  }).done((e) => {
+    if(e != "" && e != "[]"){
+      let r = JSON.parse(e);
+      let asesor_tel = r[0].ass_telephone;
+      asesor_telephone = asesor_tel.toString().replace(/\D+/g, '').replace(/(\d{3})(\d{3})(\d{3})/, '$1 $2 $3');
+    }else{
+      console.log('Lo sentimos, hubo un error al procesar la información')
+    }
+  });
 }
 /*====================================================================================
 =                         2. ELEGIR EL TIPO DE OPERACIÓN                             =
@@ -2299,7 +2319,7 @@ $(document).on("click", "#btn-NextStepTochargedata", function(){
             <div class="cntMessageSteps-prcss--cont--c">
               <span class="cntMessageSteps-prcss--cont--c--btnclose" id="btnclose-modalMessage"></span>
               <h3 class="cntMessageSteps-prcss--cont--c--title">Carga excedida</h3>
-              <p class="cntMessageSteps-prcss--cont--c--text">El <b>PESO</b> registrado no debe exceder los <b>7000 Kg</b>, seleccione <b>CONTENEDOR COMPLETO (FCL) o contacte a un ASESOR +51 990 234 625.</b></p>
+              <p class="cntMessageSteps-prcss--cont--c--text">El <b>PESO</b> registrado no debe exceder los <b>7000 Kg</b>, seleccione <b>CONTENEDOR COMPLETO (FCL) o contacte a un ASESOR +51 ${asesor_telephone}.</b></p>
             </div>
           </div>
         `);
@@ -2468,7 +2488,7 @@ $(document).on("click", "#btn-NextStepTochargedata", function(){
                 <div class="cntMessageSteps-prcss--cont--c">
                   <span class="cntMessageSteps-prcss--cont--c--btnclose" id="btnclose-modalMessage"></span>
                   <h3 class="cntMessageSteps-prcss--cont--c--title">Carga excedida</h3>
-                  <p class="cntMessageSteps-prcss--cont--c--text">El <b>VOLUMEN</b> registrado no debe exceder los <b>15 M³</b>, seleccione <b>CONTENEDOR COMPLETO o contacte a un ASESOR +51 990 234 625.</b></p>
+                  <p class="cntMessageSteps-prcss--cont--c--text">El <b>VOLUMEN</b> registrado no debe exceder los <b>15 M³</b>, seleccione <b>CONTENEDOR COMPLETO o contacte a un ASESOR +51 ${asesor_telephone}.</b></p>
                 </div>
               </div>
             `);
@@ -2494,7 +2514,7 @@ $(document).on("click", "#btn-NextStepTochargedata", function(){
                 <div class="cntMessageSteps-prcss--cont--c">
                   <span class="cntMessageSteps-prcss--cont--c--btnclose" id="btnclose-modalMessage"></span>
                   <h3 class="cntMessageSteps-prcss--cont--c--title">Carga excedida</h3>
-                  <p class="cntMessageSteps-prcss--cont--c--text">El <b>VOLUMEN</b> registrado no debe exceder los <b>15 M³</b>, seleccione <b>CONTENEDOR COMPLETO o contacte a un ASESOR +51 990 234 625.</b></p>
+                  <p class="cntMessageSteps-prcss--cont--c--text">El <b>VOLUMEN</b> registrado no debe exceder los <b>15 M³</b>, seleccione <b>CONTENEDOR COMPLETO o contacte a un ASESOR +51 ${asesor_telephone}.</b></p>
                 </div>
               </div>
             `);
@@ -2586,7 +2606,7 @@ $(document).on("click", "#btn-NextStepTochargedata", function(){
                 <div class="cntMessageSteps-prcss--cont--c">
                   <span class="cntMessageSteps-prcss--cont--c--btnclose" id="btnclose-modalMessage"></span>
                   <h3 class="cntMessageSteps-prcss--cont--c--title">Carga excedida</h3>
-                  <p class="cntMessageSteps-prcss--cont--c--text">El <b>VOLUMEN</b> registrado no debe exceder los <b>15 M³</b>, seleccione <b>CONTENEDOR COMPLETO o contacte a un ASESOR +51 990 234 625.</b></p>
+                  <p class="cntMessageSteps-prcss--cont--c--text">El <b>VOLUMEN</b> registrado no debe exceder los <b>15 M³</b>, seleccione <b>CONTENEDOR COMPLETO o contacte a un ASESOR +51 ${asesor_telephone}.</b></p>
                 </div>
               </div>
             `);
