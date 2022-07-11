@@ -124,7 +124,7 @@ $f_antidumping = $listbyidcode[0]['f_antidumping'];
 $f_totalimpuestos = $listbyidcode[0]['f_totalimpuestos'];
 // VALORES CALCULADOS DE SERVICIOS
 $f_transporte_interno = $listbyidcode[0]['f_transporte_interno'];
-$f_fichatecnicaycertconform = $listbyidcode[0]['f_fichatecnicaycertconform'];
+$f_totalfichatecnicaycertconform = $listbyidcode[0]['f_totalfichatecnicaycertconform'];
 $f_total_services = $listbyidcode[0]['f_totalservices'];
 $f_totalservicesIGV18 = $listbyidcode[0]['f_totalservicesIGV18'];
 $f_totalwithIGV = $listbyidcode[0]['f_totalwithIGV'];
@@ -385,7 +385,7 @@ $name_quotation = "Presupuesto-".$_POST['code_quote']."-".$f_typecontainer;
 	          <div class="item_marc_tot_ser"><?php echo addTwoDecimalsOrGuion($f_gremios_maritimos); ?></div>
 	          <div class="item_marc_tot_ser"><?php echo addTwoDecimalsOrGuion($f_THC); ?></div>
 	          <div class="item_marc_tot_ser"><?php echo addTwoDecimalsOrGuion($f_devolucion_contenedores); ?></div>
-	          <div class="item_marc_tot_ser height-by-two"><?php echo addTwoDecimalsOrGuion($f_fichatecnicaycertconform); ?></div>
+	          <div class="item_marc_tot_ser height-by-two"><?php echo addTwoDecimalsOrGuion($f_totalfichatecnicaycertconform); ?></div>
 	          <div class="item_marc_tot_ser">-</div>
 	          <div class="item_marc_tot_ser">-</div>
 	          <div class="item_marc_tot_ser"><?php echo addTwoDecimalsOrGuion($f_comision_agencia); ?></div>

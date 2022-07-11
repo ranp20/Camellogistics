@@ -504,7 +504,7 @@ $(document).ready(function(){
 								var twodecimal_IPM = twodecimals(val_IPM);
 								var finalval_IPM = parseFloat(twodecimal_IPM);
 								// ------------ CALCULAR PERCEPCIÓN 
-								var val_Percepcion = ( sumbyCIF + finalval_Ad_valoren + finalval_IGV + finalval_IPM ) * convert_Percepcion;
+								var val_Percepcion = ( sumbyCIF + finalval_IPM + finalval_IGV + finalval_Ad_valoren ) * convert_Percepcion;
 								var twodecimal_percepcion = twodecimals(val_Percepcion);
 								var finalval_percepcion = parseFloat(twodecimal_percepcion);
 
@@ -557,8 +557,6 @@ $(document).ready(function(){
 									var impuestosel_calculate = 0;
 									var igvcalc_twodeci = myRound(igv_calculate);
 									var ipmcalc_twodeci = myRound(ipm_calculate);
-									var percepcion_calculate = (sumbyCIF + igvcalc_twodeci + ipmcalc_twodeci + impuestosel_calculate) * convert_Percepcion;
-									var percepcioncalc_twodeci = myRound(percepcion_calculate);
 
 									var formdata = new FormData();
 									formdata.append("id_codegenrand", v_idgencoderand);
@@ -598,7 +596,8 @@ $(document).ready(function(){
 									formdata.append("f_v_descarga", fvalfinal_descarga);
 									formdata.append("f_IGV", igvcalc_twodeci);
 									formdata.append("f_IPM", ipmcalc_twodeci);
-									formdata.append("f_percepcion", percepcioncalc_twodeci);
+									formdata.append("f_percepcion", finalval_percepcion);
+									formdata.append("f_ad_valoren", finalval_Ad_valoren);
 									formdata.append("f_emision_bl", fvalfinal_emision_bl);
 									formdata.append("f_handling", fvalfinal_handling);
 									formdata.append("f_visto_bueno", fvalfinal_visto_bueno);
@@ -844,8 +843,6 @@ $(document).ready(function(){
 									var impuestosel_calculate = 0;
 									var igvcalc_twodeci = myRound(igv_calculate);
 									var ipmcalc_twodeci = myRound(ipm_calculate);
-									var percepcion_calculate = (sumbyCIF + igvcalc_twodeci + ipmcalc_twodeci + impuestosel_calculate) * convert_Percepcion;
-									var percepcioncalc_twodeci = myRound(percepcion_calculate);
 									
 									var formdata = new FormData();
 									formdata.append("id_codegenrand", v_idgencoderand);
@@ -883,7 +880,8 @@ $(document).ready(function(){
 									formdata.append("f_v_amm_comagency", comagencia_monto);
 									formdata.append("f_v_percent_comagency", comagencia_porcentaje);
 									formdata.append("f_v_descarga", fvalfinal_descarga);
-									formdata.append("f_percepcion", percepcioncalc_twodeci);
+									formdata.append("f_percepcion", finalval_percepcion);
+									formdata.append("f_ad_valoren", finalval_Ad_valoren);
 									formdata.append("f_IGV", igvcalc_twodeci);
 									formdata.append("f_IPM", ipmcalc_twodeci);
 									formdata.append("f_emision_bl", fvalfinal_emision_bl);
