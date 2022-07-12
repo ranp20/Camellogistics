@@ -7,7 +7,7 @@ function myRound(num, dec){
   var exp = Math.pow(10, dec || 2); // 2 decimales por defecto
   return parseInt(num * exp, 10) / exp;
 }
-// ------------ FUNCIÓN - LIMITAR A DOS DECIMALES SIN REDONDEO 
+// ------------ FUNCIÓN - LIMITAR A 2 DECIMALES SIN REDONDEO 
 function twodecimals(n){
   let t = n.toString();
   let regex = /(\d*.\d{0,2})/;
@@ -576,10 +576,8 @@ $(document).ready(function(){
 												$("#totalval_quoteFinal").html(`<span>${separate_point_FTotal},<sup>${partFinalDecimal_FTotal}</sup> USD</span>`);
 
 												// --------------- LISTAR DATOS PARA ENVIAR POR WHATSAPP
-												var idcodequote = $("#v_gencodexxx").text() + " - " + v_loadtypecharge;
-
 												var objDataTxtWhatsapp = {
-													id: idcodequote,
+													id: $("#v_gencodexxx").text() + " - " + idcodequote,
 													tservice : v_typeserviceinit,
 													tcontainer : v_floadTypeTranport.toUpperCase(),
 													containtflete : v_fpckgcontquant,
@@ -656,10 +654,8 @@ $(document).ready(function(){
 												$("#totalval_quoteFinal").html(`<span>${separate_point_FTotal},<sup>${partFinalDecimal_FTotal}</sup> USD</span>`);
 
 												// --------------- LISTAR DATOS PARA ENVIAR POR WHATSAPP
-												var idcodequote = $("#v_gencodexxx").text() + " - " + v_loadtypecharge;
-
 												var objDataTxtWhatsapp = {
-													id: idcodequote,
+													id: $("#v_gencodexxx").text() + " - " + idcodequote,
 													tservice : v_typeserviceinit,
 													tcontainer : v_floadTypeTranport.toUpperCase(),
 													containtflete : v_fpckgcontquant,
@@ -823,10 +819,8 @@ $(document).ready(function(){
 												$("#totalval_quoteFinal").html(`<span>${separate_point_FTotal},<sup>${partFinalDecimal_FTotal}</sup> USD</span>`);
 
 												// --------------- LISTAR DATOS PARA ENVIAR POR WHATSAPP
-												var idcodequote = $("#v_gencodexxx").text() + " - " + v_loadtypecharge;
-
 												var objDataTxtWhatsapp = {
-													id: idcodequote,
+													id: $("#v_gencodexxx").text() + " - " + idcodequote,
 													tservice : v_typeserviceinit,
 													tcontainer : v_floadTypeTranport.toUpperCase(),
 													containtflete : v_fpckgcontquant,
@@ -903,10 +897,8 @@ $(document).ready(function(){
 												$("#totalval_quoteFinal").html(`<span>${separate_point_FTotal},<sup>${partFinalDecimal_FTotal}</sup> USD</span>`);
 
 												// --------------- LISTAR DATOS PARA ENVIAR POR WHATSAPP
-												var idcodequote = $("#v_gencodexxx").text() + " - " + v_loadtypecharge;
-
 												var objDataTxtWhatsapp = {
-													id: idcodequote,
+													id: $("#v_gencodexxx").text() + " - " + idcodequote,
 													tservice : v_typeserviceinit,
 													tcontainer : v_floadTypeTranport.toUpperCase(),
 													containtflete : v_fpckgcontquant,
