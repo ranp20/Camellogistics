@@ -168,6 +168,8 @@
 				overflow-y: scroll;
 				@media (min-width: 991px){
 					padding-bottom: 1.85rem;
+					overflow-x: hidden;
+					overflow-y: hidden;
 				}
 				/* PRIMER LISTA DE OPCIONES */
 				&--m{
