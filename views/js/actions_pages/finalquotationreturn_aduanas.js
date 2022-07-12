@@ -581,10 +581,10 @@ $(document).ready(function(){
 												var objDataTxtWhatsapp = {
 													id: idcodequote,
 													tservice : v_typeserviceinit,
-													tcontainer : v_floadTypeTranport,
+													tcontainer : v_floadTypeTranport.toUpperCase(),
 													containtflete : v_fpckgcontquant,
 													tservices: sumTotalServices,
-													// impuestosflete : impuestosFlete,
+													tfob: totalfinalvaluefob,
 													tranportflete : v_fplctopckloc
 												}
 
@@ -597,8 +597,7 @@ $(document).ready(function(){
 												Tipo%20Contenedor:%20${objDataTxtWhatsapp.tcontainer}${wlinebreak}
 												Contenido%20Flete:%20${objDataTxtWhatsapp.containtflete}${wlinebreak}
 												Valor%20Flete:%20${objDataTxtWhatsapp.tservices}${wlinebreak}
-												Gastos:%20SI${wlinebreak}
-												Impuestos:%20SI${wlinebreak}
+												Gastos:%20${objDataTxtWhatsapp.tfob}${wlinebreak}
 												Transporte:%20${objDataTxtWhatsapp.tranportflete}${wlinebreak}
 												Impuestos Aproximados:%20${twodecimals_FinalTax}`;
 												// whatsappMessage = window.encodeURIComponent(whatsappMessage);
@@ -662,10 +661,10 @@ $(document).ready(function(){
 												var objDataTxtWhatsapp = {
 													id: idcodequote,
 													tservice : v_typeserviceinit,
-													tcontainer : v_floadTypeTranport,
+													tcontainer : v_floadTypeTranport.toUpperCase(),
 													containtflete : v_fpckgcontquant,
 													tservices: sumTotalServices,
-													// impuestosflete : impuestosFlete,
+													tfob: totalfinalvaluefob,
 													tranportflete : v_fplctopckloc
 												}
 
@@ -678,8 +677,7 @@ $(document).ready(function(){
 												Tipo%20Contenedor:%20${objDataTxtWhatsapp.tcontainer}${wlinebreak}
 												Contenido%20Flete:%20${objDataTxtWhatsapp.containtflete}${wlinebreak}
 												Valor%20Flete:%20${objDataTxtWhatsapp.tservices}${wlinebreak}
-												Gastos:%20SI${wlinebreak}
-												Impuestos:%20SI${wlinebreak}
+												Gastos:%20${objDataTxtWhatsapp.tfob}${wlinebreak}
 												Transporte:%20${objDataTxtWhatsapp.tranportflete}${wlinebreak}
 												Impuestos Aproximados:%20${twodecimals_FinalTax}`;
 												// whatsappMessage = window.encodeURIComponent(whatsappMessage);
@@ -830,10 +828,10 @@ $(document).ready(function(){
 												var objDataTxtWhatsapp = {
 													id: idcodequote,
 													tservice : v_typeserviceinit,
-													tcontainer : v_floadTypeTranport,
+													tcontainer : v_floadTypeTranport.toUpperCase(),
 													containtflete : v_fpckgcontquant,
 													tservices: sumTotalServices,
-													// impuestosflete : impuestosFlete,
+													tfob: totalfinalvaluefob,
 													tranportflete : v_fplctopckloc
 												}
 
@@ -846,8 +844,7 @@ $(document).ready(function(){
 												Tipo%20Contenedor:%20${objDataTxtWhatsapp.tcontainer}${wlinebreak}
 												Contenido%20Flete:%20${objDataTxtWhatsapp.containtflete}${wlinebreak}
 												Valor%20Flete:%20${objDataTxtWhatsapp.tservices}${wlinebreak}
-												Gastos:%20SI${wlinebreak}
-												Impuestos:%20SI${wlinebreak}
+												Gastos:%20${objDataTxtWhatsapp.tfob}${wlinebreak}
 												Transporte:%20${objDataTxtWhatsapp.tranportflete}${wlinebreak}
 												Impuestos Aproximados:%20${twodecimals_FinalTax}`;
 												// whatsappMessage = window.encodeURIComponent(whatsappMessage);
@@ -911,10 +908,10 @@ $(document).ready(function(){
 												var objDataTxtWhatsapp = {
 													id: idcodequote,
 													tservice : v_typeserviceinit,
-													tcontainer : v_floadTypeTranport,
+													tcontainer : v_floadTypeTranport.toUpperCase(),
 													containtflete : v_fpckgcontquant,
 													tservices: sumTotalServices,
-													// impuestosflete : impuestosFlete,
+													tfob: totalfinalvaluefob,
 													tranportflete : v_fplctopckloc
 												}
 
@@ -927,8 +924,7 @@ $(document).ready(function(){
 												Tipo%20Contenedor:%20${objDataTxtWhatsapp.tcontainer}${wlinebreak}
 												Contenido%20Flete:%20${objDataTxtWhatsapp.containtflete}${wlinebreak}
 												Valor%20Flete:%20${objDataTxtWhatsapp.tservices}${wlinebreak}
-												Gastos:%20SI${wlinebreak}
-												Impuestos:%20SI${wlinebreak}
+												Gastos:%20${objDataTxtWhatsapp.tfob}${wlinebreak}
 												Transporte:%20${objDataTxtWhatsapp.tranportflete}${wlinebreak}
 												Impuestos Aproximados:%20${twodecimals_FinalTax}`;
 												// whatsappMessage = window.encodeURIComponent(whatsappMessage);
