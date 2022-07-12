@@ -90,7 +90,7 @@ $(document).ready(function(){
 	var v_fplctopckloc = decryptValuesIpts(encrypt_v_fplctopckloc.val()); // TRANSPORTE A DISTRITO
 	var v_frselinsmerch = decryptValuesIpts(encrypt_v_frselinsmerch.val());
 	var v_foptgnfquotevl = decryptValuesIpts(encrypt_v_foptgnfquotevl.val());
-	var v_fquaprcataadd = decryptValuesIpts(encrypt_v_fquaprcataadd.val());
+	var v_fquaprcataadd = decryptValuesIpts(encrypt_v_fquaprcataadd.val()); // CANTIDAD DE PRODUCTOS X CANTIDAD
 	var v_fatthxyaonepcatg = decryptValuesIpts(encrypt_v_fatthxyaonepcatg.val()); // AD-VALOREN
 	var v_fatthxyatwopcatg = decryptValuesIpts(encrypt_v_fatthxyatwopcatg.val()); // IMPUESTO SELECTIVO
 	var v_fatthxyathreepcatg = decryptValuesIpts(encrypt_v_fatthxyathreepcatg.val()); // ANTIDUMPING
@@ -578,7 +578,7 @@ $(document).ready(function(){
 												// --------------- LISTAR DATOS PARA ENVIAR POR WHATSAPP
 												var objDataTxtWhatsapp = {
 													id: $("#v_gencodexxx").text() + " - " + v_loadtypecharge,
-													tservice : v_typeserviceinit,
+													typeservice : v_typeserviceinit.toUpperCase(),
 													tcontainer : v_floadTypeTranport.toUpperCase(),
 													containtflete : v_fpckgcontquant,
 													tservices: sumTotalServices,
@@ -591,7 +591,7 @@ $(document).ready(function(){
 												var whatsappMessage = `Saludos,%20me%20gustaría%20cotizar:${wlinebreak}
 												--------------------------------------${wlinebreak}
 												ID:%20${objDataTxtWhatsapp.id}${wlinebreak}
-												Tipo%20Flete:%20${objDataTxtWhatsapp.tservice}${wlinebreak}
+												Tipo%20Flete:%20${objDataTxtWhatsapp.typeservice}${wlinebreak}
 												Tipo%20Contenedor:%20${objDataTxtWhatsapp.tcontainer}${wlinebreak}
 												Contenido%20Flete:%20${objDataTxtWhatsapp.containtflete}${wlinebreak}
 												Valor%20Flete:%20${objDataTxtWhatsapp.tservices}${wlinebreak}
@@ -656,7 +656,7 @@ $(document).ready(function(){
 												// --------------- LISTAR DATOS PARA ENVIAR POR WHATSAPP
 												var objDataTxtWhatsapp = {
 													id: $("#v_gencodexxx").text() + " - " + v_loadtypecharge,
-													tservice : v_typeserviceinit,
+													typeservice : v_typeserviceinit.toUpperCase(),
 													tcontainer : v_floadTypeTranport.toUpperCase(),
 													containtflete : v_fpckgcontquant,
 													tservices: sumTotalServices,
@@ -669,7 +669,7 @@ $(document).ready(function(){
 												var whatsappMessage = `Saludos,%20me%20gustaría%20cotizar:${wlinebreak}
 												--------------------------------------${wlinebreak}
 												ID:%20${objDataTxtWhatsapp.id}${wlinebreak}
-												Tipo%20Flete:%20${objDataTxtWhatsapp.tservice}${wlinebreak}
+												Tipo%20Flete:%20${objDataTxtWhatsapp.typeservice}${wlinebreak}
 												Tipo%20Contenedor:%20${objDataTxtWhatsapp.tcontainer}${wlinebreak}
 												Contenido%20Flete:%20${objDataTxtWhatsapp.containtflete}${wlinebreak}
 												Valor%20Flete:%20${objDataTxtWhatsapp.tservices}${wlinebreak}
@@ -821,7 +821,7 @@ $(document).ready(function(){
 												// --------------- LISTAR DATOS PARA ENVIAR POR WHATSAPP
 												var objDataTxtWhatsapp = {
 													id: $("#v_gencodexxx").text() + " - " + v_loadtypecharge,
-													tservice : v_typeserviceinit,
+													typeservice : v_typeserviceinit.toUpperCase(),
 													tcontainer : v_floadTypeTranport.toUpperCase(),
 													containtflete : v_fpckgcontquant,
 													tservices: sumTotalServices,
@@ -834,7 +834,7 @@ $(document).ready(function(){
 												var whatsappMessage = `Saludos,%20me%20gustaría%20cotizar:${wlinebreak}
 												--------------------------------------${wlinebreak}
 												ID:%20${objDataTxtWhatsapp.id}${wlinebreak}
-												Tipo%20Flete:%20${objDataTxtWhatsapp.tservice}${wlinebreak}
+												Tipo%20Flete:%20${objDataTxtWhatsapp.typeservice}${wlinebreak}
 												Tipo%20Contenedor:%20${objDataTxtWhatsapp.tcontainer}${wlinebreak}
 												Contenido%20Flete:%20${objDataTxtWhatsapp.containtflete}${wlinebreak}
 												Valor%20Flete:%20${objDataTxtWhatsapp.tservices}${wlinebreak}
@@ -899,7 +899,7 @@ $(document).ready(function(){
 												// --------------- LISTAR DATOS PARA ENVIAR POR WHATSAPP
 												var objDataTxtWhatsapp = {
 													id: $("#v_gencodexxx").text() + " - " + v_loadtypecharge,
-													tservice : v_typeserviceinit,
+													typeservice : v_typeserviceinit.toUpperCase(),
 													tcontainer : v_floadTypeTranport.toUpperCase(),
 													containtflete : v_fpckgcontquant,
 													tservices: sumTotalServices,
@@ -912,7 +912,7 @@ $(document).ready(function(){
 												var whatsappMessage = `Saludos,%20me%20gustaría%20cotizar:${wlinebreak}
 												--------------------------------------${wlinebreak}
 												ID:%20${objDataTxtWhatsapp.id}${wlinebreak}
-												Tipo%20Flete:%20${objDataTxtWhatsapp.tservice}${wlinebreak}
+												Tipo%20Flete:%20${objDataTxtWhatsapp.typeservice}${wlinebreak}
 												Tipo%20Contenedor:%20${objDataTxtWhatsapp.tcontainer}${wlinebreak}
 												Contenido%20Flete:%20${objDataTxtWhatsapp.containtflete}${wlinebreak}
 												Valor%20Flete:%20${objDataTxtWhatsapp.tservices}${wlinebreak}
