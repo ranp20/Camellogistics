@@ -61,7 +61,7 @@
 		height: 100vh;
 		z-index: 9999999;
 		overflow-x: hidden;
-		overflow-y: scroll;
+		overflow-y: auto;
 		transition: all .4s ease-in-out;
 		@media (min-width: 960px){
 			left: 0;
@@ -164,6 +164,8 @@
 				}
 			}
 			&--cList{
+				overflow-x: hidden;
+				overflow-y: scroll;
 				@media (min-width: 991px){
 					padding-bottom: 1.85rem;
 				}
@@ -203,6 +205,10 @@
 				&--mOthers{
 					border-top: thin solid #9999;
 					padding-top: 1rem;
+					margin-bottom: 4rem;
+					@media (min-width: 991px){
+						margin-bottom: 0;
+					}
 					&--item{
 					}
 					&--link{

@@ -107,7 +107,10 @@
 				}
 				// DASHBOARD ADMIN - BODY
 				form{
-					margin-bottom: 1rem;
+					margin-bottom: 4rem;
+					@media (min-width: 991px){
+						margin-bottom: 1rem;
+					}
 				}
 				// CONTENEDOR DE TARGETAS - CARDS
 				&__cardBody{
@@ -125,7 +128,7 @@
 						}
 					}
 					&__cCardBody{
-						padding: 1rem 1rem;
+						padding: 1rem 1rem 1rem 1rem;
 						&__contCol{
 							&__cardTitle{
 								margin: .85rem 0 .85rem 0;
