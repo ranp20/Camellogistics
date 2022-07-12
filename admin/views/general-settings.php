@@ -313,7 +313,7 @@ $adm_config = $settings->list();
 			</div>
 		</main>
 	</div>
-	<script type="text/javascript" src="<?= $url ?>js/main.js"></script>
-	<script type="text/javascript" src="<?= $url ?>js/actions_pages/general-settings.js"></script>
+	<script type="text/javascript" src="<?= $url;?>js/main.js"></script>
+	<script type="text/javascript" src="<?= $url;?>js/actions_pages/general-settings.js"></script>
 </body>
 </html>

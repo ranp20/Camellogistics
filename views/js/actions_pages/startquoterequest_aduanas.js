@@ -154,27 +154,20 @@ $(document).on("click", "#list-typeOperationItems li", function(){
     // TIPO DE CARGA
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-chargeload]").removeClass("show");
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-chargeload]").html("");
-    // CONTENEDORES
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-qcontainers]").removeClass("show");
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-qcontainers]").html("");
-    // DIMENSIONES DE CARGA
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-chargedata]").removeClass("show");
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-chargedata]").html("");
-    // MERCANCÍA
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-merchandisedata]").removeClass("show");
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-merchandisedata]").html("");
-    // ¿ NECESITAS TRANSPORTE ?
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-requirespickup]").removeClass("show");
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-requirespickup]").html("");
-    // VALOR DE FLETE
     /*
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-fletevaldata]").removeClass("show");
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-fletevaldata]").html("");
     */
-    // TIPO DE TRANSPORTE
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-typetransport]").removeClass("show");
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-typetransport]").html("");
-    // RECOGIDA - UBICACIÓN
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-pickuplocation]").removeClass("show");
     $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-pickuplocation]").html("");
     // ------------ QUITAR DEL RESUMEN - LADO IZQUIERDO 

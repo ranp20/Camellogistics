@@ -27,7 +27,7 @@ $urlAdmin =  $actual_link . "/admin/";
 		</div>
 		<div class="h-dashCamel--c--cUserMobile">
 			<div class="h-dashCamel--c--cUserMobile--linkcont" id="btn-sessuserAdm">
-				<img src="<?= $url ?>assets/img/utilities/user-pro-default.png" alt="">
+				<img src="<?= $url;?>assets/img/utilities/user-pro-default.png" alt="">
 				<span><?= $admname; ?></span>
 			</div>
 			<ul class="h-dashCamel--c--cUserMobile--m" id="list-opts-sessuser">
@@ -38,7 +38,7 @@ $urlAdmin =  $actual_link . "/admin/";
 		</div>
 		<div class="h-dashCamel--c--cUserDesktop">
 			<div class="h-dashCamel--c--cUserDesktop--linkcont" id="btn-sessuserAdm">
-				<img src="<?= $url ?>assets/img/utilities/user-pro-default.png" alt="">
+				<img src="<?= $url;?>assets/img/utilities/user-pro-default.png" alt="">
 				<span><?= $admname; ?></span>
 			</div>
 			<ul class="h-dashCamel--c--cUserDesktop--m" id="list-opts-sessuser">

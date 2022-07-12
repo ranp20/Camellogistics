@@ -26,6 +26,7 @@ class list_puertoDestinyLCL extends Connection{
 								WHERE trlcl.port_destiny LIKE '%".$search."%'
 								ORDER BY trlcl.id ASC LIMIT 1";
 			}
+			
 
 			$stm = $this->con->query($sql);
 			$stm->execute();

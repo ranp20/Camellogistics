@@ -117,6 +117,6 @@ if(isset($_SESSION['admin_camel'])){
 		</div>
 		<div class="c-LoginAdm--cBcImage"></div>
 	</main>
-	<script type="text/javascript" src="<?= $url ?>js/actions_pages/adm-login.js"></script>
+	<script type="text/javascript" src="<?= $url;?>js/actions_pages/adm-login.js"></script>
 </body>
 </html>

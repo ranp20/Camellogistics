@@ -33,7 +33,6 @@ RewriteRule impuestos?$ admin/views/taxation.php
 RewriteRule reguladores?$ admin/views/regulators.php
 RewriteRule productos?$ admin/views/products.php
 RewriteRule ajustes?$ admin/views/general-settings.php
-RewriteRule banner-principal?$ admin/views/banner-principal.php
 RewriteRule savesettings?$ admin/controllers/c_update_config.php
 
 ############# MENSAJE DE ERROR PERSONALIZADO

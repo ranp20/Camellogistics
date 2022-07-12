@@ -370,7 +370,7 @@ if(isset($_POST) && $_POST != [] && isset($_POST['v_typetranspinit'])){
     <div class="c-Htopbar--c">
       <div class="c-Htopbar--c--cLogo">
         <a href="./">
-          <img src="<?= $url ?>assets/img/logos/logotipo-camel.png" alt="logo_camel" width="100" height="100" decoding="async">
+          <img src="<?= $url;?>assets/img/logos/logotipo-camel.png" alt="logo_camel" width="100" height="100" decoding="async">
         </a>
       </div>
       <button class="c-Htopbar--c--btnMobileNavbar" id="btn-resume-mobile-header" type="button" title="Menu">

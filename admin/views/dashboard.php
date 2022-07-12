@@ -22,6 +22,6 @@ if(!isset($_SESSION['admin_camel'])){
 			</div>
 		</main>
 	</div>
-	<script type="text/javascript" src="<?= $url ?>js/main.js"></script>
+	<script type="text/javascript" src="<?= $url;?>js/main.js"></script>
 </body>
 </html>

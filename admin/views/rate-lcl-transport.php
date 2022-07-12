@@ -85,7 +85,7 @@ if(!isset($_SESSION['admin_camel'])){
 			</div>
 		</main>
 	</div>
-	<script type="text/javascript" src="<?= $url ?>js/main.js"></script>
-	<script type="text/javascript" src="<?= $url ?>js/actions_pages/rate_lcl_transport.js"></script>
+	<script type="text/javascript" src="<?= $url;?>js/main.js"></script>
+	<script type="text/javascript" src="<?= $url;?>js/actions_pages/rate_lcl_transport.js"></script>
 </body>
 </html>

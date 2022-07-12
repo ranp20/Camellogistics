@@ -33,7 +33,7 @@ $(document).on("click", "#btn-closeiconForm", function(){$("#cnt-modalFormLoginy
 let containFormDownload = document.querySelector("#cnt-modalFormLoginyRegister");
 containFormDownload.addEventListener("click", e => {if(e.target === containFormDownload){containFormDownload.classList.remove("show");};
 });
-$("#btn-scrollingtTtB").on("click", function(){$("body, html").animate({scrollTop: '500'}, 350);}); //BOTÓN DE IR HACIA ABAJO
+$("#btn-scrollingtTtB").on("click", function(){$("body, html").animate({scrollTop: '1000'}, 350);}); //BOTÓN DE IR HACIA ABAJO
 $(document).ready(function(){
 	/* ENCRIPTACIÓN DE INPUTS */
 	var encrypt_v_idgencoderand = $("#v_idgencoderand").val(encryptValuesIpts($("#v_idgencoderand").val()));

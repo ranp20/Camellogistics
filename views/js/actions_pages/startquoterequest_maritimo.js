@@ -129,53 +129,6 @@ $(".cont-MainCamelLog--c--contResumeCalc--item[data-advlevel=d-typetransportnumb
 // ------------ LISTAR EL PUERTO DE ORIGEN Y EL PUERTO DE DESTINO 
 function listPortOriginandDestiny(){
   var tmp = "";
-	// $.ajax({
-	// 	url: "controllers/list_puertoOriginByIds.php",
- //    method: "POST",
- //    datatype: "JSON",
- //    contentType: 'application/x-www-form-urlencoded;charset=UTF-8',
- //    data: {idpaisportOrigin : ipt_idPortcountryOrigin, idportOrigin : ipt_idPortOrigin},
-	// }).done((e) => {
- //    let r = JSON.parse(e);
-	// 	// ------------ LISTAR LOS NOMBRES - PUERTO DE ORIGEN 
- //    $.each(r, function(i, e){
- //      tmp += `
- //        <div class="cont-MainCamelLog--c--contResumeCalc--item--cardStep">
- //          <div class="cont-MainCamelLog--c--contResumeCalc--item--cardStep--cNameFlag">
- //            <span>ORIGEN</span>
- //          </div>
- //          <div class="cont-MainCamelLog--c--contResumeCalc--item--cardStep--cDescMap">
- //            <span>${e.nom_puerto} - ${e.nom_pais}</span>
- //            <input type="hidden" id="val-originPortSend" name="val-originPortSend" value="${e.nom_puerto} - ${e.nom_pais}" tabindex="-1" width="0" height="0" autocomplete="off" spellcheck="false" f-hidden="aria-hidden" class="n-val-sd">
- //          </div>
- //        </div>
- //      `;
- //    });
- //    // ------------ LISTAR LOS NOMBRES - PUERTO DE DESTINO 
- //    $.ajax({
- //      url: "controllers/list_puertoDestinyByIds.php",
- //      method: "POST",
- //      datatype: "JSON",
- //      contentType: 'application/x-www-form-urlencoded;charset=UTF-8',
- //      data: {idpaisportDestiny : ipt_idPortcountryDestiny, idportDestiny : ipt_idPortDestiny},
- //    }).done((e) => {
- //      let r = JSON.parse(e);
- //      $.each(r, function(i, e){
- //        tmp += `
- //          <div class="cont-MainCamelLog--c--contResumeCalc--item--cardStep">
- //            <div class="cont-MainCamelLog--c--contResumeCalc--item--cardStep--cNameFlag">
- //              <span>DESTINO</span>
- //            </div>
- //            <div class="cont-MainCamelLog--c--contResumeCalc--item--cardStep--cDescMap">
- //              <span>${e.nom_puerto} - ${e.nom_pais}</span>
- //              <input type="hidden" id="val-destinyPortSend" name="val-destinyPortSend" value="${e.nom_puerto} - ${e.nom_pais}" tabindex="-1" width="0" height="0" autocomplete="off" spellcheck="false" f-hidden="aria-hidden" class="n-val-sd">
- //            </div>
- //          </div>
- //        `;
- //    });
- //    $("#id-resumeLeftQuoteCamel .cont-MainCamelLog--c--contResumeCalc--item[data-advlevel=d-firstChargeLoad]").html(tmp);
- //   });
- //  });
   let port_nameOrigin = firstToUppercase(arrPortOrigin[0]);
   let country_nameOrigin = firstToUppercase(arrPortOrigin[1]);
   let port_nameDestiny = firstToUppercase(arrPortDestiny[0]);
@@ -335,144 +288,307 @@ $(document).on("click","#list-typeTransporteSelectItems a",function(){
   let ttypeTransport = $(this).index();
   let ttypetransname = "";
   if(ttypeTransport == 0){
-    // ------------ ASIGNAR AL VALOR DEL INPUT DE ENVÍO POST 
-    $("#loadTypeTranport").val("general");
-    // ------------ MOSTRAR EN EL RESUMEN - LADO IZQUIERDO 
-    $(".cont-MainCamelLog--c--contResumeCalc--item[data-advlevel=d-typetransportcharge]").html(`
-    <div class="cont-MainCamelLog--c--contResumeCalc--item--cardStep">
-      <div class="cont-MainCamelLog--c--contResumeCalc--item--cardStep--cImgIcon">
-         <img class="cont-MainCamelLog--c--contResumeCalc--item--cardStep--cImgIcon--icon" loading="lazy" src="views/assets/img/steps/type_transport_06.png">
-       </div>
-      <span>T. GENERAL</span>
-    </div>`);
-    // ------------ MOSTRAR EL SIGUIENTE PASO 
-    sectionsSteps.moveTo('step-chargeload', 1);
-    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-chargeload]").html(`
-     <div class="cont-MainCamelLog--c--contSteps--item--cTitle">
-        <h3 class="cont-MainCamelLog--c--contSteps--item--cTitle--title">Tipo de carga</h3>
-        <span>
-          <span>
-            <input type="hidden" id="loadTypeCharge" name="loadTypeCharge" tabindex="-1" width="0" height="0" autocomplete="off" spellcheck="false" f-hidden="aria-hidden" class="n-val-sd">
-            <input type="hidden" id="val-datevaliddesde" name="val-datevaliddesde" tabindex="-1" width="0" height="0" autocomplete="off" spellcheck="false" f-hidden="aria-hidden" class="n-val-sd">
-            <input type="hidden" id="val-datevalidhasta" name="val-datevalidhasta" tabindex="-1" width="0" height="0" autocomplete="off" spellcheck="false" f-hidden="aria-hidden" class="n-val-sd">
-            <input type="hidden" id="val-timeaproxtransbycont" name="val-timeaproxtransbycont" tabindex="-1" width="0" height="0" autocomplete="off" spellcheck="false" f-hidden="aria-hidden" class="n-val-sd">
-          </span>
-        </span>
-      </div>
-      <div class="cont-MainCamelLog--c--contSteps--item--cStep">
-        <ul class="cont-MainCamelLog--c--contSteps--item--cStep--m" id="list-typeChargeLoadItems">
-          <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem">
-            <li class="cont-MainCamelLog--c--contSteps--item--cStep--m--item">
-              <div class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem--cImg">
-                <img src="views/assets/img/steps/fcl.png" alt="" loading="lazy">
-              </div>
-              <p>FCL</p>
-            </li>
-          </a>
-          <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem">
-            <li class="cont-MainCamelLog--c--contSteps--item--cStep--m--item">
-              <div class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem--cImg">
-                <img src="views/assets/img/steps/lcl.png" alt="" loading="lazy">
-              </div>
-              <p>LCL</p>
-            </li>
-          </a>
-        </ul>
-      </div>`);
+    // VALIDAR SI HAY UN VALOR EN TOTAL DEL TIPO DE TRANSPORTE
+    $.ajax({
+      url: "controllers/c_list-validationAmmountTypeTransport.php",
+      method: "POST",
+      datatype: "JSON",
+      contentType: 'application/x-www-form-urlencoded;charset=UTF-8',
+      data: {nameportOrigin : arrPortOrigin[0], typetransport: "general"},
+    }).done((e) => {
+      if(e != "" && e != "[]"){
+        let r = JSON.parse(e);
+        let total_5CBM = r[0].total5cbm;
+        let total_15CBM = r[0].total15cbm;
+        if(total_5CBM != 0 && total_5CBM != "0.00" && total_15CBM != 0 && total_15CBM != "0:00"){
+          // ------------ ASIGNAR AL VALOR DEL INPUT DE ENVÍO POST 
+          $("#loadTypeTranport").val("general");
+          // ------------ MOSTRAR EN EL RESUMEN - LADO IZQUIERDO 
+          $(".cont-MainCamelLog--c--contResumeCalc--item[data-advlevel=d-typetransportcharge]").html(`
+          <div class="cont-MainCamelLog--c--contResumeCalc--item--cardStep">
+            <div class="cont-MainCamelLog--c--contResumeCalc--item--cardStep--cImgIcon">
+               <img class="cont-MainCamelLog--c--contResumeCalc--item--cardStep--cImgIcon--icon" loading="lazy" src="views/assets/img/steps/type_transport_06.png">
+             </div>
+            <span>T. GENERAL</span>
+          </div>`);
+          // ------------ MOSTRAR EL SIGUIENTE PASO 
+          sectionsSteps.moveTo('step-chargeload', 1);
+          $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-chargeload]").html(`
+           <div class="cont-MainCamelLog--c--contSteps--item--cTitle">
+              <h3 class="cont-MainCamelLog--c--contSteps--item--cTitle--title">Tipo de carga</h3>
+              <span>
+                <span>
+                  <input type="hidden" id="loadTypeCharge" name="loadTypeCharge" tabindex="-1" width="0" height="0" autocomplete="off" spellcheck="false" f-hidden="aria-hidden" class="n-val-sd">
+                  <input type="hidden" id="val-datevaliddesde" name="val-datevaliddesde" tabindex="-1" width="0" height="0" autocomplete="off" spellcheck="false" f-hidden="aria-hidden" class="n-val-sd">
+                  <input type="hidden" id="val-datevalidhasta" name="val-datevalidhasta" tabindex="-1" width="0" height="0" autocomplete="off" spellcheck="false" f-hidden="aria-hidden" class="n-val-sd">
+                  <input type="hidden" id="val-timeaproxtransbycont" name="val-timeaproxtransbycont" tabindex="-1" width="0" height="0" autocomplete="off" spellcheck="false" f-hidden="aria-hidden" class="n-val-sd">
+                </span>
+              </span>
+            </div>
+            <div class="cont-MainCamelLog--c--contSteps--item--cStep">
+              <ul class="cont-MainCamelLog--c--contSteps--item--cStep--m" id="list-typeChargeLoadItems">
+                <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem">
+                  <li class="cont-MainCamelLog--c--contSteps--item--cStep--m--item">
+                    <div class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem--cImg">
+                      <img src="views/assets/img/steps/fcl.png" alt="" loading="lazy">
+                    </div>
+                    <p>FCL</p>
+                  </li>
+                </a>
+                <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem">
+                  <li class="cont-MainCamelLog--c--contSteps--item--cStep--m--item">
+                    <div class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem--cImg">
+                      <img src="views/assets/img/steps/lcl.png" alt="" loading="lazy">
+                    </div>
+                    <p>LCL</p>
+                  </li>
+                </a>
+              </ul>
+            </div>`);
+        }else{
+          $(this).removeClass("active");
+          $(this).css({"opacity" : "0.5","border" : "unset"});
+          // ------------ MOSTRAR EL MENSAJE DE ALERTA PERSONALIZADO 
+          $("#idMessageSteps-prcss").html(`
+          <div class="cntMessageSteps-prcss--cont">
+            <div class="cntMessageSteps-prcss--cont--c">
+              <span class="cntMessageSteps-prcss--cont--c--btnclose" id="btnclose-modalMessage"></span>
+              <h3 class="cntMessageSteps-prcss--cont--c--title">No disponible</h3>
+              <p class="cntMessageSteps-prcss--cont--c--text">El tipo de transporte no se encuentra disponible para este puerto. Por favor, pase a elegir el tipo <strong>IMO</strong> ó <strong>REFRIGERADO</strong>, de lo contrario seleccione otro puerto de Origen.</p>
+              <a class="cntMessageSteps-prcss--cont--c--link" href="marketplace-logistico">&#8592; Seleccionar Puerto</a>
+            </div>
+          </div>`);
+          // ------------ CERRAR EL MODAL 
+          setTimeout(function(){$("#idMessageSteps-prcss .cntMessageSteps-prcss--cont").remove();}, 6500);
+          $("#btnclose-modalMessage").on("click", function(){$(this).parent().parent().remove();});
+          // ------------ OCULTAR AL LISTADO DE RESUMEN - ELIGE UNA OPCIÓN 
+          $(".cont-MainCamelLog--c--contResumeCalc--item[data-advlevel=d-reqspeacialservs]").removeClass("show");
+          $(".cont-MainCamelLog--c--contResumeCalc--item[data-advlevel=d-reqspeacialservs]").find("span").text("");
+          $(".cont-MainCamelLog--c--contResumeCalc--item[data-advlevel=d-typecontainer]").removeClass("show");
+          $(".cont-MainCamelLog--c--contResumeCalc--item--cardStep--cIconStepLeft[data-merchandise=rsm-typecharge]").find("img").attr("src","");
+          $(".cont-MainCamelLog--c--contResumeCalc--item[data-advlevel=d-typetransportcharge]").html("");
+          // OCULTAR LOS SIGUIENTES PASOS A ESTE
+          $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-chargeload]").removeClass("show");
+          $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-chargeload]").html("");
+          $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-chargedata]").removeClass("show");
+          $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-chargedata]").html("");
+          $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-integservorfleteinte]").removeClass("show");
+          $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-integservorfleteinte]").html("");
+          $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-merchandisedata]").removeClass("show");
+          $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-merchandisedata]").html("");
+          $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-insuremerchandise]").removeClass("show");
+          $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-insuremerchandise]").html("");
+          $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-requirespickup]").removeClass("show");
+          $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-requirespickup]").html("show");
+          $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-pickuplocation]").removeClass("show");
+          $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-pickuplocation]").html("");
+        }
+      }else{
+        console.log('Error, Lo sentimos hubo un error al procesar la información');
+      }
+    });
   }else if(ttypeTransport == 1){
-    // ------------ ASIGNAR AL VALOR DEL INPUT DE ENVÍO POST 
-    $("#loadTypeTranport").val("imo");
-    // ------------ MOSTRAR EN EL RESUMEN - LADO IZQUIERDO 
-    $(".cont-MainCamelLog--c--contResumeCalc--item[data-advlevel=d-typetransportcharge]").html(`
-      <div class="cont-MainCamelLog--c--contResumeCalc--item--cardStep">
-        <div class="cont-MainCamelLog--c--contResumeCalc--item--cardStep--cImgIcon">
-           <img class="cont-MainCamelLog--c--contResumeCalc--item--cardStep--cImgIcon--icon" loading="lazy" src="views/assets/img/steps/type_transport_03.png">
-         </div>
-        <span>T. IMO</span>
-      </div>
-    `);
-    // ------------ MOSTRAR EL SIGUIENTE PASO 
-    sectionsSteps.moveTo('step-chargeload', 1);
-    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-chargeload]").html(`
-     <div class="cont-MainCamelLog--c--contSteps--item--cTitle">
-        <h3 class="cont-MainCamelLog--c--contSteps--item--cTitle--title">Tipo de carga</h3>
-        <span>
-          <span>
-            <input type="hidden" id="loadTypeCharge" name="loadTypeCharge" tabindex="-1" width="0" height="0" autocomplete="off" spellcheck="false" f-hidden="aria-hidden" class="n-val-sd">
-            <input type="hidden" id="val-datevaliddesde" name="val-datevaliddesde" tabindex="-1" width="0" height="0" autocomplete="off" spellcheck="false" f-hidden="aria-hidden" class="n-val-sd">
-            <input type="hidden" id="val-datevalidhasta" name="val-datevalidhasta" tabindex="-1" width="0" height="0" autocomplete="off" spellcheck="false" f-hidden="aria-hidden" class="n-val-sd">
-            <input type="hidden" id="val-timeaproxtransbycont" name="val-timeaproxtransbycont" tabindex="-1" width="0" height="0" autocomplete="off" spellcheck="false" f-hidden="aria-hidden" class="n-val-sd">
-          </span>
-        </span>
-      </div>
-      <div class="cont-MainCamelLog--c--contSteps--item--cStep">
-        <ul class="cont-MainCamelLog--c--contSteps--item--cStep--m" id="list-typeChargeLoadItems">
-          <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem">
-            <li class="cont-MainCamelLog--c--contSteps--item--cStep--m--item">
-              <div class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem--cImg">
-                <img src="views/assets/img/steps/fcl.png" alt="" loading="lazy">
-              </div>
-              <p>FCL</p>
-            </li>
-          </a>
-          <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem">
-            <li class="cont-MainCamelLog--c--contSteps--item--cStep--m--item">
-              <div class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem--cImg">
-                <img src="views/assets/img/steps/lcl.png" alt="" loading="lazy">
-              </div>
-              <p>LCL</p>
-            </li>
-          </a>
-        </ul>
-      </div>
-    `);
+    // VALIDAR SI HAY UN VALOR EN TOTAL DEL TIPO DE TRANSPORTE
+    $.ajax({
+      url: "controllers/c_list-validationAmmountTypeTransport.php",
+      method: "POST",
+      datatype: "JSON",
+      contentType: 'application/x-www-form-urlencoded;charset=UTF-8',
+      data: {nameportOrigin : arrPortOrigin[0], typetransport: "imo"},
+    }).done((e) => {
+      if(e != "" && e != "[]"){
+        let r = JSON.parse(e);
+        let total_IMO = r[0].total_imo;
+        if(total_IMO != 0 && total_IMO != "0.00"){
+          // ------------ ASIGNAR AL VALOR DEL INPUT DE ENVÍO POST 
+          $("#loadTypeTranport").val("imo");
+          // ------------ MOSTRAR EN EL RESUMEN - LADO IZQUIERDO 
+          $(".cont-MainCamelLog--c--contResumeCalc--item[data-advlevel=d-typetransportcharge]").html(`
+            <div class="cont-MainCamelLog--c--contResumeCalc--item--cardStep">
+              <div class="cont-MainCamelLog--c--contResumeCalc--item--cardStep--cImgIcon">
+                 <img class="cont-MainCamelLog--c--contResumeCalc--item--cardStep--cImgIcon--icon" loading="lazy" src="views/assets/img/steps/type_transport_03.png">
+               </div>
+              <span>T. IMO</span>
+            </div>
+          `);
+          // ------------ MOSTRAR EL SIGUIENTE PASO 
+          sectionsSteps.moveTo('step-chargeload', 1);
+          $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-chargeload]").html(`
+           <div class="cont-MainCamelLog--c--contSteps--item--cTitle">
+              <h3 class="cont-MainCamelLog--c--contSteps--item--cTitle--title">Tipo de carga</h3>
+              <span>
+                <span>
+                  <input type="hidden" id="loadTypeCharge" name="loadTypeCharge" tabindex="-1" width="0" height="0" autocomplete="off" spellcheck="false" f-hidden="aria-hidden" class="n-val-sd">
+                  <input type="hidden" id="val-datevaliddesde" name="val-datevaliddesde" tabindex="-1" width="0" height="0" autocomplete="off" spellcheck="false" f-hidden="aria-hidden" class="n-val-sd">
+                  <input type="hidden" id="val-datevalidhasta" name="val-datevalidhasta" tabindex="-1" width="0" height="0" autocomplete="off" spellcheck="false" f-hidden="aria-hidden" class="n-val-sd">
+                  <input type="hidden" id="val-timeaproxtransbycont" name="val-timeaproxtransbycont" tabindex="-1" width="0" height="0" autocomplete="off" spellcheck="false" f-hidden="aria-hidden" class="n-val-sd">
+                </span>
+              </span>
+            </div>
+            <div class="cont-MainCamelLog--c--contSteps--item--cStep">
+              <ul class="cont-MainCamelLog--c--contSteps--item--cStep--m" id="list-typeChargeLoadItems">
+                <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem">
+                  <li class="cont-MainCamelLog--c--contSteps--item--cStep--m--item">
+                    <div class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem--cImg">
+                      <img src="views/assets/img/steps/fcl.png" alt="" loading="lazy">
+                    </div>
+                    <p>FCL</p>
+                  </li>
+                </a>
+                <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem">
+                  <li class="cont-MainCamelLog--c--contSteps--item--cStep--m--item">
+                    <div class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem--cImg">
+                      <img src="views/assets/img/steps/lcl.png" alt="" loading="lazy">
+                    </div>
+                    <p>LCL</p>
+                  </li>
+                </a>
+              </ul>
+            </div>
+          `);
+        }else{
+          $(this).removeClass("active");
+          $(this).css({"opacity" : "0.5","border" : "unset"});
+          // ------------ MOSTRAR EL MENSAJE DE ALERTA PERSONALIZADO 
+          $("#idMessageSteps-prcss").html(`
+          <div class="cntMessageSteps-prcss--cont">
+            <div class="cntMessageSteps-prcss--cont--c">
+              <span class="cntMessageSteps-prcss--cont--c--btnclose" id="btnclose-modalMessage"></span>
+              <h3 class="cntMessageSteps-prcss--cont--c--title">No disponible</h3>
+              <p class="cntMessageSteps-prcss--cont--c--text">El tipo de transporte no se encuentra disponible para este puerto. Por favor, pase a elegir el tipo <strong>GENERAL</strong> ó <strong>REFRIGERADO</strong>, de lo contrario seleccione otro puerto de Origen.</p>
+              <a class="cntMessageSteps-prcss--cont--c--link" href="marketplace-logistico">&#8592; Seleccionar Puerto</a>
+            </div>
+          </div>`);
+          // ------------ CERRAR EL MODAL 
+          setTimeout(function(){$("#idMessageSteps-prcss .cntMessageSteps-prcss--cont").remove();}, 6500);
+          $("#btnclose-modalMessage").on("click", function(){$(this).parent().parent().remove();});
+          // ------------ OCULTAR AL LISTADO DE RESUMEN - ELIGE UNA OPCIÓN 
+          $(".cont-MainCamelLog--c--contResumeCalc--item[data-advlevel=d-reqspeacialservs]").removeClass("show");
+          $(".cont-MainCamelLog--c--contResumeCalc--item[data-advlevel=d-reqspeacialservs]").find("span").text("");
+          $(".cont-MainCamelLog--c--contResumeCalc--item[data-advlevel=d-typecontainer]").removeClass("show");
+          $(".cont-MainCamelLog--c--contResumeCalc--item--cardStep--cIconStepLeft[data-merchandise=rsm-typecharge]").find("img").attr("src","");
+          $(".cont-MainCamelLog--c--contResumeCalc--item[data-advlevel=d-typetransportcharge]").html("");
+          // OCULTAR LOS SIGUIENTES PASOS A ESTE
+          $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-chargeload]").removeClass("show");
+          $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-chargeload]").html("");
+          $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-chargedata]").removeClass("show");
+          $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-chargedata]").html("");
+          $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-integservorfleteinte]").removeClass("show");
+          $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-integservorfleteinte]").html("");
+          $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-merchandisedata]").removeClass("show");
+          $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-merchandisedata]").html("");
+          $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-insuremerchandise]").removeClass("show");
+          $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-insuremerchandise]").html("");
+          $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-requirespickup]").removeClass("show");
+          $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-requirespickup]").html("show");
+          $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-pickuplocation]").removeClass("show");
+          $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-pickuplocation]").html("");
+        }
+      }else{
+        console.log('Error, Lo sentimos hubo un error al procesar la información');
+      }
+    });
   }else if(ttypeTransport == 2){
-    // ------------ ASIGNAR AL VALOR DEL INPUT DE ENVÍO POST 
-    $("#loadTypeTranport").val("refrigerado");
-    // ------------ MOSTRAR EN EL RESUMEN - LADO IZQUIERDO 
-    $(".cont-MainCamelLog--c--contResumeCalc--item[data-advlevel=d-typetransportcharge]").html(`
-      <div class="cont-MainCamelLog--c--contResumeCalc--item--cardStep">
-        <div class="cont-MainCamelLog--c--contResumeCalc--item--cardStep--cImgIcon">
-           <img class="cont-MainCamelLog--c--contResumeCalc--item--cardStep--cImgIcon--icon" loading="lazy" src="views/assets/img/steps/type_transport_05.png">
-         </div>
-        <span>T. REFRIGERADO</span>
-      </div>
-    `);
-    // ------------ MOSTRAR EL SIGUIENTE PASO 
-    sectionsSteps.moveTo('step-chargeload', 1);
-    $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-chargeload]").html(`
-     <div class="cont-MainCamelLog--c--contSteps--item--cTitle">
-        <h3 class="cont-MainCamelLog--c--contSteps--item--cTitle--title">Tipo de carga</h3>
-        <span>
-          <span>
-            <input type="hidden" id="loadTypeCharge" name="loadTypeCharge" tabindex="-1" width="0" height="0" autocomplete="off" spellcheck="false" f-hidden="aria-hidden" class="n-val-sd">
-            <input type="hidden" id="val-datevaliddesde" name="val-datevaliddesde" tabindex="-1" width="0" height="0" autocomplete="off" spellcheck="false" f-hidden="aria-hidden" class="n-val-sd">
-            <input type="hidden" id="val-datevalidhasta" name="val-datevalidhasta" tabindex="-1" width="0" height="0" autocomplete="off" spellcheck="false" f-hidden="aria-hidden" class="n-val-sd">
-            <input type="hidden" id="val-timeaproxtransbycont" name="val-timeaproxtransbycont" tabindex="-1" width="0" height="0" autocomplete="off" spellcheck="false" f-hidden="aria-hidden" class="n-val-sd">
-          </span>
-        </span>
-      </div>
-      <div class="cont-MainCamelLog--c--contSteps--item--cStep">
-        <ul class="cont-MainCamelLog--c--contSteps--item--cStep--m" id="list-typeChargeLoadItems">
-          <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem">
-            <li class="cont-MainCamelLog--c--contSteps--item--cStep--m--item">
-              <div class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem--cImg">
-                <img src="views/assets/img/steps/fcl.png" alt="" loading="lazy">
-              </div>
-              <p>FCL</p>
-            </li>
-          </a>
-          <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem">
-            <li class="cont-MainCamelLog--c--contSteps--item--cStep--m--item">
-              <div class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem--cImg">
-                <img src="views/assets/img/steps/lcl.png" alt="" loading="lazy">
-              </div>
-              <p>LCL</p>
-            </li>
-          </a>
-        </ul>
-      </div>
-    `);
+    // VALIDAR SI HAY UN VALOR EN TOTAL DEL TIPO DE TRANSPORTE
+    $.ajax({
+      url: "controllers/c_list-validationAmmountTypeTransport.php",
+      method: "POST",
+      datatype: "JSON",
+      contentType: 'application/x-www-form-urlencoded;charset=UTF-8',
+      data: {nameportOrigin : arrPortOrigin[0], typetransport: "refrigerado"},
+    }).done((e) => {
+      if(e != "" && e != "[]"){
+        let r = JSON.parse(e);
+        let total_REFRIGERADO = r[0].total_refrigerado;
+        if(total_REFRIGERADO != 0 && total_REFRIGERADO != "0.00"){
+          // ------------ ASIGNAR AL VALOR DEL INPUT DE ENVÍO POST 
+          $("#loadTypeTranport").val("refrigerado");
+          // ------------ MOSTRAR EN EL RESUMEN - LADO IZQUIERDO 
+          $(".cont-MainCamelLog--c--contResumeCalc--item[data-advlevel=d-typetransportcharge]").html(`
+            <div class="cont-MainCamelLog--c--contResumeCalc--item--cardStep">
+              <div class="cont-MainCamelLog--c--contResumeCalc--item--cardStep--cImgIcon">
+                 <img class="cont-MainCamelLog--c--contResumeCalc--item--cardStep--cImgIcon--icon" loading="lazy" src="views/assets/img/steps/type_transport_05.png">
+               </div>
+              <span>T. REFRIGERADO</span>
+            </div>
+          `);
+          // ------------ MOSTRAR EL SIGUIENTE PASO 
+          sectionsSteps.moveTo('step-chargeload', 1);
+          $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-chargeload]").html(`
+           <div class="cont-MainCamelLog--c--contSteps--item--cTitle">
+              <h3 class="cont-MainCamelLog--c--contSteps--item--cTitle--title">Tipo de carga</h3>
+              <span>
+                <span>
+                  <input type="hidden" id="loadTypeCharge" name="loadTypeCharge" tabindex="-1" width="0" height="0" autocomplete="off" spellcheck="false" f-hidden="aria-hidden" class="n-val-sd">
+                  <input type="hidden" id="val-datevaliddesde" name="val-datevaliddesde" tabindex="-1" width="0" height="0" autocomplete="off" spellcheck="false" f-hidden="aria-hidden" class="n-val-sd">
+                  <input type="hidden" id="val-datevalidhasta" name="val-datevalidhasta" tabindex="-1" width="0" height="0" autocomplete="off" spellcheck="false" f-hidden="aria-hidden" class="n-val-sd">
+                  <input type="hidden" id="val-timeaproxtransbycont" name="val-timeaproxtransbycont" tabindex="-1" width="0" height="0" autocomplete="off" spellcheck="false" f-hidden="aria-hidden" class="n-val-sd">
+                </span>
+              </span>
+            </div>
+            <div class="cont-MainCamelLog--c--contSteps--item--cStep">
+              <ul class="cont-MainCamelLog--c--contSteps--item--cStep--m" id="list-typeChargeLoadItems">
+                <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem">
+                  <li class="cont-MainCamelLog--c--contSteps--item--cStep--m--item">
+                    <div class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem--cImg">
+                      <img src="views/assets/img/steps/fcl.png" alt="" loading="lazy">
+                    </div>
+                    <p>FCL</p>
+                  </li>
+                </a>
+                <a href="javascript:void(0);" class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem">
+                  <li class="cont-MainCamelLog--c--contSteps--item--cStep--m--item">
+                    <div class="cont-MainCamelLog--c--contSteps--item--cStep--m--cardItem--cImg">
+                      <img src="views/assets/img/steps/lcl.png" alt="" loading="lazy">
+                    </div>
+                    <p>LCL</p>
+                  </li>
+                </a>
+              </ul>
+            </div>
+          `);
+        }else{
+          $(this).removeClass("active");
+          $(this).css({"opacity" : "0.5","border" : "unset"});
+          // ------------ MOSTRAR EL MENSAJE DE ALERTA PERSONALIZADO 
+          $("#idMessageSteps-prcss").html(`
+          <div class="cntMessageSteps-prcss--cont">
+            <div class="cntMessageSteps-prcss--cont--c">
+              <span class="cntMessageSteps-prcss--cont--c--btnclose" id="btnclose-modalMessage"></span>
+              <h3 class="cntMessageSteps-prcss--cont--c--title">No disponible</h3>
+              <p class="cntMessageSteps-prcss--cont--c--text">El tipo de transporte no se encuentra disponible para este puerto. Por favor, pase a elegir el tipo <strong>GENERAL</strong> ó <strong>IMO</strong>, de lo contrario seleccione otro puerto de Origen.</p>
+              <a class="cntMessageSteps-prcss--cont--c--link" href="marketplace-logistico">&#8592; Seleccionar Puerto</a>
+            </div>
+          </div>`);
+          // ------------ CERRAR EL MODAL 
+          setTimeout(function(){$("#idMessageSteps-prcss .cntMessageSteps-prcss--cont").remove();}, 6500);
+          $("#btnclose-modalMessage").on("click", function(){$(this).parent().parent().remove();});
+          // ------------ OCULTAR AL LISTADO DE RESUMEN - ELIGE UNA OPCIÓN 
+          $(".cont-MainCamelLog--c--contResumeCalc--item[data-advlevel=d-reqspeacialservs]").removeClass("show");
+          $(".cont-MainCamelLog--c--contResumeCalc--item[data-advlevel=d-reqspeacialservs]").find("span").text("");
+          $(".cont-MainCamelLog--c--contResumeCalc--item[data-advlevel=d-typecontainer]").removeClass("show");
+          $(".cont-MainCamelLog--c--contResumeCalc--item--cardStep--cIconStepLeft[data-merchandise=rsm-typecharge]").find("img").attr("src","");
+          $(".cont-MainCamelLog--c--contResumeCalc--item[data-advlevel=d-typetransportcharge]").html("");
+          // OCULTAR LOS SIGUIENTES PASOS A ESTE
+          $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-chargeload]").removeClass("show");
+          $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-chargeload]").html("");
+          $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-chargedata]").removeClass("show");
+          $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-chargedata]").html("");
+          $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-integservorfleteinte]").removeClass("show");
+          $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-integservorfleteinte]").html("");
+          $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-merchandisedata]").removeClass("show");
+          $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-merchandisedata]").html("");
+          $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-insuremerchandise]").removeClass("show");
+          $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-insuremerchandise]").html("");
+          $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-requirespickup]").removeClass("show");
+          $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-requirespickup]").html("show");
+          $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-pickuplocation]").removeClass("show");
+          $(".cont-MainCamelLog--c--contSteps--item[data-anchor=step-pickuplocation]").html("");
+        }
+      }else{
+        console.log('Error, Lo sentimos hubo un error al procesar la información');
+      }
+    });
   }else{
     console.log('Error, no se encontró el tipo de contenedor');
   }
