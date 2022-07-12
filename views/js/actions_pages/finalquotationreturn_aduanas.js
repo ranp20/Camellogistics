@@ -74,20 +74,20 @@ $(document).ready(function(){
 	var v_loadtypecharge = decryptValuesIpts(encrypt_v_loadtypecharge.val());
 	var portOriginName = decryptValuesIpts(encrypt_portOriginName.val());
 	var portDestinyName = decryptValuesIpts(encrypt_portDestinyName.val());
-	var v_typeserviceinit = decryptValuesIpts(encrypt_v_typeserviceinit.val());
+	var v_typeserviceinit = decryptValuesIpts(encrypt_v_typeserviceinit.val()); // TIPO DE SERVICIO
 	var v_fnamecategprod = decryptValuesIpts(encrypt_v_fnamecategprod.val()); // NOMBRE DEL PRODUCTO
 	var v_freqregsprod = decryptValuesIpts(encrypt_v_freqregsprod.val()); // REGULADORES DEL PRODUCTO
 	var v_ftaproxtransbycont = decryptValuesIpts(encrypt_v_ftaproxtransbycont.val()); // TIEMPO DE TRÁNSITO
-	var v_floadTypeTranport = decryptValuesIpts(encrypt_v_floadTypeTranport.val());
+	var v_floadTypeTranport = decryptValuesIpts(encrypt_v_floadTypeTranport.val()); // TIPO DE TRANSPORTE
 	var v_validdesde = decryptValuesIpts(encrypt_v_validdesde.val());
 	var v_validhasta = decryptValuesIpts(encrypt_v_validhasta.val());
 	var v_freqinsusel = decryptValuesIpts(encrypt_v_freqinsusel.val());
 	var v_frqexplinsur = decryptValuesIpts(encrypt_v_frqexplinsur.val()); // SEGURO EXPLÍCITO
 	var v_fprevimports = decryptValuesIpts(encrypt_v_fprevimports.val());
 	var v_floadtypeope = decryptValuesIpts(encrypt_v_floadtypeope.val());
-	var v_fpckgcontquant = decryptValuesIpts(encrypt_v_fpckgcontquant.val());
+	var v_fpckgcontquant = decryptValuesIpts(encrypt_v_fpckgcontquant.val()); // CANTIDAD DE CONTENEDORES/CANTIDAD DE BULTOS
 	var v_ftcomparweacbm = decryptValuesIpts(encrypt_v_ftcomparweacbm.val());
-	var v_fplctopckloc = decryptValuesIpts(encrypt_v_fplctopckloc.val());
+	var v_fplctopckloc = decryptValuesIpts(encrypt_v_fplctopckloc.val()); // TRANSPORTE A DISTRITO
 	var v_frselinsmerch = decryptValuesIpts(encrypt_v_frselinsmerch.val());
 	var v_foptgnfquotevl = decryptValuesIpts(encrypt_v_foptgnfquotevl.val());
 	var v_fquaprcataadd = decryptValuesIpts(encrypt_v_fquaprcataadd.val());
@@ -576,28 +576,16 @@ $(document).ready(function(){
 												$("#totalval_quoteFinal").html(`<span>${separate_point_FTotal},<sup>${partFinalDecimal_FTotal}</sup> USD</span>`);
 
 												// --------------- LISTAR DATOS PARA ENVIAR POR WHATSAPP
-												var idcodequote = $("#v_gencodexxx").text() + " - " + v_loadtypecharge,
-														typeFleteService = $("#m-first-listresume").find("li:first-child").find("div").find("span:nth-child(2)").text(),
-														typeFleteContainer = $("#m-first-listresume").find("li:nth-child(2)").find("div").find("span:nth-child(2)").text(),
-														fleteportOrigin = $("#v-listportsOandD").find("span:first-child").text(),
-														fleteportDestiny = $("#v-listportsOandD").find("span:last-child").text(),
-														contentFlete = $("#m-first-listresume").find("li:nth-child(3)").find("div").find("p").find("span").text(),
-														valormercanciaFlete = $("#m-second-listresume").find("li:first-child").find("div").find("span:nth-child(2)").text(),
-														impuestosFlete = $("#m-second-listresume").find("li:nth-child(2)").find("div").find("span:nth-child(2)").text(),
-														transportFlete = $("#m-second-listresume").find("li:nth-child(3)").find("div").find("span:nth-child(2)").text();
-														seguroFlete = $("#m-second-listresume").find("li:nth-child(4)").find("div").find("span:nth-child(2)").text();
+												var idcodequote = $("#v_gencodexxx").text() + " - " + v_loadtypecharge;
 
 												var objDataTxtWhatsapp = {
 													id: idcodequote,
-													tservice : typeFleteService,
-													tcontainer : typeFleteContainer,
-													fportorigin : fleteportOrigin,
-													fportdestiny : fleteportDestiny,
-													containtflete : contentFlete,
-													valmercanciaflete: valormercanciaFlete,
-													impuestosflete : impuestosFlete,
-													tranportflete : transportFlete,
-													seguroflete : seguroFlete
+													tservice : v_typeserviceinit,
+													tcontainer : v_floadTypeTranport,
+													containtflete : v_fpckgcontquant,
+													tservices: sumTotalServices,
+													// impuestosflete : impuestosFlete,
+													tranportflete : v_fplctopckloc
 												}
 
 												// ------------ AÑADIR LOS DATOS AL ENLACE DE WHATSAPP 
@@ -607,14 +595,11 @@ $(document).ready(function(){
 												ID:%20${objDataTxtWhatsapp.id}${wlinebreak}
 												Tipo%20Flete:%20${objDataTxtWhatsapp.tservice}${wlinebreak}
 												Tipo%20Contenedor:%20${objDataTxtWhatsapp.tcontainer}${wlinebreak}
-												Flete%20Origen:%20${objDataTxtWhatsapp.fportorigin}${wlinebreak}
-												Flete%20Destino:%20${objDataTxtWhatsapp.fportdestiny}${wlinebreak}
 												Contenido%20Flete:%20${objDataTxtWhatsapp.containtflete}${wlinebreak}
-												Valor%20Flete:%202136${wlinebreak}
-												Gastos:%20${objDataTxtWhatsapp.valmercanciaflete}${wlinebreak}
-												Impuestos:%20${objDataTxtWhatsapp.impuestosflete}${wlinebreak}
+												Valor%20Flete:%20${objDataTxtWhatsapp.tservices}${wlinebreak}
+												Gastos:%20SI${wlinebreak}
+												Impuestos:%20SI${wlinebreak}
 												Transporte:%20${objDataTxtWhatsapp.tranportflete}${wlinebreak}
-												Seguro:%20${objDataTxtWhatsapp.seguroflete}${wlinebreak}
 												Impuestos Aproximados:%20${twodecimals_FinalTax}`;
 												// whatsappMessage = window.encodeURIComponent(whatsappMessage);
 												$("#d-link-messagecontact").attr("href", `https://api.whatsapp.com/send?phone=51989874368&text=${whatsappMessage}`);
@@ -672,28 +657,16 @@ $(document).ready(function(){
 												$("#totalval_quoteFinal").html(`<span>${separate_point_FTotal},<sup>${partFinalDecimal_FTotal}</sup> USD</span>`);
 
 												// --------------- LISTAR DATOS PARA ENVIAR POR WHATSAPP
-												var idcodequote = $("#v_gencodexxx").text() + " - " + v_loadtypecharge, 
-														typeFleteService = v_typeserviceinit,
-														typeFleteContainer = $("#m-first-listresume").find("li:nth-child(2)").find("div").find("span:nth-child(2)").text(),
-														fleteportOrigin = $("#v-listportsOandD").find("span:first-child").text(),
-														fleteportDestiny = $("#v-listportsOandD").find("span:last-child").text(),
-														contentFlete = $("#m-first-listresume").find("li:nth-child(3)").find("div").find("p").find("span").text(),
-														valormercanciaFlete = $("#m-second-listresume").find("li:first-child").find("div").find("span:nth-child(2)").text(),
-														impuestosFlete = $("#m-second-listresume").find("li:nth-child(2)").find("div").find("span:nth-child(2)").text(),
-														transportFlete = $("#m-second-listresume").find("li:nth-child(3)").find("div").find("span:nth-child(2)").text();
-														seguroFlete = $("#m-second-listresume").find("li:nth-child(4)").find("div").find("span:nth-child(2)").text();
+												var idcodequote = $("#v_gencodexxx").text() + " - " + v_loadtypecharge;
 
 												var objDataTxtWhatsapp = {
 													id: idcodequote,
-													tservice : typeFleteService,
-													tcontainer : typeFleteContainer,
-													fportorigin : fleteportOrigin,
-													fportdestiny : fleteportDestiny,
-													containtflete : contentFlete,
-													valmercanciaflete: valormercanciaFlete,
-													impuestosflete : impuestosFlete,
-													tranportflete : transportFlete,
-													seguroflete : seguroFlete
+													tservice : v_typeserviceinit,
+													tcontainer : v_floadTypeTranport,
+													containtflete : v_fpckgcontquant,
+													tservices: sumTotalServices,
+													// impuestosflete : impuestosFlete,
+													tranportflete : v_fplctopckloc
 												}
 
 												// ------------ AÑADIR LOS DATOS AL ENLACE DE WHATSAPP 
@@ -703,14 +676,11 @@ $(document).ready(function(){
 												ID:%20${objDataTxtWhatsapp.id}${wlinebreak}
 												Tipo%20Flete:%20${objDataTxtWhatsapp.tservice}${wlinebreak}
 												Tipo%20Contenedor:%20${objDataTxtWhatsapp.tcontainer}${wlinebreak}
-												Flete%20Origen:%20${objDataTxtWhatsapp.fportorigin}${wlinebreak}
-												Flete%20Destino:%20${objDataTxtWhatsapp.fportdestiny}${wlinebreak}
 												Contenido%20Flete:%20${objDataTxtWhatsapp.containtflete}${wlinebreak}
-												Valor%20Flete:%202136${wlinebreak}
-												Gastos:%20${objDataTxtWhatsapp.valmercanciaflete}${wlinebreak}
-												Impuestos:%20${objDataTxtWhatsapp.impuestosflete}${wlinebreak}
+												Valor%20Flete:%20${objDataTxtWhatsapp.tservices}${wlinebreak}
+												Gastos:%20SI${wlinebreak}
+												Impuestos:%20SI${wlinebreak}
 												Transporte:%20${objDataTxtWhatsapp.tranportflete}${wlinebreak}
-												Seguro:%20${objDataTxtWhatsapp.seguroflete}${wlinebreak}
 												Impuestos Aproximados:%20${twodecimals_FinalTax}`;
 												// whatsappMessage = window.encodeURIComponent(whatsappMessage);
 												$("#d-link-messagecontact").attr("href", `https://api.whatsapp.com/send?phone=51989874368&text=${whatsappMessage}`);
@@ -855,28 +825,16 @@ $(document).ready(function(){
 												$("#totalval_quoteFinal").html(`<span>${separate_point_FTotal},<sup>${partFinalDecimal_FTotal}</sup> USD</span>`);
 
 												// --------------- LISTAR DATOS PARA ENVIAR POR WHATSAPP
-												var idcodequote = $("#v_gencodexxx").text() + " - " + v_loadtypecharge, 
-														typeFleteService = $("#m-first-listresume").find("li:first-child").find("div").find("span:nth-child(2)").text(),
-														typeFleteContainer = $("#m-first-listresume").find("li:nth-child(2)").find("div").find("span:nth-child(2)").text(),
-														fleteportOrigin = $("#v-listportsOandD").find("span:first-child").text(),
-														fleteportDestiny = $("#v-listportsOandD").find("span:last-child").text(),
-														contentFlete = $("#m-first-listresume").find("li:nth-child(3)").find("div").find("p").find("span").text(),
-														valormercanciaFlete = $("#m-second-listresume").find("li:first-child").find("div").find("span:nth-child(2)").text(),
-														impuestosFlete = $("#m-second-listresume").find("li:nth-child(2)").find("div").find("span:nth-child(2)").text(),
-														transportFlete = $("#m-second-listresume").find("li:nth-child(3)").find("div").find("span:nth-child(2)").text();
-														seguroFlete = $("#m-second-listresume").find("li:nth-child(4)").find("div").find("span:nth-child(2)").text();
+												var idcodequote = $("#v_gencodexxx").text() + " - " + v_loadtypecharge;
 
 												var objDataTxtWhatsapp = {
 													id: idcodequote,
-													tservice : typeFleteService,
-													tcontainer : typeFleteContainer,
-													fportorigin : fleteportOrigin,
-													fportdestiny : fleteportDestiny,
-													containtflete : contentFlete,
-													valmercanciaflete: valormercanciaFlete,
-													impuestosflete : impuestosFlete,
-													tranportflete : transportFlete,
-													seguroflete : seguroFlete
+													tservice : v_typeserviceinit,
+													tcontainer : v_floadTypeTranport,
+													containtflete : v_fpckgcontquant,
+													tservices: sumTotalServices,
+													// impuestosflete : impuestosFlete,
+													tranportflete : v_fplctopckloc
 												}
 
 												// ------------ AÑADIR LOS DATOS AL ENLACE DE WHATSAPP 
@@ -886,14 +844,11 @@ $(document).ready(function(){
 												ID:%20${objDataTxtWhatsapp.id}${wlinebreak}
 												Tipo%20Flete:%20${objDataTxtWhatsapp.tservice}${wlinebreak}
 												Tipo%20Contenedor:%20${objDataTxtWhatsapp.tcontainer}${wlinebreak}
-												Flete%20Origen:%20${objDataTxtWhatsapp.fportorigin}${wlinebreak}
-												Flete%20Destino:%20${objDataTxtWhatsapp.fportdestiny}${wlinebreak}
 												Contenido%20Flete:%20${objDataTxtWhatsapp.containtflete}${wlinebreak}
-												Valor%20Flete:%202136${wlinebreak}
-												Gastos:%20${objDataTxtWhatsapp.valmercanciaflete}${wlinebreak}
-												Impuestos:%20${objDataTxtWhatsapp.impuestosflete}${wlinebreak}
+												Valor%20Flete:%20${objDataTxtWhatsapp.tservices}${wlinebreak}
+												Gastos:%20SI${wlinebreak}
+												Impuestos:%20SI${wlinebreak}
 												Transporte:%20${objDataTxtWhatsapp.tranportflete}${wlinebreak}
-												Seguro:%20${objDataTxtWhatsapp.seguroflete}${wlinebreak}
 												Impuestos Aproximados:%20${twodecimals_FinalTax}`;
 												// whatsappMessage = window.encodeURIComponent(whatsappMessage);
 												$("#d-link-messagecontact").attr("href", `https://api.whatsapp.com/send?phone=51989874368&text=${whatsappMessage}`);
@@ -951,28 +906,16 @@ $(document).ready(function(){
 												$("#totalval_quoteFinal").html(`<span>${separate_point_FTotal},<sup>${partFinalDecimal_FTotal}</sup> USD</span>`);
 
 												// --------------- LISTAR DATOS PARA ENVIAR POR WHATSAPP
-												var idcodequote = $("#v_gencodexxx").text() + " - " + v_loadtypecharge, 
-														typeFleteService = $("#m-first-listresume").find("li:first-child").find("div").find("span:nth-child(2)").text(),
-														typeFleteContainer = $("#m-first-listresume").find("li:nth-child(2)").find("div").find("span:nth-child(2)").text(),
-														fleteportOrigin = $("#v-listportsOandD").find("span:first-child").text(),
-														fleteportDestiny = $("#v-listportsOandD").find("span:last-child").text(),
-														contentFlete = $("#m-first-listresume").find("li:nth-child(3)").find("div").find("p").find("span").text(),
-														valormercanciaFlete = $("#m-second-listresume").find("li:first-child").find("div").find("span:nth-child(2)").text(),
-														impuestosFlete = $("#m-second-listresume").find("li:nth-child(2)").find("div").find("span:nth-child(2)").text(),
-														transportFlete = $("#m-second-listresume").find("li:nth-child(3)").find("div").find("span:nth-child(2)").text();
-														seguroFlete = $("#m-second-listresume").find("li:nth-child(4)").find("div").find("span:nth-child(2)").text();
+												var idcodequote = $("#v_gencodexxx").text() + " - " + v_loadtypecharge;
 
 												var objDataTxtWhatsapp = {
 													id: idcodequote,
-													tservice : typeFleteService,
-													tcontainer : typeFleteContainer,
-													fportorigin : fleteportOrigin,
-													fportdestiny : fleteportDestiny,
-													containtflete : contentFlete,
-													valmercanciaflete: valormercanciaFlete,
-													impuestosflete : impuestosFlete,
-													tranportflete : transportFlete,
-													seguroflete : seguroFlete
+													tservice : v_typeserviceinit,
+													tcontainer : v_floadTypeTranport,
+													containtflete : v_fpckgcontquant,
+													tservices: sumTotalServices,
+													// impuestosflete : impuestosFlete,
+													tranportflete : v_fplctopckloc
 												}
 
 												// ------------ AÑADIR LOS DATOS AL ENLACE DE WHATSAPP 
@@ -982,14 +925,11 @@ $(document).ready(function(){
 												ID:%20${objDataTxtWhatsapp.id}${wlinebreak}
 												Tipo%20Flete:%20${objDataTxtWhatsapp.tservice}${wlinebreak}
 												Tipo%20Contenedor:%20${objDataTxtWhatsapp.tcontainer}${wlinebreak}
-												Flete%20Origen:%20${objDataTxtWhatsapp.fportorigin}${wlinebreak}
-												Flete%20Destino:%20${objDataTxtWhatsapp.fportdestiny}${wlinebreak}
 												Contenido%20Flete:%20${objDataTxtWhatsapp.containtflete}${wlinebreak}
-												Valor%20Flete:%202136${wlinebreak}
-												Gastos:%20${objDataTxtWhatsapp.valmercanciaflete}${wlinebreak}
-												Impuestos:%20${objDataTxtWhatsapp.impuestosflete}${wlinebreak}
+												Valor%20Flete:%20${objDataTxtWhatsapp.tservices}${wlinebreak}
+												Gastos:%20SI${wlinebreak}
+												Impuestos:%20SI${wlinebreak}
 												Transporte:%20${objDataTxtWhatsapp.tranportflete}${wlinebreak}
-												Seguro:%20${objDataTxtWhatsapp.seguroflete}${wlinebreak}
 												Impuestos Aproximados:%20${twodecimals_FinalTax}`;
 												// whatsappMessage = window.encodeURIComponent(whatsappMessage);
 												$("#d-link-messagecontact").attr("href", `https://api.whatsapp.com/send?phone=51989874368&text=${whatsappMessage}`);
