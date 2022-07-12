@@ -697,10 +697,11 @@ $(document).ready(function(){
 													tcontainer : v_floadTypeTranport.toUpperCase(),
 													fportorigin : fleteportOrigin,
 													fportdestiny : fleteportDestiny,
-													containtflete : contentFlete,
-													valmercanciaflete: valormercanciaFlete,
+													containtflete : v_fpckgcontquant,
+													tservices: totalNotround,
+													tfob: totalfinalvaluefob,
 													impuestosflete : impuestosFlete,
-													tranportflete : transportFlete,
+													tranportflete : v_fplctopckloc,
 													seguroflete : seguroFlete
 												}
 
@@ -714,8 +715,8 @@ $(document).ready(function(){
 												Flete%20Origen:%20${objDataTxtWhatsapp.fportorigin}${wlinebreak}
 												Flete%20Destino:%20${objDataTxtWhatsapp.fportdestiny}${wlinebreak}
 												Contenido%20Flete:%20${objDataTxtWhatsapp.containtflete}${wlinebreak}
-												Valor%20Flete:%202136${wlinebreak}
-												gastos:%20${objDataTxtWhatsapp.valmercanciaflete}${wlinebreak}
+												Valor%20Flete:%20${objDataTxtWhatsapp.tservices}${wlinebreak}
+												Gastos:%20${objDataTxtWhatsapp.tfob}${wlinebreak}
 												Impuestos:%20${objDataTxtWhatsapp.impuestosflete}${wlinebreak}
 												Transporte:%20${objDataTxtWhatsapp.tranportflete}${wlinebreak}
 												Seguro:%20${objDataTxtWhatsapp.seguroflete}${wlinebreak}
@@ -790,10 +791,11 @@ $(document).ready(function(){
 													tcontainer : v_floadTypeTranport.toUpperCase(),
 													fportorigin : fleteportOrigin,
 													fportdestiny : fleteportDestiny,
-													containtflete : contentFlete,
-													valmercanciaflete: valormercanciaFlete,
+													containtflete : v_fpckgcontquant,
+													tservices: totalNotround,
+													tfob: totalfinalvaluefob,
 													impuestosflete : impuestosFlete,
-													tranportflete : transportFlete,
+													tranportflete : v_fplctopckloc,
 													seguroflete : seguroFlete
 												}
 
@@ -807,8 +809,8 @@ $(document).ready(function(){
 												Flete%20Origen:%20${objDataTxtWhatsapp.fportorigin}${wlinebreak}
 												Flete%20Destino:%20${objDataTxtWhatsapp.fportdestiny}${wlinebreak}
 												Contenido%20Flete:%20${objDataTxtWhatsapp.containtflete}${wlinebreak}
-												Valor%20Flete:%202136${wlinebreak}
-												gastos:%20${objDataTxtWhatsapp.valmercanciaflete}${wlinebreak}
+												Valor%20Flete:%20${objDataTxtWhatsapp.tservices}${wlinebreak}
+												Gastos:%20${objDataTxtWhatsapp.tfob}${wlinebreak}
 												Impuestos:%20${objDataTxtWhatsapp.impuestosflete}${wlinebreak}
 												Transporte:%20${objDataTxtWhatsapp.tranportflete}${wlinebreak}
 												Seguro:%20${objDataTxtWhatsapp.seguroflete}${wlinebreak}
@@ -979,10 +981,11 @@ $(document).ready(function(){
 													tcontainer : v_floadTypeTranport.toUpperCase(),
 													fportorigin : fleteportOrigin,
 													fportdestiny : fleteportDestiny,
-													containtflete : contentFlete,
-													valmercanciaflete: valormercanciaFlete,
+													containtflete : v_fpckgcontquant,
+													tservices: totalNotround,
+													tfob: totalfinalvaluefob,
 													impuestosflete : impuestosFlete,
-													tranportflete : transportFlete,
+													tranportflete : v_fplctopckloc,
 													seguroflete : seguroFlete
 												}
 
@@ -996,8 +999,8 @@ $(document).ready(function(){
 												Flete%20Origen:%20${objDataTxtWhatsapp.fportorigin}${wlinebreak}
 												Flete%20Destino:%20${objDataTxtWhatsapp.fportdestiny}${wlinebreak}
 												Contenido%20Flete:%20${objDataTxtWhatsapp.containtflete}${wlinebreak}
-												Valor%20Flete:%202136${wlinebreak}
-												gastos:%20${objDataTxtWhatsapp.valmercanciaflete}${wlinebreak}
+												Valor%20Flete:%20${objDataTxtWhatsapp.tservices}${wlinebreak}
+												Gastos:%20${objDataTxtWhatsapp.tfob}${wlinebreak}
 												Impuestos:%20${objDataTxtWhatsapp.impuestosflete}${wlinebreak}
 												Transporte:%20${objDataTxtWhatsapp.tranportflete}${wlinebreak}
 												Seguro:%20${objDataTxtWhatsapp.seguroflete}${wlinebreak}
@@ -1072,10 +1075,11 @@ $(document).ready(function(){
 													tcontainer : v_floadTypeTranport.toUpperCase(),
 													fportorigin : fleteportOrigin,
 													fportdestiny : fleteportDestiny,
-													containtflete : contentFlete,
-													valmercanciaflete: valormercanciaFlete,
+													containtflete : v_fpckgcontquant,
+													tservices: totalNotround,
+													tfob: totalfinalvaluefob,
 													impuestosflete : impuestosFlete,
-													tranportflete : transportFlete,
+													tranportflete : v_fplctopckloc,
 													seguroflete : seguroFlete
 												}
 
@@ -1089,8 +1093,8 @@ $(document).ready(function(){
 												Flete%20Origen:%20${objDataTxtWhatsapp.fportorigin}${wlinebreak}
 												Flete%20Destino:%20${objDataTxtWhatsapp.fportdestiny}${wlinebreak}
 												Contenido%20Flete:%20${objDataTxtWhatsapp.containtflete}${wlinebreak}
-												Valor%20Flete:%202136${wlinebreak}
-												gastos:%20${objDataTxtWhatsapp.valmercanciaflete}${wlinebreak}
+												Valor%20Flete:%20${objDataTxtWhatsapp.tservices}${wlinebreak}
+												Gastos:%20${objDataTxtWhatsapp.tfob}${wlinebreak}
 												Impuestos:%20${objDataTxtWhatsapp.impuestosflete}${wlinebreak}
 												Transporte:%20${objDataTxtWhatsapp.tranportflete}${wlinebreak}
 												Seguro:%20${objDataTxtWhatsapp.seguroflete}${wlinebreak}

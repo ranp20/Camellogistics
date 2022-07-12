@@ -581,7 +581,7 @@ $(document).ready(function(){
 													typeservice : v_typeserviceinit.toUpperCase(),
 													tcontainer : v_floadTypeTranport.toUpperCase(),
 													containtflete : v_fpckgcontquant,
-													tservices: sumTotalServices,
+													tservices: totalNotround,
 													tfob: totalfinalvaluefob,
 													tranportflete : v_fplctopckloc
 												}
@@ -659,7 +659,7 @@ $(document).ready(function(){
 													typeservice : v_typeserviceinit.toUpperCase(),
 													tcontainer : v_floadTypeTranport.toUpperCase(),
 													containtflete : v_fpckgcontquant,
-													tservices: sumTotalServices,
+													tservices: totalNotround,
 													tfob: totalfinalvaluefob,
 													tranportflete : v_fplctopckloc
 												}
@@ -824,7 +824,7 @@ $(document).ready(function(){
 													typeservice : v_typeserviceinit.toUpperCase(),
 													tcontainer : v_floadTypeTranport.toUpperCase(),
 													containtflete : v_fpckgcontquant,
-													tservices: sumTotalServices,
+													tservices: totalNotround,
 													tfob: totalfinalvaluefob,
 													tranportflete : v_fplctopckloc
 												}
@@ -902,7 +902,7 @@ $(document).ready(function(){
 													typeservice : v_typeserviceinit.toUpperCase(),
 													tcontainer : v_floadTypeTranport.toUpperCase(),
 													containtflete : v_fpckgcontquant,
-													tservices: sumTotalServices,
+													tservices: totalNotround,
 													tfob: totalfinalvaluefob,
 													tranportflete : v_fplctopckloc
 												}
