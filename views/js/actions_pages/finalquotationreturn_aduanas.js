@@ -454,14 +454,6 @@ $(document).ready(function(){
 
 									user_sessquote = s_username_local.username;
 
-									var igv_calculate = convert_IGV * final_sumCIF;
-									var ipm_calculate = final_sumCIF * convert_IPM;
-									var impuestosel_calculate = 0;
-									var igvcalc_twodeci = myRound(igv_calculate);
-									var ipmcalc_twodeci = myRound(ipm_calculate);
-									var percepcion_calculate = (final_sumCIF + igvcalc_twodeci + ipmcalc_twodeci + impuestosel_calculate) * convert_Percepcion;
-									var percepcioncalc_twodeci = myRound(percepcion_calculate);
-
 									var formdata = new FormData();
 									formdata.append("id_codegenrand", v_idgencoderand);
 									formdata.append("u_login", user_sessquote);
@@ -497,9 +489,9 @@ $(document).ready(function(){
 									formdata.append("f_v_antidumping", v_fatthxyathreepcatg);
 									formdata.append("f_v_amm_comagency", comagencia_monto);
 									formdata.append("f_v_percent_comagency", comagencia_porcentaje);
-									formdata.append("f_IGV", igvcalc_twodeci);
-									formdata.append("f_IPM", ipmcalc_twodeci);
-									formdata.append("f_percepcion", percepcioncalc_twodeci);
+									formdata.append("f_IGV", finalval_IGV);
+									formdata.append("f_IPM", finalval_IPM);
+									formdata.append("f_percepcion", finalval_percepcion);
 									formdata.append("f_ad_valoren", finalval_Ad_valoren);
 									formdata.append("f_impuesto_selectivo", finalval_i_selectivo);
 									formdata.append("f_antidumping", finalval_antidumping);
@@ -741,14 +733,6 @@ $(document).ready(function(){
 									});
 								}else if($("#s_useregin-sistem").val() != "" || $("#s_useregin-sistem").val() != undefined || $("#s_useregin-sistem").val() != 'undefined' || $("#s_useregin-sistem").val() != null || $("#s_useregin-sistem").val() != 'null'){
 
-									var igv_calculate = convert_IGV * final_sumCIF;
-									var ipm_calculate = final_sumCIF * convert_IPM;
-									var impuestosel_calculate = 0;
-									var igvcalc_twodeci = myRound(igv_calculate);
-									var ipmcalc_twodeci = myRound(ipm_calculate);
-									var percepcion_calculate = (final_sumCIF + igvcalc_twodeci + ipmcalc_twodeci + impuestosel_calculate) * convert_Percepcion;
-									var percepcioncalc_twodeci = myRound(percepcion_calculate);
-
 									var formdata = new FormData();
 									formdata.append("id_codegenrand", v_idgencoderand);
 									formdata.append("u_login", $("#s_useregin-sistem").val());
@@ -784,9 +768,9 @@ $(document).ready(function(){
 									formdata.append("f_v_antidumping", v_fatthxyathreepcatg);
 									formdata.append("f_v_amm_comagency", comagencia_monto);
 									formdata.append("f_v_percent_comagency", comagencia_porcentaje);
-									formdata.append("f_IGV", igvcalc_twodeci);
-									formdata.append("f_IPM", ipmcalc_twodeci);
-									formdata.append("f_percepcion", percepcioncalc_twodeci);
+									formdata.append("f_IGV", finalval_IGV);
+									formdata.append("f_IPM", finalval_IPM);
+									formdata.append("f_percepcion", finalval_percepcion);
 									formdata.append("f_ad_valoren", finalval_Ad_valoren);
 									formdata.append("f_impuesto_selectivo", finalval_i_selectivo);
 									formdata.append("f_antidumping", finalval_antidumping);
