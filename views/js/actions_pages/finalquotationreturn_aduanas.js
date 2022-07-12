@@ -577,7 +577,7 @@ $(document).ready(function(){
 
 												// --------------- LISTAR DATOS PARA ENVIAR POR WHATSAPP
 												var objDataTxtWhatsapp = {
-													id: $("#v_gencodexxx").text() + " - " + idcodequote,
+													id: $("#v_gencodexxx").text() + " - " + v_loadtypecharge,
 													tservice : v_typeserviceinit,
 													tcontainer : v_floadTypeTranport.toUpperCase(),
 													containtflete : v_fpckgcontquant,
@@ -655,7 +655,7 @@ $(document).ready(function(){
 
 												// --------------- LISTAR DATOS PARA ENVIAR POR WHATSAPP
 												var objDataTxtWhatsapp = {
-													id: $("#v_gencodexxx").text() + " - " + idcodequote,
+													id: $("#v_gencodexxx").text() + " - " + v_loadtypecharge,
 													tservice : v_typeserviceinit,
 													tcontainer : v_floadTypeTranport.toUpperCase(),
 													containtflete : v_fpckgcontquant,
@@ -820,7 +820,7 @@ $(document).ready(function(){
 
 												// --------------- LISTAR DATOS PARA ENVIAR POR WHATSAPP
 												var objDataTxtWhatsapp = {
-													id: $("#v_gencodexxx").text() + " - " + idcodequote,
+													id: $("#v_gencodexxx").text() + " - " + v_loadtypecharge,
 													tservice : v_typeserviceinit,
 													tcontainer : v_floadTypeTranport.toUpperCase(),
 													containtflete : v_fpckgcontquant,
@@ -898,7 +898,7 @@ $(document).ready(function(){
 
 												// --------------- LISTAR DATOS PARA ENVIAR POR WHATSAPP
 												var objDataTxtWhatsapp = {
-													id: $("#v_gencodexxx").text() + " - " + idcodequote,
+													id: $("#v_gencodexxx").text() + " - " + v_loadtypecharge,
 													tservice : v_typeserviceinit,
 													tcontainer : v_floadTypeTranport.toUpperCase(),
 													containtflete : v_fpckgcontquant,
