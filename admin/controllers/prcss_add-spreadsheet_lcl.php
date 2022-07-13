@@ -104,7 +104,11 @@ if(isset($_FILES) && isset($_POST)){
 
 					/************************** ENVIAR LA HOJA DE CÁLCULO A GUARDAR **************************/
 					$file_name = $_FILES['spreadsheetlcl']['name'];
-					$file_lowercase = strtolower($file_name);
+					$file_parts = pathinfo($file_name);
+					$file_dirname = $file_parts['filename'];
+					$date_current = date("d-m-Y");
+					$file_extension = $file_parts['extension'];
+					$file_lowercase = strtolower($file_dirname) . "_" . $date_current . "." . $file_extension;
 					$file_origin = $_FILES['spreadsheetlcl']['tmp_name'];
 					$file_folder = "../views/assets/spreadsheets/lcl/";
 
@@ -148,132 +152,6 @@ if(isset($_FILES) && isset($_POST)){
 						);
 					}
 
-					/*
-					$ilistid = 0;
-					$arrupdated = [];
-
-					for ($i = 6; $i < $numberrows; $i++){
-						$countryOrigin = $archivoExcel->getActiveSheet()->getCell('A'.$i)->getCalculatedValue();
-						$portOrigin = $archivoExcel->getActiveSheet()->getCell('B'.$i)->getCalculatedValue();
-						$portDestiny = $archivoExcel->getActiveSheet()->getCell('C'.$i)->getCalculatedValue();
-						$max5cbm = $archivoExcel->getActiveSheet()->getCell('D'.$i)->getCalculatedValue();
-						$total5cbm = $archivoExcel->getActiveSheet()->getCell('E'.$i)->getCalculatedValue();
-						$max15cbm = $archivoExcel->getActiveSheet()->getCell('F'.$i)->getCalculatedValue();
-						$total15cbm = $archivoExcel->getActiveSheet()->getCell('G'.$i)->getCalculatedValue();
-						$amount_imo = $archivoExcel->getActiveSheet()->getCell('H'.$i)->getCalculatedValue();
-						$total_imo = $archivoExcel->getActiveSheet()->getCell('I'.$i)->getCalculatedValue();
-						$amount_refrigerado = $archivoExcel->getActiveSheet()->getCell('J'.$i)->getCalculatedValue();
-						$total_refrigerado = $archivoExcel->getActiveSheet()->getCell('K'.$i)->getCalculatedValue();
-						$frecuencies = $archivoExcel->getActiveSheet()->getCell('L'.$i)->getCalculatedValue();
-						$ttaprox = $archivoExcel->getActiveSheet()->getCell('M'.$i)->getCalculatedValue();
-						$cooloder = $archivoExcel->getActiveSheet()->getCell('N'.$i)->getCalculatedValue();
-					
-						if($countryOrigin != "" || $portOrigin != "" || $portDestiny != "" || $max5cbm != "" || $total5cbm != ""){
-							
-							array_push($arrupdated, 
-												[
-													$countryOrigin, 
-													$portOrigin,	
-													$portDestiny,	
-													$max5cbm,	
-													$total5cbm,	
-													$max15cbm, 
-													$total15cbm,
-													$amount_imo,
-													$total_imo,
-													$amount_refrigerado,
-													$total_refrigerado,
-													$frecuencies,
-													$ttaprox, 
-													$cooloder
-												]);
-
-						}
-					}
-
-					// ------------ RECORRER LOS IDs Y ACTUALIZAR LOS REGISTROS PREVIOS
-					while ($ilistid < count($arrupdated)) {
-						// ------------ ACTUALIZAR LA INFORMACIÓN DE LA HOJA DE CÁLCULO
-						$sql = "UPDATE tbl_rate_lcl SET
-						country_origin = '".$arrupdated[$ilistid][0]."', 
-						port_origin = '".$arrupdated[$ilistid][1]."', 
-						port_destiny = '".$arrupdated[$ilistid][2]."', 
-						hasta5cbm = '".$arrupdated[$ilistid][3]."', 
-						total5cbm = '".$arrupdated[$ilistid][4]."', 
-						hasta15cbm = '".$arrupdated[$ilistid][5]."', 
-						total15cbm = '".$arrupdated[$ilistid][6]."',
-						amount_imo = '".$arrupdated[$ilistid][7]."',
-						total_imo = '".$arrupdated[$ilistid][8]."',
-						amount_refrigerado = '".$arrupdated[$ilistid][9]."',
-						total_refrigerado = '".$arrupdated[$ilistid][10]."',
-						frecuencia = '".$arrupdated[$ilistid][11]."', 
-						tt_aprox = '".$arrupdated[$ilistid][12]."', 
-						cooloder = '".$arrupdated[$ilistid][13]."', 
-						validdesde = '".$_POST['validdesdelcl']."', 
-						validhasta = '".$_POST['validhastalcl']."',
-						utility = ".$_POST['utilitylcl']." WHERE id = ".$listids[$ilistid]['id']."";
-						$result = $con_u->prepare($sql);
-						$result->execute();
-
-						if($result == true){
-							$r = array(
-								'res' => 'updated'
-							);
-						}else{
-							$r = array(
-								'res' => 'false'
-							);
-						}
-						$ilistid++;
-					}
-
-					// ------------ ENVIAR LA HOJA DE CÁLCULO A GUARDAR
-					$file_name = $_FILES['spreadsheetlcl']['name'];
-					$file_lowercase = strtolower($file_name);
-					$file_origin = $_FILES['spreadsheetlcl']['tmp_name'];
-					$file_folder = "../views/assets/spreadsheets/lcl/";
-
-					if(move_uploaded_file($file_origin, $file_folder . $file_lowercase)){
-						$sql = "CALL sp_add_spreadsheet_rate_lcl(:spreadsheet)";
-						$stm = $con_u->prepare($sql);
-						$stm->bindValue(":spreadsheet", $file_name);
-						$stm->execute();
-						if($stm == true){
-							$r = array(
-								'res' => 'updated'
-							);
-						}else{
-							$r = array(
-								'res' => 'false'
-							);
-						}
-						
-					}else{
-						echo "Error fatal";
-					}
-
-					// ------------ AGREGAR A LA TABLA - LÍNEA DE TIEMPO DE CAMBIOS EN UTILIDAD 
-					$sql = "INSERT INTO tbl_utility_rate_lcl(
-					utility,
-					val_desde,
-					val_hasta)
-					VALUES 
-					(".$_POST['utilitylcl'].",
-					'".$_POST['validdesdelcl']."', 
-					'".$_POST['validhastalcl']."')";
-					$result = $con_u->prepare($sql);
-					$result->execute();
-
-					if($result == true){
-						$r = array(
-							'res' => 'updated'
-						);
-					}else{
-						$r = array(
-							'res' => 'false'
-						);
-					}
-					*/
 				}else{
 					$r = array(
 						'res' => 'false'
@@ -356,7 +234,11 @@ if(isset($_FILES) && isset($_POST)){
 
 				/************************** ENVIAR LA HOJA DE CÁLCULO A GUARDAR **************************/
 				$file_name = $_FILES['spreadsheetlcl']['name'];
-				$file_lowercase = strtolower($file_name);
+				$file_parts = pathinfo($file_name);
+				$file_dirname = $file_parts['filename'];
+				$date_current = date("d-m-Y");
+				$file_extension = $file_parts['extension'];
+				$file_lowercase = strtolower($file_dirname) . "_" . $date_current . "." . $file_extension;
 				$file_origin = $_FILES['spreadsheetlcl']['tmp_name'];
 				$file_folder = "../views/assets/spreadsheets/lcl/";
 

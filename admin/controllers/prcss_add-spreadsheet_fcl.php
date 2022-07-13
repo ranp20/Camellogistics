@@ -98,9 +98,14 @@ if(isset($_FILES) && isset($_POST)){
 
 					/************************** ENVIAR LA HOJA DE CÁLCULO A GUARDAR **************************/
 					$file_name = $_FILES['spreadsheetfcl']['name'];
-					$file_lowercase = strtolower($file_name);
+					$file_parts = pathinfo($file_name);
+					$file_dirname = $file_parts['filename'];
+					$date_current = date("d-m-Y");
+					$file_extension = $file_parts['extension'];
+					$file_lowercase = strtolower($file_dirname) . "_" . $date_current . "." . $file_extension;
 					$file_origin = $_FILES['spreadsheetfcl']['tmp_name'];
 					$file_folder = "../views/assets/spreadsheets/fcl/";
+
 
 					if(move_uploaded_file($file_origin, $file_folder . $file_lowercase)){
 						$sql = "CALL sp_add_spreadsheet_rate_fcl(:spreadsheet)";
@@ -146,128 +151,6 @@ if(isset($_FILES) && isset($_POST)){
 						'res' => 'false'
 					);
 				}
-				/*
-				$ilistid = 0;
-				$arrupdated = [];
-
-				for ($i = 6; $i < $numberrows; $i++){
-					$countryOrigin = $archivoExcel->getActiveSheet()->getCell('A'.$i)->getCalculatedValue();
-					$portOrigin = $archivoExcel->getActiveSheet()->getCell('B'.$i)->getCalculatedValue();
-					$portDestiny = $archivoExcel->getActiveSheet()->getCell('C'.$i)->getCalculatedValue();
-					$container = $archivoExcel->getActiveSheet()->getCell('D'.$i)->getCalculatedValue();
-					$amount_general = $archivoExcel->getActiveSheet()->getCell('E'.$i)->getCalculatedValue();
-					$totalamount_general = $archivoExcel->getActiveSheet()->getCell('F'.$i)->getCalculatedValue();
-					$amount_imo = $archivoExcel->getActiveSheet()->getCell('G'.$i)->getCalculatedValue();
-					$totalamount_imo = $archivoExcel->getActiveSheet()->getCell('H'.$i)->getCalculatedValue();
-					$amount_refrigerado = $archivoExcel->getActiveSheet()->getCell('I'.$i)->getCalculatedValue();
-					$totalamount_refrigerado = $archivoExcel->getActiveSheet()->getCell('J'.$i)->getCalculatedValue();
-					$naviera = $archivoExcel->getActiveSheet()->getCell('K'.$i)->getCalculatedValue();
-					//$validez = $archivoExcel->getActiveSheet()->getCell('L'.$i)->getCalculatedValue();
-					$cooloder = $archivoExcel->getActiveSheet()->getCell('M'.$i)->getCalculatedValue();
-				
-					if($countryOrigin != "" || $portOrigin != "" || $portDestiny != "" || $container != "" || $totalamount_general != ""){
-						
-						array_push($arrupdated, 
-											[
-												$countryOrigin, 
-												$portOrigin,	
-												$portDestiny,	
-												$container,	
-												$amount_general,
-												$totalamount_general,
-												$amount_imo,
-												$totalamount_imo,
-												$amount_refrigerado,
-												$totalamount_refrigerado,
-												$naviera, 
-												$cooloder
-											]
-											);
-
-					}
-				}
-
-				// ------------ RECORRER LOS IDs Y ACTUALIZAR LOS REGISTROS PREVIOS
-				while ($ilistid < count($arrupdated)) {
-					// ------------ ACTUALIZAR LA INFORMACIÓN DE LA HOJA DE CÁLCULO
-					$sql = "UPDATE tbl_rate_fcl SET
-					country_origin = '".$arrupdated[$ilistid][0]."', 
-					port_origin = '".$arrupdated[$ilistid][1]."', 
-					port_destiny = '".$arrupdated[$ilistid][2]."', 
-					container = '".$arrupdated[$ilistid][3]."', 
-					monto_general = '".$arrupdated[$ilistid][4]."', 
-					total_general = '".$arrupdated[$ilistid][5]."',
-					monto_imo = '".$arrupdated[$ilistid][6]."', 
-					total_imo = '".$arrupdated[$ilistid][7]."',
-					monto_refrigerado = '".$arrupdated[$ilistid][8]."', 
-					total_refrigerado = '".$arrupdated[$ilistid][9]."',
-					naviera = '".$arrupdated[$ilistid][10]."', 
-					cooloder = '".$arrupdated[$ilistid][11]."', 
-					validdesde = '".$_POST['validdesdefcl']."', 
-					validhasta = '".$_POST['validhastafcl']."',
-					utility = ".$_POST['utilityfcl']." WHERE id = ".$listids[$ilistid]['id']."";
-					$result = $con_u->prepare($sql);
-					$result->execute();
-
-					if($result == true){
-						$r = array(
-							'res' => 'updated'
-						);
-					}else{
-						$r = array(
-							'res' => 'false'
-						);
-					}
-					$ilistid++;
-				}
-
-				// ------------ ENVIAR LA HOJA DE CÁLCULO A GUARDAR
-				$file_name = $_FILES['spreadsheetfcl']['name'];
-				$file_lowercase = strtolower($file_name);
-				$file_origin = $_FILES['spreadsheetfcl']['tmp_name'];
-				$file_folder = "../views/assets/spreadsheets/fcl/";
-
-				if(move_uploaded_file($file_origin, $file_folder . $file_lowercase)){
-					$sql = "CALL sp_add_spreadsheet_rate_fcl(:spreadsheet)";
-					$stm = $con_u->prepare($sql);
-					$stm->bindValue(":spreadsheet", $file_name);
-					$stm->execute();
-					if($stm == true){
-						$r = array(
-							'res' => 'updated'
-						);
-					}else{
-						$r = array(
-							'res' => 'false'
-						);
-					}
-					
-				}else{
-					echo "Error fatal";
-				}
-
-				// ------------ AGREGAR A LA TABLA - LÍNEA DE TIEMPO DE CAMBIOS EN UTILIDAD
-				$sql = "INSERT INTO tbl_utility_rate_fcl(
-				utility,
-				val_desde,
-				val_hasta)
-				VALUES 
-				(".$_POST['utilityfcl'].",
-				'".$_POST['validdesdefcl']."', 
-				'".$_POST['validhastafcl']."')";
-				$result = $con_u->prepare($sql);
-				$result->execute();
-
-				if($result == true){
-					$r = array(
-						'res' => 'updated'
-					);
-				}else{
-					$r = array(
-						'res' => 'false'
-					);
-				}
-				*/
 				//echo "Existen datos en la tabla";
 			}else{
 				//echo "No hay datos en la tabla";
@@ -338,7 +221,11 @@ if(isset($_FILES) && isset($_POST)){
 
 				/************************** ENVIAR LA HOJA DE CÁLCULO A GUARDAR **************************/
 				$file_name = $_FILES['spreadsheetfcl']['name'];
-				$file_lowercase = strtolower($file_name);
+				$file_parts = pathinfo($file_name);
+				$file_dirname = $file_parts['filename'];
+				$date_current = date("d-m-Y");
+				$file_extension = $file_parts['extension'];
+				$file_lowercase = strtolower($file_dirname) . "_" . $date_current . "." . $file_extension;
 				$file_origin = $_FILES['spreadsheetfcl']['tmp_name'];
 				$file_folder = "../views/assets/spreadsheets/fcl/";
 
