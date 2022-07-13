@@ -115,7 +115,7 @@ if(isset($_FILES) && isset($_POST)){
 					if(move_uploaded_file($file_origin, $file_folder . $file_lowercase)){
 						$sql = "CALL sp_add_spreadsheet_rate_lcl(:spreadsheet)";
 						$stm = $con_u->prepare($sql);
-						$stm->bindValue(":spreadsheet", $file_name);
+						$stm->bindValue(":spreadsheet", $file_lowercase);
 						$stm->execute();
 						if($stm == true){
 							$r = array(
@@ -245,7 +245,7 @@ if(isset($_FILES) && isset($_POST)){
 				if(move_uploaded_file($file_origin, $file_folder . $file_lowercase)){
 					$sql = "CALL sp_add_spreadsheet_rate_lcl(:spreadsheet)";
 					$stm = $con_u->prepare($sql);
-					$stm->bindValue(":spreadsheet", $file_name);
+					$stm->bindValue(":spreadsheet", $file_lowercase);
 					$stm->execute();
 					if($stm == true){
 						$r = array(
