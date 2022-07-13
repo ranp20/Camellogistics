@@ -2,6 +2,10 @@ $(() => {
   listAllProducts();
   list_certiconform();
 });
+// ------------ VARIABLES - CERTIFICADO DE CONFORMIDAD
+var fichacert_min = "";
+var fichacert_max = "";
+var fichacert_quantity = "";
 // ------------ LISTAR EL VALOR DE FICHA TÉCNICA Y CERTIFICADO DE CONFORMIDAD
 function list_certiconform(){ 
   $.ajax({
@@ -15,12 +19,9 @@ function list_certiconform(){
       let v_min = r[0].data_value; // Monto MENOR a 10 unidades
       let v_max = r[1].data_value; // Monto MAYOR a 10 unidades
       let v_quantity = r[2].data_value; // Cantidad a validar
-      $("#chck_fichatecycertconform").attr("data-fichacert-min", v_min);
-      $("#chck_fichatecycertconform-update").attr("data-fichacert-min", v_min);
-      $("#chck_fichatecycertconform").attr("data-fichacert-max", v_max);
-      $("#chck_fichatecycertconform-update").attr("data-fichacert-max", v_max);
-      $("#chck_fichatecycertconform").attr("data-fichacert-quantity", v_quantity);
-      $("#chck_fichatecycertconform-update").attr("data-fichacert-quantity", v_quantity);
+      fichacert_min = v_min;
+      fichacert_max = v_max;
+      fichacert_quantity = v_quantity;
     }else{
       console.log('Lo sentimos, hubo un error al procesar la información.');
     }
@@ -187,9 +188,6 @@ $(document).on("input keyup","#taxtwoadditional",function(e){(e.target.value == 
 $(document).on("input keyup","#taxthreeadditional",function(e){(e.target.value == 0 || e.target.value == "") ? $("#msgErrNounTaxThreeAdditionalProduct").text("Debe colocar un monto") : $("#msgErrNounTaxThreeAdditionalProduct").text("");});
 // ------------ FICHA TÉCNICA Y CERTIFICADO DE CONFORMIDAD - AGREGAR
 $(document).on("click","#chck_fichatecycertconform",function(e){
-  var fichacert_min = $(this).attr("data-fichacert-min");
-  var fichacert_max = $(this).attr("data-fichacert-max");
-  var fichacert_quantity = $(this).attr("data-fichacert-quantity");
   if($(this).is(":checked")){
     $(this).attr("data-fichacert-min-send", fichacert_min);
     $(this).attr("data-fichacert-max-send", fichacert_max);
@@ -865,9 +863,6 @@ $(document).on("click","#chck_taxadditional-update",function(e){
 });
 // ------------ FICHA TÉCNICA Y CERTIFICADO DE CONFORMIDAD - ACTUALIZAR
 $(document).on("click","#chck_fichatecycertconform-update",function(e){
-  var fichacert_min = $(this).attr("data-fichacert-min");
-  var fichacert_max = $(this).attr("data-fichacert-max");
-  var fichacert_quantity = $(this).attr("data-fichacert-quantity");
   if($(this).is(":checked")){
     $(this).attr("data-fichacert-min-send", fichacert_min);
     $(this).attr("data-fichacert-max-send", fichacert_max);
@@ -947,14 +942,12 @@ $(document).on('click', '.btn-update-detail', function(e){
     $('#idupdate-product').val(item_data['id']);
     $('#name-update').val(item_data['name']);
     $('#required_regsoptupdate').val(item_data['sel_regulated']);
-    // $('#required_ammadditionalupdate').val(item_data['sel_ammadditional']);
     $('#required_taxadditionalupdate').val(item_data['sel_taxadditional']);
     $("#required_sel_fichatecycertconform").val(item_data['sel_fichatecycertconform']);
     $("#required_idregulatorupdate").val(item_data['idregulator']);
     $("#required_regulatorupdate").val(item_data['regulatorone']);
     $("#required_idregulator_twoupdate").val(item_data['idregulatortwo']);
     $("#required_regulator_twoupdate").val(item_data['regulatortwo']);
-    // $("#required_ammountadditinalupdate").val(item_data['amountadditional']);
     $("#required_advalorenupdate").val(item_data['pricetadditional_one']);
     $("#required_impuestoselectivoupdate").val(item_data['pricetadditional_two']);
     $("#required_antidumpingupdate").val(item_data['pricetadditional_three']);
@@ -1049,16 +1042,19 @@ $(document).on('click', '.btn-update-detail', function(e){
       $("#txt-chck_taxadditional-update").removeClass("active");
     }
     // ------------ MOSTRAR EL CHECKBOX SELECCIONADO O NO - FICHA TÉCNICA Y CERTIFICADO DE CONFORMIDAD
-    var data_certiconform = $("#chck_fichatecycertconform-update").attr("data-fichacert-min");
     if(item_data['sel_fichatecycertconform'] == "NO"){
       $("#chck_fichatecycertconform-update").attr("checked", false);
       $("#chck_fichatecycertconform-update").attr("data-fichacert-min-send", "");
+      $("#chck_fichatecycertconform-update").attr("data-fichacert-max-send", "");
+      $("#chck_fichatecycertconform-update").attr("data-fichacert-quantity-send", "");
       $("#chck_fichatecycertconform-update").val("NO");
       $("#txt-chck_fichatecycertconform-update").text("NO");
       $("#txt-chck_fichatecycertconform-update").removeClass("active");
     }else{
       $("#chck_fichatecycertconform-update").attr("checked", "checked");
-      $("#chck_fichatecycertconform-update").attr("data-fichacert-min-send", data_certiconform);
+      $("#chck_fichatecycertconform-update").attr("data-fichacert-min-send", fichacert_min);
+      $("#chck_fichatecycertconform-update").attr("data-fichacert-max-send", fichacert_max);
+      $("#chck_fichatecycertconform-update").attr("data-fichacert-quantity-send", fichacert_quantity);
       $("#chck_fichatecycertconform-update").val("SI");
       $("#txt-chck_fichatecycertconform-update").text("SI");
       $("#txt-chck_fichatecycertconform-update").addClass("active");
