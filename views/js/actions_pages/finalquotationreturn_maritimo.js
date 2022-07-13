@@ -214,6 +214,8 @@ $(document).ready(function(){
   var totalfinalvaluedownload = parseFloat(twodecimals(receiveddownload)); //TOTAL DE VALOR DE DESCARGA
   var totalftecycertconform = parseFloat(v_fficycertvloprtnpcatg); // VALOR DE REFERENCIA FICHA T. Y CERTIFICADO DE CONFORMIDAD
   var totalfirstoperfycert = totalftecycertconform * parseInt(v_fquaprcataadd); // TOTAL FICHA T. Y CERTIFICADO DE CONFORMIDAD
+  // ------------ VALORES DE TEXTO
+  var txt_quantityprod = "";
 	// LLAMAR A LOS VALORES DE ASEGURAMIENTO, METER LOS VALORES DENTRO DEL AJAX DE TAXATION O CREAR VARIABLES GLOBALES Y USARLAS
 	$.ajax({
     url: "controllers/list_insurancevalues.php",
@@ -572,6 +574,7 @@ $(document).ready(function(){
 									formdata.append("f_destiny", portDestinyName);
 									formdata.append("f_desc_w_v", v_fpckgcontquant);
 									formdata.append("f_weight_v", v_ftcomparweacbm);
+									formdata.append("f_quantity_prod", v_fquaprcataadd);
 									formdata.append("f_translocation", v_fplctopckloc);
 									formdata.append("f_time_transit", v_ftaproxtransbycont);
 									formdata.append("f_fob", totalfinalvaluefob);
@@ -683,6 +686,16 @@ $(document).ready(function(){
 												$("#totalval_quoteFinal").html(`<span>${separate_point_FTotal},<sup>${partFinalDecimal_FTotal}</sup> USD</span>`);
 
 												// --------------- LISTAR DATOS PARA ENVIAR POR WHATSAPP
+												if(v_fquaprcataadd != "" && v_fquaprcataadd != 0){
+													if(parseInt(v_fquaprcataadd) > 1){
+														txt_quantityprod = "%20/%20"+v_fquaprcataadd+"%20UNIDADES";
+													}else{
+														txt_quantityprod = "%20/%20"+v_fquaprcataadd+"%20UNIDAD";
+													}
+												}else{
+													txt_quantityprod = "";
+												}
+
 												var objDataTxtWhatsapp = {
 													id: $("#v_gencodexxx").text() + " - " + v_loadtypecharge,
 													typeservice : v_typeserviceinit.toUpperCase(),
@@ -690,6 +703,7 @@ $(document).ready(function(){
 													fportorigin : portOriginName,
 													fportdestiny : portDestinyName,
 													containtflete : v_fpckgcontquant,
+													quantityprod: txt_quantityprod,
 													tservices: totalNotround,
 													tfob: totalfinalvaluefob,
 													impuestosflete : (v_foptgnfquotevl == "y-moreOpts") ? "SÍ" : "NO",
@@ -706,7 +720,7 @@ $(document).ready(function(){
 												Tipo%20Contenedor:%20${objDataTxtWhatsapp.tcontainer}${wlinebreak}
 												Flete%20Origen:%20${objDataTxtWhatsapp.fportorigin}${wlinebreak}
 												Flete%20Destino:%20${objDataTxtWhatsapp.fportdestiny}${wlinebreak}
-												Contenido%20Flete:%20${objDataTxtWhatsapp.containtflete}${wlinebreak}
+												Contenido%20Flete:%20${objDataTxtWhatsapp.containtflete}${objDataTxtWhatsapp.quantityprod}${wlinebreak}
 												Valor%20Flete:%20${objDataTxtWhatsapp.tservices}${wlinebreak}
 												Gastos:%20${objDataTxtWhatsapp.tfob}${wlinebreak}
 												Impuestos:%20${objDataTxtWhatsapp.impuestosflete}${wlinebreak}
@@ -769,6 +783,16 @@ $(document).ready(function(){
 												$("#totalval_quoteFinal").html(`<span>${separate_point_FTotal},<sup>${partFinalDecimal_FTotal}</sup> USD</span>`);
 
 												// --------------- LISTAR DATOS PARA ENVIAR POR WHATSAPP
+												if(v_fquaprcataadd != "" && v_fquaprcataadd != 0){
+													if(parseInt(v_fquaprcataadd) > 1){
+														txt_quantityprod = "%20/%20"+v_fquaprcataadd+"%20UNIDADES";
+													}else{
+														txt_quantityprod = "%20/%20"+v_fquaprcataadd+"%20UNIDAD";
+													}
+												}else{
+													txt_quantityprod = "";
+												}
+
 												var objDataTxtWhatsapp = {
 													id: $("#v_gencodexxx").text() + " - " + v_loadtypecharge,
 													typeservice : v_typeserviceinit.toUpperCase(),
@@ -776,6 +800,7 @@ $(document).ready(function(){
 													fportorigin : portOriginName,
 													fportdestiny : portDestinyName,
 													containtflete : v_fpckgcontquant,
+													quantityprod: txt_quantityprod,
 													tservices: totalNotround,
 													tfob: totalfinalvaluefob,
 													impuestosflete : (v_foptgnfquotevl == "y-moreOpts") ? "SÍ" : "NO",
@@ -792,7 +817,7 @@ $(document).ready(function(){
 												Tipo%20Contenedor:%20${objDataTxtWhatsapp.tcontainer}${wlinebreak}
 												Flete%20Origen:%20${objDataTxtWhatsapp.fportorigin}${wlinebreak}
 												Flete%20Destino:%20${objDataTxtWhatsapp.fportdestiny}${wlinebreak}
-												Contenido%20Flete:%20${objDataTxtWhatsapp.containtflete}${wlinebreak}
+												Contenido%20Flete:%20${objDataTxtWhatsapp.containtflete}${objDataTxtWhatsapp.quantityprod}${wlinebreak}
 												Valor%20Flete:%20${objDataTxtWhatsapp.tservices}${wlinebreak}
 												Gastos:%20${objDataTxtWhatsapp.tfob}${wlinebreak}
 												Impuestos:%20${objDataTxtWhatsapp.impuestosflete}${wlinebreak}
@@ -840,6 +865,7 @@ $(document).ready(function(){
 									formdata.append("f_destiny", portDestinyName);
 									formdata.append("f_desc_w_v", v_fpckgcontquant);
 									formdata.append("f_weight_v", v_ftcomparweacbm);
+									formdata.append("f_quantity_prod", v_fquaprcataadd);
 									formdata.append("f_translocation", v_fplctopckloc);
 									formdata.append("f_time_transit", v_ftaproxtransbycont);
 									formdata.append("f_fob", totalfinalvaluefob);
@@ -951,6 +977,16 @@ $(document).ready(function(){
 												$("#totalval_quoteFinal").html(`<span>${separate_point_FTotal},<sup>${partFinalDecimal_FTotal}</sup> USD</span>`);
 
 												// --------------- LISTAR DATOS PARA ENVIAR POR WHATSAPP
+												if(v_fquaprcataadd != "" && v_fquaprcataadd != 0){
+													if(parseInt(v_fquaprcataadd) > 1){
+														txt_quantityprod = "%20/%20"+v_fquaprcataadd+"%20UNIDADES";
+													}else{
+														txt_quantityprod = "%20/%20"+v_fquaprcataadd+"%20UNIDAD";
+													}
+												}else{
+													txt_quantityprod = "";
+												}
+
 												var objDataTxtWhatsapp = {
 													id: $("#v_gencodexxx").text() + " - " + v_loadtypecharge,
 													typeservice : v_typeserviceinit.toUpperCase(),
@@ -958,6 +994,7 @@ $(document).ready(function(){
 													fportorigin : portOriginName,
 													fportdestiny : portDestinyName,
 													containtflete : v_fpckgcontquant,
+													quantityprod: txt_quantityprod,
 													tservices: totalNotround,
 													tfob: totalfinalvaluefob,
 													impuestosflete : (v_foptgnfquotevl == "y-moreOpts") ? "SÍ" : "NO",
@@ -974,7 +1011,7 @@ $(document).ready(function(){
 												Tipo%20Contenedor:%20${objDataTxtWhatsapp.tcontainer}${wlinebreak}
 												Flete%20Origen:%20${objDataTxtWhatsapp.fportorigin}${wlinebreak}
 												Flete%20Destino:%20${objDataTxtWhatsapp.fportdestiny}${wlinebreak}
-												Contenido%20Flete:%20${objDataTxtWhatsapp.containtflete}${wlinebreak}
+												Contenido%20Flete:%20${objDataTxtWhatsapp.containtflete}${objDataTxtWhatsapp.quantityprod}${wlinebreak}
 												Valor%20Flete:%20${objDataTxtWhatsapp.tservices}${wlinebreak}
 												Gastos:%20${objDataTxtWhatsapp.tfob}${wlinebreak}
 												Impuestos:%20${objDataTxtWhatsapp.impuestosflete}${wlinebreak}
@@ -1037,6 +1074,16 @@ $(document).ready(function(){
 												$("#totalval_quoteFinal").html(`<span>${separate_point_FTotal},<sup>${partFinalDecimal_FTotal}</sup> USD</span>`);
 
 												// --------------- LISTAR DATOS PARA ENVIAR POR WHATSAPP
+												if(v_fquaprcataadd != "" && v_fquaprcataadd != 0){
+													if(parseInt(v_fquaprcataadd) > 1){
+														txt_quantityprod = "%20/%20"+v_fquaprcataadd+"%20UNIDADES";
+													}else{
+														txt_quantityprod = "%20/%20"+v_fquaprcataadd+"%20UNIDAD";
+													}
+												}else{
+													txt_quantityprod = "";
+												}
+
 												var objDataTxtWhatsapp = {
 													id: $("#v_gencodexxx").text() + " - " + v_loadtypecharge,
 													typeservice : v_typeserviceinit.toUpperCase(),
@@ -1044,6 +1091,7 @@ $(document).ready(function(){
 													fportorigin : portOriginName,
 													fportdestiny : portDestinyName,
 													containtflete : v_fpckgcontquant,
+													quantityprod: txt_quantityprod,
 													tservices: totalNotround,
 													tfob: totalfinalvaluefob,
 													impuestosflete : (v_foptgnfquotevl == "y-moreOpts") ? "SÍ" : "NO",
@@ -1060,7 +1108,7 @@ $(document).ready(function(){
 												Tipo%20Contenedor:%20${objDataTxtWhatsapp.tcontainer}${wlinebreak}
 												Flete%20Origen:%20${objDataTxtWhatsapp.fportorigin}${wlinebreak}
 												Flete%20Destino:%20${objDataTxtWhatsapp.fportdestiny}${wlinebreak}
-												Contenido%20Flete:%20${objDataTxtWhatsapp.containtflete}${wlinebreak}
+												Contenido%20Flete:%20${objDataTxtWhatsapp.containtflete}${objDataTxtWhatsapp.quantityprod}${wlinebreak}
 												Valor%20Flete:%20${objDataTxtWhatsapp.tservices}${wlinebreak}
 												Gastos:%20${objDataTxtWhatsapp.tfob}${wlinebreak}
 												Impuestos:%20${objDataTxtWhatsapp.impuestosflete}${wlinebreak}
