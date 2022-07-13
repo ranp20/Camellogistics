@@ -52,7 +52,7 @@ if(isset($_GET['action']) && $_GET['action'] == "SaveChanges" && isset($_GET['as
        	}
    			$asign_infogeneral_conditions[] = $comb;
      	}
-			$infogeneral_conditions = json_encode($asign_infogeneral_conditions);
+			$infogeneral_conditions = json_encode($asign_infogeneral_conditions, JSON_UNESCAPED_UNICODE);
 
 			$arr_postSettings = [
 				"infogeneral_conditions" => $infogeneral_conditions
