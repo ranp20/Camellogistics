@@ -105,16 +105,25 @@ $(document).ready(function(){
 	var val_ftotalfleteprod = decryptValuesIpts(encrypt_val_ftotalfleteprod.val()); // FLETE
 	var val_ftotalvalfobprod = decryptValuesIpts(encrypt_val_ftotalvalfobprod.val()); // VALOR FOB
 	var val_plcpickuprateprov = decryptValuesIpts(encrypt_val_plcpickuprateprov.val()); // TRANSPORTE INTERNO
+	// ------------ ENCRIPTACIÓN DE INFO. DE USUARIO
+	var encrypt_sessuser_username = $("#s_useregin-sistem").val(encryptValuesIpts($("#s_useregin-sistem").val()));
+	// ------------ DESENCRIPTACIÓN DE INFO. DE USUARIO
+	var decrypt_sessuser_username = decryptValuesIpts(encrypt_sessuser_username.val());
 	// ------------ VALIDAR SI EXISTE UN USUARIO, DE LO CONTRARIO ASIGNAR EL USUARIO POR DEFECTO 
 	if($("#s_useregin-sistem").val() == "" || $("#s_useregin-sistem").val() == undefined || $("#s_useregin-sistem").val() == 'undefined' || $("#s_useregin-sistem").val() == null || $("#s_useregin-sistem").val() == 'null'){
-		sessval_loginuser = { username: 'Invitado' }
-    sessionStorage.setItem("sess_usercli", JSON.stringify(sessval_loginuser));
+		let sessval_loginuser = { username: 'Invitado' };
+		let obj_sessval_loginuser = JSON.stringify(sessval_loginuser);
+    let encrypt_sessval_loginuser = encryptValuesIpts(obj_sessval_loginuser);
+    sessionStorage.setItem("sess_usercli", encrypt_sessval_loginuser);
     sessionStorage.setItem("sess_valuser", 0);
-    var s_username_local = JSON.parse(sessionStorage.getItem("sess_usercli"));
+    let get_username_local = sessionStorage.getItem("sess_usercli");
+    // ------------ DESENCRIPTACIÓN DE INFO. DE USUARIO
+		let decrypt_sess_userinfo = JSON.parse(decryptValuesIpts(get_username_local));
+		let decrypt_sess_userinfo_username = decryptValuesIpts(decrypt_sess_userinfo.username);
 		// ------------ ACTUALIZAR EL HEADER TOP 
 		$("#s-loginsessuser-active").html(`
 		<a href='javascript:void(0);' class='c-Htopbar--c--cMenu--m--link'>
-      <span id='namUser_validSess' class='c-Htopbar--c--cMenu--m--link--sessUser'>${s_username_local.username}</span>
+      <span id='namUser_validSess' class='c-Htopbar--c--cMenu--m--link--sessUser'>${decrypt_sess_userinfo_username}</span>
     </a>
     <ul class='c-Htopbar--c--cMenu--m--item--subm'>
       <li class='c-Htopbar--c--cMenu--m--item--subm--subitem'>
@@ -129,7 +138,7 @@ $(document).ready(function(){
 			method: 'POST',
 			dataType: 'JSON',
 			contentType: 'application/x-www-form-urlencoded;charset=UTF-8',
-			data: { 'u-username' : s_username_local.username, 'u-typeorder' : sessionStorage.getItem("sess_valuser")}
+			data: { 'u-username' : decrypt_sess_userinfo_username, 'u-typeorder' : sessionStorage.getItem("sess_valuser")}
 		}).done((e) => {
 			// ------------ MOSTRAR EL NOMBRE/CORREO DEL USUARIO 
 			$("#s-loginsessuser-active").html(`
@@ -146,14 +155,19 @@ $(document).ready(function(){
       </ul>`);
 		});
 	}else{
-		sessval_loginuser = { username: $("#s_useregin-sistem").val() }
-    sessionStorage.setItem("sess_usercli", JSON.stringify(sessval_loginuser));
+		let sessval_loginuser = { username: $("#s_useregin-sistem").val() };
+		let obj_sessval_loginuser = JSON.stringify(sessval_loginuser);
+    let encrypt_sessval_loginuser = encryptValuesIpts(obj_sessval_loginuser);
+    sessionStorage.setItem("sess_usercli", encrypt_sessval_loginuser);
     sessionStorage.setItem("sess_valuser", 1);
-    var s_username_local = JSON.parse(sessionStorage.getItem("sess_usercli"));
+    let get_username_local = sessionStorage.getItem("sess_usercli");
+    // ------------ DESENCRIPTACIÓN DE INFO. DE USUARIO
+		let decrypt_sess_userinfo = JSON.parse(decryptValuesIpts(get_username_local));
+		let decrypt_sess_userinfo_username = decryptValuesIpts(decrypt_sess_userinfo.username);
 		// ------------ ACTUALIZAR EL HEADER TOP 
 		$("#s-loginsessuser-active").html(`
 		<a href='javascript:void(0);' class='c-Htopbar--c--cMenu--m--link'>
-      <span id='namUser_validSess' class='c-Htopbar--c--cMenu--m--link--sessUser'>${s_username_local.username}</span>
+      <span id='namUser_validSess' class='c-Htopbar--c--cMenu--m--link--sessUser'>${decrypt_sess_userinfo_username}</span>
     </a>
     <ul class='c-Htopbar--c--cMenu--m--item--subm'>
       <li class='c-Htopbar--c--cMenu--m--item--subm--subitem'>
@@ -552,7 +566,7 @@ $(document).ready(function(){
 								// ------------ INSERTAR EN LA TABLA DE COTIZACIONES 
 								if($("#s_useregin-sistem").val() == "" || $("#s_useregin-sistem").val() == undefined || $("#s_useregin-sistem").val() == 'undefined' || $("#s_useregin-sistem").val() == null || $("#s_useregin-sistem").val() == 'null'){
 
-									user_sessquote = s_username_local.username;
+									user_sessquote = decrypt_sessuser_username;
 
 									var formdata = new FormData();
 									formdata.append("id_codegenrand", v_idgencoderand);
@@ -845,9 +859,11 @@ $(document).ready(function(){
 									});
 								}else if($("#s_useregin-sistem").val() != "" || $("#s_useregin-sistem").val() != undefined || $("#s_useregin-sistem").val() != 'undefined' || $("#s_useregin-sistem").val() != null || $("#s_useregin-sistem").val() != 'null'){
 									
+									user_sessquote = decrypt_sessuser_username;
+
 									var formdata = new FormData();
 									formdata.append("id_codegenrand", v_idgencoderand);
-									formdata.append("u_login", $("#s_useregin-sistem").val());
+									formdata.append("u_login", user_sessquote);
 									formdata.append("f_typetransendinitid", transsendinitbyid);
 									formdata.append("f_type_op", v_floadtypeope);
 									formdata.append("f_type_serv", v_typeserviceinit);
@@ -1166,7 +1182,7 @@ $(document).ready(function(){
 				<p>Validando la información...</p>
 			</div>`);
 			//VALIDAR LA INFORMACIÓN DEL USUARIO...
-			user_sessquote = s_username_local.username;
+			user_sessquote = decrypt_sessuser_username;
 			var formdata = new FormData();
 			formdata.append("id_codegenrand", v_idgencoderand);
 			formdata.append("code_quote", $("#v_gencodexxx").text());
@@ -1383,7 +1399,7 @@ $(document).ready(function(){
 				<p>Validando la información...</p>
 			</div>`);
 			//VALIDAR LA INFORMACIÓN DEL USUARIO...
-			user_sessquote = s_username_local.username;
+			user_sessquote = decrypt_sessuser_username;
 			var formdata = new FormData();
 			formdata.append("id_codegenrand", v_idgencoderand);
 			formdata.append("code_quote", $("#v_gencodexxx").text());
@@ -1616,7 +1632,7 @@ $(document).ready(function(){
 				<p>Validando la información...</p>
 			</div>`);
 			//VALIDAR LA INFORMACIÓN DEL USUARIO...
-			user_sessquote = s_username_local.username;
+			user_sessquote = decrypt_sessuser_username;
 			var formdata = new FormData();
 			formdata.append("id_codegenrand", v_idgencoderand);
 			formdata.append("code_quote", $("#v_gencodexxx").text());
@@ -1832,7 +1848,7 @@ $(document).ready(function(){
 				<p>Validando la información...</p>
 			</div>`);
 			//VALIDAR LA INFORMACIÓN DEL USUARIO...
-			user_sessquote = s_username_local.username;
+			user_sessquote = decrypt_sessuser_username;
 			var formdata = new FormData();
 			formdata.append("id_codegenrand", v_idgencoderand);
 			formdata.append("code_quote", $("#v_gencodexxx").text());
@@ -2167,7 +2183,7 @@ $(document).ready(function(){
 				    $(document).on('click', '.SwalBtn1', function() {
 					    swal.clickConfirm();
 					    //VALIDAR LA INFORMACIÓN DEL USUARIO...
-							user_sessquote = s_username_local.username;
+							user_sessquote = decrypt_sessuser_username;
 							var formdata = new FormData();
 							formdata.append("id_codegenrand", v_idgencoderand);
 							formdata.append("code_quote", $("#v_gencodexxx").text());

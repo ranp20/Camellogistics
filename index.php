@@ -13,6 +13,7 @@ $g_setting = $call_config->get_config();
 <?php require_once 'views/includes/inc_header-links.php';?>
 <link rel="stylesheet" href="node_modules/sweetalert2/dist/sweetalert2.min.css">
 <script type="text/javascript" src="node_modules/sweetalert2/dist/sweetalert2.all.min.js"></script>
+<script type="text/javascript" src="node_modules/crypto-js/crypto-js.js"></script>
 </head>
 <body>
 <main class="cont-MainCamelLog" id="cont-MainCamelLog">

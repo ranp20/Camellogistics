@@ -11,6 +11,7 @@ session_start();
   <!-- INCLUIR SWEET ALERT 2 -->
   <link rel="stylesheet" href="node_modules/sweetalert2/dist/sweetalert2.min.css">
   <script type="text/javascript" src="node_modules/sweetalert2/dist/sweetalert2.all.min.js"></script>
+  <script type="text/javascript" src="node_modules/crypto-js/crypto-js.js"></script>
 </head>
 <body>
   <?php require_once 'includes/inc_header-top.php'; ?>

@@ -7,7 +7,7 @@ $url = $actual_link . "/Camellogistics/views/";
 $url = $actual_link . "/views/";
 */
 $sess_user = 0;
-if(isset($_SESSION['user_camel'])){
+if(isset($_SESSION['user_camel']) && $_SESSION['user_camel'] != "" && $_SESSION['user_camel'] != 0 && $_SESSION['user_camel']['username'] != ""){
   $sess_user = $_SESSION['user_camel']['username'];
 }else{
   $sess_user = "";
@@ -19,27 +19,6 @@ if(isset($_SESSION['user_camel'])){
       <div class="c-Htopbar--c--cLogo">
         <a href="./" title="logo-camellogistics" title="Logo_camellogistics">
           <img src="<?= $url;?>assets/img/logos/logotipo-camel.png" alt="logo_camel" width="100" height="100" decoding="async">
-          <span>
-            <span>
-              <span>
-                <span>
-                  <span>
-                    <span>
-                      <span>
-                        <span>
-                          <span>
-                            <span>
-                              <input tabindex="-1" placeholder="" type="hidden" width="0" height="0" autocomplete="off" spellcheck="false" f-hidden="aria-hidden" class="non-visvalipt h-alternative-shwnon s-fkeynone-step" id="s_useregin-sistem" value="<?php echo $sess_user;?>">
-                            </span>
-                          </span>
-                        </span>
-                      </span>
-                    </span>
-                  </span>
-                </span>
-              </span>
-            </span>
-          </span>
         </a>
       </div>
       <button type="button" class="c-Htopbar--c--btnMobileNavbar" id="btn-m-mobile-header" title="Menu">

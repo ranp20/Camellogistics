@@ -3,6 +3,27 @@
     <span class="cnt-modalFormSessLoginorRegister--c--close" id="btn-closeiconFormLoginorRegister"></span>
 		<div class="cnt-modalFormSessLoginorRegister--c--cTitle">
 			<h2>Iniciar Sesión</h2>
+			<span>
+        <span>
+          <span>
+            <span>
+              <span>
+                <span>
+                  <span>
+                    <span>
+                      <span>
+                        <span>
+                          <input tabindex="-1" placeholder="" type="hidden" width="0" height="0" autocomplete="off" spellcheck="false" f-hidden="aria-hidden" class="non-visvalipt h-alternative-shwnon s-fkeynone-step" id="s_useregin-sistem" value="<?php echo $sess_user;?>">
+                        </span>
+                      </span>
+                    </span>
+                  </span>
+                </span>
+              </span>
+            </span>
+          </span>
+        </span>
+      </span>
 		</div>
 		<div id="c-formLoginorRegisterU">
 			<form method="POST" class="cnt-modalFormSessLoginorRegister--c--cForm" id="c-formLoginU_Camel">

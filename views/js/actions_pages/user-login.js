@@ -1,3 +1,14 @@
+// ------------ ENCRIPTAR DATOS DE INPUTS
+function encryptValuesIpts(valueipt){
+	let ciphertext = CryptoJS.AES.encrypt(valueipt, 'CML_KEYSYSTEM').toString();
+	return ciphertext;
+}
+// ------------ DESENCRIPTAR DATOS DE INPUTS
+function decryptValuesIpts(valueipt){
+	let bytes  = CryptoJS.AES.decrypt(valueipt, 'CML_KEYSYSTEM');
+	let originalText = bytes.toString(CryptoJS.enc.Utf8);
+	return originalText;
+}
 // ------------ ABRIR EL MODAL DE LOGIN/REGISTER
 $(document).on("click", "#s-formLoginOrRegister", function(){$("#cnt-modalFormSessLoginorRegister").add($(".cnt-modalFormSessLoginorRegister--c")).addClass("show");});
 $(document).on("click", "#s-formLoginOrRegistertoMobile", function(){$("#cnt-modalFormSessLoginorRegister").add($(".cnt-modalFormSessLoginorRegister--c")).addClass("show");});
@@ -155,10 +166,12 @@ $(document).on("submit", "#c-formLoginU_Camel", function(e){
         // ------------ AGREGAR AL CONTROL DE VALIDACIÓN 
         $("#s_useregin-sistem").val(e.received.username);
         // ------------ ASIGNAR A LA VARIABLE DE SESIÓN LOCAL 
-        var sessstorage_loguser = {
+        let sessstorage_loguser = {
           'username': e.received.username
         }
-        sessionStorage.setItem("sess_usercli", JSON.stringify(sessstorage_loguser));
+        let obj_sessstorage_loguser = JSON.stringify(sessstorage_loguser);
+        let encrypt_sessstorage_loguser = encryptValuesIpts(obj_sessstorage_loguser);
+        sessionStorage.setItem("sess_usercli", encrypt_sessstorage_loguser);
         sessionStorage.setItem("sess_valuser", 1);
         // ------------ MOSTRAR EL NOMBRE/CORREO DEL USUARIO - DESKTOP
         $("#s-loginsessuser-active-mb").html(`
@@ -369,10 +382,12 @@ $(document).on("submit", "#c-formRegisterU_Camel", function(e){
 		        // ------------ AGREGAR AL CONTROL DE VALIDACIÓN 
 		        $("#s_useregin-sistem").val(e.received.username);
 		        // ------------ ASIGNAR A LA VARIABLE DE SESIÓN LOCAL 
-		        var sessstorage_loguser = {
+		        let sessstorage_loguser = {
 		          'username': e.received.username
 		        }
-		        sessionStorage.setItem("sess_usercli", JSON.stringify(sessstorage_loguser));
+		        let obj_sessstorage_loguser = JSON.stringify(sessstorage_loguser);
+		        let encrypt_sessstorage_loguser = encryptValuesIpts(obj_sessstorage_loguser);
+		        sessionStorage.setItem("sess_usercli", encrypt_sessstorage_loguser);
 		        sessionStorage.setItem("sess_valuser", 1);
 		        // ------------ MOSTRAR EL NOMBRE/CORREO DEL USUARIO - DESKTOP
 		        $("#s-loginsessuser-active-mb").html(`
