@@ -35,6 +35,9 @@ RewriteRule productos?$ admin/views/products.php
 RewriteRule ajustes?$ admin/views/general-settings.php
 RewriteRule savesettings?$ admin/controllers/c_update_config.php
 
+############# EVITAR QUE SE INGRESE A LAS CARPETAS
+Options -Indexes
+
 ############# MENSAJE DE ERROR PERSONALIZADO
 #RewriteRule 404?$ views/404.php
 ErrorDocument 404 /views/404.php
