@@ -45,6 +45,7 @@
   overflow-y: scroll;
   transition: all .4s ease-in-out;
 	@media (min-width: 960px){
+		overflow-y: auto;
 		width: 100%;
 		margin-left: 285px;
 		&.active{
