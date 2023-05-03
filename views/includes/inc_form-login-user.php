@@ -34,7 +34,7 @@
 				</div>
 				<div class="cnt-modalFormSessLoginorRegister--c--cForm--cControl">
 					<label for="u-password" class="cnt-modalFormSessLoginorRegister--c--cForm--cControl--label">CONTRASEÑA</label>
-					<input type="password" id="u-password" name="u-password" class="cnt-modalFormSessLoginorRegister--c--cForm--cControl--input" placeholder="Contraseña" maxlength="80">
+					<input type="password" autocomplete="true" id="u-password" name="u-password" class="cnt-modalFormSessLoginorRegister--c--cForm--cControl--input" placeholder="Contraseña" maxlength="80">
 					<span id="mssg_alertcontrol_pass"></span>
 				</div>
 				<div class="cnt-modalFormSessLoginorRegister--c--cForm--cBtnsLoginorRegisterOptions" id="cont-btnsLoginorRegisterOptions">

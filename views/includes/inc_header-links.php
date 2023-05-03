@@ -15,7 +15,7 @@ $url_admin = $actual_link . "/admin/";
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/>
 <meta http-equiv="Pragma" content="no-cache"/>
 <meta http-equiv="Expires" content="0"/>
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, minimum-scale=1.0, shrink-to-fit=no, viewport-fit=cover"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=6.0, minimum-scale=1.0, shrink-to-fit=no, viewport-fit=cover"/>
 <meta name="keywords" content="camellogistics, Calculadora de envíos, Agente de aduanas, Transporte marítimo"/>
 <meta name="description" content="¡Calcula el costo de tu importación en 4 simples pasos!"/>
 <meta name="theme-color" content="#B58440"/>
