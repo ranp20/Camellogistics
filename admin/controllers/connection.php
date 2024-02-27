@@ -9,7 +9,8 @@ $charset = "latin1";
 $charset_u = "utf8";
 */
 // CONFIGURACIÓN - LOCALHOST
-$servidor = "localhost";
+// $servidor = "localhost";
+$servidor = "127.0.0.1:3309";
 $dbname = "db_camellogistics";
 $usuario = "root";
 $password = "";
